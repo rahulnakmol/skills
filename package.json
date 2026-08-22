@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "validate": "node scripts/validate.mjs",
-    "test": "node --test \"test/**/*.test.mjs\"",
+    "test": "node scripts/run-tests.mjs",
     "gen:openai": "node scripts/gen-openai-yaml.mjs",
     "sync:plugin": "node scripts/sync-plugin-version.mjs"
   },

@@ -12,6 +12,6 @@ jobs:
         with:
           node-version: '20'
       - run: node scripts/validate.mjs
-      - run: node --test "test/**/*.test.mjs"
+      - run: node scripts/run-tests.mjs
       - run: node scripts/gen-openai-yaml.mjs
       - run: node tools/opencode-workflows/test-runner.mjs

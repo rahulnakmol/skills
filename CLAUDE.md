@@ -30,7 +30,7 @@ Machine-checkable rules for humans and agents working in `rahulnakmol/skills`.
 
 ## Testing
 
-- Deterministic harness: node --test "test/**/*.test.mjs" must pass; CI runs it on every push and PR.
+- Deterministic harness: node scripts/run-tests.mjs must pass; CI runs it on every push and PR.
 
 ## Sidecars
 

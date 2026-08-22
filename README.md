@@ -82,7 +82,7 @@ Writing and productivity are charter-only in this release — see [skills/writin
 
 ```bash
 node scripts/validate.mjs
-node --test "test/**/*.test.mjs"
+node scripts/run-tests.mjs
 ```
 
 ## License
