@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+
+### Minor Changes
+
+- 21d1230: Initial public release v0.1.0: SDLC skill fleet, impact pipeline, five-tool adapters, model registry.
+- d71aa54: Set the Frontier uplift: end-to-end model-policy enforcement (adapters + CI, not just the registry), a canonical model registry with a machine-readable block that CI diffs against actual adapter bindings, an honestly-automated `update-models` workflow (no more placeholder PRs), the judgment layer (grill loop, value lenses, orchestration rubric, work-item contract, PRD template, operability lane) authored to full depth, human nodes as first-class citizens in `orchestrate` with named owners and SLAs, governance wired through `impact` → `slice` → work items instead of left as an orphaned overlay, a deterministic test harness (`node --test`) plus key-gated behavior smokes covering every recommendation, and a thesis-led README/wiki serving every altitude from first clone to CIO/CDAIO/CTO.
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
