@@ -19,7 +19,7 @@ jobs:
           node-version: '20'
       - run: npm install
       - run: node scripts/validate.mjs
-      - run: node --test "test/**/*.test.mjs"
+      - run: node scripts/run-tests.mjs
       - name: Version packages or prepare to tag
         id: changesets
         uses: changesets/action@v1
