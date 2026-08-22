@@ -1,16 +1,22 @@
 # Architecture: Agentic pods
 
-How a work item goes from [Raise](Skill-Raise) publishing it to an agent — or a human — actually implementing it, without ever skipping the moment where someone checks the item makes sense first.
+This page describes what happens between the moment [Raise](Skill-Raise) publishes a work item and the moment an agent, or a person, actually implements it. The process is designed so that someone always checks the item makes sense before implementation begins.
 
-**The contract** — every work item [Slice](Skill-Slice) produces conforms to [WORK-ITEM-CONTRACT.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/slice/WORK-ITEM-CONTRACT.md): goal, parent links, context, scope and file ownership (what lets multiple pods work in parallel without write contention), non-goals, machine-checkable acceptance criteria, exact verification commands, constraints, an execution profile, a governance section when the PRD's risk tier warrants it, and a headless run block.
+## The contract
 
-**The pickup protocol** — the other half of the contract, and the one most backlog systems skip. An agent picking up a work item never implements on first contact, no matter how complete the contract looks. It critiques first — checking the item against its own contract, the parent PRD, and the current codebase — and posts that critique as a comment on the issue. The state machine:
+Every work item that [Slice](Skill-Slice) produces follows [WORK-ITEM-CONTRACT.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/slice/WORK-ITEM-CONTRACT.md). The contract specifies a goal, the item's parent links, its context, its scope and file ownership — which is what allows multiple pods to work in parallel without contending over the same files — its non-goals, acceptance criteria that can be checked by a machine, the exact commands used to verify it, its constraints, an execution profile, a governance section where the PRD's risk tier requires one, and a block of commands for running it without a person present.
+
+## The pickup protocol
+
+This is the other half of the contract, and the part most backlog systems skip. An agent that picks up a work item does not implement it on first contact, no matter how complete the contract appears. It reviews the item first, checking it against its own contract, against the parent PRD, and against the current state of the codebase, and posts that review as a comment on the issue. The item then moves through a defined sequence of states:
 
 ```
 raised → critiqued → clarified → ready → in-progress → done
               ↑____________|
 ```
 
-Implementation starts only at `ready`. Headless pods honor the identical two-phase shape.
+Implementation begins only once the item reaches the `ready` state. A headless run follows the same two-phase sequence.
 
-**Headless execution** — the contract's run block generates the exact command per tool: `claude -p`, `opencode run`, `codex exec`, `cursor-agent -p` (or Cursor's own multitask mode), `copilot -p`. Every one of them runs the critique phase first and stops for answers before the implement phase begins.
+## Headless execution
+
+The contract's run block generates the exact command for each supported tool: `claude -p`, `opencode run`, `codex exec`, `cursor-agent -p` (or Cursor's own multitask mode), and `copilot -p`. Each of these runs the review phase first and waits for answers to any open questions before it begins implementation.

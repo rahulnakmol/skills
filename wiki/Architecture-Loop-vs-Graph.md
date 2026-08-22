@@ -1,11 +1,11 @@
 # Architecture: Loop vs graph
 
-The routing rubric behind [Orchestrate](Skill-Orchestrate). Route on verifiability, never on difficulty — a hard task with one clean verifier still belongs in a loop, and an easy task that fans into independent branches still belongs in a graph.
+This is the routing rule behind the [Orchestrate](Skill-Orchestrate) skill. The rule is to route on whether a result can be verified, never on how difficult a task appears. A hard task that has one clean verifier still belongs in a loop. An easy task that splits into independent branches still belongs in a graph.
 
-**Loop** — one artifact, one verifier, one context window. A single writer iterates until the verifier passes or a hard cap is hit.
+A loop covers one artifact, one verifier, and one context window. A single writer repeats the work until the verifier passes or a hard limit is reached.
 
-**Graph** — independent workstreams, per-stage rubrics, state that must survive the session, or a high-consequence write. Nodes are typed `agent` or `human` (see [GRAPH.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/orchestrate/GRAPH.md)); edges are explicit artifact handoffs, never an implicit "the previous step probably finished."
+A graph covers independent workstreams, separate rubrics for each stage, state that must survive beyond a single session, or a high-consequence write. Its nodes are typed as either `agent` or `human`; see [GRAPH.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/orchestrate/GRAPH.md) for the two schemas. Its edges are explicit handoffs of a defined artifact — never an assumption that the previous step has already finished.
 
-**Hybrid** — a graph shell carrying the overall shape, with a loop running inside any node whose internal work is genuinely ambiguous.
+A hybrid is a graph that carries the overall shape of the work, with a loop running inside any single node whose internal work is genuinely open-ended.
 
-The full first-hit-wins routing order, the evidence it rests on (ComPilot's verified-feedback-loop findings, Agint's type-floor ladder and partition-vs-lottery fan-out, count-tokens-not-agents), the failure signatures to watch for, and the prohibited patterns (same-model majority voting, unbounded "until dry," multiple writers per checkout) all live in [RUBRIC.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/orchestrate/RUBRIC.md) — this page is the map, that file is the doctrine.
+The full routing order, the evidence behind it — including findings from ComPilot on verified feedback loops and from Agint on its type-floor ladder and its comparison of partitioned work against redundant fan-out — the failure patterns to watch for, and the practices this repository prohibits (voting among instances of the same model, an unbounded "run until nothing new turns up," and more than one writer on a single checkout) are documented in full in [RUBRIC.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/orchestrate/RUBRIC.md). This page is a map to that document, not a substitute for it.

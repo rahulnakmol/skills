@@ -2,22 +2,22 @@
 
 **Group:** developer · **Invocation:** mixed-invoked specialist · **Source:** [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/maintain/SKILL.md)
 
-Application-maintenance charter: patch cadence and technical-debt burn-down, producing a maintenance plan with prioritized CI items rather than an ad hoc backlog of "get to it eventually."
+Maintain is the application-maintenance charter. It covers patch cadence and the reduction of technical debt, and it produces a maintenance plan with prioritized continuous-integration items, rather than an informal backlog of deferred work.
 
 ## When to invoke
 
-- An SDLC gate requires maintain evidence
-- A work item's pod charter names this role
+- A gate in the SDLC loop requires evidence from the maintain role.
+- A work item's pod charter names this role.
 
 ## How it fits
 
-`maintain` is the last stage of the [role journey](Architecture-Role-Journey) — where patches, dependency cadence, and incident follow-ups turn back into new backlog items, closing the loop that runs from inception all the way through to ongoing upkeep.
+Maintain is the final stage of the [role journey](Architecture-Role-Journey), where patches, dependency updates, and incident follow-ups become new backlog items. This closes the loop that runs from a project's inception through to its ongoing upkeep.
 
 ## Key references
 
-- [CADENCE.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/maintain/CADENCE.md) — the patch and debt-review schedule
-- [tools/opencode-workflows/templates/maintenance.json](https://github.com/rahulnakmol/skills/blob/main/tools/opencode-workflows/templates/maintenance.json) — the workflow-runner template this charter executes against
+- [CADENCE.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/maintain/CADENCE.md) sets the schedule for patch and debt review.
+- [tools/opencode-workflows/templates/maintenance.json](https://github.com/rahulnakmol/skills/blob/main/tools/opencode-workflows/templates/maintenance.json) is the workflow-runner template this charter runs against.
 
 ## Sibling skills
 
-Feeds continuous-improvement items back into [Slice](Skill-Slice); works alongside [Operate](Skill-Operate) on the post-release side of the journey.
+Maintain feeds continuous-improvement items back into [Slice](Skill-Slice) and works alongside [Operate](Skill-Operate) on the post-release side of the journey.

@@ -2,21 +2,21 @@
 
 **Group:** developer · **Invocation:** model-invoked · **Source:** [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/model-routing/SKILL.md)
 
-Resolves which model tier applies to a task node, so no other skill has to embed a model ID directly. A lookup, not a decision-maker — the decision about which models are even eligible lives one layer up, in the canonical registry this skill reads.
+Model routing resolves which model tier applies to a given task, so that no other skill needs to name a specific model directly. It is a lookup, not a decision-maker. The decision about which models are even eligible is made one layer up, in the canonical registry this skill reads from.
 
 ## When to invoke
 
-- [Orchestrate](Skill-Orchestrate) is assigning a node (implement, verify, architect, security, …)
-- An adapter stub says "resolve via model-routing"
+- [Orchestrate](Skill-Orchestrate) is assigning a step, such as implementation, verification, architecture, or security.
+- An adapter's instructions say to resolve the model through model routing.
 
 ## How it fits
 
-`model-routing` is the thin skill sitting in front of the registry every other skill in this repo ultimately defers to for model choice. It never returns a role it can't justify from `models.md`, and a regulated overlay in effect blocks any downgrade past verifier separation.
+Model routing is a thin skill that sits in front of the registry every other skill in this repository defers to for model choice. It never returns an assignment it cannot justify from `models.md`, and where a regulated overlay applies, it will not allow a downgrade that would remove the separation between an implementer and its verifier.
 
 ## Key references
 
-- [models.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/model-routing/models.md) — the canonical registry: tier matrix, published role→model mapping, override examples, and the machine-readable JSON block CI checks adapter bindings against
+- [models.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/model-routing/models.md) is the canonical registry: a tier matrix, the published mapping from role to model, examples of user overrides, and a machine-readable block that continuous integration checks the adapters' bindings against.
 
 ## Sibling skills
 
-Consumed by [Orchestrate](Skill-Orchestrate) for every graph node; kept current by [Update models](Skill-Update-Models).
+Model routing is consulted by [Orchestrate](Skill-Orchestrate) for every step in a graph, and its registry is kept current by [Update models](Skill-Update-Models).

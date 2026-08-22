@@ -39,3 +39,4 @@ Machine-checkable rules for humans and agents working in `rahulnakmol/skills`.
 ## Authoring
 
 - `.agents/writing-docs.md`, `.agents/invocation.md`, ADRs under `.agents/adr/`.
+- Voice and tone for every document (`SKILL.md`, reference docs, README, wiki): simple American English, formal and professional, in the style of a fact-based news explainer (NPR, the New York Times) — never an opinion column, never marketing language. Full rule in `.agents/writing-docs.md`; every non-Claude agent tool reads the same rule from `AGENTS.md`.

@@ -1,4 +1,7 @@
 # Group: Branding
 
-- [Press](Skill-Press) — signed PRD → branded PDF, using `PALETTE.md` or the user's own branding tokens when installed
-- Bring your own branding tokens via palette overrides
+This group currently holds one skill.
+
+- [Press](Skill-Press) renders a signed PRD as a branded PDF, using either `PALETTE.md`'s default palette or the user's own branding tokens when they are installed.
+
+A project may supply its own branding tokens through palette overrides instead of using the default.
