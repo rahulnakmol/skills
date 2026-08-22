@@ -2,14 +2,42 @@ name: Release
 on:
   push:
     branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   release:
-    if: contains(github.event.head_commit.message, 'chore(release)')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: node scripts/sync-plugin-version.mjs
+      - run: npm install
       - run: node scripts/validate.mjs
+      - run: node scripts/run-tests.mjs
+      - name: Version packages or prepare to tag
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: bash scripts/version-packages.sh
+          title: "chore(release): version packages"
+          commit: "chore(release): version packages"
+      - name: Tag and create a GitHub release
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          TAG="v$VERSION"
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "Tag $TAG already exists — nothing to release."
+            exit 0
+          fi
+          git tag "$TAG"
+          git push origin "$TAG"
+          gh release create "$TAG" --title "$TAG" --generate-notes

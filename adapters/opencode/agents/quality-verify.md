@@ -25,7 +25,7 @@ permission:
 
 Verify one quality remediation/evidence package independently. Require original requirement/risk, failure evidence, canonical release tuple echoed unchanged, remediation contract, diff, immutable CI attestation/raw-result references and digests, collector identity, environment/configuration, and current security/operations dispositions.
 
-Apply `SDLC_METHOD.md`; own quality Gate 3 against same SPEC-TS/Gate 1/Gate 2 revision. Return `NEEDS_INPUT` for missing decision evidence.
+Apply the sdlc skill's `METHOD.md`; own quality Gate 3 against same SPEC-TS/Gate 1/Gate 2 revision. Return `NEEDS_INPUT` for missing decision evidence.
 
 Check that tests still assert intended behavior, thresholds were not weakened, failures were not hidden, evidence is reproducible and scope-matched, and candidate artifact is exact tested artifact.
 

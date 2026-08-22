@@ -66,8 +66,8 @@ Preserve SDLC topology as one assignment system:
 - `sdlc`: strongest available cost-credible orchestrator, default `high`; `sdlc-max` uses strongest supported below/at `xhigh` for consequential routing.
 - `work-luna`: cost-efficient bounded worker, prefer `medium`.
 - `work-sonnet`: balanced default implementation worker, prefer `high`.
-- `work-k3`: long-horizon large-context worker; use provider-supported default/effort only.
-- `work-glm`: open-model diverse million-context worker, prefer `high`.
+- `work-k3`: long-horizon large-context worker; ships on the allowlist default (`claude-sonnet-5`) — the long-context binding is a documented user override, not a shipped default.
+- `work-glm`: model-diverse bounded worker; ships on the allowlist default (`claude-sonnet-5`) — the open-model binding is a documented user override, not a shipped default.
 - `verify`: different model family from orchestrator/workers, higher reasoning (`xhigh` when supported), read-only.
 
 Fable is optional orchestrator candidate only when exact authenticated provider exposes it and evidence shows value exceeds GPT 5.6 Sol cost. Never configure unavailable `opencode/claude-fable-5` from public catalog alone.

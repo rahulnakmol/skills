@@ -26,6 +26,11 @@ Machine-checkable rules for humans and agents working in `rahulnakmol/skills`.
 
 - Published defaults: **Anthropic, OpenAI, Google** only; enforced by `scripts/validate.mjs`.
 - User overrides are local; never commit non-allowlist IDs as shipped defaults.
+- Adapter model bindings: allowlist providers only; enforced by scripts/validate.mjs and test/policy/.
+
+## Testing
+
+- Deterministic harness: node scripts/run-tests.mjs must pass; CI runs it on every push and PR.
 
 ## Sidecars
 

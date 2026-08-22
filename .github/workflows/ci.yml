@@ -1,7 +1,7 @@
 name: CI
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
   pull_request:
 jobs:
   validate:
@@ -12,5 +12,6 @@ jobs:
         with:
           node-version: '20'
       - run: node scripts/validate.mjs
+      - run: node scripts/run-tests.mjs
       - run: node scripts/gen-openai-yaml.mjs
       - run: node tools/opencode-workflows/test-runner.mjs
