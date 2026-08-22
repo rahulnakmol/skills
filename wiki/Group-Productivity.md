@@ -1,3 +1,3 @@
 # Group: Productivity
 
-v0.1 charter only. Future: personal automation skills.
+This group is a charter only in version 0.1: no skills have shipped yet. Planned work includes personal automation skills.

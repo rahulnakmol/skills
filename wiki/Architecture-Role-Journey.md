@@ -1,6 +1,6 @@
 # Architecture: Role journey
 
-Every SDLC role this repo covers, laid out as one journey from an idea to a maintained system — with the four human gates marked where they actually sit.
+This page lays out every software-delivery role this repository covers, arranged as a single journey from an idea to a maintained system. The four human gates are marked where they actually occur in that journey.
 
 ```mermaid
 flowchart LR
@@ -17,13 +17,13 @@ flowchart LR
 
 | Stage | Skills |
 |-------|--------|
-| Inception | [Impact](Skill-Impact) (+ [Recon](Skill-Recon) for brownfield), [Press](Skill-Press) for the branded PDF |
-| Backlog | [Slice](Skill-Slice), [Raise](Skill-Raise) |
-| Design | [Architect](Skill-Architect), [Responsible AI governance](Skill-Responsible-AI-Governance) where triggered |
-| Implementation | [Orchestrate](Skill-Orchestrate), [SDLC](Skill-SDLC) |
-| Secure DevOps | [Safeguard](Skill-Safeguard), [Deliver](Skill-Deliver), [Shakedown](Skill-Shakedown) |
+| Inception | [Impact](Skill-Impact) (with [Recon](Skill-Recon) for brownfield work) and [Press](Skill-Press) for a branded PDF |
+| Backlog | [Slice](Skill-Slice) and [Raise](Skill-Raise) |
+| Design | [Architect](Skill-Architect), with [Responsible AI governance](Skill-Responsible-AI-Governance) applied where it is triggered |
+| Implementation | [Orchestrate](Skill-Orchestrate) and [SDLC](Skill-SDLC) |
+| Secure DevOps | [Safeguard](Skill-Safeguard), [Deliver](Skill-Deliver), and [Shakedown](Skill-Shakedown) |
 | Reliability | [Operate](Skill-Operate) |
 | Maintainability | [Assure](Skill-Assure) |
-| Application maintenance | [Maintain](Skill-Maintain) — findings re-enter Backlog as improvement items |
+| Application maintenance | [Maintain](Skill-Maintain), whose findings return to the backlog as improvement items |
 
-The four hexagons are not decoration. Each is a point where the graph `orchestrate` builds inserts a typed `human` node — a named owner, the exact decision, and an SLA — rather than a bare stop condition. See [Skill: Orchestrate](Skill-Orchestrate) and [Architecture: Loop vs graph](Architecture-Loop-vs-Graph) for how that routing decision gets made.
+The four hexagons in the diagram are not a decoration; they mark a real point of control. At each one, the graph that `orchestrate` builds inserts a typed `human` node — a named owner, the exact decision to be made, and a service-level agreement — rather than a plain stop condition. For how that routing decision is made, see [Skill: Orchestrate](Skill-Orchestrate) and [Architecture: Loop vs graph](Architecture-Loop-vs-Graph).

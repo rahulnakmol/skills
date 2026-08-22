@@ -2,22 +2,22 @@
 
 **Group:** developer · **Invocation:** user-invoked · **Source:** [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/shakedown/SKILL.md)
 
-Checks out any pull request into an isolated sandbox, builds it, runs its tests, executes the change, and posts an agent review — locally or headless — so every PR gets a genuine pass/fail verdict instead of an approval based on reading the diff.
+Shakedown checks out a pull request into an isolated sandbox, builds it, runs its tests, executes the change, and posts a review written by an agent, either locally or without a person present. This gives every pull request a verdict based on actually running the code, rather than an approval based only on reading the diff.
 
 ## When to invoke
 
-- The user wants pre-merge confidence on a PR or branch
-- CI isn't available locally but a sandbox is
+- The user wants confidence in a pull request or a branch before merging it.
+- Continuous integration is not available locally, but a sandbox is.
 
 ## How it fits
 
-`shakedown` is a Secure DevOps-stage check in the [role journey](Architecture-Role-Journey), and the one built specifically so a red test suite gets a **blocking** review, never an approval by default. It never uses production secrets, and it ships a reusable `pr-shakedown.yml` template so the same check runs automatically on every PR-open, not only when someone remembers to ask for it.
+Shakedown is a check at the Secure DevOps stage of the [role journey](Architecture-Role-Journey), built specifically so that a failing test suite results in a blocking review, not an approval, by default. It never uses production secrets, and it ships a reusable `pr-shakedown.yml` template so the same check runs automatically whenever a pull request opens, rather than only when someone remembers to request it.
 
 ## Key references
 
-- [SANDBOX.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/shakedown/SANDBOX.md) — worktree/container isolation rules
-- [pr-shakedown.yml](https://github.com/rahulnakmol/skills/blob/main/skills/developer/shakedown/pr-shakedown.yml) — the reusable GitHub Action template
+- [SANDBOX.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/shakedown/SANDBOX.md) sets the rules for isolating a worktree or a container.
+- [pr-shakedown.yml](https://github.com/rahulnakmol/skills/blob/main/skills/developer/shakedown/pr-shakedown.yml) is the reusable GitHub Action template.
 
 ## Sibling skills
 
-Runs alongside [Deliver](Skill-Deliver) and [Safeguard](Skill-Safeguard) at the Secure DevOps gate.
+Shakedown runs alongside [Deliver](Skill-Deliver) and [Safeguard](Skill-Safeguard) at the Secure DevOps gate.

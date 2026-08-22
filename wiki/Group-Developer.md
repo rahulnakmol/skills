@@ -1,6 +1,6 @@
 # Group: Developer
 
-17 promoted skills covering the full journey from inception to application maintenance. See [Architecture: Role journey](Architecture-Role-Journey) for how they fit together end to end.
+This group holds 17 promoted skills that together cover the full journey from an idea's inception to the ongoing maintenance of the system it becomes. See [Architecture: Role journey](Architecture-Role-Journey) for how the skills fit together from start to finish.
 
 | Skill | Invocation |
 |-------|------------|
