@@ -1,0 +1,21 @@
+name: Branch flow guard
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require PRs into main to come from dev or a release branch
+        run: |
+          HEAD="${{ github.head_ref }}"
+          if [ "$HEAD" = "dev" ] || [[ "$HEAD" == changeset-release/* ]]; then
+            echo "OK: PR into main from '$HEAD'"
+            exit 0
+          fi
+          echo "::error::PRs into main must come from 'dev' (or an automated 'changeset-release/*' release branch), not '$HEAD'. Merge into dev first, then open a dev -> main PR."
+          exit 1
