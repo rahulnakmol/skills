@@ -1,0 +1,4 @@
+{
+  "expected_archetypes": ["legacy-as400"],
+  "signals": [".rpgle", ".clp", "QRPGLESRC", "QCLSRC"]
+}

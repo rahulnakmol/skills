@@ -1,0 +1,4 @@
+{
+  "expected_archetypes": ["monorepo-polyglot"],
+  "signals": ["WORKSPACE", "BUILD.bazel", "nx.json", "packages/"]
+}

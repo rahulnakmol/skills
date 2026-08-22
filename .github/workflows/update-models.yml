@@ -1,0 +1,48 @@
+name: Update models
+on:
+  schedule:
+    - cron: '0 9 1 * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Validate only (no PR)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  propose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate current registry
+        run: node scripts/validate.mjs
+      - name: Research placeholder
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          echo "Run update-models skill research against provider catalogs."
+          echo "Human must review PR touching only models.md and adapters/."
+          test -n "${ANTHROPIC_API_KEY:-}" || echo "ANTHROPIC_API_KEY not set — manual workflow_dispatch only"
+      - name: Create model update PR
+        if: github.event_name == 'workflow_dispatch' && inputs.dry_run == false
+        run: |
+          BRANCH="models/update-$(date +%Y-%m-%d)"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          echo "# Placeholder — run /update-models locally or wire claude-code-action" >> skills/developer/update-models/RESEARCH.md
+          git add skills/developer/update-models/RESEARCH.md || true
+          git diff --staged --quiet && echo "No changes" && exit 0
+          git commit -m "chore(model-routing): monthly registry review placeholder"
+          git push origin "$BRANCH"
+          gh pr create --title "chore(model-routing): monthly model registry review" \
+            --body "Automated placeholder from update-models.yml. Replace with evidence-backed before/after table before merge." || true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,4 @@
+{
+  "expected_archetypes": ["microservices-event-driven"],
+  "signals": ["kafka", "docker-compose.yml", "openapi.yaml", "events/"]
+}

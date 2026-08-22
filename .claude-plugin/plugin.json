@@ -1,0 +1,29 @@
+{
+  "name": "rahulnakmol-skills",
+  "version": "0.1.0",
+  "description": "SDLC and impact pipeline skills",
+  "author": {
+    "name": "Rahul Nakmol"
+  },
+  "license": "Apache-2.0",
+  "skills": [
+    "skills/developer/orchestrate",
+    "skills/developer/model-routing",
+    "skills/developer/update-models",
+    "skills/developer/impact",
+    "skills/developer/recon",
+    "skills/developer/slice",
+    "skills/developer/raise",
+    "skills/developer/sdlc",
+    "skills/developer/architect",
+    "skills/developer/safeguard",
+    "skills/developer/deliver",
+    "skills/developer/assure",
+    "skills/developer/operate",
+    "skills/developer/maintain",
+    "skills/developer/shakedown",
+    "skills/developer/ask-fde",
+    "skills/developer/responsible-ai-governance",
+    "skills/branding/press"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "rahulnakmol-skills",
+  "owner": "rahulnakmol",
+  "metadata": {
+    "description": "SDLC, impact pipeline, and cross-tool skill adapters",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "skills",
+      "source": ".",
+      "description": "Promoted skills for Claude and compatible hosts"
+    }
+  ]
+}
