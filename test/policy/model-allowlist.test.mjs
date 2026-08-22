@@ -18,13 +18,19 @@ test('every adapter with a model binding uses an allowlist model', () => {
   }
 });
 
+// Agent role identifiers (e.g. `work-glm`, `work-k3`) persist as names even
+// after their default binding is re-tiered to the allowlist; strip them
+// before scanning so roster/permission references don't false-positive.
+const AGENT_IDENTIFIER = /\b(?:work-)?(?:glm|k3)\b/gi;
+
 test('adapter bodies mention disallowed models only as explicit overrides', () => {
   for (const file of adapterFiles) {
     const body = read(file).replace(/^---\n[\s\S]*?\n---/, '');
-    for (const line of body.split('\n')) {
+    for (const rawLine of body.split('\n')) {
+      const line = rawLine.replace(AGENT_IDENTIFIER, '');
       if (DISALLOWED.test(line)) {
         assert.ok(/override|example|not shipped/i.test(line),
-          `${file}: non-allowlist model mentioned outside an override example: "${line.trim()}"`);
+          `${file}: non-allowlist model mentioned outside an override example: "${rawLine.trim()}"`);
       }
     }
   }

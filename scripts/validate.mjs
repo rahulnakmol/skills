@@ -58,6 +58,37 @@ for (const line of models.split('\n')) {
   }
 }
 
+function walkAll(dir, acc = []) {
+  if (!existsSync(dir)) return acc;
+  for (const ent of readdirSync(dir)) {
+    const p = join(dir, ent);
+    if (statSync(p).isDirectory()) walkAll(p, acc);
+    else if (ent.endsWith('.md')) acc.push(p);
+  }
+  return acc;
+}
+const ADAPTER_DISALLOWED = /(kimi|\bglm\b|minimax|deepseek|qwen|grok|llama|mistral)/i;
+const AGENT_IDENTIFIER = /\b(?:work-)?(?:glm|k3)\b/gi;
+for (const p of walkAll(join(root, 'adapters'))) {
+  const rel = p.replace(root + '/', '');
+  const body = readFileSync(p, 'utf8');
+  const fm = body.match(/^---\n([\s\S]*?)\n---/)?.[1] ?? '';
+  const model = fm.match(/^model:\s*(.+)$/m)?.[1]?.trim();
+  if (model && ADAPTER_DISALLOWED.test(model)) {
+    errors.push(`${rel}: shipped model binding violates provider allowlist: ${model}`);
+  }
+  const restOfBody = body.replace(/^---\n[\s\S]*?\n---/, '');
+  for (const rawLine of restOfBody.split('\n')) {
+    const line = rawLine.replace(AGENT_IDENTIFIER, '');
+    if (ADAPTER_DISALLOWED.test(line) && !/override|example|not shipped/i.test(line)) {
+      errors.push(`${rel}: non-allowlist model mentioned outside an override example: "${rawLine.trim()}"`);
+    }
+  }
+  if (/SDLC_METHOD\.md|SDLC_LOOP\.md/.test(body)) {
+    errors.push(`${rel}: stale pre-port doc pointer (use skills/developer/sdlc/METHOD.md / LOOP-CONTRACT.md)`);
+  }
+}
+
 const fixtures = join(root, 'test/fixtures/recon');
 if (existsSync(fixtures)) {
   for (const ent of readdirSync(fixtures)) {

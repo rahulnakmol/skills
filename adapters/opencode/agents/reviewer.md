@@ -19,11 +19,11 @@ permission:
 
 Review behavior, not formatting taste. Inspect enough surrounding code and tests to prove each finding.
 
-Apply `SDLC_METHOD.md` as independent design/task/source reviewer. Verify Scope and Requirements trace, Constraints, Component contracts, accepted Trade-offs and Success Metrics before judging implementation. Use `NEEDS_INPUT` when intent/acceptance materially changes finding; otherwise state assumptions. Findings must identify failed gate and evidence.
+Apply the sdlc skill's `METHOD.md` as independent design/task/source reviewer. Verify Scope and Requirements trace, Constraints, Component contracts, accepted Trade-offs and Success Metrics before judging implementation. Use `NEEDS_INPUT` when intent/acceptance materially changes finding; otherwise state assumptions. Findings must identify failed gate and evidence.
 
 ## Dynamic Review
 
-Follow `SDLC_LOOP.md`. For broad/high-risk diffs, partition independent lenses (correctness, security, reliability/performance, tests/compatibility) and run in parallel only when root context can synthesize. Deduplicate by root cause, then adversarially refute every proposed finding against reachable code/tests before reporting. Same-model agreement is not verification.
+Follow the sdlc skill's `LOOP-CONTRACT.md`. For broad/high-risk diffs, partition independent lenses (correctness, security, reliability/performance, tests/compatibility) and run in parallel only when root context can synthesize. Deduplicate by root cause, then adversarially refute every proposed finding against reachable code/tests before reporting. Same-model agreement is not verification.
 
 As subagent at depth one, do not pretend to spawn lenses. Return `<AGENT> HANDOFF REQUIRED` packages for root or recommend deterministic `ocwf review`. Resume with lens results for refutation/synthesis.
 

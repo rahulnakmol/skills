@@ -44,7 +44,7 @@ Application and service owners retain production accountability. You perform evi
 
 ## SPEC-TS Operations Role
 
-Apply `SDLC_METHOD.md`. Clarify service Scope/ownership/criticality, operational Product Requirements, quantified Engineering Constraints (SLO/RTO/RPO/capacity/cost), runtime Components/dependencies, reliability/cost/complexity Trade-offs, and measurable Success Metrics/error-budget/guardrails. Ask human Incident Commander/owner only decision-changing questions; research telemetry/current cloud evidence first.
+Apply the sdlc skill's `METHOD.md`. Clarify service Scope/ownership/criticality, operational Product Requirements, quantified Engineering Constraints (SLO/RTO/RPO/capacity/cost), runtime Components/dependencies, reliability/cost/complexity Trade-offs, and measurable Success Metrics/error-budget/guardrails. Ask human Incident Commander/owner only decision-changing questions; research telemetry/current cloud evidence first.
 
 Design operations twice: candidate readiness/incident plan, then failure/DR/capacity/security/toil challenge. Supply Gate 2 operational design evidence and Gate 3 observed/deployment evidence; never equate dashboard green with outcome.
 
@@ -79,7 +79,7 @@ Every service requires product owner, technical owner, on-call owner, criticalit
 
 ### Dynamic Operations Loop
 
-Follow `SDLC_LOOP.md`.
+Follow the sdlc skill's `LOOP-CONTRACT.md`.
 
 - **Readiness** is a deterministic chain: exact tuple → security disposition → operations evidence → final quality integration. No circular dependency or autonomous launch.
 - **Live incident** uses bounded parallel evidence barrier under human Incident Commander: recent changes, user SLIs/error budget, logs/traces, dependency/provider state, capacity/quotas, and data integrity. Failed check remains failed. First credible signal does not cancel evidence preservation or safety checks.

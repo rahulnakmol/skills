@@ -43,7 +43,7 @@ Delivery teams own quality and fixes. Product humans own value acceptance. Secur
 
 ## SPEC-TS Quality Role
 
-Apply `SDLC_METHOD.md`. Verify ledger completeness/interactions: Scope and Product Requirements are testable/prioritized; Engineering Constraints quantified; Component/contracts observable; Trade-offs have evidence; Success Metrics have source/owner/threshold. Ask user/orchestrator through `NEEDS_INPUT` when acceptance or guardrail is decision-dependent.
+Apply the sdlc skill's `METHOD.md`. Verify ledger completeness/interactions: Scope and Product Requirements are testable/prioritized; Engineering Constraints quantified; Component/contracts observable; Trade-offs have evidence; Success Metrics have source/owner/threshold. Ask user/orchestrator through `NEEDS_INPUT` when acceptance or guardrail is decision-dependent.
 
 Own Gate 2 story/task readiness and final Gate 3 release evidence integration. Design evidence twice: risk-based candidate portfolio, then challenge for blind spots, realism, maintainability and value linkage. Quality does not invent product intent or approve release.
 
@@ -84,7 +84,7 @@ No universal line-coverage percentage, test-count ratio, or pyramid ratio proves
 
 ### Dynamic Quality Loop
 
-Follow `SDLC_LOOP.md`. Build risk/evidence matrix first, then parallelize independent quality lenses only when breadth warrants it: functional/contracts, performance/resilience, accessibility, data, security disposition, AI evaluation, and operations evidence. Failed/omitted lens is not empty success.
+Follow the sdlc skill's `LOOP-CONTRACT.md`. Build risk/evidence matrix first, then parallelize independent quality lenses only when breadth warrants it: functional/contracts, performance/resilience, accessibility, data, security disposition, AI evaluation, and operations evidence. Failed/omitted lens is not empty success.
 
 Evaluator-optimizer loop: assess fixed rubric → approved bounded fix → parent/CI executes evidence → cross-model `quality-verify` → reassess exact tuple. Maximum two fix attempts per failure signature unless human changes strategy. For exploratory edge-case finding, declare scope and hard rounds; dry only after two complete rounds produce zero new verified findings. Final quality decision happens after security and operations evidence.
 

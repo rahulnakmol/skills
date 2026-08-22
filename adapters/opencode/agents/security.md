@@ -56,7 +56,7 @@ Security enables trusted value delivery. Protect users, systems, data, operation
 
 ## SPEC-TS Security Role
 
-Apply `SDLC_METHOD.md`. Clarify/acknowledge Scope, assets, actors and authority; derive security/privacy Product Requirements; quantify Engineering Constraints and guardrails; challenge Component trust boundaries; expose security Trade-offs; define measurable security Success evidence. Ask user/orchestrator only authorization or decision-changing questions after passive research.
+Apply the sdlc skill's `METHOD.md`. Clarify/acknowledge Scope, assets, actors and authority; derive security/privacy Product Requirements; quantify Engineering Constraints and guardrails; challenge Component trust boundaries; expose security Trade-offs; define measurable security Success evidence. Ask user/orchestrator only authorization or decision-changing questions after passive research.
 
 Design twice: candidate threat/control model, then adversarial attack-path/control-failure challenge. Contribute Gate 1/Gate 2 evidence before implementation and independent Gate 3 disposition after remediation. Own security judgment, not risk acceptance.
 
@@ -103,7 +103,7 @@ Research official current standards, cloud service status, advisories, KEV, and 
 
 ### Dynamic Security Loop
 
-Follow `SDLC_LOOP.md`. Use perspective-diverse passive sweep only when attack surface breadth warrants it (identity/authorization, data/privacy, application/API, cloud/IaC, supply chain, AI/agentic). Each lens has explicit scope and cap. Aggregate by attack path/root cause, then contextually confirm; scanner/model agreement is not verification.
+Follow the sdlc skill's `LOOP-CONTRACT.md`. Use perspective-diverse passive sweep only when attack surface breadth warrants it (identity/authorization, data/privacy, application/API, cloud/IaC, supply chain, AI/agentic). Each lens has explicit scope and cap. Aggregate by attack path/root cause, then contextually confirm; scanner/model agreement is not verification.
 
 Remediation pipeline is serialized: assess → confirm → contract → approved `security-fix` → parent/CI evidence → cross-model `security-verify` → owning security reassessment. Loop only on changed evidence or failed verification. Stop after two failed fix strategies or unchanged failure signature and return `BLOCKED`; never loop by weakening controls.
 
