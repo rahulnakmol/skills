@@ -46,7 +46,7 @@ You orchestrate and synthesize. You do not edit files, execute shell, accept arc
 
 ## Interactive SPEC-TS Facilitation
 
-Apply `SDLC_METHOD.md`. Start substantial requests by acknowledging user intent and restating measurable goal. Build SPEC-TS ledger interactively:
+Apply the sdlc skill's `METHOD.md`. Start substantial requests by acknowledging user intent and restating measurable goal. Build SPEC-TS ledger interactively:
 
 - ask only decision-changing questions, one coherent group at a time;
 - answer discoverable questions through repository/primary-source research before asking user;
@@ -123,7 +123,7 @@ Never infer stop directive from ordinary prose. Preserve directives in handoff p
 
 ## Root Loop
 
-Follow `SDLC_LOOP.md`:
+Follow the sdlc skill's `LOOP-CONTRACT.md`:
 
 1. Align value/outcome and classify route.
 2. Declare plan, worker/specialists, evidence rubric, budgets, and stop conditions.

@@ -1,0 +1,25 @@
+name: Behavior smoke (manual)
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Claude Code CLI
+        run: npm i -g @anthropic-ai/claude-code
+      - name: Grill smoke
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: bash test/behavior/grill-smoke.sh
+      - name: Pickup-protocol smoke
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: bash test/behavior/pickup-smoke.sh

@@ -5,44 +5,76 @@ on:
   workflow_dispatch:
     inputs:
       dry_run:
-        description: 'Validate only (no PR)'
+        description: 'Validate only (no research run)'
         type: boolean
         default: false
 
 permissions:
   contents: write
   pull-requests: write
+  issues: write
 
 jobs:
-  propose:
+  freshness-check:
+    if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Validate current registry
-        run: node scripts/validate.mjs
-      - name: Research placeholder
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - run: node scripts/validate.mjs
+      - run: node scripts/run-tests.mjs
+      - name: Check registry freshness
+        id: freshness
         run: |
-          echo "Run update-models skill research against provider catalogs."
-          echo "Human must review PR touching only models.md and adapters/."
-          test -n "${ANTHROPIC_API_KEY:-}" || echo "ANTHROPIC_API_KEY not set — manual workflow_dispatch only"
-      - name: Create model update PR
-        if: github.event_name == 'workflow_dispatch' && inputs.dry_run == false
-        run: |
-          BRANCH="models/update-$(date +%Y-%m-%d)"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b "$BRANCH"
-          echo "# Placeholder — run /update-models locally or wire claude-code-action" >> skills/developer/update-models/RESEARCH.md
-          git add skills/developer/update-models/RESEARCH.md || true
-          git diff --staged --quiet && echo "No changes" && exit 0
-          git commit -m "chore(model-routing): monthly registry review placeholder"
-          git push origin "$BRANCH"
-          gh pr create --title "chore(model-routing): monthly model registry review" \
-            --body "Automated placeholder from update-models.yml. Replace with evidence-backed before/after table before merge." || true
+          node scripts/check-registry-freshness.mjs && echo "overdue=false" >> "$GITHUB_OUTPUT" \
+            || { echo "overdue=true" >> "$GITHUB_OUTPUT"; true; }
+      - name: File a review-due issue
+        if: steps.freshness.outputs.overdue == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create \
+            --title "Model registry review due ($(date +%Y-%m-%d))" \
+            --body "\`skills/developer/model-routing/models.md\` is more than 45 days past its last review. Run the \`update-models\` workflow_dispatch (needs \`ANTHROPIC_API_KEY\`) to research current catalogs and open a PR, or review manually and bump the 'Last reviewed' date." \
+            --label "model-registry" || true
+
+  research:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/validate.mjs
+      - run: node scripts/run-tests.mjs
+      - name: Require API key for a real research run
+        if: inputs.dry_run == false
+        run: |
+          if [ -z "${ANTHROPIC_API_KEY:-}" ]; then
+            echo "::error::ANTHROPIC_API_KEY secret is not set. Add it in repo settings, or re-run with dry_run:true to validate only."
+            exit 1
+          fi
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - name: Research provider catalogs and propose registry update
+        if: inputs.dry_run == false
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            Execute skills/developer/update-models/SKILL.md against the live
+            Anthropic, OpenAI, and Google model catalogs only (the allowlist
+            in skills/developer/model-routing/models.md). Produce an
+            evidence-backed before/after table per RESEARCH.md's format.
+            Edit only skills/developer/model-routing/models.md and files
+            under adapters/. Do not touch any other file. Update the
+            "Last reviewed" date. Open a pull request titled
+            "chore(model-routing): monthly model registry review" whose body
+            is the before/after table plus rationale and rejected
+            candidates. Never merge — this always needs human review.
+      - name: No PR without a real research run
+        if: inputs.dry_run == true
+        run: echo "dry_run=true — validated only, no research run and no PR opened."
