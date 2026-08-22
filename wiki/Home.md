@@ -2,7 +2,7 @@
 
 ## The thesis
 
-Growth is redefined when human judgment holds the gates — inception, approval, pickup, release — and trusted agents run everything between them. This repo is that operating model: small skills, progressive disclosure, five-tool adapters, one thesis.
+Growth is being redefined by where value concentrates in software delivery. Human judgment holds four gates — inception, approval, pickup, and release — and trusted agents carry out the work between them. This repository is that operating model, built from small, composable skills, with documentation that discloses detail progressively, and adapters for five different tools.
 
 ## Quickstart
 
@@ -11,15 +11,15 @@ npx skills@latest add rahulnakmol/skills
 ./scripts/install-adapters.sh
 ```
 
-Full per-tool setup: [Installation](Installation).
+For the full setup process for each supported tool, see [Installation](Installation).
 
 ## The map
 
-- [Architecture: Role journey](Architecture-Role-Journey) — the full inception-to-maintenance journey, with the four human gates marked
-- [Architecture: Loop vs graph](Architecture-Loop-vs-Graph) — how `orchestrate` decides execution shape
-- [Architecture: SDLC system](Architecture-SDLC-System) — the SPEC-TS ledger, gates, and agent roster
-- [Architecture: Agentic pods](Architecture-Agentic-Pods) — the work-item contract and pickup protocol
-- [Architecture: Skill design](Architecture-Skill-Design) — the conventions every skill follows
+- [Architecture: Role journey](Architecture-Role-Journey) — the complete path from an idea to a maintained system, with the four human gates marked
+- [Architecture: Loop vs graph](Architecture-Loop-vs-Graph) — how the `orchestrate` skill decides the shape a task should run in
+- [Architecture: SDLC system](Architecture-SDLC-System) — the SPEC-TS ledger, the delivery gates, and the roster of specialist agents
+- [Architecture: Agentic pods](Architecture-Agentic-Pods) — the work-item contract and the pickup protocol that governs it
+- [Architecture: Skill design](Architecture-Skill-Design) — the conventions every skill in this repository follows
 
 ## Skills, one page each
 
@@ -27,30 +27,30 @@ Full per-tool setup: [Installation](Installation).
 
 | Skill | Invocation | Purpose |
 |-------|------------|---------|
-| [Orchestrate](Skill-Orchestrate) | model | Choose loop/graph/hybrid, assign a model per node, map to a harness |
-| [Model routing](Skill-Model-Routing) | model | Resolve the tier/model for a task node from the registry |
-| [Update models](Skill-Update-Models) | user | Research provider catalogs, propose a registry update |
-| [Impact](Skill-Impact) | user | Idea → grilled, signed PRD (the inception gate) |
-| [Recon](Skill-Recon) | model | Brownfield codebase brief, read-only |
-| [Slice](Skill-Slice) | model | PRD → contract-complete backlog |
-| [Raise](Skill-Raise) | model | Publish backlog to GitHub or Linear |
-| [SDLC](Skill-SDLC) | user | Full gated delivery loop for a work item |
-| [Architect](Skill-Architect) | mixed | Cross-cutting design and ADRs |
-| [Safeguard](Skill-Safeguard) | mixed | Threat modeling and hardening |
-| [Deliver](Skill-Deliver) | mixed | CI/CD, supply chain, release readiness |
-| [Assure](Skill-Assure) | mixed | Quality and maintainability assurance |
-| [Operate](Skill-Operate) | mixed | SLOs, instrumentation, incident readiness |
-| [Maintain](Skill-Maintain) | mixed | Patch cadence and debt burn-down |
-| [Shakedown](Skill-Shakedown) | user | Sandbox build/test/review any PR before merge |
-| [Ask FDE](Skill-Ask-FDE) | user | Route intent to the right skill |
-| [Responsible AI governance](Skill-Responsible-AI-Governance) | overlay | Regulated-industry and responsible-AI overlay |
+| [Orchestrate](Skill-Orchestrate) | model | Chooses a loop, a graph, or a hybrid execution shape, assigns a model to each step, and maps the result to a harness |
+| [Model routing](Skill-Model-Routing) | model | Resolves the tier and the model assigned to a task node from the registry |
+| [Update models](Skill-Update-Models) | user | Researches provider catalogs and proposes an update to the registry |
+| [Impact](Skill-Impact) | user | Turns an idea into a signed PRD through the grill loop; the inception gate |
+| [Recon](Skill-Recon) | model | Produces a brownfield codebase brief; read-only |
+| [Slice](Skill-Slice) | model | Turns a signed PRD into a contract-complete backlog |
+| [Raise](Skill-Raise) | model | Publishes the backlog to GitHub or Linear |
+| [SDLC](Skill-SDLC) | user | Runs the full gated delivery loop for one work item |
+| [Architect](Skill-Architect) | mixed | Leads cross-cutting technical design and produces ADRs |
+| [Safeguard](Skill-Safeguard) | mixed | Carries out threat modeling and hardening |
+| [Deliver](Skill-Deliver) | mixed | Covers CI/CD, supply chain checks, and release readiness |
+| [Assure](Skill-Assure) | mixed | Covers quality and maintainability assurance |
+| [Operate](Skill-Operate) | mixed | Covers service-level objectives, instrumentation, and incident readiness |
+| [Maintain](Skill-Maintain) | mixed | Covers patch cadence and technical-debt reduction |
+| [Shakedown](Skill-Shakedown) | user | Builds, tests, and reviews any pull request in an isolated sandbox before merge |
+| [Ask FDE](Skill-Ask-FDE) | user | Routes a stated intent to the correct skill |
+| [Responsible AI governance](Skill-Responsible-AI-Governance) | overlay | Applies regulated-industry and responsible-AI requirements on top of the other rules |
 
 ### Branding — [Group-Branding](Group-Branding)
 
 | Skill | Invocation | Purpose |
 |-------|------------|---------|
-| [Press](Skill-Press) | user | Signed PRD → branded PDF |
+| [Press](Skill-Press) | user | Renders a signed PRD as a branded PDF |
 
-### Charter only (no skills shipped yet)
+### Charter only — no skills shipped yet
 
-[Group-Writing](Group-Writing) · [Group-Productivity](Group-Productivity)
+[Group-Writing](Group-Writing) and [Group-Productivity](Group-Productivity) describe planned work only.

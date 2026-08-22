@@ -18,7 +18,7 @@ Apply this on top of the stack rules whenever the work touches a regulated indus
 - Data residency enforced at the infrastructure layer and provable, not assumed.
 - Human-in-the-loop checkpoints on any decision above the agreed autonomy threshold.
 
-## Behaviour in this mode
+## Behavior in this mode
 - Do not implement around a control to make a feature work. If a requirement conflicts with a control, stop and surface the conflict with options.
 - Treat audit and explainability as first-class deliverables with their own tests, not as logging.
 - When unsure whether something is governed, assume it is and ask.

@@ -1,10 +1,10 @@
 # rahulnakmol/skills
 
-Growth redefined by human judgment at the gates and trusted agents running everything between them — executable across five tools.
+A model for pairing human judgment with trusted AI agents, built as a set of skills that run the same way across five different tools.
 
 ## The thesis
 
-Growth is being redefined: value no longer sits in the middle of the skill stack, it concentrates at the two ends — human judgment holding the gates, and agents trusted to run everything between them. Those gates are named and enforced here, not implied: inception (the grill loop a human drives), approval (a signed PRD with a recorded governance tier), pickup (an agent critiques and stops before it implements), and release (a named human owner with an SLA, never a silent auto-approval). Between the gates, AI commoditises the middle of the stack — routine execution and information access are the new baseline, not the differentiator — so this repo invests where the differentiation actually lives: encoded judgment (grill loops, gates, contracts, rubrics) at one end, and trustworthy execution (verifier separation, provider policy enforced in CI, an honestly-automated model registry) at the other. This is that operating model, built to run identically across Claude Code, OpenCode, Codex, Cursor, and GitHub Copilot.
+Software delivery is being redefined by where value now concentrates: at the two ends of the process, not the middle. Human judgment holds the gates. Trusted agents do the work in between. This repository names those gates and enforces each one in code, rather than leaving them as an assumption. Inception is a grill loop a human drives. Approval is a signed PRD with a recorded governance tier. Pickup requires an agent to critique a work item and stop before it implements anything. Release requires a named human owner with a service-level agreement, never a silent auto-approval. Between the gates, artificial intelligence has made routine execution and information retrieval a baseline capability rather than a source of advantage. This repository invests where the advantage still lives: encoded judgment at one end — grill loops, gates, contracts, and routing rules — and verified, trustworthy execution at the other — a separate verifier for consequential work, a provider policy enforced in continuous integration, and a model registry kept current by an honest, disclosed process. What follows is that operating model, built to run identically across Claude Code, OpenCode, Codex, Cursor, and GitHub Copilot.
 
 ## The operating model
 
@@ -21,28 +21,28 @@ flowchart LR
   M -. improvement items .-> B
 ```
 
-Four human gates (hexagons) frame every journey from an idea to a running, maintained system; agents (rectangles) do the work between them, single writer per checkout, external verifier wherever the output feeds a consequential decision. `orchestrate` decides loop vs graph vs hybrid per `RUBRIC.md`, resolves a model per node via `model-routing`, and — for any high-consequence write — inserts a `human` node with a named owner and an SLA rather than a bare stop condition.
+The diagram shows four human gates, drawn as hexagons, framing every journey from an idea to a system in production. Agents, drawn as rectangles, do the work between the gates. Each agent step has a single writer and, wherever the output feeds a consequential decision, a separate verifier. The `orchestrate` skill decides whether a task should run as a loop, a graph, or a hybrid of the two, following the rules in `RUBRIC.md`. It resolves a model for each step through `model-routing`, and for any high-consequence write, it inserts a `human` node with a named owner and a service-level agreement rather than a plain stop condition.
 
 ## Choose your altitude
 
 ### For leaders — CIO · CDAIO · CTO
 
-This changes what you can say with a straight face about your AI-run delivery: every consequential decision has a named human owner and an SLA, not a vague "human in the loop." Every agent action traces to an approved PRD, a recorded governance tier, and an audit trail — not a chat log someone hopes to reconstruct later. Model choice is a governed, evidence-backed registry enforced in CI, not whichever model a developer happened to have configured. Start at [wiki/Architecture-Role-Journey.md](wiki/Architecture-Role-Journey.md) for the full inception-to-maintenance map, and [skills/developer/responsible-ai-governance](skills/developer/responsible-ai-governance/SKILL.md) for the regulated-industry overlay.
+This model gives a concrete answer to a question that is often left vague: who is accountable when an AI agent acts. Every consequential decision has a named human owner and a service-level agreement, not an unspecified "human in the loop." Every agent action traces back to an approved PRD, a recorded governance tier, and an audit trail, rather than a chat transcript someone might reconstruct after the fact. Model selection follows a registry that is reviewed on a schedule and checked in continuous integration, rather than left to whichever model an individual developer happens to have configured. For the full path from an idea to a maintained system, see [wiki/Architecture-Role-Journey.md](wiki/Architecture-Role-Journey.md). For the regulated-industry overlay, see [skills/developer/responsible-ai-governance](skills/developer/responsible-ai-governance/SKILL.md).
 
 ### For architects and engineering managers
 
-The doctrine underneath the gates: route on verifiability, not difficulty ([wiki/Architecture-Loop-vs-Graph.md](wiki/Architecture-Loop-vs-Graph.md)), assign a model per node rather than per project, keep a single writer per checkout with an external verifier wherever contamination risk exists, and delegate through a work-item contract precise enough that a cold pickup — human or agent — can act on it correctly ([wiki/Architecture-Agentic-Pods.md](wiki/Architecture-Agentic-Pods.md)). `orchestrate`'s `RUBRIC.md` carries the evidence this rests on, not just the opinion.
+The routing rule underneath the gates is simple to state and consistently applied: route on whether an outcome can be verified, not on how difficult a task appears. See [wiki/Architecture-Loop-vs-Graph.md](wiki/Architecture-Loop-vs-Graph.md) for the full rule. A model is assigned per task, not per project. A single writer holds each checkout, with a separate verifier wherever one agent grading its own work would be a conflict of interest. Delegation happens through a work-item contract precise enough that anyone picking it up cold — a person or an agent — can act on it correctly; see [wiki/Architecture-Agentic-Pods.md](wiki/Architecture-Agentic-Pods.md). The reasoning behind these choices, including the evidence it rests on, is in `orchestrate`'s `RUBRIC.md`.
 
 ### For developers
 
-Sixty seconds to first use:
+To install the skills and start using them:
 
 ```bash
 npx skills@latest add rahulnakmol/skills
 ./scripts/install-adapters.sh
 ```
 
-Then: `/impact` to turn a raw idea into a graded PRD, `/sdlc` to run a gated build against it, `/shakedown <PR#>` to get any pull request an isolated, agent-reviewed build-test-execute pass before merge. Full per-tool setup at [wiki/Installation.md](wiki/Installation.md).
+From there: run `/impact` to turn a raw idea into a PRD that has been through the grill loop, run `/sdlc` to carry out a gated build against it, and run `/shakedown <PR#>` to have any pull request built, tested, and reviewed by an agent in an isolated sandbox before merge. Full setup instructions for each tool are at [wiki/Installation.md](wiki/Installation.md).
 
 ## Install
 

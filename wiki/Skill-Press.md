@@ -2,21 +2,21 @@
 
 **Group:** branding · **Invocation:** user-invoked · **Source:** [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/branding/press/SKILL.md)
 
-Renders a signed-off PRD to a branded, deck-ready PDF — using the user's own branding skill when one is installed, or a default Anthropic-inspired palette otherwise. It never mutates the PRD source; it only produces an artifact path and a checksum.
+Press renders a signed-off PRD as a branded PDF suitable for a presentation deck. It uses the user's own branding skill when one is installed, or a default Anthropic-inspired palette otherwise. It never changes the source PRD; it produces only an artifact and a checksum.
 
 ## When to invoke
 
-- The PRD is signed off at Gate G2 in [Impact](Skill-Impact)
-- The user wants a shareable document for stakeholders
+- The PRD has been signed off at Gate G2 in [Impact](Skill-Impact).
+- The user wants a document to share with stakeholders.
 
 ## How it fits
 
-`press` is the first skill in the branding group, and the only step in the [role journey](Architecture-Role-Journey) that turns the inception artifact into something meant to travel outside the engineering conversation — a stakeholder review, a deck, a presentation.
+Press is the first skill in the branding group, and the only step in the [role journey](Architecture-Role-Journey) that turns the inception artifact into something meant to be read outside the engineering conversation — in a stakeholder review, a deck, or a presentation.
 
 ## Key references
 
-- [PALETTE.md](https://github.com/rahulnakmol/skills/blob/main/skills/branding/press/PALETTE.md) — the default Anthropic-inspired palette used absent a user branding skill
+- [PALETTE.md](https://github.com/rahulnakmol/skills/blob/main/skills/branding/press/PALETTE.md) defines the default Anthropic-inspired palette used when no user branding skill is installed.
 
 ## Sibling skills
 
-Consumes a signed PRD from [Impact](Skill-Impact).
+Press consumes a signed PRD from [Impact](Skill-Impact).
