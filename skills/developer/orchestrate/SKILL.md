@@ -19,6 +19,7 @@ Select execution shape and route work across skills and adapters.
 3. Per node: `Call the Skill tool with "model-routing"`
 4. Invoke specialist skills (`impact`, `recon`, `architect`, …) — do not inline their protocols
 5. Enforce pickup protocol on work items (`slice/WORK-ITEM-CONTRACT.md`)
+6. High-consequence writes route through a `human` node — see `GRAPH.md`
 
 ## Stop conditions
 
@@ -31,9 +32,17 @@ Select execution shape and route work across skills and adapters.
 mode: graph|loop|hybrid
 nodes:
   - id: implement-1
+    type: agent
     skill: sdlc
     adapter: adapters/opencode/agents/work-sonnet.md
-evidence: []
+  - id: approve-release
+    type: human
+    owner: release-manager
+    decision: "Ship implement-1's diff to production?"
+    inputs: [implement-1.diff, verify-1.report]
+    sla_hours: 48
+    escalation: engineering-director
+evidence: ["RUBRIC.md#routing-questions", "models.md#machine-registry"]
 ```
 
 ## Sibling skills

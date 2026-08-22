@@ -15,10 +15,11 @@ Decompose an approved PRD into backlog-ready items.
 ## Procedure
 
 1. Validate PRD sign-off
-2. Apply `TEMPLATES.md` per item type
-3. Attach operability items per `OPERABILITY.md`
-4. Embed `WORK-ITEM-CONTRACT.md` sections in each item body
-5. Hand off to `raise`
+2. Read the PRD's Risk and governance tier; when `limited` or `high`, `Call the Skill tool with "responsible-ai-governance"` and populate the Governance section plus governance-lane items (`OPERABILITY.md`) in every affected work item
+3. Apply `TEMPLATES.md` per item type
+4. Attach operability items per `OPERABILITY.md`
+5. Embed `WORK-ITEM-CONTRACT.md` sections in each item body
+6. Hand off to `raise`
 
 ## Stop conditions
 
