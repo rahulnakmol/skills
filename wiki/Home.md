@@ -49,6 +49,26 @@ For the full setup process for each supported tool, see [Installation](Installat
 | [Ask FDE](Skill-Ask-FDE) | user | Routes a stated intent to the correct skill |
 | [Responsible AI governance](Skill-Responsible-AI-Governance) | overlay | Applies regulated-industry and responsible-AI requirements on top of the other rules |
 
+### PM — [Group-PM](Group-PM)
+
+| Skill | Invocation | Purpose |
+|-------|------------|---------|
+| [Constitution](Skill-Constitution) | user | Codifies practice or initiative principles, positioning, and prioritization; quarterly review cadence |
+| [Discover](Skill-Discover) | user | Turns a raw business problem into a structured, stakeholder-grounded analysis |
+| [Map](Skill-Map) | model | Builds personas, process flows, and the Business Understanding Document |
+| [TOM Architect](Skill-TOM-Architect) | user | Designs a Target Operating Model — L1-L4 processes, maturity, RACI, platform mapping |
+| [Carve](Skill-Carve) | model | Extracts DIVE-tested epics into a manifest |
+| [PRD Draft](Skill-PRD-Draft) | user | Drafts one INVEST-compliant PRD per approved epic |
+| [PRD Validate](Skill-PRD-Validate) | model | Checks PRD structure against a nine-item checklist, read-only |
+| [PRD Review](Skill-PRD-Review) | user | Scores a PRD on the 11-Star Experience Framework |
+| [Case](Skill-Case) | user | Builds the business case the sponsor approves at the Investment gate |
+| [Roadmap](Skill-Roadmap) | user | Sequences initiatives by outcome and dependency; runs PI planning |
+| [RAID](Skill-RAID) | user | Maintains the Risks, Assumptions, Issues, Dependencies registers |
+| [Realize](Skill-Realize) | user | Tracks benefits actuals against projection and rolls up to the north star |
+| [Report](Skill-Report) | user | Produces the 4Ps leadership pack at five cadences |
+| [Grill](Skill-Grill) | user | Interrogates a PM artifact before it advances through a gate |
+| [Ask PM](Skill-Ask-PM) | user | Routes a stated intent to the correct pm skill |
+
 ### Branding — [Group-Branding](Group-Branding)
 
 | Skill | Invocation | Purpose |
