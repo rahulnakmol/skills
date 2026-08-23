@@ -5,7 +5,7 @@ import { join } from 'node:path';
 import { root, read } from '../helpers.mjs';
 
 // Acronym segments that title-case incorrectly under naive capitalization.
-const ACRONYMS = { sdlc: 'SDLC', fde: 'FDE', ai: 'AI' };
+const ACRONYMS = { sdlc: 'SDLC', fde: 'FDE', ai: 'AI', pm: 'PM', prd: 'PRD', tom: 'TOM', raid: 'RAID' };
 
 function wikiPageName(skillDirName) {
   const titled = skillDirName
