@@ -36,7 +36,7 @@ Anything the implementer must not do: dependencies it cannot add without approva
 
 ## Execution profile
 
-The routing decision from `orchestrate`'s `RUBRIC.md`: mode (`loop` | `graph` | `hybrid`), the model tier resolved via `model-routing` for this specific role, and the intended pod size. This section is what lets a headless run pick the right harness configuration without re-deriving the routing decision from scratch.
+The routing decision from `orchestrate`'s `RUBRIC.md`: mode (`loop` | `graph` | `hybrid`), the model tier resolved via `model-routing` for this specific role, and the intended pod size. This section is what lets a headless run pick the right harness configuration without re-deriving the routing decision from scratch. It also records the expected delivery shape: a single pull request, or a reviewable stack of layered pull requests per `deliver/STACKING.md` when the change spans more than one concern.
 
 ## Governance
 
@@ -53,6 +53,8 @@ codex exec "…"
 cursor-agent -p "…"   # or Cursor auto mode + native multitask interactively
 copilot -p "…"
 ```
+
+Where the pipeline workflows are installed, the same two phases run as `scripts/pipeline.sh assess <item>` (critique, then stop) and, only after a human moves the item to `ready`, `scripts/pipeline.sh deliver <item>` — with `--engine claude` or `--engine opencode` selecting the harness.
 
 ## Definition of done
 

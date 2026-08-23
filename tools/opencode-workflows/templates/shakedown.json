@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "name": "shakedown",
+  "description": "T-Rex-style PR shakedown: sandbox build-test-execute, three verified review lenses, and a ready-to-post review verdict that blocks on a red run",
+  "mode": "dag",
+  "subject_type": "workspace",
+  "terminal_task": "verdict",
+  "success_statuses": ["READY", "NOT_READY"],
+  "budgets": {
+    "max_rounds": 1,
+    "max_agents": 7,
+    "max_concurrency": 3,
+    "max_task_attempts": 2,
+    "max_duration_ms": 3600000,
+    "max_input_bytes": 160000,
+    "max_output_bytes": 2000000,
+    "max_tokens": 900000,
+    "max_cost_usd": 18,
+    "dry_rounds": 1,
+    "stagnant_rounds": 1
+  },
+  "tasks": [
+    {
+      "id": "recon",
+      "stage": "recon",
+      "agent": "research",
+      "depends_on": [],
+      "mutates_workspace": false,
+      "prompt": "Gather shakedown context for the pull request named in the objective: head and base branches, whether it is one layer of a stacked chain (a feature-branch base or a stack map in the body), the repository's actual build and test commands, and every existing completed check run with its conclusion — including GitHub Code Quality where present, which reports on its own workflow path (dynamic/github-code-quality/codeql, actor github-code-quality) separate from code scanning. Read-only. Objective: {{objective}}"
+    },
+    {
+      "id": "sandbox",
+      "stage": "sandbox",
+      "agent": "build",
+      "depends_on": ["recon"],
+      "when": { "task": "recon", "statuses": ["PASS", "COMPLETE"] },
+      "mutates_workspace": true,
+      "prompt": "In this isolated checkout of the pull request head, and never with production credentials: build with the project's build command, run its tests, and actually execute the changed behavior to confirm it does what the pull request claims. Evaluate against the pull request's own base branch — for a stacked layer that is its stack base, so only this layer is under test. Return PASS when build, tests, and execution all succeed; BLOCK with the failing log excerpt otherwise. Inputs: {{dependencies}}"
+    },
+    {
+      "id": "correctness",
+      "stage": "lenses",
+      "agent": "reviewer",
+      "depends_on": ["recon", "sandbox"],
+      "allow_blocking_dependencies": true,
+      "mutates_workspace": false,
+      "prompt": "Review the pull request diff strictly for reachable correctness defects: data and control flow, error paths, concurrency, compatibility, regressions. Prove each finding from the code; a hypothesis without a trigger is not a finding. Read-only. Inputs: {{dependencies}}"
+    },
+    {
+      "id": "security",
+      "stage": "lenses",
+      "agent": "security",
+      "depends_on": ["recon", "sandbox"],
+      "allow_blocking_dependencies": true,
+      "mutates_workspace": false,
+      "prompt": "Review the pull request diff strictly for security: injection, authorization gaps, secret handling, unsafe deserialization, supply-chain changes. Passive review only; confirm reachability before reporting. Inputs: {{dependencies}}"
+    },
+    {
+      "id": "tests",
+      "stage": "lenses",
+      "agent": "quality",
+      "depends_on": ["recon", "sandbox"],
+      "allow_blocking_dependencies": true,
+      "mutates_workspace": false,
+      "prompt": "Review the pull request diff strictly for test adequacy: does every changed behavior have a test that would fail without the change? Cross-reference the existing check runs reported by recon — including GitHub Code Quality — rather than repeating analysis the repository already gets; flag a gap only where no existing check covers it. Inputs: {{dependencies}}"
+    },
+    {
+      "id": "verdict",
+      "stage": "verify",
+      "agent": "verify",
+      "depends_on": ["recon", "sandbox", "correctness", "security", "tests"],
+      "allow_blocking_dependencies": true,
+      "mutates_workspace": false,
+      "prompt": "Adversarially refute each proposed finding against the actual diff, deduplicate by root cause, and discard what does not hold. Then compose the review verdict ready to post: NOT_READY (a blocking review) when the sandbox run is red or any confirmed blocking finding remains — a failing build or test suite is always blocking, never approved; READY (a non-blocking review, approval stays with a human) otherwise. Include the sandbox results, the confirmed findings, and the existing checks consumed rather than re-run. Inputs: {{dependencies}}"
+    }
+  ]
+}

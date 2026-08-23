@@ -20,3 +20,9 @@ Implementation begins only once the item reaches the `ready` state. A headless r
 ## Headless execution
 
 The contract's run block generates the exact command for each supported tool: `claude -p`, `opencode run`, `codex exec`, `cursor-agent -p` (or Cursor's own multitask mode), and `copilot -p`. Each of these runs the review phase first and waits for answers to any open questions before it begins implementation.
+
+## The delivery pipeline
+
+The pickup protocol and the delivery itself run as three orchestrated stages, with a human gate between each pair — the workflow runtime allows no user input mid-run, so each gate is a separate run by design. On Claude Code, the stages are dynamic workflows shipped with the plugin: `assess-work-item` fans out three perspective-diverse critics, adversarially verifies their findings, and posts one consolidated critique; `deliver-work-item` refuses any item not at `ready`, plans in layers, implements as a single writer in an isolated worktree, verifies with a separate agent in a bounded fix loop, and raises either one pull request or a dependency-ordered stack; `shakedown-pr` builds, tests, and executes the pull request in a sandbox and submits a review that blocks on a red run. On OpenCode, the same stages run as fixed templates (`assess`, `deliver`, `shakedown`) through the deterministic runner. `scripts/pipeline.sh` launches any stage on either engine, headless or interactively.
+
+A change too large to review as one pull request is raised as a stack: dependency-ordered, single-concern pull requests reviewed bottom-up and merged base-to-tip, following the `gh stack` tooling. The full rule is in [STACKING.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/deliver/STACKING.md).
