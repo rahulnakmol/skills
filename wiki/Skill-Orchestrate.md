@@ -16,7 +16,7 @@ Orchestrate sits above every other skill in this repository's [operating model](
 ## Key references
 
 - [RUBRIC.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/orchestrate/RUBRIC.md) covers the routing questions, applied in order until the first one matches; the evidence they rest on, including findings from ComPilot and Agint; the failure patterns to watch for; and the practices this repository prohibits.
-- [GRAPH.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/orchestrate/GRAPH.md) defines the `agent` and `human` node types.
+- [GRAPH.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/orchestrate/GRAPH.md) defines the `agent` and `human` node types, and carries the harness mapping: work-item delivery runs as three named workflows — assess, deliver, shakedown — on Claude Code's dynamic-workflow runtime or the OpenCode template runner, launched by `scripts/pipeline.sh` on either engine.
 - [LOOP.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/orchestrate/LOOP.md) describes loop mode, in which a single writer works against a single verifier.
 
 ## Sibling skills

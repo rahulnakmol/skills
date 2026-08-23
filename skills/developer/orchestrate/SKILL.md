@@ -20,6 +20,7 @@ Select execution shape and route work across skills and adapters.
 4. Invoke specialist skills (`impact`, `recon`, `architect`, …) — do not inline their protocols
 5. Enforce pickup protocol on work items (`slice/WORK-ITEM-CONTRACT.md`)
 6. High-consequence writes route through a `human` node — see `GRAPH.md`
+7. Work-item delivery maps to the named pipeline workflows — see `GRAPH.md` harness mapping
 
 ## Stop conditions
 

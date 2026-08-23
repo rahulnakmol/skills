@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+
+- Three Claude Code dynamic workflows, shipped with the plugin under `adapters/claude/workflows/` and namespaced as `/rahulnakmol-skills:<name>`: `assess-work-item` runs the pickup critique with three perspective-diverse critics and adversarial verification, then posts one consolidated critique to GitHub or Linear; `deliver-work-item` refuses any item not at `ready`, plans in layers, implements as a single writer in an isolated worktree, verifies with a separate agent in a bounded fix loop, and raises one pull request or a `gh stack` of layered pull requests; `shakedown-pr` builds, tests, and executes a pull request in a sandbox, reviews it through three adversarially verified lenses, and submits a review that blocks on a red run. Human gates sit between the workflows, matching the pickup-protocol state machine.
+- Stacked-pull-request doctrine in `skills/developer/deliver/STACKING.md`: a change spanning more than one concern, or too large for one review, ships as a dependency-ordered stack of single-concern pull requests, reviewed bottom-up and merged base-to-tip with the `gh stack` tooling.
+- OpenCode parity templates `assess.json` and `shakedown.json` for the deterministic workflow runner, validated by the runner's own `--validate` under CI.
+- `scripts/pipeline.sh`: a dual-engine launcher that runs any pipeline stage through Claude Code (`claude -p`, or interactively) or the OpenCode runner, with `--dry-run` support.
+- `pr-shakedown.yml` rewritten from a bare build-and-test snippet into a real, key-gated headless shakedown Action — shipped dispatch-only, so an adopting repository enables per-pull-request triggers as an explicit choice.
+- Shakedown and the review lenses now consume a pull request's existing check runs — including GitHub Code Quality, which reports on its own Actions path (`dynamic/github-code-quality/codeql`) separate from code scanning — rather than repeating analysis the repository already receives.
+- Repository-setup doctrine in `skills/developer/deliver/REPO-SETUP.md`: the SDLC skills follow, or set up, the delivery prerequisites in every repository they work on — GitHub Code Quality on its separate Actions path, `gh stack` tooling for agents and contributors, the six pickup-protocol labels, and the shakedown workflow. `sdlc` checks the list as a prerequisite, `deliver` verifies it as gate evidence, and `slice` emits the missing items as first-epic bootstrap stories on greenfield projects.
+- Twelve new harness tests (`test/structure/delivery-workflows.test.mjs`) covering workflow well-formedness, the plugin manifest's `workflows` field, stacking support, stack-aware shakedown, the repo-setup doctrine and its wiring, template validation, the launcher, and the Action template.
+
 ## 0.2.0
 
 ### Minor Changes

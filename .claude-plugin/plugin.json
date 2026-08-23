@@ -6,6 +6,7 @@
     "name": "Rahul Nakmol"
   },
   "license": "Apache-2.0",
+  "workflows": "./adapters/claude/workflows",
   "skills": [
     "skills/developer/orchestrate",
     "skills/developer/model-routing",

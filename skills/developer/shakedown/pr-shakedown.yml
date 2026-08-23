@@ -1,14 +1,53 @@
-# Example GitHub Actions workflow snippet for PR shakedown
+# Reusable PR-shakedown workflow template.
+#
+# Ships dispatch-only so nothing runs, or spends API tokens, until a maintainer
+# adds the ANTHROPIC_API_KEY secret and opts in. To run on every pull request,
+# replace the `on:` block with:
+#
+#   on:
+#     pull_request:
+#       types: [opened, synchronize, reopened]
+#
+# and pass github.event.pull_request.number instead of the input.
+#
+# Note on GitHub Code Quality: it reports on its own Actions path
+# (dynamic/github-code-quality/codeql, actor github-code-quality), separate from
+# code scanning and from this workflow. The shakedown consumes its conclusions
+# through the PR's check runs instead of re-running static analysis.
 name: pr-shakedown
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'Pull request number to shake down'
+        required: true
+        type: number
+
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   shakedown:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build and test
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Require API key
         run: |
-          npm ci
-          npm test
+          if [ -z "${ANTHROPIC_API_KEY:-}" ]; then
+            echo "::error::ANTHROPIC_API_KEY secret is not set; the shakedown needs a live model."
+            exit 1
+          fi
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - name: Install Claude Code CLI
+        run: npm i -g @anthropic-ai/claude-code
+      - name: Run the shakedown workflow headless
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          claude -p "Run the /rahulnakmol-skills:shakedown-pr workflow with args {\"pr\": ${{ inputs.pr_number }}, \"repo\": \"${{ github.repository }}\"}"

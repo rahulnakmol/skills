@@ -16,7 +16,7 @@ Any new failure mode this epic can introduce gets a runbook item: what the alert
 
 ## CI/CD and test coverage
 
-Test coverage for the epic's acceptance criteria, and any CI/CD changes the epic requires (new pipeline stage, new gate, new deployment target) are sliced as explicit items — never assumed to ride along for free with the feature work.
+Test coverage for the epic's acceptance criteria, and any CI/CD changes the epic requires (new pipeline stage, new gate, new deployment target) are sliced as explicit items — never assumed to ride along for free with the feature work. On a greenfield repository, the first epic's lane also carries the delivery-pipeline bootstrap items from `deliver/REPO-SETUP.md`: GitHub Code Quality on its separate Actions path, `gh stack` tooling, the pickup-protocol labels, and the shakedown workflow — set up as tracked stories, not assumed.
 
 ## Governance lane
 

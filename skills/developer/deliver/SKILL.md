@@ -14,9 +14,11 @@ Charter skill for the deliver lane; execution detail in adapters.
 
 ## Procedure
 
-1. Load adapter: `tools/opencode-workflows/templates/deliver.json`
-2. Follow SPEC-TS and human gates in `sdlc/METHOD.md`
-3. Regulated context → `responsible-ai-governance`
+1. Verify the target repository against `REPO-SETUP.md` (Code Quality on its separate Actions path, `gh stack` tooling, pickup-protocol labels, shakedown workflow); record the result as gate evidence and set up what is missing
+2. Load adapter: `tools/opencode-workflows/templates/deliver.json`
+3. Follow SPEC-TS and human gates in `sdlc/METHOD.md`
+4. A change spanning more than one concern, or too large for one review, ships as a stack of dependency-ordered PRs — see `STACKING.md`
+5. Regulated context → `responsible-ai-governance`
 
 ## Stop conditions
 

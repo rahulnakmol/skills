@@ -23,3 +23,15 @@ Every high-consequence write in a graph passes through a `human` node before it 
 ## Edges and joins
 
 Nodes = skills or adapter roles; edges = contracts. Join nodes only on explicit artifact handoff (PRD, brief, manifest, or a human node's recorded decision) — never on an implicit "the previous step probably finished." An edge into a `human` node carries the inputs that node's `inputs` field names; an edge out of one carries the decision that was made, not merely a pass/fail signal.
+
+## Harness mapping
+
+Work-item delivery runs as three graph stages, each with a human gate between them (the runtime allows no mid-run input, so the gates live between runs by design):
+
+| Stage | Claude Code (dynamic workflow) | OpenCode (template runner) |
+|-------|-------------------------------|----------------------------|
+| Assess (pickup critique) | `/rahulnakmol-skills:assess-work-item` | `templates/assess.json` |
+| Deliver (plan, implement, verify, raise PR or stack) | `/rahulnakmol-skills:deliver-work-item` | `templates/deliver.json` |
+| Shakedown (sandbox build-test-execute + review) | `/rahulnakmol-skills:shakedown-pr` | `templates/shakedown.json` |
+
+`scripts/pipeline.sh <stage> <ref> --engine claude|opencode [--interactive]` launches either engine, headless or interactive. Codex, Cursor, and Copilot degrade to a sequential loop over the same stage contracts; gates are never dropped in degradation. Large diffs are raised as a reviewable stack per `deliver/STACKING.md`.

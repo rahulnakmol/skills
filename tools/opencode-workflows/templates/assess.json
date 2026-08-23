@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "name": "assess",
+  "description": "Pickup-protocol work-item assessment: three perspective-diverse critiques, adversarial synthesis, and a ready-to-post consolidated critique",
+  "mode": "dag",
+  "subject_type": "workspace",
+  "terminal_task": "synthesis",
+  "success_statuses": ["COMPLETE", "NEEDS_INPUT"],
+  "budgets": {
+    "max_rounds": 1,
+    "max_agents": 6,
+    "max_concurrency": 3,
+    "max_task_attempts": 2,
+    "max_duration_ms": 1800000,
+    "max_input_bytes": 120000,
+    "max_output_bytes": 1500000,
+    "max_tokens": 600000,
+    "max_cost_usd": 12,
+    "dry_rounds": 1,
+    "stagnant_rounds": 1
+  },
+  "tasks": [
+    {
+      "id": "fetch",
+      "stage": "fetch",
+      "agent": "research",
+      "depends_on": [],
+      "mutates_workspace": false,
+      "prompt": "Read the work item named in the objective (an issue number or identifier plus its body if supplied inline) together with its parent PRD or epic where the repository carries them. Return the item's goal, scope, acceptance criteria, verification commands, governance section, and pickup-protocol state exactly as written, without judging them yet. Objective: {{objective}}"
+    },
+    {
+      "id": "contract",
+      "stage": "lenses",
+      "agent": "reviewer",
+      "depends_on": ["fetch"],
+      "mutates_workspace": false,
+      "prompt": "Critique the fetched work item against every section of the work-item contract (skills/developer/slice/WORK-ITEM-CONTRACT.md if present in this workspace, or the sections named in the item itself). A missing or vague goal, scope and file ownership, machine-checkable acceptance criteria, verification commands, or required governance section is a blocking finding. Inputs: {{dependencies}}"
+    },
+    {
+      "id": "alignment",
+      "stage": "lenses",
+      "agent": "impact",
+      "depends_on": ["fetch"],
+      "mutates_workspace": false,
+      "prompt": "Critique the fetched work item against its parent PRD and epic: does the goal trace to a recorded business value, does the scope match what was approved, does anything exceed or contradict the signed PRD? An untraceable or contradicting item is a blocking finding. Inputs: {{dependencies}}"
+    },
+    {
+      "id": "reality",
+      "stage": "lenses",
+      "agent": "build",
+      "depends_on": ["fetch"],
+      "mutates_workspace": false,
+      "prompt": "Critique the fetched work item against the actual repository: do its claimed file paths exist and match the described boundaries, do its verification commands run here, would the change conflict with existing contracts or in-flight work? Ground every finding in a file actually inspected. Read-only. Inputs: {{dependencies}}"
+    },
+    {
+      "id": "synthesis",
+      "stage": "verify",
+      "agent": "impact-max",
+      "depends_on": ["contract", "alignment", "reality"],
+      "allow_blocking_dependencies": true,
+      "mutates_workspace": false,
+      "prompt": "Adversarially refute each proposed finding: check its evidence, deduplicate by root cause, and discard what does not hold. Then compose one consolidated pickup critique ready to post on the item's thread: confirmed blocking findings, advisory findings, and open questions, closing with the pickup-protocol reminder that implementation starts only at ready. Return NEEDS_INPUT when blocking findings or questions remain, COMPLETE when the item can advance as written. Findings: {{dependencies}}"
+    }
+  ]
+}
