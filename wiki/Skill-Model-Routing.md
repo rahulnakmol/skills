@@ -17,6 +17,16 @@ Model routing is a thin skill that sits in front of the registry every other ski
 
 - [models.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/model-routing/models.md) is the canonical registry: a tier matrix, the published mapping from role to model, examples of user overrides, and a machine-readable block that continuous integration checks the adapters' bindings against.
 
+## How to use
+
+Model routing is consulted, not driven: `orchestrate` calls it per node, and adapter stubs defer to it by name. When you need to know which model a role gets, read `models.md` directly — the registry is the answer; the skill is the disciplined way agents read it.
+
+## Best practices
+
+- Never hardcode a model identifier in a skill or a prompt; the registry exists so a model change is one edit, reviewed once.
+- Keep local overrides local — an override committed as a default is a policy violation the harness will catch.
+- In a regulated context, never trade away verifier separation for cost; the overlay forbids that downgrade for a reason.
+
 ## Sibling skills
 
 Model routing is consulted by [Orchestrate](Skill-Orchestrate) for every step in a graph, and its registry is kept current by [Update models](Skill-Update-Models).

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 320" font-family="Helvetica Neue, Arial, sans-serif">
+  <rect width="1180" height="320" fill="#FAF9F5"/>
+  <text x="590" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#262625">The operating model — four human gates, agents in between</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#8a8a86"/>
+    </marker>
+  </defs>
+
+  <!-- Gate 1: Inception -->
+  <polygon points="60,150 90,120 150,120 180,150 150,180 90,180" fill="#C96442"/>
+  <text x="120" y="145" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Inception</text>
+  <text x="120" y="163" text-anchor="middle" font-size="11" fill="#F7E4DB">human grills</text>
+
+  <line x1="182" y1="150" x2="216" y2="150" stroke="#8a8a86" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Gate 2: Approval -->
+  <polygon points="220,150 250,120 310,120 340,150 310,180 250,180" fill="#C96442"/>
+  <text x="280" y="145" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Approval</text>
+  <text x="280" y="163" text-anchor="middle" font-size="11" fill="#F7E4DB">G2 + tier</text>
+
+  <line x1="342" y1="150" x2="376" y2="150" stroke="#8a8a86" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Backlog -->
+  <rect x="380" y="122" width="120" height="56" rx="10" fill="#40668C"/>
+  <text x="440" y="146" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Backlog</text>
+  <text x="440" y="164" text-anchor="middle" font-size="11" fill="#DCE6F2">slice · raise</text>
+
+  <line x1="502" y1="150" x2="536" y2="150" stroke="#8a8a86" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Gate 3: Pickup -->
+  <polygon points="540,150 570,120 630,120 660,150 630,180 570,180" fill="#C96442"/>
+  <text x="600" y="145" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Pickup</text>
+  <text x="600" y="163" text-anchor="middle" font-size="11" fill="#F7E4DB">critique first</text>
+
+  <line x1="662" y1="150" x2="696" y2="150" stroke="#8a8a86" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Implementation -->
+  <rect x="700" y="122" width="130" height="56" rx="10" fill="#40668C"/>
+  <text x="765" y="146" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Implementation</text>
+  <text x="765" y="164" text-anchor="middle" font-size="11" fill="#DCE6F2">sdlc · orchestrate</text>
+
+  <line x1="832" y1="150" x2="866" y2="150" stroke="#8a8a86" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Gate 4: Release -->
+  <polygon points="870,150 900,120 960,120 990,150 960,180 900,180" fill="#C96442"/>
+  <text x="930" y="145" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Release</text>
+  <text x="930" y="163" text-anchor="middle" font-size="11" fill="#F7E4DB">owner + SLA</text>
+
+  <line x1="992" y1="150" x2="1026" y2="150" stroke="#8a8a86" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Run -->
+  <rect x="1030" y="122" width="110" height="56" rx="10" fill="#40668C"/>
+  <text x="1085" y="146" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Run</text>
+  <text x="1085" y="164" text-anchor="middle" font-size="11" fill="#DCE6F2">operate · assure</text>
+
+  <!-- feedback loop -->
+  <path d="M 1085 180 L 1085 240 L 440 240 L 440 180" fill="none" stroke="#8a8a86" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+  <text x="762" y="232" text-anchor="middle" font-size="12" fill="#6b6b67">improvement items return to the backlog — the loop never ends at release</text>
+
+  <!-- legend -->
+  <polygon points="330,282 345,268 375,268 390,282 375,296 345,296" fill="#C96442"/>
+  <text x="400" y="287" font-size="12.5" fill="#262625">human gate — a named person decides</text>
+  <rect x="660" y="270" width="30" height="26" rx="6" fill="#40668C"/>
+  <text x="700" y="287" font-size="12.5" fill="#262625">agent-run stage — single writer, separate verifier</text>
+</svg>

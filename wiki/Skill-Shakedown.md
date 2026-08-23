@@ -21,6 +21,17 @@ On Claude Code, the shakedown runs as the `shakedown-pr` dynamic workflow shippe
 - [pr-shakedown.yml](https://github.com/rahulnakmol/skills/blob/main/skills/developer/shakedown/pr-shakedown.yml) is the reusable GitHub Action template: a real, key-gated headless run, shipped dispatch-only so an adopting repository turns on per-pull-request triggers as an explicit choice.
 - [adapters/claude/workflows/shakedown-pr.js](https://github.com/rahulnakmol/skills/blob/main/adapters/claude/workflows/shakedown-pr.js) is the dynamic-workflow implementation.
 
+## How to use
+
+Run `/shakedown <PR#>` interactively, `scripts/pipeline.sh shakedown <PR#>` on either engine, or dispatch `pr-shakedown.yml` in a repository that has installed it and added the API key. The workflow checks the PR out into an isolated worktree, builds it, runs its tests, executes the changed behavior, and submits a real review.
+
+## Best practices
+
+- Never point it at production credentials; the sandbox rule in `SANDBOX.md` is absolute.
+- Keep approval human: the default verdict on green is a non-blocking comment review, and turning on auto-approve is a deliberate per-run choice.
+- Consume the checks the repository already runs — including GitHub Code Quality — instead of re-running them; conflicting duplicate reports help no one.
+- For a stacked PR, judge the layer against its own stack base; blaming layer 3 for layer 1's defect wastes the stack's whole point.
+
 ## Sibling skills
 
 Shakedown runs alongside [Deliver](Skill-Deliver) and [Safeguard](Skill-Safeguard) at the Secure DevOps gate.

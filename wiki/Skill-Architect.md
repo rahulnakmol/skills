@@ -18,6 +18,16 @@ Architect carries out the Design stage of the [role journey](Architecture-Role-J
 - [adapters/opencode/agents/architect.md](https://github.com/rahulnakmol/skills/blob/main/adapters/opencode/agents/architect.md) contains the executable design-review protocol.
 - [sdlc/METHOD.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/sdlc/METHOD.md) describes the SPEC-TS ledger that Architect co-owns.
 
+## How to use
+
+Architect engages when an SDLC gate requires design evidence or a work item's pod charter names the role; you can also invoke it directly for a design decision that needs an ADR. Give it the recon brief on brownfield estates — design against the real codebase, not the remembered one.
+
+## Best practices
+
+- Run both design passes: a candidate approach and an adversarial challenge against it. A design that never met an opponent is a first draft.
+- Record significant decisions as ADRs with the alternatives and their consequences, not just the winner.
+- Escalate to the governance overlay the moment the design touches a regulated context — retrofitting audit and explainability costs more than designing them in.
+
 ## Sibling skills
 
 Architect consumes briefs from [Recon](Skill-Recon) and feeds design evidence to [SDLC](Skill-SDLC) and [Slice](Skill-Slice).

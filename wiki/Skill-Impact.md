@@ -20,6 +20,17 @@ Impact is the inception gate in the [role journey](Architecture-Role-Journey), t
 - [PRD-TEMPLATE.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/impact/PRD-TEMPLATE.md) defines the PRD's shape, capped at eight pages, including its Risk and governance tier field.
 - [GATES.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/impact/GATES.md) defines Gates G0 through G3.
 
+## How to use
+
+Run `/impact` in any of the five tools with whatever you have — meeting notes, a transcript, a half-formed idea. The skill drafts a fast-cut PRD immediately so the grill has something concrete to attack, then runs themed rounds of three to five questions until you stop or sign off. Saying "we stop here" is always allowed and always recorded. For brownfield work, let it call `recon` first rather than describing the codebase from memory.
+
+## Best practices
+
+- Let the grill run at least one full round even when the idea feels finished — the value lenses routinely surface what enthusiasm skipped.
+- Answer the do-nothing question honestly; "not much changes" is a legitimate finding that should shrink the scope, not embarrass it.
+- Record the governance tier at sign-off and treat it as a commitment — changing it later reopens approval.
+- Keep the PRD inside its page budget; scope that needs more room belongs in a second `impact` cycle, not a longer document.
+
 ## Sibling skills
 
 [Recon](Skill-Recon) supplies brownfield context. [Slice](Skill-Slice) and [Raise](Skill-Raise) pick up the work downstream. [Press](Skill-Press) exports the signed PRD as a branded PDF.

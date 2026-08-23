@@ -15,6 +15,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Four SVG diagrams in `docs/assets/` — the Set-the-frontier thesis, the operating model with its four human gates, the AI-native delivery pipeline, and the persona ladder — embedded in the README and the wiki.
+- A wiki Personas page walking the ladder from a first job through architect and CTO to CDAIO and CIO, and a Tool-Guidance page covering Claude Code, OpenCode, Codex, Cursor, and GitHub Copilot, including the degradation ladder that preserves human gates in every tool.
+- "How to use" and "Best practices" sections on all 18 skill wiki pages, making each page a full spec: what the skill is, how to invoke it, and the practices its doctrine requires.
+- Five harness tests (`test/structure/docs-uplift.test.mjs`) keeping the diagrams, the persona ladder, the tool guidance, and the per-skill spec structure in place.
+
+### Changed
+
+- The README now opens as what this repository is: the skills Rahul Nakmol has built, all carrying the philosophy "Set the frontier: redefining growth with human judgment and trusted AI agents" — then walks skill groups, the developer journey, AI-native delivery with the grill's fact-finding discipline applied at every stage, and the persona ladder, before the index and install sections.
+
+## Unreleased
+
+### Added
+
 - Three Claude Code dynamic workflows, shipped with the plugin under `adapters/claude/workflows/` and namespaced as `/rahulnakmol-skills:<name>`: `assess-work-item` runs the pickup critique with three perspective-diverse critics and adversarial verification, then posts one consolidated critique to GitHub or Linear; `deliver-work-item` refuses any item not at `ready`, plans in layers, implements as a single writer in an isolated worktree, verifies with a separate agent in a bounded fix loop, and raises one pull request or a `gh stack` of layered pull requests; `shakedown-pr` builds, tests, and executes a pull request in a sandbox, reviews it through three adversarially verified lenses, and submits a review that blocks on a red run. Human gates sit between the workflows, matching the pickup-protocol state machine.
 - Stacked-pull-request doctrine in `skills/developer/deliver/STACKING.md`: a change spanning more than one concern, or too large for one review, ships as a dependency-ordered stack of single-concern pull requests, reviewed bottom-up and merged base-to-tip with the `gh stack` tooling.
 - OpenCode parity templates `assess.json` and `shakedown.json` for the deterministic workflow runner, validated by the runner's own `--validate` under CI.
