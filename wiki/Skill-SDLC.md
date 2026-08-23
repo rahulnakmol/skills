@@ -19,6 +19,16 @@ SDLC carries out the Implementation stage of the [role journey](Architecture-Rol
 - [LOOP-CONTRACT.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/sdlc/LOOP-CONTRACT.md) sets the gate order, the evidence each gate requires, and the states in which the loop can stop.
 - [DIRECTIVES.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/sdlc/DIRECTIVES.md) defines the vocabulary of `[sdlc:*]` directives.
 
+## How to use
+
+Run `/sdlc` on a scoped change or on a work item whose label is `ready`. In the delivery pipeline, `deliver-work-item` carries the same discipline end to end — use `/sdlc` directly when you want the gated loop interactively, gate by gate, with a person at each approval. Check the target repository against `deliver/REPO-SETUP.md` first; the skill reports gaps before walking gates rather than discovering them mid-loop.
+
+## Best practices
+
+- Never start on an item that has not cleared the pickup protocol — an item at `raised` or `critiqued` gets a critique, not code.
+- Record evidence at every gate as you pass it; reconstructing evidence after the fact is the failure mode the ledger exists to prevent.
+- Stop on an unsigned human gate and say so plainly — silence is not approval, and the loop never advances on it.
+
 ## Sibling skills
 
 SDLC is routed into by [Orchestrate](Skill-Orchestrate). It calls [Safeguard](Skill-Safeguard), [Assure](Skill-Assure), [Deliver](Skill-Deliver), and [Operate](Skill-Operate) at their respective gates, and its output is checked before merge by [Shakedown](Skill-Shakedown).

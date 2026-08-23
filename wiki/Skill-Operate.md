@@ -18,6 +18,16 @@ Operate carries out the Reliability stage of the [role journey](Architecture-Rol
 - [adapters/opencode/agents/operate.md](https://github.com/rahulnakmol/skills/blob/main/adapters/opencode/agents/operate.md) contains the executable operations protocol.
 - [slice/OPERABILITY.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/slice/OPERABILITY.md) describes the operability lane this skill's evidence traces back to.
 
+## How to use
+
+Operate engages at the reliability gate and in production afterward. Its brief — an SLO table, dashboards, runbooks — is the operability lane made real: what `slice` planned, this skill proves is running.
+
+## Best practices
+
+- Give every service boundary an SLO with an owner and an alert threshold; instrumentation without a threshold is decoration.
+- Carry a correlation identifier on every agent run and automated decision, so one request traces end to end.
+- Route incident findings back into the backlog as improvement items — the loop from production to planning is this skill's whole point.
+
 ## Sibling skills
 
 Operate feeds continuous-improvement items back into [Slice](Skill-Slice) and works alongside [Maintain](Skill-Maintain) on the post-release side of the journey.

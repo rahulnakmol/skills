@@ -19,6 +19,17 @@ Slice carries out the Backlog stage of the [role journey](Architecture-Role-Jour
 - [WORK-ITEM-CONTRACT.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/slice/WORK-ITEM-CONTRACT.md) defines the 14-section agent-executable contract, including the block of commands for a headless run and the pickup protocol that requires a review before implementation.
 - [OPERABILITY.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/slice/OPERABILITY.md) describes the operability lane that every epic must include: observability, service-level objectives, runbooks, continuous integration and delivery, and the governance lane.
 
+## How to use
+
+Slice is model-invoked once a PRD carries its Gate G2 signature; ask for "a backlog breakdown" of the signed PRD in any tool and it engages. It refuses an unsigned PRD by design. Its output is a backlog bundle ready for `raise` — review the epic structure before publishing rather than after.
+
+## Best practices
+
+- Never publish an item missing a contract section; an incomplete work item fails at pickup anyway, later and more expensively.
+- Keep every story small enough to become one single-concern pull request — slicing is where the stacked-PR discipline actually starts.
+- Include the operability lane on every epic, and on greenfield repositories let the first epic carry the `REPO-SETUP.md` bootstrap stories.
+- When the governance tier is `limited` or `high`, check that the Governance section reached every affected item — silence there is a defect, not a default.
+
 ## Sibling skills
 
 Slice consumes a signed PRD from [Impact](Skill-Impact) and hands the resulting backlog to [Raise](Skill-Raise) for publication.

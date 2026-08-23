@@ -18,6 +18,16 @@ Raise closes out the Backlog stage of the [role journey](Architecture-Role-Journ
 - [trackers/github.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/raise/trackers/github.md) covers sub-issues with labels, or Projects v2, detected automatically per project.
 - [trackers/linear.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/raise/trackers/linear.md) covers Linear projects and parent issues through its MCP server or API.
 
+## How to use
+
+Raise is model-invoked after `slice` produces contract-complete items and you confirm the tracker. It reads `.impact.json` for the project's tracker choice (GitHub sub-issues with labels, GitHub Projects v2, or Linear) and asks once when the choice is ambiguous. Re-running is safe: the idempotency key in each issue body means updates, never duplicates.
+
+## Best practices
+
+- Create the six pickup-protocol labels before the first publish (`REPO-SETUP.md` covers this) — a missing label breaks the state machine silently.
+- Publish the whole backlog bundle in one run so parent links land intact; raising items piecemeal orphans the hierarchy.
+- Leave the `raised` label transitions to the pipeline workflows; hand-moving an item to `ready` skips the critique the protocol exists for.
+
 ## Sibling skills
 
 Raise consumes a backlog from [Slice](Skill-Slice). The items it publishes are picked up by [SDLC](Skill-SDLC), or by a headless pod, according to the execution profile named in the contract.
