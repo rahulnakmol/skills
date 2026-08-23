@@ -16,11 +16,14 @@ test('the four narrative diagrams exist and README embeds each', () => {
   }
 });
 
-test('README carries the personal philosophy, skill groups, and the full persona ladder', () => {
+test('README frames the broader curated bundle, the philosophy, and the full persona ladder', () => {
   const readme = read('README.md');
-  for (const marker of ['skills I have built', 'Set the frontier: redefining growth with human judgment and trusted AI agents',
+  for (const marker of ['The Quentin', 'Set the frontier: redefining growth with human judgment and trusted AI agents',
+    'business value through trusted agents with human judgment', 'AI-native SDLC',
     '## Skill groups', '### Starting out', 'AI-native delivery'])
     assert.ok(readme.includes(marker), `README.md missing "${marker}"`);
+  assert.ok(readme.indexOf('## Skill groups') < readme.indexOf('## The operating model'),
+    'the groups overview must come before the SDLC deep-dive — the repository is the bundle, not one group');
 });
 
 test('tool guidance covers all five tools and Home links it', () => {

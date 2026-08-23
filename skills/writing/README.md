@@ -1,3 +1,3 @@
-# Writing bucket (v0.1)
+# Writing group (charter)
 
-Charter-only. Planned skills for docs, ADRs, and editorial workflows.
+Skills that make writing better, for people and agents alike. Planned: editorial review of ADRs and technical documents, documentation-quality linting, and enforcement of the repository's explainer voice.
