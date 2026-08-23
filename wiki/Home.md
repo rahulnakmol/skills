@@ -2,7 +2,7 @@
 
 ## The thesis
 
-This is the documentation for The Quentin's skills repository: a curated, growing bundle of the AI-native skills we use across our work, all carrying one philosophy — **Set the frontier: redefining growth with human judgment and trusted AI agents**. We are curating and building skills that deliver business value through trusted agents with human judgment, driving growth in personal, professional, and sustainable accomplishments. Four groups bound the work: the AI-native SDLC (the first fully built group, where human judgment holds four gates — inception, approval, pickup, release — and trusted agents carry out everything between them), branding, writing, and productivity. Small, composable skills; documentation that discloses detail progressively; adapters for five different tools.
+This is the documentation for The Quentin's skills repository: a curated, growing bundle of the AI-native skills we use across our work, all carrying one philosophy — **Set the frontier: redefining growth with human judgment and trusted AI agents**. We are curating and building skills that deliver business value through trusted agents with human judgment, driving growth in personal, professional, and sustainable accomplishments. Five groups bound the work: the AI-native SDLC (the first fully built group, where human judgment holds four gates — inception, approval, pickup, release — and trusted agents carry out everything between them), pm (the business side of the same AI-transformation coin, the same four gates read from a product or transformation angle), branding, writing, and productivity. Small, composable skills; documentation that discloses detail progressively; adapters for five different tools.
 
 ![The operating model](https://raw.githubusercontent.com/wiki/tqnonline/skills/assets/operating-model.svg)
 
@@ -17,7 +17,7 @@ For the full setup process for each supported tool, see [Installation](Installat
 
 ## The map
 
-- [Personas](Personas) — who this serves and how, from a first job to CTO, CDAIO, and CIO
+- [Personas](Personas) — who this serves and how, from a first job to CTO, CDAIO, and CIO on the developer ladder, and from PM to Chief Business Transformation Officer on the parallel pm ladder
 - [Tool guidance](Tool-Guidance) — using the skills in Claude Code, OpenCode, Codex, Cursor, and GitHub Copilot
 - [Architecture: Role journey](Architecture-Role-Journey) — the complete path from an idea to a maintained system, with the four human gates marked
 - [Architecture: Loop vs graph](Architecture-Loop-vs-Graph) — how the `orchestrate` skill decides the shape a task should run in

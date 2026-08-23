@@ -88,41 +88,53 @@ Adapters are idempotent; use `./scripts/install-adapters.sh --dry-run` to previe
 
 Every skill has a wiki page covering what it is, how to use it, and its best practices. The full index with one-line purposes is at [wiki/Home.md](wiki/Home.md).
 
-| Skill | Group | Invocation | Purpose |
-|-------|-------|------------|---------|
-| [orchestrate](skills/developer/orchestrate/SKILL.md) | developer | model | Choose loop/graph/hybrid execution, assign a model per node, map to harness adapters |
-| [model-routing](skills/developer/model-routing/SKILL.md) | developer | model | Resolve the tier and role assignment for a task node from the canonical registry |
-| [update-models](skills/developer/update-models/SKILL.md) | developer | user | Research provider catalogs and propose an evidence-backed registry update |
-| [impact](skills/developer/impact/SKILL.md) | developer | user | Idea-to-PRD pipeline: grill loop, value probing, governance-tier recording, backlog handoff |
-| [recon](skills/developer/recon/SKILL.md) | developer | model | Brownfield codebase brief via signal-first archetype triage, read-only |
-| [slice](skills/developer/slice/SKILL.md) | developer | model | Decompose a signed PRD into epics, features, stories, and operability items |
-| [raise](skills/developer/raise/SKILL.md) | developer | model | Publish sliced backlog to GitHub or Linear with pickup-protocol labels |
-| [sdlc](skills/developer/sdlc/SKILL.md) | developer | user | Full gated SDLC loop — SPEC-TS ledger, human gates, verifier challenge |
-| [architect](skills/developer/architect/SKILL.md) | developer | mixed | Cross-cutting technical design and ADRs at the design gate |
-| [safeguard](skills/developer/safeguard/SKILL.md) | developer | mixed | Security assessment and hardening at the secure-DevOps gate |
-| [deliver](skills/developer/deliver/SKILL.md) | developer | mixed | CI/CD, supply chain, release readiness, stacked PRs, and repo setup |
-| [assure](skills/developer/assure/SKILL.md) | developer | mixed | Quality and maintainability assurance |
-| [operate](skills/developer/operate/SKILL.md) | developer | mixed | SLOs, instrumentation, and incident readiness |
-| [maintain](skills/developer/maintain/SKILL.md) | developer | mixed | Patch cadence and technical-debt burn-down |
-| [shakedown](skills/developer/shakedown/SKILL.md) | developer | user | Sandbox build, test, execute, and agent-reviewed pass on any pull request before merge |
-| [ask-fde](skills/developer/ask-fde/SKILL.md) | developer | user | Router mapping intent to the correct developer or branding skill |
-| [responsible-ai-governance](skills/developer/responsible-ai-governance/SKILL.md) | developer | overlay | Regulated-industry and responsible-AI governance applied on top of the stack rules |
-| [constitution](skills/pm/constitution/SKILL.md) | pm | user | Product Constitution author and reviewer — principles, positioning, quarterly review |
-| [discover](skills/pm/discover/SKILL.md) | pm | user | Business problem discovery and root-cause analysis |
-| [map](skills/pm/map/SKILL.md) | pm | model | Personas, process flows, and the Business Understanding Document |
-| [tom-architect](skills/pm/tom-architect/SKILL.md) | pm | user | Target Operating Model: L1-L4 processes, maturity, RACI, platform mapping |
-| [carve](skills/pm/carve/SKILL.md) | pm | model | DIVE-tested epic decomposition into a manifest |
-| [prd-draft](skills/pm/prd-draft/SKILL.md) | pm | user | One INVEST-compliant PRD per approved epic |
-| [prd-validate](skills/pm/prd-validate/SKILL.md) | pm | model | Structural PRD checklist, read-only |
-| [prd-review](skills/pm/prd-review/SKILL.md) | pm | user | 11-Star Experience Framework PRD scoring |
-| [case](skills/pm/case/SKILL.md) | pm | user | Business case with agent-fleet costing for the Investment gate |
-| [roadmap](skills/pm/roadmap/SKILL.md) | pm | user | Now/next/later sequencing and PI planning |
-| [raid](skills/pm/raid/SKILL.md) | pm | user | Risks, Assumptions, Issues, Dependencies registers |
-| [realize](skills/pm/realize/SKILL.md) | pm | user | Benefits realization against the north star |
-| [report](skills/pm/report/SKILL.md) | pm | user | 4Ps leadership pack at five cadences |
-| [grill](skills/pm/grill/SKILL.md) | pm | user | Plain / with-docs / provoke interrogation before a gate |
-| [ask-pm](skills/pm/ask-pm/SKILL.md) | pm | user | Router mapping intent to the correct pm skill |
-| [press](skills/branding/press/SKILL.md) | branding | user | Render a signed-off PRD to a branded PDF for stakeholders |
+### Developer — the AI-native SDLC
+
+| Skill | Invocation | Purpose |
+|-------|------------|---------|
+| [orchestrate](skills/developer/orchestrate/SKILL.md) | model | Choose loop/graph/hybrid execution, assign a model per node, map to harness adapters |
+| [model-routing](skills/developer/model-routing/SKILL.md) | model | Resolve the tier and role assignment for a task node from the canonical registry |
+| [update-models](skills/developer/update-models/SKILL.md) | user | Research provider catalogs and propose an evidence-backed registry update |
+| [impact](skills/developer/impact/SKILL.md) | user | Idea-to-PRD pipeline: grill loop, value probing, governance-tier recording, backlog handoff |
+| [recon](skills/developer/recon/SKILL.md) | model | Brownfield codebase brief via signal-first archetype triage, read-only |
+| [slice](skills/developer/slice/SKILL.md) | model | Decompose a signed PRD into epics, features, stories, and operability items |
+| [raise](skills/developer/raise/SKILL.md) | model | Publish sliced backlog to GitHub, Linear, or Azure DevOps with pickup-protocol labels |
+| [sdlc](skills/developer/sdlc/SKILL.md) | user | Full gated SDLC loop — SPEC-TS ledger, human gates, verifier challenge |
+| [architect](skills/developer/architect/SKILL.md) | mixed | Cross-cutting technical design and ADRs at the design gate |
+| [safeguard](skills/developer/safeguard/SKILL.md) | mixed | Security assessment and hardening at the secure-DevOps gate |
+| [deliver](skills/developer/deliver/SKILL.md) | mixed | CI/CD, supply chain, release readiness, stacked PRs, and repo setup |
+| [assure](skills/developer/assure/SKILL.md) | mixed | Quality and maintainability assurance |
+| [operate](skills/developer/operate/SKILL.md) | mixed | SLOs, instrumentation, and incident readiness |
+| [maintain](skills/developer/maintain/SKILL.md) | mixed | Patch cadence and technical-debt burn-down |
+| [shakedown](skills/developer/shakedown/SKILL.md) | user | Sandbox build, test, execute, and agent-reviewed pass on any pull request before merge |
+| [ask-fde](skills/developer/ask-fde/SKILL.md) | user | Router mapping intent to the correct developer, pm, or branding skill |
+| [responsible-ai-governance](skills/developer/responsible-ai-governance/SKILL.md) | overlay | Regulated-industry and responsible-AI governance applied on top of the stack rules |
+
+### PM — the AI-native transformation practice
+
+| Skill | Invocation | Purpose |
+|-------|------------|---------|
+| [constitution](skills/pm/constitution/SKILL.md) | user | Product Constitution author and reviewer — principles, positioning, quarterly review |
+| [discover](skills/pm/discover/SKILL.md) | user | Business problem discovery and root-cause analysis |
+| [map](skills/pm/map/SKILL.md) | model | Personas, process flows, and the Business Understanding Document |
+| [tom-architect](skills/pm/tom-architect/SKILL.md) | user | Target Operating Model: L1-L4 processes, maturity, RACI, platform mapping |
+| [carve](skills/pm/carve/SKILL.md) | model | DIVE-tested epic decomposition into a manifest |
+| [prd-draft](skills/pm/prd-draft/SKILL.md) | user | One INVEST-compliant PRD per approved epic |
+| [prd-validate](skills/pm/prd-validate/SKILL.md) | model | Structural PRD checklist, read-only |
+| [prd-review](skills/pm/prd-review/SKILL.md) | user | 11-Star Experience Framework PRD scoring |
+| [case](skills/pm/case/SKILL.md) | user | Business case with agent-fleet costing for the Investment gate |
+| [roadmap](skills/pm/roadmap/SKILL.md) | user | Now/next/later sequencing and PI planning |
+| [raid](skills/pm/raid/SKILL.md) | user | Risks, Assumptions, Issues, Dependencies registers |
+| [realize](skills/pm/realize/SKILL.md) | user | Benefits realization against the north star |
+| [report](skills/pm/report/SKILL.md) | user | 4Ps leadership pack at five cadences |
+| [grill](skills/pm/grill/SKILL.md) | user | Plain / with-docs / provoke interrogation before a gate |
+| [ask-pm](skills/pm/ask-pm/SKILL.md) | user | Router mapping intent to the correct pm skill |
+
+### Branding
+
+| Skill | Invocation | Purpose |
+|-------|------------|---------|
+| [press](skills/branding/press/SKILL.md) | user | Render a signed-off PRD to a branded PDF for stakeholders |
 
 Writing and productivity are charter-only in this release — see [skills/writing/README.md](skills/writing/README.md) and [skills/productivity/README.md](skills/productivity/README.md).
 
