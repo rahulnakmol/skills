@@ -1,12 +1,12 @@
 # Personas: one system, every altitude
 
-The same gates, contracts, and evidence serve every rung of a career. What changes is the question each persona asks of them. This page walks the ladder from a first job to the C-suite.
+The same gates, contracts, and evidence serve every rung of a career. What changes is the question each persona asks of them. One principle holds across the ladder: this system is designed to build the people who use it. Human judgment is the scarce end of its thesis, and every gate exists to grow that judgment — never to substitute for it. This page walks the ladder from a first job to the C-suite.
 
 ![One system, every altitude](https://raw.githubusercontent.com/wiki/rahulnakmol/skills/assets/persona-ladder.svg)
 
 ## Starting out
 
-For someone early in their career, this system is a method to learn from, not just a toolset. The gates encode disciplines that took the industry decades to name, and they apply them on every work item: critique before code (the [pickup protocol](Architecture-Agentic-Pods) forces a review of the work item before anything is built), machine-checkable acceptance criteria (vague "done" never survives the [assess](Skill-Slice) contract check), one concern per pull request (the [stacking rule](Skill-Deliver) keeps every change small enough to hold in your head), and evidence as the only currency of completion. A useful path: read [Skill: Impact](Skill-Impact) to see how an idea becomes a plan, then follow one work item through [Architecture: Agentic pods](Architecture-Agentic-Pods) to see how a plan becomes reviewed, running code.
+For someone early in their career, this system grows your judgment rather than exercising it for you. The gates encode disciplines that took the industry decades to name — critique before code (the [pickup protocol](Architecture-Agentic-Pods) reviews a work item before anything is built), machine-checkable acceptance criteria (vague "done" never survives the contract check), one concern per pull request (the [stacking rule](Skill-Deliver) keeps every change small enough to hold in your head) — but they apply these disciplines by asking you their questions, not by answering them. When the assess stage posts a critique, the open questions on that thread are yours: answering them, work item after work item, is how the method becomes yours instead of the system's. The measure of progress is not how much the agents do for you; it is how many of the gates' questions you now ask unprompted. A useful path: read [Skill: Impact](Skill-Impact) to see how an idea becomes a plan, follow one work item through [Architecture: Agentic pods](Architecture-Agentic-Pods) — and answer your first critique yourself, before reaching for an agent.
 
 ## Architect and engineering manager
 
