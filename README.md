@@ -66,7 +66,7 @@ From there: run `/impact` to turn a raw idea into a PRD that has been through th
 
 ### Starting out
 
-If you are early in your career, this system is a method you can learn from, not just a toolset. The gates teach a discipline that took the industry decades to name: critique a work item before you build it, make acceptance criteria machine-checkable, keep one concern per pull request, and treat evidence — a passing check, a verified finding — as the only currency of "done." Begin with [wiki/Skill-Impact.md](wiki/Skill-Impact.md) to see how an idea becomes a plan, then follow one work item through [wiki/Architecture-Agentic-Pods.md](wiki/Architecture-Agentic-Pods.md) to see how a plan becomes reviewed, running code.
+If you are early in your career, this system is built to grow your judgment, not to exercise it for you. The gates do not hand you answers; they hand you the questions experienced engineers have learned to ask — what evidence says this is done, what single concern does this change carry, what would refute this finding — and they put those questions to you on every work item. A critique from the assess stage arrives as open questions on the thread, and answering them well is your work, not the agent's. Treat every gate as a repetition at judgment: the goal is to internalize the questions until you would ask them unprompted, which is the point where the system has succeeded and you have outgrown needing it as a crutch. Begin with [wiki/Skill-Impact.md](wiki/Skill-Impact.md) to see how an idea becomes a plan, then follow one work item through [wiki/Architecture-Agentic-Pods.md](wiki/Architecture-Agentic-Pods.md) — and when a critique lands on your item, write the answers yourself before reaching for an agent.
 
 ## Install
 

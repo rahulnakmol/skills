@@ -6,19 +6,6 @@
 
 - 79b3bc5: Documentation narrative uplift. The README now opens as what the repository is — the skills Rahul Nakmol has built, all carrying one philosophy, "Set the frontier: redefining growth with human judgment and trusted AI agents" — then walks skill groups, the developer journey, AI-native delivery with the grill's fact-finding discipline at every stage, and a persona ladder from a first job to CTO, CDAIO, and CIO, illustrated by four new SVG diagrams in `docs/assets/`. The wiki gains a Personas page, a Tool-Guidance page covering Claude Code, OpenCode, Codex, Cursor, and GitHub Copilot, and every one of the 18 skill pages becomes a full spec with "How to use" and "Best practices" sections. Five new harness tests keep the diagrams, the ladder, the tool guidance, and the per-skill spec structure in place.
 
-## 0.3.0
-
-### Minor Changes
-
-- 49336a0: The delivery pipeline as executable orchestration. Three Claude Code dynamic workflows ship with the plugin — `assess-work-item` (perspective-diverse pickup critique, adversarially verified, posted to GitHub or Linear), `deliver-work-item` (refuses items not at `ready`; plans in layers, implements as a single writer, verifies in a bounded fix loop, raises one PR or a `gh stack` of reviewable layered PRs), and `shakedown-pr` (sandbox build-test-execute, three verified review lenses, stack-aware, consumes existing check runs including GitHub Code Quality, blocks on red). OpenCode gains parity templates (`assess`, `shakedown`) for its deterministic runner. `scripts/pipeline.sh` launches any stage on either engine, headless or interactively. `pr-shakedown.yml` becomes a real key-gated headless Action, dispatch-only by default. New stacked-pull-request doctrine in `deliver/STACKING.md`, and a repository-setup doctrine in `deliver/REPO-SETUP.md` that the SDLC skills follow or set up in every repository they work on: GitHub Code Quality on its separate Actions path, `gh stack` tooling, pickup-protocol labels, and the shakedown workflow — verified by `sdlc` and `deliver`, bootstrapped as first-epic stories by `slice` on greenfield projects. Twelve new harness tests lock all of it in.
-
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## Unreleased
-
 ### Added
 
 - Four SVG diagrams in `docs/assets/` — the Set-the-frontier thesis, the operating model with its four human gates, the AI-native delivery pipeline, and the persona ladder — embedded in the README and the wiki.
@@ -26,11 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - "How to use" and "Best practices" sections on all 18 skill wiki pages, making each page a full spec: what the skill is, how to invoke it, and the practices its doctrine requires.
 - Five harness tests (`test/structure/docs-uplift.test.mjs`) keeping the diagrams, the persona ladder, the tool guidance, and the per-skill spec structure in place.
 
-### Changed
+## 0.3.0
 
-- The README now opens as what this repository is: the skills Rahul Nakmol has built, all carrying the philosophy "Set the frontier: redefining growth with human judgment and trusted AI agents" — then walks skill groups, the developer journey, AI-native delivery with the grill's fact-finding discipline applied at every stage, and the persona ladder, before the index and install sections.
+### Minor Changes
 
-## Unreleased
+- 49336a0: The delivery pipeline as executable orchestration. Three Claude Code dynamic workflows ship with the plugin — `assess-work-item` (perspective-diverse pickup critique, adversarially verified, posted to GitHub or Linear), `deliver-work-item` (refuses items not at `ready`; plans in layers, implements as a single writer, verifies in a bounded fix loop, raises one PR or a `gh stack` of reviewable layered PRs), and `shakedown-pr` (sandbox build-test-execute, three verified review lenses, stack-aware, consumes existing check runs including GitHub Code Quality, blocks on red). OpenCode gains parity templates (`assess`, `shakedown`) for its deterministic runner. `scripts/pipeline.sh` launches any stage on either engine, headless or interactively. `pr-shakedown.yml` becomes a real key-gated headless Action, dispatch-only by default. New stacked-pull-request doctrine in `deliver/STACKING.md`, and a repository-setup doctrine in `deliver/REPO-SETUP.md` that the SDLC skills follow or set up in every repository they work on: GitHub Code Quality on its separate Actions path, `gh stack` tooling, pickup-protocol labels, and the shakedown workflow — verified by `sdlc` and `deliver`, bootstrapped as first-epic stories by `slice` on greenfield projects. Twelve new harness tests lock all of it in.
 
 ### Added
 
