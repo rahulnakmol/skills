@@ -1,6 +1,6 @@
 ---
 name: raise
-description: Model-invoked publish of sliced backlog to GitHub or Linear with pickup-protocol labels. Use after slice output is ready.
+description: Model-invoked publish of sliced backlog to GitHub, Linear, or Azure DevOps with pickup-protocol labels. Use after slice output is ready.
 ---
 
 # Raise (model-invoked)
@@ -15,8 +15,8 @@ Publish work items to the configured tracker.
 ## Procedure
 
 1. Read `.impact.json` for `tracker.primary`
-2. Follow `trackers/github.md` or `trackers/linear.md`
-3. Apply label `raised` on create
+2. Follow `trackers/github.md`, `trackers/linear.md`, or `trackers/ado.md`
+3. Apply label `raised` on create (GitHub/Linear); ado exports a CSV for manual import instead
 4. Store stable idempotency key in issue body footer
 
 ## Stop conditions
