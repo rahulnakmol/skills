@@ -2,7 +2,7 @@
 
 The same gates, contracts, and evidence serve every rung of a career. What changes is the question each persona asks of them. One principle holds across the ladder: this system is designed to build the people who use it. Human judgment is the scarce end of its thesis, and every gate exists to grow that judgment — never to substitute for it. This page walks the ladder from a first job to the C-suite.
 
-![One system, every altitude](https://raw.githubusercontent.com/wiki/rahulnakmol/skills/assets/persona-ladder.svg)
+![One system, every altitude](https://raw.githubusercontent.com/wiki/tqnonline/skills/assets/persona-ladder.svg)
 
 ## Starting out
 

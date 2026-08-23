@@ -1,6 +1,6 @@
 # Skill: Safeguard
 
-**Group:** developer · **Invocation:** mixed-invoked specialist · **Source:** [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/safeguard/SKILL.md)
+**Group:** developer · **Invocation:** mixed-invoked specialist · **Source:** [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/safeguard/SKILL.md)
 
 Safeguard is the security charter for the secure-DevOps gate. It carries out threat modeling and hardening and produces a report of findings by severity. It is named on its own terms, rather than borrowing the name of a generic security review, so that it reads as this repository's own gate.
 
@@ -15,7 +15,7 @@ Safeguard operates at the Secure DevOps stage of the [role journey](Architecture
 
 ## Key references
 
-- [adapters/opencode/agents/security.md](https://github.com/rahulnakmol/skills/blob/main/adapters/opencode/agents/security.md) contains the executable threat-modeling protocol.
+- [adapters/opencode/agents/security.md](https://github.com/tqnonline/skills/blob/main/adapters/opencode/agents/security.md) contains the executable threat-modeling protocol.
 
 ## How to use
 

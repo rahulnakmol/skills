@@ -1,6 +1,6 @@
 # Skill: Press
 
-**Group:** branding · **Invocation:** user-invoked · **Source:** [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/branding/press/SKILL.md)
+**Group:** branding · **Invocation:** user-invoked · **Source:** [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/branding/press/SKILL.md)
 
 Press renders a signed-off PRD as a branded PDF suitable for a presentation deck. It uses the user's own branding skill when one is installed, or a default Anthropic-inspired palette otherwise. It never changes the source PRD; it produces only an artifact and a checksum.
 
@@ -15,7 +15,7 @@ Press is the first skill in the branding group, and the only step in the [role j
 
 ## Key references
 
-- [PALETTE.md](https://github.com/rahulnakmol/skills/blob/main/skills/branding/press/PALETTE.md) defines the default Anthropic-inspired palette used when no user branding skill is installed.
+- [PALETTE.md](https://github.com/tqnonline/skills/blob/main/skills/branding/press/PALETTE.md) defines the default Anthropic-inspired palette used when no user branding skill is installed.
 
 ## How to use
 

@@ -1,6 +1,6 @@
 # Skill: Shakedown
 
-**Group:** developer · **Invocation:** user-invoked · **Source:** [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/shakedown/SKILL.md)
+**Group:** developer · **Invocation:** user-invoked · **Source:** [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/shakedown/SKILL.md)
 
 Shakedown checks out a pull request into an isolated sandbox, builds it, runs its tests, executes the change, and posts a review written by an agent, either locally or without a person present. This gives every pull request a verdict based on actually running the code, rather than an approval based only on reading the diff.
 
@@ -17,9 +17,9 @@ On Claude Code, the shakedown runs as the `shakedown-pr` dynamic workflow shippe
 
 ## Key references
 
-- [SANDBOX.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/shakedown/SANDBOX.md) sets the rules for isolating a worktree or a container.
-- [pr-shakedown.yml](https://github.com/rahulnakmol/skills/blob/main/skills/developer/shakedown/pr-shakedown.yml) is the reusable GitHub Action template: a real, key-gated headless run, shipped dispatch-only so an adopting repository turns on per-pull-request triggers as an explicit choice.
-- [adapters/claude/workflows/shakedown-pr.js](https://github.com/rahulnakmol/skills/blob/main/adapters/claude/workflows/shakedown-pr.js) is the dynamic-workflow implementation.
+- [SANDBOX.md](https://github.com/tqnonline/skills/blob/main/skills/developer/shakedown/SANDBOX.md) sets the rules for isolating a worktree or a container.
+- [pr-shakedown.yml](https://github.com/tqnonline/skills/blob/main/skills/developer/shakedown/pr-shakedown.yml) is the reusable GitHub Action template: a real, key-gated headless run, shipped dispatch-only so an adopting repository turns on per-pull-request triggers as an explicit choice.
+- [adapters/claude/workflows/shakedown-pr.js](https://github.com/tqnonline/skills/blob/main/adapters/claude/workflows/shakedown-pr.js) is the dynamic-workflow implementation.
 
 ## How to use
 

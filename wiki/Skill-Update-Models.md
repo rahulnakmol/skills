@@ -1,6 +1,6 @@
 # Skill: Update models
 
-**Group:** developer · **Invocation:** user-invoked · **Source:** [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/update-models/SKILL.md)
+**Group:** developer · **Invocation:** user-invoked · **Source:** [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/update-models/SKILL.md)
 
 Update models curates the canonical model registry against the current catalogs published by Anthropic, OpenAI, and Google, the only providers this repository ships as published defaults, and opens a pull request for review. It never changes a production default silently. A provider outside the allowed list, proposed as a new default, is rejected unless an explicit waiver is recorded in an architecture decision record.
 
@@ -15,8 +15,8 @@ Update models is what keeps the registry that [Model routing](Skill-Model-Routin
 
 ## Key references
 
-- [RESEARCH.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/update-models/RESEARCH.md) defines the format for logging evidence.
-- [.github/workflows/update-models.yml](https://github.com/rahulnakmol/skills/blob/main/.github/workflows/update-models.yml) runs the monthly freshness check and the manually dispatched research job.
+- [RESEARCH.md](https://github.com/tqnonline/skills/blob/main/skills/developer/update-models/RESEARCH.md) defines the format for logging evidence.
+- [.github/workflows/update-models.yml](https://github.com/tqnonline/skills/blob/main/.github/workflows/update-models.yml) runs the monthly freshness check and the manually dispatched research job.
 
 ## How to use
 

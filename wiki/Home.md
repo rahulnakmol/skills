@@ -4,12 +4,12 @@
 
 This is the documentation for the skills Rahul Nakmol has built for AI-agent-driven software delivery, and for the philosophy they all carry: **Set the frontier — redefining growth with human judgment and trusted AI agents**. Growth is being redefined by where value concentrates in software delivery. Human judgment holds four gates — inception, approval, pickup, and release — and trusted agents carry out the work between them. This repository is that operating model, built from small, composable skills, with documentation that discloses detail progressively, and adapters for five different tools.
 
-![The operating model](https://raw.githubusercontent.com/wiki/rahulnakmol/skills/assets/operating-model.svg)
+![The operating model](https://raw.githubusercontent.com/wiki/tqnonline/skills/assets/operating-model.svg)
 
 ## Quickstart
 
 ```bash
-npx skills@latest add rahulnakmol/skills
+npx skills@latest add tqnonline/skills
 ./scripts/install-adapters.sh
 ```
 
