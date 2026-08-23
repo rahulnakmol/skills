@@ -1,4 +1,4 @@
-# rahulnakmol/skills
+# tqnonline/skills
 
 This repository collects the skills I have built for working with AI agents across the software delivery lifecycle — authored once, running the same way in Claude Code, OpenCode, Codex, Cursor, and GitHub Copilot. Every skill here follows one personal philosophy, and each one exists because I needed it, tested it, and kept what survived.
 
@@ -58,7 +58,7 @@ The routing rule underneath the gates is simple to state and consistently applie
 To install the skills and start using them:
 
 ```bash
-npx skills@latest add rahulnakmol/skills
+npx skills@latest add tqnonline/skills
 ./scripts/install-adapters.sh
 ```
 
@@ -71,7 +71,7 @@ If you are early in your career, this system is built to grow your judgment, not
 ## Install
 
 ```bash
-npx skills@latest add rahulnakmol/skills
+npx skills@latest add tqnonline/skills
 ./scripts/install-adapters.sh
 ```
 

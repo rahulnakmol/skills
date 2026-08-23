@@ -1,6 +1,6 @@
 # Skill: Responsible AI governance
 
-**Group:** developer · **Invocation:** overlay · **Source:** [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/responsible-ai-governance/SKILL.md)
+**Group:** developer · **Invocation:** overlay · **Source:** [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/responsible-ai-governance/SKILL.md)
 
 Responsible AI governance applies on top of this repository's other rules whenever work touches a regulated industry — financial services, healthcare, or the public sector — or an AI system that makes or materially influences a consequential decision. It is not a skill a user runs in sequence with the others. It is a layer that is called into whichever stage of the journey needs it.
 
@@ -16,7 +16,7 @@ This skill is what keeps this repository's four human gates substantive, rather 
 
 ## Key references
 
-- The complete list of frameworks and the behavioral rules that follow from them are in [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/responsible-ai-governance/SKILL.md).
+- The complete list of frameworks and the behavioral rules that follow from them are in [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/responsible-ai-governance/SKILL.md).
 
 ## How to use
 

@@ -1,6 +1,6 @@
 # CLAUDE.md — repository invariants
 
-Machine-checkable rules for humans and agents working in `rahulnakmol/skills`.
+Machine-checkable rules for humans and agents working in `tqnonline/skills`.
 
 ## Structure
 

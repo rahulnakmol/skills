@@ -1,7 +1,7 @@
 ## Install this skill pack
 
 ```bash
-npx skills@latest add rahulnakmol/skills
+npx skills@latest add tqnonline/skills
 ./scripts/install-adapters.sh
 ```
 

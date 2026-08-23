@@ -1,6 +1,6 @@
 # Skill: Maintain
 
-**Group:** developer · **Invocation:** mixed-invoked specialist · **Source:** [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/maintain/SKILL.md)
+**Group:** developer · **Invocation:** mixed-invoked specialist · **Source:** [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/maintain/SKILL.md)
 
 Maintain is the application-maintenance charter. It covers patch cadence and the reduction of technical debt, and it produces a maintenance plan with prioritized continuous-integration items, rather than an informal backlog of deferred work.
 
@@ -15,8 +15,8 @@ Maintain is the final stage of the [role journey](Architecture-Role-Journey), wh
 
 ## Key references
 
-- [CADENCE.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/maintain/CADENCE.md) sets the schedule for patch and debt review.
-- [tools/opencode-workflows/templates/maintenance.json](https://github.com/rahulnakmol/skills/blob/main/tools/opencode-workflows/templates/maintenance.json) is the workflow-runner template this charter runs against.
+- [CADENCE.md](https://github.com/tqnonline/skills/blob/main/skills/developer/maintain/CADENCE.md) sets the schedule for patch and debt review.
+- [tools/opencode-workflows/templates/maintenance.json](https://github.com/tqnonline/skills/blob/main/tools/opencode-workflows/templates/maintenance.json) is the workflow-runner template this charter runs against.
 
 ## How to use
 

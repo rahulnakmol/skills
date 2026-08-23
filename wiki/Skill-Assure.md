@@ -1,6 +1,6 @@
 # Skill: Assure
 
-**Group:** developer · **Invocation:** mixed-invoked specialist · **Source:** [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/assure/SKILL.md)
+**Group:** developer · **Invocation:** mixed-invoked specialist · **Source:** [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/assure/SKILL.md)
 
 Assure is the quality and maintainability charter. It checks that the SPEC-TS ledger is actually testable and complete: requirements are prioritized, constraints are quantified, and trade-offs are backed by evidence. It produces a quality report that lists test gaps and technical-debt items for the backlog.
 
@@ -15,7 +15,7 @@ Assure carries out the Maintainability stage of the [role journey](Architecture-
 
 ## Key references
 
-- [adapters/opencode/agents/quality.md](https://github.com/rahulnakmol/skills/blob/main/adapters/opencode/agents/quality.md) contains the executable protocol for checking ledger completeness and quality.
+- [adapters/opencode/agents/quality.md](https://github.com/tqnonline/skills/blob/main/adapters/opencode/agents/quality.md) contains the executable protocol for checking ledger completeness and quality.
 
 ## How to use
 

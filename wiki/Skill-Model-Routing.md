@@ -1,6 +1,6 @@
 # Skill: Model routing
 
-**Group:** developer · **Invocation:** model-invoked · **Source:** [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/model-routing/SKILL.md)
+**Group:** developer · **Invocation:** model-invoked · **Source:** [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/model-routing/SKILL.md)
 
 Model routing resolves which model tier applies to a given task, so that no other skill needs to name a specific model directly. It is a lookup, not a decision-maker. The decision about which models are even eligible is made one layer up, in the canonical registry this skill reads from.
 
@@ -15,7 +15,7 @@ Model routing is a thin skill that sits in front of the registry every other ski
 
 ## Key references
 
-- [models.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/model-routing/models.md) is the canonical registry: a tier matrix, the published mapping from role to model, examples of user overrides, and a machine-readable block that continuous integration checks the adapters' bindings against.
+- [models.md](https://github.com/tqnonline/skills/blob/main/skills/developer/model-routing/models.md) is the canonical registry: a tier matrix, the published mapping from role to model, examples of user overrides, and a machine-readable block that continuous integration checks the adapters' bindings against.
 
 ## How to use
 
