@@ -1,6 +1,6 @@
 # Skill: Slice
 
-**Group:** developer · **Invocation:** model-invoked · **Source:** [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/slice/SKILL.md)
+**Group:** developer · **Invocation:** model-invoked · **Source:** [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/slice/SKILL.md)
 
 Slice decomposes a signed-off PRD into a backlog of epics, features, stories, technical stories, and continuous-improvement items. Every item it produces follows the agent-executable work-item contract, and every item includes the reliability, maintainability, and instrumentation work that a feature backlog often leaves out.
 
@@ -15,9 +15,9 @@ Slice carries out the Backlog stage of the [role journey](Architecture-Role-Jour
 
 ## Key references
 
-- [TEMPLATES.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/slice/TEMPLATES.md) provides templates for an epic, a feature, a user story, a technical story, and a continuous-improvement item.
-- [WORK-ITEM-CONTRACT.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/slice/WORK-ITEM-CONTRACT.md) defines the 14-section agent-executable contract, including the block of commands for a headless run and the pickup protocol that requires a review before implementation.
-- [OPERABILITY.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/slice/OPERABILITY.md) describes the operability lane that every epic must include: observability, service-level objectives, runbooks, continuous integration and delivery, and the governance lane.
+- [TEMPLATES.md](https://github.com/tqnonline/skills/blob/main/skills/developer/slice/TEMPLATES.md) provides templates for an epic, a feature, a user story, a technical story, and a continuous-improvement item.
+- [WORK-ITEM-CONTRACT.md](https://github.com/tqnonline/skills/blob/main/skills/developer/slice/WORK-ITEM-CONTRACT.md) defines the 14-section agent-executable contract, including the block of commands for a headless run and the pickup protocol that requires a review before implementation.
+- [OPERABILITY.md](https://github.com/tqnonline/skills/blob/main/skills/developer/slice/OPERABILITY.md) describes the operability lane that every epic must include: observability, service-level objectives, runbooks, continuous integration and delivery, and the governance lane.
 
 ## How to use
 

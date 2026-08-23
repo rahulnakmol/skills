@@ -1,6 +1,6 @@
 # Skill: Operate
 
-**Group:** developer · **Invocation:** mixed-invoked specialist · **Source:** [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/operate/SKILL.md)
+**Group:** developer · **Invocation:** mixed-invoked specialist · **Source:** [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/operate/SKILL.md)
 
 Operate is the reliability-engineering charter. It covers service-level objectives, instrumentation, and incident readiness, and it produces a brief that includes an SLO table, dashboards, and runbooks, rather than a general statement that monitoring should exist.
 
@@ -15,8 +15,8 @@ Operate carries out the Reliability stage of the [role journey](Architecture-Rol
 
 ## Key references
 
-- [adapters/opencode/agents/operate.md](https://github.com/rahulnakmol/skills/blob/main/adapters/opencode/agents/operate.md) contains the executable operations protocol.
-- [slice/OPERABILITY.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/slice/OPERABILITY.md) describes the operability lane this skill's evidence traces back to.
+- [adapters/opencode/agents/operate.md](https://github.com/tqnonline/skills/blob/main/adapters/opencode/agents/operate.md) contains the executable operations protocol.
+- [slice/OPERABILITY.md](https://github.com/tqnonline/skills/blob/main/skills/developer/slice/OPERABILITY.md) describes the operability lane this skill's evidence traces back to.
 
 ## How to use
 

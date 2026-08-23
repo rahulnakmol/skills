@@ -1,6 +1,6 @@
 # Skill: Architect
 
-**Group:** developer · **Invocation:** mixed-invoked specialist · **Source:** [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/architect/SKILL.md)
+**Group:** developer · **Invocation:** mixed-invoked specialist · **Source:** [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/architect/SKILL.md)
 
 Architect is the charter for the design gate. It leads cross-cutting technical design and produces decision packs suitable for an architecture decision record, including non-functional requirements and interface contracts. The executable detail behind this charter lives in its adapter, not in the charter document itself.
 
@@ -15,8 +15,8 @@ Architect carries out the Design stage of the [role journey](Architecture-Role-J
 
 ## Key references
 
-- [adapters/opencode/agents/architect.md](https://github.com/rahulnakmol/skills/blob/main/adapters/opencode/agents/architect.md) contains the executable design-review protocol.
-- [sdlc/METHOD.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/sdlc/METHOD.md) describes the SPEC-TS ledger that Architect co-owns.
+- [adapters/opencode/agents/architect.md](https://github.com/tqnonline/skills/blob/main/adapters/opencode/agents/architect.md) contains the executable design-review protocol.
+- [sdlc/METHOD.md](https://github.com/tqnonline/skills/blob/main/skills/developer/sdlc/METHOD.md) describes the SPEC-TS ledger that Architect co-owns.
 
 ## How to use
 

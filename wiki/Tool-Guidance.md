@@ -1,12 +1,12 @@
 # Tool guidance
 
-The skills are authored once and run in five tools. The portable core — every `SKILL.md` and its reference documents — installs identically everywhere through `npx skills@latest add rahulnakmol/skills`, which places the catalog in `.agents/skills/` (read by most tools) and `.claude/skills/` (read by Claude Code). What differs per tool is the execution power layered on top: adapters, workflows, and the runner. This page covers each tool in turn.
+The skills are authored once and run in five tools. The portable core — every `SKILL.md` and its reference documents — installs identically everywhere through `npx skills@latest add tqnonline/skills`, which places the catalog in `.agents/skills/` (read by most tools) and `.claude/skills/` (read by Claude Code). What differs per tool is the execution power layered on top: adapters, workflows, and the runner. This page covers each tool in turn.
 
 ## Claude Code
 
 Claude Code gets the deepest integration, because the repository ships as a Claude Code plugin.
 
-- **Install**: `npx skills@latest add rahulnakmol/skills` for the skills, `./scripts/install-adapters.sh --tool claude` for the worker subagents (`work-fast`, `work-deep`, `reviewer`).
+- **Install**: `npx skills@latest add tqnonline/skills` for the skills, `./scripts/install-adapters.sh --tool claude` for the worker subagents (`work-fast`, `work-deep`, `reviewer`).
 - **Dynamic workflows**: the delivery pipeline ships as three plugin workflows — `/rahulnakmol-skills:assess-work-item`, `/rahulnakmol-skills:deliver-work-item`, and `/rahulnakmol-skills:shakedown-pr` (Claude Code v2.1.154 or later). Each orchestrates its agents in the background and reports one result.
 - **Headless**: `claude -p "Run the /rahulnakmol-skills:<name> workflow with args {...}"`, or `scripts/pipeline.sh <stage> <ref> --engine claude`, which builds that prompt for you. Add `--interactive` to open a session instead.
 - **A note on effort**: the workflows carry their own orchestration, so the session's `ultracode` setting is not required for them; it remains useful for open-ended tasks outside the pipeline.

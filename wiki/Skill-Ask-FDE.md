@@ -1,6 +1,6 @@
 # Skill: Ask FDE
 
-**Group:** developer · **Invocation:** user-invoked · **Source:** [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/ask-fde/SKILL.md)
+**Group:** developer · **Invocation:** user-invoked · **Source:** [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/ask-fde/SKILL.md)
 
 Ask FDE is a router, not a specialist skill in its own right. When a user knows what outcome they want but not which skill produces it, Ask FDE classifies the stated intent — inception, backlog, build, design, security, release, quality, production, models, governance, or branding — and calls the matching skill directly.
 
@@ -23,4 +23,4 @@ Run `/ask-fde` and describe the outcome you want in your own words — "I have m
 
 ## Sibling skills
 
-Ask FDE routes to any skill in the developer or branding group. The complete mapping from intent to skill is in [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/ask-fde/SKILL.md#procedure).
+Ask FDE routes to any skill in the developer or branding group. The complete mapping from intent to skill is in [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/ask-fde/SKILL.md#procedure).
