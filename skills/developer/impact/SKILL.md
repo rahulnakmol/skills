@@ -32,3 +32,4 @@ PRD markdown ≤10 pages + `.impact.json` project metadata update.
 ## Sibling skills
 
 - `recon`, `slice`, `raise`, `press`
+- The pm group's `prd-draft` may feed a PM-pipeline epic PRD in here for engineering inception, or hand straight to `slice` when its acceptance criteria are already machine-checkable — see `VALUE.md` for the seam
