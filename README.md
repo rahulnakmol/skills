@@ -1,29 +1,27 @@
 # tqnonline/skills
 
-This repository collects the skills I have built for working with AI agents across the software delivery lifecycle — authored once, running the same way in Claude Code, OpenCode, Codex, Cursor, and GitHub Copilot. Every skill here follows one personal philosophy, and each one exists because I needed it, tested it, and kept what survived.
+This is the skills repository of The Quentin (tqnonline): a curated, growing bundle of the AI-native skills we use across our work — authored once, running the same way in Claude Code, OpenCode, Codex, Cursor, and GitHub Copilot. We are curating and building AI-native skills that deliver business value through trusted agents with human judgment — driving growth in personal, professional, and sustainable accomplishments. Software delivery is where we started, because it is where we could prove the method; it is one group among four, not the repository's identity.
 
 ## The thesis
 
-The philosophy is **Set the frontier: redefining growth with human judgment and trusted AI agents**, and every skill in this repository carries it. Software delivery is being redefined by where value now concentrates: at the two ends of the process, not the middle. Human judgment holds the gates. Trusted agents do the work in between. This repository names those gates and enforces each one in code, rather than leaving them as an assumption. Inception is a grill loop a human drives. Approval is a signed PRD with a recorded governance tier. Pickup requires an agent to critique a work item and stop before it implements anything. Release requires a named human owner with a service-level agreement, never a silent auto-approval. Between the gates, artificial intelligence has made routine execution and information retrieval a baseline capability rather than a source of advantage. This repository invests where the advantage still lives: encoded judgment at one end — grill loops, gates, contracts, and routing rules — and verified, trustworthy execution at the other — a separate verifier for consequential work, a provider policy enforced in continuous integration, and a model registry kept current by an honest, disclosed research process.
+Every skill here, whatever its group, carries one philosophy: **Set the frontier: redefining growth with human judgment and trusted AI agents**. Knowledge work is being redefined by where value now concentrates — at the two ends of any process, not the middle. Human judgment holds the gates; trusted agents do the work in between; and routine execution, which artificial intelligence has made a baseline capability, stops being the differentiator. A branding skill applies this the same way a delivery skill does: the agent drafts and renders, a person owns the message and signs the result. This repository invests where the advantage still lives — encoded judgment at one end (grill loops, gates, contracts, routing rules) and verified, trustworthy execution at the other (separate verifiers for consequential work, a provider policy enforced in continuous integration, a model registry kept current by an honest, disclosed research process).
 
 ![Set the frontier — value concentrates at the two ends](docs/assets/set-the-frontier.svg)
 
 ## Skill groups
 
-The skills are organized into four groups, each a bounded area of work rather than a technology layer:
+Four groups, each a bounded area of work rather than a technology layer. We have just started: the first group is fully built, the second has its first skill, and two carry charters for what comes next.
 
-| Group | What it holds | Status |
-|-------|---------------|--------|
-| **Developer** | The software delivery lifecycle, end to end: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance — 17 skills | Shipping |
-| **Branding** | Turning delivery artifacts into stakeholder-ready documents; today, PRD-to-branded-PDF | Shipping |
-| **Writing** | Editorial skills: ADR review, documentation linting, style enforcement | Charter — planned |
-| **Productivity** | Personal automation | Charter — planned |
-
-The developer group is the heart of the repository, and the rest of this document walks through it.
+| Group | What it is | Status |
+|-------|------------|--------|
+| **Developer — the AI-native SDLC** | The software delivery lifecycle rebuilt for humans plus trusted agents: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance — 17 skills. The group directory is planned to be renamed `ai-native-sdlc` to say what it is. | Shipping |
+| **Branding** | Company or personal identity applied to everything an agent produces: tone of voice, color and palette, storytelling. Today: `press`, which turns a signed PRD into a business-ready document and presentation — the first of the storytelling skills. | First skill shipping |
+| **Writing** | Skills that make writing better — editorial review, documentation quality, style discipline — in the same explainer voice this repository holds itself to. | Charter — planned |
+| **Productivity** | Delightful automations: the personal and team workflows worth never doing by hand again. | Charter — planned |
 
 ## The operating model
 
-The developer skills implement one journey, from a raw idea to a system running in production, framed by four human gates. Everything between the gates is agent-run: a single writer per checkout, a separate verifier wherever the output feeds a consequential decision.
+What follows walks the first fully built group — the AI-native SDLC — in depth; it is the worked example of the thesis, and the pattern the other groups will follow. Its skills implement one journey, from a raw idea to a system running in production, framed by four human gates. Everything between the gates is agent-run: a single writer per checkout, a separate verifier wherever the output feeds a consequential decision.
 
 ![The operating model — four human gates, agents in between](docs/assets/operating-model.svg)
 
