@@ -14,10 +14,10 @@ Run an isolated verification pass on a PR or branch.
 
 ## Procedure
 
-1. Follow `SANDBOX.md` isolation rules
-2. Checkout PR head; run project test command
-3. Optional: invoke reviewer adapter read-only
-4. Summarize pass/fail with logs excerpt
+1. In Claude Code, run the `shakedown-pr` dynamic workflow (`adapters/claude/workflows/shakedown-pr.js`); in OpenCode, the `shakedown` template via `scripts/pipeline.sh shakedown <PR#> --engine opencode`
+2. Otherwise: follow `SANDBOX.md` isolation rules; checkout PR head; build, test, and execute the change
+3. Evaluate a stacked PR against its own stack base (`deliver/STACKING.md`); consume existing check runs, including GitHub Code Quality, instead of re-running them
+4. Post the review: blocking on a red build or test run, never an approval
 
 ## Stop conditions
 

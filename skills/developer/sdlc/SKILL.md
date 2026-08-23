@@ -17,6 +17,7 @@ Run the gated software delivery loop for a scoped change or work item.
 - Read `METHOD.md` for SPEC-TS ledger rules
 - Read `LOOP-CONTRACT.md` for gate order and stop states
 - For routing mode (loop vs graph), call `orchestrate` first
+- Check the target repository against `deliver/REPO-SETUP.md` (Code Quality, `gh stack`, pickup-protocol labels, shakedown); report gaps before walking gates
 
 ## Procedure
 

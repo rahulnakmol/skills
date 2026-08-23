@@ -16,6 +16,8 @@ node ~/.config/opencode/workflows/runner.mjs assure \
   "release_id=... source_revision=... artifact_digest=... provenance_id=... target_environment_id=... configuration_digest=... deployment_version=..." \
   --dir ~/project
 node ~/.config/opencode/workflows/runner.mjs maintenance "Find verified maintenance risks" --dir ~/project
+node ~/.config/opencode/workflows/runner.mjs assess "item=42 tracker=github" --dir ~/project
+node ~/.config/opencode/workflows/runner.mjs shakedown "pr=87" --dir ~/project --apply
 node ~/.config/opencode/workflows/runner.mjs --resume <run-id>
 node ~/.config/opencode/workflows/runner.mjs --pause <run-id>
 node ~/.config/opencode/workflows/runner.mjs --stop <run-id>
@@ -28,6 +30,8 @@ Shell aliases in dotfiles: `ocwf`, `ocwfl`, `ocwfv`.
 Default runs are read-only. `--apply` only permits tasks explicitly marked `mutates_workspace: true`; bundled templates contain no mutating tasks. Runner never passes OpenCode `--auto`.
 
 Exception: `deliver` contains one conditional mutating worker task and requires `--apply` plus at least one `--check-json` array command. Orchestrator selects exactly one allowlisted worker (`work-luna`, `work-sonnet`, `work-k3`, or `work-glm`); workers never run in parallel on shared checkout. Harness records check exit/duration/output hashes. Gate 3 verifier is read-only, higher-reasoning and cross-family.
+
+`assess` and `shakedown` are the pickup-critique and PR-review parity templates for the delivery pipeline (`scripts/pipeline.sh` in the skills repository launches them alongside their Claude dynamic-workflow counterparts). `assess` is fully read-only and produces a ready-to-post critique; posting is an explicit separate step. `shakedown` requires `--apply` because its sandbox task builds and executes the pull request; its verdict is composed for posting, with a red build or test run always producing a blocking verdict.
 
 State lives at `${XDG_STATE_HOME:-~/.local/state}/opencode-workflows/<run-id>/`:
 
