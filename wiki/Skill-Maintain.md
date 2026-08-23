@@ -18,6 +18,16 @@ Maintain is the final stage of the [role journey](Architecture-Role-Journey), wh
 - [CADENCE.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/maintain/CADENCE.md) sets the schedule for patch and debt review.
 - [tools/opencode-workflows/templates/maintenance.json](https://github.com/rahulnakmol/skills/blob/main/tools/opencode-workflows/templates/maintenance.json) is the workflow-runner template this charter runs against.
 
+## How to use
+
+Maintain engages on the cadence set in `CADENCE.md` — patch review, dependency updates, debt burn-down — and after incidents, turning follow-ups into tracked stories. Its output is a maintenance plan with prioritized items, not an informal list of deferred work.
+
+## Best practices
+
+- Keep the cadence even when nothing is on fire; maintenance that only runs after incidents is incident response with a different name.
+- Make every debt item a tracked story with an owner — untracked debt is invisible until it is expensive.
+- Feed the plan into `slice` so maintenance competes for capacity explicitly rather than losing to feature work by default.
+
 ## Sibling skills
 
 Maintain feeds continuous-improvement items back into [Slice](Skill-Slice) and works alongside [Operate](Skill-Operate) on the post-release side of the journey.

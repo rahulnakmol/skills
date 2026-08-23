@@ -17,6 +17,16 @@ Press is the first skill in the branding group, and the only step in the [role j
 
 - [PALETTE.md](https://github.com/rahulnakmol/skills/blob/main/skills/branding/press/PALETTE.md) defines the default Anthropic-inspired palette used when no user branding skill is installed.
 
+## How to use
+
+Run `/press` after a PRD is signed at Gate G2 and you need a document that travels — a stakeholder review, a deck, a leadership read. It renders the PRD to a branded PDF, returning the artifact path and a checksum, and refuses an unsigned PRD.
+
+## Best practices
+
+- Export after sign-off, not before; a branded document lends unsigned scope a legitimacy it has not earned.
+- Install your own branding tokens once and every export matches your identity; the default palette is a fallback, not a recommendation.
+- Never edit the PDF's content by hand — changes belong in the PRD source, re-exported, so the document and the record never diverge.
+
 ## Sibling skills
 
 Press consumes a signed PRD from [Impact](Skill-Impact).

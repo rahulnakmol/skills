@@ -20,6 +20,16 @@ Recon is the brownfield step that precedes [Impact](Skill-Impact) in the Incepti
 - [PATTERNS.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/recon/PATTERNS.md) and `references/patterns/` hold pattern cards for architectures including monoliths, microservices, mainframes, AS/400 systems, monorepos, and strangler migrations. No more than three cards are loaded in a single run, and only on a signal match.
 - [BRIEF-FORMAT.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/recon/BRIEF-FORMAT.md) defines the output format that Impact and Architect consume.
 
+## How to use
+
+Recon is model-invoked: a brownfield `impact` run calls it before scoping, and `architect` consults its brief during design. You can also ask for it directly — "orient me in this codebase" — in any tool. It needs no configuration; it reads signals from the repository itself and loads at most three matching pattern cards.
+
+## Best practices
+
+- Keep it read-only, always — recon that edits a file has stopped being reconnaissance.
+- Trust the signal-first triage: forcing a pattern card the markers did not match produces a confident brief about the wrong architecture.
+- Ground every claim in a file actually inspected; when no archetype matches, say so and hand the open questions to a human rather than guessing.
+
 ## Sibling skills
 
 Recon supplies briefs to [Impact](Skill-Impact) for brownfield PRDs and to [Architect](Skill-Architect) for design work grounded in the existing estate.

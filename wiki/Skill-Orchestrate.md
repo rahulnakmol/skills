@@ -19,6 +19,16 @@ Orchestrate sits above every other skill in this repository's [operating model](
 - [GRAPH.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/orchestrate/GRAPH.md) defines the `agent` and `human` node types, and carries the harness mapping: work-item delivery runs as three named workflows — assess, deliver, shakedown — on Claude Code's dynamic-workflow runtime or the OpenCode template runner, launched by `scripts/pipeline.sh` on either engine.
 - [LOOP.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/orchestrate/LOOP.md) describes loop mode, in which a single writer works against a single verifier.
 
+## How to use
+
+Orchestrate is model-invoked: it engages on its own when a task spans multiple gates or contexts, and `sdlc` calls it for a routing decision before implementation begins. In Claude Code you can also ask for a routing decision directly ("route this work"), and the delivery pipeline's three named workflows are the pre-routed paths for work items. There is no slash command; the skill exists to be consulted, not driven.
+
+## Best practices
+
+- Route on verifiability, never on apparent difficulty — the first matching rule in `RUBRIC.md` wins, and re-litigating it mid-run is a failure signature.
+- Never drop a gate under degradation: a tool that cannot fan out runs the same stages sequentially, human nodes included.
+- Keep one writer per checkout and populate the `evidence` field with the rubric lines and registry entries the decision rests on — an unevidenced routing decision is an opinion.
+
 ## Sibling skills
 
 [Model routing](Skill-Model-Routing) resolves which model runs at each step. [SDLC](Skill-SDLC) is the user-invoked gated loop that Orchestrate most often routes work into.

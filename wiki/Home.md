@@ -2,7 +2,9 @@
 
 ## The thesis
 
-Growth is being redefined by where value concentrates in software delivery. Human judgment holds four gates — inception, approval, pickup, and release — and trusted agents carry out the work between them. This repository is that operating model, built from small, composable skills, with documentation that discloses detail progressively, and adapters for five different tools.
+This is the documentation for the skills Rahul Nakmol has built for AI-agent-driven software delivery, and for the philosophy they all carry: **Set the frontier — redefining growth with human judgment and trusted AI agents**. Growth is being redefined by where value concentrates in software delivery. Human judgment holds four gates — inception, approval, pickup, and release — and trusted agents carry out the work between them. This repository is that operating model, built from small, composable skills, with documentation that discloses detail progressively, and adapters for five different tools.
+
+![The operating model](https://raw.githubusercontent.com/wiki/rahulnakmol/skills/assets/operating-model.svg)
 
 ## Quickstart
 
@@ -15,6 +17,8 @@ For the full setup process for each supported tool, see [Installation](Installat
 
 ## The map
 
+- [Personas](Personas) — who this serves and how, from a first job to CTO, CDAIO, and CIO
+- [Tool guidance](Tool-Guidance) — using the skills in Claude Code, OpenCode, Codex, Cursor, and GitHub Copilot
 - [Architecture: Role journey](Architecture-Role-Journey) — the complete path from an idea to a maintained system, with the four human gates marked
 - [Architecture: Loop vs graph](Architecture-Loop-vs-Graph) — how the `orchestrate` skill decides the shape a task should run in
 - [Architecture: SDLC system](Architecture-SDLC-System) — the SPEC-TS ledger, the delivery gates, and the roster of specialist agents

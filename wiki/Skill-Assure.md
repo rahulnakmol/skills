@@ -17,6 +17,16 @@ Assure carries out the Maintainability stage of the [role journey](Architecture-
 
 - [adapters/opencode/agents/quality.md](https://github.com/rahulnakmol/skills/blob/main/adapters/opencode/agents/quality.md) contains the executable protocol for checking ledger completeness and quality.
 
+## How to use
+
+Assure engages at the quality gate or when a pod charter names the role. It audits the SPEC-TS ledger for testability — prioritized requirements, quantified constraints, evidence-backed trade-offs — and produces a quality report whose gaps become backlog items.
+
+## Best practices
+
+- Send every finding to the backlog as a continuous-improvement item; a quality report that ends as a document has changed nothing.
+- Insist on quantified constraints — "fast enough" and "reliable" are placeholders, not engineering requirements.
+- A failed or omitted quality lens is a result to report, never an empty success.
+
 ## Sibling skills
 
 Assure feeds continuous-improvement items back into [Slice](Skill-Slice) and runs within [SDLC](Skill-SDLC)'s quality gate.

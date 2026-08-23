@@ -18,6 +18,16 @@ This skill is what keeps this repository's four human gates substantive, rather 
 
 - The complete list of frameworks and the behavioral rules that follow from them are in [SKILL.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/responsible-ai-governance/SKILL.md).
 
+## How to use
+
+The overlay is triggered, not scheduled: `impact` screens for its triggers every grill round, `slice` calls it when a PRD's tier is `limited` or `high`, and any specialist skill invokes it on contact with a regulated context. Asking about a named framework — SR 11-7, the EU AI Act, ISO/IEC 42001 — also brings it in directly.
+
+## Best practices
+
+- When unsure whether something is governed, assume it is and ask — the cost of a wrong "not governed" is categorically higher than the reverse.
+- Treat audit trails and explainability as deliverables with their own tests, never as logging added at the end.
+- Never implement around a control to make a feature work; surface the conflict with options and let a human decide.
+
 ## Sibling skills
 
 This skill is called from [Impact](Skill-Impact), from [Slice](Skill-Slice), and from any specialist skill — Architect, Safeguard, Assure, Operate, Maintain, or Deliver — working in a regulated context.

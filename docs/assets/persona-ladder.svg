@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 430" font-family="Helvetica Neue, Arial, sans-serif">
+  <rect width="1180" height="430" fill="#FAF9F5"/>
+  <text x="590" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#262625">One system, every altitude — from first job to the C-suite</text>
+
+  <!-- Step 1 -->
+  <rect x="60" y="300" width="250" height="90" rx="12" fill="#F0EEE9" stroke="#d8d5cd" stroke-width="1.5"/>
+  <text x="185" y="328" text-anchor="middle" font-size="15" font-weight="700" fill="#262625">Starting out</text>
+  <text x="185" y="350" text-anchor="middle" font-size="12" fill="#6b6b67">The gates teach the method:</text>
+  <text x="185" y="368" text-anchor="middle" font-size="12" fill="#6b6b67">critique before code, evidence</text>
+  <text x="185" y="384" text-anchor="middle" font-size="12" fill="#6b6b67">before done, one concern per PR</text>
+
+  <!-- Step 2 -->
+  <rect x="345" y="230" width="250" height="90" rx="12" fill="#E5DFD3" stroke="#d0cabb" stroke-width="1.5"/>
+  <text x="470" y="258" text-anchor="middle" font-size="15" font-weight="700" fill="#262625">Architect · EM</text>
+  <text x="470" y="280" text-anchor="middle" font-size="12" fill="#6b6b67">Routing on verifiability, model</text>
+  <text x="470" y="298" text-anchor="middle" font-size="12" fill="#6b6b67">per node, agentic pods behind</text>
+  <text x="470" y="314" text-anchor="middle" font-size="12" fill="#6b6b67">precise work-item contracts</text>
+
+  <!-- Step 3 -->
+  <rect x="630" y="160" width="250" height="90" rx="12" fill="#40668C"/>
+  <text x="755" y="188" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">CTO</text>
+  <text x="755" y="210" text-anchor="middle" font-size="12" fill="#DCE6F2">AI-native delivery at org scale:</text>
+  <text x="755" y="228" text-anchor="middle" font-size="12" fill="#DCE6F2">stacked reviewable PRs, quality</text>
+  <text x="755" y="244" text-anchor="middle" font-size="12" fill="#DCE6F2">gates, verified agent output</text>
+
+  <!-- Step 4 -->
+  <rect x="915" y="90" width="230" height="90" rx="12" fill="#C96442"/>
+  <text x="1030" y="118" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">CDAIO · CIO</text>
+  <text x="1030" y="140" text-anchor="middle" font-size="12" fill="#F7E4DB">Named owners with SLAs, audit</text>
+  <text x="1030" y="158" text-anchor="middle" font-size="12" fill="#F7E4DB">trails, governed model policy,</text>
+  <text x="1030" y="174" text-anchor="middle" font-size="12" fill="#F7E4DB">value traced idea → production</text>
+
+  <!-- ascent line -->
+  <path d="M 185 292 L 470 222 L 755 152 L 1030 82" fill="none" stroke="#8a8a86" stroke-width="2" stroke-dasharray="7 6"/>
+  <circle cx="185" cy="292" r="5" fill="#8a8a86"/>
+  <circle cx="470" cy="222" r="5" fill="#8a8a86"/>
+  <circle cx="755" cy="152" r="5" fill="#8a8a86"/>
+  <circle cx="1030" cy="82" r="5" fill="#C96442"/>
+
+  <text x="590" y="418" text-anchor="middle" font-size="12.5" fill="#8a8a86">The same gates, contracts, and evidence serve every rung — what changes is the question each persona asks of them</text>
+</svg>

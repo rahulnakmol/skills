@@ -18,6 +18,16 @@ Update models is what keeps the registry that [Model routing](Skill-Model-Routin
 - [RESEARCH.md](https://github.com/rahulnakmol/skills/blob/main/skills/developer/update-models/RESEARCH.md) defines the format for logging evidence.
 - [.github/workflows/update-models.yml](https://github.com/rahulnakmol/skills/blob/main/.github/workflows/update-models.yml) runs the monthly freshness check and the manually dispatched research job.
 
+## How to use
+
+Run `/update-models` when a model deprecates or role-fit evidence changes, or let the monthly schedule prompt the review: the scheduled job checks registry freshness and files an issue when it is overdue, and a real research run happens on manual dispatch with an API key. Every change arrives as a pull request a person merges.
+
+## Best practices
+
+- Bring evidence, not novelty — "newer" is not a reason; a capability, price, or fit change with a source is.
+- Stay inside the provider allowlist for anything published; a non-allowlist default needs an ADR waiver, not an exception made quietly.
+- Record rejected candidates alongside adopted ones so the next review inherits the reasoning, not just the result.
+
 ## Sibling skills
 
 Update models edits the registry that [Model routing](Skill-Model-Routing) reads from.

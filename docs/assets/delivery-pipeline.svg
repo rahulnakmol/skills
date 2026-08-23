@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 460" font-family="Helvetica Neue, Arial, sans-serif">
+  <rect width="1180" height="460" fill="#FAF9F5"/>
+  <text x="590" y="40" text-anchor="middle" font-size="22" font-weight="700" fill="#262625">AI-native delivery — three workflows, human gates between the runs</text>
+
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#8a8a86"/>
+    </marker>
+  </defs>
+
+  <!-- Stage 1: assess -->
+  <rect x="50" y="80" width="280" height="190" rx="14" fill="#FFFFFF" stroke="#d8d5cd" stroke-width="1.5"/>
+  <rect x="50" y="80" width="280" height="44" rx="14" fill="#40668C"/>
+  <rect x="50" y="110" width="280" height="14" fill="#40668C"/>
+  <text x="190" y="108" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">assess-work-item</text>
+  <text x="70" y="150" font-size="12.5" fill="#262625">1 · Fetch the item and its contract</text>
+  <text x="70" y="172" font-size="12.5" fill="#262625">2 · Three critics: contract · PRD · reality</text>
+  <text x="70" y="194" font-size="12.5" fill="#262625">3 · Adversarially verify every finding</text>
+  <text x="70" y="216" font-size="12.5" fill="#262625">4 · Post one critique + questions</text>
+  <text x="70" y="245" font-size="12" font-weight="600" fill="#40668C">Deep fact-finding refines the backlog</text>
+
+  <!-- Gate: human answers -->
+  <polygon points="352,175 378,148 428,148 454,175 428,202 378,202" fill="#C96442"/>
+  <text x="403" y="171" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">human</text>
+  <text x="403" y="188" text-anchor="middle" font-size="11" fill="#F7E4DB">answers → ready</text>
+  <line x1="332" y1="175" x2="350" y2="175" stroke="#8a8a86" stroke-width="2"/>
+  <line x1="456" y1="175" x2="474" y2="175" stroke="#8a8a86" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Stage 2: deliver -->
+  <rect x="478" y="80" width="280" height="190" rx="14" fill="#FFFFFF" stroke="#d8d5cd" stroke-width="1.5"/>
+  <rect x="478" y="80" width="280" height="44" rx="14" fill="#40668C"/>
+  <rect x="478" y="110" width="280" height="14" fill="#40668C"/>
+  <text x="618" y="108" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">deliver-work-item</text>
+  <text x="498" y="150" font-size="12.5" fill="#262625">1 · Refuse anything not at `ready`</text>
+  <text x="498" y="172" font-size="12.5" fill="#262625">2 · Plan layers · SPEC-TS snapshot</text>
+  <text x="498" y="194" font-size="12.5" fill="#262625">3 · One writer · separate verifier loop</text>
+  <text x="498" y="216" font-size="12.5" fill="#262625">4 · Raise one PR — or a gh-stack</text>
+  <text x="498" y="245" font-size="12" font-weight="600" fill="#40668C">Layered commits → reviewable stack</text>
+
+  <!-- Gate: PR review -->
+  <polygon points="780,175 806,148 856,148 882,175 856,202 806,202" fill="#C96442"/>
+  <text x="831" y="171" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">human</text>
+  <text x="831" y="188" text-anchor="middle" font-size="11" fill="#F7E4DB">reviews the PR</text>
+  <line x1="760" y1="175" x2="778" y2="175" stroke="#8a8a86" stroke-width="2"/>
+  <line x1="884" y1="175" x2="902" y2="175" stroke="#8a8a86" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Stage 3: shakedown -->
+  <rect x="906" y="80" width="240" height="190" rx="14" fill="#FFFFFF" stroke="#d8d5cd" stroke-width="1.5"/>
+  <rect x="906" y="80" width="240" height="44" rx="14" fill="#40668C"/>
+  <rect x="906" y="110" width="240" height="14" fill="#40668C"/>
+  <text x="1026" y="108" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">shakedown-pr</text>
+  <text x="922" y="150" font-size="12.5" fill="#262625">1 · Sandbox: build · test · execute</text>
+  <text x="922" y="172" font-size="12.5" fill="#262625">2 · Three verified review lenses</text>
+  <text x="922" y="194" font-size="12.5" fill="#262625">3 · Consume existing checks</text>
+  <text x="922" y="216" font-size="12.5" fill="#262625">4 · Blocking review on red</text>
+  <text x="922" y="245" font-size="12" font-weight="600" fill="#C96442">Approval stays with a human</text>
+
+  <!-- engines row -->
+  <text x="590" y="316" text-anchor="middle" font-size="14" font-weight="700" fill="#262625">One pipeline, two engines, every mode</text>
+  <rect x="150" y="336" width="270" height="72" rx="10" fill="#F0EEE9" stroke="#d8d5cd"/>
+  <text x="285" y="364" text-anchor="middle" font-size="13" font-weight="700" fill="#262625">Claude Code</text>
+  <text x="285" y="386" text-anchor="middle" font-size="11.5" fill="#6b6b67">dynamic workflows · /rahulnakmol-skills:*</text>
+
+  <rect x="455" y="336" width="270" height="72" rx="10" fill="#F0EEE9" stroke="#d8d5cd"/>
+  <text x="590" y="364" text-anchor="middle" font-size="13" font-weight="700" fill="#262625">OpenCode</text>
+  <text x="590" y="386" text-anchor="middle" font-size="11.5" fill="#6b6b67">deterministic runner · fixed DAG templates</text>
+
+  <rect x="760" y="336" width="270" height="72" rx="10" fill="#F0EEE9" stroke="#d8d5cd"/>
+  <text x="895" y="364" text-anchor="middle" font-size="13" font-weight="700" fill="#262625">scripts/pipeline.sh</text>
+  <text x="895" y="386" text-anchor="middle" font-size="11.5" fill="#6b6b67">headless (claude -p) or interactive, either engine</text>
+
+  <text x="590" y="440" text-anchor="middle" font-size="12" fill="#8a8a86">The runtime allows no mid-run user input — so every human gate is a separate run, by design, not by accident</text>
+</svg>
