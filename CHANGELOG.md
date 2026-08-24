@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.0
+
+### Minor Changes
+
+- 63740ed: A self-maturing Discover-Define-Design-Deliver discipline lands for real-work skills on both sides — new `developer/DDDD.md` and `pm/DDDD.md`, orthogonal to the four human gates (the gates decide when a human signs off; DDDD is how a skill does its own work between signoffs), threaded into 9 skills per side. The pm group gains a 16th skill, `orchestrate`: the same loop/graph/hybrid routing question asked of business-side work — grill-loop, parallel-fan, or hybrid — without standing up dynamic-workflow automation. `impact`, `architect`, `sdlc` (dev) and `discover`, `tom-architect`, `grill` (pm) now explicitly capture functional and non-functional requirements with a scope boundary, ideating either with the user when unclear. `assess-work-item.js` gains a fourth critique lens surfacing design tradeoffs (maintainability, reliability, tech debt) through the existing pickup-critique comment.
+- 63740ed: The Commitment/Release gate gets sharper teeth. `deliver/STACKING.md` now describes GitHub's native stacked-PR public preview (a platform stack map, single-operation merge-and-cascade, automatic server-side rebase/retarget) and makes stacking a multi-concern change the default posture rather than a judgment call. A new `shakedown/COVERAGE.md` adds an FR/NFR traceability matrix and numeric coverage floors — 85-90% on business-capability code, 75-80% on integration code — checked by `deliver-work-item`'s verifier and again by `shakedown-pr`'s tests lens, routed through `model-routing` rather than reflexively maxing out the model tier. A new `shakedown/VERIFICATION.md` codifies verification-before-completion — open the actual artifact, a green build is not evidence, report only what was found — inspired by `kunchenguid/no-mistakes`' pipeline shape but built into this repo's own doctrine rather than adopting the external binary. Threaded into `WORK-ITEM-CONTRACT.md`'s definition of done, `CLAUDE.md` as a repository invariant, and `pm/report` (a leadership pack is never marked sent without opening the rendered artifact against its source registers).
+
+### Patch Changes
+
+- 63740ed: The Discover/Define/Design/Deliver cycle gets a name and a visual: "the 4D Diamond," illustrated in `docs/assets/4d-diamond.svg` — a faceted gem with the four phases at its four points, converging on and elevating a central summit (enriched and accomplished, not just finished). Embedded in README and referenced from both `DDDD.md` doctrines, which keep their existing filenames.
+- 63740ed: Three new wiki pages give the pm group the same architecture-deep-dive treatment the developer group already has: `Architecture-PM-Journey` (the four-gate path from a business problem to a realized benefit), `Architecture-PM-Orchestrate` (grill-loop / parallel-fan / hybrid), and `Architecture-PM-System` (the constitution hierarchy, DDDD, and the initiative-repo substrate) — each a map to the existing doctrine, not a duplicate of it. `model-routing` and `update-models` now say explicitly that they serve every group, not just developer, and `model-routing` is threaded into `case`, `tom-architect`, `roadmap`, and `report`.
+
 ## 0.4.0
 
 ### Minor Changes
