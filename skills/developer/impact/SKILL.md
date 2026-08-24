@@ -14,9 +14,9 @@ Turn ideas into an approved PRD and pipeline handoff.
 
 ## Procedure
 
-1. **Intake** — fast-cut PRD (`PRD-TEMPLATE.md`)
+1. **Intake** — fast-cut PRD (`PRD-TEMPLATE.md`); Discover the goal per `DDDD.md` before drafting scope
 2. Brownfield? → `Call the Skill tool with "recon"` first; attach brief
-3. **Grill** — `GRILL.md` + `VALUE.md` until stop or approval (`GATES.md`)
+3. **Grill** — `GRILL.md` + `VALUE.md` until stop or approval (`GATES.md`); capture functional and non-functional requirements separately, ideating either with the user when the boundary is unclear
 4. Optional branded PDF → `Call the Skill tool with "press"`
 5. Hand off to `slice` only after G2 sign-off
 

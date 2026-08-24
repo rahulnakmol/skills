@@ -12,7 +12,7 @@ Who this serves and what job they are hiring the outcome to do. Named roles or s
 
 ## Scope
 
-In-scope and out-of-scope, drawn directly from the grill rounds. Every out-of-scope entry that was actively cut during grilling links back to its entry in the Trade-offs and decision log below, rather than disappearing without a trace.
+In-scope and out-of-scope, drawn directly from the grill rounds, with an explicit boundary: functional and non-functional requirements captured separately, never left implicit in one another. Functional requirements state what the system does — the behaviors, inputs, and outputs a user or another system can observe. Non-functional requirements state how well it does it — performance, reliability, security, compliance, maintainability — each with a stated threshold, not a vague aspiration. Where either kind is unclear, the grill ideates it with the user directly rather than assuming a default; a requirement invented without that exchange is a guess wearing a requirement's clothing. Every out-of-scope entry that was actively cut during grilling links back to its entry in the Trade-offs and decision log below, rather than disappearing without a trace.
 
 ## Business value delivered
 

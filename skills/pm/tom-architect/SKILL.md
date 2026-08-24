@@ -14,7 +14,7 @@ Translate a business transformation into a structured Target Operating Model.
 
 ## Procedure
 
-1. Discover: gather the transformation driver, industry, current state, and target platform stack via `AskUserQuestion`
+1. Discover (`DDDD.md`): gather the transformation driver, industry, current state, and target platform stack via `AskUserQuestion`
 2. Scope: select applicable TOM layers, domains, depth (L1-L2 vs L1-L4), and deliverables
 3. Analyze: decompose processes and assess maturity per domain (`TOM-METHOD.md`); commission research where the current-state landscape is thin (`RESEARCH-AGENTS.md`)
 4. Design: process taxonomy, organization and RACI, service delivery model, KPI framework, governance

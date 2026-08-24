@@ -15,7 +15,7 @@ Five groups, each a bounded area of work rather than a technology layer. We have
 | Group | What it is | Status |
 |-------|------------|--------|
 | **Developer — the AI-native SDLC** | The software delivery lifecycle rebuilt for humans plus trusted agents: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance — 17 skills. The group directory is planned to be renamed `ai-native-sdlc` to say what it is. | Shipping |
-| **PM — the AI-native transformation practice** | The business side of the same AI-native transformation coin: discovery, TOM design, epic and PRD authoring, business cases grounded in cost including the agent fleet's own, roadmapping, RAID, benefits realization against a north star, and 4Ps leadership reporting — 15 skills. | Shipping |
+| **PM — the AI-native transformation practice** | The business side of the same AI-native transformation coin: discovery, TOM design, epic and PRD authoring, business cases grounded in cost including the agent fleet's own, roadmapping, RAID, benefits realization against a north star, and 4Ps leadership reporting — 16 skills. | Shipping |
 | **Branding** | Company or personal identity applied to everything an agent produces: tone of voice, color and palette, storytelling. Today: `press`, which turns a signed PRD into a business-ready document and presentation — the first of the storytelling skills. | First skill shipping |
 | **Writing** | Skills that make writing better — editorial review, documentation quality, style discipline — in the same explainer voice this repository holds itself to. | Charter — planned |
 | **Productivity** | Delightful automations: the personal and team workflows worth never doing by hand again. | Charter — planned |
@@ -114,6 +114,7 @@ Every skill has a wiki page covering what it is, how to use it, and its best pra
 
 | Skill | Invocation | Purpose |
 |-------|------------|---------|
+| [orchestrate](skills/pm/orchestrate/SKILL.md) | model | Choose grill-loop, parallel-fan, or hybrid execution shape for multi-round pm work |
 | [constitution](skills/pm/constitution/SKILL.md) | user | Product Constitution author and reviewer — principles, positioning, quarterly review |
 | [discover](skills/pm/discover/SKILL.md) | user | Business problem discovery and root-cause analysis |
 | [map](skills/pm/map/SKILL.md) | model | Personas, process flows, and the Business Understanding Document |

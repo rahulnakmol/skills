@@ -14,7 +14,7 @@ Turn a discovery analysis into personas, process flows, and the Business Underst
 
 ## Procedure
 
-1. Read the analysis file; extract problem statement, stakeholders, classification, root causes, entry mode
+1. Define phase per `DDDD.md`: read the analysis file; extract problem statement, stakeholders, classification, root causes, entry mode
 2. Build three to six named persona profiles — end-user personas under the product hat, organizational-actor personas with RACI under the transformation hat
 3. Generate current-state and target-state Mermaid process flows, pain points in red, improvements in green
 4. Apply visual compression before finalizing any figure — one figure, one claim (`VISUALS.md`)

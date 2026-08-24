@@ -6,6 +6,8 @@ Ported from the source `tom-architect` skill's Discover > Scope > Analyze > Desi
 
 Processes decompose through a taxonomy of four levels, L1 through L4: L1 is the value chain, L2 the major process groups within it, L3 the detailed process steps, and L4 the task-level activities a role or a system actually performs. Each process at L1 through L3 carries an owner, a frequency, a service-level agreement, its inputs and outputs, and the systems that support it. Depth is a scope decision, not a default — an executive overview stops at L1–L2, a detailed design goes to L1–L4, and the scoping phase decides which before analysis begins.
 
+Every scoped process also carries functional and non-functional requirements with a stated scope boundary: functional requirements are what the process must do — the steps, the decision points, the outputs a downstream process consumes; non-functional requirements are how well it must do it — the service-level agreement, the compliance posture, the volume it must sustain. Where the boundary is not already settled by the SOW or the sponsor, `tom-architect` ideates it with the user directly rather than inferring one from the domain's usual shape.
+
 ## Maturity assessment
 
 Every scoped process is placed on a five-point maturity scale: 1-Initial (ad hoc), 2-Developing (partial), 3-Defined (standardized), 4-Managed (data-driven), 5-Optimizing (AI-augmented). A target state defined without first establishing this current-state baseline produces an unrealistic target — the gap between the two is what actually drives the epics `carve` later extracts.

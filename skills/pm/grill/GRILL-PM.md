@@ -4,7 +4,7 @@ The grill is where a business artifact earns the right to advance — an analysi
 
 ## Round protocol
 
-Rounds follow the same shape as `impact/GRILL.md`: three to five questions per round, drawn from one dominant theme rather than scattered across all of them, answers captured immediately rather than deferred. At the end of each round, restate the sharpened scope in three sentences or fewer, then close with the same three-way choice: continue, stop, or move to sign-off. The user may say **"we stop here"** at any point, in any round, and the loop ends immediately — no closing argument, no extra round squeezed in first. Stopping is never silent: every trade-off implicitly accepted by stopping early is written down before the session closes.
+Rounds follow the same shape as `impact/GRILL.md`: three to five questions per round, drawn from one dominant theme rather than scattered across all of them, answers captured immediately rather than deferred. One recurring theme available to any round is functional and non-functional requirements: what the artifact must do, and how well it must do it, each with a scope boundary the user confirms rather than one the grill assumes. At the end of each round, restate the sharpened scope in three sentences or fewer, then close with the same three-way choice: continue, stop, or move to sign-off. The user may say **"we stop here"** at any point, in any round, and the loop ends immediately — no closing argument, no extra round squeezed in first. Stopping is never silent: every trade-off implicitly accepted by stopping early is written down before the session closes.
 
 ## Grill with docs
 
