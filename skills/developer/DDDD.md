@@ -1,6 +1,6 @@
-# Discover, Define, Design, Deliver
+# The 4D Diamond: Discover, Define, Design, Deliver
 
-A skill doing real work does not jump straight to implementation. It moves through four phases — Discover, Define, Design, Deliver — each building on what the last one baselined, self-maturing as it goes: what starts as a rough goal becomes a defined execution baseline, then a designed path with its tradeoffs made visible, then a delivered result checked against all three. This is the shape `impact`, `architect`, `sdlc`, `deliver`, `assure`, `operate`, `maintain`, `safeguard`, and `shakedown` each run internally, threaded into their own procedures rather than replacing them.
+A skill doing real work does not jump straight to implementation. It moves through four phases — Discover, Define, Design, Deliver — each building on what the last one baselined, self-maturing as it goes: what starts as a rough goal becomes a defined execution baseline, then a designed path with its tradeoffs made visible, then a delivered result checked against all three. Drawn as a diamond, the four phases sit at its four points, and the one baseline they mature together sits at the summit their four facets converge on and elevate — not just finished, but enriched and accomplished by every phase that fed into it. See [docs/assets/4d-diamond.svg](https://github.com/tqnonline/skills/blob/main/docs/assets/4d-diamond.svg). This is the shape `impact`, `architect`, `sdlc`, `deliver`, `assure`, `operate`, `maintain`, `safeguard`, and `shakedown` each run internally, threaded into their own procedures rather than replacing them.
 
 ## Discover
 

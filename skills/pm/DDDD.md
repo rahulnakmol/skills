@@ -1,6 +1,6 @@
-# Discover, Define, Design, Deliver
+# The 4D Diamond: Discover, Define, Design, Deliver
 
-The pm group runs the same self-maturing cycle as the developer group's `DDDD.md`, on the business side of the ledger: Discover, Define, Design, Deliver, each phase baselining what the next one builds on. `discover`, `map`, `tom-architect`, `carve`, `prd-draft`, `case`, `roadmap`, `realize`, and `report` each thread this into their own procedure rather than replacing it — the same relationship the developer side holds to its own version of this doctrine.
+The pm group runs the same self-maturing cycle as the developer group's `DDDD.md`, on the business side of the ledger: Discover, Define, Design, Deliver, each phase baselining what the next one builds on. Drawn as a diamond, the four phases sit at its four points and the one baseline they mature together sits at the summit their four facets converge on and elevate — enriched and accomplished, not just finished. See [docs/assets/4d-diamond.svg](https://github.com/tqnonline/skills/blob/main/docs/assets/4d-diamond.svg) — the same diagram the developer side uses, since the shape of the cycle does not change from one side of the coin to the other, only its examples do. `discover`, `map`, `tom-architect`, `carve`, `prd-draft`, `case`, `roadmap`, `realize`, and `report` each thread this into their own procedure rather than replacing it — the same relationship the developer side holds to its own version of this doctrine.
 
 ## Discover
 
