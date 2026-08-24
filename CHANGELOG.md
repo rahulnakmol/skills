@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.4.0
+
+### Minor Changes
+
+- 0327400: A fifth skill group ships: **pm — the AI-native transformation practice**, the business side of the same AI-transformation coin as the developer group's AI-native SDLC. Fifteen skills carry a product or program manager from a raw business problem to a delivered, measured benefit: `constitution` (ported from the source `philosophy` skill, with a two-tier, quarterly-reviewed hierarchy spanning the practice and each initiative), `discover`, `map`, `tom-architect`, `carve` (ported from `epic-decompose`, DIVE-tested epics), `prd-draft`, `prd-validate`, and `prd-review` (the 11-Star Experience Framework) — all ported from `rahulnakmol/agent-marketplace/plugins/pm` — plus seven new skills: `case` (business cases costed on build, run, opportunity, and agent-fleet spend), `roadmap` (now/next/later sequencing and PI planning), `raid`, `realize` (benefits realization against a north star of efficiency and productivity as transformation value), `report` (a 4Ps leadership pack at five cadences), `grill` (plain, with-docs, and provoke modes, sharing its round protocol with `impact/GRILL.md`), and `ask-pm` (the group's router).
+
+  Four human gates — Framing, Investment, Quality, Commitment — mirror the developer group's four, each opening with a blind-spot review the PM runs as an agent owner covering the fleet's blind spots and having the fleet cover theirs in return. PM work lives in an initiative repository — one per initiative, a monorepo of `initiatives/<slug>/` folders with Git LFS for binary artifacts, or the software repository's own `specs/` tree when the initiative delivers code. The seam to the developer group is real: a PM epic PRD may feed `impact` for engineering inception, and `slice`/`raise` now carry Risk and Impediment item types plus an Azure DevOps tracker backend with a runnable CSV exporter (`scripts/ado-export.mjs`). A parallel persona ladder — Product/Program/Project Manager through Business Architect and Transformation Leader to Chief Business Transformation Officer — joins the wiki's Personas page, illustrated by `docs/assets/persona-ladder-pm.svg`. 42 new harness tests (27 structural, 15 wiki) lock the group's structure, doctrine depth, and pipeline threading in place.
+
+### Patch Changes
+
+- 9a7d14c: The documentation now says what the repository actually is: The Quentin's curated, growing bundle of AI-native skills — delivering business value through trusted agents with human judgment, driving growth in personal, professional, and sustainable accomplishments — not an agentic-SDLC repository with extras attached. The four groups lead the README: the AI-native SDLC (the first fully built group; a directory rename from `developer` to `ai-native-sdlc` is planned and tracked separately), branding (company or personal identity — tone, palette, storytelling — with `press` shipping as the first storytelling skill, PRD to business-ready document and presentation), writing (better writing for people and agents), and productivity (delightful automations). The group charters in `skills/` and the four wiki group pages carry the same framing.
+- 2cf0761: The repository has moved to the tqnonline organization (The Quentin LLP). Every reference to the old path is updated: the install command is now `npx skills@latest add tqnonline/skills`, wiki links and raw asset URLs point at `tqnonline/skills`, the marketplace owner is `tqnonline`, and the NOTICE names the new home. The plugin and package identity `rahulnakmol-skills` is unchanged, so installed workflow commands (`/rahulnakmol-skills:<name>`) keep working. The stale `@rahulnakmol/skills` name in `package-lock.json`, left over from an earlier rename, is also synced.
+
 ## 0.3.1
 
 ### Patch Changes
