@@ -95,8 +95,8 @@ Every skill has a wiki page covering what it is, how to use it, and its best pra
 | Skill | Invocation | Purpose |
 |-------|------------|---------|
 | [orchestrate](skills/developer/orchestrate/SKILL.md) | model | Choose loop/graph/hybrid execution, assign a model per node, map to harness adapters |
-| [model-routing](skills/developer/model-routing/SKILL.md) | model | Resolve the tier and role assignment for a task node from the canonical registry |
-| [update-models](skills/developer/update-models/SKILL.md) | user | Research provider catalogs and propose an evidence-backed registry update |
+| [model-routing](skills/developer/model-routing/SKILL.md) | model | Resolve the tier and role assignment for a task node from the canonical registry — shared by every group, not developer-only |
+| [update-models](skills/developer/update-models/SKILL.md) | user | Research provider catalogs and propose an evidence-backed registry update — curates the registry every group routes through |
 | [impact](skills/developer/impact/SKILL.md) | user | Idea-to-PRD pipeline: grill loop, value probing, governance-tier recording, backlog handoff |
 | [recon](skills/developer/recon/SKILL.md) | model | Brownfield codebase brief via signal-first archetype triage, read-only |
 | [slice](skills/developer/slice/SKILL.md) | model | Decompose a signed PRD into epics, features, stories, and operability items |

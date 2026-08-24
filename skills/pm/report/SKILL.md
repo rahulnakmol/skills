@@ -17,7 +17,7 @@ Produce the leadership pack: value first, the 4Ps, one compressing figure, sourc
 1. Deliver phase per `DDDD.md`: pull value and north-star rollup from `realize`
 2. Pull Problems from `raid`, Priorities from `roadmap`, cost/benefit baseline from `case`
 3. Pull live pipeline state — pickup-protocol status, pull requests, stacks — for Progress
-4. Write the pack in the 4Ps structure, value first (`REPORT-METHOD.md`)
+4. Write the pack in the 4Ps structure, value first (`REPORT-METHOD.md`), routing the drafting pass through `model-routing` — a mechanical pull from the registers and a judgment-heavy Perspective section do not need the same tier
 5. Compress the cadence's key decision into one figure (`VISUALS.md`)
 6. Render through `Call the Skill tool with "press"`
 7. Before marking the pack sent, open the rendered artifact and check every number in it against its source register — per `shakedown/VERIFICATION.md`'s rule that a render finishing without error is not evidence the numbers are right — then route to leadership

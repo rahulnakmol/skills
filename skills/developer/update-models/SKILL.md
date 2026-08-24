@@ -1,11 +1,11 @@
 ---
 name: update-models
-description: User-invoked model registry curation. Research provider catalogs, propose updates to models.md and adapters, open a reviewable PR. Use on schedule or when models deprecate.
+description: User-invoked model registry curation. Research provider catalogs, propose updates to models.md and adapters, open a reviewable PR. Serves every group in this repository, developer and pm alike — the registry it curates is not developer-only. Use on schedule or when models deprecate.
 ---
 
 # Update models (user-invoked)
 
-Curate the canonical registry; never silently change production defaults.
+Curate the canonical registry every group in this repository routes through — developer and pm alike, not developer-only just because this skill's directory sits under `skills/developer/`. Never silently change production defaults.
 
 ## When to invoke
 
