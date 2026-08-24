@@ -14,10 +14,10 @@ Sequence work by outcome and dependency, not by whoever asked last — and ship 
 
 ## Procedure
 
-1. Place each item in a horizon — now, next, or later (`ROADMAP.md`)
+1. Design phase per `DDDD.md`: place each item in a horizon — now, next, or later (`ROADMAP.md`)
 2. Link every item to the outcome it is meant to move
 3. Sequence by dependency and capacity, reading the dependency board from `raid` rather than re-deriving it
-4. Where the practice runs PI planning, set PI objectives, map iterations, and state capacity
+4. Where the practice runs PI planning, set PI objectives, map iterations, and state capacity — route each planning step's model tier through `model-routing`
 5. Compress the sequencing decision into one figure before shipping (`VISUALS.md`)
 6. Feed the PI review's outcome into `realize`
 

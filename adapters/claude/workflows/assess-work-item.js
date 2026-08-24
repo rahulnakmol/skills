@@ -56,15 +56,17 @@ const LENSES = [
   { key: 'contract', prompt: 'Check this work item against every section of skills/developer/slice/WORK-ITEM-CONTRACT.md (read that file first). A missing or vague Goal, Scope and file ownership, Acceptance criteria, Verification commands, or Governance section (where the PRD tier requires one) is a blocking finding. Machine-checkable acceptance criteria only; "looks right" does not count.' },
   { key: 'alignment', prompt: 'Check this work item against its parent PRD and epic. Does the goal trace to a recorded business value? Does the scope match what was approved at Gate G2? Does anything here exceed or contradict the signed PRD? An untraceable or contradicting item is a blocking finding.' },
   { key: 'reality', prompt: 'Check this work item against the actual codebase. Do the file paths it claims to own exist and match the described boundaries? Do the verification commands run in this repository? Would the change conflict with in-flight work or existing contracts? Also check the repository against skills/developer/deliver/REPO-SETUP.md where that file is installed: pickup-protocol labels, gh stack tooling, Code Quality, shakedown workflow — a missing prerequisite is an advisory finding naming the setup step. Ground every finding in a file you actually inspected.' },
+  { key: 'tradeoffs', prompt: 'Per skills/developer/DDDD.md\'s Design phase: identify any design tradeoff this work item\'s described approach makes but does not state — maintainability against delivery speed, reliability against complexity, an acceptable amount of technical debt against a tighter boundary. Report each as an advisory finding naming the tradeoff explicitly, so the user sees it before implementation starts rather than discovering it in the diff.' },
 ]
 const critiques = await parallel(LENSES.map((lens) => () =>
   agent(`${lens.prompt}\n\nWork item "${workItem.title}" (${workItem.url}):\n\n${workItem.body}`, {
     label: `critique:${lens.key}`,
     schema: FINDINGS_SCHEMA,
-  })
+  }).then((critique) => critique && { ...critique, lens: lens.key })
 ))
 
-const proposed = critiques.filter(Boolean).flatMap((critique) => critique.findings)
+const proposed = critiques.filter(Boolean).flatMap((critique) =>
+  critique.findings.map((finding) => ({ ...finding, lens: critique.lens })))
 const proposedQuestions = critiques.filter(Boolean).flatMap((critique) => critique.questions)
 log(`${proposed.length} proposed finding(s), ${proposedQuestions.length} question(s) before verification`)
 
@@ -82,6 +84,8 @@ const verified = await pipeline(proposed, (finding) =>
 )
 const confirmed = verified.filter(Boolean)
 const blocking = confirmed.filter((finding) => finding.severity === 'blocking')
+const tradeoffFindings = confirmed.filter((finding) => finding.lens === 'tradeoffs')
+const otherFindings = confirmed.filter((finding) => finding.lens !== 'tradeoffs')
 
 phase('Post')
 const postPrompt = tracker === 'linear'
@@ -92,7 +96,10 @@ const commentBody = [
   '',
   blocking.length ? `**${blocking.length} blocking finding(s).** This item stays at \`critiqued\` until they are resolved on this thread.` : 'No blocking findings. Answer the questions below (if any), then move the item to `ready`.',
   '',
-  ...confirmed.map((finding) => `- **${finding.severity}**: ${finding.summary}`),
+  ...otherFindings.map((finding) => `- **${finding.severity}**: ${finding.summary}`),
+  '',
+  tradeoffFindings.length ? '### Design tradeoffs' : '',
+  ...tradeoffFindings.map((finding) => `- ${finding.summary}`),
   '',
   proposedQuestions.length ? '### Questions' : '',
   ...proposedQuestions.map((question) => `- ${question}`),
@@ -105,7 +112,8 @@ return {
   status: blocking.length ? 'NEEDS_INPUT' : 'READY_TO_ADVANCE',
   item: workItem.url,
   blocking: blocking.map((finding) => finding.summary),
-  advisory: confirmed.filter((finding) => finding.severity === 'advisory').map((finding) => finding.summary),
+  advisory: otherFindings.filter((finding) => finding.severity === 'advisory').map((finding) => finding.summary),
+  tradeoffs: tradeoffFindings.map((finding) => finding.summary),
   questions: proposedQuestions,
   posted: posted ?? 'post step returned no confirmation',
 }

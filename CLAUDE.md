@@ -31,6 +31,7 @@ Machine-checkable rules for humans and agents working in `tqnonline/skills`.
 ## Testing
 
 - Deterministic harness: node scripts/run-tests.mjs must pass; CI runs it on every push and PR.
+- Verification before completion: never report a task done from a green build alone; open the actual artifact and check it against the request, per `skills/developer/shakedown/VERIFICATION.md`.
 
 ## Sidecars
 

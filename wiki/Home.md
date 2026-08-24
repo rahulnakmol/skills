@@ -23,6 +23,9 @@ For the full setup process for each supported tool, see [Installation](Installat
 - [Architecture: Loop vs graph](Architecture-Loop-vs-Graph) — how the `orchestrate` skill decides the shape a task should run in
 - [Architecture: SDLC system](Architecture-SDLC-System) — the SPEC-TS ledger, the delivery gates, and the roster of specialist agents
 - [Architecture: Agentic pods](Architecture-Agentic-Pods) — the work-item contract and the pickup protocol that governs it
+- [Architecture: PM journey](Architecture-PM-Journey) — the complete path from a business problem to a realized benefit, with the four human gates marked
+- [Architecture: PM orchestrate](Architecture-PM-Orchestrate) — how the pm group's `orchestrate` decides grill-loop, parallel-fan, or hybrid
+- [Architecture: PM system](Architecture-PM-System) — the constitution hierarchy, the DDDD cycle, and the initiative-repo substrate
 - [Architecture: Skill design](Architecture-Skill-Design) — the conventions every skill in this repository follows
 
 ## Skills, one page each
@@ -53,6 +56,7 @@ For the full setup process for each supported tool, see [Installation](Installat
 
 | Skill | Invocation | Purpose |
 |-------|------------|---------|
+| [Orchestrate](Skill-Orchestrate) | model | Chooses grill-loop, parallel-fan, or hybrid execution shape for multi-round pm work |
 | [Constitution](Skill-Constitution) | user | Codifies practice or initiative principles, positioning, and prioritization; quarterly review cadence |
 | [Discover](Skill-Discover) | user | Turns a raw business problem into a structured, stakeholder-grounded analysis |
 | [Map](Skill-Map) | model | Builds personas, process flows, and the Business Understanding Document |

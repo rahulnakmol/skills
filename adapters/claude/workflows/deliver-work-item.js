@@ -86,7 +86,7 @@ let verdict = null
 let previousFailures = ''
 for (let round = 1; round <= 3; round++) {
   verdict = await agent(
-    `You are the verifier for work item ${item}, independent of the implementer. On branch ${plan.branch}, run exactly these verification commands from the contract and report each result: ${plan.verificationCommands.join(' ; ')}. Also confirm the diff against ${stackBase} stays inside the owned paths (${plan.ownedPaths.join(', ')}) and that each acceptance criterion in the contract has a passing check. Do not fix anything. Contract:\n${gate.body}`,
+    `You are the verifier for work item ${item}, independent of the implementer. On branch ${plan.branch}, run exactly these verification commands from the contract and report each result: ${plan.verificationCommands.join(' ; ')}. Also confirm the diff against ${stackBase} stays inside the owned paths (${plan.ownedPaths.join(', ')}) and that each acceptance criterion, functional and non-functional alike, has a passing check per skills/developer/shakedown/COVERAGE.md's traceability matrix and coverage floors (85-90% on business-capability code, 75-80% on integration code, measured against this diff). Open the actual test output rather than trusting a green exit code — per skills/developer/shakedown/VERIFICATION.md, a run finishing without error is not evidence the acceptance criteria actually hold. Do not fix anything. Contract:\n${gate.body}`,
     { label: `verify:round-${round}`, effort: 'high', schema: VERIFY_SCHEMA },
   )
   if (!verdict) return { status: 'BLOCKED', reason: `Verifier returned no result in round ${round}.` }

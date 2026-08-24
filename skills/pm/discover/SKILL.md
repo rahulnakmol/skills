@@ -14,7 +14,7 @@ Turn a raw business problem into a structured analysis: stakeholders, root cause
 
 ## Procedure
 
-1. Verify or bootstrap the initiative repository substrate (`INITIATIVE-REPO.md`)
+1. Discover phase per `DDDD.md`: verify or bootstrap the initiative repository substrate (`INITIATIVE-REPO.md`)
 2. Classify the hat — product or transformation — from the shape of the problem; ask only if genuinely ambiguous (`HATS.md`)
 3. Accept raw inputs and commission research where the evidence in hand is thin (`RESEARCH-AGENTS.md`)
 4. Clarify across the five dimensions and find root cause (`METHOD.md`), questioning in themed rounds by the grill's round protocol (`grill`)

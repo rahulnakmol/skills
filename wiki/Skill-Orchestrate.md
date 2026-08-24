@@ -32,3 +32,19 @@ Orchestrate is model-invoked: it engages on its own when a task spans multiple g
 ## Sibling skills
 
 [Model routing](Skill-Model-Routing) resolves which model runs at each step. [SDLC](Skill-SDLC) is the user-invoked gated loop that Orchestrate most often routes work into.
+
+## The pm-side orchestrate
+
+**Group:** pm · **Invocation:** model-invoked · **Source:** [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/pm/orchestrate/SKILL.md)
+
+The pm group carries its own orchestrate, the same question asked of business-side work: how should this actually run? Most pm work does not converge through a machine-checkable verifier the way code does — it converges through a human reacting to a grill round — so the pm rubric routes to **grill-loop** (a single line of questioning, human-judged, one round at a time), **parallel-fan** (independent research briefs or provoked hypotheses with no dependency between them), or **hybrid**. Unlike the developer skill, this one does not stand up dynamic-workflow automation to run the decision; it is a routing skill only, consulted before `discover`, `case`, `tom-architect`, or `prd-draft` begins a multi-round effort. See [RUBRIC.md](https://github.com/tqnonline/skills/blob/main/skills/pm/orchestrate/RUBRIC.md).
+
+## How to use (pm)
+
+Consult pm's orchestrate before a discovery, case, TOM, or PRD effort that spans more than one grill round or research commission. It names the shape and the routing question that decided it, then hands grill-loop work to [Grill](Skill-Grill) and parallel-fan work to the research and intuition agents in `RESEARCH-AGENTS.md`.
+
+## Best practices (pm)
+
+- Collapse a parallel-fan back to grill-loop the moment its branches turn out not to be independent.
+- A high-consequence artifact — a case, a PRD nearing Quality — always keeps its gate's human sign-off, regardless of shape.
+- Route each step's model choice through [Model routing](Skill-Model-Routing) the same way the developer side does; a mechanical pass and a judgment pass do not need the same tier.

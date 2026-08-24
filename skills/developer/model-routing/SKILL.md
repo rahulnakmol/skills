@@ -1,11 +1,11 @@
 ---
 name: model-routing
-description: Model-invoked lookup of tier and role assignments from the canonical registry. Use when selecting a worker, verifier, or orchestrator model for a task node.
+description: Model-invoked lookup of tier and role assignments from the canonical registry. Serves every group in this repository, developer and pm alike. Use when selecting a worker, verifier, or orchestrator model for a task node.
 ---
 
 # Model routing (model-invoked)
 
-Resolve which model tier applies to a task node without embedding IDs in other skills.
+Resolve which model tier applies to a task node without embedding IDs in other skills — shared infrastructure for every group in this repository, not developer-exclusive.
 
 ## When to invoke
 
@@ -37,3 +37,4 @@ rationale: multi-file API change
 
 - `update-models` — human curation PRs to `models.md`
 - `orchestrate` — consumes routing for each graph node
+- `pm/orchestrate` — the pm group's own execution-shape router, resolving grill-loop, parallel-fan, and hybrid steps through this same registry

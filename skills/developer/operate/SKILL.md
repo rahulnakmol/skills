@@ -14,9 +14,10 @@ Charter skill for the operate lane; execution detail in adapters.
 
 ## Procedure
 
-1. Load adapter: `adapters/opencode/agents/operate.md`
-2. Follow SPEC-TS and human gates in `sdlc/METHOD.md`
-3. Regulated context → `responsible-ai-governance`
+1. Deliver phase per `DDDD.md`: operational readiness against the Design baseline's SLOs
+2. Load adapter: `adapters/opencode/agents/operate.md`
+3. Follow SPEC-TS and human gates in `sdlc/METHOD.md`
+4. Regulated context → `responsible-ai-governance`
 
 ## Stop conditions
 
