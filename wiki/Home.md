@@ -2,7 +2,7 @@
 
 ## The thesis
 
-This is the documentation for The Quentin's skills repository: a curated, growing bundle of the AI-native skills we use across our work, all carrying one philosophy — **Set the frontier: redefining growth with human judgment and trusted AI agents**. We are curating and building skills that deliver business value through trusted agents with human judgment, driving growth in personal, professional, and sustainable accomplishments. Four groups bound the work: the AI-native SDLC (the first fully built group, where human judgment holds four gates — inception, approval, pickup, release — and trusted agents carry out everything between them), branding, writing, and productivity. Small, composable skills; documentation that discloses detail progressively; adapters for five different tools.
+This is the documentation for The Quentin's skills repository: a curated, growing bundle of the AI-native skills we use across our work, all carrying one philosophy — **Set the frontier: redefining growth with human judgment and trusted AI agents**. We are curating and building skills that deliver business value through trusted agents with human judgment, driving growth in personal, professional, and sustainable accomplishments. Five groups bound the work: the AI-native SDLC (the first fully built group, where human judgment holds four gates — inception, approval, pickup, release — and trusted agents carry out everything between them), pm (the business side of the same AI-transformation coin, the same four gates read from a product or transformation angle), branding, writing, and productivity. Small, composable skills; documentation that discloses detail progressively; adapters for five different tools.
 
 ![The operating model](https://raw.githubusercontent.com/wiki/tqnonline/skills/assets/operating-model.svg)
 
@@ -17,7 +17,7 @@ For the full setup process for each supported tool, see [Installation](Installat
 
 ## The map
 
-- [Personas](Personas) — who this serves and how, from a first job to CTO, CDAIO, and CIO
+- [Personas](Personas) — who this serves and how, from a first job to CTO, CDAIO, and CIO on the developer ladder, and from PM to Chief Business Transformation Officer on the parallel pm ladder
 - [Tool guidance](Tool-Guidance) — using the skills in Claude Code, OpenCode, Codex, Cursor, and GitHub Copilot
 - [Architecture: Role journey](Architecture-Role-Journey) — the complete path from an idea to a maintained system, with the four human gates marked
 - [Architecture: Loop vs graph](Architecture-Loop-vs-Graph) — how the `orchestrate` skill decides the shape a task should run in
@@ -48,6 +48,26 @@ For the full setup process for each supported tool, see [Installation](Installat
 | [Shakedown](Skill-Shakedown) | user | Builds, tests, and reviews any pull request in an isolated sandbox before merge |
 | [Ask FDE](Skill-Ask-FDE) | user | Routes a stated intent to the correct skill |
 | [Responsible AI governance](Skill-Responsible-AI-Governance) | overlay | Applies regulated-industry and responsible-AI requirements on top of the other rules |
+
+### PM — [Group-PM](Group-PM)
+
+| Skill | Invocation | Purpose |
+|-------|------------|---------|
+| [Constitution](Skill-Constitution) | user | Codifies practice or initiative principles, positioning, and prioritization; quarterly review cadence |
+| [Discover](Skill-Discover) | user | Turns a raw business problem into a structured, stakeholder-grounded analysis |
+| [Map](Skill-Map) | model | Builds personas, process flows, and the Business Understanding Document |
+| [TOM Architect](Skill-TOM-Architect) | user | Designs a Target Operating Model — L1-L4 processes, maturity, RACI, platform mapping |
+| [Carve](Skill-Carve) | model | Extracts DIVE-tested epics into a manifest |
+| [PRD Draft](Skill-PRD-Draft) | user | Drafts one INVEST-compliant PRD per approved epic |
+| [PRD Validate](Skill-PRD-Validate) | model | Checks PRD structure against a nine-item checklist, read-only |
+| [PRD Review](Skill-PRD-Review) | user | Scores a PRD on the 11-Star Experience Framework |
+| [Case](Skill-Case) | user | Builds the business case the sponsor approves at the Investment gate |
+| [Roadmap](Skill-Roadmap) | user | Sequences initiatives by outcome and dependency; runs PI planning |
+| [RAID](Skill-RAID) | user | Maintains the Risks, Assumptions, Issues, Dependencies registers |
+| [Realize](Skill-Realize) | user | Tracks benefits actuals against projection and rolls up to the north star |
+| [Report](Skill-Report) | user | Produces the 4Ps leadership pack at five cadences |
+| [Grill](Skill-Grill) | user | Interrogates a PM artifact before it advances through a gate |
+| [Ask PM](Skill-Ask-PM) | user | Routes a stated intent to the correct pm skill |
 
 ### Branding — [Group-Branding](Group-Branding)
 

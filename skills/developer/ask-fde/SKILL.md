@@ -13,8 +13,9 @@ Route user intent to the right skill in this monorepo.
 
 ## Procedure
 
-1. Classify intent: inception | backlog | build | secure | operate | branding
+1. Classify intent: inception | backlog | build | secure | operate | branding | product/program/transformation
 2. Map to skill:
+   - product, program, or transformation management intent → `ask-pm`
    - inception → `impact` (+ `recon` if brownfield)
    - backlog → `slice` → `raise`
    - build → `orchestrate` / `sdlc`

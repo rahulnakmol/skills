@@ -4,7 +4,7 @@ Machine-checkable rules for humans and agents working in `tqnonline/skills`.
 
 ## Structure
 
-- Exactly four skill groups under `skills/`: `developer`, `branding`, `writing`, `productivity`.
+- Exactly five skill groups under `skills/`: `developer`, `pm`, `branding`, `writing`, `productivity`.
 - **Promoted only** under `skills/`; non-promoted work lives in `drafts/`.
 - Every promoted skill appears in root `README.md` and `.claude-plugin/plugin.json`.
 - Drafts appear in neither README nor plugin manifest.

@@ -19,3 +19,13 @@ For a CTO, the question is throughput without surrendering review quality, and t
 ## CDAIO and CIO
 
 At the top of the ladder the question becomes accountability. Every consequential decision in this system has a named human owner and a service-level agreement — a typed `human` node in the orchestration graph, not a phrase in a policy document. Every agent action traces to an approved PRD, a recorded [governance tier](Skill-Responsible-AI-Governance), and an audit trail designed to be regulator-readable. Model selection follows a [published, allowlisted registry](Skill-Update-Models) reviewed on a disclosed schedule and enforced in continuous integration. For a regulated estate, the governance overlay converts frameworks — the NIST AI RMF, ISO/IEC 42001, the EU AI Act, SR 11-7 — into work items with their own tests, which is the difference between compliance as a document and compliance as a property of the system.
+
+## The PM ladder
+
+The developer group's ladder climbs the engineering side of the practice; the [pm group](Group-PM) climbs the business side, rung for rung, on the same gates and the same evidence — **two sides of the same** AI-transformation coin, not two separate systems.
+
+![The PM ladder](https://raw.githubusercontent.com/wiki/tqnonline/skills/assets/persona-ladder-pm.svg)
+
+The ladder runs **Product · Program · Project Manager** — where `discover`, `map`, and `carve` teach root cause and DIVE the way the developer ladder's early rungs teach critique before code — up through **Business Architect** — TOM design, maturity gaps, and the agent-owner blind-spot review — to **Transformation Leader** — roadmap, PI planning, and RAID, with the agent fleet run as an owned team rather than a tool — and finally to **Chief Business Transformation Officer**, where the question becomes the same one the CDAIO and CIO ask on the engineering side: accountability, north-star rollup, realized benefits, and portfolio cost including the agent fleet's own spend.
+
+Two more roles sit alongside this ladder rather than on it. The **Agent Owner** is any PM at any rung once they are running the blind-spot checklist unprompted — covering the fleet's blind spots and having the fleet cover theirs, in both directions. The **Operations Chief of Staff** reads the pm group's leadership pack the way a CTO reads the delivery pipeline's stacked pull requests: as the operating rhythm of the transformation, not a status email. Where the developer ladder ends in the FDE, Architect, CTO, CDAIO, and **Chief Intelligence Officer**, the pm ladder ends in the PM, Agent Owner, Business Transformation Leader, Operations Chief of Staff, and CBTO — the same four gates, read from the business side of the ledger.
