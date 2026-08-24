@@ -14,7 +14,7 @@ Produce the leadership pack: value first, the 4Ps, one compressing figure, sourc
 
 ## Procedure
 
-1. Pull value and north-star rollup from `realize`
+1. Deliver phase per `DDDD.md`: pull value and north-star rollup from `realize`
 2. Pull Problems from `raid`, Priorities from `roadmap`, cost/benefit baseline from `case`
 3. Pull live pipeline state — pickup-protocol status, pull requests, stacks — for Progress
 4. Write the pack in the 4Ps structure, value first (`REPORT-METHOD.md`)

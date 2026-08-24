@@ -14,9 +14,10 @@ Charter skill for the safeguard lane; execution detail in adapters.
 
 ## Procedure
 
-1. Load adapter: `adapters/opencode/agents/security.md`
-2. Follow SPEC-TS and human gates in `sdlc/METHOD.md`
-3. Regulated context → `responsible-ai-governance`
+1. Design phase per `DDDD.md`: security boundaries and hardening tradeoffs, surfaced to the user rather than assumed
+2. Load adapter: `adapters/opencode/agents/security.md`
+3. Follow SPEC-TS and human gates in `sdlc/METHOD.md`
+4. Regulated context → `responsible-ai-governance`
 
 ## Stop conditions
 

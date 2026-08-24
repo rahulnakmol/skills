@@ -53,6 +53,7 @@ For the full setup process for each supported tool, see [Installation](Installat
 
 | Skill | Invocation | Purpose |
 |-------|------------|---------|
+| [Orchestrate](Skill-Orchestrate) | model | Chooses grill-loop, parallel-fan, or hybrid execution shape for multi-round pm work |
 | [Constitution](Skill-Constitution) | user | Codifies practice or initiative principles, positioning, and prioritization; quarterly review cadence |
 | [Discover](Skill-Discover) | user | Turns a raw business problem into a structured, stakeholder-grounded analysis |
 | [Map](Skill-Map) | model | Builds personas, process flows, and the Business Understanding Document |

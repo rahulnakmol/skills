@@ -8,7 +8,7 @@ Discovery begins by confirming the substrate exists — an initiative repository
 
 ## The five dimensions
 
-Clarification proceeds across five dimensions, questioned in the grill's themed rounds rather than a single long form: business context (industry, model, objectives), stakeholder landscape (decision-makers, influencers, end users), problem definition (statement, impact, root-cause hypotheses), constraints and dependencies (budget, timeline, technical, organizational), and success criteria (KPIs, acceptance thresholds, risk tolerance). Raw inputs the user brings — meeting notes, transcripts, spreadsheets — are accepted and normalized per `RESEARCH-AGENTS.md` rather than re-asked for.
+Clarification proceeds across five dimensions, questioned in the grill's themed rounds rather than a single long form: business context (industry, model, objectives), stakeholder landscape (decision-makers, influencers, end users), problem definition (statement, impact, root-cause hypotheses, and the functional and non-functional requirements the solution must satisfy, each with a stated scope boundary), constraints and dependencies (budget, timeline, technical, organizational), and success criteria (KPIs, acceptance thresholds, risk tolerance). Where the boundary between what is in scope and what is not is unclear, discover ideates it with the user directly rather than assuming one. Raw inputs the user brings — meeting notes, transcripts, spreadsheets — are accepted and normalized per `RESEARCH-AGENTS.md` rather than re-asked for.
 
 ## Root cause
 
