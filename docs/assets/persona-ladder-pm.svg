@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 430" font-family="Helvetica Neue, Arial, sans-serif">
+  <rect width="1180" height="430" fill="#FAF9F5"/>
+  <text x="590" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#262625">The other side of the coin — from PM to Chief Business Transformation Officer</text>
+
+  <!-- Step 1 -->
+  <rect x="60" y="300" width="250" height="90" rx="12" fill="#F0EEE9" stroke="#d8d5cd" stroke-width="1.5"/>
+  <text x="185" y="328" text-anchor="middle" font-size="14" font-weight="700" fill="#262625">Product · Program ·</text>
+  <text x="185" y="345" text-anchor="middle" font-size="14" font-weight="700" fill="#262625">Project Manager</text>
+  <text x="185" y="365" text-anchor="middle" font-size="12" fill="#6b6b67">Discover, map, and carve —</text>
+  <text x="185" y="381" text-anchor="middle" font-size="12" fill="#6b6b67">the gates teach root cause and DIVE</text>
+
+  <!-- Step 2 -->
+  <rect x="345" y="230" width="250" height="90" rx="12" fill="#E5DFD3" stroke="#d0cabb" stroke-width="1.5"/>
+  <text x="470" y="258" text-anchor="middle" font-size="15" font-weight="700" fill="#262625">Business Architect</text>
+  <text x="470" y="280" text-anchor="middle" font-size="12" fill="#6b6b67">TOM design, maturity gaps,</text>
+  <text x="470" y="298" text-anchor="middle" font-size="12" fill="#6b6b67">platform capability mapping,</text>
+  <text x="470" y="314" text-anchor="middle" font-size="12" fill="#6b6b67">agent-owner blind-spot review</text>
+
+  <!-- Step 3 -->
+  <rect x="630" y="160" width="250" height="90" rx="12" fill="#40668C"/>
+  <text x="755" y="188" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">Transformation Leader</text>
+  <text x="755" y="210" text-anchor="middle" font-size="12" fill="#DCE6F2">Roadmap, PI planning, RAID,</text>
+  <text x="755" y="228" text-anchor="middle" font-size="12" fill="#DCE6F2">the agent fleet as an owned team,</text>
+  <text x="755" y="244" text-anchor="middle" font-size="12" fill="#DCE6F2">not a tool</text>
+
+  <!-- Step 4 -->
+  <rect x="915" y="90" width="230" height="90" rx="12" fill="#C96442"/>
+  <text x="1030" y="112" text-anchor="middle" font-size="13.5" font-weight="700" fill="#FFFFFF">Chief Business</text>
+  <text x="1030" y="130" text-anchor="middle" font-size="13.5" font-weight="700" fill="#FFFFFF">Transformation Officer</text>
+  <text x="1030" y="150" text-anchor="middle" font-size="12" fill="#F7E4DB">North-star rollup, realized</text>
+  <text x="1030" y="166" text-anchor="middle" font-size="12" fill="#F7E4DB">benefits, portfolio cost incl.</text>
+  <text x="1030" y="180" text-anchor="middle" font-size="10.5" fill="#F7E4DB">agent-fleet spend</text>
+
+  <!-- ascent line -->
+  <path d="M 185 292 L 470 222 L 755 152 L 1030 82" fill="none" stroke="#8a8a86" stroke-width="2" stroke-dasharray="7 6"/>
+  <circle cx="185" cy="292" r="5" fill="#8a8a86"/>
+  <circle cx="470" cy="222" r="5" fill="#8a8a86"/>
+  <circle cx="755" cy="152" r="5" fill="#8a8a86"/>
+  <circle cx="1030" cy="82" r="5" fill="#C96442"/>
+
+  <text x="590" y="418" text-anchor="middle" font-size="12.5" fill="#8a8a86">Two sides of the same AI-transformation coin: the same gates and evidence, one on the business side of the ledger</text>
+</svg>
