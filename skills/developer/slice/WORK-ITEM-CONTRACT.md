@@ -30,6 +30,10 @@ Machine-checkable only. "Looks right" and "should work" are not acceptance crite
 
 The exact commands a verifier runs to confirm the acceptance criteria hold — test invocations, lint commands, a specific manual check script. Verification is not "run the test suite and see" — it names which tests, which command, which expected exit behavior.
 
+## Coverage and use-case traceability
+
+Every acceptance criterion above — functional and non-functional alike — has a named test, tracked in a traceability matrix per `shakedown/COVERAGE.md`: one row per criterion, the test that proves it, pass or fail. Functional criteria cover what the change does; non-functional criteria cover how well it does it (latency, degradation under a slow dependency, backward compatibility, the security boundary of any new input surface) — an item with no applicable non-functional criteria states so explicitly, the same "not applicable" discipline the Governance section below uses, never silent omission. The code implementing the item's business capability holds to **85-90%** coverage on the diff; code at an integration boundary holds to **75-80%**. Both floors are checked by `deliver-work-item`'s verifier before a PR is raised, and again by `shakedown-pr`'s tests lens before merge.
+
 ## Constraints and guardrails
 
 Anything the implementer must not do: dependencies it cannot add without approval, migrations it cannot perform unilaterally, security or compliance boundaries it cannot cross. Constraints here are enforced the same way non-goals are — named up front, not discovered mid-implementation.
@@ -58,7 +62,7 @@ Where the pipeline workflows are installed, the same two phases run as `scripts/
 
 ## Definition of done
 
-The final state: acceptance criteria met, verification commands passing, constraints respected, governance section satisfied where applicable, and the pickup protocol's `ready → in-progress → done` transition completed with evidence attached to the issue.
+The final state: acceptance criteria met, the coverage and traceability matrix complete, verification commands passing, constraints respected, governance section satisfied where applicable, and the pickup protocol's `ready → in-progress → done` transition completed with evidence attached to the issue. "Done" is reported only after the verification-before-completion pass in `shakedown/VERIFICATION.md` — the actual diff opened and read against these criteria, not inferred from a green build.
 
 ## Artifacts and handoff
 

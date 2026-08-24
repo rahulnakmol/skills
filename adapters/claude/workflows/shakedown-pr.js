@@ -74,7 +74,7 @@ const FINDINGS_SCHEMA = {
 const LENSES = [
   { key: 'correctness', prompt: 'Review the diff strictly for reachable correctness defects: data and control flow, error paths, concurrency, compatibility, regressions. Prove each finding from the code; a hypothesis without a trigger is not a finding.' },
   { key: 'security', prompt: 'Review the diff strictly for security: injection, authorization gaps, secret handling, unsafe deserialization, supply-chain changes. Passive review only. Confirm reachability before reporting.' },
-  { key: 'tests', prompt: `Review the diff strictly for test adequacy: does every changed behavior have a test that would fail without the change? Cross-reference the existing check runs rather than re-running static analysis the repository already gets — these checks already ran: ${recon.existingChecks.map((check) => `${check.name}=${check.conclusion}`).join(', ') || 'none'}. Flag a gap only where no existing check covers it.` },
+  { key: 'tests', prompt: `Review the diff strictly for test adequacy: does every changed behavior have a test that would fail without the change? Check it against the work item's FR/NFR traceability matrix and the coverage floors in skills/developer/shakedown/COVERAGE.md (85-90% on business-capability code, 75-80% on integration code, measured on this diff) — a criterion with no row, or a row with no passing test, is a finding. Cross-reference the existing check runs rather than re-running static analysis the repository already gets — these checks already ran: ${recon.existingChecks.map((check) => `${check.name}=${check.conclusion}`).join(', ') || 'none'}. Flag a gap only where no existing check covers it.` },
 ]
 const reviews = await pipeline(
   LENSES,

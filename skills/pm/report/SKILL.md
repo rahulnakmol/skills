@@ -19,12 +19,14 @@ Produce the leadership pack: value first, the 4Ps, one compressing figure, sourc
 3. Pull live pipeline state — pickup-protocol status, pull requests, stacks — for Progress
 4. Write the pack in the 4Ps structure, value first (`REPORT-METHOD.md`)
 5. Compress the cadence's key decision into one figure (`VISUALS.md`)
-6. Render through `Call the Skill tool with "press"` and route to leadership
+6. Render through `Call the Skill tool with "press"`
+7. Before marking the pack sent, open the rendered artifact and check every number in it against its source register — per `shakedown/VERIFICATION.md`'s rule that a render finishing without error is not evidence the numbers are right — then route to leadership
 
 ## Stop conditions
 
 - A Perspective section drafted entirely by an agent with no PM judgment applied
 - A pack with no compressing figure
+- A pack marked sent without the rendered artifact having been opened and checked against its source registers
 
 ## Output contract
 
