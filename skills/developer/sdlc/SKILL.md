@@ -21,7 +21,7 @@ Run the gated software delivery loop for a scoped change or work item.
 
 ## Procedure
 
-1. Snapshot SPEC-TS from PRD or work item body
+1. Snapshot SPEC-TS from PRD or work item body; confirm its functional and non-functional requirements carry a stated scope boundary before walking gates (`DDDD.md`) — a snapshot missing either is a stop, not an assumption
 2. Walk gates in `LOOP-CONTRACT.md`; record evidence per gate
 3. At human gates, stop until explicit approval
 4. On security/quality findings, call `safeguard` / `assure` adapters via charter skills

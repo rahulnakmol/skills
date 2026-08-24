@@ -14,9 +14,10 @@ Charter skill for the maintain lane; execution detail in adapters.
 
 ## Procedure
 
-1. Load adapter: `tools/opencode-workflows/templates/maintenance.json`
-2. Follow SPEC-TS and human gates in `sdlc/METHOD.md`
-3. Regulated context → `responsible-ai-governance`
+1. Deliver phase per `DDDD.md`: ongoing patch cadence against the original Design baseline, not a fresh scope
+2. Load adapter: `tools/opencode-workflows/templates/maintenance.json`
+3. Follow SPEC-TS and human gates in `sdlc/METHOD.md`
+4. Regulated context → `responsible-ai-governance`
 
 See `CADENCE.md` for schedule.
 

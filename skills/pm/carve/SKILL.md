@@ -14,7 +14,7 @@ Carve epics from the Business Understanding Document, or from TOM maturity gaps,
 
 ## Procedure
 
-1. Detect the input: understanding document only, understanding document plus TOM, or direct input with no upstream artifacts
+1. Define phase per `DDDD.md`: detect the input: understanding document only, understanding document plus TOM, or direct input with no upstream artifacts
 2. Extract candidate epics — recommended epics under the product hat, maturity-gap epics under the transformation hat
 3. Validate every candidate against DIVE — Deliverable, Independent, Valuable, Estimable (`DIVE.md`); split or reject failures
 4. Order the manifest by business value or by gap priority

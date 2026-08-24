@@ -14,10 +14,12 @@ Run an isolated verification pass on a PR or branch.
 
 ## Procedure
 
-1. In Claude Code, run the `shakedown-pr` dynamic workflow (`adapters/claude/workflows/shakedown-pr.js`); in OpenCode, the `shakedown` template via `scripts/pipeline.sh shakedown <PR#> --engine opencode`
-2. Otherwise: follow `SANDBOX.md` isolation rules; checkout PR head; build, test, and execute the change
+1. Deliver phase per `DDDD.md`: in Claude Code, run the `shakedown-pr` dynamic workflow (`adapters/claude/workflows/shakedown-pr.js`); in OpenCode, the `shakedown` template via `scripts/pipeline.sh shakedown <PR#> --engine opencode`
+2. Otherwise: follow `SANDBOX.md` isolation rules, in a disposable worktree per `VERIFICATION.md`; checkout PR head; build, test, and execute the change
 3. Evaluate a stacked PR against its own stack base (`deliver/STACKING.md`); consume existing check runs, including GitHub Code Quality, instead of re-running them
-4. Post the review: blocking on a red build or test run, never an approval
+4. Check the coverage and use-case traceability matrix against `COVERAGE.md`'s floors — flag a gap only where no existing check already covers it
+5. Run the verification-before-completion pass (`VERIFICATION.md`): open the diff, confirm it against the work item, never infer success from a green build alone
+6. Post the review: blocking on a red build, a failing coverage floor, or a missing acceptance-criterion test — never an approval on an unverified claim
 
 ## Stop conditions
 

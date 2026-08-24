@@ -14,7 +14,7 @@ Draft one self-contained PRD per approved epic — no monolithic documents, no s
 
 ## Procedure
 
-1. Read the epic manifest and the upstream understanding document or TOM
+1. Define/Design phase per `DDDD.md`: read the epic manifest and the upstream understanding document or TOM
 2. For each epic, populate all twelve sections (`PRD-SECTIONS.md`)
 3. Write INVEST-compliant user stories with Given-When-Then acceptance criteria, including at least one error scenario per story
 4. Run a grill pass — with-docs mode when a research corpus exists — before the Quality gate (`grill`)
