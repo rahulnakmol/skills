@@ -16,7 +16,7 @@ Build the business case the sponsor approves — options, costs, benefits, and t
 
 1. Design phase per `DDDD.md`: name at least two real options plus the do-nothing option (`CASE-METHOD.md`)
 2. Cost each option: build, run, opportunity, and agent-fleet cost (`COSTING.md`)
-3. Commission evidence where the cost or benefit estimate is thin (`RESEARCH-AGENTS.md`)
+3. Commission evidence where the cost or benefit estimate is thin (`RESEARCH-AGENTS.md`), routing each commissioned agent's model tier through `model-routing`
 4. Trace each option's benefits forward to what `realize` will later hold accountable
 5. Run the sensitivity analysis — the one assumption that would kill the recommendation
 6. Grill the case before presenting it (`grill`)
