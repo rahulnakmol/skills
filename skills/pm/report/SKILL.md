@@ -15,7 +15,7 @@ Produce the leadership pack: value first, the 4Ps, one compressing figure, sourc
 ## Procedure
 
 1. Deliver phase per `DDDD.md`: pull value and north-star rollup from `realize`
-2. Pull Problems from `raid`, Priorities from `roadmap`, cost/benefit baseline from `case`
+2. Pull Problems from `raid`, Priorities from `roadmap`, cost/benefit baseline from `case`, and — where the initiative is charted — decisions settled and decisions in flight from `chart`
 3. Pull live pipeline state — pickup-protocol status, pull requests, stacks — for Progress
 4. Write the pack in the 4Ps structure, value first (`REPORT-METHOD.md`), routing the drafting pass through `model-routing` — a mechanical pull from the registers and a judgment-heavy Perspective section do not need the same tier
 5. Compress the cadence's key decision into one figure (`VISUALS.md`)
@@ -34,4 +34,4 @@ Produce the leadership pack: value first, the 4Ps, one compressing figure, sourc
 
 ## Sibling skills
 
-Reads from `realize`, `raid`, `roadmap`, `case`. Renders via `press`.
+Reads from `realize`, `raid`, `roadmap`, `case`, and `chart` where one exists. Renders via `press`.

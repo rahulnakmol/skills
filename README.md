@@ -10,15 +10,15 @@ Every skill here, whatever its group, carries one philosophy: **Set the frontier
 
 ## Skill groups
 
-Five groups, each a bounded area of work rather than a technology layer. We have just started: the first two groups are fully built, one has its first skill, and two carry charters for what comes next.
+Five groups, each a bounded area of work rather than a technology layer. We have just started: the first two groups are fully built, two have their first skill, and one carries a charter for what comes next.
 
 | Group | What it is | Status |
 |-------|------------|--------|
 | **Developer — the AI-native SDLC** | The software delivery lifecycle rebuilt for humans plus trusted agents: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance — 17 skills. The group directory is planned to be renamed `ai-native-sdlc` to say what it is. | Shipping |
-| **PM — the AI-native transformation practice** | The business side of the same AI-native transformation coin: discovery, TOM design, epic and PRD authoring, business cases grounded in cost including the agent fleet's own, roadmapping, RAID, benefits realization against a north star, and 4Ps leadership reporting — 16 skills. | Shipping |
+| **PM — the AI-native transformation practice** | The business side of the same AI-native transformation coin: discovery, TOM design, epic and PRD authoring, business cases grounded in cost including the agent fleet's own, roadmapping, RAID, benefits realization against a north star, and 4Ps leadership reporting, plus charting work too big for one session — 17 skills. | Shipping |
 | **Branding** | Company or personal identity applied to everything an agent produces: tone of voice, color and palette, storytelling. Today: `press`, which turns a signed PRD into a business-ready document and presentation — the first of the storytelling skills. | First skill shipping |
 | **Writing** | Skills that make writing better — editorial review, documentation quality, style discipline — in the same explainer voice this repository holds itself to. | Charter — planned |
-| **Productivity** | Delightful automations: the personal and team workflows worth never doing by hand again. | Charter — planned |
+| **Productivity** | Delightful automations: the personal and team workflows worth never doing by hand again. Today: `brief`, which writes the rules, definitions, and boundaries a team's agents read and places each part in the file the tool actually loads. | First skill shipping |
 
 ## The operating model
 
@@ -117,6 +117,7 @@ Every skill has a wiki page covering what it is, how to use it, and its best pra
 | Skill | Invocation | Purpose |
 |-------|------------|---------|
 | [orchestrate](skills/pm/orchestrate/SKILL.md) | model | Choose grill-loop, parallel-fan, or hybrid execution shape for multi-round pm work |
+| [chart](skills/pm/chart/SKILL.md) | user | Chart work too big for one session as decision tickets on the tracker, resolved one at a time |
 | [constitution](skills/pm/constitution/SKILL.md) | user | Product Constitution author and reviewer — principles, positioning, quarterly review |
 | [discover](skills/pm/discover/SKILL.md) | user | Business problem discovery and root-cause analysis |
 | [map](skills/pm/map/SKILL.md) | model | Personas, process flows, and the Business Understanding Document |
@@ -139,7 +140,13 @@ Every skill has a wiki page covering what it is, how to use it, and its best pra
 |-------|------------|---------|
 | [press](skills/branding/press/SKILL.md) | user | Render a signed-off PRD to a branded PDF for stakeholders |
 
-Writing and productivity are charter-only in this release — see [skills/writing/README.md](skills/writing/README.md) and [skills/productivity/README.md](skills/productivity/README.md).
+### Productivity
+
+| Skill | Invocation | Purpose |
+|-------|------------|---------|
+| [brief](skills/productivity/brief/SKILL.md) | user | Author the rules, definitions, and boundaries a team's agents read, placed per tool surface |
+
+Writing is charter-only in this release — see [skills/writing/README.md](skills/writing/README.md).
 
 ## Validation
 

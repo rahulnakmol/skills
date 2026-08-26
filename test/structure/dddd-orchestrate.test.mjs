@@ -87,10 +87,10 @@ test('impact, architect, sdlc, discover, tom-architect, and grill capture FR/NFR
   }
 });
 
-test('the wiki reflects the sixteenth pm skill and the shared orchestrate page', () => {
+test('the wiki reflects the pm group size and the shared orchestrate page', () => {
   const page = read('wiki/Skill-Orchestrate.md');
   assert.ok(page.includes('skills/developer/orchestrate/SKILL.md'), 'Skill-Orchestrate.md must still link the developer skill');
   assert.ok(page.includes('skills/pm/orchestrate/SKILL.md'), 'Skill-Orchestrate.md must also link the pm skill');
   assert.ok(read('wiki/Group-PM.md').includes('Orchestrate'), 'Group-PM.md must list Orchestrate');
-  assert.ok(read('skills/pm/README.md').includes('Sixteen'), 'pm/README.md charter must say sixteen skills');
+  assert.ok(read('skills/pm/README.md').includes('Seventeen'), 'pm/README.md charter must say seventeen skills');
 });

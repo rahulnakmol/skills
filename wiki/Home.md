@@ -57,6 +57,7 @@ For the full setup process for each supported tool, see [Installation](Installat
 | Skill | Invocation | Purpose |
 |-------|------------|---------|
 | [Orchestrate](Skill-Orchestrate) | model | Chooses grill-loop, parallel-fan, or hybrid execution shape for multi-round pm work |
+| [Chart](Skill-Chart) | user | Charts work too big for one session as decision tickets on the tracker, resolved one at a time |
 | [Constitution](Skill-Constitution) | user | Codifies practice or initiative principles, positioning, and prioritization; quarterly review cadence |
 | [Discover](Skill-Discover) | user | Turns a raw business problem into a structured, stakeholder-grounded analysis |
 | [Map](Skill-Map) | model | Builds personas, process flows, and the Business Understanding Document |
@@ -79,6 +80,12 @@ For the full setup process for each supported tool, see [Installation](Installat
 |-------|------------|---------|
 | [Press](Skill-Press) | user | Renders a signed PRD as a branded PDF |
 
+### Productivity — [Group-Productivity](Group-Productivity)
+
+| Skill | Invocation | Purpose |
+|-------|------------|---------|
+| [Brief](Skill-Brief) | user | Writes the rules, definitions, and boundaries a team's agents read, placed per tool surface |
+
 ### Charter only — no skills shipped yet
 
-[Group-Writing](Group-Writing) and [Group-Productivity](Group-Productivity) describe planned work only.
+[Group-Writing](Group-Writing) describes planned work only.
