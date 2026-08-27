@@ -4,11 +4,11 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { root, read, headings, wordCount } from '../helpers.mjs';
 
-const PM_SKILLS = ['orchestrate', 'constitution', 'discover', 'map', 'tom-architect', 'carve',
+const PM_SKILLS = ['orchestrate', 'chart', 'constitution', 'discover', 'map', 'tom-architect', 'carve',
   'prd-draft', 'prd-validate', 'prd-review', 'case', 'roadmap', 'raid', 'realize',
   'report', 'grill', 'ask-pm'];
 
-test('the pm group exists with all 16 skills, promoted, and a goal-bearing charter', () => {
+test('the pm group exists with all 17 skills, promoted, and a goal-bearing charter', () => {
   const plugin = JSON.parse(read('.claude-plugin/plugin.json'));
   for (const name of PM_SKILLS) {
     const dir = `skills/pm/${name}`;
