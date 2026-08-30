@@ -37,6 +37,10 @@ OpenCode has no native workflow runtime, so the repository supplies one: the det
 - **Models**: the OpenCode adapters bind through `github-copilot/<model>` identifiers, so a Copilot subscription is one way the registry's published models are actually served.
 - **Execution shape**: agent mode runs one lane at a time; like Codex, multi-lane work degrades to a sequential loop. Headless runs use `copilot -p` per the contract's run block.
 
+## Enforcing completion per tool
+
+`grit`'s gate ledger is read the same way everywhere, but only some tools can be stopped from ending a session while gates remain unmet. Claude Code has a stop hook, installed on request with the hooks target of `scripts/install-adapters.sh`; it is opt-in and is never part of the default install. OpenCode has a `grit-verify` command and a rule in its verify agent, so unmet gates preclude a handoff-ready verdict. Codex, Cursor, and GitHub Copilot have no hook runtime, so their enforcement is a rule in the file each one already reads — `AGENTS.md`, `.cursor/rules/`, and `.github/copilot-instructions.md` — backed by `grit-gates.yml`, a dispatch-only Action that lints the ledger and runs the checker in its parse-only mode. That Action is the backstop for every tool without a hook, and it needs no secret, because parse-only mode executes nothing. `skills/developer/grit/HOOKS.md` carries the exact snippets.
+
 ## The rule underneath all five
 
 Tool-specific power lives in `adapters/` and never leaks into a `SKILL.md`, so a skill file never breaks a tool that lacks a feature. When a tool cannot run a graph, the degradation ladder is always the same: parallel graph → sequential graph with artifacts on disk → checkpointed loop — and human gates survive every rung of it.

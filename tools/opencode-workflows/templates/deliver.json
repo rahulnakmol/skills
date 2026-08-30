@@ -57,7 +57,7 @@
       "when": { "task": "design-2", "statuses": ["PASS", "COMPLETE"] },
       "mutates_workspace": false,
       "method_requirements": { "min_design_pass": 2, "gates": { "gate1": "PASS", "gate2": "PASS" }, "same_ledger_as_dependencies": true, "require_check_plan": true, "check_gate": "gate2" },
-      "prompt": "Verify Gate 1 alignment and Gate 2 design/task readiness. If both PASS, choose exactly one worker and emit exactly one handoff agent work-luna/work-sonnet/work-k3/work-glm with strict allowed_paths, frozen SPEC-TS/design revision, acceptance, success metrics, parent/CI checks and stop conditions. Inputs: {{dependencies}}"
+      "prompt": "Verify Gate 1 alignment and Gate 2 design/task readiness. If both PASS, choose exactly one worker and emit exactly one handoff agent work-luna/work-sonnet/work-k3/work-glm with strict allowed_paths, frozen SPEC-TS/design revision, acceptance, success metrics, parent/CI checks and stop conditions. Also author the gate ledger per skills/developer/grit/LEDGER.md: one gate per acceptance criterion, each with a runnable CHECK command and an EXPECT success token, tagged with one of five dimensions (completeness, accuracy, value, efficiency, thoroughness) — every dimension covered by a gate or explicitly marked not applicable, never silently omitted. Select a verification depth: if the objective or SPEC-TS states one, take it as given (source \"user\"); otherwise recommend one from skills/developer/grit/METHOD.md's rubric (flat below the substantial threshold, 5 to 10 layers above it) and record source \"rubric\". This gate tree is the verification decomposition and must never be confused with, or change, the implementation's stacking layers. Inputs: {{dependencies}}"
     },
     {
       "id": "implement",
@@ -70,7 +70,7 @@
       "when": { "task": "gate-1-2", "statuses": ["PASS"] },
       "mutates_workspace": true,
       "method_requirements": { "min_design_pass": 2, "gates": { "gate1": "PASS", "gate2": "PASS" }, "same_ledger_as_dependencies": true },
-      "prompt": "Implement once: approved frozen SPEC-TS/Design Pass 2 contract as sole writer. Preserve allowed paths, non-goals, success metrics, stop directives and human gates. Do not execute commands or self-verify. Gate package: {{dependencies}}"
+      "prompt": "Implement once: approved frozen SPEC-TS/Design Pass 2 contract as sole writer. Before the first mutation, materialize the gate-1-2 task's gate ledger to `.grit/item-{{objective}}/GATES.md` in this worktree per skills/developer/grit/LEDGER.md — the ledger exists before the implementation it will judge. Preserve allowed paths, non-goals, success metrics, stop directives and human gates. Do not execute commands or self-verify. Gate package: {{dependencies}}"
     },
     {
       "id": "verify",
@@ -87,7 +87,7 @@
       "allow_blocking_dependencies": true,
       "mutates_workspace": false,
       "method_requirements": { "min_design_pass": 2, "gates": { "gate1": "PASS", "gate2": "PASS", "gate3": "PASS" }, "same_ledger_as_dependencies": true, "require_check_plan": true, "check_gate": "gate3" },
-      "prompt": "Own Gate 3. Independently verify same SPEC-TS/design revision, implementation scope, value, acceptance, architecture, security, quality, operations, success metrics and changed source. Refute unsupported claims. Return HANDOFF_READY only when coherent; BLOCK/NEEDS_INPUT/INSUFFICIENT_EVIDENCE otherwise. Inputs: {{dependencies}}"
+      "prompt": "Own Gate 3. Independently verify same SPEC-TS/design revision, implementation scope, value, acceptance, architecture, security, quality, operations, success metrics and changed source. Also execute every gate in the ledger at `.grit/item-{{objective}}/GATES.md` per skills/developer/grit/LEDGER.md: run each CHECK and compare its output against its EXPECT token — a gate is met only when the CHECK exits 0 AND the EXPECT pattern matches — and record the evidence found for each gate id. An unmet gate is a failure. Refute unsupported claims. Return HANDOFF_READY only when coherent; BLOCK/NEEDS_INPUT/INSUFFICIENT_EVIDENCE otherwise. Inputs: {{dependencies}}"
     },
     {
       "id": "synthesis",
@@ -97,7 +97,7 @@
       "allow_blocking_dependencies": true,
       "mutates_workspace": false,
       "method_requirements": { "min_design_pass": 2, "outcomes": ["GOAL_MET", "PARTIAL_VALUE", "BLOCKED", "NO_PROGRESS", "HARM_GUARDRAIL_BREACH", "INSUFFICIENT_EVIDENCE"], "same_ledger_as_dependencies": true },
-      "prompt": "Compare harness checks and Gate 3 evidence with SPEC-TS Success Metrics. Return GOAL_MET only when checks passed and measurable goal evidence supports it; otherwise PARTIAL_VALUE/BLOCK/INSUFFICIENT_EVIDENCE. Synthesize value, source changes, evidence, residual risk, human gates and next smallest action. Never overclaim released/deployed. Inputs: {{dependencies}}"
+      "prompt": "Compare harness checks and Gate 3 evidence with SPEC-TS Success Metrics. Return GOAL_MET only when checks passed and measurable goal evidence supports it; otherwise PARTIAL_VALUE/BLOCK/INSUFFICIENT_EVIDENCE. Also include the final gate audit per skills/developer/grit/AUDIT.md: met, unmet, and abandoned gate counts, with a per-gate evidence table; a gate omitted from Gate 3's results is abandoned and must be declared with a reason, never dropped. Synthesize value, source changes, evidence, residual risk, human gates and next smallest action. Never overclaim released/deployed. Inputs: {{dependencies}}"
     }
   ]
 }

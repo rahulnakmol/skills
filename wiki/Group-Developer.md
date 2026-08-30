@@ -1,6 +1,6 @@
 # Group: Developer — the AI-native SDLC
 
-This is the first fully built group in The Quentin's skills bundle: the software delivery lifecycle rebuilt for humans working with trusted agents. Its 17 skills cover the full journey from an idea's inception to the ongoing maintenance of the system it becomes, with human judgment holding four gates and agents carrying out the verified work between them. The group directory is planned to be renamed from `developer` to `ai-native-sdlc`, so its name says what it is; the rename is tracked as its own change because every installed path moves with it.
+This is the first fully built group in The Quentin's skills bundle: the software delivery lifecycle rebuilt for humans working with trusted agents. Its 18 skills cover the full journey from an idea's inception to the ongoing maintenance of the system it becomes, with human judgment holding four gates and agents carrying out the verified work between them. The group directory is planned to be renamed from `developer` to `ai-native-sdlc`, so its name says what it is; the rename is tracked as its own change because every installed path moves with it.
 
 See [Architecture: Role journey](Architecture-Role-Journey) for how the skills fit together from start to finish, and [Architecture: Agentic pods](Architecture-Agentic-Pods) for how work items flow through the delivery pipeline.
 
@@ -21,5 +21,6 @@ See [Architecture: Role journey](Architecture-Role-Journey) for how the skills f
 | [Operate](Skill-Operate) | mixed |
 | [Maintain](Skill-Maintain) | mixed |
 | [Shakedown](Skill-Shakedown) | user |
+| [Grit](Skill-Grit) | user |
 | [Ask FDE](Skill-Ask-FDE) | user |
 | [Responsible AI governance](Skill-Responsible-AI-Governance) | overlay |

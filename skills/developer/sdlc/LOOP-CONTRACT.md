@@ -46,7 +46,8 @@ Before looping, state:
 - success/evaluation rubric and required evidence;
 - stages, dependencies, writer ownership, and human gates;
 - maximum rounds, tasks/agents, concurrency, fix attempts, duration, tokens/cost when measurable;
-- retry policy, no-progress rule, stop states, and unresolved-output format.
+- retry policy, no-progress rule, stop states, and unresolved-output format;
+- the gate-ledger revision and depth (grit), where one exists.
 
 ## Stop And Alignment Directives
 

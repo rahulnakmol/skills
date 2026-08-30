@@ -16,7 +16,7 @@ Track whether the initiative actually delivered what the case said it would.
 
 1. Deliver phase per `DDDD.md`: enter every case-projected benefit into the register with its trace back to the case and PRD (`BENEFITS.md`)
 2. Attach at least one leading indicator per benefit
-3. Record actuals as they arrive; compare against `COSTING.md`'s projections on both cost and benefit
+3. Record actuals as they arrive; compare against `COSTING.md`'s projections on both cost and benefit. Each actual is evidence against the case's projected benefit, and an unmet projection is reported unmet rather than resized to fit.
 4. Roll every benefit up to the north star — efficiency and productivity as transformation value
 5. Where a variance is significant, open it as new work in `discover` or `carve`, with its own case
 

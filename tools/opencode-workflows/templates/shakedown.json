@@ -62,7 +62,7 @@
       "depends_on": ["recon", "sandbox"],
       "allow_blocking_dependencies": true,
       "mutates_workspace": false,
-      "prompt": "Review the pull request diff strictly for test adequacy: does every changed behavior have a test that would fail without the change? Cross-reference the existing check runs reported by recon — including GitHub Code Quality — rather than repeating analysis the repository already gets; flag a gap only where no existing check covers it. Inputs: {{dependencies}}"
+      "prompt": "Review the pull request diff strictly for test adequacy: does every changed behavior have a test that would fail without the change? Cross-reference the existing check runs reported by recon — including GitHub Code Quality — rather than repeating analysis the repository already gets; flag a gap only where no existing check covers it. Where the PR body carries a grit gate audit (skills/developer/grit/AUDIT.md), spot-check the claimed met gates against the diff — rerun or reason through a sample of their CHECK commands against the EXPECT tokens — and flag as a finding any audit whose unmet or abandoned gates are missing from the table or left unexplained. Inputs: {{dependencies}}"
     },
     {
       "id": "verdict",

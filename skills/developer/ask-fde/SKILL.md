@@ -27,6 +27,7 @@ Route user intent to the right skill in this monorepo.
    - models → `update-models` / `model-routing`
    - governance → `responsible-ai-governance`
    - PDF → `press`
+   - completion discipline, or "is it actually done" → `grit`
 3. `Call the Skill tool` with chosen name
 
 ## Stop conditions

@@ -22,7 +22,7 @@ Every high-consequence write in a graph passes through a `human` node before it 
 
 ## Edges and joins
 
-Nodes = skills or adapter roles; edges = contracts. Join nodes only on explicit artifact handoff (PRD, brief, manifest, or a human node's recorded decision) — never on an implicit "the previous step probably finished." An edge into a `human` node carries the inputs that node's `inputs` field names; an edge out of one carries the decision that was made, not merely a pass/fail signal.
+Nodes = skills or adapter roles; edges = contracts. Join nodes only on explicit artifact handoff (PRD, brief, manifest, or a human node's recorded decision) — never on an implicit "the previous step probably finished." An edge into a `human` node carries the inputs that node's `inputs` field names; an edge out of one carries the decision that was made, not merely a pass/fail signal. Where leaves carry per-leaf ledgers, a join on artifact handoff also carries a branch integration gate from the grit ledger (`grit/METHOD.md`), because a set of individually passing leaves is not evidence the assembly works.
 
 ## Harness mapping
 

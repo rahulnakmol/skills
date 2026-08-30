@@ -16,7 +16,7 @@ Carve epics from the Business Understanding Document, or from TOM maturity gaps,
 
 1. Define phase per `DDDD.md`: detect the input: understanding document only, understanding document plus TOM, or direct input with no upstream artifacts
 2. Extract candidate epics — recommended epics under the product hat, maturity-gap epics under the transformation hat
-3. Validate every candidate against DIVE — Deliverable, Independent, Valuable, Estimable (`DIVE.md`); split or reject failures
+3. Validate every candidate against DIVE — Deliverable, Independent, Valuable, Estimable (`DIVE.md`); split or reject failures. Record each DIVE verdict with the evidence that produced it, gate discipline per `grit/LEDGER.md`.
 4. Order the manifest by business value or by gap priority
 5. Grill the manifest before presenting it (`grill`) — a manifest that has not been pressure-tested is a draft, not a commitment
 6. Present the ordered list for user approval; do not write until approved

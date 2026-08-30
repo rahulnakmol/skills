@@ -14,6 +14,24 @@ Apply in order — first hit wins, do not keep evaluating once a rule matches:
 6. **Is this a high-consequence write** — production data, a release, an irreversible external action? → **Graph plus a human gate.** No amount of verifier confidence substitutes for a named human decision at this point.
 7. **None of the above cleanly fit?** → **Hybrid**: a graph shell carries the overall shape, with a loop running inside any node whose internal work is genuinely ambiguous.
 
+## Depth of verification, not shape of execution
+
+`orchestrate` decides execution shape — loop, graph, or hybrid. `grit` (`grit/METHOD.md`, `grit/LEDGER.md`) decides verification depth — how finely "done" is split into gates, from a flat checklist up to a tree of five to ten layers for substantial work. The two are separate axes, and this rubric keeps sole authority over the first.
+
+A gate is a ledger row: a line of criteria to check something against, costing little beyond the check itself. A node is an agent: a dispatch that consumes a context window and tokens end to end. Deepening a ledger from five layers to ten adds rows to verify against; it does not add agents to run the work. That is why a deep ledger never trips the overhead rules above — "count tokens, not agents" and "the graph earns itself, or it is overhead" are both agent-cost rules, and a ledger's depth is not an agent cost. The routing questions are unchanged by any of this: a graph still has to earn itself on independence, self-review contamination, durability, or consequence, exactly as before. A hard verification tree bolted onto a task with one clean verifier is still, by question 2, a loop.
+
+The mapping from execution shape to ledger shape:
+
+| Shape | Ledger |
+|-------|--------|
+| Loop | One ledger. The tree's layers are sections inside it, not separate nodes. |
+| Graph | One ledger per leaf, each leaf declaring exact file ownership — the same partition the single-writer rule already requires and "partition beats lottery" already demands — plus a branch integration gate where leaves join. |
+| Hybrid | Per-leaf ledgers, plus loop-internal gates inside any node whose work is genuinely ambiguous. |
+
+Depth selection is human-first. A depth the user states is taken as given. Absent one, the orchestrator recommends a depth from grit's `METHOD.md` rubric and records the recommendation with its signals, so a human can accept or override it before work starts.
+
+A rubric answer never changes because a ledger got deeper, and a ledger never gets shallower because the execution shape got simpler.
+
 ## Evidence
 
 The rubric is not house opinion; it rests on findings that hold across agentic systems generally.

@@ -49,6 +49,7 @@ For the full setup process for each supported tool, see [Installation](Installat
 | [Operate](Skill-Operate) | mixed | Covers service-level objectives, instrumentation, and incident readiness |
 | [Maintain](Skill-Maintain) | mixed | Covers patch cadence and technical-debt reduction |
 | [Shakedown](Skill-Shakedown) | user | Builds, tests, and reviews any pull request in an isolated sandbox before merge |
+| [Grit](Skill-Grit) | user | Holds substantial work to an acceptance-gate ledger written before implementation, verified by runnable checks and a final audit |
 | [Ask FDE](Skill-Ask-FDE) | user | Routes a stated intent to the correct skill |
 | [Responsible AI governance](Skill-Responsible-AI-Governance) | overlay | Applies regulated-industry and responsible-AI requirements on top of the other rules |
 
