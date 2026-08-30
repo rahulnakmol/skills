@@ -32,7 +32,7 @@ The `orchestrate` skill decides whether a task runs as a loop, a graph, or a hyb
 
 ## AI-native delivery: agentic pods and dynamic workflows
 
-Delivery itself runs as three orchestrated stages, built on Claude Code's dynamic-workflow runtime with full parity on OpenCode's deterministic runner. Each stage applies the same discipline the inception grill applies to ideas: deep, fact-finding introspection before action, at every step. The assessment stage interrogates a work item from three independent perspectives — contract completeness, alignment with the signed PRD, and the reality of the codebase — verifies every finding adversarially, and posts what it learned back to the item's thread. Those answers refine the work item where it lives: in the backlog. Nothing is implemented until a human reads the critique and moves the item to `ready`.
+Delivery itself runs as three orchestrated stages, built on Claude Code's dynamic-workflow runtime with full parity on OpenCode's deterministic runner. Each stage applies the same discipline the inception grill applies to ideas: deep, fact-finding introspection before action, at every step. The assessment stage interrogates a work item from four independent perspectives — contract completeness, alignment with the signed PRD, the reality of the codebase, and the design tradeoffs the item makes without stating them — verifies every finding adversarially as each perspective lands, and posts what it learned back to the item's thread. Those answers refine the work item where it lives: in the backlog. Nothing is implemented until a human reads the critique and moves the item to `ready`.
 
 ![AI-native delivery — three workflows with human gates between runs](docs/assets/delivery-pipeline.svg)
 

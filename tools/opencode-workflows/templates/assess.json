@@ -1,21 +1,24 @@
 {
   "schema_version": 1,
   "name": "assess",
-  "description": "Pickup-protocol work-item assessment: three perspective-diverse critiques, adversarial synthesis, and a ready-to-post consolidated critique",
+  "description": "Pickup-protocol work-item assessment: four perspective-diverse critiques, adversarial synthesis, and a ready-to-post consolidated critique",
   "mode": "dag",
   "subject_type": "workspace",
   "terminal_task": "synthesis",
-  "success_statuses": ["COMPLETE", "NEEDS_INPUT"],
+  "success_statuses": [
+    "COMPLETE",
+    "NEEDS_INPUT"
+  ],
   "budgets": {
     "max_rounds": 1,
-    "max_agents": 6,
+    "max_agents": 8,
     "max_concurrency": 3,
     "max_task_attempts": 2,
     "max_duration_ms": 1800000,
     "max_input_bytes": 120000,
     "max_output_bytes": 1500000,
     "max_tokens": 600000,
-    "max_cost_usd": 12,
+    "max_cost_usd": 15,
     "dry_rounds": 1,
     "stagnant_rounds": 1
   },
@@ -32,7 +35,9 @@
       "id": "contract",
       "stage": "lenses",
       "agent": "reviewer",
-      "depends_on": ["fetch"],
+      "depends_on": [
+        "fetch"
+      ],
       "mutates_workspace": false,
       "prompt": "Critique the fetched work item against every section of the work-item contract (skills/developer/slice/WORK-ITEM-CONTRACT.md if present in this workspace, or the sections named in the item itself). A missing or vague goal, scope and file ownership, machine-checkable acceptance criteria, verification commands, or required governance section is a blocking finding. Inputs: {{dependencies}}"
     },
@@ -40,7 +45,9 @@
       "id": "alignment",
       "stage": "lenses",
       "agent": "impact",
-      "depends_on": ["fetch"],
+      "depends_on": [
+        "fetch"
+      ],
       "mutates_workspace": false,
       "prompt": "Critique the fetched work item against its parent PRD and epic: does the goal trace to a recorded business value, does the scope match what was approved, does anything exceed or contradict the signed PRD? An untraceable or contradicting item is a blocking finding. Inputs: {{dependencies}}"
     },
@@ -48,18 +55,35 @@
       "id": "reality",
       "stage": "lenses",
       "agent": "build",
-      "depends_on": ["fetch"],
+      "depends_on": [
+        "fetch"
+      ],
       "mutates_workspace": false,
       "prompt": "Critique the fetched work item against the actual repository: do its claimed file paths exist and match the described boundaries, do its verification commands run here, would the change conflict with existing contracts or in-flight work? Ground every finding in a file actually inspected. Read-only. Inputs: {{dependencies}}"
+    },
+    {
+      "id": "tradeoffs",
+      "stage": "lenses",
+      "agent": "architect",
+      "depends_on": [
+        "fetch"
+      ],
+      "mutates_workspace": false,
+      "prompt": "Per the Design phase of the 4D Diamond (skills/developer/DDDD.md if present in this workspace): identify any design tradeoff the fetched work item's described approach makes but does not state \u2014 maintainability against delivery speed, reliability against complexity, an acceptable amount of technical debt against a tighter boundary. Report each as an advisory finding naming the tradeoff explicitly, so the user sees it before implementation starts rather than discovering it in the diff. Inputs: {{dependencies}}"
     },
     {
       "id": "synthesis",
       "stage": "verify",
       "agent": "impact-max",
-      "depends_on": ["contract", "alignment", "reality"],
+      "depends_on": [
+        "contract",
+        "alignment",
+        "reality",
+        "tradeoffs"
+      ],
       "allow_blocking_dependencies": true,
       "mutates_workspace": false,
-      "prompt": "Adversarially refute each proposed finding: check its evidence, deduplicate by root cause, and discard what does not hold. Then compose one consolidated pickup critique ready to post on the item's thread: confirmed blocking findings, advisory findings, and open questions, closing with the pickup-protocol reminder that implementation starts only at ready. Return NEEDS_INPUT when blocking findings or questions remain, COMPLETE when the item can advance as written. Findings: {{dependencies}}"
+      "prompt": "Adversarially refute each proposed finding: check its evidence, deduplicate by root cause, and discard what does not hold. Then compose one consolidated pickup critique ready to post on the item's thread: confirmed blocking findings, advisory findings, the design tradeoffs named by the tradeoffs lens, and open questions, closing with the pickup-protocol reminder that implementation starts only at ready. Return NEEDS_INPUT when blocking findings or questions remain, COMPLETE when the item can advance as written. Findings: {{dependencies}}"
     }
   ]
 }
