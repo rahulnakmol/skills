@@ -4,8 +4,8 @@ export const meta = {
   whenToUse: 'Run on a work item labeled `raised` before any implementation. The workflow posts questions and stops; a human answers on the thread, then deliver-work-item runs once the item reaches `ready`.',
   phases: [
     { title: 'Fetch', detail: 'read the work item and its contract from the tracker' },
-    { title: 'Critique', detail: 'three perspective-diverse critics in parallel' },
-    { title: 'Verify', detail: 'adversarially refute and deduplicate the findings' },
+    { title: 'Critique', detail: 'four perspective-diverse critics, pipelined' },
+    { title: 'Verify', detail: 'adversarially refute each lens\'s findings as that lens lands' },
     { title: 'Post', detail: 'one consolidated critique comment plus the `critiqued` label' },
   ],
 }
@@ -58,31 +58,43 @@ const LENSES = [
   { key: 'reality', prompt: 'Check this work item against the actual codebase. Do the file paths it claims to own exist and match the described boundaries? Do the verification commands run in this repository? Would the change conflict with in-flight work or existing contracts? Also check the repository against skills/developer/deliver/REPO-SETUP.md where that file is installed: pickup-protocol labels, gh stack tooling, Code Quality, shakedown workflow — a missing prerequisite is an advisory finding naming the setup step. Ground every finding in a file you actually inspected.' },
   { key: 'tradeoffs', prompt: 'Per skills/developer/DDDD.md\'s Design phase: identify any design tradeoff this work item\'s described approach makes but does not state — maintainability against delivery speed, reliability against complexity, an acceptable amount of technical debt against a tighter boundary. Report each as an advisory finding naming the tradeoff explicitly, so the user sees it before implementation starts rather than discovering it in the diff.' },
 ]
-const critiques = await parallel(LENSES.map((lens) => () =>
-  agent(`${lens.prompt}\n\nWork item "${workItem.title}" (${workItem.url}):\n\n${workItem.body}`, {
-    label: `critique:${lens.key}`,
-    schema: FINDINGS_SCHEMA,
-  }).then((critique) => critique && { ...critique, lens: lens.key })
-))
-
-const proposed = critiques.filter(Boolean).flatMap((critique) =>
-  critique.findings.map((finding) => ({ ...finding, lens: critique.lens })))
-const proposedQuestions = critiques.filter(Boolean).flatMap((critique) => critique.questions)
-log(`${proposed.length} proposed finding(s), ${proposedQuestions.length} question(s) before verification`)
-
-phase('Verify')
 const VERDICT_SCHEMA = {
   type: 'object',
   required: ['keep'],
   properties: { keep: { type: 'boolean' }, reason: { type: 'string' } },
 }
-const verified = await pipeline(proposed, (finding) =>
-  agent(`Adversarially try to refute this assessment finding about work item "${workItem.title}". Check its evidence against the repository and the work-item contract. Default to keep=false if the evidence does not hold up.\n\nFinding (${finding.severity}): ${finding.summary}\nEvidence: ${finding.evidence ?? 'none supplied'}`, {
-    label: `verify:${finding.summary.slice(0, 40)}`,
-    schema: VERDICT_SCHEMA,
-  }).then((verdict) => (verdict?.keep ? finding : null))
+// Each lens flows straight into its own verification: no barrier, so a slow lens
+// never holds up refutation of the findings a fast one has already produced.
+// Stages carry an explicit phase, since phase() is global state a pipeline races on.
+const assessed = await pipeline(
+  LENSES,
+  (lens) => agent(`${lens.prompt}\n\nWork item "${workItem.title}" (${workItem.url}):\n\n${workItem.body}`, {
+    label: `critique:${lens.key}`,
+    phase: 'Critique',
+    schema: FINDINGS_SCHEMA,
+  }),
+  (critique, lens) => critique
+    ? parallel(critique.findings.map((finding) => () =>
+        agent(`Adversarially try to refute this assessment finding about work item "${workItem.title}". Check its evidence against the repository and the work-item contract. Default to keep=false if the evidence does not hold up.\n\nFinding (${finding.severity}): ${finding.summary}\nEvidence: ${finding.evidence ?? 'none supplied'}`, {
+          label: `verify:${finding.summary.slice(0, 40)}`,
+          phase: 'Verify',
+          schema: VERDICT_SCHEMA,
+        }).then((verdict) => (verdict?.keep ? { ...finding, lens: lens.key } : null))
+      )).then((verified) => ({
+        lens: lens.key,
+        findings: verified.filter(Boolean),
+        questions: critique.questions,
+        proposed: critique.findings.length,
+      }))
+    : null,
 )
-const confirmed = verified.filter(Boolean)
+
+const landed = assessed.filter(Boolean)
+const confirmed = landed.flatMap((result) => result.findings)
+const proposedQuestions = landed.flatMap((result) => result.questions)
+const proposedCount = landed.reduce((total, result) => total + result.proposed, 0)
+if (landed.length < LENSES.length) log(`${LENSES.length - landed.length} lens(es) returned no result`)
+log(`${confirmed.length} of ${proposedCount} finding(s) survived refutation, ${proposedQuestions.length} question(s)`)
 const blocking = confirmed.filter((finding) => finding.severity === 'blocking')
 const tradeoffFindings = confirmed.filter((finding) => finding.lens === 'tradeoffs')
 const otherFindings = confirmed.filter((finding) => finding.lens !== 'tradeoffs')
