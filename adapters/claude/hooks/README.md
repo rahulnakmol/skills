@@ -1,6 +1,6 @@
 # Claude Code hooks
 
-A Claude Code [Stop hook](https://docs.anthropic.com/) that keeps a session from ending while its `grit` gate ledger still has unmet gates. The hook is opt-in: nothing in this repository registers it automatically, and a project that never installs it behaves exactly as it did before this directory existed.
+A Claude Code Stop hook that keeps a session from ending while its `grit` gate ledger still has unmet gates. The hook is opt-in: nothing in this repository registers it automatically, and a project that never installs it behaves exactly as it did before this directory existed.
 
 ## What the hook does
 
