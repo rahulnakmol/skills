@@ -20,6 +20,10 @@ a { color: var(--link); text-decoration: none; }
 a:hover { color: var(--link-hover); }
 ::selection { background: var(--cobalt); color: #ffffff; }
 [hidden] { display: none !important; }
+/* Alpine has not booted yet: hide the panels that are not the default choice,
+   so the page does not flash every role path and every lens at once. The
+   default panel carries no x-cloak, so the page still reads without JS. */
+[x-cloak] { display: none !important; }
 
 /* ---------- tokens: light (default) ---------- */
 :root {

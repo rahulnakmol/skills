@@ -8,6 +8,16 @@ on:
       - 'skills/**'
       - '.claude-plugin/**'
       - 'scripts/gen-docs-data.mjs'
+      - '.github/workflows/docs.yml'
+  # Pull requests run the build job only, never the deploy job, so the real
+  # Jekyll build is proved on the pull request rather than after the merge.
+  pull_request:
+    paths:
+      - 'site/**'
+      - 'skills/**'
+      - '.claude-plugin/**'
+      - 'scripts/gen-docs-data.mjs'
+      - '.github/workflows/docs.yml'
   workflow_dispatch:
 
 permissions:
@@ -16,8 +26,10 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  # Deploys share one queue; pull-request builds get a queue per branch, so a
+  # new push to a pull request cancels that branch's stale build only.
+  group: "pages-${{ github.event_name == 'pull_request' && github.ref || 'main' }}"
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
@@ -25,7 +37,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Only on the deploying branch: this call enables Pages on the repository
+      # and needs the write token a pull-request build does not get.
       - name: Configure Pages
+        if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v5
         with:
           enablement: true
@@ -54,11 +69,13 @@ jobs:
         run: npx --yes pagefind --site _site
 
       - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
         with:
           path: site/_site
 
   deploy:
     needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

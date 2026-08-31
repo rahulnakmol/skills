@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <div class="lens-panel" x-show="lensId === 'practitioner'">
+  <div class="lens-panel" x-cloak x-show="lensId === 'practitioner'">
     <div class="lens-col">
       <div class="lens-col-label">Who this is for</div>
       <p>{{ page.lens.practitioner.who | default: "" }}</p>
@@ -44,7 +44,7 @@
     </div>
   </div>
 
-  <div class="lens-panel" x-show="lensId === 'leader'">
+  <div class="lens-panel" x-cloak x-show="lensId === 'leader'">
     <div class="lens-col">
       <div class="lens-col-label">Who this is for</div>
       <p>{{ page.lens.leader.who | default: "" }}</p>
@@ -55,7 +55,7 @@
     </div>
   </div>
 
-  <div class="lens-panel" x-show="lensId === 'csuite'">
+  <div class="lens-panel" x-cloak x-show="lensId === 'csuite'">
     <div class="lens-col">
       <div class="lens-col-label">Who this is for</div>
       <p>{{ page.lens.csuite.who | default: "" }}</p>

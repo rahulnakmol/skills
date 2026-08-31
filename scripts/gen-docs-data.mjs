@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // Generates site/_data/skills.json from .claude-plugin/plugin.json and each
 // promoted skill's SKILL.md. Deterministic output — same input, same bytes —
-// so the docs site build is reproducible. See site/README (Wave 1 spec) for
-// the consuming templates.
+// so the docs site build is reproducible. The consuming templates are
+// site/index.html and site/_layouts/{skill,group}.html.
 import { readFileSync, readdirSync, statSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';

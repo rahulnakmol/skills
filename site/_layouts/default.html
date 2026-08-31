@@ -21,8 +21,8 @@
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "{{ site.title }}",
-    "url": "{{ site.url }}{{ site.baseurl }}/",
+    "name": {{ site.title | jsonify }},
+    "url": {{ '/' | absolute_url | jsonify }},
     "description": {{ site.description | jsonify }},
     "publisher": {
       "@type": "Organization",
@@ -30,15 +30,15 @@
     }
   }
   </script>
-  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.12/dist/htmx.min.js"></script>
   <script src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js" defer></script>
 </head>
 <body data-baseurl="{{ site.baseurl }}">
-  {% include 'nav.html' %}
+  {% include nav.html %}
   <main id="page-body">
     {{ content }}
   </main>
-  {% include 'footer.html' %}
+  {% include footer.html %}
   <script src="{{ '/assets/js/site.js' | relative_url }}"></script>
 </body>
 </html>
