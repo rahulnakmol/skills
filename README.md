@@ -17,7 +17,7 @@ Six groups, each a bounded area of work rather than a technology layer. Each gro
 | **Core — shared doctrine** | The doctrine and tooling more than one group needs, belonging to no audience in particular: verification before completion, coverage, the grill round protocol, value probing, and `grit`, the acceptance-gate ledger — 1 skill. Every group may reference it; it references none of them. | Shipping |
 | **Developer — the AI-native SDLC** | The software delivery lifecycle rebuilt for humans plus trusted agents: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance — 15 skills. The group directory is planned to be renamed `ai-native-sdlc` to say what it is. | Shipping |
 | **PM — the AI-native transformation practice** | The business side of the same AI-native transformation coin: discovery, TOM design, epic and PRD authoring, business cases grounded in cost including the agent fleet's own, roadmapping, RAID, benefits realization against a north star, and 4Ps leadership reporting, plus charting work too big for one session — 16 skills. | Shipping |
-| **Branding** | Company or personal identity applied to everything an agent produces: tone of voice, color and palette, storytelling. Today: `press`, which turns a signed PRD into a business-ready document and presentation — the first of the storytelling skills. | First skill shipping |
+| **Branding** | Company or personal identity applied to everything an agent produces: tone of voice, color and palette, storytelling. Today: `press`, which renders an approved markdown document into a branded, self-contained page and a PDF — the first of the storytelling skills. | First skill shipping |
 | **Writing** | Skills that make writing better — editorial review, documentation quality, style discipline — in the same explainer voice this repository holds itself to. | Charter — planned |
 | **Productivity** | Delightful automations: the personal and team workflows worth never doing by hand again. Today: `brief`, which writes the rules, definitions, and boundaries a team's agents read and places each part in the file the tool actually loads. | First skill shipping |
 
@@ -144,7 +144,7 @@ Doctrine every other group may reference, and which references no group in retur
 
 | Skill | Invocation | Purpose |
 |-------|------------|---------|
-| [press](skills/branding/press/SKILL.md) | user | Render a signed-off PRD to a branded PDF for stakeholders |
+| [press](skills/branding/press/SKILL.md) | user | Render an approved markdown document to a branded HTML page and PDF |
 
 ### Productivity
 
