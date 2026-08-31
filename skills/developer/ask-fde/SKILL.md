@@ -18,7 +18,7 @@ Route user intent to the right skill in this monorepo.
    - product, program, or transformation management intent → `ask-pm`
    - inception → `impact` (+ `recon` if brownfield)
    - backlog → `slice` → `raise`
-   - build → `orchestrate` / `sdlc`
+   - build → `conduct` / `sdlc`
    - design → `architect`
    - security → `safeguard`
    - release → `deliver` + `shakedown`

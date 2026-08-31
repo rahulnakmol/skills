@@ -22,7 +22,7 @@ The user arrives with an initiative and no plan. This mode produces the chart an
 2. Take one breadth-first pass across the whole initiative rather than a deep pass on any part of it. `Call the Skill tool with "grill"` in plain mode to surface the open decisions, and stop at the point where each decision can be named, not answered.
 3. Sort what the pass produced three ways, per `CHART.md`: a question you can state precisely today becomes a ticket, even if it is blocked; a question you can see coming but cannot yet state becomes a known unknown; work beyond the destination becomes out of scope.
 4. Create the chart and its tickets on the tracker (`CHART.md`), then wire the blocking relationships in a second pass — a ticket needs an identifier before another ticket can reference it.
-5. Type every ticket per `TICKETS.md` and route the evidence tickets to research agents in parallel (`RESEARCH-AGENTS.md`); resolve the execution shape through `orchestrate` and the model tier through `model-routing`, since a fact-finding pass and a judgment pass do not need the same tier.
+5. Type every ticket per `TICKETS.md` and route the evidence tickets to research agents in parallel (`RESEARCH-AGENTS.md`); resolve the execution shape through `arrange` and the model tier through `model-routing`, since a fact-finding pass and a judgment pass do not need the same tier.
 6. Stop. Charting is one session's work and it decides nothing else.
 
 ## Procedure — Advance mode
@@ -65,4 +65,4 @@ decided: "<one line, advance mode only>"
 - `carve` — takes over once the chart's decisions are settled and the work is ready to be cut into epics
 - `raid` — receives what the chart cannot decide, as a risk, assumption, or dependency
 - `report` — reads live status off the chart, per `CHART.md`
-- `orchestrate`, `model-routing` — the execution shape and the model tier for a ticket
+- `arrange`, `model-routing` — the execution shape and the model tier for a ticket

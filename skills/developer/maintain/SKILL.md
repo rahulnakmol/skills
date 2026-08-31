@@ -32,4 +32,4 @@ Maintenance plan with prioritized CI items.
 
 ## Sibling skills
 
-- `sdlc`, `orchestrate`, `slice`
+- `sdlc`, `conduct`, `slice`

@@ -16,7 +16,7 @@ PRD Draft reads the manifest and the upstream understanding document or TOM, the
 ## Key references
 
 - [PRD-SECTIONS.md](https://github.com/tqnonline/skills/blob/main/skills/pm/prd-draft/PRD-SECTIONS.md) covers the twelve sections, INVEST, and the acceptance-criteria rules.
-- [VALUE.md](https://github.com/tqnonline/skills/blob/main/skills/developer/impact/VALUE.md) describes the seam with the developer group's `impact` pipeline.
+- [VALUE.md](https://github.com/tqnonline/skills/blob/main/skills/core/VALUE.md) describes the seam with the developer group's `impact` pipeline.
 
 ## How to use
 

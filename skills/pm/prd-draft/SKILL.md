@@ -31,4 +31,4 @@ Draft one self-contained PRD per approved epic — no monolithic documents, no s
 
 ## Sibling skills
 
-Reads from `carve`. This PRD may feed the developer group's `impact` pipeline for engineering inception, or go straight to `slice` when its acceptance criteria are already machine-checkable — see `impact/VALUE.md` for the seam. Hands off to `prd-validate` and `prd-review`.
+Reads from `carve`. This PRD may feed the developer group's `impact` pipeline for engineering inception, or go straight to `slice` when its acceptance criteria are already machine-checkable — see `core/VALUE.md` for the seam. Hands off to `prd-validate` and `prd-review`.

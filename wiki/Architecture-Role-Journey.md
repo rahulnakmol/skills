@@ -20,10 +20,10 @@ flowchart LR
 | Inception | [Impact](Skill-Impact) (with [Recon](Skill-Recon) for brownfield work) and [Press](Skill-Press) for a branded PDF |
 | Backlog | [Slice](Skill-Slice) and [Raise](Skill-Raise) |
 | Design | [Architect](Skill-Architect), with [Responsible AI governance](Skill-Responsible-AI-Governance) applied where it is triggered |
-| Implementation | [Orchestrate](Skill-Orchestrate) and [SDLC](Skill-SDLC) |
+| Implementation | [Conduct](Skill-Conduct) and [SDLC](Skill-SDLC) |
 | Secure DevOps | [Safeguard](Skill-Safeguard), [Deliver](Skill-Deliver), and [Shakedown](Skill-Shakedown) |
 | Reliability | [Operate](Skill-Operate) |
 | Maintainability | [Assure](Skill-Assure) |
 | Application maintenance | [Maintain](Skill-Maintain), whose findings return to the backlog as improvement items |
 
-The four hexagons in the diagram are not a decoration; they mark a real point of control. At each one, the graph that `orchestrate` builds inserts a typed `human` node — a named owner, the exact decision to be made, and a service-level agreement — rather than a plain stop condition. For how that routing decision is made, see [Skill: Orchestrate](Skill-Orchestrate) and [Architecture: Loop vs graph](Architecture-Loop-vs-Graph).
+The four hexagons in the diagram are not a decoration; they mark a real point of control. At each one, the graph that `conduct` builds inserts a typed `human` node — a named owner, the exact decision to be made, and a service-level agreement — rather than a plain stop condition. For how that routing decision is made, see [Skill: Conduct](Skill-Conduct) and [Architecture: Loop vs graph](Architecture-Loop-vs-Graph).

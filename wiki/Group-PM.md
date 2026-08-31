@@ -6,11 +6,11 @@ Four human gates — Framing, Investment, Quality, Commitment — mirror the dev
 
 Work too large for one agent session is charted before it is run. `chart` turns an initiative into decision tickets on the tracker, each sized to one session, with the four states — ready, blocked, claimed, closed — readable without opening anything; see [CHART.md](https://github.com/tqnonline/skills/blob/main/skills/pm/chart/CHART.md). The chart is a planning substrate above the linear pipeline rather than a replacement for it: each ticket routes into whichever skill owns its method, what cannot be settled leaves as a `raid` entry, and `report` reads the chart for Progress and Priorities.
 
-Two hats, one at a time — product or transformation, never both — cover the same range of business and functional work; see [HATS.md](https://github.com/tqnonline/skills/blob/main/skills/pm/HATS.md). Every artifact that reaches a gate has been through the grill — plain, with-docs, or provoke — the same interrogation discipline the developer group's `impact/GRILL.md` applies to engineering ideas, reused by reference rather than reinvented.
+Two hats, one at a time — product or transformation, never both — cover the same range of business and functional work; see [HATS.md](https://github.com/tqnonline/skills/blob/main/skills/pm/HATS.md). Every artifact that reaches a gate has been through the grill — plain, with-docs, or provoke — the same interrogation discipline the shared `core/GRILL.md` applies to engineering ideas, reused by reference rather than reinvented.
 
 | Skill | Invocation |
 |-------|------------|
-| [Orchestrate](Skill-Orchestrate) | model |
+| [Arrange](Skill-Arrange) | model |
 | [Chart](Skill-Chart) | user |
 | [Constitution](Skill-Constitution) | user |
 | [Discover](Skill-Discover) | user |

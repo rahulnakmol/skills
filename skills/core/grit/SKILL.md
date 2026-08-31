@@ -16,7 +16,7 @@ Write the acceptance-gate ledger before implementation starts, then hold the fin
 ## Procedure
 
 1. Author the ledger from the acceptance criteria before any implementation starts. One gate per criterion, each tagged with one of the five dimensions — see `LEDGER.md`.
-2. Fix the verification depth. A depth the user states is taken as given; otherwise recommend one from the rubric in `METHOD.md` and record which of the two produced it. Execution shape — loop, graph, or hybrid — stays with `orchestrate`; grit decides only how finely done is decomposed into gates.
+2. Fix the verification depth. A depth the user states is taken as given; otherwise recommend one from the rubric in `METHOD.md` and record which of the two produced it. Execution shape — loop, graph, or hybrid — stays with `conduct`; grit decides only how finely done is decomposed into gates.
 3. Implement between the gates using the four passes in `METHOD.md`: complete, harden, hunt, polish.
 4. Verify with the checker, `scripts/gate-check.mjs`, in order: `--status` to read the ledger without executing anything, then a dry run to see the resolved commands, then `--approve` once a human has read each command, then `--reverify` on returned work. Lint the ledger with `scripts/gate-lint.mjs` before the first run; `grit-gates.yml` is the continuous-integration backstop.
 5. Close with the final audit in `AUDIT.md` — every gate met, unmet, or abandoned, with evidence.
@@ -56,4 +56,4 @@ audit:
 - `shakedown` — the verification doctrine grit makes runnable
 - `sdlc` — the gated loop grit's ledgers report into
 - `slice` — writes the work-item acceptance criteria grit turns into gates
-- `orchestrate` — owns execution shape; grit owns verification depth only
+- `conduct` — owns execution shape; grit owns verification depth only

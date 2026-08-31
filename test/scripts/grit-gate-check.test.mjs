@@ -6,8 +6,8 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { root } from '../helpers.mjs';
 
-const GATE_CHECK = join(root, 'skills/developer/grit/scripts/gate-check.mjs');
-const GATE_LINT = join(root, 'skills/developer/grit/scripts/gate-lint.mjs');
+const GATE_CHECK = join(root, 'skills/core/grit/scripts/gate-check.mjs');
+const GATE_LINT = join(root, 'skills/core/grit/scripts/gate-lint.mjs');
 const STOP_HOOK = join(root, 'adapters/claude/hooks/stop-hook.mjs');
 
 const CLEAN_LEDGER = join(root, 'test/fixtures/grit/clean/GATES.md');

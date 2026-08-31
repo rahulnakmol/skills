@@ -4,7 +4,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { root, read, walk, headings, wordCount } from '../helpers.mjs';
 
-const DIR = 'skills/developer/grit';
+const DIR = 'skills/core/grit';
 
 test('grit is a promoted, contract-compliant skill with its reference docs and tooling', () => {
   const plugin = JSON.parse(read('.claude-plugin/plugin.json'));
@@ -47,7 +47,8 @@ const DOCTRINE = [
   { file: `${DIR}/METHOD.md`,
     require: ['## Verification depth, not execution shape', '## Selecting depth', '## Building the tree',
       '## Dispatch state', '## The four passes', '## Depth tree and stacked pull requests'],
-    includes: ['orchestrate', 'dispatch.json', 'STACKING.md', 'base of 5', 'capped at 10'],
+    includes: ["group's own routing rubric", 'a routing rubric', 'dispatch.json',
+      "delivery group's stacking convention", 'base of 5', 'capped at 10'],
     minWords: 900 },
   { file: `${DIR}/AUDIT.md`,
     require: ['## Counting what happened', '## Abandoning a gate honestly', '## The audit block format',
@@ -113,8 +114,8 @@ test('grit is threaded into the delivery, assessment, and shakedown pipelines', 
   assert.ok(read('skills/developer/sdlc/SKILL.md').includes('grit'), 'sdlc/SKILL.md must reference grit');
   assert.ok(read('skills/pm/GATES.md').includes('grit'), 'pm/GATES.md must reference grit');
 
-  assert.ok(read('skills/developer/orchestrate/RUBRIC.md').includes('## Depth of verification, not shape of execution'),
-    'orchestrate/RUBRIC.md must draw the verification-depth vs. execution-shape line');
+  assert.ok(read('skills/developer/conduct/RUBRIC.md').includes('## Depth of verification, not shape of execution'),
+    'conduct/RUBRIC.md must draw the verification-depth vs. execution-shape line from the routing side');
 
   for (const name of ['assess', 'deliver', 'shakedown']) {
     const rel = `tools/opencode-workflows/templates/${name}.json`;

@@ -1,9 +1,9 @@
 ---
-name: orchestrate
+name: conduct
 description: Model-invoked flagship orchestration. Choose loop, graph, or hybrid execution; assign model-per-node via model-routing; map to harness adapters. Use for multi-step delivery beyond a single verifier.
 ---
 
-# Orchestrate (model-invoked)
+# Conduct (model-invoked)
 
 Select execution shape and route work across skills and adapters.
 

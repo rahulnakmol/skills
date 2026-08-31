@@ -4,7 +4,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { root, read, headings, wordCount } from '../helpers.mjs';
 
-const PM_SKILLS = ['orchestrate', 'chart', 'constitution', 'discover', 'map', 'tom-architect', 'carve',
+const PM_SKILLS = ['arrange', 'chart', 'constitution', 'discover', 'map', 'tom-architect', 'carve',
   'prd-draft', 'prd-validate', 'prd-review', 'case', 'roadmap', 'raid', 'realize',
   'report', 'grill', 'ask-pm'];
 
@@ -22,11 +22,17 @@ test('the pm group exists with all 17 skills, promoted, and a goal-bearing chart
     assert.ok(charter.includes(marker), `group charter missing "${marker}"`);
 });
 
-test('CLAUDE.md records five groups', () => {
+test('CLAUDE.md records six groups and the group-independence rule', () => {
   const claude = read('CLAUDE.md');
-  assert.ok(claude.includes('Exactly five skill groups'), 'CLAUDE.md must say five groups');
-  for (const g of ['developer', 'pm', 'branding', 'writing', 'productivity'])
+  assert.ok(claude.includes('Exactly six skill groups'), 'CLAUDE.md must say six groups');
+  for (const g of ['core', 'developer', 'pm', 'branding', 'writing', 'productivity'])
     assert.ok(claude.includes(`\`${g}\``), `CLAUDE.md missing group ${g}`);
+  assert.ok(/any group may reference `core`/i.test(claude),
+    'CLAUDE.md must record that any group may reference core');
+  assert.ok(/no group may reference any other group/i.test(claude),
+    'CLAUDE.md must record that no group may reference another group');
+  assert.ok(/basenames are unique repository-wide/i.test(claude),
+    'CLAUDE.md must record repository-wide skill basename uniqueness');
 });
 
 const DOCTRINE = [
@@ -108,7 +114,7 @@ const DOCTRINE = [
   { file: 'skills/pm/grill/GRILL-PM.md',
     require: ['## Round protocol', '## Grill with docs', '## Provoke', '## Personas and their questions',
       '## Exit criteria'],
-    includes: ['impact/GRILL.md', 'cite', 'we stop here', 'sign-off', 'corpus', 'hypothesis', 'star',
+    includes: ['core/GRILL.md', 'cite', 'we stop here', 'sign-off', 'corpus', 'hypothesis', 'star',
       'Business Architect', 'Transformation Leader', 'Chief Business Transformation Officer'],
     minWords: 400 },
 ];

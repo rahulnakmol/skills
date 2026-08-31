@@ -16,7 +16,7 @@ Run the gated software delivery loop for a scoped change or work item.
 
 - Read `METHOD.md` for SPEC-TS ledger rules
 - Read `LOOP-CONTRACT.md` for gate order and stop states
-- For routing mode (loop vs graph), call `orchestrate` first
+- For routing mode (loop vs graph), call `conduct` first
 - Check the target repository against `deliver/REPO-SETUP.md` (Code Quality, `gh stack`, pickup-protocol labels, shakedown); report gaps before walking gates
 
 ## Procedure
@@ -38,6 +38,6 @@ Markdown ledger update + gate checklist with pass/fail and links to artifacts.
 
 ## Sibling skills
 
-- `orchestrate` — mode selection and model-per-node routing
+- `conduct` — mode selection and model-per-node routing
 - `deliver`, `safeguard`, `assure`, `operate` — specialist gates
 - `shakedown` — pre-merge sandbox review

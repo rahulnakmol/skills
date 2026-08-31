@@ -11,7 +11,7 @@ Deliver is the release-engineering charter for the secure-DevOps gate. It covers
 
 ## How it fits
 
-Deliver is part of the Secure DevOps stage of the [role journey](Architecture-Role-Journey). It works through the release-readiness checklist behind whatever release gate [Orchestrate](Skill-Orchestrate) has built into the graph, including, for a high-consequence write, the `human` node that must sign off before the release takes place.
+Deliver is part of the Secure DevOps stage of the [role journey](Architecture-Role-Journey). It works through the release-readiness checklist behind whatever release gate [Conduct](Skill-Conduct) has built into the graph, including, for a high-consequence write, the `human` node that must sign off before the release takes place.
 
 ## Key references
 

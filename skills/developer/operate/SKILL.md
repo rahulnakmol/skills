@@ -30,4 +30,4 @@ Operate brief: SLO table, dashboards, runbooks.
 
 ## Sibling skills
 
-- `sdlc`, `orchestrate`, `slice`
+- `sdlc`, `conduct`, `slice`

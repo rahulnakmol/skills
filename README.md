@@ -1,6 +1,6 @@
 # tqnonline/skills
 
-This is the skills repository of The Quentin (tqnonline): a curated, growing bundle of the AI-native skills we use across our work — authored once, running the same way in Claude Code, OpenCode, Codex, Cursor, and GitHub Copilot. We are curating and building AI-native skills that deliver business value through trusted agents with human judgment — driving growth in personal, professional, and sustainable accomplishments. Software delivery is where we started, because it is where we could prove the method; it is one group among five, not the repository's identity.
+This is the skills repository of The Quentin (tqnonline): a curated, growing bundle of the AI-native skills we use across our work — authored once, running the same way in Claude Code, OpenCode, Codex, Cursor, and GitHub Copilot. We are curating and building AI-native skills that deliver business value through trusted agents with human judgment — driving growth in personal, professional, and sustainable accomplishments. Software delivery is where we started, because it is where we could prove the method; it is one group among six, not the repository's identity.
 
 ## The thesis
 
@@ -10,11 +10,12 @@ Every skill here, whatever its group, carries one philosophy: **Set the frontier
 
 ## Skill groups
 
-Five groups, each a bounded area of work rather than a technology layer. We have just started: the first two groups are fully built, two have their first skill, and one carries a charter for what comes next.
+Six groups, each a bounded area of work rather than a technology layer. Each group installs on its own: any group may reference `core`, and no group references another, so adopting one never drags in the rest. We have just started: two groups are fully built, one holds the doctrine they share, two have their first skill, and one carries a charter for what comes next.
 
 | Group | What it is | Status |
 |-------|------------|--------|
-| **Developer — the AI-native SDLC** | The software delivery lifecycle rebuilt for humans plus trusted agents: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance — 18 skills. The group directory is planned to be renamed `ai-native-sdlc` to say what it is. | Shipping |
+| **Core — shared doctrine** | The doctrine and tooling more than one group needs, belonging to no audience in particular: verification before completion, coverage, the grill round protocol, value probing, and `grit`, the acceptance-gate ledger — 1 skill. Every group may reference it; it references none of them. | Shipping |
+| **Developer — the AI-native SDLC** | The software delivery lifecycle rebuilt for humans plus trusted agents: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance — 17 skills. The group directory is planned to be renamed `ai-native-sdlc` to say what it is. | Shipping |
 | **PM — the AI-native transformation practice** | The business side of the same AI-native transformation coin: discovery, TOM design, epic and PRD authoring, business cases grounded in cost including the agent fleet's own, roadmapping, RAID, benefits realization against a north star, and 4Ps leadership reporting, plus charting work too big for one session — 17 skills. | Shipping |
 | **Branding** | Company or personal identity applied to everything an agent produces: tone of voice, color and palette, storytelling. Today: `press`, which turns a signed PRD into a business-ready document and presentation — the first of the storytelling skills. | First skill shipping |
 | **Writing** | Skills that make writing better — editorial review, documentation quality, style discipline — in the same explainer voice this repository holds itself to. | Charter — planned |
@@ -26,7 +27,7 @@ What follows walks the first fully built group — the AI-native SDLC — in dep
 
 ![The operating model — four human gates, agents in between](docs/assets/operating-model.svg)
 
-The `orchestrate` skill decides whether a task runs as a loop, a graph, or a hybrid, following the evidence-backed rules in its `RUBRIC.md` — routing on whether an outcome can be verified, never on how difficult it appears. It resolves a model for each step through `model-routing`, and for any high-consequence write it inserts a `human` node with a named owner and a service-level agreement, not a plain stop condition. That routing decision is one phase of a broader, self-maturing discipline every real-work skill runs — the **4D Diamond**: Discover, Define, Design, Deliver — orthogonal to the four gates above: the gates decide when a human signs off, `DDDD.md` describes how a skill does its own work in the stretch between one gate and the next. Drawn as a diamond, the four phases sit at its four points and the one baseline they mature together sits at the summit their four facets converge on and elevate — enriched and accomplished, not just finished. The pm group runs its own version of the same cycle, routing its execution shape through its own `orchestrate` — grill-loop, parallel-fan, or hybrid — rather than loop, graph, or hybrid; see [Architecture: PM orchestrate](wiki/Architecture-PM-Orchestrate.md).
+The `conduct` skill decides whether a task runs as a loop, a graph, or a hybrid, following the evidence-backed rules in its `RUBRIC.md` — routing on whether an outcome can be verified, never on how difficult it appears. It resolves a model for each step through `model-routing`, and for any high-consequence write it inserts a `human` node with a named owner and a service-level agreement, not a plain stop condition. That routing decision is one phase of a broader, self-maturing discipline every real-work skill runs — the **4D Diamond**: Discover, Define, Design, Deliver — orthogonal to the four gates above: the gates decide when a human signs off, `DDDD.md` describes how a skill does its own work in the stretch between one gate and the next. Drawn as a diamond, the four phases sit at its four points and the one baseline they mature together sits at the summit their four facets converge on and elevate — enriched and accomplished, not just finished. The pm group runs its own version of the same cycle, routing its execution shape through its own router, `arrange` — grill-loop, parallel-fan, or hybrid — rather than loop, graph, or hybrid; see [Architecture: PM arrange](wiki/Architecture-PM-Arrange.md).
 
 ![The 4D Diamond — Discover, Define, Design, Deliver, elevating one summit](docs/assets/4d-diamond.svg)
 
@@ -36,7 +37,7 @@ Delivery itself runs as three orchestrated stages, built on Claude Code's dynami
 
 ![AI-native delivery — three workflows with human gates between runs](docs/assets/delivery-pipeline.svg)
 
-A change too large to hold in a reviewer's head never ships as one giant pull request. The delivery workflow plans in layers, commits per layer, and raises a dependency-ordered stack of single-concern pull requests — a multi-concern change stacks by default, never as a fallback for when someone remembers to ask for it — with the `gh stack` tooling, now backed by GitHub's own native stacked-PR public preview: a stack map on the pull request itself, and an automatic server-side rebase and retarget of every layer above one that merges. The shakedown then evaluates each layer against its own stack base, checks its coverage and use-case traceability against explicit floors — 85-90% on the business capability itself, 75-80% at integration boundaries — and consumes the checks the repository already runs (including GitHub Code Quality on its separate Actions path) rather than repeating them. Before any of it is reported done, a verification-before-completion pass opens the actual diff and checks it against the work item; a green build is evidence nothing broke, not evidence the right thing shipped. The full doctrine lives in [STACKING.md](skills/developer/deliver/STACKING.md), [COVERAGE.md](skills/developer/shakedown/COVERAGE.md), [VERIFICATION.md](skills/developer/shakedown/VERIFICATION.md), and [REPO-SETUP.md](skills/developer/deliver/REPO-SETUP.md) — the readiness checklist these skills follow, or set up, in every repository they work on.
+A change too large to hold in a reviewer's head never ships as one giant pull request. The delivery workflow plans in layers, commits per layer, and raises a dependency-ordered stack of single-concern pull requests — a multi-concern change stacks by default, never as a fallback for when someone remembers to ask for it — with the `gh stack` tooling, now backed by GitHub's own native stacked-PR public preview: a stack map on the pull request itself, and an automatic server-side rebase and retarget of every layer above one that merges. The shakedown then evaluates each layer against its own stack base, checks its coverage and use-case traceability against explicit floors — 85-90% on the business capability itself, 75-80% at integration boundaries — and consumes the checks the repository already runs (including GitHub Code Quality on its separate Actions path) rather than repeating them. Before any of it is reported done, a verification-before-completion pass opens the actual diff and checks it against the work item; a green build is evidence nothing broke, not evidence the right thing shipped. The full doctrine lives in [STACKING.md](skills/developer/deliver/STACKING.md), [COVERAGE.md](skills/core/COVERAGE.md), [VERIFICATION.md](skills/core/VERIFICATION.md), and [REPO-SETUP.md](skills/developer/deliver/REPO-SETUP.md) — the readiness checklist these skills follow, or set up, in every repository they work on.
 
 This is a research-driven system, and it evolves with the field. The routing rules cite the findings they rest on. The model registry is curated against live provider catalogs on a disclosed schedule, with every change arriving as a reviewable pull request. Structural decisions are recorded as architecture decision records, and a deterministic test harness — 123 checks and growing — keeps the documentation, the policies, and the workflows honest as the practices they encode keep moving.
 
@@ -90,11 +91,19 @@ Adapters are idempotent; use `./scripts/install-adapters.sh --dry-run` to previe
 
 Every skill has a wiki page covering what it is, how to use it, and its best practices. The full index with one-line purposes is at [wiki/Home.md](wiki/Home.md).
 
+### Core — shared doctrine
+
+Doctrine every other group may reference, and which references no group in return: `VERIFICATION.md`, `COVERAGE.md`, `GRILL.md`, and `VALUE.md` sit at the group root alongside its one skill.
+
+| Skill | Invocation | Purpose |
+|-------|------------|---------|
+| [grit](skills/core/grit/SKILL.md) | user | Completion discipline for substantial agent work — an acceptance-gate ledger written before implementation, a 5-10 layer verification depth tree, and a met, unmet, and abandoned audit backed by runnable gates |
+
 ### Developer — the AI-native SDLC
 
 | Skill | Invocation | Purpose |
 |-------|------------|---------|
-| [orchestrate](skills/developer/orchestrate/SKILL.md) | model | Choose loop/graph/hybrid execution, assign a model per node, map to harness adapters |
+| [conduct](skills/developer/conduct/SKILL.md) | model | Choose loop/graph/hybrid execution, assign a model per node, map to harness adapters |
 | [model-routing](skills/developer/model-routing/SKILL.md) | model | Resolve the tier and role assignment for a task node from the canonical registry — shared by every group, not developer-only |
 | [update-models](skills/developer/update-models/SKILL.md) | user | Research provider catalogs and propose an evidence-backed registry update — curates the registry every group routes through |
 | [impact](skills/developer/impact/SKILL.md) | user | Idea-to-PRD pipeline: grill loop, value probing, governance-tier recording, backlog handoff |
@@ -109,7 +118,6 @@ Every skill has a wiki page covering what it is, how to use it, and its best pra
 | [operate](skills/developer/operate/SKILL.md) | mixed | SLOs, instrumentation, and incident readiness |
 | [maintain](skills/developer/maintain/SKILL.md) | mixed | Patch cadence and technical-debt burn-down |
 | [shakedown](skills/developer/shakedown/SKILL.md) | user | Sandbox build, test, execute, and agent-reviewed pass on any pull request before merge |
-| [grit](skills/developer/grit/SKILL.md) | user | Completion discipline for substantial agent work — an acceptance-gate ledger written before implementation, a 5-10 layer verification depth tree, and a met, unmet, and abandoned audit backed by runnable gates |
 | [ask-fde](skills/developer/ask-fde/SKILL.md) | user | Router mapping intent to the correct developer, pm, or branding skill |
 | [responsible-ai-governance](skills/developer/responsible-ai-governance/SKILL.md) | overlay | Regulated-industry and responsible-AI governance applied on top of the stack rules |
 
@@ -117,7 +125,7 @@ Every skill has a wiki page covering what it is, how to use it, and its best pra
 
 | Skill | Invocation | Purpose |
 |-------|------------|---------|
-| [orchestrate](skills/pm/orchestrate/SKILL.md) | model | Choose grill-loop, parallel-fan, or hybrid execution shape for multi-round pm work |
+| [arrange](skills/pm/arrange/SKILL.md) | model | Choose grill-loop, parallel-fan, or hybrid execution shape for multi-round pm work |
 | [chart](skills/pm/chart/SKILL.md) | user | Chart work too big for one session as decision tickets on the tracker, resolved one at a time |
 | [constitution](skills/pm/constitution/SKILL.md) | user | Product Constitution author and reviewer — principles, positioning, quarterly review |
 | [discover](skills/pm/discover/SKILL.md) | user | Business problem discovery and root-cause analysis |

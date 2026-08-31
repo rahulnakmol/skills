@@ -15,7 +15,7 @@ Route user intent to the right skill in the pm group.
 
 1. Classify intent: execution shape | planning work too big for one session | constitution | discovery | mapping | operating model | epics | PRD authoring | PRD checking | PRD scoring | business case | roadmap | risk/status | benefits | leadership reporting | pressure-test
 2. Map to skill:
-   - "how should this run / grill-loop vs parallel research" → `orchestrate`
+   - "how should this run / grill-loop vs parallel research" → `arrange`
    - "this is too big to plan in one go / where do we even start" → `chart`
    - practice or initiative grounding → `constitution`
    - problem discovery → `discover`

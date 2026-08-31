@@ -30,4 +30,4 @@ Quality report with test gaps and tech-debt items for slice.
 
 ## Sibling skills
 
-- `sdlc`, `orchestrate`, `slice`
+- `sdlc`, `conduct`, `slice`

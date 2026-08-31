@@ -32,4 +32,4 @@ Release checklist with gate evidence and artifact hashes.
 
 ## Sibling skills
 
-- `sdlc`, `orchestrate`, `slice`
+- `sdlc`, `conduct`, `slice`

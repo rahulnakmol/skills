@@ -1,9 +1,9 @@
 ---
-name: orchestrate
+name: arrange
 description: Model-invoked execution-shape routing for the pm group. Choose grill-loop, parallel-fan, or hybrid before a discovery, case, TOM, or PRD round begins. Use for multi-round pm work beyond a single grill session.
 ---
 
-# Orchestrate (model-invoked)
+# Arrange (model-invoked)
 
 Select the execution shape a piece of pm work should run in — no dynamic-workflow automation, the decision itself.
 
