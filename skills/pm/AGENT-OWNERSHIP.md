@@ -12,6 +12,7 @@ Before any gate, the PM runs a short pre-gate checklist against whatever the fle
 
 - **Coverage and omissions** — what did the brief, the case, or the review simply not address? A clean-looking document can still leave coverage gaps unaddressed.
 - **Unevidenced claims** — every strong claim should trace to an entry in the evidence corpus; a claim with no citation is a guess wearing evidence's clothing.
+- **Unrunnable acceptance** — could each claim the artifact makes be restated as a gate with a check and an expected result (`grit/LEDGER.md`)? A claim no check could ever test is not evidence-bearing, whatever its citation.
 - **Ambition collapsed to star 5** — agents tuned to avoid controversy tend to settle on the safe middle score; a review that lands everything near star 5 has probably not actually stretched for star 7 or star 8.
 - **Correlated agreement** — reviewers built on the same underlying model produce correlated verdicts, not independent ones; three of them agreeing is one opinion said three times.
 - **The do-nothing test** — did the analysis seriously consider not acting at all, or did it treat action as a foregone conclusion?

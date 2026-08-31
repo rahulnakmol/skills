@@ -15,7 +15,7 @@ Check a PRD's structure against the checklist — read-only, never rewrites.
 ## Procedure
 
 1. Locate the PRD file, or glob for all PRDs in `specs/prd/` if no path is given
-2. Run all nine structural checks: twelve sections present, every story has a named persona, every story has three to eight Given-When-Then acceptance criteria, every story has priority and complexity, every feature has a star level, at least three success metrics, at least one fully detailed risk, no open question without an owner, scope in/out both populated
+2. Run all nine structural checks: twelve sections present, every story has a named persona, every story has three to eight Given-When-Then acceptance criteria, every story has priority and complexity, every feature has a star level, at least three success metrics, at least one fully detailed risk, no open question without an owner, scope in/out both populated. Report each check as a gate row — the check run, the structure expected, the evidence found — per `grit/LEDGER.md`.
 3. Never skip a check to short-circuit on the first failure
 4. Write the report with a verdict: PASS, PASS WITH WARNINGS, or FAIL (any critical check — 1, 2, 3, or 4 — failing is always FAIL)
 5. Present the summary; on FAIL, suggest returning to `prd-draft`

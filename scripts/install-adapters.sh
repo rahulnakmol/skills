@@ -32,11 +32,18 @@ install_claude() {
   run mkdir -p "$DEST"
   run cp -R "$ROOT/adapters/claude/agents/." "$DEST/"
 }
+install_claude_hooks() {
+  DEST="${CLAUDE_CONFIG:-$HOME/.claude}/hooks"
+  run mkdir -p "$DEST"
+  run cp "$ROOT/adapters/claude/hooks/stop-hook.mjs" "$DEST/grit-stop-hook.mjs"
+  run node "$ROOT/adapters/claude/hooks/install-hooks.mjs"
+}
 case "$TOOL" in
   all) install_opencode; install_claude ;;
   opencode) install_opencode ;;
   claude) install_claude ;;
+  claude-hooks) install_claude_hooks ;;
   codex|cursor|copilot) echo "See adapters/$TOOL/README.md for host-specific steps" ;;
-  *) echo "Unknown tool: $TOOL"; exit 1 ;;
+  *) echo "Unknown tool: $TOOL (valid: all, opencode, claude, claude-hooks, codex, cursor, copilot)"; exit 1 ;;
 esac
 echo "Done (tool=$TOOL dry_run=$DRY_RUN)"

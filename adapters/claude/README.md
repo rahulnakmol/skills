@@ -17,3 +17,7 @@ Thin worker stubs in `agents/`; promoted skills install via `npx skills add`.
 Human gates sit between the workflows, matching the pickup-protocol state machine — the runtime allows no mid-run user input, so each gate is a separate run by design. `scripts/pipeline.sh` launches any stage headless (`claude -p`) or interactively, on either engine.
 
 Install: `../../scripts/install-adapters.sh --tool claude`
+
+## Hooks
+
+`adapters/claude/hooks/` carries a Stop hook that blocks a session from ending while its grit gate ledger has unmet gates. It is opt-in — the default and `--tool claude` installer targets do not touch it. Install it separately with `../../scripts/install-adapters.sh --tool claude-hooks`; see `hooks/README.md` for details.

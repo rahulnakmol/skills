@@ -14,7 +14,7 @@ Five groups, each a bounded area of work rather than a technology layer. We have
 
 | Group | What it is | Status |
 |-------|------------|--------|
-| **Developer — the AI-native SDLC** | The software delivery lifecycle rebuilt for humans plus trusted agents: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance — 17 skills. The group directory is planned to be renamed `ai-native-sdlc` to say what it is. | Shipping |
+| **Developer — the AI-native SDLC** | The software delivery lifecycle rebuilt for humans plus trusted agents: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance — 18 skills. The group directory is planned to be renamed `ai-native-sdlc` to say what it is. | Shipping |
 | **PM — the AI-native transformation practice** | The business side of the same AI-native transformation coin: discovery, TOM design, epic and PRD authoring, business cases grounded in cost including the agent fleet's own, roadmapping, RAID, benefits realization against a north star, and 4Ps leadership reporting, plus charting work too big for one session — 17 skills. | Shipping |
 | **Branding** | Company or personal identity applied to everything an agent produces: tone of voice, color and palette, storytelling. Today: `press`, which turns a signed PRD into a business-ready document and presentation — the first of the storytelling skills. | First skill shipping |
 | **Writing** | Skills that make writing better — editorial review, documentation quality, style discipline — in the same explainer voice this repository holds itself to. | Charter — planned |
@@ -109,6 +109,7 @@ Every skill has a wiki page covering what it is, how to use it, and its best pra
 | [operate](skills/developer/operate/SKILL.md) | mixed | SLOs, instrumentation, and incident readiness |
 | [maintain](skills/developer/maintain/SKILL.md) | mixed | Patch cadence and technical-debt burn-down |
 | [shakedown](skills/developer/shakedown/SKILL.md) | user | Sandbox build, test, execute, and agent-reviewed pass on any pull request before merge |
+| [grit](skills/developer/grit/SKILL.md) | user | Completion discipline for substantial agent work — an acceptance-gate ledger written before implementation, a 5-10 layer verification depth tree, and a met, unmet, and abandoned audit backed by runnable gates |
 | [ask-fde](skills/developer/ask-fde/SKILL.md) | user | Router mapping intent to the correct developer, pm, or branding skill |
 | [responsible-ai-governance](skills/developer/responsible-ai-governance/SKILL.md) | overlay | Regulated-industry and responsible-AI governance applied on top of the stack rules |
 

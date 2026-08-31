@@ -18,7 +18,7 @@ Build the business case the sponsor approves — options, costs, benefits, and t
 2. Cost each option: build, run, opportunity, and agent-fleet cost (`COSTING.md`)
 3. Commission evidence where the cost or benefit estimate is thin (`RESEARCH-AGENTS.md`), routing each commissioned agent's model tier through `model-routing`
 4. Trace each option's benefits forward to what `realize` will later hold accountable
-5. Run the sensitivity analysis — the one assumption that would kill the recommendation
+5. Run the sensitivity analysis — the one assumption that would kill the recommendation. Each assumption also states the check that would falsify it, a runnable gate where one exists.
 6. Grill the case before presenting it (`grill`)
 7. Present to the sponsor for approval at the Investment gate
 

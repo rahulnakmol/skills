@@ -24,7 +24,7 @@ What this item explicitly does not do, named to stop scope creep at pickup rathe
 
 ## Acceptance criteria
 
-Machine-checkable only. "Looks right" and "should work" are not acceptance criteria; a specific assertion, a specific status code, a specific metric threshold are. If a criterion cannot be checked by a command or a test, it is not ready to ship as a work item — it belongs back in `impact` or `slice` until it can be made concrete.
+Machine-checkable only. "Looks right" and "should work" are not acceptance criteria; a specific assertion, a specific status code, a specific metric threshold are. If a criterion cannot be checked by a command or a test, it is not ready to ship as a work item — it belongs back in `impact` or `slice` until it can be made concrete. Each criterion is also gate-able: expressible as a `CHECK:` command and an `EXPECT:` token in a gate ledger per `grit/LEDGER.md`, and classified under one of that ledger's five dimensions.
 
 ## Verification
 
@@ -40,7 +40,7 @@ Anything the implementer must not do: dependencies it cannot add without approva
 
 ## Execution profile
 
-The routing decision from `orchestrate`'s `RUBRIC.md`: mode (`loop` | `graph` | `hybrid`), the model tier resolved via `model-routing` for this specific role, and the intended pod size. This section is what lets a headless run pick the right harness configuration without re-deriving the routing decision from scratch. It also records the expected delivery shape: a single pull request, or a reviewable stack of layered pull requests per `deliver/STACKING.md` when the change spans more than one concern.
+The routing decision from `orchestrate`'s `RUBRIC.md`: mode (`loop` | `graph` | `hybrid`), the model tier resolved via `model-routing` for this specific role, and the intended pod size. This section is what lets a headless run pick the right harness configuration without re-deriving the routing decision from scratch. It also records the expected delivery shape: a single pull request, or a reviewable stack of layered pull requests per `deliver/STACKING.md` when the change spans more than one concern. The profile also records the verification depth for this item: a depth the user named, or the recommendation from `grit/METHOD.md`'s rubric, and which of the two it was.
 
 ## Governance
 
@@ -62,7 +62,7 @@ Where the pipeline workflows are installed, the same two phases run as `scripts/
 
 ## Definition of done
 
-The final state: acceptance criteria met, the coverage and traceability matrix complete, verification commands passing, constraints respected, governance section satisfied where applicable, and the pickup protocol's `ready → in-progress → done` transition completed with evidence attached to the issue. "Done" is reported only after the verification-before-completion pass in `shakedown/VERIFICATION.md` — the actual diff opened and read against these criteria, not inferred from a green build.
+The final state: acceptance criteria met, the coverage and traceability matrix complete, verification commands passing, constraints respected, governance section satisfied where applicable, and the pickup protocol's `ready → in-progress → done` transition completed with evidence attached to the issue. "Done" is reported only after the verification-before-completion pass in `shakedown/VERIFICATION.md` — the actual diff opened and read against these criteria, not inferred from a green build. Where the item carries a gate ledger, done also means the ledger's final audit per `grit/AUDIT.md` reports zero unmet gates, with any abandoned gate declared and justified rather than deleted.
 
 ## Artifacts and handoff
 
