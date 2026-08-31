@@ -1,0 +1,55 @@
+# Routing eval. Deliberately not a pull-request check: every case costs a model
+# call, so this runs on a schedule and on demand rather than on every push.
+# The scorecard is committed so a regression is a diff between two dated files
+# rather than something someone has to remember.
+name: Routing eval
+
+on:
+  workflow_dispatch:
+    inputs:
+      runs:
+        description: Attempts per case (selection is stochastic)
+        default: '3'
+      threshold:
+        description: Fraction of runs a case must win to pass
+        default: '1.0'
+  schedule:
+    # Mondays, early. A weekly cadence is enough to catch drift from a model
+    # change or an edited description without spending daily.
+    - cron: '17 6 * * 1'
+
+permissions:
+  contents: write
+
+jobs:
+  routing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install the Claude CLI
+        run: npm install -g @anthropic-ai/claude-code
+      - name: Run the routing eval
+        id: eval
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          node test/eval/run-routing.mjs \
+            --runs "${{ inputs.runs || '3' }}" \
+            --threshold "${{ inputs.threshold || '1.0' }}"
+      - name: Commit the scorecard
+        # Runs even when the eval failed: a scorecard recording a regression is
+        # the point, and discarding it would hide the very thing this measures.
+        if: always()
+        run: |
+          if [ -z "$(git status --porcelain test/eval/results)" ]; then
+            echo "no scorecard change to record"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add test/eval/results
+          git commit -m "Record routing eval scorecard for $(date -u +%Y-%m-%d)"
+          git push

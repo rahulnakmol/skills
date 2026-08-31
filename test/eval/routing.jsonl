@@ -1,0 +1,35 @@
+{"id":"r001","utterance":"this build spans several workstreams, decide whether to run it as a loop or a graph","expect":"conduct","note":"confusable with arrange: both route execution shape"}
+{"id":"r002","utterance":"this discovery effort needs more than one grill round, what shape should it run in","expect":"arrange","note":"confusable with conduct"}
+{"id":"r003","utterance":"our release pipeline is manual and flaky, sort out CI and the supply chain","expect":"deliver"}
+{"id":"r004","utterance":"the service keeps paging us at night and we have no SLOs","expect":"operate"}
+{"id":"r005","utterance":"we are drowning in dependency updates and technical debt","expect":"operate","note":"absorbed from maintain"}
+{"id":"r006","utterance":"our test coverage is thin and nobody trusts the suite","expect":"operate","note":"absorbed from assure"}
+{"id":"r007","utterance":"decide between event sourcing and a plain CRUD store for this service","expect":"architect"}
+{"id":"r008","utterance":"does this new file upload endpoint open a security hole","expect":"safeguard"}
+{"id":"r009","utterance":"build and review pull request 412 in a sandbox before we merge","expect":"shakedown"}
+{"id":"r010","utterance":"prove every acceptance criterion actually passes before we call this done","expect":"grit","note":"confusable with shakedown"}
+{"id":"r011","utterance":"make sure the work is genuinely finished and not just reported finished","expect":"grit"}
+{"id":"r012","utterance":"turn the approved PRD into epics, stories and tickets for the tracker","expect":"slice"}
+{"id":"r013","utterance":"publish this backlog to GitHub issues with the pickup labels","expect":"raise","note":"confusable with slice"}
+{"id":"r014","utterance":"I have a raw idea, pressure-test it into a PRD","expect":"impact"}
+{"id":"r015","utterance":"break this initiative into epics before we write any PRD","expect":"carve","note":"confusable with slice"}
+{"id":"r016","utterance":"write the PRD for the epic manifest we agreed last week","expect":"prd-draft"}
+{"id":"r017","utterance":"score this PRD and tell me where it is weak","expect":"prd-review","note":"confusable with prd-draft"}
+{"id":"r018","utterance":"I inherited this codebase and have no idea how it is put together","expect":"recon"}
+{"id":"r019","utterance":"run the full gated build loop against the signed spec","expect":"sdlc"}
+{"id":"r020","utterance":"which model should this verifier step use","expect":"model-routing"}
+{"id":"r021","utterance":"the model registry is stale, research what the providers ship now","expect":"update-models","note":"confusable with model-routing"}
+{"id":"r022","utterance":"turn this approved document into a branded PDF for the board","expect":"press"}
+{"id":"r023","utterance":"write the CLAUDE.md rules our agents keep ignoring","expect":"brief"}
+{"id":"r024","utterance":"we need to understand the real problem before anyone proposes a solution","expect":"discover"}
+{"id":"r025","utterance":"build the business case with options and costs for the sponsor","expect":"case"}
+{"id":"r026","utterance":"map the personas and the current and target journeys","expect":"map"}
+{"id":"r027","utterance":"log this risk with an owner and a mitigation","expect":"raid"}
+{"id":"r028","utterance":"did the benefits we promised in the case actually land","expect":"realize"}
+{"id":"r029","utterance":"put together the quarterly leadership pack","expect":"report"}
+{"id":"r030","utterance":"sequence these outcomes into horizons for PI planning","expect":"roadmap"}
+{"id":"r031","utterance":"interrogate this artifact with hard questions before it goes to a gate","expect":"grill"}
+{"id":"r032","utterance":"design the target operating model with layers and a RACI","expect":"tom-architect"}
+{"id":"r033","utterance":"this initiative is too big to plan in one sitting, chart the decisions","expect":"chart"}
+{"id":"r034","utterance":"write the practice principles our product decisions answer to","expect":"constitution"}
+{"id":"r035","utterance":"this model is going into a regulated lending decision, what governance applies","expect":"responsible-ai-governance"}

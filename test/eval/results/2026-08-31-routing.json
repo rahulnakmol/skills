@@ -1,0 +1,396 @@
+{
+  "date": "2026-08-31",
+  "runs_per_case": 2,
+  "threshold": 1,
+  "cases": 35,
+  "passed": 35,
+  "failed": 0,
+  "skills_in_catalog": 34,
+  "results": [
+    {
+      "id": "r001",
+      "expect": "conduct",
+      "picks": [
+        "conduct",
+        "conduct"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with arrange: both route execution shape"
+    },
+    {
+      "id": "r002",
+      "expect": "arrange",
+      "picks": [
+        "arrange",
+        "arrange"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with conduct"
+    },
+    {
+      "id": "r003",
+      "expect": "deliver",
+      "picks": [
+        "deliver",
+        "deliver"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r004",
+      "expect": "operate",
+      "picks": [
+        "operate",
+        "operate"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r005",
+      "expect": "operate",
+      "picks": [
+        "operate",
+        "operate"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "absorbed from maintain"
+    },
+    {
+      "id": "r006",
+      "expect": "operate",
+      "picks": [
+        "operate",
+        "operate"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "absorbed from assure"
+    },
+    {
+      "id": "r007",
+      "expect": "architect",
+      "picks": [
+        "architect",
+        "architect"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r008",
+      "expect": "safeguard",
+      "picks": [
+        "safeguard",
+        "safeguard"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r009",
+      "expect": "shakedown",
+      "picks": [
+        "shakedown",
+        "shakedown"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r010",
+      "expect": "grit",
+      "picks": [
+        "grit",
+        "grit"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with shakedown"
+    },
+    {
+      "id": "r011",
+      "expect": "grit",
+      "picks": [
+        "grit",
+        "grit"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r012",
+      "expect": "slice",
+      "picks": [
+        "slice",
+        "slice"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r013",
+      "expect": "raise",
+      "picks": [
+        "raise",
+        "raise"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with slice"
+    },
+    {
+      "id": "r014",
+      "expect": "impact",
+      "picks": [
+        "impact",
+        "impact"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r015",
+      "expect": "carve",
+      "picks": [
+        "carve",
+        "carve"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with slice"
+    },
+    {
+      "id": "r016",
+      "expect": "prd-draft",
+      "picks": [
+        "prd-draft",
+        "prd-draft"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r017",
+      "expect": "prd-review",
+      "picks": [
+        "prd-review",
+        "prd-review"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with prd-draft"
+    },
+    {
+      "id": "r018",
+      "expect": "recon",
+      "picks": [
+        "recon",
+        "recon"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r019",
+      "expect": "sdlc",
+      "picks": [
+        "sdlc",
+        "sdlc"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r020",
+      "expect": "model-routing",
+      "picks": [
+        "model-routing",
+        "model-routing"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r021",
+      "expect": "update-models",
+      "picks": [
+        "update-models",
+        "update-models"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with model-routing"
+    },
+    {
+      "id": "r022",
+      "expect": "press",
+      "picks": [
+        "press",
+        "press"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r023",
+      "expect": "brief",
+      "picks": [
+        "brief",
+        "brief"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r024",
+      "expect": "discover",
+      "picks": [
+        "discover",
+        "discover"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r025",
+      "expect": "case",
+      "picks": [
+        "case",
+        "case"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r026",
+      "expect": "map",
+      "picks": [
+        "map",
+        "map"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r027",
+      "expect": "raid",
+      "picks": [
+        "raid",
+        "raid"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r028",
+      "expect": "realize",
+      "picks": [
+        "realize",
+        "realize"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r029",
+      "expect": "report",
+      "picks": [
+        "report",
+        "report"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r030",
+      "expect": "roadmap",
+      "picks": [
+        "roadmap",
+        "roadmap"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r031",
+      "expect": "grill",
+      "picks": [
+        "grill",
+        "grill"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r032",
+      "expect": "tom-architect",
+      "picks": [
+        "tom-architect",
+        "tom-architect"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r033",
+      "expect": "chart",
+      "picks": [
+        "chart",
+        "chart"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r034",
+      "expect": "constitution",
+      "picks": [
+        "constitution",
+        "constitution"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    },
+    {
+      "id": "r035",
+      "expect": "responsible-ai-governance",
+      "picks": [
+        "responsible-ai-governance",
+        "responsible-ai-governance"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": null
+    }
+  ]
+}
