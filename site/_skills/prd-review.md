@@ -45,7 +45,7 @@ Feasibility ........ 8/10 (15%)
 Differentiation ..... 5/10 (15%)
 Metric Alignment .... 7/10 (10%)
 Story Quality ....... 8/10 (15%)
-<span class="tok-ok">Composite: 6.85 -&gt; Minor Revision</span></code></pre>
+<span class="tok-ok">Composite: 7.00 -&gt; Minor Revision</span></code></pre>
 <div class="compare-card-note">Completeness scores well and Ambition does not — both facts are reported, because a complete but unambitious PRD has not earned a pass on that alone.</div>
 </div>
 <div class="compare-card compare-card--warn">
@@ -75,7 +75,7 @@ Star spectrum: retry button (5) · error copy (5) · saved-card recall (6)
 · one-tap resume (5)
 
 Dimensions: Completeness 9 · Clarity 8 · Feasibility 9 · Ambition 5
-· Differentiation 5 · Metric Alignment 8 · Story Quality 8
+· Differentiation 5 · Metric Alignment 9 · Story Quality 8
 Composite: 7.5 -> Approved with Notes
 
 P1: Push saved-card recall toward star 7 by pre-filling the retry

@@ -7,7 +7,7 @@ group: developer
 invocation: model-invoked
 lens:
   novice:
-    who: 'You have watched a design get invented on the fly, mid-build, and then torn out and rebuilt because no one agreed on it first.'
+    who: 'A design gets invented on the fly, halfway through the build, and then torn out and rebuilt because no one had agreed to it first. You have sat through that rebuild.'
     value: 'Architect puts the scope and the tradeoffs on paper before a line of code exists, so the rebuild does not happen.'
   practitioner:
     who: 'You are handed a requirements document and asked to turn it into components before implementation starts.'

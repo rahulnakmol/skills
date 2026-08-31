@@ -1,5 +1,7 @@
 # Installation
 
+Full documentation for every skill: https://tqnonline.github.io/skills/.
+
 ## Universal
 
 ```bash

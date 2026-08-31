@@ -13,7 +13,7 @@ lens:
     who: 'You are decomposing a signed PRD into the backlog raise will publish.'
     value: 'Slice validates the PRD''s sign-off first, applies the right template per item type, and attaches the mandatory operability lane — observability, SLOs, runbooks, test coverage — alongside the user-facing stories, not bolted on afterward.'
   leader:
-    who: 'You have watched reliability work get quietly cut from a backlog under deadline pressure.'
+    who: 'Reliability work gets quietly cut from a backlog whenever a deadline tightens, and you find out only when something breaks.'
     value: 'The operability lane is mandatory at first slicing, and slice refuses to publish any item missing its contract sections. Reliability is structurally required scope, not optional scope someone can trim.'
   csuite:
     who: 'You are accountable for AI systems used in regulated or high-stakes work.'

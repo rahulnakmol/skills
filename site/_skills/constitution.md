@@ -7,7 +7,7 @@ group: pm
 invocation: user-invoked
 lens:
   novice:
-    who: "You're about to write your first PRD and don't know what 'aligned with the practice's principles' actually means in practice."
+    who: "You are about to write your first PRD and do not know what 'aligned with the practice's principles' actually means in practice."
     value: "The constitution names, in one page, the specific trade-offs the team actually makes — not platitudes everyone already agrees with."
   practitioner:
     who: "You draft PRDs and cases every week and want a document you can point a disagreement back to instead of relitigating it each time."

@@ -7,7 +7,7 @@ group: pm
 invocation: model-invoked
 lens:
   novice:
-    who: "You're staring at a discovery or a case that clearly needs more than one pass, and you don't know whether to run it as one long conversation or split it into pieces."
+    who: "You are staring at a discovery or a case that clearly needs more than one pass, and you do not know whether to run it as one long conversation or split it into pieces."
     value: "Arrange picks the shape for you, in one line you can read before committing an afternoon to the wrong approach."
   practitioner:
     who: "You run multiple pm efforts at once and keep guessing whether a case or a PRD needs a grill loop, a parallel research fan, or both."

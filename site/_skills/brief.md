@@ -16,7 +16,7 @@ lens:
     who: 'Your team has adopted more than one agent tool, and each one has picked up its own half-remembered version of the rules.'
     value: 'One canonical file holds the working agreement; every other surface points at it, so a rule written once governs every tool your agents run on.'
   csuite:
-    who: 'You are accountable for what your organization’s agents are instructed to do, and today that instruction lives in chat history and personal settings.'
+    who: 'What your organization’s agents are instructed to do is your responsibility, and today that instruction lives in chat history and personal settings.'
     value: 'The working agreement becomes a reviewed file with a named owner and a review date — kept the way any other policy the organization stands behind is kept.'
 ---
 

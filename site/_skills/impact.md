@@ -68,7 +68,7 @@ measured via the existing checkout funnel dashboard.
 
 ## In practice
 
-`impact/GATES.md` is short enough to reproduce here in full, byte for byte — this is the actual gate table impact walks on every run:
+`impact/GATES.md` is short enough to quote its whole table here, byte for byte — this is the actual gate table impact walks on every run:
 
 <pre><code>| Gate | Requirement |
 |------|-------------|

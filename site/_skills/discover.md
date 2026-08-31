@@ -7,7 +7,7 @@ group: pm
 invocation: user-invoked
 lens:
   novice:
-    who: "You've been handed 'the reporting is slow, fix it,' and you already suspect that's a symptom someone noticed first, not the actual problem."
+    who: "You have been handed 'the reporting is slow, fix it,' and you already suspect that is a symptom someone noticed first, not the actual problem."
     value: "Discover forces the Five Whys before you write anything down, so what you hand off names the actual cause, not the first plausible one."
   practitioner:
     who: "You get pulled into initiatives after someone else already decided what to build, and you keep having to reverse-engineer what problem it was supposed to solve."

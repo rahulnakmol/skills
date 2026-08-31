@@ -7,7 +7,7 @@ group: pm
 invocation: user-invoked
 lens:
   novice:
-    who: "You've never written a PRD that had to survive a formal review, and you don't know what 'structurally complete' means beyond filling in a template."
+    who: "You have never written a PRD that had to survive a formal review, and you do not know what 'structurally complete' means beyond filling in a template."
     value: "The nine-check pass tells you exactly which of the twelve sections is missing or thin, in the same report every PRD gets, before anyone else reads it."
   practitioner:
     who: "You draft several PRDs a month and want to catch a missing error-path acceptance criterion yourself, not in review."

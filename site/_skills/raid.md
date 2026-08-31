@@ -7,7 +7,7 @@ group: pm
 invocation: user-invoked
 lens:
   novice:
-    who: 'You have watched a risk get mentioned once in a meeting and never written down, then watched it happen. RAID is the habit of logging it the moment it surfaces, with an owner attached.'
+    who: 'A risk gets raised once in a meeting, never written down, and then it happens. RAID is the habit of logging it the moment it surfaces, with an owner attached.'
     value: 'You get four registers — Risks, Assumptions, Issues, Dependencies — that hold what could derail the work, so nothing important lives only in someone''s memory or a chat thread.'
   practitioner:
     who: 'You are asked for a sponsor status update every reporting cycle and currently reconstruct it from memory each time.'

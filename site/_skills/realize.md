@@ -13,7 +13,7 @@ lens:
     who: 'You own an initiative that is live and need to show its benefits are tracking, not just that it shipped.'
     value: 'Every benefit carries a leading indicator that moves before the lagging outcome does, so you see a divergence during delivery instead of only at the retrospective.'
   leader:
-    who: 'You are accountable for several initiatives'' worth of promised value rolling up to one number.'
+    who: 'Several initiatives under you each promised value, and all of it has to roll up to one number.'
     value: 'Every benefit rolls up to the north star — efficiency and productivity as transformation value — so you can see the portfolio''s real contribution, not just its activity.'
   csuite:
     who: 'You approved the cases these initiatives were built on and need to know which projections held.'

@@ -13,7 +13,7 @@ lens:
     who: 'You are the one raising the pull request once implementation is verified.'
     value: 'You get a repository checklist run before you start &mdash; Code Quality, `gh stack` tooling, pickup-protocol labels, the shakedown workflow &mdash; and a release checklist with gate evidence and artifact hashes when you are done.'
   leader:
-    who: 'You are accountable for how your team ships changes that are too large for one review.'
+    who: 'Your team keeps producing changes too large for one person to review in one sitting.'
     value: 'A change spanning more than one concern always ships as a stack, never as one giant diff, and every pull request states its coverage and traceability before it is raised.'
   csuite:
     who: 'You need release evidence you can point to when something ships badly.'

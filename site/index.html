@@ -57,7 +57,7 @@ description: "TQN Skills documents every skill in The Quentin's skill library â€
       <span class="role-path-step"><a class="path-chip" href="{{ base_path }}sdlc/">sdlc</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
       <span class="role-path-step"><a class="path-chip" href="{{ base_path }}grit/">grit</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
       <span class="role-path-step"><a class="path-chip" href="{{ base_path }}shakedown/">shakedown</a></span>
-      <span class="role-path-open">Open this journey &rarr;</span>
+      <a class="role-path-open" href="{{ base_path }}journey/deliver-with-evidence/">Open this journey &rarr;</a>
     </div>
 
     <div class="role-path" x-cloak x-show="picked === 'product'">
@@ -66,7 +66,7 @@ description: "TQN Skills documents every skill in The Quentin's skill library â€
       <span class="role-path-step"><a class="path-chip" href="{{ base_path }}carve/">carve</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
       <span class="role-path-step"><a class="path-chip" href="{{ base_path }}case/">case</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
       <span class="role-path-step"><a class="path-chip" href="{{ base_path }}report/">report</a></span>
-      <span class="role-path-open">Open this journey &rarr;</span>
+      <a class="role-path-open" href="{{ base_path }}journey/run-a-product-org/">Open this journey &rarr;</a>
     </div>
 
     <div class="role-path" x-cloak x-show="picked === 'novice'">
@@ -74,7 +74,7 @@ description: "TQN Skills documents every skill in The Quentin's skill library â€
       <span class="role-path-step"><a class="path-chip" href="{{ base_path }}brief/">brief</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
       <span class="role-path-step"><a class="path-chip" href="{{ base_path }}impact/">impact</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
       <span class="role-path-step"><a class="path-chip" href="{{ base_path }}grit/">grit</a></span>
-      <span class="role-path-open">Open this journey &rarr;</span>
+      <a class="role-path-open" href="{{ base_path }}brief/">Start with brief &rarr;</a>
     </div>
 
     <div class="role-path" x-cloak x-show="picked === 'executive'">
@@ -82,7 +82,7 @@ description: "TQN Skills documents every skill in The Quentin's skill library â€
       <span class="role-path-step"><a class="path-chip" href="{{ base_path }}grit/">grit</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
       <span class="role-path-step"><a class="path-chip" href="{{ base_path }}report/">report</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
       <span class="role-path-step"><a class="path-chip" href="{{ base_path }}realize/">realize</a></span>
-      <span class="role-path-open">Open this journey &rarr;</span>
+      <a class="role-path-open" href="{{ base_path }}leaders/">What this changes for leaders &rarr;</a>
     </div>
   </div>
 </section>
@@ -90,8 +90,8 @@ description: "TQN Skills documents every skill in The Quentin's skill library â€
 <section class="section">
   <div class="practice-grid">
     <div class="practice-copy">
-      <h2 class="section-title">Every page shows a real run</h2>
-      <p>Every example is a real run from the project's own test files, and the tests keep re-running it â€” if an example breaks, the site build fails. This one is grit's checklist: done is proven, not just claimed.</p>
+      <h2 class="section-title">Every example is checked</h2>
+      <p>Where a skill ships a script or a fixture, its page quotes the real output; where it does not, the page shows the shape the output contract requires and says so. Either way the test suite re-runs the check before the site builds, so an example that has drifted from its source fails the build. This one is grit's checklist: done is proven, not just claimed.</p>
       <a class="practice-link" href="{{ base_path }}grit/">See how grit works &rarr;</a>
     </div>
     <pre><code><span class="tok-comment"># GATES.md â€” test/fixtures/grit/unmet</span>
@@ -104,8 +104,8 @@ description: "TQN Skills documents every skill in The Quentin's skill library â€
   EXPECT: OK_TOKEN_TWO
   <span class="tok-warn">EVIDENCE: pending</span>
 
-<span class="tok-comment">$ gate-check --status GATES.md</span>
-<span class="tok-warn">UNMET GATES:G2 â€” the work is not done, and now you know.</span></code></pre>
+<span class="tok-comment">$ node skills/core/grit/scripts/gate-check.mjs --status GATES.md</span>
+<span class="tok-warn">UNMET GATES:G2 (unchecked): prints its second fixed token when run</span></code></pre>
   </div>
 </section>
 

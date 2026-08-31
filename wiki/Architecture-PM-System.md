@@ -1,5 +1,7 @@
 # Architecture: PM system
 
+Full documentation for every skill: https://tqnonline.github.io/skills/.
+
 This page describes what holds the pm group's work together across sessions and initiatives, the way [Architecture: SDLC system](Architecture-SDLC-System) describes the SPEC-TS ledger for the developer group.
 
 Where the developer group grounds every decision in one ledger, the pm group grounds it in a **constitution** hierarchy: an overall practice constitution at the repository root, and a per-initiative constitution that inherits it and records only its overrides. Every pm skill reads the applicable chain, most-specific last, before it drafts anything — the seven sections (principles, value propositions, positioning, CX philosophy, building approach, prioritization framework, research bets) and the at-least-quarterly review cadence are in [CONSTITUTION.md](https://github.com/tqnonline/skills/blob/main/skills/pm/constitution/CONSTITUTION.md).

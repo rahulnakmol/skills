@@ -13,7 +13,7 @@ lens:
     who: 'You maintain a roadmap that stakeholders keep trying to reorder by urgency of ask rather than by dependency.'
     value: 'The dependency board comes straight from `raid` instead of a second copy you maintain by hand, so a slipped dependency shows up in your sequencing the moment it slips.'
   leader:
-    who: 'You are accountable for a portfolio of initiatives competing for the same capacity.'
+    who: 'You run a portfolio of initiatives competing for the same capacity.'
     value: 'Every item on every roadmap under you carries outcome linkage and a stated dependency, so a portfolio review compares initiatives on what they move, not on which PM presents most persuasively.'
   csuite:
     who: 'You sit above several roadmaps and need to know the sequencing decision, not just the list of work.'

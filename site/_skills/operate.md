@@ -7,7 +7,7 @@ group: developer
 invocation: model-invoked
 lens:
   novice:
-    who: 'You have watched a service run with no owner for its alerts and no one sure which dashboard to check during an incident.'
+    who: 'An incident starts and nobody can say who owns the alert that fired, or which dashboard to open first.'
     value: 'Operate gives every service boundary a named owner and an alert threshold before the incident, not during it.'
   practitioner:
     who: 'You are asked to set SLOs, close test gaps, or run a patch cycle, and you want one place that covers all three.'
@@ -16,7 +16,7 @@ lens:
     who: 'You own a team’s on-call rotation, its test coverage, and its dependency backlog.'
     value: 'Findings from all three lanes land in the same backlog through `slice`, so a report that never re-enters the backlog is treated as having changed nothing.'
   csuite:
-    who: 'You are accountable for service reliability and for the technical debt building up under it.'
+    who: 'Service reliability and the technical debt building up under it both land on your desk.'
     value: 'Reliability, quality, and maintenance evidence all trace back to the same baseline the system was designed against, on a stated cadence, not only after an incident.'
 ---
 

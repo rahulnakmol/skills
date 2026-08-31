@@ -2,7 +2,7 @@
 layout: journey
 name: run-a-product-org
 title: "Run a product org"
-description: "The pm pipeline skills in the order a product leader runs them: find the real problem, carve the epics, build the case, report to leadership."
+description: "Four pm pipeline skills in the order a product leader runs them: find the real problem, carve the epics, build the case, report to leadership."
 audience: product leaders
 steps:
   - skill: discover
@@ -20,5 +20,7 @@ steps:
 ---
 
 This path is for a product or program leader adopting The Quentin's AI-native transformation practice for the first time. It begins before an epic exists, with a raw problem or a vague opportunity, and it ends with a leadership pack drawn from the same registers the pipeline keeps current.
+
+These four are a route through the pm group, not the whole of it. A full run also passes through `map` for the Business Understanding Document the Framing gate signs, and through `prd-draft` and `prd-review` before the Quality gate; each page names its own handoffs where they fall.
 
 By the end, a product leader can turn a raw problem into a stakeholder-grounded analysis, carve it into epics tested against DIVE, build the business case a sponsor approves at the Investment gate, and report progress, problems, priorities, and perspective straight from the registers.

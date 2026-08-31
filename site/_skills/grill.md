@@ -71,7 +71,7 @@ Chief Business Transformation
                                north-star contribution
 ```
 
-This persona table is quoted directly from `GRILL-PM.md`'s doctrine, not a captured run — grill has no companion script; every round happens as a back-and-forth with the user, captured directly into the artifact being grilled.
+`GRILL-PM.md` states those four personas and their pressures in prose; the table above sets the same four out side by side, and adds nothing to them. It is not a captured run — grill has no companion script; every round happens as a back-and-forth with the user, captured directly into the artifact being grilled.
 
 ## How it works
 

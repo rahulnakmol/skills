@@ -7,16 +7,16 @@ group: pm
 invocation: user-invoked
 lens:
   novice:
-    who: "You've been asked to 'build the TOM,' and you don't know whether that means an executive slide or a task-level breakdown of every process in the business."
+    who: "You have been asked to 'build the TOM,' and you do not know whether that means an executive slide or a task-level breakdown of every process in the business."
     value: "TOM Architect makes depth a scope decision up front — L1-L2 for an overview, L1-L4 for a detailed design — so you agree the level before you start decomposing."
   practitioner:
-    who: "You run transformation initiatives where a TOM is mandatory, and you're tired of platform conversations happening before anyone has established a maturity baseline."
+    who: "You run transformation initiatives where a TOM is mandatory, and you are tired of platform conversations happening before anyone has established a maturity baseline."
     value: "Platform mapping is fixed as a Phase 5 activity that follows process decomposition and maturity assessment, never precedes them, so the stack conversation happens on top of real current-state evidence."
   leader:
-    who: "Your transformation programs keep producing TOMs that read well but whose organization design doesn't actually match the maturity gaps discovery found."
+    who: "Your transformation programs keep producing TOMs that read well but whose organization design does not actually match the maturity gaps discovery found."
     value: "The AI-augmentation classification for each L2 process shapes organization design, KPI cadence, and platform mapping together from the first design pass, not layered on afterward."
   csuite:
-    who: "You're funding a transformation and need to know the target state was designed against evidence, not a template pulled from the last engagement."
+    who: "You are funding a transformation and need to know the target state was designed against evidence, not a template pulled from the last engagement."
     value: "A target state defined without first establishing the current-state maturity baseline produces an unrealistic target — TOM Architect will not let target design start before that baseline exists."
 ---
 

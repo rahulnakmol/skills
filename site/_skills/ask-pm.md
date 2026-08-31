@@ -59,21 +59,21 @@ even though the request does not say.</span></code></pre>
 The routing map in `ask-pm`'s `SKILL.md` is the skill's real content — it is quoted here in full, verbatim:
 
 ```
-"how should this run / grill-loop vs parallel research" -> arrange
-"this is too big to plan in one go / where do we even start" -> chart
-practice or initiative grounding -> constitution
-problem discovery -> discover
-personas or process flows -> map
-target operating model -> tom-architect
-epic breakdown -> carve
-PRD authoring, or a PRD structural check -> prd-draft
-PRD quality scoring -> prd-review
-investment justification -> case
-sequencing or PI planning -> roadmap
-risks, assumptions, issues, dependencies -> raid
-benefits or north-star tracking -> realize
-leadership update or steering pack -> report
-"challenge this / pressure-test this" -> grill
+   - "how should this run / grill-loop vs parallel research" → `arrange`
+   - "this is too big to plan in one go / where do we even start" → `chart`
+   - practice or initiative grounding → `constitution`
+   - problem discovery → `discover`
+   - personas or process flows → `map`
+   - target operating model → `tom-architect`
+   - epic breakdown → `carve`
+   - PRD authoring, or a PRD structural check → `prd-draft`
+   - PRD quality scoring → `prd-review`
+   - investment justification → `case`
+   - sequencing or PI planning → `roadmap`
+   - risks, assumptions, issues, dependencies → `raid`
+   - benefits or north-star tracking → `realize`
+   - leadership update or steering pack → `report`
+   - "challenge this / pressure-test this" → `grill`
 ```
 
 This is quoted directly from the skill's own procedure, not a captured run — `ask-pm` has no companion script; the map above is the entire routing logic.

@@ -87,7 +87,11 @@ test('impact, architect, sdlc, discover, tom-architect, and grill capture FR/NFR
   }
 });
 
-test('the two routing skills have separate wiki pages, one per group, and neither name survives', () => {
+// The two wiki pages are now lean, generated stubs (the member-skill listing
+// that used to live on Group-*.md moved to the site's group pages), but the
+// core guarantee — each routing skill traces only to its own group — still
+// holds and is still checked directly against each stub's source link.
+test('the two routing skills have separate wiki stubs, one per group, and neither name survives', () => {
   const conduct = read('wiki/Skill-Conduct.md');
   const arrange = read('wiki/Skill-Arrange.md');
   assert.ok(conduct.includes('skills/developer/conduct/SKILL.md'),
@@ -100,8 +104,13 @@ test('the two routing skills have separate wiki pages, one per group, and neithe
     'Skill-Arrange.md must not double as the developer page');
   assert.ok(!existsSync(join(root, 'wiki/Skill-Orchestrate.md')),
     'wiki/Skill-Orchestrate.md must be gone — the shared page was split when the skills were renamed');
-  assert.ok(read('wiki/Group-PM.md').includes('[Arrange](Skill-Arrange)'), 'Group-PM.md must list Arrange');
-  assert.ok(read('wiki/Group-Developer.md').includes('[Conduct](Skill-Conduct)'),
-    'Group-Developer.md must list Conduct');
+  assert.ok(conduct.includes('https://tqnonline.github.io/skills/conduct/'),
+    "Skill-Conduct.md must point at the developer skill's own site page");
+  assert.ok(arrange.includes('https://tqnonline.github.io/skills/arrange/'),
+    "Skill-Arrange.md must point at the pm skill's own site page");
+  assert.ok(/Promoted skills: 16\./.test(read('wiki/Group-PM.md')),
+    'Group-PM.md must count all 16 pm skills, including Arrange');
+  assert.ok(/Promoted skills: 15\./.test(read('wiki/Group-Developer.md')),
+    'Group-Developer.md must count all 15 developer skills, including Conduct');
   assert.ok(read('skills/pm/README.md').includes('Sixteen'), 'pm/README.md charter must say sixteen skills');
 });

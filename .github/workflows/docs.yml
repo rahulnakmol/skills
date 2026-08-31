@@ -52,8 +52,9 @@ jobs:
       - name: Generate skills catalog data
         run: node scripts/gen-docs-data.mjs
 
-      # Every example on the site is a real, re-run command; a broken one
-      # fails the build here rather than shipping a page that lies.
+      # Examples bound to repository fixtures and scripts are re-run by the
+      # test suite; a broken one fails the build here rather than shipping
+      # a page that has drifted from its source.
       - name: Run test suite
         run: node scripts/run-tests.mjs
 

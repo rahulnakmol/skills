@@ -13,7 +13,7 @@ lens:
     who: 'You need pre-merge confidence on a pull request and CI is not available where you are working.'
     value: 'You get the same isolated build-test-execute pass CI would run, evaluated against the pull request''s own stack base, with existing check runs reused instead of duplicated.'
   leader:
-    who: 'You are accountable for what gets merged into your team''s main branch.'
+    who: 'You own what lands on your team''s main branch, and you do not read every diff yourself.'
     value: 'A red build, a failing coverage floor, or a missing acceptance-criterion test blocks the review outright; nothing merges on an unverified claim.'
   csuite:
     who: 'You need pre-merge verification that runs the same way whether a person or an agent is watching.'

@@ -7,8 +7,8 @@ group: pm
 invocation: model-invoked
 lens:
   novice:
-    who: "You've read the discovery analysis and now have to turn stakeholder notes into personas and a process diagram, and you're not sure how detailed either needs to be."
-    value: "Map fixes the shape for you — three to six named personas, current and target flows with pain points marked red and improvements marked green — so you're not guessing at the right level of detail."
+    who: "You have read the discovery analysis and now have to turn stakeholder notes into personas and a process diagram, and you are not sure how detailed either needs to be."
+    value: "Map fixes the shape for you — three to six named personas, current and target flows with pain points marked red and improvements marked green — so you are not guessing at the right level of detail."
   practitioner:
     who: "You draft Business Understanding Documents every quarter, and the diagrams are usually the part reviewers actually read."
     value: "The one-figure-one-claim rule keeps a flow diagram from trying to carry two arguments at once, which is usually why a diagram gets questioned in the room instead of approved."
@@ -56,7 +56,7 @@ One argument. One figure.</code></pre>
 
 ## In practice
 
-Map has no fixture to replay, so this is the shape its own output contract requires, filled in for an illustrative initiative rather than a captured run:
+Map has no fixture to replay, so what follows is the shape its own output contract requires, filled in for one illustrative process rather than a captured run:
 
 <pre><code><span class="tok-comment"># specs/checkout-understanding-doc.md (excerpt)</span>
 Persona: AR Reconciliation Analyst (end user, product hat)

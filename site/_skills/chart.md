@@ -7,7 +7,7 @@ group: pm
 invocation: user-invoked
 lens:
   novice:
-    who: "You've inherited an initiative with no plan, just a folder of notes and a sponsor asking when it will be done."
+    who: "You have inherited an initiative with no plan, just a folder of notes and a sponsor asking when it will be done."
     value: "Chart turns that into a tracker issue with a stated destination and a first pass of decisions to make, so you start from a plan instead of a blank page."
   practitioner:
     who: "You run initiatives that outlast any single agent session, and your plan currently lives half in your head and half in stale notes."
@@ -56,7 +56,7 @@ usually depends on the first.</code></pre>
 
 ## In practice
 
-Chart has no fixture to replay, so this is the shape its own output contract requires, filled in for an illustrative initiative rather than a captured run:
+Chart has no fixture to replay, so what follows is the shape its own output contract requires, filled in for one illustrative charted effort rather than a captured run:
 
 <pre><code>chart: specs/chart/checkout-chart.md
 destination: "Decide the payments migration path and get every
