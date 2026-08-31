@@ -26,20 +26,21 @@ function parseFrontmatter(body) {
   return { name, description };
 }
 
-// The H1 states invocation explicitly, e.g. "# Grit (user-invoked)" or
-// "# Architect (mixed-invoked specialist)". A handful of charter/overlay
-// skills (e.g. responsible-ai-governance) carry no marker at all — those
-// fall back to 'unspecified' rather than failing the build. Detection is
-// scoped to the H1 line only — searching the whole body is unsafe, since a
-// skill's own doc can mention another skill's invocation in passing (e.g.
-// conduct's SKILL.md says "sdlc — user-invoked gated loop" about a skill
-// it routes to, not about itself).
+// The H1 states invocation explicitly, e.g. "# Grit (user-invoked)".
+// Detection is scoped to the H1 line only — searching the whole body is
+// unsafe, since a skill's own doc can mention another skill's invocation
+// in passing (e.g. conduct's SKILL.md says "sdlc — user-invoked gated
+// loop" about a skill it routes to, not about itself).
+// The invocation axis has exactly two values (.agents/invocation.md,
+// CLAUDE.md: user-invoked or model-invoked, never mixed). Four SKILL.md
+// files still carry a legacy "(mixed-invoked specialist)" H1 and one
+// carries no marker; their "When to invoke" sections describe model
+// invocation, so both cases normalize to model-invoked here until the
+// H1s are corrected at the source.
 function detectInvocation(body) {
   const h1 = body.match(/^#\s+.+$/m)?.[0] ?? '';
   if (/\buser-invoked\b/.test(h1)) return 'user-invoked';
-  if (/\bmodel-invoked\b/.test(h1)) return 'model-invoked';
-  if (/\bmixed-invoked\b/.test(h1)) return 'mixed-invoked';
-  return 'unspecified';
+  return 'model-invoked';
 }
 
 const byGroup = new Map();
