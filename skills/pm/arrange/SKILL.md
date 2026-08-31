@@ -1,6 +1,6 @@
 ---
 name: arrange
-description: Model-invoked execution-shape routing for the pm group. Choose grill-loop, parallel-fan, or hybrid before a discovery, case, TOM, or PRD round begins. Use for multi-round pm work beyond a single grill session.
+description: Model-invoked routing for product and program inquiry, where the work is questions and evidence rather than code. Decides whether a discovery, business case, target operating model, or PRD effort runs as a grill loop, a parallel fan of independent research, or a hybrid. Use before a multi-round effort begins. For routing software delivery instead, use conduct.
 ---
 
 # Arrange (model-invoked)
