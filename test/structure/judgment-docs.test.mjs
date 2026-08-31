@@ -4,21 +4,21 @@ import { read, headings, wordCount } from '../helpers.mjs';
 
 const SPECS = [
   {
-    file: 'skills/developer/impact/GRILL.md',
+    file: 'skills/core/GRILL.md',
     require: ['## Round protocol', '## Value lenses', '## Open-ended probing',
       '## Stop-anytime and the trade-off ledger', '## Exit criteria'],
     includes: ['3–5', 'Trade-offs', 'we stop here', 'sign-off'],
     minWords: 450,
   },
   {
-    file: 'skills/developer/impact/VALUE.md',
+    file: 'skills/core/VALUE.md',
     require: ['## Business value', '## Customer experience and delight',
       '## The do-nothing alternative', '## Governance triggers'],
     includes: ['responsible-ai-governance', 'measured', 'quantif'],
     minWords: 250,
   },
   {
-    file: 'skills/developer/orchestrate/RUBRIC.md',
+    file: 'skills/developer/conduct/RUBRIC.md',
     require: ['## Routing questions', '## Evidence', '## Failure signatures', '## Prohibited patterns'],
     includes: ['ComPilot', 'Agint', 'partition', 'lottery', 'single writer', 'human gate'],
     minWords: 350,

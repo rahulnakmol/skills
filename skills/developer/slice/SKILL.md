@@ -32,4 +32,4 @@ YAML or markdown backlog bundle ready for `raise`.
 
 ## Sibling skills
 
-- `impact`, `raise`, `orchestrate`
+- `impact`, `raise`, `conduct`

@@ -13,16 +13,16 @@ Route user intent to the right skill in the pm group.
 
 ## Procedure
 
-1. Classify intent: execution shape | constitution | discovery | mapping | operating model | epics | PRD authoring | PRD checking | PRD scoring | business case | roadmap | risk/status | benefits | leadership reporting | pressure-test
+1. Classify intent: execution shape | planning work too big for one session | constitution | discovery | mapping | operating model | epics | PRD authoring | PRD checking | PRD scoring | business case | roadmap | risk/status | benefits | leadership reporting | pressure-test
 2. Map to skill:
-   - "how should this run / grill-loop vs parallel research" → `orchestrate`
+   - "how should this run / grill-loop vs parallel research" → `arrange`
+   - "this is too big to plan in one go / where do we even start" → `chart`
    - practice or initiative grounding → `constitution`
    - problem discovery → `discover`
    - personas or process flows → `map`
    - target operating model → `tom-architect`
    - epic breakdown → `carve`
-   - PRD authoring → `prd-draft`
-   - PRD structural check → `prd-validate`
+   - PRD authoring, or a PRD structural check → `prd-draft`
    - PRD quality scoring → `prd-review`
    - investment justification → `case`
    - sequencing or PI planning → `roadmap`

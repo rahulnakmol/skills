@@ -2,14 +2,14 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { read, walk } from '../helpers.mjs';
 
-test('orchestrate GRAPH.md defines the human node type with owner, decision, and SLA', () => {
-  const body = read('skills/developer/orchestrate/GRAPH.md');
+test('conduct GRAPH.md defines the human node type with owner, decision, and SLA', () => {
+  const body = read('skills/developer/conduct/GRAPH.md');
   for (const marker of ['## Node types', 'type: human', 'owner:', 'decision:', 'sla_hours:', 'escalation'])
     assert.ok(body.includes(marker), `GRAPH.md missing "${marker}"`);
 });
 
-test('orchestrate SKILL.md output contract includes a human node and populated evidence', () => {
-  const body = read('skills/developer/orchestrate/SKILL.md');
+test('conduct SKILL.md output contract includes a human node and populated evidence', () => {
+  const body = read('skills/developer/conduct/SKILL.md');
   assert.ok(body.includes('type: human'), 'SKILL.md contract example must include a human node');
 });
 

@@ -4,17 +4,23 @@ Machine-checkable rules for humans and agents working in `tqnonline/skills`.
 
 ## Structure
 
-- Exactly five skill groups under `skills/`: `developer`, `pm`, `branding`, `writing`, `productivity`.
+- Exactly six skill groups under `skills/`: `core`, `developer`, `pm`, `branding`, `writing`, `productivity`.
 - **Promoted only** under `skills/`; non-promoted work lives in `drafts/`.
 - Every promoted skill appears in root `README.md` and `.claude-plugin/plugin.json`.
 - Drafts appear in neither README nor plugin manifest.
+
+## Group independence (ADR 0007)
+
+- Each group is independently installable. Any group may reference `core`; no group may reference any other group; `core` references no group.
+- Skill directory basenames are unique repository-wide — installation targets are one flat namespace in every supported tool.
+- Enforced by `test/structure/group-independence.test.mjs`: basename uniqueness, install-set integrity, and no cross-group path references.
 
 ## Skill contract
 
 - `SKILL.md` frontmatter `name` must equal the directory basename.
 - Invocation axis: each skill is **user-invoked** or **model-invoked**, never mixed.
 - `SKILL.md` ≤120 lines; no model IDs in `SKILL.md` (registry: `skills/developer/model-routing/models.md`).
-- Progressive disclosure: entry → `references/` → patterns/scripts on signal match only.
+- Progressive disclosure: `SKILL.md` is the entry point; its doctrine documents sit as flat siblings in the skill directory and are loaded only on a signal match. A `references/` subtree is optional, used where one skill carries a large pattern library.
 - Install wording: copy only from `.agents/install-block.md`.
 
 ## Adapters vs skills
@@ -31,7 +37,7 @@ Machine-checkable rules for humans and agents working in `tqnonline/skills`.
 ## Testing
 
 - Deterministic harness: node scripts/run-tests.mjs must pass; CI runs it on every push and PR.
-- Verification before completion: never report a task done from a green build alone; open the actual artifact and check it against the request, per `skills/developer/shakedown/VERIFICATION.md`.
+- Verification before completion: never report a task done from a green build alone; open the actual artifact and check it against the request, per `skills/core/VERIFICATION.md`.
 
 ## Sidecars
 
@@ -41,3 +47,9 @@ Machine-checkable rules for humans and agents working in `tqnonline/skills`.
 
 - `.agents/writing-docs.md`, `.agents/invocation.md`, ADRs under `.agents/adr/`.
 - Voice and tone for every document (`SKILL.md`, reference docs, README, wiki): simple American English, formal and professional, in the style of a fact-based news explainer (NPR, the New York Times) — never an opinion column, never marketing language. Full rule in `.agents/writing-docs.md`; every non-Claude agent tool reads the same rule from `AGENTS.md`.
+
+## Agent attribution
+
+- No agent attribution footers or watermarks in anything written to this repository or to GitHub. That covers commit messages, pull request titles and bodies, issue and review comments, and changesets: no "Generated with Claude Code", no "Co-Authored-By" trailer naming an agent, no session link.
+- The reasoning is that the record should carry what changed and why, not which tool typed it. Authorship of a change belongs to the person who requested and approved it.
+- A footer appended by the platform at publish time is outside an agent's control on creation; remove it by editing the body immediately afterward.

@@ -1,0 +1,53 @@
+# Reusable grit-gates workflow template.
+#
+# Ships dispatch-only so nothing runs until a maintainer opts in — running
+# `--status` needs no secret, but the trigger itself is still deliberately
+# not wired to every pull request by default. To run on every pull request,
+# replace the `on:` block with:
+#
+#   on:
+#     pull_request:
+#       types: [opened, synchronize, reopened]
+#
+# and pass the ledger path directly instead of the workflow_dispatch input.
+#
+# Note on --status: this workflow only ever runs gate-check.mjs --status.
+# --status never executes a CHECK command, approves an oracle, or writes to
+# the ledger — it reports what the ledger already records and exits 1 when
+# any gate is unmet. That is why this workflow needs no secret and no
+# approval store: there is nothing in --status mode that touches a
+# credential or makes a network call, because it runs nothing at all.
+name: grit-gates
+on:
+  workflow_dispatch:
+    inputs:
+      ledger:
+        description: 'Ledger file to check (GATES.md, or .grit/<scope>/GATES.md)'
+        required: false
+        type: string
+        default: 'GATES.md'
+
+permissions:
+  contents: read
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Locate gate-check.mjs
+        id: locate
+        run: |
+          FOUND=$(find .agents/skills .claude/skills skills -name gate-check.mjs 2>/dev/null | head -1)
+          if [ -z "$FOUND" ]; then
+            echo "::error::gate-check.mjs not found under .agents/skills, .claude/skills, or skills — is grit installed?"
+            exit 1
+          fi
+          echo "checker=$FOUND" >> "$GITHUB_OUTPUT"
+      - name: Lint the ledger
+        run: node "$(dirname '${{ steps.locate.outputs.checker }}')/gate-lint.mjs" "${{ inputs.ledger }}"
+      - name: Check gate status
+        run: node "${{ steps.locate.outputs.checker }}" --status "${{ inputs.ledger }}"

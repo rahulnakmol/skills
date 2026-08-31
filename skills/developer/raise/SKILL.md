@@ -30,4 +30,4 @@ List of issue URLs + label state `raised`.
 
 ## Sibling skills
 
-- `slice`, `orchestrate`, `sdlc`
+- `slice`, `conduct`, `sdlc`

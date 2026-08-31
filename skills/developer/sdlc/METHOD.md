@@ -91,6 +91,7 @@ For trivial low-risk work, passes may be compact but remain explicit mentally. F
 
 - Independent verifier checks changed source against SPEC-TS, design, acceptance, tests/build/runtime evidence, security, quality, operability, value and guardrails.
 - Source review alone yields source-level confidence, not tested/deployed/released proof.
+- Where a grit gate ledger exists for the slice, Gate 3 executes it: every gate's CHECK run, EXPECT compared, EVIDENCE recorded. An unmet gate is `BLOCK`; an abandoned gate is declared with its reason, never silently dropped.
 
 Each gate records `PASS`, `BLOCK`, `NEEDS_INPUT`, or `INSUFFICIENT_EVIDENCE` plus evidence IDs and owner. Model agreement never substitutes external evidence.
 

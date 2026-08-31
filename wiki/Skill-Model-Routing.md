@@ -6,7 +6,7 @@ Model routing resolves which model tier applies to a given task, so that no othe
 
 ## When to invoke
 
-- [Orchestrate](Skill-Orchestrate) is assigning a step, such as implementation, verification, architecture, or security.
+- [Conduct](Skill-Conduct) or [Arrange](Skill-Arrange) is assigning a step, such as implementation, verification, architecture, or security.
 - An adapter's instructions say to resolve the model through model routing.
 
 ## How it fits
@@ -19,7 +19,7 @@ Model routing is a thin skill that sits in front of the registry every other ski
 
 ## How to use
 
-Model routing is consulted, not driven: `orchestrate` calls it per node, and adapter stubs defer to it by name. When you need to know which model a role gets, read `models.md` directly — the registry is the answer; the skill is the disciplined way agents read it.
+Model routing is consulted, not driven: `conduct` calls it per node, `arrange` calls it per pm step, and adapter stubs defer to it by name. When you need to know which model a role gets, read `models.md` directly — the registry is the answer; the skill is the disciplined way agents read it.
 
 ## Best practices
 
@@ -29,4 +29,4 @@ Model routing is consulted, not driven: `orchestrate` calls it per node, and ada
 
 ## Sibling skills
 
-Model routing is consulted by [Orchestrate](Skill-Orchestrate) for every step in a graph, and its registry is kept current by [Update models](Skill-Update-Models).
+Model routing is consulted by [Conduct](Skill-Conduct) for every step in a graph and by [Arrange](Skill-Arrange) for every step in a pm round, and its registry is kept current by [Update models](Skill-Update-Models).

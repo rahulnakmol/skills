@@ -16,10 +16,10 @@ Any new failure mode this epic can introduce gets a runbook item: what the alert
 
 ## CI/CD and test coverage
 
-Test coverage for the epic's acceptance criteria, and any CI/CD changes the epic requires (new pipeline stage, new gate, new deployment target) are sliced as explicit items — never assumed to ride along for free with the feature work. The coverage floors and the FR/NFR traceability matrix each story's tests must satisfy are defined in `shakedown/COVERAGE.md`. On a greenfield repository, the first epic's lane also carries the delivery-pipeline bootstrap items from `deliver/REPO-SETUP.md`: GitHub Code Quality on its separate Actions path, `gh stack` tooling, the pickup-protocol labels, and the shakedown workflow — set up as tracked stories, not assumed.
+Test coverage for the epic's acceptance criteria, and any CI/CD changes the epic requires (new pipeline stage, new gate, new deployment target) are sliced as explicit items — never assumed to ride along for free with the feature work. The coverage floors and the FR/NFR traceability matrix each story's tests must satisfy are defined in `core/COVERAGE.md`. On a greenfield repository, the first epic's lane also carries the delivery-pipeline bootstrap items from `deliver/REPO-SETUP.md`: GitHub Code Quality on its separate Actions path, `gh stack` tooling, the pickup-protocol labels, and the shakedown workflow — set up as tracked stories, not assumed.
 
 ## Governance lane
 
 Whenever the parent PRD's risk and governance tier is `limited` or `high`, the operability lane also generates governance items: the audit trail, explainability hooks, and human-in-the-loop checkpoints required by `responsible-ai-governance`. These enter the backlog with their own tests, the same as any other operability item — a governance requirement satisfied only by after-the-fact logging has not actually been satisfied.
 
-Continuous-improvement items produced from `operate` and `assure` findings after release re-enter this lane the same way initial-slicing items do — the operability lane is where the improvement loop closes back into the backlog.
+Continuous-improvement items produced from `operate` findings after release re-enter this lane the same way initial-slicing items do — the operability lane is where the improvement loop closes back into the backlog.

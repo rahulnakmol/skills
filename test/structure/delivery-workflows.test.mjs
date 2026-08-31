@@ -85,6 +85,39 @@ test('OpenCode parity templates exist and every template validates', () => {
   assert.equal(validated.status, 0, `runner --validate failed:\n${validated.stderr}`);
 });
 
+// The lens roster is the one thing that drifts between engines: a lens added to a
+// Claude workflow is invisible to OpenCode users until its template gains the same
+// task. Claude declares lenses as `{ key: '<name>' }` entries; OpenCode declares them
+// as tasks in the `lenses` stage.
+const LENS_PARITY = [
+  { claude: 'adapters/claude/workflows/assess-work-item.js', opencode: 'tools/opencode-workflows/templates/assess.json' },
+  { claude: 'adapters/claude/workflows/shakedown-pr.js', opencode: 'tools/opencode-workflows/templates/shakedown.json' },
+];
+
+for (const { claude, opencode } of LENS_PARITY) {
+  test(`review lenses stay at parity between ${claude.split('/').pop()} and ${opencode.split('/').pop()}`, () => {
+    const claudeLenses = [...read(claude).matchAll(/\bkey:\s*'([a-z-]+)'/g)].map((match) => match[1]).sort();
+    assert.ok(claudeLenses.length >= 3, `${claude}: expected a lens roster, found ${claudeLenses.length}`);
+    const template = JSON.parse(read(opencode));
+    const opencodeLenses = template.tasks.filter((task) => task.stage === 'lenses').map((task) => task.id).sort();
+    assert.deepEqual(opencodeLenses, claudeLenses,
+      `lens drift: ${claude} runs [${claudeLenses}] but ${opencode} runs [${opencodeLenses}]. The README claims full parity on the OpenCode runner — port the lens or drop the claim.`);
+    const terminal = template.tasks.find((task) => task.id === template.terminal_task);
+    for (const lens of opencodeLenses)
+      assert.ok((terminal.depends_on ?? []).includes(lens),
+        `${opencode}: terminal task "${template.terminal_task}" must depend on the "${lens}" lens, or its findings never reach the verdict`);
+  });
+}
+
+test('assess verifies each lens as it lands rather than behind a barrier', () => {
+  const body = read('adapters/claude/workflows/assess-work-item.js');
+  assert.ok(/await pipeline\(\s*\n\s*LENSES,/.test(body),
+    'assess-work-item.js: pipeline the lenses into their own verification — a parallel() barrier makes every lens wait for the slowest before any refutation starts');
+  for (const marker of ["phase: 'Critique'", "phase: 'Verify'"])
+    assert.ok(body.includes(marker),
+      `assess-work-item.js: agents inside a pipeline need an explicit ${marker} — phase() is global state the stages race on`);
+});
+
 test('the pipeline launcher exists, is executable, and covers both engines', () => {
   const abs = join(root, 'scripts/pipeline.sh');
   assert.ok(existsSync(abs), 'missing scripts/pipeline.sh');

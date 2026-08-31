@@ -1,6 +1,6 @@
 # The 4D Diamond: Discover, Define, Design, Deliver
 
-A skill doing real work does not jump straight to implementation. It moves through four phases — Discover, Define, Design, Deliver — each building on what the last one baselined, self-maturing as it goes: what starts as a rough goal becomes a defined execution baseline, then a designed path with its tradeoffs made visible, then a delivered result checked against all three. Drawn as a diamond, the four phases sit at its four points, and the one baseline they mature together sits at the summit their four facets converge on and elevate — not just finished, but enriched and accomplished by every phase that fed into it. See [docs/assets/4d-diamond.svg](https://github.com/tqnonline/skills/blob/main/docs/assets/4d-diamond.svg). This is the shape `impact`, `architect`, `sdlc`, `deliver`, `assure`, `operate`, `maintain`, `safeguard`, and `shakedown` each run internally, threaded into their own procedures rather than replacing them.
+A skill doing real work does not jump straight to implementation. It moves through four phases — Discover, Define, Design, Deliver — each building on what the last one baselined, self-maturing as it goes: what starts as a rough goal becomes a defined execution baseline, then a designed path with its tradeoffs made visible, then a delivered result checked against all three. Drawn as a diamond, the four phases sit at its four points, and the one baseline they mature together sits at the summit their four facets converge on and elevate — not just finished, but enriched and accomplished by every phase that fed into it. See [docs/assets/4d-diamond.svg](https://github.com/tqnonline/skills/blob/main/docs/assets/4d-diamond.svg). This is the shape `impact`, `architect`, `sdlc`, `deliver`, `operate`, `safeguard`, and `shakedown` each run internally, threaded into their own procedures rather than replacing them.
 
 ## Discover
 
@@ -8,7 +8,7 @@ Establish what actually needs to be accomplished, from whoever is asking — an 
 
 ## Define
 
-Arrive at a baseline: what will be implemented, in what steps, and how it will execute — a decision the skill itself makes, or reaches together with the user, but never leaves implicit. This is where the execution shape gets chosen, not by intuition but by applying `orchestrate/RUBRIC.md`: loop when the work fits one artifact and one verifier, graph when there are independent workstreams or a high-consequence write needs its own human node, hybrid when neither cleanly fits. Be smart here — the shape is a routing decision with evidence behind it, not a default reached for out of habit. The baseline this phase produces is what `slice` turns into a work-item contract, and what a headless pod picks up cold.
+Arrive at a baseline: what will be implemented, in what steps, and how it will execute — a decision the skill itself makes, or reaches together with the user, but never leaves implicit. This is where the execution shape gets chosen, not by intuition but by applying `conduct/RUBRIC.md`: loop when the work fits one artifact and one verifier, graph when there are independent workstreams or a high-consequence write needs its own human node, hybrid when neither cleanly fits. Be smart here — the shape is a routing decision with evidence behind it, not a default reached for out of habit. The baseline this phase produces is what `slice` turns into a work-item contract, and what a headless pod picks up cold.
 
 ## Design
 
@@ -16,7 +16,7 @@ Design the optimal delivery path once the baseline exists: break a complex techn
 
 ## Deliver
 
-Deliver exactly what the Discover-Define-Design baseline described, with completeness — every acceptance criterion met, every coverage floor cleared, nothing quietly descoped along the way. `deliver`, `assure`, `operate`, `maintain`, and `shakedown` each close this phase from their own angle: release readiness, quality assurance, operational readiness, ongoing maintenance, and the pre-merge check. Completeness is checked, not assumed — the same verification-before-completion discipline `shakedown/VERIFICATION.md` already holds every PR to.
+Deliver exactly what the Discover-Define-Design baseline described, with completeness — every acceptance criterion met, every coverage floor cleared, nothing quietly descoped along the way. `deliver`, `operate`, and `shakedown` each close this phase from their own angle: release readiness; the post-release lane of operational readiness, quality assurance, and ongoing maintenance; and the pre-merge check. Completeness is checked, not assumed — the same verification-before-completion discipline `core/VERIFICATION.md` already holds every PR to.
 
 ## How this relates to the four gates
 

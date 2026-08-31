@@ -4,7 +4,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { root, read, wordCount } from '../helpers.mjs';
 
-const PM_ARCHITECTURE_PAGES = ['Architecture-PM-Journey', 'Architecture-PM-Orchestrate', 'Architecture-PM-System'];
+const PM_ARCHITECTURE_PAGES = ['Architecture-PM-Journey', 'Architecture-PM-Arrange', 'Architecture-PM-System'];
 
 test('the pm group has architecture pages at parity with the developer group, linked from Home', () => {
   const home = read('wiki/Home.md');
@@ -22,10 +22,10 @@ test('Architecture-PM-Journey mirrors Architecture-Role-Journey: a gate diagram 
     assert.ok(body.includes(marker), `Architecture-PM-Journey.md missing "${marker}"`);
 });
 
-test('Architecture-PM-Orchestrate mirrors Architecture-Loop-vs-Graph: maps to the pm rubric, not a substitute for it', () => {
-  const body = read('wiki/Architecture-PM-Orchestrate.md');
+test('Architecture-PM-Arrange mirrors Architecture-Loop-vs-Graph: maps to the pm rubric, not a substitute for it', () => {
+  const body = read('wiki/Architecture-PM-Arrange.md');
   for (const marker of ['grill-loop', 'parallel-fan', 'hybrid', 'RUBRIC.md'])
-    assert.ok(body.includes(marker), `Architecture-PM-Orchestrate.md missing "${marker}"`);
+    assert.ok(body.includes(marker), `Architecture-PM-Arrange.md missing "${marker}"`);
 });
 
 test('Architecture-PM-System covers the constitution hierarchy, DDDD, and the initiative-repo substrate', () => {
@@ -40,7 +40,7 @@ test('model-routing and update-models are described as serving every group, not 
     assert.ok(/every group|both groups|across groups|developer and pm/i.test(body),
       `${file}: must say explicitly that it serves more than the developer group`);
   }
-  assert.ok(read('skills/developer/model-routing/SKILL.md').includes('pm/orchestrate'),
+  assert.ok(read('skills/developer/model-routing/SKILL.md').includes('pm/arrange'),
     'model-routing/SKILL.md must name its pm group consumer');
 });
 

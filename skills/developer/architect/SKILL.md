@@ -32,4 +32,4 @@ Produce ADR-ready design pack: functional and non-functional requirements with t
 
 ## Sibling skills
 
-- `sdlc`, `orchestrate`, `slice`
+- `sdlc`, `conduct`, `slice`

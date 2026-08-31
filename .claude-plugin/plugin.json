@@ -8,7 +8,8 @@
   "license": "Apache-2.0",
   "workflows": "./adapters/claude/workflows",
   "skills": [
-    "skills/developer/orchestrate",
+    "skills/core/grit",
+    "skills/developer/conduct",
     "skills/developer/model-routing",
     "skills/developer/update-models",
     "skills/developer/impact",
@@ -19,20 +20,18 @@
     "skills/developer/architect",
     "skills/developer/safeguard",
     "skills/developer/deliver",
-    "skills/developer/assure",
     "skills/developer/operate",
-    "skills/developer/maintain",
     "skills/developer/shakedown",
     "skills/developer/ask-fde",
     "skills/developer/responsible-ai-governance",
-    "skills/pm/orchestrate",
+    "skills/pm/arrange",
+    "skills/pm/chart",
     "skills/pm/constitution",
     "skills/pm/discover",
     "skills/pm/map",
     "skills/pm/tom-architect",
     "skills/pm/carve",
     "skills/pm/prd-draft",
-    "skills/pm/prd-validate",
     "skills/pm/prd-review",
     "skills/pm/case",
     "skills/pm/roadmap",
@@ -41,6 +40,7 @@
     "skills/pm/report",
     "skills/pm/grill",
     "skills/pm/ask-pm",
-    "skills/branding/press"
+    "skills/branding/press",
+    "skills/productivity/brief"
   ]
 }

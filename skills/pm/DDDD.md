@@ -8,7 +8,7 @@ Establish what actually needs to be accomplished, from whoever is asking — an 
 
 ## Define
 
-Arrive at an aligned baseline — by the agent itself where the shape is obvious, or together with the user where it is not — of what will be produced and how the work will actually run to produce it. This is where `map`, `carve`, and `prd-draft` fix their manifest, their epic list, or their PRD as the thing everyone is now building against, and it is where the execution shape gets chosen: `orchestrate`'s rubric decides grill-loop, parallel-fan, or hybrid, the same "be smart, don't default" discipline the developer side applies to loop versus graph. A baseline reached without the routing decision made explicit is a draft pretending to be a plan.
+Arrive at an aligned baseline — by the agent itself where the shape is obvious, or together with the user where it is not — of what will be produced and how the work will actually run to produce it. This is where `map`, `carve`, and `prd-draft` fix their manifest, their epic list, or their PRD as the thing everyone is now building against, and it is where the execution shape gets chosen: `arrange`'s rubric decides grill-loop, parallel-fan, or hybrid, the same "be smart, don't default" discipline the developer side applies to loop versus graph. A baseline reached without the routing decision made explicit is a draft pretending to be a plan.
 
 ## Design
 
@@ -16,7 +16,7 @@ Design the optimal path to the outcome once the baseline exists: for `tom-archit
 
 ## Deliver
 
-Deliver exactly what the Discover-Define-Design baseline described, with completeness — every acceptance criterion in the PRD met, every benefit in `realize`'s register traced back to its projection, every leadership pack in `report` carrying the numbers it promised. Completeness here is checked the same way the developer side checks it: the pack or the register is opened and read against the baseline before it is called done, per `shakedown/VERIFICATION.md`'s rule applied on the business side.
+Deliver exactly what the Discover-Define-Design baseline described, with completeness — every acceptance criterion in the PRD met, every benefit in `realize`'s register traced back to its projection, every leadership pack in `report` carrying the numbers it promised. Completeness here is checked the same way the developer side checks it: the pack or the register is opened and read against the baseline before it is called done, per `core/VERIFICATION.md`'s rule applied on the business side.
 
 ## How this relates to the four gates
 

@@ -18,3 +18,7 @@ The full rule, with more detail, lives in [.agents/writing-docs.md](.agents/writ
 ## Repository rules
 
 See [CLAUDE.md](./CLAUDE.md) for the complete set of repository invariants: skill structure, the invocation axis, the model-provider policy, the testing harness, and the sidecar-generation rules. Every rule there applies regardless of which tool you are.
+
+## Agent attribution
+
+No agent attribution footers or watermarks in anything written to this repository or to GitHub — commit messages, pull request titles and bodies, issue and review comments, changesets. No "Generated with" line, no agent "Co-Authored-By" trailer, no session link. The record carries what changed and why, not which tool typed it.
