@@ -39,7 +39,7 @@
         "fetch"
       ],
       "mutates_workspace": false,
-      "prompt": "Critique the fetched work item against every section of the work-item contract (skills/developer/slice/WORK-ITEM-CONTRACT.md if present in this workspace, or the sections named in the item itself). A missing or vague goal, scope and file ownership, machine-checkable acceptance criteria, verification commands, or required governance section is a blocking finding. A ready item's acceptance criteria must also be gate-able per skills/developer/grit/LEDGER.md: each criterion expressible as a runnable CHECK command with an EXPECT success token, and together the criteria must cover the five dimensions (completeness, accuracy, value, efficiency, thoroughness) or explicitly name which do not apply. A criterion that cannot become a gate is a blocking finding. Inputs: {{dependencies}}"
+      "prompt": "Critique the fetched work item against every section of the work-item contract (skills/developer/slice/WORK-ITEM-CONTRACT.md if present in this workspace, or the sections named in the item itself). A missing or vague goal, scope and file ownership, machine-checkable acceptance criteria, verification commands, or required governance section is a blocking finding. A ready item's acceptance criteria must also be gate-able per skills/core/grit/LEDGER.md: each criterion expressible as a runnable CHECK command with an EXPECT success token, and together the criteria must cover the five dimensions (completeness, accuracy, value, efficiency, thoroughness) or explicitly name which do not apply. A criterion that cannot become a gate is a blocking finding. Inputs: {{dependencies}}"
     },
     {
       "id": "alignment",

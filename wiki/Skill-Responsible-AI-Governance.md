@@ -30,4 +30,4 @@ The overlay is triggered, not scheduled: `impact` screens for its triggers every
 
 ## Sibling skills
 
-This skill is called from [Impact](Skill-Impact), from [Slice](Skill-Slice), and from any specialist skill — Architect, Safeguard, Assure, Operate, Maintain, or Deliver — working in a regulated context.
+This skill is called from [Impact](Skill-Impact), from [Slice](Skill-Slice), and from any specialist skill — Architect, Safeguard, Deliver, or Operate — working in a regulated context.

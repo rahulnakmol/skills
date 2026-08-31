@@ -1,6 +1,6 @@
 # Skill: Grit
 
-**Group:** developer · **Invocation:** user-invoked · **Source:** [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/grit/SKILL.md)
+**Group:** core · **Invocation:** user-invoked · **Source:** [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/core/grit/SKILL.md)
 
 Grit holds substantial work to an acceptance-gate ledger written before implementation begins. Each gate names one observable outcome, the command that checks it, and the output that counts as success; the evidence is recorded when the command runs. This turns "done" into a measured claim rather than a reported one, and it makes an unfinished piece of work visible instead of leaving it to be discovered later.
 
@@ -20,11 +20,11 @@ Grit's scripts are adapted from [unlazy](https://github.com/Leonxlnx/unlazy), Co
 
 ## Key references
 
-- [LEDGER.md](https://github.com/tqnonline/skills/blob/main/skills/developer/grit/LEDGER.md) defines the gate contract and the five dimensions every gate is tagged with: completeness, accuracy, business value met, efficiency, and thoroughness.
-- [METHOD.md](https://github.com/tqnonline/skills/blob/main/skills/developer/grit/METHOD.md) covers the verification depth tree, the rubric that selects a depth of five to ten layers for substantial work, and the four implementation passes.
-- [AUDIT.md](https://github.com/tqnonline/skills/blob/main/skills/developer/grit/AUDIT.md) defines the final audit and the rules for abandoning a gate openly.
-- [HOOKS.md](https://github.com/tqnonline/skills/blob/main/skills/developer/grit/HOOKS.md) covers enforcement on Claude Code, OpenCode, GitHub Copilot, Codex, and Cursor, plus the continuous integration backstop.
-- [grit-gates.yml](https://github.com/tqnonline/skills/blob/main/skills/developer/grit/grit-gates.yml) is the reusable Action template, shipped dispatch-only so an adopting repository opts in deliberately.
+- [LEDGER.md](https://github.com/tqnonline/skills/blob/main/skills/core/grit/LEDGER.md) defines the gate contract and the five dimensions every gate is tagged with: completeness, accuracy, business value met, efficiency, and thoroughness.
+- [METHOD.md](https://github.com/tqnonline/skills/blob/main/skills/core/grit/METHOD.md) covers the verification depth tree, the rubric that selects a depth of five to ten layers for substantial work, and the four implementation passes.
+- [AUDIT.md](https://github.com/tqnonline/skills/blob/main/skills/core/grit/AUDIT.md) defines the final audit and the rules for abandoning a gate openly.
+- [HOOKS.md](https://github.com/tqnonline/skills/blob/main/skills/core/grit/HOOKS.md) covers enforcement on Claude Code, OpenCode, GitHub Copilot, Codex, and Cursor, plus the continuous integration backstop.
+- [grit-gates.yml](https://github.com/tqnonline/skills/blob/main/skills/core/grit/grit-gates.yml) is the reusable Action template, shipped dispatch-only so an adopting repository opts in deliberately.
 
 ## Use cases
 
@@ -55,4 +55,4 @@ Invoke `/grit` on work substantial enough to warrant a ledger, and the skill wri
 
 ## Sibling skills
 
-Grit makes [Shakedown](Skill-Shakedown)'s verification doctrine runnable, supplies the evidence [SDLC](Skill-SDLC) records at its outcome gate, and gates the acceptance criteria [Slice](Skill-Slice) writes into every work item. [Orchestrate](Skill-Orchestrate) keeps sole authority over execution shape; grit governs only how finely verification is decomposed.
+Grit makes [Shakedown](Skill-Shakedown)'s verification doctrine runnable, supplies the evidence [SDLC](Skill-SDLC) records at its outcome gate, and gates the acceptance criteria [Slice](Skill-Slice) writes into every work item. Each group's own routing skill — [Conduct](Skill-Conduct) in the developer group, [Arrange](Skill-Arrange) in pm — keeps sole authority over execution shape; grit governs only how finely verification is decomposed.

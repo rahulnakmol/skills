@@ -9,7 +9,7 @@ Score a PRD's ambition and completeness — the score informs, a human approves.
 
 ## When to invoke
 
-- A PRD has passed `prd-validate`
+- A PRD has passed the structural validation `prd-draft` runs (`prd-draft/VALIDATION.md`)
 - The user asks to review, assess, score, or rate a PRD's quality or ambition
 
 ## Procedure
@@ -31,4 +31,4 @@ Score a PRD's ambition and completeness — the score informs, a human approves.
 
 ## Sibling skills
 
-Reads from `prd-validate`. Its score is one input to the human decision at the Quality gate (`GATES.md`); approval stays human even at a high score.
+Reads from `prd-draft`, after that skill's structural validation pass returns PASS or PASS WITH WARNINGS. Its score is one input to the human decision at the Quality gate (`GATES.md`); approval stays human even at a high score.

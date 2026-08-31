@@ -20,8 +20,8 @@ function candidatePaths() {
   if (process.env.GRIT_SKILL_DIR) {
     candidates.push(join(process.env.GRIT_SKILL_DIR, "scripts", "stop-hook.mjs"));
   }
-  // Repo layout: adapters/claude/hooks/ -> skills/developer/grit/scripts/
-  candidates.push(join(here, "..", "..", "..", "skills", "developer", "grit", "scripts", "stop-hook.mjs"));
+  // Repo layout: adapters/claude/hooks/ -> skills/core/grit/scripts/
+  candidates.push(join(here, "..", "..", "..", "skills", "core", "grit", "scripts", "stop-hook.mjs"));
   // Common installed skill roots.
   for (const skillsRoot of [
     join(homedir(), ".claude", "skills"),

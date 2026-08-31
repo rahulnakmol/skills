@@ -4,7 +4,7 @@ A Claude Code Stop hook that keeps a session from ending while its `grit` gate l
 
 ## What the hook does
 
-`stop-hook.mjs` in this directory is a thin, zero-dependency launcher. It does not contain the checking logic itself; it locates the working implementation vendored at `skills/developer/grit/scripts/stop-hook.mjs` and delegates to it, passing stdin and the command-line arguments through unchanged and exiting with whatever code the delegate returns. Keeping one implementation avoids a second copy drifting out of sync with the first.
+`stop-hook.mjs` in this directory is a thin, zero-dependency launcher. It does not contain the checking logic itself; it locates the working implementation vendored at `skills/core/grit/scripts/stop-hook.mjs` and delegates to it, passing stdin and the command-line arguments through unchanged and exiting with whatever code the delegate returns. Keeping one implementation avoids a second copy drifting out of sync with the first.
 
 On each Stop event, the delegate:
 

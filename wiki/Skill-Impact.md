@@ -15,8 +15,8 @@ Impact is the inception gate in the [role journey](Architecture-Role-Journey), t
 
 ## Key references
 
-- [GRILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/impact/GRILL.md) describes the round protocol, the four value lenses applied in every round, the open-ended probing that looks for what a narrower scope might miss, and the trade-off ledger a user's decision to stop is recorded in.
-- [VALUE.md](https://github.com/tqnonline/skills/blob/main/skills/developer/impact/VALUE.md) covers business value, customer experience and delight, the alternative of doing nothing, and the triggers that call for a governance review.
+- [GRILL.md](https://github.com/tqnonline/skills/blob/main/skills/core/GRILL.md) describes the round protocol, the four value lenses applied in every round, the open-ended probing that looks for what a narrower scope might miss, and the trade-off ledger a user's decision to stop is recorded in.
+- [VALUE.md](https://github.com/tqnonline/skills/blob/main/skills/core/VALUE.md) covers business value, customer experience and delight, the alternative of doing nothing, and the triggers that call for a governance review.
 - [PRD-TEMPLATE.md](https://github.com/tqnonline/skills/blob/main/skills/developer/impact/PRD-TEMPLATE.md) defines the PRD's shape, capped at eight pages, including its Risk and governance tier field.
 - [GATES.md](https://github.com/tqnonline/skills/blob/main/skills/developer/impact/GATES.md) defines Gates G0 through G3.
 

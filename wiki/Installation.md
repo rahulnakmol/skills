@@ -13,7 +13,7 @@ Each supported tool has its own additional setup step beyond the universal `.age
 
 ## Completion hooks, on request
 
-`grit`'s stop hook for Claude Code is installed separately, through the hooks target of `scripts/install-adapters.sh`, and is deliberately excluded from the default `all` target. A hook that can block a session from ending is a change to how the tool behaves, so it is adopted explicitly rather than arriving with everything else. Preview it with `--dry-run` first, and remove it with the installer's uninstall flag, which takes out only its own entry and leaves any sibling hooks in place. `skills/developer/grit/HOOKS.md` covers the equivalent enforcement on the other tools.
+`grit`'s stop hook for Claude Code is installed separately, through the hooks target of `scripts/install-adapters.sh`, and is deliberately excluded from the default `all` target. A hook that can block a session from ending is a change to how the tool behaves, so it is adopted explicitly rather than arriving with everything else. Preview it with `--dry-run` first, and remove it with the installer's uninstall flag, which takes out only its own entry and leaves any sibling hooks in place. `skills/core/grit/HOOKS.md` covers the equivalent enforcement on the other tools.
 
 ## Validate
 

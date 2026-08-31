@@ -2,7 +2,7 @@
 
 **Group:** pm · **Invocation:** user-invoked · **Source:** [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/pm/grill/SKILL.md)
 
-Grill is the interrogation loop that lets a PM artifact earn the right to advance — plain themed rounds, grill-with-docs mode that cites the evidence corpus, and provoke mode that hands back intuition-agent hypotheses pushed toward star 7 or star 8 ambition. It shares its round protocol with the developer group's `impact/GRILL.md` by direct reference.
+Grill is the interrogation loop that lets a PM artifact earn the right to advance — plain themed rounds, grill-with-docs mode that cites the evidence corpus, and provoke mode that hands back intuition-agent hypotheses pushed toward star 7 or star 8 ambition. It shares its round protocol with the developer group's `core/GRILL.md` by direct reference.
 
 ## When to invoke
 
@@ -16,7 +16,7 @@ Grill is threaded through `discover`, `case`, `carve`, and `prd-draft` rather th
 ## Key references
 
 - [GRILL-PM.md](https://github.com/tqnonline/skills/blob/main/skills/pm/grill/GRILL-PM.md) covers the round protocol, grill-with-docs, provoke, persona question banks up to Chief Business Transformation Officer, and exit criteria.
-- [impact/GRILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/impact/GRILL.md) is the shared round-protocol source.
+- [core/GRILL.md](https://github.com/tqnonline/skills/blob/main/skills/core/GRILL.md) is the shared round-protocol source.
 
 ## How to use
 

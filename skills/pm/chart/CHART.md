@@ -62,7 +62,7 @@ The ready set is the edge of the plan: the decisions that can be taken right now
 
 ## Where the chart lives
 
-Use the tracker the initiative already uses, following the same tracker documents `raise` uses: `skills/developer/raise/trackers/github.md`, `linear.md`, or `ado.md`. Three operations differ by tracker and should be read there before charting: how a child issue is created, how a blocking relationship is expressed, and how the ready set is queried.
+Use the tracker the initiative already uses — GitHub, Linear, or Azure DevOps. Three operations differ by tracker and should be settled from that tracker's own documentation before charting: how a child issue is created, how a blocking relationship is expressed, and how the ready set is queried.
 
 Prefer the tracker's native blocking relationship over a convention written into a ticket body. Native blocking is drawn in the tracker's own views, so a stakeholder sees what is takeable without opening the chart, and the ready set can be queried rather than assembled by hand.
 

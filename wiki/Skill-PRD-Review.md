@@ -6,7 +6,7 @@ PRD Review scores a validated PRD against the 11-Star Experience Framework: a qu
 
 ## When to invoke
 
-- A PRD has passed `prd-validate`.
+- A PRD has passed the structural validation `prd-draft` runs.
 - The user asks to review, assess, score, or rate a PRD's quality or ambition.
 
 ## How it fits
@@ -19,7 +19,7 @@ PRD Review's score is one input to the human decision at the Quality gate — ne
 
 ## How to use
 
-Run PRD Review after `prd-validate` passes. It maps every feature to a star level, traces the customer journey, scores the seven dimensions, and produces prioritized P0-P3 improvement suggestions — each naming what to change, why, and the expected star-level impact.
+Run PRD Review after the structural validation in `prd-draft` passes. It maps every feature to a star level, traces the customer journey, scores the seven dimensions, and produces prioritized P0-P3 improvement suggestions — each naming what to change, why, and the expected star-level impact.
 
 ## Best practices
 
@@ -29,4 +29,4 @@ Run PRD Review after `prd-validate` passes. It maps every feature to a star leve
 
 ## Sibling skills
 
-Reads from `prd-validate`. Informs the human decision at the Quality gate.
+Reads from [PRD Draft](Skill-PRD-Draft), after its structural validation passes. Informs the human decision at the Quality gate.

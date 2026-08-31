@@ -6,7 +6,7 @@ monorepo, distributed under the Apache License 2.0.
 
 ---
 
-Portions of skills/developer/grit/scripts/ and adapters/claude/hooks/ are
+Portions of skills/core/grit/scripts/ and adapters/claude/hooks/ are
 adapted from unlazy (https://github.com/Leonxlnx/unlazy), Copyright (c) 2026
 Leonxlnx, distributed under the MIT License:
 

@@ -31,4 +31,4 @@ The artifact updated in place with captured answers, plus a Trade-offs record of
 
 ## Sibling skills
 
-Threaded through `discover`, `case`, `carve`, and `prd-draft`. Shares its round protocol with the developer group's `impact/GRILL.md`.
+Threaded through `discover`, `case`, `carve`, and `prd-draft`. Shares its round protocol with the developer group's `core/GRILL.md`.

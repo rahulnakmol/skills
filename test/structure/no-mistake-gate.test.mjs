@@ -4,14 +4,14 @@ import { read, headings, wordCount } from '../helpers.mjs';
 
 const DOCTRINE = [
   {
-    file: 'skills/developer/shakedown/COVERAGE.md',
+    file: 'skills/core/COVERAGE.md',
     require: ['## The FR/NFR traceability matrix', '## Coverage floors', '## Non-functional use cases',
       '## Right-sized verification'],
     includes: ['85-90%', '75-80%', 'business-capability', 'integration', 'model-routing', 'token'],
     minWords: 300,
   },
   {
-    file: 'skills/developer/shakedown/VERIFICATION.md',
+    file: 'skills/core/VERIFICATION.md',
     require: ['## Open the artifact', '## Absence of error is not evidence', '## Report only what you found',
       '## The pipeline shape', '## Auto-fix versus escalate'],
     includes: ['disposable', 'worktree', 'review', 'lint', 'unfinished', 'no-mistakes'],
@@ -71,6 +71,6 @@ test('the no-mistake gate is threaded through the pipeline, not left optional', 
 });
 
 test('no skill ships an empty evidence field in the new doctrine', () => {
-  for (const file of ['skills/developer/shakedown/COVERAGE.md', 'skills/developer/shakedown/VERIFICATION.md'])
+  for (const file of ['skills/core/COVERAGE.md', 'skills/core/VERIFICATION.md'])
     assert.ok(!read(file).includes('evidence: []'), `${file}: must not ship an empty evidence example`);
 });

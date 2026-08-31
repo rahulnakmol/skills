@@ -16,7 +16,7 @@ Apply in order — first hit wins, do not keep evaluating once a rule matches:
 
 ## Depth of verification, not shape of execution
 
-`orchestrate` decides execution shape — loop, graph, or hybrid. `grit` (`grit/METHOD.md`, `grit/LEDGER.md`) decides verification depth — how finely "done" is split into gates, from a flat checklist up to a tree of five to ten layers for substantial work. The two are separate axes, and this rubric keeps sole authority over the first.
+`conduct` decides execution shape — loop, graph, or hybrid. `grit` (`grit/METHOD.md`, `grit/LEDGER.md`) decides verification depth — how finely "done" is split into gates, from a flat checklist up to a tree of five to ten layers for substantial work. The two are separate axes, and this rubric keeps sole authority over the first.
 
 A gate is a ledger row: a line of criteria to check something against, costing little beyond the check itself. A node is an agent: a dispatch that consumes a context window and tokens end to end. Deepening a ledger from five layers to ten adds rows to verify against; it does not add agents to run the work. That is why a deep ledger never trips the overhead rules above — "count tokens, not agents" and "the graph earns itself, or it is overhead" are both agent-cost rules, and a ledger's depth is not an agent cost. The routing questions are unchanged by any of this: a graph still has to earn itself on independence, self-review contamination, durability, or consequence, exactly as before. A hard verification tree bolted onto a task with one clean verifier is still, by question 2, a loop.
 

@@ -11,7 +11,7 @@ SDLC runs the full gated software delivery loop for one scoped change or work it
 
 ## How it fits
 
-SDLC carries out the Implementation stage of the [role journey](Architecture-Role-Journey), and is the skill that [Orchestrate](Skill-Orchestrate) most often routes work into once a mode has been decided. It never runs on a work item that has not cleared the pickup protocol described in [WORK-ITEM-CONTRACT.md](https://github.com/tqnonline/skills/blob/main/skills/developer/slice/WORK-ITEM-CONTRACT.md); an item still at `raised` or `critiqued` receives a review, not an implementation.
+SDLC carries out the Implementation stage of the [role journey](Architecture-Role-Journey), and is the skill that [Conduct](Skill-Conduct) most often routes work into once a mode has been decided. It never runs on a work item that has not cleared the pickup protocol described in [WORK-ITEM-CONTRACT.md](https://github.com/tqnonline/skills/blob/main/skills/developer/slice/WORK-ITEM-CONTRACT.md); an item still at `raised` or `critiqued` receives a review, not an implementation.
 
 ## Key references
 
@@ -31,4 +31,4 @@ Run `/sdlc` on a scoped change or on a work item whose label is `ready`. In the 
 
 ## Sibling skills
 
-SDLC is routed into by [Orchestrate](Skill-Orchestrate). It calls [Safeguard](Skill-Safeguard), [Assure](Skill-Assure), [Deliver](Skill-Deliver), and [Operate](Skill-Operate) at their respective gates, and its output is checked before merge by [Shakedown](Skill-Shakedown).
+SDLC is routed into by [Conduct](Skill-Conduct). It calls [Safeguard](Skill-Safeguard), [Deliver](Skill-Deliver), and [Operate](Skill-Operate) at their respective gates, and its output is checked before merge by [Shakedown](Skill-Shakedown).

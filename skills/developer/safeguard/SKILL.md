@@ -30,4 +30,4 @@ Threat model summary, findings severity, remediation backlog or fixes per policy
 
 ## Sibling skills
 
-- `sdlc`, `orchestrate`, `slice`
+- `sdlc`, `conduct`, `slice`

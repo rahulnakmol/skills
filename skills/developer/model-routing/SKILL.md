@@ -36,5 +36,5 @@ rationale: multi-file API change
 ## Sibling skills
 
 - `update-models` — human curation PRs to `models.md`
-- `orchestrate` — consumes routing for each graph node
-- `pm/orchestrate` — the pm group's own execution-shape router, resolving grill-loop, parallel-fan, and hybrid steps through this same registry
+- `conduct` — consumes routing for each graph node
+- `pm/arrange` — the pm group's own execution-shape router, resolving grill-loop, parallel-fan, and hybrid steps through this same registry
