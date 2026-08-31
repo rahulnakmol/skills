@@ -146,6 +146,15 @@ for (const testCase of cases) {
   );
 }
 
+// A partial run does not get to overwrite a full scorecard. Scoring one case
+// and writing it where the baseline lives would replace a thirty-five case
+// record with a one case record and read as a complete result afterwards.
+if (OPTIONS.only && !OPTIONS.out) {
+  console.log(`\nrouting-eval: ${results.length - failed}/${results.length} case at or above ${OPTIONS.threshold * 100}% over ${OPTIONS.runs} runs`);
+  console.log('routing-eval: single-case run, no scorecard written. Pass --out to record one.');
+  process.exit(failed ? 1 : 0);
+}
+
 const stamp = new Date().toISOString().slice(0, 10);
 const scorecard = {
   date: stamp,

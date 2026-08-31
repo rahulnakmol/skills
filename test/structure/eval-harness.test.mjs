@@ -91,3 +91,26 @@ test('the eval workflow cannot start itself on a pull request', () => {
   assert.match(body, /workflow_dispatch:/, 'the eval must be runnable on demand');
   assert.match(body, /schedule:/, 'the eval must also run on a schedule so regressions surface without anyone asking');
 });
+
+test('a single-case run does not overwrite the full scorecard', () => {
+  // Scoring one case and writing it where the baseline lives would replace a
+  // whole-catalog record with a one-line one, and the file would still read as
+  // a complete result afterwards.
+  const runner = read(RUNNER);
+  assert.match(runner, /OPTIONS\.only && !OPTIONS\.out/,
+    'the runner must refuse to write the default scorecard path for a single-case run');
+  const help = spawnSync(process.execPath, [join(root, RUNNER), '--help'], { encoding: 'utf8' });
+  assert.equal(help.status, 0);
+});
+
+test('the committed baseline scorecard covers the whole table', () => {
+  const dir = join(root, 'test/eval/results');
+  const cards = readdirSync(dir).filter((f) => f.endsWith('.json'));
+  assert.ok(cards.length, 'at least one scorecard must be committed as a baseline');
+  const total = cases().length;
+  for (const card of cards) {
+    const data = JSON.parse(read(join('test/eval/results', card)));
+    assert.equal(data.cases, total,
+      `${card} records ${data.cases} of ${total} cases. A partial scorecard in the baseline directory reads as a complete result and hides what was never measured.`);
+  }
+});
