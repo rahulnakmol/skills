@@ -49,7 +49,7 @@ for (const spec of DOCTRINE) {
 }
 
 test('DDDD is threaded through the real-work skills on both sides, not left optional', () => {
-  const DEV_IN_SCOPE = ['impact', 'architect', 'safeguard', 'sdlc', 'deliver', 'assure', 'operate', 'maintain', 'shakedown'];
+  const DEV_IN_SCOPE = ['impact', 'architect', 'safeguard', 'sdlc', 'deliver', 'operate', 'shakedown'];
   const PM_IN_SCOPE = ['discover', 'map', 'tom-architect', 'carve', 'prd-draft', 'case', 'roadmap', 'realize', 'report'];
   for (const name of DEV_IN_SCOPE)
     assert.ok(read(`skills/developer/${name}/SKILL.md`).includes('DDDD.md'),
@@ -103,5 +103,5 @@ test('the two routing skills have separate wiki pages, one per group, and neithe
   assert.ok(read('wiki/Group-PM.md').includes('[Arrange](Skill-Arrange)'), 'Group-PM.md must list Arrange');
   assert.ok(read('wiki/Group-Developer.md').includes('[Conduct](Skill-Conduct)'),
     'Group-Developer.md must list Conduct');
-  assert.ok(read('skills/pm/README.md').includes('Seventeen'), 'pm/README.md charter must say seventeen skills');
+  assert.ok(read('skills/pm/README.md').includes('Sixteen'), 'pm/README.md charter must say sixteen skills');
 });

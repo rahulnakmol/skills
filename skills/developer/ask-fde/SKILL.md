@@ -22,8 +22,7 @@ Route user intent to the right skill in this monorepo.
    - design → `architect`
    - security → `safeguard`
    - release → `deliver` + `shakedown`
-   - quality → `assure`
-   - production → `operate` / `maintain`
+   - production, reliability, quality, or maintenance → `operate`
    - models → `update-models` / `model-routing`
    - governance → `responsible-ai-governance`
    - PDF → `press`

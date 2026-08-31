@@ -1,6 +1,6 @@
 # Architecture: SDLC system
 
-This page describes the gated delivery system that the [SDLC](Skill-SDLC) skill runs, and that the specialist charters — [Architect](Skill-Architect), [Safeguard](Skill-Safeguard), [Deliver](Skill-Deliver), [Assure](Skill-Assure), [Operate](Skill-Operate), and [Maintain](Skill-Maintain) — plug into.
+This page describes the gated delivery system that the [SDLC](Skill-SDLC) skill runs, and that the specialist charters — [Architect](Skill-Architect), [Safeguard](Skill-Safeguard), [Deliver](Skill-Deliver), and [Operate](Skill-Operate) — plug into.
 
 The system is built on a single record called the SPEC-TS ledger: Scope, Product requirements, Engineering constraints, Components, Trade-offs, and Success metrics. This ledger is built once and maintained across the whole journey, starting with the PRD in [Impact](Skill-Impact) and continuing through the evidence recorded at the final release gate. The field-by-field detail is in [METHOD.md](https://github.com/tqnonline/skills/blob/main/skills/developer/sdlc/METHOD.md).
 

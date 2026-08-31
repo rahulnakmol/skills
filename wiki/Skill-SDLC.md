@@ -31,4 +31,4 @@ Run `/sdlc` on a scoped change or on a work item whose label is `ready`. In the 
 
 ## Sibling skills
 
-SDLC is routed into by [Conduct](Skill-Conduct). It calls [Safeguard](Skill-Safeguard), [Assure](Skill-Assure), [Deliver](Skill-Deliver), and [Operate](Skill-Operate) at their respective gates, and its output is checked before merge by [Shakedown](Skill-Shakedown).
+SDLC is routed into by [Conduct](Skill-Conduct). It calls [Safeguard](Skill-Safeguard), [Deliver](Skill-Deliver), and [Operate](Skill-Operate) at their respective gates, and its output is checked before merge by [Shakedown](Skill-Shakedown).

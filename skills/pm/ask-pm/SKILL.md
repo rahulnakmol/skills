@@ -22,8 +22,7 @@ Route user intent to the right skill in the pm group.
    - personas or process flows → `map`
    - target operating model → `tom-architect`
    - epic breakdown → `carve`
-   - PRD authoring → `prd-draft`
-   - PRD structural check → `prd-validate`
+   - PRD authoring, or a PRD structural check → `prd-draft`
    - PRD quality scoring → `prd-review`
    - investment justification → `case`
    - sequencing or PI planning → `roadmap`

@@ -10,9 +10,8 @@ flowchart LR
   H3 --> D[Implementation]
   D --> H4{{Release<br/>named owner, SLA}}
   H4 --> S[Secure DevOps]
-  S --> R[Reliability]
-  R --> M[Maintainability]
-  M -. improvement items .-> B
+  S --> R[Reliability, quality,<br/>and maintenance]
+  R -. improvement items .-> B
 ```
 
 | Stage | Skills |
@@ -22,8 +21,6 @@ flowchart LR
 | Design | [Architect](Skill-Architect), with [Responsible AI governance](Skill-Responsible-AI-Governance) applied where it is triggered |
 | Implementation | [Conduct](Skill-Conduct) and [SDLC](Skill-SDLC) |
 | Secure DevOps | [Safeguard](Skill-Safeguard), [Deliver](Skill-Deliver), and [Shakedown](Skill-Shakedown) |
-| Reliability | [Operate](Skill-Operate) |
-| Maintainability | [Assure](Skill-Assure) |
-| Application maintenance | [Maintain](Skill-Maintain), whose findings return to the backlog as improvement items |
+| Reliability, maintainability, and application maintenance | [Operate](Skill-Operate), one post-release charter covering all three, whose findings return to the backlog as improvement items |
 
 The four hexagons in the diagram are not a decoration; they mark a real point of control. At each one, the graph that `conduct` builds inserts a typed `human` node — a named owner, the exact decision to be made, and a service-level agreement — rather than a plain stop condition. For how that routing decision is made, see [Skill: Conduct](Skill-Conduct) and [Architecture: Loop vs graph](Architecture-Loop-vs-Graph).

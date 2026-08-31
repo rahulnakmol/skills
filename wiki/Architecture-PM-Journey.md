@@ -20,7 +20,7 @@ flowchart LR
 | Framing | [Map](Skill-Map)'s Business Understanding Document, signed at the Framing gate |
 | Define | [Carve](Skill-Carve) (product hat) or [TOM Architect](Skill-TOM-Architect) (transformation hat), plus [Case](Skill-Case) |
 | Investment | [Case](Skill-Case)'s options and costing, approved alongside the manifest |
-| Design and drafting | [PRD Draft](Skill-PRD-Draft), [PRD Validate](Skill-PRD-Validate), pressure-tested by [Grill](Skill-Grill) |
+| Design and drafting | [PRD Draft](Skill-PRD-Draft), which drafts and then structurally validates each PRD, pressure-tested by [Grill](Skill-Grill) |
 | Quality | [PRD Review](Skill-PRD-Review)'s 11-Star score, informing a human decision |
 | Commitment | Handoff across the seam to the developer group's `slice` and `raise`, or straight to `impact` |
 | Steady state | [Roadmap](Skill-Roadmap), [RAID](Skill-RAID), [Report](Skill-Report), [Realize](Skill-Realize) |

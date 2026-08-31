@@ -15,8 +15,8 @@ Six groups, each a bounded area of work rather than a technology layer. Each gro
 | Group | What it is | Status |
 |-------|------------|--------|
 | **Core — shared doctrine** | The doctrine and tooling more than one group needs, belonging to no audience in particular: verification before completion, coverage, the grill round protocol, value probing, and `grit`, the acceptance-gate ledger — 1 skill. Every group may reference it; it references none of them. | Shipping |
-| **Developer — the AI-native SDLC** | The software delivery lifecycle rebuilt for humans plus trusted agents: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance — 17 skills. The group directory is planned to be renamed `ai-native-sdlc` to say what it is. | Shipping |
-| **PM — the AI-native transformation practice** | The business side of the same AI-native transformation coin: discovery, TOM design, epic and PRD authoring, business cases grounded in cost including the agent fleet's own, roadmapping, RAID, benefits realization against a north star, and 4Ps leadership reporting, plus charting work too big for one session — 17 skills. | Shipping |
+| **Developer — the AI-native SDLC** | The software delivery lifecycle rebuilt for humans plus trusted agents: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance — 15 skills. The group directory is planned to be renamed `ai-native-sdlc` to say what it is. | Shipping |
+| **PM — the AI-native transformation practice** | The business side of the same AI-native transformation coin: discovery, TOM design, epic and PRD authoring, business cases grounded in cost including the agent fleet's own, roadmapping, RAID, benefits realization against a north star, and 4Ps leadership reporting, plus charting work too big for one session — 16 skills. | Shipping |
 | **Branding** | Company or personal identity applied to everything an agent produces: tone of voice, color and palette, storytelling. Today: `press`, which turns a signed PRD into a business-ready document and presentation — the first of the storytelling skills. | First skill shipping |
 | **Writing** | Skills that make writing better — editorial review, documentation quality, style discipline — in the same explainer voice this repository holds itself to. | Charter — planned |
 | **Productivity** | Delightful automations: the personal and team workflows worth never doing by hand again. Today: `brief`, which writes the rules, definitions, and boundaries a team's agents read and places each part in the file the tool actually loads. | First skill shipping |
@@ -114,9 +114,7 @@ Doctrine every other group may reference, and which references no group in retur
 | [architect](skills/developer/architect/SKILL.md) | mixed | Cross-cutting technical design and ADRs at the design gate |
 | [safeguard](skills/developer/safeguard/SKILL.md) | mixed | Security assessment and hardening at the secure-DevOps gate |
 | [deliver](skills/developer/deliver/SKILL.md) | mixed | CI/CD, supply chain, release readiness, stacked PRs, and repo setup |
-| [assure](skills/developer/assure/SKILL.md) | mixed | Quality and maintainability assurance |
-| [operate](skills/developer/operate/SKILL.md) | mixed | SLOs, instrumentation, and incident readiness |
-| [maintain](skills/developer/maintain/SKILL.md) | mixed | Patch cadence and technical-debt burn-down |
+| [operate](skills/developer/operate/SKILL.md) | mixed | The post-release lane: SLOs, instrumentation, and incident readiness; quality assurance and test gaps; patch cadence and technical-debt burn-down |
 | [shakedown](skills/developer/shakedown/SKILL.md) | user | Sandbox build, test, execute, and agent-reviewed pass on any pull request before merge |
 | [ask-fde](skills/developer/ask-fde/SKILL.md) | user | Router mapping intent to the correct developer, pm, or branding skill |
 | [responsible-ai-governance](skills/developer/responsible-ai-governance/SKILL.md) | overlay | Regulated-industry and responsible-AI governance applied on top of the stack rules |
@@ -132,8 +130,7 @@ Doctrine every other group may reference, and which references no group in retur
 | [map](skills/pm/map/SKILL.md) | model | Personas, process flows, and the Business Understanding Document |
 | [tom-architect](skills/pm/tom-architect/SKILL.md) | user | Target Operating Model: L1-L4 processes, maturity, RACI, platform mapping |
 | [carve](skills/pm/carve/SKILL.md) | model | DIVE-tested epic decomposition into a manifest |
-| [prd-draft](skills/pm/prd-draft/SKILL.md) | user | One INVEST-compliant PRD per approved epic |
-| [prd-validate](skills/pm/prd-validate/SKILL.md) | model | Structural PRD checklist, read-only |
+| [prd-draft](skills/pm/prd-draft/SKILL.md) | user | One INVEST-compliant PRD per approved epic, with the nine-check structural validation pass |
 | [prd-review](skills/pm/prd-review/SKILL.md) | user | 11-Star Experience Framework PRD scoring |
 | [case](skills/pm/case/SKILL.md) | user | Business case with agent-fleet costing for the Investment gate |
 | [roadmap](skills/pm/roadmap/SKILL.md) | user | Now/next/later sequencing and PI planning |

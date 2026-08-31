@@ -53,9 +53,7 @@ Doctrine every other group may reference, and which references no group in retur
 | [Architect](Skill-Architect) | mixed | Leads cross-cutting technical design and produces ADRs |
 | [Safeguard](Skill-Safeguard) | mixed | Carries out threat modeling and hardening |
 | [Deliver](Skill-Deliver) | mixed | Covers CI/CD, supply chain checks, and release readiness |
-| [Assure](Skill-Assure) | mixed | Covers quality and maintainability assurance |
-| [Operate](Skill-Operate) | mixed | Covers service-level objectives, instrumentation, and incident readiness |
-| [Maintain](Skill-Maintain) | mixed | Covers patch cadence and technical-debt reduction |
+| [Operate](Skill-Operate) | mixed | Covers the post-release lane: service-level objectives and incident readiness, quality assurance, and patch and technical-debt cadence |
 | [Shakedown](Skill-Shakedown) | user | Builds, tests, and reviews any pull request in an isolated sandbox before merge |
 | [Ask FDE](Skill-Ask-FDE) | user | Routes a stated intent to the correct skill |
 | [Responsible AI governance](Skill-Responsible-AI-Governance) | overlay | Applies regulated-industry and responsible-AI requirements on top of the other rules |
@@ -71,8 +69,7 @@ Doctrine every other group may reference, and which references no group in retur
 | [Map](Skill-Map) | model | Builds personas, process flows, and the Business Understanding Document |
 | [TOM Architect](Skill-TOM-Architect) | user | Designs a Target Operating Model — L1-L4 processes, maturity, RACI, platform mapping |
 | [Carve](Skill-Carve) | model | Extracts DIVE-tested epics into a manifest |
-| [PRD Draft](Skill-PRD-Draft) | user | Drafts one INVEST-compliant PRD per approved epic |
-| [PRD Validate](Skill-PRD-Validate) | model | Checks PRD structure against a nine-item checklist, read-only |
+| [PRD Draft](Skill-PRD-Draft) | user | Drafts one INVEST-compliant PRD per approved epic and validates its structure against a nine-item checklist |
 | [PRD Review](Skill-PRD-Review) | user | Scores a PRD on the 11-Star Experience Framework |
 | [Case](Skill-Case) | user | Builds the business case the sponsor approves at the Investment gate |
 | [Roadmap](Skill-Roadmap) | user | Sequences initiatives by outcome and dependency; runs PI planning |

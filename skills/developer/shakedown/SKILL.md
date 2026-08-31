@@ -37,4 +37,4 @@ notes: []
 
 ## Sibling skills
 
-- `deliver`, `assure`, `safeguard`
+- `deliver`, `operate`, `safeguard`
