@@ -39,8 +39,9 @@ layout: default
     </div>
 
     {% if page.journey %}
+    {% assign journey_label = page.journey_title | default: page.journey %}
     <div class="journey-footer">
-      <div class="journey-footer-label">On the <strong>{{ page.journey }}</strong> journey{% if page.journey_step %} · step {{ page.journey_step }} of 5{% endif %}</div>
+      <div class="journey-footer-label">On the <strong>{{ journey_label }}</strong> journey{% if page.journey_step %} · step {{ page.journey_step }}{% if page.journey_steps %} of {{ page.journey_steps }}{% endif %}{% endif %}</div>
       <div class="journey-footer-nav">
         {% if page.journey_prev %}
         <a class="journey-btn journey-btn--prev lift" href="{{ '/' | append: page.journey_prev | append: '/' | relative_url }}">&larr; {{ page.journey_prev }}</a>

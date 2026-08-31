@@ -68,6 +68,8 @@ a:hover { color: var(--link-hover); }
     --emerald: #3fb577;
     --emerald-text: #3fb577;
     --emerald-soft: #1f3a2d;
+    --amber: #e0a35b;
+    --amber-text: #e0a35b;
     --code-bg: #1e2124;
     --active-bg: #383d43;
     --facet-opacity: 0.28;
@@ -90,6 +92,8 @@ a:hover { color: var(--link-hover); }
   --emerald: #3fb577;
   --emerald-text: #3fb577;
   --emerald-soft: #1f3a2d;
+  --amber: #e0a35b;
+  --amber-text: #e0a35b;
   --code-bg: #1e2124;
   --active-bg: #383d43;
   --facet-opacity: 0.28;

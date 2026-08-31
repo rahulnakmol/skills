@@ -19,6 +19,7 @@ lens:
     who: 'You are accountable for what AI-built software does in production.'
     value: 'Every important change carries a checklist a person approved and a recorded result — proof a regulator, a board, or an incident review can look at later.'
 journey: deliver-with-evidence
+journey_title: "Deliver with evidence"
 journey_step: 4
 journey_steps: 5
 journey_prev: sdlc
@@ -27,7 +28,7 @@ journey_next: shakedown
 
 ## What it does
 
-Grit is the discipline that keeps finished work from being called done before it is. Before implementation starts, every acceptance criterion becomes a gate: an observable outcome, paired where possible with a command that can check it and a pattern its output must match. Implementation then proceeds through four passes — complete, harden, hunt for defects, and polish — and a checker script runs each gate afterward and records exactly what it measured. Work is not reported finished until every gate is met, unmet, or abandoned on the record with a reason and a sign-off.
+Grit is the discipline that keeps finished work from being called done before it is. Before implementation starts, every acceptance criterion becomes a gate: an observable outcome, paired where possible with a command that can check it and a pattern its output must match. Implementation then proceeds through four passes — complete, harden, hunt for defects, and polish. A checker script runs each gate afterward and records exactly what it measured. Work is not called done while any gate is unmet. Every gate ends accounted for as met, unmet, or abandoned, and an abandoned gate carries a reason and a human sign-off.
 
 ## How to call it
 
@@ -37,10 +38,11 @@ In Claude Code, type `/grit`. In OpenCode, run the `/grit-verify` command: it pa
 <span class="tok-comment">$</span> node skills/core/grit/scripts/gate-check.mjs --approve GATES.md <span class="tok-comment"># a human reads each command once</span>
 <span class="tok-comment">$</span> node skills/core/grit/scripts/gate-check.mjs --reverify GATES.md <span class="tok-comment"># re-check work that comes back</span></code></pre>
 
-Readers who do not have the skill pack installed yet can add it first:
+Readers who do not have the skill pack installed yet can add it first. The second line installs the tool adapters, including the OpenCode command above:
 
 ```bash
 npx skills@latest add tqnonline/skills
+./scripts/install-adapters.sh
 ```
 
 ## What good looks like
@@ -53,7 +55,7 @@ npx skills@latest add tqnonline/skills
 <span class="tok-ok">- [x] G2:</span> prints its second fixed token
   <span class="tok-ok">EVIDENCE: exit=0; EXPECT=matched</span>
 <span class="tok-ok">AUDIT: met 2 &middot; unmet 0 &middot; abandoned 0</span></code></pre>
-<div class="compare-card-note">Every gate met, with the proof recorded. Only now is done claimable.</div>
+<div class="compare-card-note">Every gate met, with the proof recorded. Only now can the work be called done.</div>
 </div>
 <div class="compare-card compare-card--warn">
 <div class="compare-card-head">The wrong turn to watch for</div>
