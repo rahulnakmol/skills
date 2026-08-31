@@ -26,6 +26,19 @@ Grit's scripts are adapted from [unlazy](https://github.com/Leonxlnx/unlazy), Co
 - [HOOKS.md](https://github.com/tqnonline/skills/blob/main/skills/developer/grit/HOOKS.md) covers enforcement on Claude Code, OpenCode, GitHub Copilot, Codex, and Cursor, plus the continuous integration backstop.
 - [grit-gates.yml](https://github.com/tqnonline/skills/blob/main/skills/developer/grit/grit-gates.yml) is the reusable Action template, shipped dispatch-only so an adopting repository opts in deliberately.
 
+## Use cases
+
+Grit earns its cost where a wrong completion claim is more expensive than the ledger that would have caught it. In practice that means:
+
+- **A change that moves money, data, or state that cannot be rolled back** — a payment integration, a schema migration, a bulk update. Rerunning the work does not undo it, so a passing test suite is not sufficient grounds to ship.
+- **Work that crosses several contracts at once** — an API, its client, and a background job, where each component can pass its own tests and the composition still fails.
+- **Work an agent carries end to end while nobody watches each step.** This is the condition the completion research behind this skill describes: the agent stops early, reports success, and nothing catches the gap until later.
+- **A security or compliance boundary** — a new input surface, an authorization change, or an item whose contract names a limited or high governance tier and therefore needs an audit trail that outlives the review.
+- **A leadership pack whose numbers come from several registers.** `report` already opens the rendered artifact and checks every figure against its source; grit makes those checks re-runnable at the next cadence instead of repeated by hand.
+- **A backlog item whose acceptance criteria are still being written.** Running the gate-ability test during `assess` catches a criterion nobody can check while it is still cheap to rewrite.
+
+It does not apply to a one-line fix, to a spike whose purpose is to learn rather than to ship, or to exploratory work that has no acceptance criteria yet. A ledger on work like that is overhead, and the depth rubric says so rather than leaving it to judgment.
+
 ## How to use
 
 Invoke `/grit` on work substantial enough to warrant a ledger, and the skill writes `GATES.md` from the acceptance criteria before implementation starts. From there the checker runs in four steps: `--status` reads the ledger without executing anything, a plain run prints each resolved command for review, `--approve` records consent and runs the checks, and `--reverify` re-runs everything on returned work. The delivery pipeline does this on its own — `deliver-work-item` authors the ledger during planning, materializes it before the first source change, executes it during verification, and carries the audit into the pull request body.

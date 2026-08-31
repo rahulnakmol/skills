@@ -30,6 +30,12 @@ Above the threshold, depth starts at a base of 5 and adds one layer per signal p
 
 The ledger records who chose the depth — user-stated or rubric-recommended — and, for a recommendation, which signals were present. A depth with no recorded source is not a depth grit produced; it is a number someone wrote down.
 
+## Two worked selections
+
+A one-line fix to a log message sits below the threshold: a single concern, one artifact, one session, no contract crossed, and a mistake is undone by editing the line again. The rubric returns a flat ledger — a few gates in one file, no tree. A five-layer decomposition here would cost more to write and check than the error it could catch.
+
+A payment-provider migration sits well above it. Base 5, plus one for the irreversible write, since money moves and a refund is a new transaction rather than an undo. Plus one for the integration surface, because the provider API, the ledger service, and the reconciliation job each sit on a different contract, and all three can pass their own checks while still failing to compose. Plus one for novelty, as no prior provider swap exists in the codebase to copy a proven gate set from. Plus one for the governance tier, which the item's contract already names as high. That is four signals on a base of 5, so the recommendation is depth 9. The scope-breadth signal is absent — the owned paths stay inside one payments module — and its absence is recorded too, because a rubric that only ever adds is not being applied. The ledger stores depth 9, rubric-recommended, with those four signals named, so a reviewer can see the number was derived rather than chosen. A human who disagrees states a different depth, and that stated depth wins.
+
 ## Building the tree
 
 Once depth and shape are set, layers become leaves. Each leaf gets its own ledger with an OWNS line naming the exact repository-relative globs it may write — the same ownership discipline the single-writer rule enforces at execution time, made legible on the page. Branch integration gates sit above the leaves they join, and they check the composed result specifically: that the interfaces two leaves agreed on actually match, that a shared resource is not written twice, that the assembled artifact behaves as the sum of its parts rather than as parts that merely each individually pass.
