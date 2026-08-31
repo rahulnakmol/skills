@@ -47,3 +47,9 @@ Machine-checkable rules for humans and agents working in `tqnonline/skills`.
 
 - `.agents/writing-docs.md`, `.agents/invocation.md`, ADRs under `.agents/adr/`.
 - Voice and tone for every document (`SKILL.md`, reference docs, README, wiki): simple American English, formal and professional, in the style of a fact-based news explainer (NPR, the New York Times) — never an opinion column, never marketing language. Full rule in `.agents/writing-docs.md`; every non-Claude agent tool reads the same rule from `AGENTS.md`.
+
+## Agent attribution
+
+- No agent attribution footers or watermarks in anything written to this repository or to GitHub. That covers commit messages, pull request titles and bodies, issue and review comments, and changesets: no "Generated with Claude Code", no "Co-Authored-By" trailer naming an agent, no session link.
+- The reasoning is that the record should carry what changed and why, not which tool typed it. Authorship of a change belongs to the person who requested and approved it.
+- A footer appended by the platform at publish time is outside an agent's control on creation; remove it by editing the body immediately afterward.
