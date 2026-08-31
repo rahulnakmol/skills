@@ -1,0 +1,8 @@
+source "https://rubygems.org"
+
+gem "jekyll", "~> 4.3"
+gem "jekyll-seo-tag"
+gem "jekyll-sitemap"
+
+# Ruby 3+ dropped webrick from the standard library; jekyll serve needs it.
+gem "webrick"

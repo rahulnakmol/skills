@@ -1,0 +1,146 @@
+---
+layout: default
+description: "TQN Skills documents every skill in The Quentin's skill library — pick who you are, and the catalog becomes a path."
+---
+{% assign base_path = "/" | relative_url %}
+{% assign total_skills = 0 %}
+{% for group in site.data.skills.groups %}{% assign total_skills = total_skills | plus: group.count %}{% endfor %}
+
+<section class="hero">
+  <svg class="hero-facet drift" width="560" height="480" viewBox="0 0 620 520" aria-hidden="true" focusable="false">
+    <polygon points="380,40 500,20 460,140" fill="#3d63c8"></polygon>
+    <polygon points="500,20 620,80 460,140" fill="#2b4fa8"></polygon>
+    <polygon points="460,140 620,80 560,260" fill="#27995f"></polygon>
+    <polygon points="300,180 460,140 380,300" fill="#5578d6"></polygon>
+    <polygon points="460,140 560,260 380,300" fill="#1e7f4e"></polygon>
+    <polygon points="380,300 560,260 480,440" fill="#3d63c8"></polygon>
+    <polygon points="330,420 480,440 380,300" fill="#27995f"></polygon>
+    <polygon points="560,260 620,340 480,440" fill="#2b4fa8"></polygon>
+  </svg>
+  <div class="hero-inner">
+    <div class="eyebrow rise d1">by The Quentin &middot; {{ total_skills }} skills &middot; {{ site.data.skills.groups.size }} groups &middot; v{{ site.data.skills.version }}</div>
+    <h1 class="hero-title rise d2">Set the frontier.</h1>
+    <p class="hero-sub rise d3">Skills that help people and AI agents do real work together. People make the decisions that matter; agents do the work and show proof it is done. Pick who you are, and the catalog becomes a path.</p>
+    <div class="hero-ctas rise d4">
+      <a class="btn-primary lift cta" href="#journeys">Start your journey <span class="go">&rarr;</span></a>
+      <span class="code-chip lift" title="Install the skills with the community npx installer">npx skills add tqnonline/skills</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="journeys">
+  <div class="section-kicker">I am&hellip;</div>
+  <div class="role-picker-block" x-data="{ picked: 'engineer' }">
+    <div class="role-grid">
+      <div class="role-card lift is-active" :class="{ 'is-active': picked === 'engineer' }" @click="picked = 'engineer'">
+        <div class="role-name">An engineer</div>
+        <div class="role-blurb">Ship software with agents you can actually trust.</div>
+      </div>
+      <div class="role-card lift" :class="{ 'is-active': picked === 'product' }" @click="picked = 'product'">
+        <div class="role-name">A product leader</div>
+        <div class="role-blurb">Go from a fuzzy problem to a result you can measure.</div>
+      </div>
+      <div class="role-card lift" :class="{ 'is-active': picked === 'novice' }" @click="picked = 'novice'">
+        <div class="role-name">New to agents</div>
+        <div class="role-blurb">Start where judgment matters and jargon does not.</div>
+      </div>
+      <div class="role-card lift" :class="{ 'is-active': picked === 'executive' }" @click="picked = 'executive'">
+        <div class="role-name">An executive</div>
+        <div class="role-blurb">Clear proof and value you can show a board.</div>
+      </div>
+    </div>
+
+    <div class="role-path" x-show="picked === 'engineer'">
+      <span class="role-path-label">Your path:</span>
+      <span class="role-path-step"><a class="path-chip" href="{{ base_path }}recon/">recon</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
+      <span class="role-path-step"><a class="path-chip" href="{{ base_path }}impact/">impact</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
+      <span class="role-path-step"><a class="path-chip" href="{{ base_path }}sdlc/">sdlc</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
+      <span class="role-path-step"><a class="path-chip" href="{{ base_path }}grit/">grit</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
+      <span class="role-path-step"><a class="path-chip" href="{{ base_path }}shakedown/">shakedown</a></span>
+      <span class="role-path-open">Open this journey &rarr;</span>
+    </div>
+
+    <div class="role-path" x-show="picked === 'product'">
+      <span class="role-path-label">Your path:</span>
+      <span class="role-path-step"><a class="path-chip" href="{{ base_path }}discover/">discover</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
+      <span class="role-path-step"><a class="path-chip" href="{{ base_path }}carve/">carve</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
+      <span class="role-path-step"><a class="path-chip" href="{{ base_path }}case/">case</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
+      <span class="role-path-step"><a class="path-chip" href="{{ base_path }}report/">report</a></span>
+      <span class="role-path-open">Open this journey &rarr;</span>
+    </div>
+
+    <div class="role-path" x-show="picked === 'novice'">
+      <span class="role-path-label">Your path:</span>
+      <span class="role-path-step"><a class="path-chip" href="{{ base_path }}brief/">brief</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
+      <span class="role-path-step"><a class="path-chip" href="{{ base_path }}impact/">impact</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
+      <span class="role-path-step"><a class="path-chip" href="{{ base_path }}grit/">grit</a></span>
+      <span class="role-path-open">Open this journey &rarr;</span>
+    </div>
+
+    <div class="role-path" x-show="picked === 'executive'">
+      <span class="role-path-label">Your path:</span>
+      <span class="role-path-step"><a class="path-chip" href="{{ base_path }}grit/">grit</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
+      <span class="role-path-step"><a class="path-chip" href="{{ base_path }}report/">report</a><svg class="path-arrow" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><polygon points="0,4 9,4 9,0 16,6 9,12 9,8 0,8"></polygon></svg></span>
+      <span class="role-path-step"><a class="path-chip" href="{{ base_path }}realize/">realize</a></span>
+      <span class="role-path-open">Open this journey &rarr;</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="practice-grid">
+    <div class="practice-copy">
+      <h2 class="section-title">Every page shows a real run</h2>
+      <p>Every example is a real run from the project's own test files, and the tests keep re-running it — if an example breaks, the site build fails. This one is grit's checklist: done is proven, not just claimed.</p>
+      <a class="practice-link" href="{{ base_path }}grit/">See how grit works &rarr;</a>
+    </div>
+    <pre><code><span class="tok-comment"># GATES.md — test/fixtures/grit/unmet</span>
+<span class="tok-ok">- [x] G1:</span> prints its first fixed token when run
+  CHECK: node -e "console.log('OK_TOKEN_ONE')"
+  EXPECT: OK_TOKEN_ONE
+  <span class="tok-ok">EVIDENCE: exit=0; EXPECT=matched; output-sha256=6bf5c2e1&hellip;; output-bytes=13</span>
+<span class="tok-warn">- [ ] G2:</span> prints its second fixed token when run
+  CHECK: node -e "console.log('OK_TOKEN_TWO')"
+  EXPECT: OK_TOKEN_TWO
+  <span class="tok-warn">EVIDENCE: pending</span>
+
+<span class="tok-comment">$ gate-check --status GATES.md</span>
+<span class="tok-warn">UNMET GATES:G2 — the work is not done, and now you know.</span></code></pre>
+  </div>
+</section>
+
+<section class="section" id="catalog">
+  <div class="section-head">
+    <h2 class="section-title">The catalog</h2>
+    <div class="section-note">every group installs on its own</div>
+  </div>
+  <div class="card-grid">
+    {% for group in site.data.skills.groups %}
+    {% case group.id %}
+      {% when 'core' %}{% assign tint = '#8b95a0' %}{% assign blurb = 'The shared rules every group uses.' %}
+      {% when 'developer' %}{% assign tint = '#3d63c8' %}{% assign blurb = 'Build software with agents, from first idea to upkeep.' %}
+      {% when 'pm' %}{% assign tint = '#27995f' %}{% assign blurb = 'The product and business side of the same work.' %}
+      {% when 'branding' %}{% assign tint = '#5578d6' %}{% assign blurb = 'Your look and voice on everything agents make.' %}
+      {% when 'productivity' %}{% assign tint = '#1e7f4e' %}{% assign blurb = 'The rules and briefs your agents actually read.' %}
+      {% when 'writing' %}{% assign tint = '#9ba6af' %}{% assign blurb = 'Writing help — coming soon.' %}
+      {% else %}{% assign tint = '#9ba6af' %}{% assign blurb = '' %}
+    {% endcase %}
+    <div class="group-card lift" style="--group-tint: {{ tint }}">
+      <div class="group-card-head">
+        <span class="group-card-name">{{ group.id }}</span>
+        <span class="group-card-count">{% if group.count == 0 %}charter{% else %}{{ group.count }} skill{% unless group.count == 1 %}s{% endunless %}{% endif %}</span>
+      </div>
+      <div class="group-card-blurb">{{ blurb }}</div>
+      {% if group.skills.size > 0 %}
+      <div class="chip-row">
+        {% for s in group.skills %}
+        <a class="skill-chip chiplift" href="{{ base_path }}{{ s.name }}/">{{ s.name }}</a>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="group-card-empty">No skills promoted yet.</div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</section>

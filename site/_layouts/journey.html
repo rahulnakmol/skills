@@ -1,0 +1,33 @@
+---
+layout: default
+---
+<div class="journey-header">
+  <div class="eyebrow">Journey{% if page.audience %} · for {{ page.audience }}{% endif %}</div>
+  <h1 class="rise d1">{{ page.title }}</h1>
+  {% if page.description %}<p class="journey-lede rise d2">{{ page.description }}</p>{% endif %}
+</div>
+
+<div class="journey-content">
+  {{ content }}
+</div>
+
+{% if page.steps and page.steps.size > 0 %}
+<div class="journey-rail" aria-hidden="true">
+  {% for step in page.steps %}
+  <div class="journey-rail-item">
+    <div class="journey-rail-dot">{{ forloop.index }}</div>
+    {% unless forloop.last %}<div class="journey-rail-arrow"></div>{% endunless %}
+  </div>
+  {% endfor %}
+</div>
+
+<div class="journey-cards">
+  {% for step in page.steps %}
+  <a class="journey-card lift" href="{{ '/' | append: step.skill | append: '/' | relative_url }}">
+    <div class="journey-card-skill">{{ step.skill }}</div>
+    {% if step.title %}<div class="skill-card-name">{{ step.title }}</div>{% endif %}
+    <div class="journey-card-blurb">{{ step.blurb }}</div>
+  </a>
+  {% endfor %}
+</div>
+{% endif %}

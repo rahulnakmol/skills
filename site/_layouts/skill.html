@@ -1,0 +1,80 @@
+---
+layout: default
+---
+<div class="skill-shell">
+  <aside class="sidebar">
+    {% for group in site.data.skills.groups %}
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">{{ group.id }}</div>
+      {% if group.skills.size > 0 %}
+      <ul class="sidebar-list">
+        {% for s in group.skills %}
+        <li>
+          <a class="sidebar-link{% if page.url == '/' | append: s.name | append: '/' %} is-active{% endif %}"
+             href="{{ '/' | append: s.name | append: '/' | relative_url }}">{{ s.name }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </aside>
+
+  <div class="skill-content">
+    <div class="breadcrumb">
+      <span>{{ page.group }}</span><span>/</span><span class="is-current">{{ page.name | default: page.title }}</span>
+      {% if page.invocation %}
+      <span class="pill pill--{{ page.invocation }}">{{ page.invocation }}</span>
+      {% endif %}
+    </div>
+
+    <h1 class="rise d1">{{ page.title }}</h1>
+    {% if page.description %}<p class="skill-description rise d2">{{ page.description }}</p>{% endif %}
+
+    {% include 'lens.html' %}
+
+    <div class="skill-body">
+      {{ content }}
+    </div>
+
+    {% if page.journey %}
+    <div class="journey-footer">
+      <div class="journey-footer-label">On the <strong>{{ page.journey }}</strong> journey{% if page.journey_step %} · step {{ page.journey_step }} of 5{% endif %}</div>
+      <div class="journey-footer-nav">
+        {% if page.journey_prev %}
+        <a class="journey-btn journey-btn--prev lift" href="{{ '/' | append: page.journey_prev | append: '/' | relative_url }}">&larr; {{ page.journey_prev }}</a>
+        {% endif %}
+        {% if page.journey_next %}
+        <a class="journey-btn journey-btn--next lift" href="{{ '/' | append: page.journey_next | append: '/' | relative_url }}">{{ page.journey_next }} &rarr;</a>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <nav class="toc" id="toc">
+    <div class="toc-label">On this page</div>
+    <ul id="toc-list"></ul>
+  </nav>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "{{ page.group }}",
+      "item": "{{ '/group/' | append: page.group | append: '/' | absolute_url }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ page.title }}",
+      "item": "{{ page.url | absolute_url }}"
+    }
+  ]
+}
+</script>
