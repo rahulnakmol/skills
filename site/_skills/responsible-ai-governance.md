@@ -26,7 +26,7 @@ Responsible AI & Regulated Governance is an overlay applied on top of the standa
 
 ## How to call it
 
-Claude reaches for this overlay when a request matches its description: work in a regulated industry, an AI system influencing a consequential decision, or a direct question about audit, explainability, model risk, residency, or a named framework such as NIST AI RMF, ISO 42001, SR 11-7, BCBS 239, or the EU AI Act. A prompt like "This model's output affects a loan decision &mdash; what does SR 11-7 require here" triggers it.
+Claude reaches for this overlay when a request matches its description. That covers work in a regulated industry, an AI system influencing a consequential decision, or a direct question about audit, explainability, model risk, residency, or a named framework such as NIST AI RMF, ISO 42001, SR 11-7, BCBS 239, or the EU AI Act. A prompt like "This model's output affects a loan decision &mdash; what does SR 11-7 require here" triggers it.
 
 Readers who do not have the skill pack installed yet can add it first:
 

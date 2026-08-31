@@ -71,7 +71,7 @@ GATES.md: 2 gates
 ALL MET (2 met)
 ```
 
-The command exits 0. The fixture's two gates are generic ("prints its first/second fixed token"), not specific to a report cadence, but the mechanism is exactly the one step 7 describes: a `report` cadence would phrase its own gates as, for instance, "G1: the turnaround figure in Value First matches realize's recorded actual," each with its own CHECK command, and run the identical `gate-check.mjs --status` command against that cadence's own `GATES.md` before the pack is marked sent.
+The command exits 0. The fixture's two gates are generic ("prints its first/second fixed token"), not specific to a report cadence, but the mechanism is exactly the one step 7 describes. A `report` cadence would phrase its own gates as, for instance, "G1: the turnaround figure in Value First matches realize's recorded actual," each with its own CHECK command. It would run the identical `gate-check.mjs --status` command against that cadence's own `GATES.md` before the pack is marked sent.
 
 ## How it works
 

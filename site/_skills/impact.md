@@ -28,7 +28,7 @@ journey_next: sdlc
 
 ## What it does
 
-Impact turns a raw idea — notes, a transcript, or a vague ask — into an approved PRD and a handoff ready for `slice`. Intake drafts a fast-cut PRD against `PRD-TEMPLATE.md`, pulling in a `recon` brief first for brownfield work, and a grill loop then applies the shared `GRILL.md` and `VALUE.md` doctrine until the PRD earns sign-off or a waiver is stated, capturing functional and non-functional requirements separately rather than leaving either implicit. The PRD cannot advance without a populated business-value section, and cannot hand off to `slice` without gate G2's explicit, named sign-off. The output is a markdown PRD capped at ten pages, plus an updated `.impact.json` project record.
+Impact turns a raw idea — notes, a transcript, or a vague ask — into an approved PRD and a handoff ready for `slice`. Intake drafts a fast-cut PRD against `PRD-TEMPLATE.md`, pulling in a `recon` brief first for brownfield work. A grill loop then applies the shared `GRILL.md` and `VALUE.md` doctrine until the PRD earns sign-off or a waiver is stated, capturing functional and non-functional requirements separately rather than leaving either implicit. The PRD cannot advance without a populated business-value section, and cannot hand off to `slice` without gate G2's explicit, named sign-off. The output is a markdown PRD capped at ten pages, plus an updated `.impact.json` project record.
 
 ## How to call it
 
@@ -77,7 +77,7 @@ measured via the existing checkout funnel dashboard.
 | G2 signed | User sign-off in PRD; governance tier recorded |
 | G3 handoff | `slice` allowed |</code></pre>
 
-Filling that table for a worked case — reducing checkout timeout errors — shows the shape a finished intake takes, per the skill's own output contract of a capped markdown PRD plus a `.impact.json` update: G0 captures the raw report of abandoned carts; G1 runs at least one grill round against `PRD-TEMPLATE.md`'s Scope section, separating the functional requirement ("retry a timed-out checkout once before failing") from the non-functional one ("p99 checkout latency under 800ms"); G2 records the `limited` governance tier and a named, dated sign-off; only then does G3 open, and `slice` is allowed to read the PRD. This is the shape the output contract requires, not a captured real run — impact has no fixture file of its own to quote in full.
+Filling that table for a worked case — reducing checkout timeout errors — shows the shape a finished intake takes, per the skill's own output contract of a capped markdown PRD plus a `.impact.json` update. G0 captures the raw report of abandoned carts. G1 runs at least one grill round against `PRD-TEMPLATE.md`'s Scope section, separating the functional requirement ("retry a timed-out checkout once before failing") from the non-functional one ("p99 checkout latency under 800ms"). G2 records the `limited` governance tier and a named, dated sign-off. Only then does G3 open, and `slice` is allowed to read the PRD. This is the shape the output contract requires, not a captured real run — impact has no fixture file of its own to quote in full.
 
 ## How it works
 

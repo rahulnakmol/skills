@@ -32,7 +32,7 @@ SDLC runs the full gated software delivery loop for a scoped work item, from des
 
 ## How to call it
 
-In Claude Code, type `/sdlc`. In OpenCode, the `/sdlc` command clarifies and acknowledges the given arguments, builds the SPEC-TS ledger, conducts Design Pass 1 and Design Pass 2, and verifies Gate 1 and Gate 2 before choosing no-loop, one worker, a specialist chain, a workflow, or a human gate — preferring no loop when one agent suffices.
+In Claude Code, type `/sdlc`. In OpenCode, the `/sdlc` command clarifies and acknowledges the given arguments, builds the SPEC-TS ledger, conducts Design Pass 1 and Design Pass 2, and verifies Gate 1 and Gate 2 before choosing no-loop, one worker, a specialist chain, a workflow, or a human gate. It prefers no loop when one agent suffices.
 
 Readers who do not have the skill pack installed yet can add it first — the second line installs the tool adapters, including the OpenCode command above:
 

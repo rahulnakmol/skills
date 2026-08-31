@@ -22,7 +22,7 @@ lens:
 
 ## What it does
 
-PRD Draft writes one self-contained PRD per approved epic — all twelve sections, INVEST-compliant user stories with Given-When-Then acceptance criteria, at least one error scenario per story — then runs its own nine-check structural validation before the PRD reaches the Quality gate. The pass never short-circuits: all nine checks run and are recorded, ending in PASS, PASS WITH WARNINGS, or FAIL. Any failure in the first four critical checks — sections present, named personas, acceptance criteria, priority and complexity — blocks the PRD regardless of how the other five land, and a failure is fixed by redrafting, since validation only ever reports, it never repairs what it checks. This skill absorbed the former prd-validate skill's checks, so one invocation both drafts and validates.
+PRD Draft writes one self-contained PRD per approved epic — all twelve sections, INVEST-compliant user stories with Given-When-Then acceptance criteria, at least one error scenario per story — then runs its own nine-check structural validation before the PRD reaches the Quality gate. The pass never short-circuits: all nine checks run and are recorded, ending in PASS, PASS WITH WARNINGS, or FAIL. Any failure in the first four critical checks — sections present, named personas, acceptance criteria, priority and complexity — blocks the PRD regardless of how the other five land. A failure is fixed by redrafting, since validation only ever reports, it never repairs what it checks. This skill absorbed the former prd-validate skill's checks, so one invocation both drafts and validates.
 
 ## How to call it
 

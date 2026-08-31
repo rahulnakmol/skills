@@ -22,7 +22,7 @@ lens:
 
 ## What it does
 
-Slice decomposes a PRD that has already cleared gate G2 into a backlog of epics, features, stories, and operability items, each conforming to one shared work-item contract. It checks the PRD's risk and governance tier first, routing `limited` or `high` tiers through `responsible-ai-governance` before generating items, then applies the matching template per item type and attaches the mandatory operability lane — observability, SLOs and alerting, runbooks, and CI/CD test coverage — alongside the user-facing stories. Every item embeds the full contract's sections before it can publish; a PRD without sign-off, or an item missing a contract section, is refused rather than passed through incomplete. The output is a YAML or markdown backlog bundle handed to `raise`.
+Slice decomposes a PRD that has already cleared gate G2 into a backlog of epics, features, stories, and operability items, each conforming to one shared work-item contract. It checks the PRD's risk and governance tier first, routing `limited` or `high` tiers through `responsible-ai-governance` before generating items. It then applies the matching template per item type and attaches the mandatory operability lane — observability, SLOs and alerting, runbooks, and CI/CD test coverage — alongside the user-facing stories. Every item embeds the full contract's sections before it can publish; a PRD without sign-off, or an item missing a contract section, is refused rather than passed through incomplete. The output is a YAML or markdown backlog bundle handed to `raise`.
 
 ## How to call it
 

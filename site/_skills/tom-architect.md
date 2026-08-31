@@ -22,7 +22,7 @@ lens:
 
 ## What it does
 
-TOM Architect translates a business transformation into a structured Target Operating Model: process decomposition across up to four levels, from the L1 value chain to L4 task-level activities, a five-point maturity assessment per process, organization design with RACI, and platform capability mapping to whichever enterprise stack the initiative selected. It runs Discover, Scope, Analyze, Design, Map, Visualize, Deliver in that order, and platform mapping never precedes process decomposition and maturity assessment. Every scoped L2 process is also classified into one of five AI-augmentation categories — Autonomous, Human-in-the-Loop, Copilot Assist, RPA, or Human Only — because that classification shapes organization design, KPI cadence, and platform mapping all at once, from the first design pass.
+TOM Architect translates a business transformation into a structured Target Operating Model. That means process decomposition across up to four levels, from the L1 value chain to L4 task-level activities, a five-point maturity assessment per process, organization design with RACI, and platform capability mapping to whichever enterprise stack the initiative selected. It runs Discover, Scope, Analyze, Design, Map, Visualize, Deliver in that order, and platform mapping never precedes process decomposition and maturity assessment. Every scoped L2 process is also classified into one of five AI-augmentation categories — Autonomous, Human-in-the-Loop, Copilot Assist, RPA, or Human Only — because that classification shapes organization design, KPI cadence, and platform mapping all at once, from the first design pass.
 
 ## How to call it
 

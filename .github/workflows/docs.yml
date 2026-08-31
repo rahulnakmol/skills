@@ -52,6 +52,11 @@ jobs:
       - name: Generate skills catalog data
         run: node scripts/gen-docs-data.mjs
 
+      # Every example on the site is a real, re-run command; a broken one
+      # fails the build here rather than shipping a page that lies.
+      - name: Run test suite
+        run: node scripts/run-tests.mjs
+
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'

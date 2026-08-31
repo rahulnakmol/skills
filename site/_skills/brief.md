@@ -22,11 +22,11 @@ lens:
 
 ## What it does
 
-Brief writes the rules, definitions, and boundaries a team's AI agents read, and places each part in the file the tool in use actually loads. It splits a working agreement into three layers — definitions the team's words mean, rules stated as a trigger plus an observable result, and references only some tasks need — and keeps one canonical copy, with every other surface pointing at it rather than holding a second. It covers seven surfaces: Claude Code, Claude Desktop, Cowork, OpenCode, Codex, Cursor, and GitHub Copilot, each with its own file and its own way of loading rules. A rule is verified by running a real task against it and checking whether it fired, never by rereading the document.
+Brief writes the rules, definitions, and boundaries a team's AI agents read, and places each part in the file the tool in use actually loads. It splits a working agreement into three layers — definitions the team's words mean, rules stated as a trigger plus an observable result, and references only some tasks need. One canonical copy exists, with every other surface pointing at it rather than holding a second. It covers seven surfaces: Claude Code, Claude Desktop, Cowork, OpenCode, Codex, Cursor, and GitHub Copilot, each with its own file and its own way of loading rules. A rule is verified by running a real task against it and checking whether it fired, never by rereading the document.
 
 ## How to call it
 
-In Claude Code, type `/brief`. No OpenCode command exists for brief yet, and no other surface has a slash-command adapter for it either; brief is an authoring skill, not a script, so invoking it opens a conversation that produces the written rules themselves — content for the team's own `CLAUDE.md` or `AGENTS.md` — rather than a command's return value.
+In Claude Code, type `/brief`. No OpenCode command exists for brief yet, and no other surface has a slash-command adapter for it either. Brief is an authoring skill, not a script, so invoking it opens a conversation that produces the written rules themselves — content for the team's own `CLAUDE.md` or `AGENTS.md` — rather than a command's return value.
 
 Readers who do not have the skill pack installed yet can add it first. The second line installs the tool adapters:
 

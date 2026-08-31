@@ -24,4 +24,4 @@ steps:
 
 This path is for an engineer who has not yet run a change through The Quentin's agent-led delivery pipeline. It starts before a line of code is written, with reading an unfamiliar codebase and pressure-testing a raw idea, and it ends after merge, with a pull request that has been built, tested, and reviewed in an isolated sandbox.
 
-By the end, an engineer can brief a codebase they have never seen, turn an idea into a requirements document that survived hard questions, carry a build through its sign-off points, prove every acceptance criterion was met with recorded evidence, and merge a change that has already passed a tough, independent review.
+By the end, an engineer can brief a codebase they have never seen, turn an idea into a requirements document that survived hard questions, and carry a build through its sign-off points. They can then prove every acceptance criterion was met with recorded evidence, and merge a change that has already passed a tough, independent review.

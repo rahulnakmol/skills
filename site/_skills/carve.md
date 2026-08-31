@@ -32,7 +32,7 @@ Carve extracts candidate epics from a Business Understanding Document under the 
 
 ## How to call it
 
-Carve is model-invoked, so there is no slash command for it. The model reaches for it once `map` or `tom-architect` has produced an upstream document and the request asks to break the initiative into epics — for example: "break this initiative into epics before we write any PRD," the same utterance the routing eval tests (`test/eval/routing.jsonl`, case r015, noted there as confusable with `slice`). Readers who do not have the skill pack installed can add it first:
+Carve is model-invoked, so there is no slash command for it. The model reaches for it once `map` or `tom-architect` has produced an upstream document and the request asks to break the initiative into epics. For example, "break this initiative into epics before we write any PRD" is the same utterance the routing eval tests (`test/eval/routing.jsonl`, case r015, noted there as confusable with `slice`). Readers who do not have the skill pack installed can add it first:
 
 ```bash
 npx skills@latest add tqnonline/skills
