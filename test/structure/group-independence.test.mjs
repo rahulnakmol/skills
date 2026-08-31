@@ -111,13 +111,8 @@ test('no group references another group, and core references none', () => {
   const violations = [];
   for (const relPath of GROUP_DOCS) {
     const { ownGroup, found } = crossGroupReferences(relPath);
-    for (const ref of found) {
-      violations.push(
-        ownGroup === 'core'
-          ? `${relPath} (core) references the ${ref.target} group: ${ref.text}`
-          : `${relPath} (${ownGroup}) references the ${ref.target} group: ${ref.text}`,
-      );
-    }
+    for (const ref of found)
+      violations.push(`${relPath} (${ownGroup}) references the ${ref.target} group: ${ref.text}`);
   }
   assert.deepEqual(
     violations,
@@ -130,7 +125,8 @@ test('no group references another group, and core references none', () => {
 test('the shared doctrine core carries is reachable from every group that reads it', () => {
   for (const doc of ['VERIFICATION.md', 'COVERAGE.md', 'GRILL.md', 'VALUE.md'])
     assert.ok(existsSync(join(root, 'skills/core', doc)), `missing skills/core/${doc}`);
-  // Nothing outside skills/ should still point at the pre-move locations.
+  // The pre-move locations are gone, so a reference to one fails loudly rather
+  // than resolving against a file that was left behind.
   const stale = [
     'skills/developer/shakedown/VERIFICATION.md',
     'skills/developer/shakedown/COVERAGE.md',
