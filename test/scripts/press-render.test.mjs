@@ -218,6 +218,29 @@ test('an explicitly named palette that does not exist fails rather than renderin
   });
 });
 
+test('a palette missing a token falls back and names the token, rather than doing it quietly', () => {
+  withTempDir((dir) => {
+    const palette = join(dir, 'partial.md');
+    const shipped = readFileSync(join(root, 'skills/branding/press/PALETTE.md'), 'utf8');
+    const stripped = shipped.replace(/\n\s*"heading":\s*"#[0-9a-fA-F]{6}",/, '');
+    assert.notEqual(stripped, shipped, 'expected a heading color token to strip from the shipped palette');
+    writeFileSync(palette, stripped);
+
+    const { result } = renderToTemp(dir, DOCUMENT, ['--html-only', '--palette', palette]);
+    assert.equal(result.status, 0, 'a single missing token is a warning, not a failed run');
+    assert.match(result.stderr, /colors\.heading is missing/,
+      'the run must name the token it fell back on; an artifact in colors nobody chose must not be silent');
+  });
+});
+
+test('a complete palette produces no warnings at all', () => {
+  withTempDir((dir) => {
+    const { result } = renderToTemp(dir, DOCUMENT, ['--html-only']);
+    assert.equal(result.status, 0);
+    assert.equal(result.stderr.trim(), '', `the shipped palette must render without warnings, got: ${result.stderr}`);
+  });
+});
+
 // --- the PDF contract ----------------------------------------------------------
 
 test('--html-only writes HTML, exits 0, and never produces a .pdf', () => {

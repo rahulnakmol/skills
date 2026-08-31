@@ -168,6 +168,10 @@ function loadPalette(path, explicit) {
         continue;
       }
       if (raw !== undefined) warn(`palette token ${section}.${key} is not a valid value; using the fallback`);
+      // A token the palette simply omits is reported too. Falling back in
+      // silence would hand back an artifact in colors the caller never chose
+      // and give no sign that it happened.
+      else if (parsed) warn(`palette token ${section}.${key} is missing; using the fallback`);
       merged[section][key] = fallback;
     }
   }
