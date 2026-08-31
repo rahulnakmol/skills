@@ -45,12 +45,21 @@ test('link-skills.sh installs one symlink per promoted skill, overwriting none',
     const entries = readdirSync(dir);
     const links = entries.filter((entry) => lstatSync(join(dir, entry)).isSymbolicLink());
     assert.equal(links.length, entries.length, 'the install bucket must contain only symlinks');
+
+    // A full install carries every promoted skill plus one doctrine link per
+    // group, which is what makes group-level documents such as GATES.md and
+    // VERIFICATION.md resolvable after install rather than only in the repo.
+    const skillLinks = links.filter((entry) => !entry.endsWith('-doctrine'));
+    const doctrineLinks = links.filter((entry) => entry.endsWith('-doctrine'));
     assert.equal(
-      links.length,
+      skillLinks.length,
       SKILLS.length,
-      `expected ${SKILLS.length} symlinks for ${SKILLS.length} promoted skills, found ${links.length}. ` +
+      `expected ${SKILLS.length} skill symlinks for ${SKILLS.length} promoted skills, found ${skillLinks.length}. ` +
         'A shortfall means two skills collided on one install name and one was overwritten.',
     );
+    const groups = [...new Set(SKILLS.map((s) => s.group))];
+    assert.equal(doctrineLinks.length, groups.length,
+      `expected one doctrine link per group (${groups.length}), found ${doctrineLinks.length}`);
 
     // Each link resolves to the skill directory it is named after, not to some
     // other group's skill that happened to be linked later.
