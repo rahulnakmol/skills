@@ -34,6 +34,8 @@ Grit is the discipline that keeps finished work from being called done before it
 
 In Claude Code, type `/grit`. In OpenCode, run the `/grit-verify` command: it parses the ledger, reports the met, unmet, and abandoned counts, and keeps the verify agent from returning a handoff-ready verdict while any gate is unmet. The checker behind both, `gate-check.mjs`, is plain Node, so it also runs directly from a terminal on any platform.
 
+Enforcement at the moment a session tries to finish is a separate step, and it is opt-in. Claude Code and Codex each have a stop hook that reads the ledger and keeps a session from ending while a gate is unmet, and the installer carries a separate target for each. Both hooks call the same checker, so the two tools enforce one ledger parser rather than two.
+
 <pre><code><span class="tok-comment">$</span> node skills/core/grit/scripts/gate-check.mjs --status GATES.md <span class="tok-comment"># read the checklist, run nothing</span>
 <span class="tok-comment">$</span> node skills/core/grit/scripts/gate-check.mjs --approve GATES.md <span class="tok-comment"># a human reads each command once</span>
 <span class="tok-comment">$</span> node skills/core/grit/scripts/gate-check.mjs --reverify GATES.md <span class="tok-comment"># re-check work that comes back</span></code></pre>

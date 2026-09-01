@@ -98,8 +98,28 @@ else
 fi
 
 dedupe() { printf '%s\n' "$@" | awk 'NF && !seen[$0]++'; }
-mapfile -t SELECTED_GROUPS < <(dedupe "${SELECTED_GROUPS[@]:-}")
-mapfile -t SELECTED_SKILLS < <(dedupe "${SELECTED_SKILLS[@]:-}")
+
+# Read lines from stdin into _DEDUPED. `mapfile` would say this in one line, but
+# it is a bash 4 builtin and macOS ships bash 3.2, where the script died at this
+# point. Redirecting into the function rather than piping into it keeps the loop
+# in the current shell, so the array outlives it. `IFS= read -r` leaves each line
+# exactly as it came, including any spaces in a directory name.
+read_deduped() {
+  _DEDUPED=()
+  local line
+  while IFS= read -r line; do
+    _DEDUPED+=("$line")
+  done
+}
+
+# Assign with the `${arr[@]+...}` guard: on an empty result this expands to
+# nothing, giving an empty array rather than an array holding one empty string.
+# The difference is visible in the count this script prints at the end, and
+# under `set -u` bash 3.2 refuses the unguarded form outright.
+read_deduped < <(dedupe "${SELECTED_GROUPS[@]:-}")
+SELECTED_GROUPS=(${_DEDUPED[@]+"${_DEDUPED[@]}"})
+read_deduped < <(dedupe "${SELECTED_SKILLS[@]:-}")
+SELECTED_SKILLS=(${_DEDUPED[@]+"${_DEDUPED[@]}"})
 
 link() { # src dst
   if [[ $DRY_RUN -eq 1 ]]; then echo "would link $2 -> $1"; else ln -sfn "$1" "$2"; fi
