@@ -1,0 +1,92 @@
+name: Docs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - 'skills/**'
+      - '.claude-plugin/**'
+      - 'scripts/gen-docs-data.mjs'
+      - '.github/workflows/docs.yml'
+  # Pull requests run the build job only, never the deploy job, so the real
+  # Jekyll build is proved on the pull request rather than after the merge.
+  pull_request:
+    paths:
+      - 'site/**'
+      - 'skills/**'
+      - '.claude-plugin/**'
+      - 'scripts/gen-docs-data.mjs'
+      - '.github/workflows/docs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  # Deploys share one queue; pull-request builds get a queue per branch, so a
+  # new push to a pull request cancels that branch's stale build only.
+  group: "pages-${{ github.event_name == 'pull_request' && github.ref || 'main' }}"
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Only on the deploying branch: this call enables Pages on the repository
+      # and needs the write token a pull-request build does not get.
+      - name: Configure Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate skills catalog data
+        run: node scripts/gen-docs-data.mjs
+
+      # Examples bound to repository fixtures and scripts are re-run by the
+      # test suite; a broken one fails the build here rather than shipping
+      # a page that has drifted from its source.
+      - name: Run test suite
+        run: node scripts/run-tests.mjs
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+          working-directory: site
+
+      - name: Build Jekyll site
+        working-directory: site
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build
+
+      - name: Build Pagefind index
+        working-directory: site
+        run: npx --yes pagefind --site _site
+
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
+        with:
+          path: site/_site
+
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

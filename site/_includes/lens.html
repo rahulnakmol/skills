@@ -1,0 +1,68 @@
+<div
+  class="lens"
+  x-data="{
+    lensId: 'novice',
+    init() {
+      try {
+        var saved = localStorage.getItem('tqn-lens');
+        if (saved) this.lensId = saved;
+      } catch (e) {}
+    },
+    pick(id) {
+      this.lensId = id;
+      try { localStorage.setItem('tqn-lens', id); } catch (e) {}
+    }
+  }"
+>
+  <div class="lens-tabs" role="tablist">
+    <button type="button" class="lens-tab tab" role="tab" :class="{ 'is-active': lensId === 'novice' }" :aria-selected="lensId === 'novice'" @click="pick('novice')">Novice</button>
+    <button type="button" class="lens-tab tab" role="tab" :class="{ 'is-active': lensId === 'practitioner' }" :aria-selected="lensId === 'practitioner'" @click="pick('practitioner')">Practitioner</button>
+    <button type="button" class="lens-tab tab" role="tab" :class="{ 'is-active': lensId === 'leader' }" :aria-selected="lensId === 'leader'" @click="pick('leader')">Leader</button>
+    <button type="button" class="lens-tab tab" role="tab" :class="{ 'is-active': lensId === 'csuite' }" :aria-selected="lensId === 'csuite'" @click="pick('csuite')">C-suite</button>
+    <span class="lens-hint">the page reframes for who you are</span>
+  </div>
+
+  <div class="lens-panel" x-show="lensId === 'novice'">
+    <div class="lens-col">
+      <div class="lens-col-label">Who this is for</div>
+      <p>{{ page.lens.novice.who | default: "" }}</p>
+    </div>
+    <div class="lens-col">
+      <div class="lens-col-label">Why it is worth it</div>
+      <p>{{ page.lens.novice.value | default: "" }}</p>
+    </div>
+  </div>
+
+  <div class="lens-panel" x-cloak x-show="lensId === 'practitioner'">
+    <div class="lens-col">
+      <div class="lens-col-label">Who this is for</div>
+      <p>{{ page.lens.practitioner.who | default: "" }}</p>
+    </div>
+    <div class="lens-col">
+      <div class="lens-col-label">Why it is worth it</div>
+      <p>{{ page.lens.practitioner.value | default: "" }}</p>
+    </div>
+  </div>
+
+  <div class="lens-panel" x-cloak x-show="lensId === 'leader'">
+    <div class="lens-col">
+      <div class="lens-col-label">Who this is for</div>
+      <p>{{ page.lens.leader.who | default: "" }}</p>
+    </div>
+    <div class="lens-col">
+      <div class="lens-col-label">Why it is worth it</div>
+      <p>{{ page.lens.leader.value | default: "" }}</p>
+    </div>
+  </div>
+
+  <div class="lens-panel" x-cloak x-show="lensId === 'csuite'">
+    <div class="lens-col">
+      <div class="lens-col-label">Who this is for</div>
+      <p>{{ page.lens.csuite.who | default: "" }}</p>
+    </div>
+    <div class="lens-col">
+      <div class="lens-col-label">Why it is worth it</div>
+      <p>{{ page.lens.csuite.value | default: "" }}</p>
+    </div>
+  </div>
+</div>

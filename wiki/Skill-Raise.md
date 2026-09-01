@@ -1,33 +1,9 @@
-# Skill: Raise
+# Raise
 
-**Group:** developer · **Invocation:** model-invoked · **Source:** [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/raise/SKILL.md)
+Model-invoked publish of sliced backlog to GitHub, Linear, or Azure DevOps with pickup-protocol labels. Use after slice output is ready.
 
-Raise publishes a sliced backlog to the tracker a project has configured, whether that is GitHub, using native sub-issues and labels or Projects v2, or Linear. It applies the `raised` label and a stable idempotency key, so a later run updates an existing item rather than creating a duplicate.
+Full documentation: https://tqnonline.github.io/skills/raise/
 
-## When to invoke
+Source: [SKILL.md](https://github.com/tqnonline/skills/blob/main/skills/developer/raise/SKILL.md)
 
-- [Slice](Skill-Slice) has produced work items that satisfy the contract.
-- The user has confirmed which tracker is the publishing target.
-
-## How it fits
-
-Raise closes out the Backlog stage of the [role journey](Architecture-Role-Journey). What it publishes is not an ordinary issue. It is a work item that already carries the full [WORK-ITEM-CONTRACT.md](https://github.com/tqnonline/skills/blob/main/skills/developer/slice/WORK-ITEM-CONTRACT.md), so the pickup protocol — `raised`, `critiqued`, `clarified`, `ready`, `in-progress`, `done` — can begin the moment anyone, a person or an agent, opens the issue.
-
-## Key references
-
-- [trackers/github.md](https://github.com/tqnonline/skills/blob/main/skills/developer/raise/trackers/github.md) covers sub-issues with labels, or Projects v2, detected automatically per project.
-- [trackers/linear.md](https://github.com/tqnonline/skills/blob/main/skills/developer/raise/trackers/linear.md) covers Linear projects and parent issues through its MCP server or API.
-
-## How to use
-
-Raise is model-invoked after `slice` produces contract-complete items and you confirm the tracker. It reads `.impact.json` for the project's tracker choice (GitHub sub-issues with labels, GitHub Projects v2, or Linear) and asks once when the choice is ambiguous. Re-running is safe: the idempotency key in each issue body means updates, never duplicates.
-
-## Best practices
-
-- Create the six pickup-protocol labels before the first publish (`REPO-SETUP.md` covers this) — a missing label breaks the state machine silently.
-- Publish the whole backlog bundle in one run so parent links land intact; raising items piecemeal orphans the hierarchy.
-- Leave the `raised` label transitions to the pipeline workflows; hand-moving an item to `ready` skips the critique the protocol exists for.
-
-## Sibling skills
-
-Raise consumes a backlog from [Slice](Skill-Slice). The items it publishes are picked up by [SDLC](Skill-SDLC), or by a headless pod, according to the execution profile named in the contract.
+**Invocation:** model-invoked

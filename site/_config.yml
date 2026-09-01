@@ -1,0 +1,52 @@
+title: "TQN Skills"
+tagline: "The skill library from The Quentin."
+description: "TQN Skills documents every skill in The Quentin's skill library — what each one does, who it is for, and how to call it."
+
+url: "https://tqnonline.github.io"
+baseurl: "/skills"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+collections:
+  skills:
+    output: true
+    permalink: /:name/
+  groups:
+    output: true
+    permalink: /group/:name/
+  journeys:
+    output: true
+    permalink: /journey/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: skills
+    values:
+      layout: skill
+  - scope:
+      path: ""
+      type: groups
+    values:
+      layout: group
+  - scope:
+      path: ""
+      type: journeys
+    values:
+      layout: journey
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor

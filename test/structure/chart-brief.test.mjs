@@ -86,6 +86,10 @@ test('the productivity group ships its first skill in charter, README, and wiki'
   assert.ok(read('skills/productivity/README.md').includes('brief'), 'the productivity charter must name brief');
   assert.ok(!read('README.md').includes('Writing and productivity are charter-only'),
     'README must no longer describe productivity as charter-only');
-  assert.ok(read('wiki/Group-Productivity.md').includes('Skill-Brief'), 'Group-Productivity must list Brief');
-  assert.ok(read('wiki/Home.md').includes('(Skill-Brief)'), 'wiki Home must index Brief');
+  assert.ok(existsSync(join(root, 'wiki/Skill-Brief.md')), 'missing wiki/Skill-Brief.md');
+  assert.ok(read('wiki/Skill-Brief.md').includes('skills/productivity/brief/SKILL.md'),
+    "Skill-Brief.md must link brief's SKILL.md source");
+  assert.ok(/Promoted skills: 1\./.test(read('wiki/Group-Productivity.md')),
+    'Group-Productivity.md must count brief as its one promoted skill');
+  assert.ok(read('wiki/Home.md').includes('(Group-Productivity)'), 'wiki Home must link Group-Productivity');
 });

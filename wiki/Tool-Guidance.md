@@ -1,5 +1,7 @@
 # Tool guidance
 
+Full documentation for every skill: https://tqnonline.github.io/skills/.
+
 The skills are authored once and run in five tools. The portable core — every `SKILL.md` and its reference documents — installs identically everywhere through `npx skills@latest add tqnonline/skills`, which places the catalog in `.agents/skills/` (read by most tools) and `.claude/skills/` (read by Claude Code). What differs per tool is the execution power layered on top: adapters, workflows, and the runner. This page covers each tool in turn.
 
 ## Claude Code

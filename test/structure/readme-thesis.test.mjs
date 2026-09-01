@@ -39,9 +39,12 @@ test('install wording is verbatim from .agents/install-block.md', () => {
   assert.ok(readme.includes(fence), 'README install block must be copied verbatim from .agents/install-block.md');
 });
 
-test('wiki Home mirrors the thesis', () => {
+// wiki/Home.md is now a lean index — the thesis itself lives on the docs
+// site, which Home points to, rather than being duplicated on this page.
+test('wiki Home is a lean index pointing at the site, linking every group stub', () => {
   const home = read('wiki/Home.md');
-  assert.ok(home.includes('## The thesis'), 'wiki/Home.md missing "## The thesis"');
-  for (const page of ['Group-Developer', 'Group-Branding', 'Group-Writing', 'Group-Productivity'])
-    assert.ok(home.includes(page), `wiki/Home.md must link ${page}`);
+  assert.ok(home.includes('https://tqnonline.github.io/skills/'),
+    'wiki/Home.md must link the docs site home — the full documentation now lives there, not on this page');
+  for (const page of ['Group-Core', 'Group-Developer', 'Group-PM', 'Group-Branding', 'Group-Writing', 'Group-Productivity'])
+    assert.ok(home.includes(`(${page})`), `wiki/Home.md must link ${page}`);
 });

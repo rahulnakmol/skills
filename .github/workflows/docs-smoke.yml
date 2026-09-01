@@ -1,0 +1,35 @@
+# Post-deploy verification. This is the one place in the docs pipeline that
+# is allowed to touch the network: it fetches the live, already-deployed
+# site and checks a handful of pages actually came back, rather than
+# re-checking anything the offline test suite already covers before deploy.
+name: Docs Smoke
+
+on:
+  workflow_run:
+    workflows: ["Docs"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: "Base URL to smoke-test"
+        required: false
+        default: "https://tqnonline.github.io/skills"
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    # A workflow_dispatch run always proceeds; a workflow_run-triggered run
+    # proceeds only when the Docs run it followed actually succeeded — a
+    # failed or cancelled deploy has nothing new to verify.
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Smoke-test the deployed site
+        run: node test/site/smoke.mjs "${{ inputs.base_url || 'https://tqnonline.github.io/skills' }}"

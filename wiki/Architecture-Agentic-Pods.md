@@ -1,5 +1,7 @@
 # Architecture: Agentic pods
 
+Full documentation for every skill: https://tqnonline.github.io/skills/.
+
 This page describes what happens between the moment [Raise](Skill-Raise) publishes a work item and the moment an agent, or a person, actually implements it. The process is designed so that someone always checks the item makes sense before implementation begins.
 
 ## The contract
