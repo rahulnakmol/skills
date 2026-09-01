@@ -24,6 +24,13 @@ const PROMOTED = walk('skills', (p) => p.endsWith('SKILL.md')).map((p) => {
   return { path: p, dir: parts.slice(0, -1).join('/'), group: parts[1], name: parts[parts.length - 2] };
 });
 
+// Promotion moves a skill out of drafts/ but must not move it out of the
+// contract. A skill that carried a contract block as a draft keeps being held
+// to it once shipped, so the checks below run over both trees; otherwise the
+// enforcement this file exists for would evaporate at the moment it matters.
+const PROMOTED_UNDER_CONTRACT = PROMOTED.filter((s) => /```yaml\ncontract:/.test(read(s.path)));
+const UNDER_CONTRACT = [...DRAFTS, ...PROMOTED_UNDER_CONTRACT];
+
 // The contract is a fenced YAML block of four fixed keys. It is parsed strictly:
 // a block that does not match this shape is a failure, not a warning, because a
 // contract the harness cannot read is a contract nothing enforces.
@@ -56,8 +63,8 @@ test('drafts exist and sit under one of the six groups', () => {
   }
 });
 
-test('every draft carries a well-formed contract block', () => {
-  for (const skill of DRAFTS) {
+test('every skill under contract carries a well-formed contract block', () => {
+  for (const skill of UNDER_CONTRACT) {
     const contract = parseContract(read(skill.path));
     assert.ok(contract, `${skill.path}: missing a \`\`\`yaml contract:\`\`\` block (see skills/core/TRACE.md)`);
     assert.ok(!contract.malformed, `${skill.path}: unparseable contract line: ${contract.malformed}`);
@@ -72,10 +79,10 @@ test('every draft carries a well-formed contract block', () => {
   }
 });
 
-test('every draft declares which limb of the thesis test it satisfies', () => {
+test('every skill under contract declares which limb of the thesis test it satisfies', () => {
   // The capability gate. A skill that only executes routine work cannot name a
   // limb honestly, and ADR 0008 says it ships as doctrine or not at all.
-  for (const skill of DRAFTS) {
+  for (const skill of UNDER_CONTRACT) {
     const contract = parseContract(read(skill.path));
     assert.ok(
       THESIS_LIMBS.includes(contract.thesis),
@@ -84,8 +91,8 @@ test('every draft declares which limb of the thesis test it satisfies', () => {
   }
 });
 
-test('every draft declares tool verbs from the closed set, and no more than it needs', () => {
-  for (const skill of DRAFTS) {
+test('every skill under contract declares tool verbs from the closed set, and no more than it needs', () => {
+  for (const skill of UNDER_CONTRACT) {
     const contract = parseContract(read(skill.path));
     const verbs = verbList(contract.verbs);
     assert.ok(verbs, `${skill.path}: verbs must be a bracketed list, e.g. [read, write-repo]`);
@@ -105,8 +112,8 @@ test('every draft declares tool verbs from the closed set, and no more than it n
   }
 });
 
-test('every draft declares a trace kind and the invocation axis matches its title', () => {
-  for (const skill of DRAFTS) {
+test('every skill under contract declares a trace kind and an invocation axis matching its title', () => {
+  for (const skill of UNDER_CONTRACT) {
     const body = read(skill.path);
     const contract = parseContract(body);
     assert.match(
@@ -130,8 +137,8 @@ test('every draft declares a trace kind and the invocation axis matches its titl
   }
 });
 
-test('drafts follow the same skill contract promoted skills do', () => {
-  for (const skill of DRAFTS) {
+test('every skill under contract meets the repository skill contract', () => {
+  for (const skill of UNDER_CONTRACT) {
     const body = read(skill.path);
     const lines = body.split('\n');
     assert.ok(lines.length <= 120, `${skill.path}: ${lines.length} lines (max 120)`);
@@ -189,10 +196,10 @@ test('drafts respect group independence: any group may reference core, none anot
   assert.deepEqual(violations, [], 'ADR 0007 applies to drafts, which are promoted skills in waiting.\n' + violations.join('\n'));
 });
 
-test('every doctrine sibling a draft ships is reachable from its SKILL.md', () => {
+test('every doctrine sibling a skill under contract ships is reachable from its SKILL.md', () => {
   // The context compiler layer: a document nothing points at is never loaded, and
   // a skill that loads everything unconditionally has no progressive disclosure.
-  for (const skill of DRAFTS) {
+  for (const skill of UNDER_CONTRACT) {
     const abs = join(root, skill.dir);
     const siblings = readdirSync(abs).filter(
       (e) => e.endsWith('.md') && e !== 'SKILL.md' && !statSync(join(abs, e)).isDirectory(),
