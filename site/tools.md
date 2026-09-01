@@ -18,7 +18,7 @@ npx skills@latest add tqnonline/skills
 ./scripts/install-adapters.sh --tool claude
 ```
 
-A skill is called the way its frontmatter's invocation axis declares. A **user-invoked** skill runs when a person types its name or its slash command; a **model-invoked** skill runs when an orchestrating skill calls it through the Skill tool. Claude Code also has a Stop hook, installed separately with `./scripts/install-adapters.sh --tool claude-hooks`, that can block a session from ending while `grit`'s gate ledger has unmet gates. It is opt-in and is never part of the default install, but it is the deepest completion enforcement among the five tools, because it is the only one that can stop a session directly rather than flag the problem after the fact.
+A skill is called the way its frontmatter's invocation axis declares. A **user-invoked** skill runs when a person types its name or its slash command; a **model-invoked** skill runs when an orchestrating skill calls it through the Skill tool. Claude Code also has a Stop hook, installed separately with `./scripts/install-adapters.sh --tool claude-hooks`, that can block a session from ending while `grit`'s gate ledger has unmet gates. It is opt-in and is never part of the default install. Among the five tools, only Claude Code and Codex can stop a session directly rather than flag the problem after the fact. Claude Code's hook is verified against live sessions; Codex's is verified against Codex's published hook schema rather than a live session.
 
 ## OpenCode
 
@@ -49,7 +49,7 @@ Installing the skills places them in `.agents/skills/`, the directory Codex read
 npx skills@latest add tqnonline/skills
 ```
 
-Like Cursor, Codex gets no command layer from this repository. Invocation is driven by `AGENTS.md` and the skill files themselves, which Codex reads as working context. Codex ships a hooks system of its own, but this repository does not yet include a Codex hook, so `grit` enforcement is an instruction a team adds to `AGENTS.md`, backed by the same `grit-gates.yml` continuous-integration workflow.
+Like Cursor, Codex gets no command layer from this repository. Invocation is driven by `AGENTS.md` and the skill files themselves, which Codex reads as working context. Codex also has a Stop hook, installed separately with `./scripts/install-adapters.sh --tool codex-hooks`, that can block a session from ending while `grit`'s gate ledger has unmet gates. It delegates to the same vendored checker the Claude Code hook uses, so the two tools share one ledger parser. It is opt-in, never part of the default install, and verified against Codex's published hook schema rather than a live Codex session.
 
 ## GitHub Copilot
 
