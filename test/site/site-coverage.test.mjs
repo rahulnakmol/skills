@@ -4,7 +4,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   root, read, listMarkdown, splitFrontmatter, scalar, lens, steps,
-  h2Headings, installBlockLines, skillGroups,
+  h2Headings, h2Section, installBlockLines, skillGroups,
 } from './lib.mjs';
 
 // The page-per-skill guarantee: every manifest entry names a real site page.
@@ -15,8 +15,55 @@ const MANIFEST_SKILLS = PLUGIN.skills.map((p) => {
   return { ref: p, group: parts[1], name: parts[2] };
 });
 
-const EXPECTED_H2S = ['What it does', 'How to call it', 'What good looks like', 'In practice', 'How it works'];
+// Two body contracts, selected by whether a page's frontmatter carries a
+// `scenario:` key. v1 is every page migrated before the site v2 rebuild;
+// v2 is the shape a migrated page takes on. A page declares which contract
+// it is written to simply by having (or not having) `scenario:` — there is
+// no separate version flag to fall out of sync with the body itself.
+const V1_H2S = ['What it does', 'How to call it', 'What good looks like', 'In practice', 'How it works'];
+const V2_H2S = ['What it does', 'A working example', 'How to call it', 'What good looks like', 'In practice', 'How it works'];
+const TOOL_NAMES = ['Claude Code', 'OpenCode', 'Cursor', 'Codex', 'GitHub Copilot'];
 const [INSTALL_LINE_1, INSTALL_LINE_2] = installBlockLines();
+
+// v1: today's checks, unchanged — the five H2s in order, a compare-grid, and
+// the install-block lines copied verbatim from .agents/install-block.md.
+function assertV1Body(pagePath, raw, body) {
+  const found = h2Headings(body);
+  assert.deepEqual(found, V1_H2S,
+    `${pagePath}: expected exactly the five H2s in order, got: ${JSON.stringify(found)}`);
+
+  assert.match(raw, /class="compare-grid"/, `${pagePath}: missing a compare-grid div`);
+
+  assert.ok(raw.includes(INSTALL_LINE_1),
+    `${pagePath}: missing install-block line 1 verbatim: ${JSON.stringify(INSTALL_LINE_1)}`);
+  assert.ok(raw.includes(INSTALL_LINE_2),
+    `${pagePath}: missing install-block line 2 verbatim: ${JSON.stringify(INSTALL_LINE_2)}`);
+}
+
+// v2: the six H2s in order; "What it does" carries a step-flow and a
+// benefits list; "How to call it" names all five tools and links the Tools
+// page. No install-block requirement — a v2 page is not a copy-paste target
+// the way a v1 page is.
+function assertV2Body(pagePath, raw, body) {
+  const found = h2Headings(body);
+  assert.deepEqual(found, V2_H2S,
+    `${pagePath}: expected exactly the six v2 H2s in order, got: ${JSON.stringify(found)}`);
+
+  const whatItDoes = h2Section(body, 'What it does');
+  assert.ok(whatItDoes, `${pagePath}: "What it does" section not found`);
+  assert.match(whatItDoes, /class="step-flow"/,
+    `${pagePath}: "What it does" must contain a step-flow div`);
+  assert.match(whatItDoes, /class="benefits"/,
+    `${pagePath}: "What it does" must contain a benefits list`);
+
+  const howToCallIt = h2Section(body, 'How to call it');
+  assert.ok(howToCallIt, `${pagePath}: "How to call it" section not found`);
+  for (const tool of TOOL_NAMES) {
+    assert.ok(howToCallIt.includes(tool), `${pagePath}: "How to call it" must name ${tool}`);
+  }
+  assert.match(howToCallIt, /<a\b[^>]*href="[^"]*tools\/[^"]*"/,
+    `${pagePath}: "How to call it" must link the Tools page`);
+}
 
 test('every plugin.json skill has ≥1 entries and the manifest was actually read', () => {
   assert.ok(MANIFEST_SKILLS.length >= 30, `expected the full manifest, found ${MANIFEST_SKILLS.length} entries`);
@@ -62,6 +109,13 @@ for (const { ref, group, name } of MANIFEST_SKILLS) {
     assert.ok(description.length >= 80 && description.length <= 200,
       `${pagePath}: description is ${description.length} chars, must be 80-200`);
 
+    // The v2 body contract is selected by this key's presence; when present
+    // it must actually carry a scenario, not just the bare key.
+    const scenario = scalar(frontmatter, 'scenario');
+    if (scenario !== null) {
+      assert.ok(scenario.length > 0, `${pagePath}: scenario, when present, must be non-empty`);
+    }
+
     const l = lens(frontmatter);
     assert.ok(l, `${pagePath}: no lens: block found`);
     for (const persona of ['novice', 'practitioner', 'leader', 'csuite']) {
@@ -101,20 +155,18 @@ for (const { ref, group, name } of MANIFEST_SKILLS) {
     }
   });
 
-  test(`${pagePath}: body contract (H2 order, compare-grid, install block)`, () => {
+  const raw0 = read(pagePath);
+  const scenario0 = scalar(splitFrontmatter(raw0).frontmatter, 'scenario');
+  const isV2 = scenario0 !== null;
+
+  test(`${pagePath}: body contract (${isV2 ? 'v2: H2 order, step-flow, benefits, tool coverage' : 'v1: H2 order, compare-grid, install block'})`, () => {
     const raw = read(pagePath);
     const { body } = splitFrontmatter(raw);
-
-    const found = h2Headings(body);
-    assert.deepEqual(found, EXPECTED_H2S,
-      `${pagePath}: expected exactly the five H2s in order, got: ${JSON.stringify(found)}`);
-
-    assert.match(raw, /class="compare-grid"/, `${pagePath}: missing a compare-grid div`);
-
-    assert.ok(raw.includes(INSTALL_LINE_1),
-      `${pagePath}: missing install-block line 1 verbatim: ${JSON.stringify(INSTALL_LINE_1)}`);
-    assert.ok(raw.includes(INSTALL_LINE_2),
-      `${pagePath}: missing install-block line 2 verbatim: ${JSON.stringify(INSTALL_LINE_2)}`);
+    if (isV2) {
+      assertV2Body(pagePath, raw, body);
+    } else {
+      assertV1Body(pagePath, raw, body);
+    }
   });
 }
 
@@ -165,4 +217,85 @@ test('every skill page declaring a journey names one of the two journey files', 
     assert.ok(journeyNames.has(journey),
       `${pagePath}: journey "${journey}" is not one of the two journey files (${[...journeyNames].join(', ')})`);
   }
+});
+
+// --- v2 contract self-test --------------------------------------------------
+//
+// None of the 34 skill pages carry `scenario:` yet — v2 migration is later
+// waves' work — so nothing on disk exercises assertV2Body today. Without a
+// fixture, that function would be dead code the harness never runs, and a
+// bug in it would ship silently. This is that fixture: a synthetic, in-memory
+// v2 body (never written to site/_skills, so it cannot trip the orphan-page
+// or manifest checks above) checked once as a passing baseline and once per
+// mutation, each mutation targeting exactly one assertion in assertV2Body.
+const V2_FIXTURE_OK = `## What it does
+
+<div class="step-flow">
+  <div class="step"><span class="step-num">1</span><span class="step-label">Read</span><span class="step-text">Read the input.</span></div>
+</div>
+
+<ul class="benefits">
+  <li>Saves time.</li>
+  <li>Reduces risk.</li>
+</ul>
+
+## A working example
+
+A worked example goes here.
+
+## How to call it
+
+<div class="tool-block"><span class="tool-badge">Claude Code</span></div>
+<div class="tool-block"><span class="tool-badge">OpenCode</span></div>
+<div class="tool-block"><span class="tool-badge">Cursor</span></div>
+<div class="tool-block"><span class="tool-badge">Codex</span></div>
+<div class="tool-block"><span class="tool-badge">GitHub Copilot</span></div>
+
+See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for setup.
+
+## What good looks like
+
+Good looks like this.
+
+## In practice
+
+In practice, teams do this.
+
+## How it works
+
+Under the hood, it works like this.
+`;
+
+test('v2 fixture: a well-formed v2 body passes assertV2Body', () => {
+  assert.doesNotThrow(() => assertV2Body('fixture', V2_FIXTURE_OK, V2_FIXTURE_OK));
+});
+
+test('v2 fixture mutation: wrong H2 order/text is a named failure', () => {
+  const broken = V2_FIXTURE_OK.replace('## A working example', '## A broken example');
+  assert.throws(() => assertV2Body('fixture', broken, broken),
+    /expected exactly the six v2 H2s in order/);
+});
+
+test('v2 fixture mutation: missing step-flow div is a named failure', () => {
+  const broken = V2_FIXTURE_OK.replace('class="step-flow"', 'class="not-step-flow"');
+  assert.throws(() => assertV2Body('fixture', broken, broken),
+    /must contain a step-flow div/);
+});
+
+test('v2 fixture mutation: missing benefits list is a named failure', () => {
+  const broken = V2_FIXTURE_OK.replace('class="benefits"', 'class="not-benefits"');
+  assert.throws(() => assertV2Body('fixture', broken, broken),
+    /must contain a benefits list/);
+});
+
+test('v2 fixture mutation: a missing tool name is a named failure', () => {
+  const broken = V2_FIXTURE_OK.replace('<div class="tool-block"><span class="tool-badge">Codex</span></div>\n', '');
+  assert.throws(() => assertV2Body('fixture', broken, broken),
+    /must name Codex/);
+});
+
+test('v2 fixture mutation: a missing Tools-page link is a named failure', () => {
+  const broken = V2_FIXTURE_OK.replace(/See the <a[^>]*>Tools page<\/a> for setup\.\n\n/, '');
+  assert.throws(() => assertV2Body('fixture', broken, broken),
+    /must link the Tools page/);
 });

@@ -103,8 +103,19 @@ const orderedGroupIds = [
   ...[...byGroup.keys()].filter((g) => !GROUP_ORDER.includes(g)).sort(),
 ];
 
+// Within a group, user-invoked skills lead and model-invoked skills follow —
+// a reader picks a skill to run before the ones an orchestrator calls on
+// their behalf. Array#filter is stable, so manifest order is preserved
+// within each class.
+function byInvocationThenManifestOrder(skills) {
+  return [
+    ...skills.filter((s) => s.invocation === 'user-invoked'),
+    ...skills.filter((s) => s.invocation !== 'user-invoked'),
+  ];
+}
+
 const groups = orderedGroupIds.map((id) => {
-  const skills = byGroup.get(id) ?? [];
+  const skills = byInvocationThenManifestOrder(byGroup.get(id) ?? []);
   return { id, count: skills.length, skills };
 });
 
