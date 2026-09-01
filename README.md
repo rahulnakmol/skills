@@ -17,7 +17,7 @@ Six groups, each a bounded area of work rather than a technology layer. Each gro
 | Group | What it is | Status |
 |-------|------------|--------|
 | **Core — shared doctrine** | The doctrine and tooling more than one group needs, belonging to no audience in particular: verification before completion, coverage, the grill round protocol, value probing, and `grit`, the acceptance-gate ledger — 1 skill. Every group may reference it; it references none of them. | Shipping |
-| **Developer — the AI-native SDLC** | The software delivery lifecycle rebuilt for humans plus trusted agents: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance — 15 skills. | Shipping |
+| **Developer — the AI-native SDLC** | The software delivery lifecycle rebuilt for humans plus trusted agents: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance, plus the daily craft of test-first work, diagnosis, prototyping, deepening, and shared language — 20 skills. | Shipping |
 | **PM — the AI-native transformation practice** | The business side of the same AI-native transformation coin: discovery, TOM design, epic and PRD authoring, business cases grounded in cost including the agent fleet's own, roadmapping, RAID, benefits realization against a north star, and 4Ps leadership reporting, plus charting work too big for one session — 16 skills. | Shipping |
 | **Branding** | Company or personal identity applied to everything an agent produces: tone of voice, color and palette, storytelling. Today: `press`, which renders an approved markdown document into a branded, self-contained page and a PDF — the first of the storytelling skills. | First skill shipping |
 | **Writing** | Skills that make writing better — editorial review, documentation quality, style discipline — in the same explainer voice this repository holds itself to. | Charter — planned |
@@ -120,6 +120,11 @@ Doctrine every other group may reference, and which references no group in retur
 | [shakedown](skills/developer/shakedown/SKILL.md) | user | Sandbox build, test, execute, and agent-reviewed pass on any pull request before merge |
 | [ask-fde](skills/developer/ask-fde/SKILL.md) | user | Router mapping intent to the correct developer, pm, or branding skill |
 | [responsible-ai-governance](skills/developer/responsible-ai-governance/SKILL.md) | overlay | Regulated-industry and responsible-AI governance applied on top of the stack rules |
+| [tdd](skills/developer/tdd/SKILL.md) | model | Test-first delivery of one vertical slice at a time, refactoring only under green |
+| [debug](skills/developer/debug/SKILL.md) | model | Gated diagnosis loop for hard bugs and performance regressions, one falsifiable hypothesis at a time |
+| [prototype](skills/developer/prototype/SKILL.md) | model | Throwaway build that answers one design question, then is deleted or deliberately graduated |
+| [refactor](skills/developer/refactor/SKILL.md) | user | Survey a codebase for deepening opportunities, then work the one a human picks |
+| [glossary](skills/developer/glossary/SKILL.md) | model | Build and sharpen the project's shared language, with an explicit avoid list per term |
 
 ### PM — the AI-native transformation practice
 

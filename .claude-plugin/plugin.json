@@ -1,7 +1,7 @@
 {
   "name": "rahulnakmol-skills",
   "version": "0.8.1",
-  "description": "SDLC and impact pipeline skills",
+  "description": "AI-native skills across six groups: shared doctrine, the software delivery lifecycle, product and transformation, branding, writing, and productivity",
   "author": {
     "name": "Rahul Nakmol"
   },
@@ -24,6 +24,11 @@
     "skills/developer/shakedown",
     "skills/developer/ask-fde",
     "skills/developer/responsible-ai-governance",
+    "skills/developer/tdd",
+    "skills/developer/debug",
+    "skills/developer/prototype",
+    "skills/developer/refactor",
+    "skills/developer/glossary",
     "skills/pm/arrange",
     "skills/pm/chart",
     "skills/pm/constitution",

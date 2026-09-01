@@ -110,7 +110,7 @@ test('the two routing skills have separate wiki stubs, one per group, and neithe
     "Skill-Arrange.md must point at the pm skill's own site page");
   assert.ok(/Promoted skills: 16\./.test(read('wiki/Group-PM.md')),
     'Group-PM.md must count all 16 pm skills, including Arrange');
-  assert.ok(/Promoted skills: 15\./.test(read('wiki/Group-Developer.md')),
-    'Group-Developer.md must count all 15 developer skills, including Conduct');
+  assert.ok(/Promoted skills: 20\./.test(read('wiki/Group-Developer.md')),
+    'Group-Developer.md must count all 20 developer skills, including Conduct');
   assert.ok(read('skills/pm/README.md').includes('Sixteen'), 'pm/README.md charter must say sixteen skills');
 });

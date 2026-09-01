@@ -19,6 +19,11 @@ Route user intent to the right skill in this monorepo.
    - inception → `impact` (+ `recon` if brownfield)
    - backlog → `slice` → `raise`
    - build → `conduct` / `sdlc`
+   - test-first work, a regression test, or red-green-refactor → `tdd`
+   - a bug, a crash, or a performance regression to diagnose → `debug`
+   - a design question worth answering by building something throwaway → `prototype`
+   - shallow modules, tangled boundaries, or "where should the seam go" → `refactor`
+   - inconsistent naming, unclear jargon, or a shared language to settle → `glossary`
    - design → `architect`
    - security → `safeguard`
    - release → `deliver` + `shakedown`

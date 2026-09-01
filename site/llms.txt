@@ -47,6 +47,11 @@
 - [shakedown](https://tqnonline.github.io/skills/shakedown/): Sandbox build, test, execute, and agent-reviewed pass on a pull request before merge.
 - [ask-fde](https://tqnonline.github.io/skills/ask-fde/): Routes intent to the correct developer, pm, or branding skill.
 - [responsible-ai-governance](https://tqnonline.github.io/skills/responsible-ai-governance/): Regulated-industry and responsible-AI governance overlay on the stack rules.
+- [tdd](https://tqnonline.github.io/skills/tdd/): Test-first delivery of one vertical slice at a time, refactoring only under green.
+- [debug](https://tqnonline.github.io/skills/debug/): Gated diagnosis loop for hard bugs and performance regressions, one hypothesis at a time.
+- [prototype](https://tqnonline.github.io/skills/prototype/): Throwaway build answering one design question, then deleted or deliberately graduated.
+- [refactor](https://tqnonline.github.io/skills/refactor/): Survey a codebase for deepening opportunities, then work the one a human picks.
+- [glossary](https://tqnonline.github.io/skills/glossary/): Build the project's shared language, each term with an explicit avoid list.
 
 ### PM
 

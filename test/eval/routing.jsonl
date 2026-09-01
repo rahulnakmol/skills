@@ -33,3 +33,8 @@
 {"id":"r033","utterance":"this initiative is too big to plan in one sitting, chart the decisions","expect":"chart"}
 {"id":"r034","utterance":"write the practice principles our product decisions answer to","expect":"constitution"}
 {"id":"r035","utterance":"this model is going into a regulated lending decision, what governance applies","expect":"responsible-ai-governance"}
+{"id":"r041","utterance":"write the failing test first for this story, then make it pass","expect":"tdd","note":"confusable with sdlc: tdd is the red-green loop inside the build, not the gated loop around it"}
+{"id":"r042","utterance":"this endpoint throws intermittently and nobody knows why, work out the cause","expect":"debug","note":"confusable with shakedown: debug diagnoses a defect, shakedown validates a pull request"}
+{"id":"r043","utterance":"i want to build something throwaway to see whether this state model feels right","expect":"prototype","note":"confusable with impact: prototype answers a design question in code, impact shapes a PRD"}
+{"id":"r044","utterance":"these modules have grown into each other, find where the seams should go","expect":"refactor","note":"confusable with architect: refactor surveys existing code for deepening, architect designs new structure"}
+{"id":"r045","utterance":"the team uses four different words for the same thing, settle the terminology","expect":"glossary","note":"confusable with brief: glossary settles domain language, brief places agent rules per tool"}
