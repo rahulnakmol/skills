@@ -33,7 +33,7 @@ This is an instruction an agent can choose to skip, which a hook cannot be — t
 
 ## Codex and Cursor
 
-The same instruction belongs in `AGENTS.md` for Codex and in `.cursor/rules/` for Cursor, worded the same way as the Copilot snippet above. Neither tool has a hook runtime either, so both fall back to the continuous-integration backstop for the same reason Copilot does.
+The same instruction belongs in `AGENTS.md` for Codex and in `.cursor/rules/` for Cursor, worded the same way as the Copilot snippet above. Both tools ship hook systems of their own — Codex runs `hooks.json` commands at lifecycle events and passes context as JSON on stdin — but this repository does not yet ship an adapted hook for either. Until it does, the instruction rule plus the continuous-integration backstop is the shipped mechanism, for the same reason it is for Copilot.
 
 ## Continuous integration backstop
 
