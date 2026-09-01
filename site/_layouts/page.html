@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<div class="doc-shell">
+  <article class="doc-main">
+    <header class="doc-header">
+      {% if page.eyebrow %}<div class="eyebrow rise d1">{{ page.eyebrow }}</div>{% endif %}
+      <h1 class="rise d2">{{ page.heading | default: page.title }}</h1>
+      {% if page.lede %}<p class="doc-lede rise d3">{{ page.lede }}</p>
+      {% elsif page.description %}<p class="doc-lede rise d3">{{ page.description }}</p>{% endif %}
+    </header>
+    <div class="doc-body">
+      {{ content }}
+    </div>
+  </article>
+
+  <nav class="toc" id="toc">
+    <div class="toc-label">On this page</div>
+    <ul id="toc-list"></ul>
+  </nav>
+</div>
