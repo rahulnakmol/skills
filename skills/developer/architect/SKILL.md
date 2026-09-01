@@ -3,7 +3,7 @@ name: architect
 description: Cross-cutting technical design, ADRs, decomposition. Use at design gate or from recon brief.
 ---
 
-# Architect (mixed-invoked specialist)
+# Architect (model-invoked)
 
 Charter skill for the architect lane; execution detail in adapters.
 

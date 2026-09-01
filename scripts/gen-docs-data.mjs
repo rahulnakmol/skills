@@ -32,15 +32,13 @@ function parseFrontmatter(body) {
 // in passing (e.g. conduct's SKILL.md says "sdlc — user-invoked gated
 // loop" about a skill it routes to, not about itself).
 // The invocation axis has exactly two values (.agents/invocation.md,
-// CLAUDE.md: user-invoked or model-invoked, never mixed). Four SKILL.md
-// files still carry a legacy "(mixed-invoked specialist)" H1 and one
-// carries no marker; their "When to invoke" sections describe model
-// invocation, so both cases normalize to model-invoked here until the
-// H1s are corrected at the source.
+// CLAUDE.md: user-invoked or model-invoked, never mixed); an H1 that
+// declares neither is an error, not a default.
 function detectInvocation(body) {
   const h1 = body.match(/^#\s+.+$/m)?.[0] ?? '';
   if (/\buser-invoked\b/.test(h1)) return 'user-invoked';
-  return 'model-invoked';
+  if (/\bmodel-invoked\b/.test(h1)) return 'model-invoked';
+  return null;
 }
 
 const byGroup = new Map();
@@ -75,8 +73,14 @@ for (const skillPath of plugin.skills ?? []) {
     continue;
   }
 
+  const invocation = detectInvocation(body);
+  if (!invocation) {
+    errors.push(`${rel}: H1 declares neither user-invoked nor model-invoked (.agents/invocation.md)`);
+    continue;
+  }
+
   if (!byGroup.has(groupId)) byGroup.set(groupId, []);
-  byGroup.get(groupId).push({ name, group: groupId, invocation: detectInvocation(body), description });
+  byGroup.get(groupId).push({ name, group: groupId, invocation, description });
 }
 
 // Discover every group directory under skills/, including ones with zero
