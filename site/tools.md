@@ -39,7 +39,7 @@ Installing the skills places them in `.agents/skills/`, the directory Cursor rea
 npx skills@latest add tqnonline/skills
 ```
 
-This repository ships no command layer for Cursor. It reads the skill catalog as context and applies a skill by following the shared repository rules in `AGENTS.md`, routing model choice through its own `auto` mode rather than a pinned model identifier. Cursor ships a hooks system of its own, but this repository does not yet include a Cursor hook, so `grit` enforcement is a rule in `.cursor/rules/`, backed by `grit-gates.yml`, a dispatch-only continuous-integration workflow that lints the ledger and fails the check when a gate is unmet.
+This repository ships no command layer for Cursor. It reads the skill catalog as context and applies a skill by following the shared repository rules in `AGENTS.md`, routing model choice through its own `auto` mode rather than a pinned model identifier. Cursor ships a hooks system of its own, but this repository does not yet include a Cursor hook. Until it does, `grit` enforcement is a rule in `.cursor/rules/`, backed by `grit-gates.yml`, a dispatch-only continuous-integration workflow that fails when a gate is unmet.
 
 ## Codex
 
