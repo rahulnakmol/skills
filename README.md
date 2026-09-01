@@ -2,6 +2,8 @@
 
 This is the skills repository of The Quentin (tqnonline): a curated, growing bundle of the AI-native skills we use across our work — authored once, running the same way in Claude Code, OpenCode, Codex, Cursor, and GitHub Copilot. We are curating and building AI-native skills that deliver business value through trusted agents with human judgment — driving growth in personal, professional, and sustainable accomplishments. Software delivery is where we started, because it is where we could prove the method; it is one group among six, not the repository's identity.
 
+**Full documentation:** every skill has its own page at [tqnonline.github.io/skills](https://tqnonline.github.io/skills/). Start with [the grit page](https://tqnonline.github.io/skills/grit/) to see the pattern the rest of the catalog follows.
+
 ## The thesis
 
 Every skill here, whatever its group, carries one philosophy: **Set the frontier: redefining growth with human judgment and trusted AI agents**. Knowledge work is being redefined by where value now concentrates — at the two ends of any process, not the middle. Human judgment holds the gates; trusted agents do the work in between; and routine execution, which artificial intelligence has made a baseline capability, stops being the differentiator. A branding skill applies this the same way a delivery skill does: the agent drafts and renders, a person owns the message and signs the result. This repository invests where the advantage still lives — encoded judgment at one end (grill loops, gates, contracts, routing rules) and verified, trustworthy execution at the other (separate verifiers for consequential work, a provider policy enforced in continuous integration, a model registry kept current by an honest, disclosed research process).

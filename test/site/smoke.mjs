@@ -25,7 +25,7 @@ const CHECKS = [
   {
     path: '/group/developer/',
     label: 'developer group hub',
-    markers: ['delivery pipeline end to end'],
+    markers: ['The fan-out reflex'],
   },
   {
     path: '/journey/deliver-with-evidence/',

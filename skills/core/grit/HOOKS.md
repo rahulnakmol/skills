@@ -1,6 +1,6 @@
 # Enforcing the ledger per tool
 
-A ledger only changes behavior if something reads it at the moment an agent tries to stop. This document covers what a stop hook does, how each supported tool enforces the ledger, and where enforcement falls back to continuous integration when no hook runtime exists.
+A ledger only changes behavior if something reads it at the moment an agent tries to stop. This document covers what a stop hook does, how each supported tool enforces the ledger, and where enforcement falls back to continuous integration when no shipped hook exists.
 
 ## What a stop hook does
 
@@ -12,7 +12,7 @@ State the limit plainly: a stop hook constrains one tool's session. It stops tha
 
 ## Claude Code
 
-The hook files live at `adapters/claude/hooks/`. Install them with `./scripts/install-adapters.sh --tool claude-hooks`, which merges a Stop entry into the project's `.claude/settings.json`, the project's `.claude/settings.local.json`, or the user-level settings file, whichever the installer is pointed at. This install path is opt-in and is deliberately excluded from the default install — running the plain installer with no `--tool` flag does not enable the hook, matching the same opt-in posture ADR 0006 already sets for this adaptation: the hook changes session behavior, so a maintainer turns it on deliberately rather than inheriting it silently from a default.
+The hook files live at `adapters/claude/hooks/`. Install them with `./scripts/install-adapters.sh --tool claude-hooks`, which copies the launcher under the Claude configuration root and merges a Stop entry into the user-level settings file, so the recorded path and the copy stay in the same place. Run directly, `install-hooks.mjs` can target the project's `.claude/settings.json`, the project's `.claude/settings.local.json`, or the user-level settings file instead; the project targets name the launcher relatively, and the user target names it absolutely, because a user-level entry applies to every project. This install path is opt-in and is deliberately excluded from the default install — running the plain installer with no `--tool` flag does not enable the hook, matching the same opt-in posture ADR 0006 already sets for this adaptation: the hook changes session behavior, so a maintainer turns it on deliberately rather than inheriting it silently from a default.
 
 ## OpenCode
 
@@ -20,7 +20,7 @@ OpenCode's shipped mechanism is a `grit-verify` command together with a rule add
 
 ## GitHub Copilot
 
-Copilot has no hook runtime to intercept a session's completion, so enforcement here is an instruction plus the continuous-integration backstop below. Add this to `.github/copilot-instructions.md`:
+This repository ships no hook that could intercept a Copilot session's completion, so enforcement here is an instruction plus the continuous-integration backstop below. Add this to `.github/copilot-instructions.md`:
 
 ```
 Before reporting a task complete, read GATES.md or .grit/*/GATES.md if
@@ -31,15 +31,25 @@ is not complete.
 
 This is an instruction an agent can choose to skip, which a hook cannot be — the honest framing is that it raises the odds of enforcement without guaranteeing it, and the CI backstop is what closes that specific gap.
 
-## Codex and Cursor
+## Codex
 
-The same instruction belongs in `AGENTS.md` for Codex and in `.cursor/rules/` for Cursor, worded the same way as the Copilot snippet above. Neither tool has a hook runtime either, so both fall back to the continuous-integration backstop for the same reason Copilot does.
+Codex has a hook runtime, so enforcement here is a hook rather than an instruction. It reads lifecycle hooks from a `hooks.json` file, and one of its events, `Stop`, fires when a session is about to finish. The hook files live at `adapters/codex/hooks/`. Install them with `./scripts/install-adapters.sh --tool codex-hooks`, which copies the launcher to `~/.codex/hooks/` and installs the `Stop` entry when no `hooks.json` is already there. Like the Claude Code hook, this target is opt-in and excluded from the default install, for the reason ADR 0006 gives: a hook changes session behavior, so a maintainer turns it on deliberately.
+
+Codex's Stop contract turns out to be wire-compatible with the Claude Code one, which is why both adapters delegate to a single vendored implementation instead of carrying two. A hook that exits 0 and writes `{"decision":"block","reason":"..."}` to stdout blocks completion, and the reason is handed back to the model as a continuation prompt. The contract was read from two files in the `openai/codex` repository: the generated schema `codex-rs/hooks/schema/generated/stop.command.output.schema.json`, which declares `decision` with a single permitted value of `block` alongside `reason`, `continue`, `stopReason`, `suppressOutput`, and `systemMessage`; and the handler `codex-rs/hooks/src/events/stop.rs`, which applies the block. The matching input schema shows the payload carrying `cwd` and `session_id` under those exact names, which is what the shared implementation already reads.
+
+Two differences are worth stating because they shaped the adapter. Codex parses a hook's stdout only when it exits 0 — any other status is recorded as a failed hook, and an exit of 2 with text on stderr is read as a block whose reason is that stderr. A delegate that crashed would therefore be dropped silently or, worse, block the session with a stack trace as the instruction, so the launcher captures the delegate's output and normalizes any unclean exit into a message that allows the stop. Separately, `codex-rs/hooks/src/engine/mod.rs` restricts control effects to synchronous handlers, so the shipped entry leaves `async` unset; an asynchronous handler would run and report but never block.
+
+Be precise about what was and was not tested. The contract above was verified by reading the schemas and the handler source, and the hook is exercised in this repository by `test/scripts/grit-codex-stop-hook.test.mjs`, which feeds the launcher a synthetic Codex `Stop` payload against the ledger fixtures and asserts the block and allow decisions. It has not been run against a live Codex binary as part of this work. What is claimed is that the adapter emits what the published contract specifies; that it blocks a real session is an inference from that contract, not an observation, and the same honesty applies here as to the OpenCode section above.
+
+## Cursor
+
+Cursor has no hook runtime to intercept a session's completion, so the Copilot instruction above belongs in `.cursor/rules/`, worded the same way, and enforcement falls back to the continuous-integration backstop for the same reason Copilot's does.
 
 ## Continuous integration backstop
 
-`grit-gates.yml` is the check that covers every tool with no hook runtime, and it runs two steps: `gate-lint.mjs` against the ledger, to catch a malformed ledger before anything tries to execute it, and then `gate-check.mjs --status` against the same ledger. The choice of `--status` here is deliberate. `--status` never executes a CHECK command, approves an oracle, or writes to a ledger — it only reports what the ledger already records. That means CI needs no approval store and no API key to run this check: there is nothing in `--status` mode that could touch a credential or a network call, because it runs nothing at all. It exits 1 when any gate is unmet, which is exactly the condition that should block a merge.
+`grit-gates.yml` is the check that covers every tool without a shipped hook, and it runs two steps: `gate-lint.mjs` against the ledger, to catch a malformed ledger before anything tries to execute it, and then `gate-check.mjs --status` against the same ledger. The choice of `--status` here is deliberate. `--status` never executes a CHECK command, approves an oracle, or writes to a ledger — it only reports what the ledger already records. That means CI needs no approval store and no API key to run this check: there is nothing in `--status` mode that could touch a credential or a network call, because it runs nothing at all. It exits 1 when any gate is unmet, which is exactly the condition that should block a merge.
 
-Be honest about what this backstop actually catches. `--status` reads recorded state; it confirms a ledger is complete and every gate it lists shows as met. It does not re-run anything, so it cannot catch a ledger whose EVIDENCE was fabricated rather than produced by a real run, or a CHECK that was approved once against a different artifact than the one now in the PR. What makes the recorded evidence trustworthy is upstream of `--status`: the approval binding described below, and a human actually reading the audit before signing off. `--status` is the mechanical floor under every tool, including the ones with no hook runtime at all — it is not the whole of the trust the ledger claims to carry.
+Be honest about what this backstop actually catches. `--status` reads recorded state; it confirms a ledger is complete and every gate it lists shows as met. It does not re-run anything, so it cannot catch a ledger whose EVIDENCE was fabricated rather than produced by a real run, or a CHECK that was approved once against a different artifact than the one now in the PR. What makes the recorded evidence trustworthy is upstream of `--status`: the approval binding described below, and a human actually reading the audit before signing off. `--status` is the mechanical floor under every tool, including the ones without a shipped hook — it is not the whole of the trust the ledger claims to carry.
 
 ## The approval boundary
 

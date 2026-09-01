@@ -8,6 +8,7 @@ on:
       - 'skills/**'
       - '.claude-plugin/**'
       - 'scripts/gen-docs-data.mjs'
+      - 'scripts/gen-chooser-data.mjs'
       - '.github/workflows/docs.yml'
   # Pull requests run the build job only, never the deploy job, so the real
   # Jekyll build is proved on the pull request rather than after the merge.
@@ -17,6 +18,7 @@ on:
       - 'skills/**'
       - '.claude-plugin/**'
       - 'scripts/gen-docs-data.mjs'
+      - 'scripts/gen-chooser-data.mjs'
       - '.github/workflows/docs.yml'
   workflow_dispatch:
 
@@ -51,6 +53,9 @@ jobs:
 
       - name: Generate skills catalog data
         run: node scripts/gen-docs-data.mjs
+
+      - name: Generate skill chooser data
+        run: node scripts/gen-chooser-data.mjs
 
       # Examples bound to repository fixtures and scripts are re-run by the
       # test suite; a broken one fails the build here rather than shipping

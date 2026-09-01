@@ -36,6 +36,12 @@ Or through the repository installer, which also copies the launcher into place f
 bash scripts/install-adapters.sh --tool claude-hooks
 ```
 
+That copies the launcher to `~/.claude/hooks/grit-stop-hook.mjs` — or under `CLAUDE_CONFIG`, if that is set — and registers it with `--user`, so the entry it writes is in the same root as the copy. The two halves have to agree: a user-level copy registered in a project settings file would record a path that resolves inside the project, where nothing was installed.
+
+Which settings file is chosen also decides how the launcher is named. Claude Code resolves a hook command against the project directory, so the project and `--local` targets name the launcher relatively, which keeps a settings file that is normally committed free of one machine's absolute paths. A user settings file applies to every project, where a relative path would resolve somewhere different in each one, so that target names the copy by absolute path instead.
+
+If a `Stop` entry carrying the marker is already present but names a different command — most often one written before the launcher moved — the installer rewrites that entry in place rather than leaving it pointing at a file that is not there.
+
 The installer merges a single `Stop` hook entry into the chosen settings file. It reads the existing file first, so any other hooks (`PreToolUse`, other `Stop` entries, and so on) and any other settings in the file are preserved untouched. The entry it writes carries a stable marker string, `--grit-hook`, on its command line, which is how the installer recognizes and manages its own entry on a later run. Running the installer twice does not duplicate the entry — the second run detects the marker and reports no change.
 
 ## Uninstalling
