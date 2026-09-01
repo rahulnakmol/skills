@@ -5,7 +5,7 @@ title: "Press: Branded Documents From Approved Text"
 description: "Press renders an approved markdown document into a self-contained, branded HTML page and PDF, reading every color, font, and measurement from a palette file."
 group: branding
 invocation: user-invoked
-scenario: "Announcing this repository's own v0.7.0 release"
+scenario: "Rendering QuenServe epic E1's signed release note into the branded page stakeholders read"
 lens:
   novice:
     who: 'You finished a plain markdown document, and now someone outside your team has to read it — pasting headings and tables into a slide deck by hand feels like where the rest of your afternoon goes.'
@@ -58,48 +58,38 @@ Press is not the only skill that touches a document on its way out. This table s
 | You need the leadership pack assembled from its registers before it is rendered | [`report`]({{ '/report/' | relative_url }}) |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same press skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want press can skip the rest of the catalog with `./scripts/link-skills.sh --skill press`, which links just this skill into the default buckets without pulling in the rest of the branding group. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command</span></div>
+<div class="tool-group-body">
 <p>Press is user-invoked: type <code>/press</code>, or name it directly in a session — nothing routes to it automatically. The renderer itself is plain Node with no dependencies, so the same <code>render.mjs</code> command runs the same way whether Claude Code calls it or a person types it directly.</p>
-<div class="prompt-card">The v0.7.0 changelog entry is signed off — I saved it as release-notes/v0.7.0.md. Render it into a branded page for the announcement, using the shipped palette. I only need the HTML right now; tell me plainly if a PDF comes out or not, and give me the checksum either way.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">QuenServe's epic E1 just shipped and its release note is signed off — I saved it as release-notes/e1.md. Render it into a branded page for the stakeholder announcement, using the shipped palette. I only need the HTML right now; tell me plainly if a PDF comes out or not, and give me the checksum either way.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Press confirms the input, runs the renderer, and reports the path, byte size, and checksum of what it wrote, stating plainly when the PDF step could not run.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Command file, quick agent</span></div>
+<div class="tool-group-body">
 <p><code>./scripts/install-adapters.sh --tool opencode</code> installs the <code>press</code> command from <code>adapters/opencode/commands/press.md</code>, bound to the <code>quick</code> agent. It runs the same renderer, carrying <code>--palette</code>, <code>--html-only</code>, or <code>--title</code> through from its arguments, and reads the run's report the same way a person would.</p>
-<div class="prompt-card">/press release-notes/v0.7.0.md — this is the signed-off v0.7.0 announcement copy. Render it against the shipped palette and tell me the byte size and checksum of what you wrote, and whether the PDF came out or not.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">/press release-notes/e1.md — this is the signed-off E1 announcement copy. Render it against the shipped palette and tell me the byte size and checksum of what you wrote, and whether the PDF came out or not.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The command confirms the input is the approved version before rendering, then reports the artifact paths and checksums exactly as the script prints them.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. The skill lands in <code>.agents/skills/</code>, and the agent applies its procedure by reading the catalog as context and following the shared rules in <code>AGENTS.md</code>, then runs <code>render.mjs</code> directly as a shell command.</p>
-<div class="prompt-card">The v0.7.0 changelog entry is signed off. Run skills/branding/press/scripts/render.mjs against release-notes/v0.7.0.md with the shipped palette and give me the HTML artifact's path, byte size, and checksum. Tell me directly if the PDF step could not run in this environment.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor runs the same script and reports the same output in its reply, since there is no command layer here to parse the output for it.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees press's name and description the way the other tools do. It gets no command layer either, so invocation runs through <code>AGENTS.md</code> and the skill file, and the renderer is run the same way as in Cursor.</p>
-<div class="prompt-card">Read skills/branding/press/SKILL.md, then render the signed-off v0.7.0 changelog entry with the shipped palette. Report the artifact's byte size and checksum, and say plainly if the PDF was not produced rather than describing the run as finished.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex writes the same command and reports the same output, reading its context from the skill file rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command layer for it either, so it runs the renderer the same way Cursor and Codex do, reading the procedure from the skill file.</p>
-<div class="prompt-card">You have the signed-off v0.7.0 changelog entry ready to announce. Render it with skills/branding/press/scripts/render.mjs and the shipped palette, and report the checksum of what was written. If no PDF comes out, say so plainly — do not report the run as complete without one.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot reports the same path, byte size, and checksum in chat, since the renderer's own printed output is the only report there is.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply press as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships; each then runs <code>render.mjs</code> directly as a shell command. Cursor routes through its own <code>.cursor/rules/</code> once a team adds one, though press needs no enforcement rule the way a gated skill would. Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>, built by <code>scripts/gen-openai-yaml.mjs</code>, so it sees press's name and description the way the other four tools do. GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>; the ask below still works as a plain instruction meanwhile.</p>
+<div class="prompt-card">The E1 release note is signed off. Run skills/branding/press/scripts/render.mjs against release-notes/e1.md with the shipped palette and give me the HTML artifact's path, byte size, and checksum. Tell me directly if the PDF step could not run in this environment.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three run the same script and report the same path, byte size, and checksum in their reply, since none has a command's output to parse for them.</p>
 </div>
 </div>
 
@@ -110,17 +100,13 @@ A good ask includes:
 - Whether the PDF is wanted this run, or the HTML alone is enough, stated plainly with `--html-only`.
 - A title override, if the document's first heading is not the text a reader should see.
 
-Readers who have not installed the whole skill pack can add press alone:
-
-```bash
-./scripts/link-skills.sh --skill press
-```
-
-This links only press into the default buckets, without pulling in the rest of the branding group. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
-
 ## A working example
 
-You type:
+For [QuenServe]({{ '/example/' | relative_url }})'s own E1 announcement, you would type something close to this:
+
+<pre><code>QuenServe's epic E1 just shipped and its release note is signed off — I saved it as release-notes/e1.md. Render it into a branded page for the stakeholder announcement, using the shipped palette. I only need the HTML right now; tell me plainly if a PDF comes out or not, and give me the checksum either way.</code></pre>
+
+The run looks the same either way, so here is this repository's own real material instead of an invented E1 release note: the changelog entry that shipped this very documentation site. You type:
 
 <pre><code>The v0.7.0 changelog entry is signed off — I saved it as release-notes/v0.7.0.md. Render it into a branded page for the announcement, using the shipped palette. I only need the HTML right now; tell me plainly if a PDF comes out or not, and give me the checksum either way.</code></pre>
 
@@ -181,6 +167,8 @@ press:   the HTML above is complete and can be printed from any browser
 That checksum is the exact one printed in the skill's own output contract, so a change here would mean the renderer itself had changed, not that this page had drifted from it.
 
 ## What good looks like
+
+The same discipline governs QuenServe's E1 announcement: an artifact that exists and checksums, or is reported missing, never a file quietly renamed to look finished. Shown here against this repository's own real run, since its exact bytes are what can be checked.
 
 <div class="compare-grid">
 <div class="compare-card">

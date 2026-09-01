@@ -5,7 +5,7 @@ title: "Brief: The Rules Agents Actually Read"
 description: "Brief breaks a team's working agreement into always-loaded rules, a glossary, and references, then places each in the file the tool an agent runs actually reads."
 group: productivity
 invocation: user-invoked
-scenario: "Distilling this repository's own CLAUDE.md and AGENTS.md"
+scenario: "Keeping QuenServe's own CLAUDE.md and AGENTS.md current for its engineering team"
 lens:
   novice:
     who: 'Your agent keeps making the same mistake, and you know you told it not to — in a chat last week, or a prompt you can no longer find.'
@@ -60,48 +60,38 @@ Brief is not the only skill that touches how a team works. This table separates 
 | You are not sure which skill fits at all, on the engineering side | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 | You are not sure which skill fits at all, on the product side | [`ask-pm`]({{ '/ask-pm/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same brief skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want brief can skip the rest of the catalog with `./scripts/link-skills.sh --skill brief`, which links just this skill into the default buckets without pulling in the rest of the productivity group. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command</span></div>
+<div class="tool-group-body">
 <p>Brief is user-invoked: type <code>/brief</code>, or name it directly in a session — nothing routes to it automatically. Claude Code reads <code>CLAUDE.md</code> at the repository root, plus a <code>CLAUDE.md</code> in a subdirectory when work happens there, so a rule written here is the one most teams make canonical, since it sits in the repository and is reviewed like code.</p>
-<div class="prompt-card">This repository already has CLAUDE.md and AGENTS.md. Before adding anything, inventory both files, tell me which layer each line belongs to — definition, rule, or reference — and flag any rule with no observable result. Do not rewrite either file yet.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">QuenServe's own engineering repo already has CLAUDE.md and AGENTS.md. Before adding anything, inventory both files, tell me which layer each line belongs to — definition, rule, or reference — and flag any rule with no observable result. Do not rewrite either file yet.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Brief returns the inventory and the layer classification first, and waits for you before writing a single new line.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">No command yet, plain ask</span></div>
+<div class="tool-group-body">
 <p>No OpenCode command exists for brief yet. OpenCode reads <code>AGENTS.md</code> at the project root, plus a global <code>AGENTS.md</code> in its own configuration directory, so the conversation still produces a written file — <code>AGENTS.md</code> itself, or the file it points at — rather than a command's return value.</p>
-<div class="prompt-card">Read this repository's AGENTS.md and CLAUDE.md. I want AGENTS.md to keep pointing at CLAUDE.md rather than repeating its rules — tell me if either file has grown past the point a rule can still be trusted to fire, and why.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read QuenServe's AGENTS.md and CLAUDE.md. I want AGENTS.md to keep pointing at CLAUDE.md rather than repeating its rules — tell me if either file has grown past the point a rule can still be trusted to fire, and why.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode answers in the same conversation, reading both files as context since no installed command exists to parse them for it.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor reads <code>.agents/skills/</code> directly, and its own rule files live in <code>.cursor/rules/</code>, each markable as always-apply or scoped to a file pattern — the one surface among the five built to scope a rule to part of a repository natively. This repository has not created that directory yet, so a Cursor-specific rule brief writes today would be a first for it.</p>
-<div class="prompt-card">A rule about how we write commit messages should apply only inside this repository's scripts/ directory, not everywhere. Write it as a Cursor rule file scoped to that path instead of adding a condition to a repository-wide file.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the scoped rule file directly, since path-scoping is a native feature of this surface rather than a written condition inside a shared file.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same <code>AGENTS.md</code> convention as OpenCode — a project-root file, plus a global one in its own configuration directory — and the same <code>.agents/skills/</code> catalog, so it sees brief's name and description the way the other four tools do.</p>
-<div class="prompt-card">Read AGENTS.md and CLAUDE.md. Confirm AGENTS.md still only states the voice rule and points at CLAUDE.md for the rest, and tell me if any rule in either file now restates something a script name or a directory layout already makes obvious.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex answers the same way Cursor does, reading both files as working context rather than through any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot reads <code>.github/copilot-instructions.md</code> as its pointer to the canonical brief, plus scoped instruction files under <code>.github/instructions/</code> for conventions limited to part of a repository. This repository has not adopted either file yet, so Copilot's row in <code>SURFACES.md</code>'s table stays open until a team asks brief to fill it.</p>
-<div class="prompt-card">Read CLAUDE.md, since this repository has no Copilot instructions file yet. Tell me what a .github/copilot-instructions.md pointing at it would need to say, and whether any of CLAUDE.md's rules should stay Copilot-specific instead.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot answers in chat, naming the gap directly rather than inventing a file that is not there.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply brief as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor's own rule files live in <code>.cursor/rules/</code>, each markable as always-apply or scoped to a file pattern — the one surface among the five built to scope a rule to part of a repository natively. Codex reads the same <code>AGENTS.md</code> convention as OpenCode, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees brief's name and description the way the other four tools do. GitHub Copilot reads <code>.github/copilot-instructions.md</code> as its pointer to the canonical brief, plus scoped instruction files under <code>.github/instructions/</code> for conventions limited to part of a repository.</p>
+<div class="prompt-card">QuenServe's engineering repo already has CLAUDE.md and AGENTS.md. Read both, tell me if either has grown past the point where a rule can still be trusted to fire, and flag any line that only restates something a script name or a directory layout already makes obvious.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three answer in the same conversation, reading both files as context since no installed command exists here to parse them for it. Cursor alone can write a scoped rule file directly when a convention applies to only part of the repository, since path-scoping is native to that surface.</p>
 </div>
 </div>
 
@@ -112,46 +102,40 @@ A good ask includes:
 - Which file should be canonical, or a request for brief's own recommendation given how the team works.
 - An owner's name and a review date, so the file does not go stale without anyone noticing.
 
-Readers who have not installed the whole skill pack can add brief alone:
-
-```bash
-./scripts/link-skills.sh --skill brief
-```
-
-This links only brief into the default buckets, without pulling in the rest of the productivity group. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
-
 ## A working example
 
-You type:
+This example follows [QuenServe]({{ '/example/' | relative_url }})'s own engineering practice, where a CLAUDE.md and an AGENTS.md govern the offline-sync epic's codebase. You type:
 
-<pre><code>This repository already has CLAUDE.md and AGENTS.md. Before adding anything, inventory both files, tell me which layer each line belongs to — definition, rule, or reference — and flag any rule with no observable result. Do not rewrite either file yet.</code></pre>
+<pre><code>QuenServe's own engineering repo already has CLAUDE.md and AGENTS.md. Before adding anything, inventory both files, tell me which layer each line belongs to — definition, rule, or reference — and flag any rule with no observable result. Do not rewrite either file yet.</code></pre>
 
-Brief's first step is always inventory, so it reads both files before proposing anything. `CLAUDE.md` is 55 lines; `AGENTS.md` is 24 — both well under the roughly 200-line point where SKILL.md's own stop condition says conditional material should move behind a pointer, so neither file has yet earned that treatment.
+Brief's first step is always inventory, so it reads both files before proposing anything. QuenServe's `CLAUDE.md` runs to about 60 lines and `AGENTS.md` to about 20 — both well under the roughly 200-line point where SKILL.md's own stop condition says conditional material should move behind a pointer, so neither file has yet earned that treatment.
 
-`AGENTS.md` already follows the shape `SURFACES.md` prescribes, without anyone having run a brief session on it before. Its "Repository rules" section, quoted here in full:
+QuenServe's `AGENTS.md` already follows the shape `SURFACES.md` prescribes, without anyone having run a brief session on it before. Its "Repository rules" section, quoted here in full:
 
-<pre><code>See CLAUDE.md for the complete set of repository invariants: skill structure,
-the invocation axis, the model-provider policy, the testing harness, and the
-sidecar-generation rules. Every rule there applies regardless of which tool
+<pre><code>See CLAUDE.md for the offline-sync module's conventions: the offline-store
+schema, the sync client's retry policy, and the ingestion endpoint's
+idempotency contract. Every rule there applies regardless of which tool
 you are.</code></pre>
 
-states one rule and points at the file that already holds the detail, rather than repeating it. That is exactly the pattern `SURFACES.md` names as this repository's own worked example: `CLAUDE.md` holds the invariants Claude Code reads, and `AGENTS.md` states the shared voice rule once, pointing back instead of duplicating it. Nothing here needs rewriting.
+states one rule and points at the file that already holds the detail, rather than repeating it. That is exactly the pattern `SURFACES.md` names as this very repository's own worked example: `CLAUDE.md` holds the invariants Claude Code reads, and `AGENTS.md` states the shared voice rule once, pointing back instead of duplicating it. QuenServe's team reached the same shape on its own, so nothing here needs rewriting.
 
-Classifying `CLAUDE.md`'s own lines against `RULES.md`'s three-part anatomy turns up a mix. "Deterministic harness: node scripts/run-tests.mjs must pass; CI runs it on every push and PR" already carries a trigger, every push and pull request, and an observable result, the harness passing or failing — a rule that fires the way `RULES.md` defines one. "`SKILL.md` ≤120 lines" is a standing invariant with a result anyone can count, but no stated trigger, because `RULES.md` does not require a trigger phrase for a constraint that holds at all times rather than only on some condition.
+Classifying `CLAUDE.md`'s own lines against `RULES.md`'s three-part anatomy turns up a mix. "Before merging a change to the offline store, run the sync-fidelity suite against it" already carries a trigger — before merging a change to the offline store — and an observable result, the suite passing or failing. "Every inspection record carries a client-generated UUID" is a standing invariant with a result anyone can check, but no stated trigger, because `RULES.md` does not require one for a constraint that holds at all times.
 
-One line is a genuine finding. The Agent attribution section is a hard boundary, correctly written as a prohibition — "No agent attribution footers or watermarks in anything written to this repository or to GitHub" — which `RULES.md` allows for a real boundary. But `RULES.md` also asks for "a positive twin that says what to do instead" beside a prohibition like that one, and the line that follows it states the reasoning rather than a paired instruction. That gap is worth naming to the team, not silently fixed, since only the team can decide the positive wording it wants.
+One line is a genuine finding. The conflict-resolution rule is a hard boundary, correctly written as a prohibition — "Never resolve a sync conflict by silently discarding either inspector's answer" — which `RULES.md` allows for a real boundary, since a discarded answer cannot be recovered once it is gone. But `RULES.md` also asks for "a positive twin that says what to do instead" beside a prohibition like that one, and the line after it names the story it traces to, E1-F2-S2, rather than stating the paired instruction. That gap is worth naming to QuenServe's team, not silently fixed, since only the team can decide the wording it wants.
 
 The session stops here, at inventory and classification, because you asked for nothing rewritten yet. Placing a new rule, writing its trigger and result, and verifying it against a real task are the steps a follow-up session would take next.
 
 ## What good looks like
 
+The same anatomy would govern any rule QuenServe's team writes down, once a correction gets repeated enough to earn a place in the file rather than another retyped prompt.
+
 <div class="compare-grid">
 <div class="compare-card">
 <div class="compare-card-head">A rule that fires reliably</div>
-<pre><code><span class="tok-ok">TRIGGER:</span> before opening a pull request
-<span class="tok-ok">DO:</span> add a changelog entry naming what changed and why
-<span class="tok-ok">RESULT:</span> the changelog entry exists</code></pre>
-<div class="compare-card-note">TRIGGER and RESULT are RULES.md's own worked examples, arranged here as one rule. All three parts are present, and the result is something a reader can actually check.</div>
+<pre><code><span class="tok-ok">TRIGGER:</span> before merging a change to the offline store
+<span class="tok-ok">DO:</span> run the sync-fidelity suite against it
+<span class="tok-ok">RESULT:</span> the suite passed on the merged commit</code></pre>
+<div class="compare-card-note">RULES.md calls a trigger, an instruction, and a checkable result the three parts a rule needs. All three are present here, and the result is something a reader can actually check.</div>
 </div>
 <div class="compare-card compare-card--warn">
 <div class="compare-card-head">The wrong turn to watch for</div>

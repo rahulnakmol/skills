@@ -6,7 +6,7 @@ title: "Productivity: Workflows Worth Not Repeating"
 description: "Productivity automates workflows worth not repeating by hand; its first skill, brief, writes the rules an agent actually reads, placed per tool surface."
 ---
 
-You tell your agent something once, and for that session it works. Next week you tell it again, because the file the agent actually reads never received the correction — only your chat history did. Productivity turns a repeated correction into a rule a tool loads on its own, every session, without you retyping it. You write the sentence once, and the tool carries it from then on.
+You tell your agent something once, and for that session it works. Next week you tell it again, because the file the agent actually reads never received the correction — only your chat history did. QuenServe's own engineering team knows this pattern well: the same correction about the offline-sync module, retyped into a fresh prompt every time a new session forgets it. Productivity turns a repeated correction into a rule a tool loads on its own, every session, without you retyping it. You write the sentence once, and the tool carries it from then on.
 
 Giving the correction once is easy; anyone can type a sentence into a prompt. What is hard is the moment right after, when the correction has to survive past the chat window it was typed into and reach the file the tool actually reads on its next run. Call this failure the Repeat Tax: the same correction, paid again every session it was never written down.
 

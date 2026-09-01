@@ -6,7 +6,7 @@ title: "Branding: One Identity Across Every Document"
 description: "Branding applies an identity to what an agent produces; its first skill, press, renders an approved document into a self-contained, branded page and PDF."
 ---
 
-You finish a document that took real work to get right, and then you have to decide how someone outside your team will read it. Pasted into a slide, screenshotted from an editor, or opened as raw text a code host renders in monospace — none of those was really a choice, only whatever was fastest that day. Branding answers that question once, as a set of tokens in a file, instead of by hand on every document you send. You edit the file, not the habit.
+You finish a document that took real work to get right, and then you have to decide how someone outside your team will read it. Pasted into a slide, screenshotted from an editor, or opened as raw text a code host renders in monospace — none of those was really a choice, only whatever was fastest that day. Take QuenServe's epic E1: its release note clears sign-off, and someone still has to turn it into the branded page stakeholders actually read. Branding answers that question once, as a set of tokens in a file, instead of by hand on every document you send. You edit the file, not the habit.
 
 Getting the analysis right is the hard part, and by the time a document reaches its reader, that work is already done. What goes wrong happens after, in the gap between "the document is finished" and "someone outside the team opens it," when whoever sends it reaches for whatever format is fastest that day. Call this failure the House-Style Drift: the same report, formatted a little differently each time by whoever happens to send it.
 
