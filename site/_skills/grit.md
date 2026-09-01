@@ -5,7 +5,7 @@ title: "Grit: Acceptance Gates for Finished Work"
 description: "Grit is the user-invoked skill that turns acceptance criteria into runnable gates, checked and audited before agent work is ever called done."
 group: core
 invocation: user-invoked
-scenario: "Migrating checkout to a new payment provider"
+scenario: "Writing the gate ledger for QuenServe story E1-F1-S1: complete an inspection with no connectivity and it syncs without loss"
 lens:
   novice:
     who: 'You have shipped with an agent and heard "done" that was not. Grit is the discipline that makes finished mean finished: you write down what done looks like before the work starts, and a script checks it.'
@@ -73,48 +73,39 @@ Grit is not the only skill that touches completion. This table separates its job
 | You need to decide whether the work runs as a loop (one writer, one verifier) or a graph (independent workstreams, each with its own gates) before deciding how deep to verify it | [`conduct`]({{ '/conduct/' | relative_url }}) |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same grit skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want grit can skip the rest of the catalog with `./scripts/link-skills.sh --skill grit`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command, opt-in stop hook</span></div>
+<div class="tool-group-body">
 <p>Grit is user-invoked: type <code>/grit</code>, or name it directly in a session — nothing routes to it automatically. Installing <code>./scripts/install-adapters.sh --tool claude-hooks</code> separately adds a Stop hook that can block the session from ending while the ledger still has an unmet gate. It is opt-in and never part of the default install. Among the five tools, only Claude Code and Codex can stop a session directly instead of only flagging the problem afterward, and Claude Code's hook is the one verified against live sessions.</p>
-<div class="prompt-card">We are migrating checkout off our current payment provider onto the new one. Write the acceptance-gate ledger before any implementation starts. This crosses the payment API, the ledger service, and the reconciliation job, and a bad refund cannot be undone by rerunning the work, so recommend a depth from the rubric and name the signals behind it. I will read and approve each CHECK command myself before anything runs.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">An inspector needs to complete an inspection with no connectivity and have it sync without loss once back online — story E1-F1-S1. Write the acceptance-gate ledger before any implementation starts. This touches the offline store, the sync client, and the server's ingestion endpoint. A completed inspection lost during sync cannot be recreated by rerunning the sync, so recommend a depth from the rubric and name the signals behind it. I will read and approve each CHECK command myself before anything runs.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Grit returns the ledger file, the recommended depth with its signals named, and stops before running any CHECK until you approve it.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Command file, verify agent</span></div>
+<div class="tool-group-body">
 <p><code>./scripts/install-adapters.sh --tool opencode</code> installs the <code>grit-verify</code> command from <code>adapters/opencode/commands/grit-verify.md</code>. It parses a ledger path from its arguments, defaulting to <code>GATES.md</code>, runs <code>gate-check.mjs --status</code>, and reports the met, unmet, and abandoned counts. The verify agent carries its own rule refusing a handoff-ready verdict while any gate is unmet.</p>
-<div class="prompt-card">/grit-verify Check .grit/checkout-migration/GATES.md before you hand this off. Report every gate's id and evidence line, and tell me plainly if anything is still unmet — I do not want a handoff-ready verdict while any gate is open.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">/grit-verify Check .grit/e1-f1-s1-offline-sync/GATES.md before you hand this off. Report every gate's id and evidence line, and tell me plainly if anything is still unmet — I do not want a handoff-ready verdict while the offline-sync gates are still open.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The command reports each gate's id and evidence line; the verify agent will not hand off a done verdict while one is unmet.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. The skills land in <code>.agents/skills/</code>, and the agent applies grit's procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>. Enforcement is a rule a team adds in <code>.cursor/rules/</code>, backed by the <code>grit-gates.yml</code> continuous-integration check rather than a hook that can stop a session directly. That workflow ships dispatch-only: it starts running on pull requests once a maintainer wires it to them.</p>
-<div class="prompt-card">Before you touch the payment integration, write the grit ledger the way skills/core/grit/SKILL.md and LEDGER.md describe: one gate per acceptance criterion, a CHECK and an EXPECT wherever a command can decide it, a manual gate with recorded evidence where none can. Recommend a depth from METHOD.md's rubric and name the signals behind it.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the ledger file directly in its reply, since there is no command output to parse, and states the depth and its signals in the same message.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus a generated companion file, <code>agents/openai.yaml</code>, so it sees grit's name and description the same way the other tools do. It gets no command layer: invocation runs through <code>AGENTS.md</code> and the skill files. Installing <code>./scripts/install-adapters.sh --tool codex-hooks</code> separately adds a Stop hook that can block a session from ending while the ledger still has an unmet gate, delegating to the same vendored checker the Claude Code hook uses. It is opt-in, never part of the default install, and verified against Codex's published hook schema rather than a live Codex session; where it is not installed, enforcement falls back to the same <code>grit-gates.yml</code> backstop.</p>
-<div class="prompt-card">Read skills/core/grit/SKILL.md and METHOD.md, then write the acceptance-gate ledger for the payment-provider migration before writing any implementation code. State the recommended depth and the signals behind it, and do not report this done while a gate stays unmet.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex writes the ledger the same way, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook that could intercept a Copilot session at completion, so enforcement relies on a team actually adding that recommended instruction, plus the <code>grit-gates.yml</code> continuous-integration check, which lints the ledger and fails independently of what the agent reports.</p>
-<div class="prompt-card">You have finished the payment-provider work on this branch. Before you report it done, read GATES.md, or .grit/checkout-migration/GATES.md if that is where the ledger for this scope lives. Run each gate's CHECK and compare its output against EXPECT. Report the met, unmet, and abandoned counts, and treat any unmet gate as meaning the task is not complete.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot reports the counts in chat; because no shipped hook covers it, the <code>grit-gates.yml</code> check is the only mechanism left, and it blocks a merge only once a maintainer has wired it to pull requests.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply grit as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. A team's rules for enforcing it live in a different place per tool: Cursor's in <code>.cursor/rules/</code>, and Codex's in <code>AGENTS.md</code>, which Codex reads alongside a generated sidecar, <code>agents/openai.yaml</code>, carrying every skill's name and description. GitHub Copilot's live in <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<p>Installing <code>./scripts/install-adapters.sh --tool codex-hooks</code> separately gives Codex a Stop hook that can block a session from ending while the ledger has an unmet gate, sharing the same vendored checker Claude Code's hook uses. It is opt-in, never part of the default install, and verified against Codex's published hook schema rather than a live Codex session. Neither Cursor nor Copilot gets a hook from this repository, so both fall back to the <code>grit-gates.yml</code> continuous-integration check once a maintainer has wired it to pull requests.</p>
+<div class="prompt-card">Before you touch the offline-sync code for story E1-F1-S1, write the grit ledger the way skills/core/grit/SKILL.md and LEDGER.md describe. Give one gate per acceptance criterion: a CHECK and an EXPECT wherever a command can decide it, a manual gate with recorded evidence where none can. Recommend a depth from METHOD.md's rubric and name the signals behind it, and do not report this done while a gate stays unmet.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the ledger directly in their reply, since none has a command's output to parse, and state the depth and its signals in the same message.</p>
 </div>
 </div>
 
@@ -125,52 +116,44 @@ A good ask includes:
 - What evidence you will accept for a criterion no command can decide — a screenshot, a manual observation, a named sign-off.
 - The paths this scope may write, given as patterns relative to the repository root, when it is one leaf — one workstream with its own ledger — inside a larger graph.
 
-Readers who have not installed the whole skill pack can add grit alone:
-
-```bash
-./scripts/link-skills.sh --skill grit
-```
-
-This links only grit into the default buckets, without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces it.
-
 ## A working example
 
-You type:
+This example follows [QuenServe]({{ '/example/' | relative_url }})'s delivery story, E1-F1-S1: an inspector completes an inspection with no connectivity, and it syncs without loss once the connection returns. You type:
 
-<pre><code>We are migrating checkout off our current payment provider onto the new one. Write the acceptance-gate ledger before any implementation starts. This crosses the payment API, the ledger service, and the reconciliation job, and a bad refund cannot be undone by rerunning the work, so recommend a depth from the rubric and name the signals behind it. I will read and approve each CHECK command myself before anything runs.</code></pre>
+<pre><code>An inspector needs to complete an inspection with no connectivity and have it sync without loss once back online — story E1-F1-S1. Write the acceptance-gate ledger before any implementation starts. This touches the offline store, the sync client, and the server's ingestion endpoint. A completed inspection lost during sync cannot be recreated by rerunning the sync, so recommend a depth from the rubric and name the signals behind it. I will read and approve each CHECK command myself before anything runs.</code></pre>
 
-Grit responds by writing the ledger before touching any code. Depth follows METHOD.md's own worked example for exactly this kind of change. The rubric starts at a base of 5. It adds one signal for the irreversible write, since a refund is a new transaction, not an undo. It adds one for the integration surface, since the payment API, the ledger service, and the reconciliation job each sit on a different contract. It adds one for novelty, since no prior provider swap exists in this codebase to copy a gate set from, and one more for the governance tier, which the work item's contract already names as high. That is four signals on a base of 5, so grit records depth 9, rubric-recommended, with those four signals named — the scope-breadth signal is absent, and its absence is recorded too, exactly as METHOD.md requires.
+Grit responds by writing the ledger before touching any code. Depth follows METHOD.md's own rubric for a story like this one. The rubric starts at a base of 5. It adds one signal for the irreversible write, since a lost inspection means the inspector has to physically return to the site — rerunning the sync does not recreate a record that never reached the server. It adds one for the integration surface, since the offline store, the sync client, and the server's ingestion endpoint each sit on a different contract. It adds one for novelty, since E1-F1-S1 is the first story in the first feature of this epic, so no offline-sync gate set already exists in this codebase to copy from. That is three signals on a base of 5, so grit records depth 8, rubric-recommended, with those three signals named. The scope-breadth signal is absent, because the owned paths stay inside one offline-sync module even though the change crosses three contracts. The governance-tier signal is absent too, because this story's own work-item contract does not yet name a tier — grit records only what the contract states, never a tier it assumes. Both absences are recorded, the way METHOD.md's own worked selection records the signal it did not count.
 
 The ledger it writes, shown here as the document the agent produces, not as executed output:
 
-<pre><code># Gates: checkout-payment-migration
+<pre><code># Gates: e1-f1-s1-offline-sync
 
-OWNS: packages/checkout/payments/**
+OWNS: packages/inspections/offline/**
 
-Scope: Move checkout onto the new payment provider without breaking refunds, ledger entries, or the reconciliation job.
+Scope: Complete an inspection with no network connectivity and sync it to the server without losing or duplicating any recorded data.
 
-- [ ] G1: a test-card checkout completes end to end on the new provider
-  CHECK: node scripts/verify-checkout.mjs
-  EXPECT: checkout verification passed
+- [ ] G1: an inspection completed with no network connection saves locally and is queued for sync
+  CHECK: node scripts/verify-offline-completion.mjs
+  EXPECT: offline completion verified
   EVIDENCE: pending
 
-- [ ] G2: a refund posts back to the ledger exactly once per webhook delivery
-  CHECK: node scripts/verify-refund-once.mjs
-  EXPECT: refund verification passed
+- [ ] G2: every field captured offline reaches the server unchanged once connectivity returns
+  CHECK: node scripts/verify-sync-fidelity.mjs
+  EXPECT: sync fidelity verified
   EVIDENCE: pending
 
-- [ ] G3: the reconciliation job's totals match the provider's settlement report
-  CHECK: node scripts/verify-reconciliation.mjs
-  EXPECT: reconciliation verification passed
+- [ ] G3: a sync retried after a dropped connection does not create a duplicate inspection record
+  CHECK: node scripts/verify-sync-retry.mjs
+  EXPECT: sync retry verified
   EVIDENCE: pending
 
-- [ ] G4: the checkout-completion rate on staging meets the PRD's target
+- [ ] G4: the offline-completion rate for field inspections on staging meets the PRD's target
   EVIDENCE: pending
 
-  (five further gates follow, one per remaining dimension-and-signal
-  pairing, to reach the recorded depth of 9)</code></pre>
+  (four further gates follow, including the efficiency and
+  thoroughness dimensions, to reach the recorded depth of 8)</code></pre>
 
-G1 through G3 are runnable gates: each pairs a CHECK with an EXPECT. G4 is a manual gate — no command can decide whether a completion rate met a business target, so it stays a recorded observation instead of a weakened runnable check. The OWNS line bounds what this work may write, and it stays inside the one payments module, which is why the scope-breadth signal was recorded as absent even though the change crosses three contracts.
+G1 through G3 are runnable gates: each pairs a CHECK with an EXPECT. G4 is a manual gate — no command can decide whether a completion rate met a business target, so it stays a recorded observation instead of a weakened runnable check. The OWNS line bounds what this work may write, and it stays inside the one offline-sync module, which is why the scope-breadth signal was recorded as absent even though the change crosses three contracts.
 
 Before anything executes, you read each CHECK once and approve it:
 
@@ -202,19 +185,22 @@ GATES.md: 2 gates
 <span class="tok-warn">UNMET: 1 (met: 1)</span>
   GATES:G2</code></pre>
 
-The command exits with status 1, the code `gate-check.mjs` reserves for an unmet gate. `test/scripts/grit-gate-check.test.mjs` re-runs this exact command against this exact fixture on every test pass, and `test/site/site-examples.test.mjs` checks that every line above still appears in both that run's output and this page. So this is not a one-time capture; it is what the repository's own tests continue to assert. If the checkout migration's G1 through G3 came back the same way, the unmet one would block the same path: the agent could not report the work done, and where the Claude Code stop hook is installed, the session could not end either.
+The command exits with status 1, the code `gate-check.mjs` reserves for an unmet gate. `test/scripts/grit-gate-check.test.mjs` re-runs this exact command against this exact fixture on every test pass, and `test/site/site-examples.test.mjs` checks that every line above still appears in both that run's output and this page. So this is not a one-time capture; it is what the repository's own tests continue to assert. If the offline-sync ledger's G1 through G3 came back the same way, the unmet one would block the same path: the agent could not report the work done, and where the Claude Code stop hook is installed, the session could not end either.
 
 ## What good looks like
 
-The same discipline governs the checkout migration's ledger once every gate closes.
+The same discipline governs the E1-F1-S1 ledger once every gate closes.
 
 <div class="compare-grid">
 <div class="compare-card">
 <div class="compare-card-head">A good run ends like this</div>
-<pre><code>AUDIT.md's own worked example is a checkout-flow ledger close to this
-one. Once its one unmet gate, G6, was fixed, and G7 was abandoned with
-a recorded reason, its audit block read exactly like this. A ticked
-checkbox means met, so an abandoned gate never carries one:
+<pre><code>AUDIT.md's own worked example is a checkout-flow ledger &mdash; a
+different scenario, but the same audit-block format applies once
+every gate in the E1-F1-S1 ledger closes. Once its one unmet gate,
+G6, was fixed, and G7 was abandoned with a recorded reason, its
+seven-gate audit closed as below, condensed here to two of its
+rows and the count. A ticked checkbox means met, so an abandoned
+gate never carries one:
 
 <span class="tok-ok">G1 &middot; completeness</span> &mdash; met
   <span class="tok-ok">EVIDENCE: exit=0; shell=/bin/sh; cwd=/repo/packages/checkout; EXPECT=matched; output-sha256=6bf5c2e1...; output-bytes=9</span>
@@ -226,8 +212,9 @@ checkbox means met, so an abandoned gate never carries one:
 </div>
 <div class="compare-card compare-card--warn">
 <div class="compare-card-head">The wrong turn to watch for</div>
-<pre><code>The temptation is the same whether the gate is a fixture's test token
-or checkout's G6. Softening either erases what the check ever proved:
+<pre><code>The temptation is the same whether the gate is this repository's own
+fixture token or the checkout-flow ledger's G6, from AUDIT.md's own
+worked example. Softening either erases what the check ever proved:
 
 <span class="tok-warn">- [x] G2:</span> prints its second fixed token
   CHECK: node -e "console.log('OK_TOKEN_TWO')"

@@ -24,15 +24,14 @@ const TOOL_NAMES = ['Claude Code', 'OpenCode', 'Cursor', 'Codex', 'GitHub Copilo
 
 // The tool-coverage section inside "When to reach for it" now has two valid
 // shapes. The original: five .tool-block divs, one per tool, each carrying
-// its own prompt-card — still what every live page ships (grit included).
+// its own prompt-card — still what most live pages ship.
 // The new group shape: three .tool-group blocks (Claude Code, OpenCode, and
 // a merged "Catalog readers" block for Cursor/Codex/Copilot), each carrying
 // one prompt-card, sitting under one shared-install line stated once. A page
 // passes via either shape; detection is the presence of .tool-group, so a
 // page never accidentally satisfies half of one contract and half of the
-// other. No live page has moved to the group shape yet (site/tools.md is
-// prose, not a skill page, and grit.md is still five-block) — this arm is
-// exercised by the synthetic fixture below until a real page adopts it.
+// other. grit.md is the first live page on the group shape, so this arm now
+// has live coverage as well as the synthetic fixture below.
 function assertToolSection(pagePath, whenToReach) {
   const isGroupShape = /class="tool-group"/.test(whenToReach);
   if (isGroupShape) {
