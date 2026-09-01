@@ -156,10 +156,70 @@
     });
   }
 
+  // Copy-to-clipboard for .prompt-card blocks (skill "When to reach for it").
+  // The copyable text is the card's own content minus the button label, so
+  // authors never have to duplicate the prompt into a data- attribute.
+  function cardText(card) {
+    var clone = card.cloneNode(true);
+    var btnClone = clone.querySelector('.prompt-card-copy');
+    if (btnClone) btnClone.parentNode.removeChild(btnClone);
+    return clone.textContent.trim();
+  }
+
+  function flashCopied(btn, label) {
+    var original = btn.textContent;
+    btn.textContent = label;
+    btn.classList.add('is-copied');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('is-copied');
+    }, 1500);
+  }
+
+  function copyPromptText(text, btn) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(
+        function () { flashCopied(btn, 'Copied'); },
+        function () { flashCopied(btn, 'Copy failed'); }
+      );
+      return;
+    }
+    // Fallback for a browser with no async Clipboard API.
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      flashCopied(btn, 'Copied');
+    } catch (e) {
+      flashCopied(btn, 'Copy failed');
+    }
+    document.body.removeChild(ta);
+  }
+
+  function wireCopyButtons(root) {
+    var scope = root || document;
+    var buttons = scope.querySelectorAll('.prompt-card-copy');
+    for (var i = 0; i < buttons.length; i++) {
+      var btn = buttons[i];
+      if (btn.dataset.wired) continue;
+      btn.dataset.wired = 'true';
+      btn.addEventListener('click', function (e) {
+        var card = e.currentTarget.closest('.prompt-card');
+        if (!card) return;
+        copyPromptText(cardText(card), e.currentTarget);
+      });
+    }
+  }
+
   function refresh() {
     decorateLinks(document);
     buildToc();
     wireSearch();
+    wireCopyButtons(document);
   }
 
   if (document.readyState === 'loading') {

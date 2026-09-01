@@ -21,7 +21,8 @@ const MANIFEST_SKILLS = PLUGIN.skills.map((p) => {
 // it is written to simply by having (or not having) `scenario:` — there is
 // no separate version flag to fall out of sync with the body itself.
 const V1_H2S = ['What it does', 'How to call it', 'What good looks like', 'In practice', 'How it works'];
-const V2_H2S = ['What it does', 'A working example', 'How to call it', 'What good looks like', 'In practice', 'How it works'];
+const V2_H2S = ['What it does', 'When to reach for it', 'A working example', 'What good looks like',
+  'Common questions', "It's working if", 'Where it fits'];
 const TOOL_NAMES = ['Claude Code', 'OpenCode', 'Cursor', 'Codex', 'GitHub Copilot'];
 const [INSTALL_LINE_1, INSTALL_LINE_2] = installBlockLines();
 
@@ -40,14 +41,15 @@ function assertV1Body(pagePath, raw, body) {
     `${pagePath}: missing install-block line 2 verbatim: ${JSON.stringify(INSTALL_LINE_2)}`);
 }
 
-// v2: the six H2s in order; "What it does" carries a step-flow and a
-// benefits list; "How to call it" names all five tools and links the Tools
-// page. No install-block requirement — a v2 page is not a copy-paste target
-// the way a v1 page is.
+// v2: the seven H2s in order; "What it does" carries a step-flow and a
+// benefits list; "When to reach for it" names all five tools, links the
+// Tools page, and carries at least one copyable prompt-card. No
+// install-block requirement — a v2 page is not a copy-paste target the way
+// a v1 page is.
 function assertV2Body(pagePath, raw, body) {
   const found = h2Headings(body);
   assert.deepEqual(found, V2_H2S,
-    `${pagePath}: expected exactly the six v2 H2s in order, got: ${JSON.stringify(found)}`);
+    `${pagePath}: expected exactly the seven v2 H2s in order, got: ${JSON.stringify(found)}`);
 
   const whatItDoes = h2Section(body, 'What it does');
   assert.ok(whatItDoes, `${pagePath}: "What it does" section not found`);
@@ -56,13 +58,24 @@ function assertV2Body(pagePath, raw, body) {
   assert.match(whatItDoes, /class="benefits"/,
     `${pagePath}: "What it does" must contain a benefits list`);
 
-  const howToCallIt = h2Section(body, 'How to call it');
-  assert.ok(howToCallIt, `${pagePath}: "How to call it" section not found`);
+  const whenToReach = h2Section(body, 'When to reach for it');
+  assert.ok(whenToReach, `${pagePath}: "When to reach for it" section not found`);
   for (const tool of TOOL_NAMES) {
-    assert.ok(howToCallIt.includes(tool), `${pagePath}: "How to call it" must name ${tool}`);
+    assert.ok(whenToReach.includes(tool), `${pagePath}: "When to reach for it" must name ${tool}`);
   }
-  assert.match(howToCallIt, /<a\b[^>]*href="[^"]*tools\/[^"]*"/,
-    `${pagePath}: "How to call it" must link the Tools page`);
+  assert.match(whenToReach, /<a\b[^>]*href="[^"]*tools\/[^"]*"/,
+    `${pagePath}: "When to reach for it" must link the Tools page`);
+  assert.match(whenToReach, /class="prompt-card"/,
+    `${pagePath}: "When to reach for it" must contain a prompt-card`);
+  assert.match(whenToReach, /class="prompt-card-copy"/,
+    `${pagePath}: every prompt-card needs its copy button`);
+  assert.ok(/The problem/.test(whenToReach) && /The skill/.test(whenToReach),
+    `${pagePath}: "When to reach for it" must carry the "The problem | The skill" disambiguation table`);
+
+  const goodLooksLike = h2Section(body, 'What good looks like');
+  assert.ok(goodLooksLike, `${pagePath}: "What good looks like" section not found`);
+  assert.match(goodLooksLike, /class="compare-grid"/,
+    `${pagePath}: "What good looks like" must carry the compare cards`);
 }
 
 test('every plugin.json skill has ≥1 entries and the manifest was actually read', () => {
@@ -221,13 +234,13 @@ test('every skill page declaring a journey names one of the two journey files', 
 
 // --- v2 contract self-test --------------------------------------------------
 //
-// None of the 34 skill pages carry `scenario:` yet — v2 migration is later
-// waves' work — so nothing on disk exercises assertV2Body today. Without a
-// fixture, that function would be dead code the harness never runs, and a
-// bug in it would ship silently. This is that fixture: a synthetic, in-memory
-// v2 body (never written to site/_skills, so it cannot trip the orphan-page
-// or manifest checks above) checked once as a passing baseline and once per
-// mutation, each mutation targeting exactly one assertion in assertV2Body.
+// grit.md is the first page written to the v2 contract (Wave 6b) and its
+// live body contract test above already exercises assertV2Body end to end.
+// This synthetic, in-memory fixture (never written to site/_skills, so it
+// cannot trip the orphan-page or manifest checks above) exists alongside
+// that live coverage for a different reason: it lets each assertion inside
+// assertV2Body be broken and observed in isolation, one mutation at a time,
+// without touching the real page or depending on its exact prose.
 const V2_FIXTURE_OK = `## What it does
 
 <div class="step-flow">
@@ -239,31 +252,49 @@ const V2_FIXTURE_OK = `## What it does
   <li>Reduces risk.</li>
 </ul>
 
-## A working example
+## When to reach for it
 
-A worked example goes here.
+Type \`/example\` in Claude Code, or the agent reaches for it when substantial work needs this.
 
-## How to call it
-
-<div class="tool-block"><span class="tool-badge">Claude Code</span></div>
+<div class="tool-block">
+<span class="tool-badge">Claude Code</span>
+<div class="prompt-card">Do the thing, carefully, and tell me what you found.<button type="button" class="prompt-card-copy">Copy</button></div>
+</div>
 <div class="tool-block"><span class="tool-badge">OpenCode</span></div>
 <div class="tool-block"><span class="tool-badge">Cursor</span></div>
 <div class="tool-block"><span class="tool-badge">Codex</span></div>
 <div class="tool-block"><span class="tool-badge">GitHub Copilot</span></div>
 
+| The problem | The skill |
+|---|---|
+| A neighboring problem | another-skill |
+
 See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for setup.
+
+## A working example
+
+A worked example goes here.
 
 ## What good looks like
 
-Good looks like this.
+<div class="compare-grid">
+<div class="compare-card compare-card--good">Done well.</div>
+<div class="compare-card compare-card--warn">The wrong turn.</div>
+</div>
 
-## In practice
+## Common questions
 
-In practice, teams do this.
+### A question?
+An answer.
 
-## How it works
+## It's working if
 
-Under the hood, it works like this.
+- Outcome one.
+- Outcome two.
+
+## Where it fits
+
+Where it fits goes here.
 `;
 
 test('v2 fixture: a well-formed v2 body passes assertV2Body', () => {
@@ -271,9 +302,9 @@ test('v2 fixture: a well-formed v2 body passes assertV2Body', () => {
 });
 
 test('v2 fixture mutation: wrong H2 order/text is a named failure', () => {
-  const broken = V2_FIXTURE_OK.replace('## A working example', '## A broken example');
+  const broken = V2_FIXTURE_OK.replace('## When to reach for it', '## When to use this instead');
   assert.throws(() => assertV2Body('fixture', broken, broken),
-    /expected exactly the six v2 H2s in order/);
+    /expected exactly the seven v2 H2s in order/);
 });
 
 test('v2 fixture mutation: missing step-flow div is a named failure', () => {
@@ -298,4 +329,12 @@ test('v2 fixture mutation: a missing Tools-page link is a named failure', () => 
   const broken = V2_FIXTURE_OK.replace(/See the <a[^>]*>Tools page<\/a> for setup\.\n\n/, '');
   assert.throws(() => assertV2Body('fixture', broken, broken),
     /must link the Tools page/);
+});
+
+test('v2 fixture mutation: a missing prompt-card is a named failure', () => {
+  const broken = V2_FIXTURE_OK.replace(
+    '<div class="prompt-card">Do the thing, carefully, and tell me what you found.<button type="button" class="prompt-card-copy">Copy</button></div>\n',
+    '');
+  assert.throws(() => assertV2Body('fixture', broken, broken),
+    /must contain a prompt-card/);
 });
