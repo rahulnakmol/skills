@@ -97,52 +97,58 @@ This page answers three questions: which skill runs first, what you hand to the 
 
 ## From idea to shipped, measured work
 
-Every scenario on this site is a piece of one product: [QuenServe, the example enterprise field-inspection SaaS]({{ '/example/' | relative_url }}), with its epic, features, and user stories laid out on that page. The walkthrough below is the same journey in general terms.
+Every scenario on this site is a piece of one product: [QuenServe, the example enterprise field-inspection SaaS]({{ '/example/' | relative_url }}), with its epic, features, and user stories laid out on that page. The walkthrough below follows QuenServe itself: the field-connectivity problem becomes epic E1, and E1-F1-S1, its delivery story, is what reaches code.
 
-**You bring an idea** — a raw problem, meeting notes, a vague opportunity. There is no artifact yet, only a person who owns the problem.
+**You bring an idea** — for QuenServe, the field-connectivity problem: an inspector's phone loses signal inside a warehouse or on a rural site, and the inspection still has to complete. There is no artifact yet, only a person who owns the problem.
 
 <div class="hif-stage">
 <h3><strong><a href="{{ '/discover/' | relative_url }}">discover</a></strong> frames it into a brief</h3>
 <p class="hif-meta">Reads: your raw notes. Writes: <code>specs/{prefix}-analysis.md</code>.</p>
-<p>Discover runs intake and root-cause analysis across five dimensions, writing a problem statement, a stakeholder register, and success criteria stated as outcomes. Paired with <a href="{{ '/map/' | relative_url }}">map</a>, this becomes the Business Understanding Document the <strong>Framing</strong> gate signs — in the problem owner's own words, what is being solved and for whom.</p>
+<p>Discover runs intake and root-cause analysis across five dimensions, writing a problem statement, a stakeholder register, and success criteria stated as outcomes. Paired with <a href="{{ '/map/' | relative_url }}">map</a>, this becomes the Business Understanding Document the <strong>Framing</strong> gate signs — in the problem owner's own words, what is being solved and for whom. For QuenServe, that raw idea is the field-connectivity problem, and the resulting Business Understanding Document is what <code>carve</code> reads to cut out E1.</p>
 </div>
 
 <div class="hif-stage">
 <h3><strong><a href="{{ '/carve/' | relative_url }}">carve</a></strong> cuts the epics</h3>
 <p class="hif-meta">Reads: the Business Understanding Document. Writes: <code>specs/prd/{prefix}-epic-manifest.md</code>.</p>
-<p>An <strong>epic</strong> — work large enough to ship on its own, small enough to estimate — passes four tests before it enters the manifest: Deliverable, Independent, Valuable, Estimable (DIVE). A candidate that fails one is split or rejected.</p>
+<p>An <strong>epic</strong> — work large enough to ship on its own, small enough to estimate — passes four tests before it enters the manifest: Deliverable, Independent, Valuable, Estimable (DIVE). A candidate that fails one is split or rejected. Reading QuenServe's field-connectivity understanding document, carve extracts one candidate that passes all four: E1, offline inspection sync.</p>
 <div class="hif-artifact">
-<pre><code>Epic 2 &mdash; Provider-agnostic refunds                    [1]
-  Scope in:  refund initiation, ledger posting
-  Scope out: chargebacks, disputes
-  Personas:  finance-ops reviewer                        [2]
-  Depends on: Epic 1 (provider connection)                [3]
+<pre><code>E1 &mdash; offline inspection sync                           [1]
+  Scope:     an inspector's phone loses signal inside a
+             warehouse or on a rural site, and the
+             inspection still has to complete
+  Personas:  field inspector, operations manager          [2]
+  Depends on: none                                         [3]
   DIVE: Deliverable  &mdash; ships as its own release
-        Independent  &mdash; yes, once Epic 1 merges
-        Valuable     &mdash; finance-ops closes books sooner
-        Estimable    &mdash; 3&ndash;5 engineer-weeks               [4]</code></pre>
+        Independent  &mdash; no upstream epic required
+        Valuable     &mdash; inspectors keep working with no
+                        signal; managers see sync health
+        Estimable    &mdash; sized across three features,
+                        E1-F1 through E1-F3                [4]</code></pre>
 </div>
 <ol class="hif-walk">
-<li>One epic, one shippable outcome, with its scope edge stated — Deliverable.</li>
-<li>A named persona, never "all users" — Valuable.</li>
-<li>A dependency recorded as a field, not assumed — Independent made checkable.</li>
+<li>One epic, one shippable outcome, with its scope edge stated — Deliverable. E1 ships as offline inspection sync on its own.</li>
+<li>A named persona, never "all users" — Valuable. E1 names field inspector and operations manager, the two people who actually use QuenServe.</li>
+<li>A dependency recorded as a field, not assumed — Independent made checkable. E1 depends on nothing upstream.</li>
 <li>The DIVE verdict a sponsor reads before signing the <strong>Investment</strong> gate, beside the case's costs.</li>
 </ol>
-<p>Carve fixes only the epic, the hierarchy's top. A <strong>feature</strong> is a slice of an epic built around one capability; a <strong>user story</strong> is one thing a kind of user can now do. Both, and the parent link tying a story to its epic, are cut later by <code>slice</code>, from the product requirements document (PRD) each epic earns. That PRD is drafted by <a href="{{ '/prd-draft/' | relative_url }}">prd-draft</a> and scored by <a href="{{ '/prd-review/' | relative_url }}">prd-review</a> at the <strong>Quality</strong> gate, or, for a self-contained engineering change, written by <a href="{{ '/impact/' | relative_url }}">impact</a> and signed at its own G2.</p>
+<p>Carve fixes only E1, the hierarchy's top. A <strong>feature</strong> is a slice of an epic built around one capability; a <strong>user story</strong> is one thing a kind of user can now do. For QuenServe, <a href="{{ '/prd-draft/' | relative_url }}">prd-draft</a> writes E1's product requirements document (PRD), and <a href="{{ '/prd-review/' | relative_url }}">prd-review</a> scores it at the <strong>Quality</strong> gate. On the developer side, <a href="{{ '/impact/' | relative_url }}">impact</a> turns the signed epic into its own engineering PRD, signed at its own G2. <code>slice</code> cuts that PRD into E1-F1 through E1-F3 and their stories — E1-F1-S1 among them — each carrying the parent link tying it back to E1.</p>
 </div>
 
 <div class="hif-stage">
 <h3><strong><a href="{{ '/slice/' | relative_url }}">slice</a></strong> writes the work-item contract</h3>
-<p class="hif-meta">Reads: the signed PRD. Writes: a backlog bundle, one <code>WORK-ITEM-CONTRACT.md</code> per item.</p>
-<p>Slice decomposes the PRD into features, user stories, technical stories, and a mandatory operability lane, embedding every <code>WORK-ITEM-CONTRACT.md</code> section into each item's body.</p>
+<p class="hif-meta">Reads: E1's signed engineering PRD. Writes: a backlog bundle, one <code>WORK-ITEM-CONTRACT.md</code> per item.</p>
+<p>Slice decomposes the PRD into features, user stories, technical stories, and a mandatory operability lane, embedding every <code>WORK-ITEM-CONTRACT.md</code> section into each item's body. For E1, that PRD is impact's engineering PRD, and slice cuts it into E1-F1 through E1-F3 and their stories.</p>
 <div class="hif-artifact">
-<pre><code>Story: Refund posts to the ledger exactly once per webhook
-Parent: Epic 2 &mdash; Provider-agnostic refunds              [1]
-        PRD: specs/prd/checkout-prd.md
+<pre><code>Story: E1-F1-S1 &middot; complete an inspection with no
+       connectivity and it syncs without loss
+Parent: E1-F1 &mdash; offline capture                         [1]
+        PRD: specs/prd/e1-engineering-prd.md
 
 Acceptance criteria:                                    [2]
-  - a refund posts to the ledger exactly once per
-    webhook delivery, even on webhook redelivery
+  - an inspection completed with no network connection
+    saves locally and syncs to the server without
+    losing or duplicating any recorded data once
+    connectivity returns
 
 Execution profile:                                       [3]
   mode: loop
@@ -150,7 +156,7 @@ Execution profile:                                       [3]
   delivery shape: single pull request</code></pre>
 </div>
 <ol class="hif-walk">
-<li><strong>Parent links</strong> — the contract's exact words: "the epic or feature this item belongs to, and the PRD it traces back to." An item with no parent link "must not be raised."</li>
+<li><strong>Parent links</strong> — the contract's exact words: "the epic or feature this item belongs to, and the PRD it traces back to." E1-F1-S1's parent is E1-F1. An item with no parent link "must not be raised."</li>
 <li><strong>Acceptance criteria</strong> — machine-checkable only, each written so it can become a <code>CHECK</code> command and an <code>EXPECT</code> token in a gate ledger.</li>
 <li><strong>Execution profile</strong> — the loop-or-graph call from <a href="{{ '/conduct/' | relative_url }}">conduct</a>'s rubric, the model tier from <a href="{{ '/model-routing/' | relative_url }}">model-routing</a>, and single pull request or <code>STACKING.md</code> stack.</li>
 </ol>
@@ -164,14 +170,14 @@ Execution profile:                                       [3]
 
 <div class="hif-stage">
 <h3><strong><a href="{{ '/grit/' | relative_url }}">grit</a></strong> writes the gate ledger before code</h3>
-<p class="hif-meta">Reads: the item's acceptance criteria. Writes: <code>.grit/item-&lt;n&gt;/GATES.md</code>.</p>
-<p>Every acceptance criterion becomes one gate: a <code>CHECK</code> command and the <code>EXPECT</code> pattern its output must match, tagged completeness, accuracy, value, efficiency, or thoroughness — written before the first source change, so it states what "done" means independent of the implementation.</p>
+<p class="hif-meta">Reads: E1-F1-S1's acceptance criteria. Writes: <code>.grit/e1-f1-s1-offline-sync/GATES.md</code>.</p>
+<p>Every acceptance criterion becomes one gate: a <code>CHECK</code> command and the <code>EXPECT</code> pattern its output must match, tagged completeness, accuracy, value, efficiency, or thoroughness — written before the first source change, so it states what "done" means independent of the implementation. For E1-F1-S1, that turns "syncs without loss" into gates the offline store, the sync client, and the server's ingestion endpoint each have to pass.</p>
 </div>
 
 <div class="hif-stage">
 <h3><strong><a href="{{ '/sdlc/' | relative_url }}">sdlc</a></strong> and <strong><a href="{{ '/deliver/' | relative_url }}">deliver</a></strong> build between the gates</h3>
 <p class="hif-meta">Reads: the ready item and its ledger. Writes: one PR, or a dependency-ordered stack, each carrying the audit.</p>
-<p>A single writer implements in an isolated worktree, touching only its owned paths; a separate verifier runs the contract's checks and every gate, reporting met, unmet, and abandoned counts with real evidence. A change spanning more than one concern ships as a stack of small pull requests, never one diff, each body carrying the audit table (id, dimension, check, expect, status, evidence).</p>
+<p>A single writer implements in an isolated worktree, touching only its owned paths — for E1-F1-S1, <code>packages/inspections/offline/**</code>. A separate verifier runs the contract's checks and every gate, reporting met, unmet, and abandoned counts with real evidence. A change spanning more than one concern ships as a stack of small pull requests, never one diff, each body carrying the audit table (id, dimension, check, expect, status, evidence).</p>
 </div>
 
 <div class="hif-stage">

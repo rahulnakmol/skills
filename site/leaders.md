@@ -23,4 +23,4 @@ Each of the four pm gates carries its own evidence requirement, not a general si
 
 ## Where to start
 
-An engineer new to this model can follow [Deliver with evidence]({{ '/journey/deliver-with-evidence/' | relative_url }}), five skills in the order a change actually moves through the pipeline. A product or program leader can follow [Run a product org]({{ '/journey/run-a-product-org/' | relative_url }}), four skills from a raw problem to a leadership pack. Both start from [the home page]({{ '/' | relative_url }}).
+An engineer new to this model can follow [Deliver with evidence]({{ '/journey/deliver-with-evidence/' | relative_url }}), five skills in the order a change actually moves through the pipeline, worked against [QuenServe]({{ '/example/' | relative_url }}), the example product every scenario on this site returns to. A product or program leader can follow [Run a product org]({{ '/journey/run-a-product-org/' | relative_url }}), four skills from a raw problem to a leadership pack. Both start from [the home page]({{ '/' | relative_url }}).
