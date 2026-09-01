@@ -5,7 +5,7 @@ title: "Safeguard: Security Assessment and Hardening"
 description: "Safeguard runs the security assessment and hardening gate: a threat model, severity-ranked findings, and a remediation backlog before release."
 group: developer
 invocation: model-invoked
-scenario: "Threat-modeling a new partner webhook before the notifications service ships"
+scenario: "Threat-modeling the offline-sync path before QuenServe story E1-F1-S1 ships"
 lens:
   novice:
     who: 'You have shipped a feature and only learned about its security gaps after an incident.'
@@ -65,48 +65,38 @@ Safeguard is not the only skill that touches security or release. This table sep
 | Your work touches a regulated industry or a consequential automated decision | [`responsible-ai-governance`]({{ '/responsible-ai-governance/' | relative_url }}) |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same safeguard skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want safeguard can skip the rest of the catalog with `./scripts/link-skills.sh --skill safeguard`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Plain ask, no slash command</span></div>
+<div class="tool-group-body">
 <p>Safeguard has no slash command of its own. Claude reaches for it when the sdlc skill's secure-DevOps gate calls for safeguard evidence, or when a request's wording matches the skill's own description — a security assessment, a hardening pass, evidence for a secure-DevOps gate — directly in chat.</p>
-<div class="prompt-card">We are adding a partner webhook to the notifications service so partners can push delivery-status updates back to us. Run a security assessment before we merge it: threat-model the endpoint, rank the findings by severity, and stop before fixing anything critical so I can see it first.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">We are shipping the offline-sync path for story E1-F1-S1: the sync client pushes a device's queued inspections to the server's ingestion endpoint once connectivity returns. Run a security assessment before we merge it: threat-model the sync path, rank the findings by severity, and stop before fixing anything critical so I can see it first.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Safeguard returns the threat model summary and the ranked findings, and stops before touching a critical finding until you have seen it.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
-<p><code>./scripts/install-adapters.sh --tool opencode</code> installs the <code>/security</code> command from <code>adapters/opencode/commands/security.md</code>, bound to the security agent. It applies the same charter: clarify the security scope, build a candidate threat and control model, run the adversarial challenge, and stay passive unless active testing is explicitly authorized.</p>
-<div class="prompt-card">/security Threat-model the new partner webhook on the notifications service before we ship it. Stay passive, no active testing — this is a design-time review. Rank findings by severity and flag anything critical for me before any fix is orchestrated.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Command file, security agent</span></div>
+<div class="tool-group-body">
+<p><code>./scripts/install-adapters.sh --tool opencode</code> installs the real <code>/security</code> command from <code>adapters/opencode/commands/security.md</code>, bound to the security agent. It applies the same charter: clarify the security scope, build a candidate threat and control model, run the adversarial challenge, and stay passive unless active testing is explicitly authorized.</p>
+<div class="prompt-card">/security Threat-model the offline-sync path for story E1-F1-S1 before we ship it &mdash; the sync client's connection to the server's ingestion endpoint. Stay passive, no active testing — this is a design-time review. Rank findings by severity and flag anything critical for me before any fix is orchestrated.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The command returns the threat model and the ranked findings; a critical one waits for a separate verification pass before its status can advance.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. The skill lands in <code>.agents/skills/</code>, and the agent applies safeguard's procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">Before we merge the new partner webhook, threat-model it the way skills/developer/safeguard/SKILL.md and DDDD.md describe. Rank findings by severity and tell me plainly if anything is critical, rather than quietly patching it.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the threat model and the findings list directly in its reply, since there is no command output to parse.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus a generated companion file, <code>agents/openai.yaml</code>, so it sees safeguard's name and description the same way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files.</p>
-<div class="prompt-card">Read skills/developer/safeguard/SKILL.md and DDDD.md, then threat-model the partner webhook on the notifications service. Rank findings by severity and escalate rather than patch anything you find critical.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex writes the assessment the same way, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command layer for Copilot, so safeguard's charter is applied the way Cursor and Codex apply it — as context an agent follows, not a command it runs.</p>
-<div class="prompt-card">Before this pull request merges, read skills/developer/safeguard/SKILL.md, threat-model the new partner webhook, rank findings by severity, and post a critical finding as its own comment instead of fixing it silently.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot posts the findings as pull-request comments; a person still owns the fix decision on a critical finding, since no hook here can enforce it directly.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply safeguard as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Codex additionally reads a generated companion file, <code>agents/openai.yaml</code>, so it sees safeguard's name and description the same way the other tools do. GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Before we merge the offline-sync path for story E1-F1-S1, threat-model it the way skills/developer/safeguard/SKILL.md and DDDD.md describe. Rank findings by severity and tell me plainly if anything is critical, rather than quietly patching it.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the threat model and the findings list directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
 
@@ -117,37 +107,32 @@ A good ask includes:
 - What should happen to a critical finding — stop and escalate, or a remediation backlog item.
 - Whether the work touches a regulated industry, so the governance overlay's audit and explainability requirements apply from the start.
 
-Readers who have not installed the whole skill pack can add safeguard alone:
-
-```bash
-./scripts/link-skills.sh --skill safeguard
-```
-
-This links only safeguard into the default buckets, without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
-
 ## A working example
 
 You type:
 
-<pre><code>We are adding a partner webhook to the notifications service so partners can push delivery-status updates back to us. Run a security assessment before we merge it: threat-model the endpoint, rank the findings by severity, and stop before fixing anything critical so I can see it first.</code></pre>
+<pre><code>We are shipping the offline-sync path for story E1-F1-S1: the sync client pushes a device's queued inspections to the server's ingestion endpoint once connectivity returns. Run a security assessment before we merge it: threat-model the sync path, rank the findings by severity, and stop before fixing anything critical so I can see it first.</code></pre>
 
-Safeguard maps the boundary first: the webhook is public-facing, authenticated by a per-request signature the partner and the notifications service both hold. It stays passive, since no active testing was authorized, and threat-models the boundary against that one entry point rather than the whole service.
+Safeguard maps the boundary first: the sync client authenticates to the ingestion endpoint with the inspector's own device credential, and the endpoint has to accept a batch of records that queued for hours or days while the device stayed offline. It stays passive, since no active testing was authorized, and threat-models the boundary against that one entry point rather than the whole service.
 
 The assessment it returns, shown here as the document the agent produces, not as executed output:
 
 <pre><code>Threat model summary
-  - Boundary: partner-webhook ingress, owner: notifications-api team
-  - Assets in scope: partner delivery-status payloads, the request-signing secret
+  - Boundary: sync-client &rarr; ingestion endpoint, owner: offline-sync team
+  - Assets in scope: queued inspection payloads, the device sync credential
 
 Findings (severity-ranked)
-  - SG1 [high]: no replay window on the request signature, evidence: a
-    signed payload from 24 hours ago is still accepted
-  - SG2 [medium]: a malformed-signature response leaks the expected
-    header name, evidence: the 400 response body
+  - SG1 [high]: the ingestion endpoint keys idempotency off a
+    client-supplied timestamp instead of the inspection id, evidence:
+    two inspections queued in the same clock tick collide and one
+    is silently dropped
+  - SG2 [medium]: a malformed field in a queued payload is dropped
+    rather than rejected, evidence: the endpoint's 200 response on
+    a payload missing a required field
 
 Remediation
-  - SG1: backlog item #491, status: CONFIRMED, target: before ship
-  - SG2: fix applied in PR #493, status: VERIFIED PREDEPLOY</code></pre>
+  - SG1: backlog item, status: CONFIRMED, target: before ship
+  - SG2: fix applied in a pull request, status: VERIFIED PREDEPLOY</code></pre>
 
 This is the shape the skill's own output contract requires — a threat model summary, findings ranked by severity, and a remediation backlog or fixes per policy — not a captured terminal run, since safeguard ships no runnable script of its own. SG1 stays a high, unresolved finding, so the assessment's own release recommendation reads `BLOCK`, exactly as its adapter's fixed vocabulary requires — never a quiet pass with an open high-severity finding still on the ledger.
 
@@ -156,7 +141,7 @@ This is the shape the skill's own output contract requires — a threat model su
 <div class="compare-grid">
 <div class="compare-card">
 <div class="compare-card-head">A safeguard run that earns the gate</div>
-<pre><code><span class="tok-ok">Scope:</span> webhook ingress confirmed with you before design
+<pre><code><span class="tok-ok">Scope:</span> sync-path ingress confirmed with you before design
 <span class="tok-ok">Threat model:</span> documented, each boundary has an owner
 <span class="tok-ok">Findings:</span> SG1 high, SG2 medium &mdash; each ranked by severity
 <span class="tok-ok">Release recommendation:</span> BLOCK while SG1 stays open</code></pre>

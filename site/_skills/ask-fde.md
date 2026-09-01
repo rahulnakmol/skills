@@ -5,7 +5,7 @@ title: "Ask FDE: The Skill Router"
 description: "Ask FDE routes an unnamed intent to the correct skill in the monorepo, so a user who does not know a skill's name still reaches it."
 group: developer
 invocation: user-invoked
-scenario: "Deciding whether a new webhook needs a security review or something else entirely"
+scenario: "Deciding whether the offline-sync path needs a security review or something else entirely"
 lens:
   novice:
     who: 'You know what you want done but have no idea which of the skills in this repository does it.'
@@ -73,48 +73,38 @@ Ask FDE is not the only way to find the right skill. This table separates its jo
 | You need the routing map itself, with no question asked back at you | Read the map quoted above — no session required |
 | You already know your intent is completion discipline, "is it actually done" | [`grit`]({{ '/grit/' | relative_url }}) — the map already answers this one directly |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same ask-fde skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want ask-fde can skip the rest of the catalog with `./scripts/link-skills.sh --skill ask-fde`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command, plain routing</span></div>
+<div class="tool-group-body">
 <p>Type <code>/ask-fde</code>, or name the skill directly in a session. Claude reads the classification list in <code>SKILL.md</code>, matches your intent against it, and returns the routed skill and a one-sentence rationale.</p>
-<div class="prompt-card">We are adding a partner webhook to the notifications service, and I need to know if that is a security review, a design question, or something else entirely in this repository. Classify my intent and tell me the one skill that handles it, with one sentence of rationale, before you touch anything.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">We are shipping the sync client for QuenServe story E1-F1-S1, and I need to know if that is a security review, a design question, or something else entirely in this repository. Classify my intent and tell me the one skill that handles it, with one sentence of rationale, before you touch anything.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Ask FDE classifies the intent as secure and returns <code>safeguard</code> with its rationale, then hands off to it directly.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">No command, catalog reading</span></div>
+<div class="tool-group-body">
 <p>OpenCode has no dedicated command for ask-fde. The skill lands in <code>.agents/skills/</code>, and OpenCode applies the routing map by reading the catalog as context, the same way it would for any skill this repository ships with no installed command.</p>
-<div class="prompt-card">I'm not sure whether the new partner webhook needs a security review or a design pass in this repository. Read the routing map in skills/developer/ask-fde/SKILL.md, classify my intent, and tell me the one skill it points to, with one sentence of rationale.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">I'm not sure whether the sync client for story E1-F1-S1 needs a security review or a design pass in this repository. Read the routing map in skills/developer/ask-fde/SKILL.md, classify my intent, and tell me the one skill it points to, with one sentence of rationale.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode reads the map directly and returns the same classified skill name and rationale, since there is no command output to parse.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer for ask-fde either. It reads the catalog as context and follows the shared rules in <code>AGENTS.md</code>, applying the same classify-then-map procedure a command would otherwise run.</p>
-<div class="prompt-card">I don't know which skill in this repository handles a security review for a new webhook. Classify my intent the way skills/developer/ask-fde/SKILL.md's routing map describes, and name the one skill it points to.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the classified skill name and its rationale directly in its reply.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus a generated companion file, <code>agents/openai.yaml</code>, so it sees ask-fde's name and description the same way the other tools do. It gets no command layer either.</p>
-<div class="prompt-card">Read skills/developer/ask-fde/SKILL.md, then classify this intent: I need to know if a new partner webhook needs a security review before we ship it. Name the one skill your routing map points to, with one sentence of rationale.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex returns the same classified skill and rationale, reading its context from the skill file rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command layer for Copilot either, so ask-fde's routing map is applied as context, the same way Cursor and Codex apply it.</p>
-<div class="prompt-card">Before I open an issue for the new partner webhook, read skills/developer/ask-fde/SKILL.md and classify my intent: is this a security review or a design question? Name the one skill it routes to.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot returns the routed skill name and rationale in chat; there is no command layer here either.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three get no command layer for ask-fde either. Cursor reads the catalog as context and follows the shared rules in <code>AGENTS.md</code>. Codex additionally reads a generated companion file, <code>agents/openai.yaml</code>, so it sees ask-fde's name and description the same way the other tools do. GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>. All three apply the same classify-then-map procedure a command would otherwise run.</p>
+<div class="prompt-card">I don't know which skill in this repository handles a security review for the offline-sync path in story E1-F1-S1. Classify my intent the way skills/developer/ask-fde/SKILL.md's routing map describes, and name the one skill it points to.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the classified skill name and its rationale directly in their reply.</p>
 </div>
 </div>
 
@@ -125,37 +115,29 @@ A good ask includes:
 - Whether you want the rationale as a comment on an issue, or just in the reply.
 - An answer to ask-fde's clarifying question, if your intent turns out to be genuinely ambiguous.
 
-Readers who have not installed the whole skill pack can add ask-fde alone:
-
-```bash
-./scripts/link-skills.sh --skill ask-fde
-```
-
-This links only ask-fde into the default buckets, without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
-
 ## A working example
 
 You type:
 
-<pre><code>We are adding a partner webhook to the notifications service, and I need to know if that is a security review, a design question, or something else entirely in this repository. Classify my intent and tell me the one skill that handles it, with one sentence of rationale, before you touch anything.</code></pre>
+<pre><code>We are shipping the sync client for QuenServe story E1-F1-S1, and I need to know if that is a security review, a design question, or something else entirely in this repository. Classify my intent and tell me the one skill that handles it, with one sentence of rationale, before you touch anything.</code></pre>
 
-Ask FDE classifies "a security review for a new webhook" as `secure`, then applies its routing table's own security line — security maps to `safeguard` — from the map quoted in full above. It returns:
+Ask FDE classifies "a security review for the sync client" as `secure`, then applies its routing table's own security line — security maps to `safeguard` — from the map quoted in full above. It returns:
 
 <pre><code>Routed to: safeguard
-Rationale: request names a security review for a new public-facing
-  endpoint, which the map classifies as secure</code></pre>
+Rationale: request names a security review for a new sync boundary,
+  which the map classifies as secure</code></pre>
 
-It then calls the Skill tool with `safeguard` as the chosen name, exactly the handoff step 3 of its own procedure names, and safeguard takes over from there — the way safeguard's own working example shows for this same webhook.
+It then calls the Skill tool with `safeguard` as the chosen name, exactly the handoff step 3 of its own procedure names, and safeguard takes over from there — the way safeguard's own working example shows for this same offline-sync path.
 
 ## What good looks like
 
 <div class="compare-grid">
 <div class="compare-card">
 <div class="compare-card-head">A routed intent, stated plainly</div>
-<pre><code>Intent: "the new partner webhook needs a security review"
+<pre><code>Intent: "the offline-sync path for E1-F1-S1 needs a security review"
 Classified: secure
 <span class="tok-ok">Routed to: safeguard</span>
-<span class="tok-ok">Rationale:</span> request names a security review at a new endpoint</code></pre>
+<span class="tok-ok">Rationale:</span> request names a security review at a new sync boundary</code></pre>
 <div class="compare-card-note">One skill name, one sentence of rationale — the output contract, nothing more.</div>
 </div>
 <div class="compare-card compare-card--warn">

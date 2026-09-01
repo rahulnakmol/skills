@@ -5,7 +5,7 @@ title: "Responsible AI & Regulated Governance"
 description: "Responsible AI & Regulated Governance is the overlay that adds audit trails, explainability, and human checkpoints to work in a regulated industry."
 group: developer
 invocation: model-invoked
-scenario: "Building a credit-decision model a lender's model-risk program will inspect"
+scenario: "Governing QuenServe inspection data where it feeds a regulated healthcare decision"
 lens:
   novice:
     who: 'You are building something that touches financial, health, or public-sector data and are not sure what extra rules apply.'
@@ -65,48 +65,38 @@ This overlay is not the only skill that touches security or design. This table s
 | You need the governance items tracked as backlog stories, not just named | [`slice`]({{ '/slice/' | relative_url }})'s operability lane |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same responsible-ai-governance overlay:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want this overlay can skip the rest of the catalog with `./scripts/link-skills.sh --skill responsible-ai-governance`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Plain ask, no slash command</span></div>
+<div class="tool-group-body">
 <p>This overlay has no slash command of its own. Claude reaches for it when a request touches a regulated industry or a consequential automated decision, or when its wording matches the skill's own description — audit, explainability, model risk, residency, or a named framework — directly in chat.</p>
-<div class="prompt-card">We are building a model that scores a loan applicant's creditworthiness for a lending product. Walk through what SR 11-7 and the rest of this overlay require before we design it: the audit trail, explainability, the bias assessment, and the human-in-the-loop checkpoint.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">QuenServe's healthcare-facilities inspectors record environmental-safety findings inside patient-care areas for a hospital-system client, and a severity score can auto-escalate a finding as a reportable incident to the hospital's accreditation body. Walk through what this overlay requires before we design the scoring component: the audit trail, explainability, the bias assessment, residency, and the human-in-the-loop checkpoint.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The overlay returns the frameworks in scope and the fixed control set the component needs, before design starts on it.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">No command, catalog reading</span></div>
+<div class="tool-group-body">
 <p>OpenCode has no dedicated command for this overlay. The skill lands in <code>.agents/skills/</code>, and OpenCode applies it by reading the catalog as context, the same way it would for any skill this repository ships with no installed command.</p>
-<div class="prompt-card">Read skills/developer/responsible-ai-governance/SKILL.md, then tell me what a credit-decision model for this lending product needs: the frameworks in scope, and the fixed control set &mdash; audit trail, explainability, bias assessment, residency, human-in-the-loop.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/developer/responsible-ai-governance/SKILL.md, then tell me what QuenServe's incident-severity scorer for a hospital-system client needs: the frameworks in scope, and the fixed control set &mdash; audit trail, explainability, bias assessment, residency, human-in-the-loop.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode reads the overlay and returns the same control set directly, since there is no command output to parse.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository either. The agent applies this overlay by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">Before we design the credit-decision model, read skills/developer/responsible-ai-governance/SKILL.md and tell me which frameworks apply and what the fixed control set requires, the way the overlay describes it.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the frameworks and the control set directly in its reply.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus a generated companion file, <code>agents/openai.yaml</code>, so it sees this overlay's name and description the same way the other tools do. It gets no command layer either.</p>
-<div class="prompt-card">Read skills/developer/responsible-ai-governance/SKILL.md, then classify the credit-decision model's risk tier under the EU AI Act and name every sector rule that also applies before we design it.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex writes the classification the same way, reading its context from the skill file rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command layer for Copilot, so the overlay is applied the way Cursor and Codex apply it — as context an agent follows.</p>
-<div class="prompt-card">Before this credit-decision model ships, read skills/developer/responsible-ai-governance/SKILL.md and post a comment naming the frameworks in scope and the fixed control set the component still needs.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot posts the frameworks and the control set as an issue comment; no hook here enforces the checklist directly.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three get no command layer from this repository either. Cursor applies this overlay by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>. Codex additionally reads a generated companion file, <code>agents/openai.yaml</code>, so it sees this overlay's name and description the same way the other tools do. GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Before we design QuenServe's incident-severity scorer for the hospital-system client, read skills/developer/responsible-ai-governance/SKILL.md and tell me which frameworks apply and what the fixed control set requires, the way the overlay describes it.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the frameworks and the control set directly in their reply.</p>
 </div>
 </div>
 
@@ -117,36 +107,31 @@ A good ask includes:
 - Whether the audit trail and explainability hooks should be designed now or reviewed against an existing system.
 - What autonomy threshold triggers a human-in-the-loop checkpoint for this specific decision.
 
-Readers who have not installed the whole skill pack can add this overlay alone:
-
-```bash
-./scripts/link-skills.sh --skill responsible-ai-governance
-```
-
-This links only responsible-ai-governance into the default buckets, without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
-
 ## A working example
 
 You type:
 
-<pre><code>We are building a model that scores a loan applicant's creditworthiness for a lending product. Walk through what SR 11-7 and the rest of this overlay require before we design it: the audit trail, explainability, the bias assessment, and the human-in-the-loop checkpoint.</code></pre>
+<pre><code>QuenServe's healthcare-facilities inspectors record environmental-safety findings inside patient-care areas for a hospital-system client, and a severity score can auto-escalate a finding as a reportable incident to the hospital's accreditation body. Walk through what this overlay requires before we design the scoring component: the audit trail, explainability, the bias assessment, residency, and the human-in-the-loop checkpoint.</code></pre>
 
-The overlay classifies the work first: a credit decision is a consequential automated decision in a financial-services context, so it is governed, not exempt. It names Microsoft Responsible AI, NIST AI RMF, and ISO/IEC 42001 as always-applicable, classifies the EU AI Act tier as high risk, since the decision affects access to credit, and adds SR 11-7 for model risk management.
+The overlay classifies the work first: an automated score that decides whether a finding gets reported to an accreditation body is a consequential automated decision in a healthcare context, so it is governed, not exempt. It names Microsoft Responsible AI, NIST AI RMF, and ISO/IEC 42001 as always-applicable. This hospital-system client operates only inside the United States, so the overlay classifies the EU AI Act tier as `none` and records that explicitly rather than silently skipping the question. It then applies SKILL.md's own healthcare line — HIPAA-equivalent handling and residency — since a patient-care-area finding can carry protected-health context even though QuenServe itself is not a clinical record system.
 
 The control set it returns, shown here as the shape SKILL.md's own "every regulated component must have" section requires, not a captured run:
 
-<pre><code>Component: credit-decision-model
-  Frameworks in scope: NIST AI RMF, ISO/IEC 42001, EU AI Act (high-risk
-    tier), SR 11-7
-  Audit trail: model-decisions log, fields: who/what/when/model+version/
-    inputs/decision
-  Explainability: feature-attribution trace, reconstructable per decision
-  Bias/impact assessment: disparate-impact test across protected classes,
-    recorded before go-live
+<pre><code>Component: incident-severity-scorer
+  Frameworks in scope: NIST AI RMF, ISO/IEC 42001, HIPAA-equivalent
+    handling and residency (EU AI Act: not applicable &mdash; U.S.-only
+    deployment, tier: none, recorded rather than omitted)
+  Audit trail: escalation-decisions log, fields: who/what/when/model+
+    version/inputs/decision
+  Explainability: the finding-severity trace, reconstructable per
+    escalation
+  Bias/impact assessment: disparate-impact test across facility types
+    and inspection shifts, recorded before go-live
   Data residency: enforced at the data-platform layer, provable via
     access logs
-  Human-in-the-loop: any adverse action routes to a human underwriter,
-    autonomy threshold: any application the model declines</code></pre>
+  Human-in-the-loop: any auto-escalated finding routes to a human
+    safety officer before the accreditation body is notified,
+    autonomy threshold: any finding scored reportable</code></pre>
 
 This is the shape the doctrine requires, not a captured terminal run, since this overlay ships no runnable script of its own. Every field here is populated rather than left blank, the same discipline `WORK-ITEM-CONTRACT.md`'s own Governance section holds a work item to: populated when the tier is `limited` or `high`, marked "not applicable — tier: none" otherwise, never silently omitted.
 
@@ -158,7 +143,7 @@ This is the shape the doctrine requires, not a captured terminal run, since this
 <pre><code><span class="tok-ok">Audit trail:</span> who, what, when, model+version, inputs, decision &mdash; immutable
 <span class="tok-ok">Explainability:</span> feature attribution reconstructable after the fact
 <span class="tok-ok">Bias/impact assessment:</span> recorded before go-live
-<span class="tok-ok">Human-in-the-loop:</span> a declined applicant routes to a human underwriter</code></pre>
+<span class="tok-ok">Human-in-the-loop:</span> an auto-escalated finding routes to a human safety officer</code></pre>
 <div class="compare-card-note">Every item on the doctrine's list, present before go-live, not added after an examiner asks.</div>
 </div>
 <div class="compare-card compare-card--warn">

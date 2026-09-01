@@ -5,7 +5,7 @@ title: "Operate: Reliability, Quality, and Maintenance"
 description: "Operate covers a system after it ships: SLOs and incident readiness, SPEC-TS testability and coverage gaps, and a patch and debt-burn-down cadence."
 group: developer
 invocation: model-invoked
-scenario: "Setting SLOs and a maintenance cadence for the notifications service after it ships"
+scenario: "Setting post-ship reliability targets for QuenServe's offline-sync service"
 lens:
   novice:
     who: 'An incident starts and nobody can say who owns the alert that fired, or which dashboard to open first.'
@@ -66,48 +66,38 @@ Operate is not the only skill that touches production or backlog work. This tabl
 | You need an isolated pre-merge review of a change, not ongoing reliability | [`shakedown`]({{ '/shakedown/' | relative_url }}) |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same operate skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want operate can skip the rest of the catalog with `./scripts/link-skills.sh --skill operate`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Plain ask, no slash command</span></div>
+<div class="tool-group-body">
 <p>Operate has no slash command of its own. Claude reaches for it when a post-release gate calls for reliability, quality, or maintenance evidence, or when a request's wording matches the skill's own description — SLOs, monitoring, runbooks, testability, or a patch cycle — directly in chat.</p>
-<div class="prompt-card">The notifications service ships next week. Set SLOs and alert thresholds for it before we call it production-ready, and tell me plainly which of the reliability, quality, and maintenance lanes this pass actually covers.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Story E1-F1-S1, the offline-sync completion story, ships next week. Set SLOs and alert thresholds for the sync service before we call it production-ready, and tell me plainly which of the reliability, quality, and maintenance lanes this pass actually covers.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Operate returns a brief with one section per lane, naming the evidence found and stating outright which lane, if any, this pass did not cover.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
-<p><code>./scripts/install-adapters.sh --tool opencode</code> installs the <code>/operate</code> command from <code>adapters/opencode/commands/operate.md</code>, bound to the operate agent for the reliability lane; a separate <code>/quality</code> command, bound to the quality agent, covers the testability lane the same charter names.</p>
-<div class="prompt-card">/operate Set SLOs, alert thresholds, and an incident runbook for the notifications service before we call it production-ready. Scope this pass to the reliability lane only, and tell me plainly if quality or maintenance need a separate pass.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Command files, operate + quality agents</span></div>
+<div class="tool-group-body">
+<p><code>./scripts/install-adapters.sh --tool opencode</code> installs the real <code>/operate</code> command from <code>adapters/opencode/commands/operate.md</code>, bound to the operate agent for the reliability lane; a separate real <code>/quality</code> command, bound to the quality agent, covers the testability lane the same charter names.</p>
+<div class="prompt-card">/operate Set SLOs, alert thresholds, and an incident runbook for the offline-sync service before we call story E1-F1-S1 production-ready. Scope this pass to the reliability lane only, and tell me plainly if quality or maintenance need a separate pass.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The command returns the reliability lane's SLO table and runbook plan; the quality lane runs as its own pass when a request needs it.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. The skill lands in <code>.agents/skills/</code>, and the agent applies operate's procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">The notifications service ships next week. Set SLOs and alert thresholds for it the way skills/developer/operate/SKILL.md and CADENCE.md describe, and tell me plainly which lanes &mdash; reliability, quality, maintenance &mdash; this pass covers.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the brief directly in its reply, since there is no command output to parse.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus a generated companion file, <code>agents/openai.yaml</code>, so it sees operate's name and description the same way the other tools do. It gets no command layer either.</p>
-<div class="prompt-card">Read skills/developer/operate/SKILL.md and CADENCE.md, then set SLOs and alert thresholds for the notifications service before we call it production-ready. State which lanes this pass covers and which it does not.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex writes the brief the same way, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command layer for Copilot, so operate's charter is applied the way Cursor and Codex apply it — as context an agent follows, not a command it runs.</p>
-<div class="prompt-card">Before we call the notifications service production-ready, read skills/developer/operate/SKILL.md, set its SLOs and alert thresholds, and post the brief as a comment stating which lanes &mdash; reliability, quality, maintenance &mdash; this pass actually covers.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot posts the brief as an issue comment; a person still owns any production runbook this charter recommends, since operate never mutates production itself.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply operate's procedure as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Codex additionally reads a generated companion file, <code>agents/openai.yaml</code>, so it sees operate's name and description the same way the other tools do. GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">The offline-sync service for story E1-F1-S1 ships next week. Set SLOs and alert thresholds for it the way skills/developer/operate/SKILL.md and CADENCE.md describe, and tell me plainly which lanes &mdash; reliability, quality, maintenance &mdash; this pass covers.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the brief directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
 
@@ -118,36 +108,29 @@ A good ask includes:
 - Whether a patch or dependency-update cycle is due per the maintenance cadence.
 - Whether the work touches a regulated industry, so the governance overlay's audit requirements apply.
 
-Readers who have not installed the whole skill pack can add operate alone:
-
-```bash
-./scripts/link-skills.sh --skill operate
-```
-
-This links only operate into the default buckets, without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
-
 ## A working example
 
 You type:
 
-<pre><code>The notifications service ships next week. Set SLOs and alert thresholds for it before we call it production-ready, and tell me plainly which of the reliability, quality, and maintenance lanes this pass actually covers.</code></pre>
+<pre><code>Story E1-F1-S1, the offline-sync completion story, ships next week. Set SLOs and alert thresholds for the sync service before we call it production-ready, and tell me plainly which of the reliability, quality, and maintenance lanes this pass actually covers.</code></pre>
 
-Operate measures the shipped service against the same baseline architect designed it to — the same three bounded components, notifications-api, delivery-worker, and preferences-store. The request names reliability directly and implies quality, so operate scopes to those two lanes; maintenance is not due yet per `CADENCE.md`'s schedule, and the brief states that outright rather than staying silent about it.
+Operate measures the shipped service against the same baseline architect designed it to — the same three bounded components, offline-store, sync-client, and the server's ingestion endpoint. The request names reliability directly and implies quality, so operate scopes to those two lanes; maintenance is not due yet per `CADENCE.md`'s schedule, and the brief states that outright rather than staying silent about it.
 
 The brief it returns, shown here as the shape the skill's own output contract requires, not as a captured run:
 
 <pre><code>Reliability
-  - SLO: delivery-worker fan-out latency, owner: notifications-api team,
-    alert threshold: p99 &gt; 5s sustained for 10 minutes
+  - SLO: sync-client completion latency, owner: offline-sync team,
+    alert threshold: p99 sync time &gt; 5 minutes after connectivity
+    returns, sustained for 10 minutes
   - Runbook: linked in the service catalog  |  Incident roles: on-call
-    engineer, notifications-api tech lead
+    engineer, offline-sync tech lead
 
 Quality
-  - Test gap: NFR1 (the service keeps delivering through a single
-    provider's outage) has no passing check against COVERAGE.md's
-    75-80% integration floor
-  - Technical debt: preferences-store's read API has no cache, logged
-    for the slice
+  - Test gap: NFR1 (a sync retried after a dropped connection never
+    creates a duplicate inspection record) has no passing check against
+    COVERAGE.md's 75-80% integration floor
+  - Technical debt: the ingestion endpoint's idempotency key still
+    derives from a client-supplied timestamp, logged for the slice
 
 Maintenance
   - Not run this pass &mdash; stated, not omitted. Next review per

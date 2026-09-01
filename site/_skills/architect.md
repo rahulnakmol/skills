@@ -5,7 +5,7 @@ title: "Architect: Cross-Cutting Technical Design"
 description: "Architect turns a scoped requirement into an ADR-ready design pack: bounded components, surfaced tradeoffs, and interface contracts before code is written."
 group: developer
 invocation: model-invoked
-scenario: "Splitting notifications into its own service before three teams build on it"
+scenario: "Designing the offline-sync seam for QuenServe story E1-F1-S1 before it is built"
 lens:
   novice:
     who: 'A design gets invented on the fly, halfway through the build, and then torn out and rebuilt because no one had agreed to it first. You have sat through that rebuild.'
@@ -65,48 +65,38 @@ Architect is not the only skill that touches design. This table separates its jo
 | You need to decide loop vs. graph execution shape before design even starts | [`conduct`]({{ '/conduct/' | relative_url }}) |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same architect skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want architect can skip the rest of the catalog with `./scripts/link-skills.sh --skill architect`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Plain ask, no slash command</span></div>
+<div class="tool-group-body">
 <p>Architect has no slash command of its own. Claude reaches for it when the sdlc skill's Design phase calls for architect evidence, or when a request's wording matches the skill's own description — cross-cutting technical design, ADRs, decomposing a scoped requirement into components — directly in chat.</p>
-<div class="prompt-card">We are splitting the shared notifications module out of the monolith before three teams start building against it. Confirm the functional and non-functional requirements and their scope boundary with me first, then decompose the system into bounded components and surface every maintainability and reliability tradeoff as a comment I can read, not inside a diagram.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">We are designing the offline-sync seam for story E1-F1-S1: an inspector completes an inspection with no connectivity and it syncs without loss once back online. Confirm the functional and non-functional requirements and their scope boundary with me first, then decompose the system into bounded components and surface every reliability and durability tradeoff as a comment I can read, not inside a diagram.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Architect returns the confirmed boundary, the component decomposition, and each tradeoff posted where the team can see it, before any component is built.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
-<p><code>./scripts/install-adapters.sh --tool opencode</code> installs the <code>/architect</code> command from <code>adapters/opencode/commands/architect.md</code>, bound to the architect agent. It applies the same charter: complete the requirement's engineering constraints, components, and tradeoffs, run a candidate design and its adversarial challenge, then stop at Gate 2 for a human sign-off.</p>
-<div class="prompt-card">/architect Split the shared notifications module into its own service before three teams build on top of it. Confirm the requirement boundary with me, decompose into bounded components, and post every tradeoff as a comment before Gate 2.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Command file, architect agent</span></div>
+<div class="tool-group-body">
+<p><code>./scripts/install-adapters.sh --tool opencode</code> installs the real <code>/architect</code> command from <code>adapters/opencode/commands/architect.md</code>, bound to the architect agent. It applies the same charter: complete the requirement's engineering constraints, components, and tradeoffs, run a candidate design and its adversarial challenge, then stop at Gate 2 for a human sign-off.</p>
+<div class="prompt-card">/architect Design the offline-sync seam for story E1-F1-S1 before any of it is built. Confirm the requirement boundary with me, decompose into bounded components &mdash; the offline store, the sync client, and the server's ingestion endpoint &mdash; and post every tradeoff as a comment before Gate 2.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The command returns the decomposition and its tradeoffs, and stops at Gate 2 for the sign-off the adapter's own charter requires.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. The skill lands in <code>.agents/skills/</code>, and the agent applies architect's procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>. There is no dynamic workflow to run Gate 2 for you, so a person reading the session output stays the sign-off.</p>
-<div class="prompt-card">Before we build the notifications service, confirm its functional and non-functional requirement boundary with me, then decompose it into bounded components the way skills/developer/architect/SKILL.md and DDDD.md describe. Post every tradeoff for me to see, not inside a diagram.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the design pack directly in its reply, since there is no command output to parse.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus a generated companion file, <code>agents/openai.yaml</code>, so it sees architect's name and description the same way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files.</p>
-<div class="prompt-card">Read skills/developer/architect/SKILL.md and DDDD.md, then design the notifications-service split: confirm the requirement boundary, decompose into bounded components, and surface every tradeoff instead of deciding it inside the diagram.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex writes the design pack the same way, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command layer for Copilot, so architect's charter is applied the way Cursor and Codex apply it — as context an agent follows, not a command it runs.</p>
-<div class="prompt-card">Before implementing the notifications-service split, read skills/developer/architect/SKILL.md, confirm the requirement boundary with me, decompose into bounded components, and post the maintainability and reliability tradeoffs as a comment on this issue before Gate 2.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot posts the tradeoffs as an issue comment; a person still owns Gate 2's sign-off, since no hook here can enforce it directly.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply architect as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Codex additionally reads a generated companion file, <code>agents/openai.yaml</code>, built by <code>scripts/gen-openai-yaml.mjs</code> from every skill's frontmatter, so it sees architect's name and description the same way the other tools do. GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>. There is no dynamic workflow to run Gate 2 for you in any of the three, so a person reading the session output stays the sign-off.</p>
+<div class="prompt-card">Before we build the offline-sync seam for story E1-F1-S1, confirm its functional and non-functional requirement boundary with me, then decompose it into bounded components the way skills/developer/architect/SKILL.md and DDDD.md describe. Post every tradeoff for me to see, not inside a diagram.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the design pack directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
 
@@ -117,47 +107,41 @@ A good ask includes:
 - Where a tradeoff should be posted — an issue comment, a pull-request comment, or directly in the session.
 - Whether the work touches a regulated industry or a consequential automated decision, so the governance overlay applies from the start.
 
-Readers who have not installed the whole skill pack can add architect alone:
-
-```bash
-./scripts/link-skills.sh --skill architect
-```
-
-This links only architect into the default buckets, without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
-
 ## A working example
 
 You type:
 
-<pre><code>We are splitting the shared notifications module out of the monolith before three teams start building against it. Confirm the functional and non-functional requirements and their scope boundary with me first, then decompose the system into bounded components and surface every maintainability and reliability tradeoff as a comment I can read, not inside a diagram.</code></pre>
+<pre><code>We are designing the offline-sync seam for story E1-F1-S1: an inspector completes an inspection with no connectivity and it syncs without loss once back online. Confirm the functional and non-functional requirements and their scope boundary with me first, then decompose the system into bounded components and surface every reliability and durability tradeoff as a comment I can read, not inside a diagram.</code></pre>
 
-Architect confirms the boundary with you first, per `DDDD.md`: notifications covers email, push, and SMS delivery, but not the templates a marketing team edits separately — that stays out of scope, named as a non-goal rather than left ambiguous. Only then does it decompose the system into three bounded components, each owning one responsibility and touching no other component's state.
+Architect confirms the boundary with you first, per `DDDD.md`: E1-F1-S1 covers capturing, queuing, and delivering one inspector's own completed inspection. It does not cover reconciling two inspectors' edits to the same record — that conflict-resolution problem belongs to feature E1-F2, named here as a non-goal rather than left ambiguous. Only then does it decompose the system into three bounded components, each owning one responsibility and touching no other component's state.
 
 The design pack it returns, shown here as the document the agent produces, not as executed output:
 
 <pre><code>FR/NFR + scope boundary
-  - FR1: a subscribed user receives a notification within 30 seconds
-    of the triggering event, in scope: notifications-api, delivery-worker
-  - NFR1: the service keeps delivering through a single provider's outage,
-    in scope: delivery-worker
+  - FR1: an inspection completed with no network connection saves
+    locally and is queued for sync, in scope: offline-store
+  - NFR1: a sync retried after a dropped connection never creates
+    a duplicate inspection record, in scope: sync-client, ingestion endpoint
 
 Component decomposition
-  - notifications-api: owns request intake and preference validation,
-    bounded by the public REST contract
-  - delivery-worker: owns fan-out to provider queues, bounded by the
-    message contract
-  - preferences-store: owns per-user channel preferences, bounded by
-    the read API the other two call
+  - offline-store: owns local persistence and the completion queue,
+    bounded by the on-device write API
+  - sync-client: owns retry and fan-out to the server once
+    connectivity returns, bounded by the queue-read contract
+  - ingestion endpoint: owns idempotent acceptance of a synced
+    inspection, bounded by the public sync API contract
 
 Tradeoffs
-  - reliability vs. delivery speed: queue every notification durably
-    before fan-out, accepting added latency, surfaced on issue #482's
-    comment thread rather than decided in the diagram
+  - durability vs. write latency: every offline completion is written
+    to durable local storage before the queue accepts it, accepting
+    added on-device latency, surfaced on story E1-F1-S1's own comment
+    thread rather than decided in the diagram
 
 Interface contracts
-  - notifications-api &rarr; delivery-worker: one message per event,
-    schema-versioned
-  - delivery-worker &rarr; preferences-store: read-only lookup by user id</code></pre>
+  - offline-store &rarr; sync-client: append-only read of the completion
+    queue, one record per completed inspection
+  - sync-client &rarr; ingestion endpoint: idempotent POST keyed by
+    inspection id, schema-versioned</code></pre>
 
 This is the shape the skill's own output contract requires — an ADR-ready pack with the requirements' boundary, the decomposition, the tradeoffs, and the interface contracts — not a captured terminal run, since architect ships no runnable script of its own. Architect does not mark this ready on its own authority. A human still signs Gate 2, confirming traceability, contracts, allowed scope, and a rollout plan, the same line its adapter states as an owned responsibility: "no story is `READY` without traceability, contracts/fixtures, allowed scope, NFR evidence plan, rollout/rollback and owner."
 
@@ -168,7 +152,7 @@ This is the shape the skill's own output contract requires — an ADR-ready pack
 <div class="compare-card-head">A design pack ready for its ADR</div>
 <pre><code><span class="tok-ok">FR/NFR scope boundary:</span> confirmed with you before decomposition
 <span class="tok-ok">Components:</span> 3 bounded domains, no shared state
-<span class="tok-ok">Tradeoffs:</span> reliability vs. delivery speed, posted on issue #482
+<span class="tok-ok">Tradeoffs:</span> durability vs. write latency, posted on E1-F1-S1's thread
 <span class="tok-ok">Interface contracts:</span> one per component boundary</code></pre>
 <div class="compare-card-note">The boundary is confirmed and the tradeoff is visible to you, not just to the diagram.</div>
 </div>

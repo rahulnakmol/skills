@@ -5,7 +5,7 @@ title: "Shakedown: Isolated Pre-Merge Verification"
 description: "Shakedown builds, tests, and executes a pull request in an isolated sandbox, then posts a blocking review on a red build or a missing coverage floor."
 group: developer
 invocation: user-invoked
-scenario: "Reviewing the checkout-payment-migration pull request before it merges"
+scenario: "Reviewing the pull request for QuenServe story E1-F1-S1 before it merges"
 lens:
   novice:
     who: 'You have approved a pull request because the description sounded right, then found out later it never actually ran.'
@@ -71,48 +71,38 @@ Shakedown is not the only skill that touches a pull request. This table separate
 | You need a security-specific threat model, not a build-test-execute pass | [`safeguard`]({{ '/safeguard/' | relative_url }}) |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same shakedown skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want shakedown can skip the rest of the catalog with `./scripts/link-skills.sh --skill shakedown`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Plugin slash command, shakedown-pr workflow</span></div>
+<div class="tool-group-body">
 <p>In Claude Code, shakedown runs as the <code>shakedown-pr</code> dynamic workflow, exposed as the plugin slash command <code>/rahulnakmol-skills:shakedown-pr</code>. It runs Recon, Sandbox, the three parallel review lenses, and Verdict against the pull request you name.</p>
-<div class="prompt-card">Run a shakedown on the checkout-payment-migration pull request before anyone approves it. Build it, run its tests, and actually execute the changed checkout and refund paths in an isolated sandbox, then post a blocking review if the build is red or a gate in its ledger is unmet.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Run a shakedown on the pull request for story E1-F1-S1, the offline-sync completion story, before anyone approves it. Build it, run its tests, and actually execute the offline-completion and sync paths in an isolated sandbox, then post a blocking review if the build is red or a gate in its ledger is unmet.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Shakedown posts the review directly on the pull request: build, test, and execution status, the existing checks it consumed, and the verdict.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Workflow template, pipeline runner</span></div>
+<div class="tool-group-body">
 <p><code>./scripts/install-adapters.sh --tool opencode</code> installs the deterministic workflow runner; the <code>shakedown</code> template (<code>tools/opencode-workflows/templates/shakedown.json</code>) runs Recon, Sandbox, the correctness/security/tests lenses in parallel, and a Verdict task, wrapped by <code>./scripts/pipeline.sh shakedown &lt;PR#&gt; --engine opencode</code>.</p>
-<div class="prompt-card">scripts/pipeline.sh shakedown 517 --engine opencode &mdash; shake down pull request #517, the first layer of the checkout-payment-migration stack, against its own stack base, and post NOT_READY if the sandbox run is red or a blocking finding survives review.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">scripts/pipeline.sh shakedown 602 --engine opencode &mdash; shake down pull request #602, the sync-client layer of story E1-F1-S1's offline-sync stack, against its own stack base, and post NOT_READY if the sandbox run is red or a blocking finding survives review.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The runner returns READY or NOT_READY, with the sandbox result, the confirmed findings, and the existing checks it consumed rather than re-ran.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer or workflow runner from this repository. The skill lands in <code>.agents/skills/</code>, and the agent applies shakedown's procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">Before we merge pull request #517, run the isolated build-test-execute pass the way skills/developer/shakedown/SKILL.md and SANDBOX.md describe, in a disposable worktree with no production credentials, and tell me plainly if the build or tests fail.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor works through Sandbox and Review directly in the session, since there is no workflow output to parse.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus a generated companion file, <code>agents/openai.yaml</code>, so it sees shakedown's name and description the same way the other tools do. It gets no command layer or workflow runner either.</p>
-<div class="prompt-card">Read skills/developer/shakedown/SKILL.md and SANDBOX.md, then shake down pull request #517 in an isolated worktree: build it, run its tests, execute the changed behavior, and check its coverage against COVERAGE.md's floors before you approve anything.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex works through the same pass, reading its context from the skill files rather than any installed runner.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command layer or workflow runner for Copilot, so shakedown's procedure is applied as context, not run by a sequencer.</p>
-<div class="prompt-card">Before approving pull request #517, read skills/developer/shakedown/SKILL.md, build and test it in an isolated environment, execute the changed behavior, and post a blocking comment if the build is red or an acceptance-criterion test is missing.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot posts the review as a pull-request comment; a person still approves, since no hook here posts a blocking review the way the installed workflow can.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply shakedown's procedure as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command or workflow runner this repository ships. Codex additionally reads a generated companion file, <code>agents/openai.yaml</code>, so it sees shakedown's name and description the same way the other tools do. GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Before we merge pull request #602 for story E1-F1-S1, run the isolated build-test-execute pass the way skills/developer/shakedown/SKILL.md and SANDBOX.md describe, in a disposable worktree with no production credentials, and tell me plainly if the build or tests fail.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three work through Sandbox and Review directly in the session, since none has a workflow output to parse.</p>
 </div>
 </div>
 
@@ -123,27 +113,19 @@ A good ask includes:
 - What should happen on a red build or a missing acceptance-criterion test — block, or just report.
 - Whether a grit gate ledger exists for this pull request, so its audit gets spot-checked rather than trusted at face value.
 
-Readers who have not installed the whole skill pack can add shakedown alone:
-
-```bash
-./scripts/link-skills.sh --skill shakedown
-```
-
-This links only shakedown into the default buckets, without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
-
 ## A working example
 
 You type:
 
-<pre><code>Run a shakedown on the checkout-payment-migration pull request before anyone approves it. Build it, run its tests, and actually execute the changed checkout and refund paths in an isolated sandbox, then post a blocking review if the build is red or a gate in its ledger is unmet.</code></pre>
+<pre><code>Run a shakedown on the pull request for story E1-F1-S1, the offline-sync completion story, before anyone approves it. Build it, run its tests, and actually execute the offline-completion and sync paths in an isolated sandbox, then post a blocking review if the build is red or a gate in its ledger is unmet.</code></pre>
 
-Recon reads the pull request first: it is the payment-API layer — the interface to the payment provider — of the checkout-payment-migration stack, based on the reconciliation-job layer below it. Its existing checks already show `github-code-quality=success`, a conclusion Sandbox will consume, not repeat. Sandbox then checks out the head commit into an isolated worktree with no production credentials, builds the project, runs its test suite, and actually executes a test-card checkout end to end.
+Recon reads the pull request first: it is the sync-client layer of E1-F1-S1's offline-sync stack, based on the offline-store layer below it. Its existing checks already show `github-code-quality=success`, a conclusion Sandbox will consume, not repeat. Sandbox then checks out the head commit into an isolated worktree with no production credentials, builds the project, runs its test suite, and actually executes a queued inspection end to end, dropping and restoring the connection mid-sync.
 
-The three review lenses run in parallel next. Correctness and security each find nothing reachable. The tests lens cross-references the existing checks, and because the pull request body carries a grit gate audit against `.grit/checkout-migration/GATES.md`, it spot-checks one claimed-met gate's `CHECK` against the diff rather than trusting the table. Verdict then composes the review, shown here as the shape the workflow's own tasks produce, not as a captured run:
+The three review lenses run in parallel next. Correctness and security each find nothing reachable beyond what safeguard already tracks as SG1. The tests lens cross-references the existing checks, and because the pull request body carries a grit gate audit against `.grit/e1-f1-s1-offline-sync/GATES.md`, it spot-checks one claimed-met gate's `CHECK` against the diff rather than trusting the table. Verdict then composes the review, shown here as the shape the workflow's own tasks produce, not as a captured run:
 
 <pre><code>build: pass  tests: pass  executed: pass
 Existing checks consumed: github-code-quality=success (not re-run)
-Spot-checked gate: G1 CHECK re-run against the diff, EXPECT matched
+Spot-checked gate: G2 CHECK re-run against the diff, EXPECT matched
 Verdict: READY &mdash; no confirmed blocking finding survived review</code></pre>
 
 Approval still stays with a person even on a clean `READY` verdict — shakedown's own review is non-blocking by design when nothing failed, exactly as the workflow's verdict logic states.
