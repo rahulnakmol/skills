@@ -5,7 +5,7 @@ title: "Constitution — The Practice's Product DNA"
 description: "Constitution authors and reviews the seven-section document — principles, positioning, prioritization — every downstream pm skill reads for alignment."
 group: pm
 invocation: user-invoked
-scenario: "Setting the practice's principles before the reconciliation initiative reaches Investment"
+scenario: "Setting the QuenServe practice's principles before E1 reaches Investment"
 lens:
   novice:
     who: "You are about to write your first PRD and do not know what 'aligned with the practice's principles' actually means in practice."
@@ -62,71 +62,48 @@ Constitution is not the only skill that touches practice-wide alignment. This ta
 | The principles already exist and you need epics scored against the prioritization framework | [`carve`]({{ '/carve/' | relative_url }}) |
 | You are not sure which pm skill fits at all | [`ask-pm`]({{ '/ask-pm/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same constitution skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want constitution can skip the rest of the catalog with `./scripts/link-skills.sh --skill constitution`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command, AskUserQuestion batches</span></div>
+<div class="tool-group-body">
 <p>Constitution is user-invoked: type <code>/constitution</code>, or name it directly in a session. It asks in small batches through <code>AskUserQuestion</code> during Create mode rather than requesting all seven sections at once.</p>
-<div class="prompt-card">We are about to run a reconciliation initiative through Investment, and no product constitution exists yet at specs/product-constitution.md. Run Create mode: work the seven sections in small batches through AskUserQuestion, then assemble the Tier 1 summary once every detail file exists.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">We are about to run QuenServe's E1 initiative through Investment, and no product constitution exists yet at specs/product-constitution.md. Run Create mode: work the seven sections in small batches through AskUserQuestion, then assemble the Tier 1 summary once every detail file exists.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Claude Code asks through each section in turn, writes the seven Tier 2 files, then assembles and returns the Tier 1 summary.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">No command &mdash; catalog read</span></div>
+<div class="tool-group-body">
 <p>OpenCode's installed command layer wraps the developer group's tools; no command wraps constitution or any pm skill. The agent reads the shared <code>.agents/skills/</code> catalog directly, the same route Cursor and Codex use, and applies the mode-detection procedure on its own.</p>
-<div class="prompt-card">Read skills/pm/constitution/SKILL.md and CONSTITUTION.md, then start Create mode for the reconciliation initiative — specs/product-constitution.md does not exist yet. Work the seven sections in small batches, and assemble the Tier 1 summary once the section files are written.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/constitution/SKILL.md and CONSTITUTION.md, then start Create mode for the QuenServe practice — specs/product-constitution.md does not exist yet. Work the seven sections in small batches, and assemble the Tier 1 summary once the section files are written.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode works the sections in its reply and writes the files, since no command wraps the pull-request step.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. It reads the catalog in <code>.agents/skills/</code> as context and applies constitution's procedure by following the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode.</p>
-<div class="prompt-card">Following skills/pm/constitution/CONSTITUTION.md, start Create mode for the reconciliation initiative: specs/product-constitution.md does not exist yet. Work the seven sections in small batches, keep every principle a real trade-off rather than a platitude, and assemble the Tier 1 summary last.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the seven section files and the summary directly, then states plainly that the change should land as a pull request.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply constitution's procedure as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode. Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>, so it sees constitution's name and description the way the other four tools do. GitHub Copilot applies the same catalog through <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Following skills/pm/constitution/CONSTITUTION.md, start Create mode for the QuenServe practice: specs/product-constitution.md does not exist yet. Work the seven sections in small batches, keep every principle a real trade-off rather than a platitude, and assemble the Tier 1 summary last.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the seven section files and the summary directly in their reply, then state plainly that the change should land as a pull request.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal catalog, plus the generated sidecar <code>agents/openai.yaml</code>. It gets no command layer either, so invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/pm/constitution/SKILL.md, then run Create mode for the reconciliation initiative heading toward Investment: specs/product-constitution.md does not exist yet. Work the seven sections in small batches, and assemble the Tier 1 summary only once every section file is written.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex writes the same seven files, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same catalog and, once a team has added one, <code>.github/copilot-instructions.md</code> — this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook for constitution specifically, so the ask itself is what tells the agent to run the mode-detection procedure and land the result as a pull request.</p>
-<div class="prompt-card">There is no product constitution yet at specs/product-constitution.md, and the reconciliation initiative is close enough to Investment to need one. Run Create mode directly from this instruction: work the seven sections in small batches, assemble the Tier 1 summary, and open the result as a pull request.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot writes the section files in chat and opens the pull request through whatever repository access it has.</p>
-</div>
-</div>
-
-A good ask states which hierarchy level is meant — the overall practice, or one initiative's own constitution — since the two land in different files and inherit in only one direction. Readers who do not have the skill pack installed can add it first:
-
-```bash
-npx skills@latest add tqnonline/skills
-./scripts/install-adapters.sh
-```
-
-Readers who want constitution alone:
-
-```bash
-./scripts/link-skills.sh --skill constitution
-```
-
-See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces it.
+A good ask states which hierarchy level is meant — the overall practice, or one initiative's own constitution — since the two land in different files and inherit in only one direction.
 
 ## A working example
 
-No constitution exists yet, and the reconciliation initiative is close enough to Investment — the gate where a sponsor commits budget — that its case will need a prioritization framework to score against. You type the prompt above. Constitution detects Create mode from the missing file and asks through the seven sections in small batches rather than all at once.
+No constitution exists yet, and QuenServe's E1 initiative is close enough to Investment — the gate where a sponsor commits budget — that its case will need a prioritization framework to score against. You type the prompt above. Constitution detects Create mode from the missing file and asks through the seven sections in small batches rather than all at once.
 
-Principles come first, and the first draft the model proposes reads "be user-focused" — a platitude everyone already agrees with, and `CONSTITUTION.md`'s own standard for a principle. The stop condition in `SKILL.md` catches this directly: a section containing a generic platitude is not accepted, and the model is pushed to state the actual trade-off instead. The revised principle: when shipping speed and audit completeness compete, the practice chooses audit completeness for anything reaching Investment or Quality, and optimizes speed before the gate rather than at it.
+Principles come first, and the first draft the model proposes reads "be reliable" — a platitude everyone already agrees with, and `CONSTITUTION.md`'s own standard for a principle. The stop condition in `SKILL.md` catches this directly: a section containing a generic platitude is not accepted, and the model is pushed to state the actual trade-off instead. The revised principle: when real-time visibility and field reliability compete, the practice chooses field reliability for anything an inspector does on-site — a manager's dashboard can run seconds behind, an inspector's completed work must never be lost.
 
 Once all seven sections exist, the Tier 1 summary is assembled from them:
 
@@ -147,16 +124,16 @@ The change lands as a pull request rather than a direct commit, per `INITIATIVE-
 <div class="compare-grid">
 <div class="compare-card">
 <div class="compare-card-head">A principle that resolves a conflict</div>
-<pre><code><span class="tok-ok">Principle: When shipping speed and audit</span>
-<span class="tok-ok">completeness compete, we choose audit</span>
-<span class="tok-ok">completeness for anything reaching Investment</span>
-<span class="tok-ok">or Quality — speed is optimized before the</span>
-<span class="tok-ok">gate, not at it.</span></code></pre>
+<pre><code><span class="tok-ok">Principle: When real-time visibility and field</span>
+<span class="tok-ok">reliability compete, we choose field reliability</span>
+<span class="tok-ok">for anything an inspector does on-site — a</span>
+<span class="tok-ok">manager's dashboard can run seconds behind, an</span>
+<span class="tok-ok">inspector's work must never be lost.</span></code></pre>
 <div class="compare-card-note">A specific trade-off the team actually makes when two good things compete.</div>
 </div>
 <div class="compare-card compare-card--warn">
 <div class="compare-card-head">The wrong turn to watch for</div>
-<pre><code><span class="tok-warn">Principle: Be user-focused.</span></code></pre>
+<pre><code><span class="tok-warn">Principle: Be reliable.</span></code></pre>
 <div class="compare-card-note">A generic platitude everyone already agrees with. This is a stop condition, not a style note — force the hard choice instead.</div>
 </div>
 </div>

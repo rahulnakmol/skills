@@ -40,7 +40,7 @@ The four gates in `GATES.md` exist to interrupt this trail before Commitment, no
 
 ## What the gates actually check
 
-Take the reconciliation initiative running through this group's discovery, mapping, and epic pages. Discovery names the actual root cause — a legacy export format tied to a vendor contract predating the current ERP — not the first symptom noticed. Four gates then decide whether that finding survives:
+Take QuenServe's epic E1, offline inspection sync, running through this group's discovery, mapping, and epic pages. Discovery names the actual root cause — a mobile client's live-call-only architecture, scoped to reliable-signal pilot sites — not the first symptom noticed. Four gates then decide whether that finding survives:
 
 - **Framing** closes only once the problem owner can state the problem, in their own words, and for whom.
 - **Investment** requires the case to name the one assumption that would kill it if wrong, costed against doing nothing.
@@ -76,7 +76,7 @@ The sixteen skills below read as a syllabus, not a menu. Start near the top, and
 
 ## Where to start
 
-None of this makes product work faster in the way a faster draft feels faster. It makes a decision defensible months later, when someone asks why it was made. Readers starting from zero can walk that thread, and the field-inspection copilot that follows it into investment and reporting, on the [Run a product org journey]({{ '/journey/run-a-product-org/' | relative_url }}).
+None of this makes product work faster in the way a faster draft feels faster. It makes a decision defensible months later, when someone asks why it was made. Readers starting from zero can walk that thread, and QuenServe, the field-inspection product that carries it into investment and reporting, on the [Run a product org journey]({{ '/journey/run-a-product-org/' | relative_url }}).
 
 ```bash
 npx skills@latest add tqnonline/skills

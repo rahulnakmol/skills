@@ -5,7 +5,7 @@ title: "Carve — DIVE-Tested Epics From the Understanding Document"
 description: "Carve extracts DIVE-tested epics from a Business Understanding Document or a TOM's maturity gaps into a manifest a sponsor approves."
 group: pm
 invocation: model-invoked
-scenario: "Carving reconciliation epics from the understanding document"
+scenario: "Carving epic E1 from the QuenServe understanding document"
 lens:
   novice:
     who: "You have a Business Understanding Document full of good ideas and no idea which of them are actually epics versus scope that just sounds like an epic."
@@ -71,113 +71,86 @@ Carve is not the only skill that touches decomposition. This table separates its
 | Epics are approved and each one needs its product requirements document (PRD) drafted | [`prd-draft`]({{ '/prd-draft/' | relative_url }}) |
 | You are not sure which pm skill fits at all | [`ask-pm`]({{ '/ask-pm/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same carve skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want carve can skip the rest of the catalog with `./scripts/link-skills.sh --skill carve`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Skill tool call, no slash command</span></div>
+<div class="tool-group-body">
 <p>Carve is not typed. Once <code>map</code> has produced the Business Understanding Document, a request to break the initiative into epics leads the session to call the Skill tool with <code>carve</code> — the mechanism the invocation axis in every skill's frontmatter declares for a model-invoked skill.</p>
-<div class="prompt-card">The reconciliation understanding document is confirmed. Break this initiative into epics before we write any PRD — validate every candidate against DIVE, and do not write the manifest until I approve the ordered list.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">The QuenServe understanding document is confirmed. Break this initiative into epics before we write any PRD — validate every candidate against DIVE, and do not write the manifest until I approve the ordered list.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The session returns the candidate epics with their DIVE verdicts, the ordered manifest after a grill pass, and waits for approval before writing the file.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">No command &mdash; catalog read</span></div>
+<div class="tool-group-body">
 <p>OpenCode's installed command layer wraps the developer group's tools; no command wraps carve or any pm skill. The agent reads the shared <code>.agents/skills/</code> catalog directly, the same route Cursor and Codex use, and applies carve's procedure when a request matches its description.</p>
-<div class="prompt-card">Read skills/pm/carve/SKILL.md and DIVE.md, then extract epic candidates from the confirmed reconciliation understanding document. Validate every candidate against DIVE — split or reject failures — and hold the manifest until I approve the ordered list.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/carve/SKILL.md and DIVE.md, then extract epic candidates from the confirmed QuenServe understanding document. Validate every candidate against DIVE — split or reject failures — and hold the manifest until I approve the ordered list.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode works the DIVE pass in its reply and waits for approval, since no command wraps the write step.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. It reads the catalog in <code>.agents/skills/</code> as context and applies carve's procedure by following the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode.</p>
-<div class="prompt-card">Following skills/pm/carve/DIVE.md, extract candidate epics from the confirmed reconciliation understanding document before any PRD gets written. Validate each one against DIVE, split anything that fails Independent, and do not write the manifest until I approve the ordered list.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the candidate epics and DIVE verdicts directly in its reply, then waits for approval before the manifest file exists.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply carve's procedure as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode. Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>, so it sees carve's name and description the way the other four tools do. GitHub Copilot applies the same catalog through <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Following skills/pm/carve/DIVE.md, extract candidate epics from the confirmed QuenServe understanding document before any PRD gets written. Validate each one against DIVE, split anything that fails Independent, and do not write the manifest until I approve the ordered list.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the candidate epics and DIVE verdicts directly in their reply, then wait for approval before the manifest file exists.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal catalog, plus the generated sidecar <code>agents/openai.yaml</code>. It gets no command layer either, so invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/pm/carve/SKILL.md, then break the confirmed reconciliation understanding document into epics before any PRD is drafted. Validate every candidate against DIVE, record each verdict with its evidence, and wait for my approval before writing the manifest.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex runs the same DIVE pass, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same catalog and, once a team has added one, <code>.github/copilot-instructions.md</code> — this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook for carve specifically, so the ask itself is what tells the agent to hold the write until the user approves.</p>
-<div class="prompt-card">There is no carve-specific rule in .github/copilot-instructions.md, so here is the ask directly: the reconciliation understanding document is confirmed. Break the initiative into epics, validate every candidate against DIVE, and hold the manifest write until I approve the ordered list.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot reports the DIVE verdicts in chat and waits for approval before writing the manifest file.</p>
-</div>
-</div>
-
-A good ask confirms which upstream document exists — understanding document, TOM, or both — since that decides where candidates come from, and states plainly that nothing should be written until the ordered list is approved. Readers who do not have the skill pack installed can add it first:
-
-```bash
-npx skills@latest add tqnonline/skills
-./scripts/install-adapters.sh
-```
-
-Readers who want carve alone:
-
-```bash
-./scripts/link-skills.sh --skill carve
-```
-
-See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces it.
+A good ask confirms which upstream document exists — understanding document, TOM, or both — since that decides where candidates come from, and states plainly that nothing should be written until the ordered list is approved.
 
 ## A working example
 
-The reconciliation understanding document from `map` is confirmed, product hat, with the manual-CSV-matching bottleneck marked as the mechanism the whole document turns on. You type the prompt above. Carve reads the document and extracts one broad candidate: "automate reconciliation."
+The QuenServe understanding document from `map` is confirmed, product hat, with the mobile client's live-call-only architecture marked as the mechanism the whole document turns on. You type the prompt above. Carve reads the document and extracts one broad candidate: "fix field connectivity end to end" — a name that quietly bundles offline capture, conflict handling, and sync-status visibility into a single idea.
 
-Run against DIVE, it fails Independent immediately — the candidate secretly bundles automated matching with the exception-queue interface the AR analyst needs to work whatever the automation misses, and the second half cannot ship without the first. Per `DIVE.md`, carve splits it into two epics rather than accepting the hidden dependency chain:
+Run against DIVE, that broad candidate fails Estimable immediately — nobody can size "fix connectivity end to end" as one ship-able release, because it is three separate capabilities wearing one name. Per `DIVE.md`, carve does not respond by splitting it into three separate epics on the manifest. It narrows the candidate to the one epic the analysis actually supports as a first release, and records the rest as scope a later pass will need to size on its own:
 
-<pre><code><span class="tok-comment"># specs/prd/reconciliation-epic-manifest.md (excerpt)</span>
-1. Automated CSV-to-ledger matching
-   Scope in: export ingestion, matching engine, match
-     confidence scoring
-   Scope out: exception handling UI
-   Personas: AR Reconciliation Analyst
+<pre><code><span class="tok-comment"># specs/prd/e1-epic-manifest.md (excerpt)</span>
+1. E1 &middot; Offline inspection sync
+   Scope in: complete an inspection with no network connection,
+     queue it locally, sync it to the server without loss once
+     connectivity returns
+   Scope out: real-time field messaging, a sync-analytics
+     dashboard for managers
+   Personas: Field Inspector, Operations Manager
    Dependencies: none
    DIVE: Deliverable — ships as a standalone release
-         Independent — no dependency on epic 2
-         Valuable — cuts manual matching time, per
-           specs/research/reconciliation-volume.md
-         Estimable — M, 2-3 sprints
+         Independent — no dependency on another epic in this
+           manifest
+         Valuable — inspectors stop re-visiting sites to redo
+           lost work, per specs/research/field-signal-loss.md
+         Estimable — L, roughly one quarter</code></pre>
 
-2. Exception queue for unmatched transactions
-   Scope in: same-day exception surfacing, manual override,
-     audit trail
-   Personas: AR Reconciliation Analyst
-   Dependencies: epic 1 (needs match output to surface
-     exceptions against; split from a single "automate
-     reconciliation" candidate after it failed Independent)</code></pre>
-
-Both epics pass the remaining three tests, and the manifest — two epics, well under the eight-epic ceiling — runs through a grill round before carve presents it. Nothing is written to `specs/prd/` until you approve the ordered list.
+E1 passes all four tests and stands alone in the manifest, well under the eight-epic ceiling, and runs through a grill round before carve presents it. Carve does not decide how E1 itself splits into offline capture, conflict resolution, and sync-status visibility — that decomposition into features and stories happens later, on the developer side, when `slice` cuts E1's PRD. Nothing is written to `specs/prd/` until you approve the ordered list.
 
 ## What good looks like
 
 <div class="compare-grid">
 <div class="compare-card">
 <div class="compare-card-head">A candidate split on the Independent test</div>
-<pre><code>Candidate: "Checkout redesign"
-<span class="tok-ok">DIVE: Independent — FAILS (bundles guest</span>
-<span class="tok-ok">checkout with saved payment methods)</span>
+<pre><code>Candidate: "Portfolio dashboard revamp"
+<span class="tok-ok">DIVE: Independent — FAILS (bundles the</span>
+<span class="tok-ok">manager's site-status widget with an</span>
+<span class="tok-ok">unrelated inspector leaderboard feature)</span>
 <span class="tok-ok">Split into two epics before the manifest</span>
 <span class="tok-ok">is written.</span></code></pre>
 <div class="compare-card-note">An epic that fails Independent is usually two epics that have not yet been separated.</div>
 </div>
 <div class="compare-card compare-card--warn">
 <div class="compare-card-head">The wrong turn to watch for</div>
-<pre><code>Candidate: "All users get a better checkout"
+<pre><code>Candidate: "All managers get a better dashboard"
 <span class="tok-warn">DIVE: Valuable — assumed, no named persona</span>
 <span class="tok-warn">recorded.</span></code></pre>
-<div class="compare-card-note">"All users" is not a persona. An epic that cannot name who benefits has not actually been scoped, it has been assumed.</div>
+<div class="compare-card-note">"All managers" is not a persona. An epic that cannot name who benefits has not actually been scoped, it has been assumed.</div>
 </div>
 </div>
 

@@ -5,7 +5,7 @@ title: "Chart — Decision Tickets for Oversized Initiatives"
 description: "Chart turns an initiative too large for one pass into decision tickets on a tracker, resolved one at a time by a PM and an agent team."
 group: pm
 invocation: user-invoked
-scenario: "Charting a payments-provider migration too big for one pass"
+scenario: "Charting epic E1's remaining decision tickets before Commitment"
 lens:
   novice:
     who: "You have inherited an initiative with no plan, just a folder of notes and a sponsor asking when it will be done."
@@ -64,105 +64,87 @@ Chart is not the only skill that touches planning at scale. This table separates
 | You only need the execution shape for one round, not a multi-session plan | [`arrange`]({{ '/arrange/' | relative_url }}) |
 | You are not sure which pm skill fits at all | [`ask-pm`]({{ '/ask-pm/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same chart skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want chart can skip the rest of the catalog with `./scripts/link-skills.sh --skill chart`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command</span></div>
+<div class="tool-group-body">
 <p>Chart is user-invoked: type <code>/chart</code>, or name it directly in a session. The three dynamic workflows this repository ships as plugin slash commands — <code>assess-work-item</code>, <code>deliver-work-item</code>, <code>shakedown-pr</code> — are built for the developer group's work-item pipeline; chart does not call on either, and reads its ticket state from whichever tracker the initiative already uses.</p>
-<div class="prompt-card">We are moving off our current payment provider and the plan is too big to hold in one pass — it touches the payment API, the ledger service, and the reconciliation job across several teams. Run chart mode: name the destination, classify the hat, and give me a first pass of decision tickets on the tracker.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Epic E1, offline inspection sync, is approved but still carries several open technical and product questions — which offline storage engine, how a sync conflict surfaces to a person, what sync status a manager sees. Run chart mode: name the destination, classify the hat, and give me a first pass of decision tickets on the tracker.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Claude Code returns the destination statement, the hat and gate it feeds, and creates the chart issue with its first-pass tickets filed underneath it.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">No command &mdash; catalog read</span></div>
+<div class="tool-group-body">
 <p>OpenCode's installed command layer wraps the developer group's tools; no command wraps chart or any pm skill. The agent reads the shared <code>.agents/skills/</code> catalog directly, the same route Cursor and Codex use, and applies chart's procedure when a request names an oversized initiative.</p>
-<div class="prompt-card">Read skills/pm/chart/CHART.md and TICKETS.md, then chart the payment-provider migration: it touches the payment API, the ledger service, and the reconciliation job across several teams, too big for one pass. Name the destination, classify the hat, and file a first pass of decision tickets.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/chart/CHART.md and TICKETS.md, then chart epic E1's remaining decisions: which offline storage engine, how a sync conflict surfaces to a person, what sync status a manager sees — too many open questions for one pass. Name the destination, classify the hat, and file a first pass of decision tickets.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode states the destination and ticket list directly in its reply, since no command wraps the tracker calls.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. It reads the catalog in <code>.agents/skills/</code> as context and applies chart's procedure by following the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode.</p>
-<div class="prompt-card">Following skills/pm/chart/CHART.md, chart mode for the payment-provider migration: the payment API, the ledger service, and the reconciliation job span several teams, too big to plan in one pass. Name the destination in one or two sentences, classify the hat, and sort the open questions into tickets.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the destination and the ticket list directly in its reply, since there is no command output to parse.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply chart's procedure as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode. Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>, so it sees chart's name and description the way the other four tools do. GitHub Copilot applies the same catalog through <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Following skills/pm/chart/CHART.md, chart mode for epic E1's remaining decisions: which offline storage engine, how a sync conflict surfaces to a person, what sync status a manager sees. Name the destination in one or two sentences, classify the hat, and sort the open questions into tickets.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the destination and the ticket list directly in their reply, since none has a command's output to parse it from.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal catalog, plus the generated sidecar <code>agents/openai.yaml</code>. It gets no command layer either, so invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/pm/chart/SKILL.md, then run chart mode on the payment-provider migration, which spans the payment API, the ledger service, and the reconciliation job across several teams. Name the destination, classify the hat, and give me a first pass of decision tickets on the tracker.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex writes the chart the same way, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same catalog and, once a team has added one, <code>.github/copilot-instructions.md</code> — this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook or CI check for chart specifically, so an oversized initiative charted through Copilot relies on the ask itself, or an adopted instructions file, to apply the procedure.</p>
-<div class="prompt-card">There is no chart-specific rule in .github/copilot-instructions.md, so here is the ask directly: the payment-provider migration touches the payment API, the ledger service, and the reconciliation job across several teams, too big for one pass. Run chart mode and file the first pass of tickets.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot reports the destination and ticket list in chat, then creates the tracker issues through whatever tracker access it has.</p>
-</div>
-</div>
-
-A good ask names the tracker the initiative already uses — GitHub, Linear, or Azure DevOps — since three operations differ by tracker: how a child issue is created, how blocking is expressed, and how the ready set is queried. Readers who do not have the skill pack installed can add it first:
-
-```bash
-npx skills@latest add tqnonline/skills
-./scripts/install-adapters.sh
-```
-
-Readers who want chart alone:
-
-```bash
-./scripts/link-skills.sh --skill chart
-```
-
-See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces it.
+A good ask names the tracker the initiative already uses — GitHub, Linear, or Azure DevOps — since three operations differ by tracker: how a child issue is created, how blocking is expressed, and how the ready set is queried.
 
 ## A working example
 
-You type the prompt above about the payments-provider migration. Chart mode runs first, and it decides nothing beyond naming the shape of the work:
+You type the prompt above about epic E1's remaining decisions. Chart mode runs first, and it decides nothing beyond naming the shape of the work:
 
-<pre><code>chart: specs/chart/checkout-chart.md
-destination: "Decide the payments migration path and get every
-  affected team's sign-off before Investment."
+<pre><code>chart: specs/chart/e1-offline-sync-chart.md
+destination: "Decide every open implementation question inside
+  epic E1, offline inspection sync, and get sign-off from
+  mobile, sync-service, and platform engineering before
+  Commitment."
 hat: product
-gate: investment
+gate: commitment
 tickets: { ready: 3, blocked: 2, claimed: 1, closed: 0 }
 known_unknowns: 2
 mode: chart</code></pre>
 
-The gate named there, Investment, is where a sponsor commits budget to the migration.
+The gate named there, Commitment, is where the backlog is raised and delivery takes over.
 
-A week later, you return with the chart in hand and no ticket named. Advance mode reads the chart body — the destination, the standing notes, the decisions already made — then chooses the ready ticket "Which billing provider." It claims that ticket by assigning it to your session, and resolves it by routing into `case`, the skill that owns option decisions. The blind-spot checklist runs before anything is recorded: did the option set seriously weigh doing nothing, and did three agents converging on the same provider do so independently, or only because they share one underlying model.
+A week later, you return with the chart in hand and no ticket named. Advance mode reads the chart body — the destination, the standing notes, the decisions already made — then chooses the ready ticket "Which conflict-resolution strategy." It claims that ticket by assigning it to your session, and resolves it by routing into `case`, the skill that owns option decisions. The blind-spot checklist runs before anything is recorded: did the option set seriously weigh doing nothing, and did three agents converging on the same strategy do so independently, or only because they share one underlying model.
 
 The resolution posts as a ticket comment, the ticket closes, and one line is added to the chart's decision list:
 
-<pre><code>chart: specs/chart/checkout-chart.md
-destination: "Decide the payments migration path and get every
-  affected team's sign-off before Investment."
+<pre><code>chart: specs/chart/e1-offline-sync-chart.md
+destination: "Decide every open implementation question inside
+  epic E1, offline inspection sync, and get sign-off from
+  mobile, sync-service, and platform engineering before
+  Commitment."
 hat: product
-gate: investment
+gate: commitment
 tickets: { ready: 4, blocked: 1, claimed: 0, closed: 1 }
 known_unknowns: 1
 mode: advance
-decided: "Chose the vendor-hosted provider over the direct
-  integration: lower integration cost, and card-data
-  compliance scope already covered."</code></pre>
+decided: "Chose a field-level merge with a manual
+  review queue over last-write-wins: neither
+  inspector's answer is silently dropped, and a true
+  conflict surfaces for a person to resolve."</code></pre>
 
-Resolving that ticket opened one that was blocked on it — the migration sequencing question could not be answered until the provider was — and cleared one known unknown, since the residual card-data compliance question is now precise enough to state.
+Resolving that ticket opened one that was blocked on it — the offline storage engine choice could not be finalized until the conflict-resolution strategy was — and cleared one known unknown, since the residual sync-status-visibility question is now precise enough to state.
 
 ## What good looks like
 
 <div class="compare-grid">
 <div class="compare-card">
 <div class="compare-card-head">A ticket sized to one decision</div>
-<pre><code><span class="tok-ok">Ticket: "Which billing provider"</span>
+<pre><code><span class="tok-ok">Ticket: "Which conflict-resolution strategy"</span>
 One question. One resolution comment.
 Claimed before work starts, closed with
 the answer as a comment.</code></pre>
@@ -170,8 +152,8 @@ the answer as a comment.</code></pre>
 </div>
 <div class="compare-card compare-card--warn">
 <div class="compare-card-head">The wrong turn to watch for</div>
-<pre><code><span class="tok-warn">Ticket: "Which billing provider, and how</span>
-<span class="tok-warn">        do we migrate to it"</span>
+<pre><code><span class="tok-warn">Ticket: "Which conflict-resolution strategy,</span>
+<span class="tok-warn">        and how do we roll it out"</span>
 Two decisions in one ticket — the second
 usually depends on the first.</code></pre>
 <div class="compare-card-note">This is the most common sizing failure, and it fails quietly: the session runs out of room and records a partial answer.</div>

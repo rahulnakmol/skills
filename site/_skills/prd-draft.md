@@ -5,7 +5,7 @@ title: "PRD Draft — Requirements Drafting and Structural Validation"
 description: "PRD Draft writes one self-contained PRD per approved epic and runs a nine-check structural validation before the Quality gate."
 group: pm
 invocation: user-invoked
-scenario: "Drafting the PRD for automated reconciliation matching"
+scenario: "Drafting the PRD for epic E1, offline inspection sync"
 lens:
   novice:
     who: "You have never written a PRD that had to survive a formal review, and you do not know what 'structurally complete' means beyond filling in a template."
@@ -63,75 +63,52 @@ PRD Draft is not the only skill that touches requirements quality. This table se
 | Acceptance criteria are already machine-checkable and need decomposing into delivery stories | [`slice`]({{ '/slice/' | relative_url }}) |
 | You are not sure which pm skill fits at all | [`ask-pm`]({{ '/ask-pm/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same prd-draft skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want prd-draft can skip the rest of the catalog with `./scripts/link-skills.sh --skill prd-draft`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command, doubles as validator</span></div>
+<div class="tool-group-body">
 <p>PRD Draft is user-invoked: type <code>/prd-draft</code>, or name it directly in a session. The same invocation checks an existing PRD's structure when one is already on disk, rather than drafting a new one.</p>
-<div class="prompt-card">The reconciliation epic manifest is approved. Draft the PRD for "Automated CSV-to-ledger matching" — all twelve sections, Given-When-Then criteria with at least one error scenario per story — then run the nine-check validation and report the verdict.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">The QuenServe epic manifest is approved, and E1, offline inspection sync, is the first epic. Draft its PRD — all twelve sections, Given-When-Then criteria with at least one error scenario per story — then run the nine-check validation and report the verdict.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Claude Code writes the PRD, runs the grill pass, then runs all nine checks and reports PASS, PASS WITH WARNINGS, or FAIL with each check's evidence.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">No command &mdash; catalog read</span></div>
+<div class="tool-group-body">
 <p>OpenCode's installed command layer wraps the developer group's tools; no command wraps prd-draft or any pm skill. The agent reads the shared <code>.agents/skills/</code> catalog directly, the same route Cursor and Codex use, and applies the drafting-then-validation procedure on its own.</p>
-<div class="prompt-card">Read skills/pm/prd-draft/PRD-SECTIONS.md and VALIDATION.md, then draft the PRD for "Automated CSV-to-ledger matching" from the approved reconciliation manifest. Write all twelve sections with Given-When-Then criteria and an error scenario per story, then run the nine checks and report the verdict.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/prd-draft/PRD-SECTIONS.md and VALIDATION.md, then draft the PRD for E1, offline inspection sync, from the approved QuenServe epic manifest. Write all twelve sections with Given-When-Then criteria and an error scenario per story, then run the nine checks and report the verdict.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode writes the PRD and runs the nine checks in its reply, since no command wraps the validation step.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. It reads the catalog in <code>.agents/skills/</code> as context and applies prd-draft's procedure by following the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode.</p>
-<div class="prompt-card">Following skills/pm/prd-draft/PRD-SECTIONS.md, draft the PRD for "Automated CSV-to-ledger matching" from the approved reconciliation epic manifest. Every story needs a named persona, Given-When-Then criteria, and an error scenario, then run all nine structural checks without stopping at the first failure.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the PRD and the validation report directly in its reply, since there is no command output to parse.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply prd-draft's procedure as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode. Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>, so it sees prd-draft's name and description the way the other four tools do. GitHub Copilot applies the same catalog through <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Following skills/pm/prd-draft/PRD-SECTIONS.md, draft the PRD for E1, offline inspection sync, from the approved QuenServe epic manifest. Every story needs a named persona, Given-When-Then criteria, and an error scenario, then run all nine structural checks without stopping at the first failure.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the PRD and the validation report directly in their reply, since none has a command's output to parse it from.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal catalog, plus the generated sidecar <code>agents/openai.yaml</code>. It gets no command layer either, so invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/pm/prd-draft/SKILL.md, then draft the PRD for "Automated CSV-to-ledger matching" from the approved reconciliation manifest. Write all twelve sections and INVEST stories with Given-When-Then criteria, then run the nine-check validation and report PASS, PASS WITH WARNINGS, or FAIL.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex writes the same PRD and report, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same catalog and, once a team has added one, <code>.github/copilot-instructions.md</code> — this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook for prd-draft specifically, so the ask itself is what tells the agent to run all nine checks without short-circuiting on the first failure.</p>
-<div class="prompt-card">There is no prd-draft-specific rule in .github/copilot-instructions.md, so here is the ask directly: the reconciliation epic manifest is approved. Draft the PRD for "Automated CSV-to-ledger matching," run all nine structural checks, and report the verdict without stopping at the first failure.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot reports the twelve-section PRD and the nine-check verdict in chat, then writes both files through whatever repository access it has.</p>
-</div>
-</div>
-
-A good ask names the specific epic from the manifest, since one PRD covers exactly one epic, and states whether this is a fresh draft or a structural check on a PRD that already exists. Readers who do not have the skill pack installed can add it first:
-
-```bash
-npx skills@latest add tqnonline/skills
-./scripts/install-adapters.sh
-```
-
-Readers who want prd-draft alone:
-
-```bash
-./scripts/link-skills.sh --skill prd-draft
-```
-
-See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces it.
+A good ask names the specific epic from the manifest, since one PRD covers exactly one epic, and states whether this is a fresh draft or a structural check on a PRD that already exists.
 
 ## A working example
 
-The reconciliation manifest is approved, and "Automated CSV-to-ledger matching" is the first epic. You type the prompt above. PRD Draft reads the manifest and the understanding document it was carved from, then populates all twelve sections — problem statement, personas, epic definition, user stories, and the rest — writing INVEST-compliant stories against the AR Reconciliation Analyst persona.
+The QuenServe epic manifest is approved, and E1, offline inspection sync, is the first epic. You type the prompt above. PRD Draft reads the manifest and the understanding document it was carved from, then populates all twelve sections — problem statement, personas, epic definition, user stories, and the rest — writing INVEST-compliant stories against the Field Inspector persona.
 
-One story's first draft carries only a happy-path criterion: given a valid export, when matching runs, then the ledger updates. Before validation even runs, `PRD-SECTIONS.md`'s own requirement catches this — a story needs at minimum one happy path, one boundary condition, and one error scenario — so a second criterion is added for the case an item from the export is malformed. A grill pass runs next, since a research corpus already exists in `specs/research/` from discovery's meeting notes.
+One story's first draft carries only a happy-path criterion: given a live connection, when the inspector submits a completed inspection, then it reaches the server. Before validation even runs, `PRD-SECTIONS.md`'s own requirement catches this — a story needs at minimum one happy path, one boundary condition, and one error scenario. So a second criterion is added for the case connectivity drops mid-submission: the inspection is queued locally instead of lost, and retries automatically once connectivity returns. A grill pass runs next, since a research corpus already exists in `specs/research/` from discovery's field reports.
 
 Then all nine structural checks run, without stopping at the first failure:
 
-<pre><code><span class="tok-comment"># specs/prd/reconciliation-matching-validation.md (excerpt)</span>
+<pre><code><span class="tok-comment"># specs/prd/e1-offline-sync-validation.md (excerpt)</span>
 1. Sections present ............. <span class="tok-ok">PASS</span>
 2. Named personas ................ <span class="tok-ok">PASS</span>
 3. Acceptance criteria ........... <span class="tok-ok">PASS</span>

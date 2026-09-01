@@ -5,7 +5,7 @@ title: "Map — Personas, Flows, and the Understanding Document"
 description: "Map turns a discovery analysis into personas, current and target process flows, and the Business Understanding Document the Framing gate signs."
 group: pm
 invocation: model-invoked
-scenario: "Mapping the reconciliation bottleneck for the Framing gate"
+scenario: "Mapping the field-connectivity problem for the Framing gate"
 lens:
   novice:
     who: "You have read the discovery analysis and now have to turn stakeholder notes into personas and a process diagram, and you are not sure how detailed either needs to be."
@@ -65,106 +65,83 @@ Map is not the only skill that touches this stretch of the pipeline. This table 
 | Personas and flows exist, transformation hat, and a full operating model is needed | [`tom-architect`]({{ '/tom-architect/' | relative_url }}) |
 | You are not sure which pm skill fits at all | [`ask-pm`]({{ '/ask-pm/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same map skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want map can skip the rest of the catalog with `./scripts/link-skills.sh --skill map`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Skill tool call, no slash command</span></div>
+<div class="tool-group-body">
 <p>Map is not typed. Once <code>discover</code> has written its analysis file, a request for personas or process flows leads the session to call the Skill tool with <code>map</code> — the mechanism the invocation axis in every skill's frontmatter declares for a model-invoked skill.</p>
-<div class="prompt-card">Discovery on the reconciliation problem is confirmed and the analysis file is written. Map the personas and the current and target journeys, then assemble the Business Understanding Document for Framing.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Discovery on the field-connectivity problem is confirmed and the analysis file is written. Map the personas and the current and target journeys, then assemble the Business Understanding Document for Framing.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The session returns the persona profiles, both Mermaid flows, and the assembled document, then names which skill the hat routes to next.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">No command &mdash; catalog read</span></div>
+<div class="tool-group-body">
 <p>OpenCode's installed command layer wraps the developer group's tools; no command wraps map or any pm skill. The agent reads the shared <code>.agents/skills/</code> catalog directly, the same route Cursor and Codex use, and applies map's procedure when a request matches its description.</p>
-<div class="prompt-card">Read skills/pm/map/SKILL.md and VISUALS.md, then build personas and process flows from the reconciliation analysis file discover already wrote. Assemble the Business Understanding Document for Framing, and keep each figure to one claim.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/map/SKILL.md and VISUALS.md, then build personas and process flows from the field-connectivity analysis file discover already wrote. Assemble the Business Understanding Document for Framing, and keep each figure to one claim.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode writes the personas and both flows directly in its reply, since no command wraps the assembly step.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. It reads the catalog in <code>.agents/skills/</code> as context and applies map's procedure by following the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode.</p>
-<div class="prompt-card">Following skills/pm/HATS.md and VISUALS.md, map the reconciliation personas and the current and target journeys from the confirmed analysis file. Assemble the Business Understanding Document for Framing, and split any figure that tries to argue two things at once.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the personas, both flows, and the assembled document directly in its reply.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply map's procedure as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode. Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>, so it sees map's name and description the way the other four tools do. GitHub Copilot applies the same catalog through <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Following skills/pm/HATS.md and VISUALS.md, map the field-connectivity personas and the current and target journeys from the confirmed analysis file. Assemble the Business Understanding Document for Framing, and split any figure that tries to argue two things at once.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the personas, both flows, and the assembled document directly in their reply, since none has a command's output to parse it from.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal catalog, plus the generated sidecar <code>agents/openai.yaml</code>. It gets no command layer either, so invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/pm/map/SKILL.md, then map the personas and the current and target journeys from the confirmed reconciliation analysis file. Assemble the Business Understanding Document for Framing, and route the handoff by whichever hat the analysis already classified.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex writes the same document, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same catalog and, once a team has added one, <code>.github/copilot-instructions.md</code> — this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook for map specifically, so the ask itself is what tells the agent to apply the compression rule before any figure ships.</p>
-<div class="prompt-card">There is no map-specific rule in .github/copilot-instructions.md, so here is the ask directly: discovery on the reconciliation problem is confirmed and the analysis file exists. Map the personas and journeys, and assemble the Business Understanding Document for Framing.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot reports the personas and both flows in chat, then writes the assembled document.</p>
-</div>
-</div>
-
-A good ask confirms the analysis file already exists and names the hat if it is not already recorded, since persona style diverges sharply between end-user and organizational-actor profiles. Readers who do not have the skill pack installed can add it first:
-
-```bash
-npx skills@latest add tqnonline/skills
-./scripts/install-adapters.sh
-```
-
-Readers who want map alone:
-
-```bash
-./scripts/link-skills.sh --skill map
-```
-
-See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces it.
+A good ask confirms the analysis file already exists and names the hat if it is not already recorded, since persona style diverges sharply between end-user and organizational-actor profiles.
 
 ## A working example
 
-Discovery on the reconciliation problem is confirmed: manual CSV matching, a legacy export format, a vendor contract that predates the current ERP. You type the prompt above. Map reads the analysis file and extracts the stakeholder register — finance lead, AR team, platform engineering — to build personas from.
+Discovery on the field-connectivity problem is confirmed: a synchronous, live-call-only mobile client, scoped and tested only against reliable-signal pilot sites. You type the prompt above. Map reads the analysis file and extracts the stakeholder register — operations lead, field inspectors, platform engineering — to build personas from.
 
-Because the hat is product, personas describe end users with behaviors and feelings rather than organizational roles. The primary one: an AR Reconciliation Analyst who spends the first three days of every month manually matching CSV rows against the ledger, and who flags exceptions by hand in a spreadsheet nobody else can see. Map generates the current-state flow with that bottleneck marked red, and a target-state flow with automated matching and a same-day exception queue marked green — one figure per state, each carrying exactly the mechanism the decision turns on:
+Because the hat is product, personas describe end users with behaviors and feelings rather than organizational roles. The primary one: a Field Inspector who drives to a warehouse or a rural site with no reliable signal, completes a full checklist there, and has watched the app lose that work more than once when the connection never came back before submission. Map generates the current-state flow with that loss marked red, and a target-state flow with local queuing and lossless sync marked green — one figure per state, each carrying exactly the mechanism the decision turns on:
 
-<pre><code><span class="tok-comment"># specs/checkout-understanding-doc.md (excerpt)</span>
-Persona: AR Reconciliation Analyst (end user, product hat)
-
-flowchart LR
-  A[CSV export] --> B[Manual matching]
-  B --> C[Exceptions worked by hand]
-  C --> D[Close signed off, day 3]
-  <span class="tok-warn">%% pain point: manual matching, marked red</span>
+<pre><code><span class="tok-comment"># specs/quenserve-understanding-doc.md (excerpt)</span>
+Persona: Field Inspector (end user, product hat)
 
 flowchart LR
-  A[CSV export] --> B[Automated matching]
-  B --> C[Exception queue, same day]
-  C --> D[Close signed off, day 1]
-  <span class="tok-ok">%% improvement: automated matching, marked green</span></code></pre>
+  A[Inspector arrives on site] --> B[Signal drops]
+  B --> C[Submission fails]
+  C --> D[Inspector re-visits to redo the work]
+  <span class="tok-warn">%% pain point: work lost on signal drop, marked red</span>
 
-Before the document is assembled, map checks the compression rule against a first draft that also tried to show a staffing plan on the same diagram, and splits it into a separate figure rather than letting one flowchart carry two arguments. The finished Business Understanding Document routes, by the product hat already classified, to `carve`.
+flowchart LR
+  A[Inspector arrives on site] --> B[Inspection completed offline]
+  B --> C[Queued locally]
+  C --> D[Synced once connectivity returns]
+  <span class="tok-ok">%% improvement: no data lost, marked green</span></code></pre>
+
+Before the document is assembled, map checks the compression rule against a first draft that also tried to show a device-procurement plan on the same diagram, and splits it into a separate figure rather than letting one flowchart carry two arguments. The finished Business Understanding Document routes, by the product hat already classified, to `carve`.
 
 ## What good looks like
 
 <div class="compare-grid">
 <div class="compare-card">
 <div class="compare-card-head">One figure, one claim</div>
-<pre><code>Figure: Reconciliation bottleneck moves from
-<span class="tok-ok">manual matching (current) to automated</span>
-<span class="tok-ok">matching with a one-day exception queue</span>
+<pre><code>Figure: Field inspection moves from work lost
+<span class="tok-ok">on a signal drop (current) to offline</span>
+<span class="tok-ok">capture with lossless sync on reconnect</span>
 <span class="tok-ok">(target).</span>
 One argument. One figure.</code></pre>
 <div class="compare-card-note">Compress the mechanism the decision actually turns on, not a decorative restatement of the topic.</div>
 </div>
 <div class="compare-card compare-card--warn">
 <div class="compare-card-head">The wrong turn to watch for</div>
-<pre><code>Figure: current state, target state, staffing
-<span class="tok-warn">plan, and vendor comparison, all on one</span>
-<span class="tok-warn">diagram.</span></code></pre>
+<pre><code>Figure: current state, target state, device
+<span class="tok-warn">procurement plan, and vendor comparison,</span>
+<span class="tok-warn">all on one diagram.</span></code></pre>
 <div class="compare-card-note">A figure trying to carry two arguments at once is two figures that have not yet been separated.</div>
 </div>
 </div>
@@ -193,7 +170,7 @@ No — `SKILL.md`'s second stop condition blocks exactly this: a process flow wi
 <summary>Why does the persona style change between the two hats?</summary>
 <div class="qa-body">
 
-`HATS.md` draws the line directly: under the product hat, personas are end users, named with behaviors and feelings, the kind of persona a product requirements document's acceptance criteria are written against. Under the transformation hat, they are organizational actors — a claims processor, a regional finance lead — described with a RACI role rather than a feeling, because the audience reading the document is different in each case.
+`HATS.md` draws the line directly: under the product hat, personas are end users, named with behaviors and feelings, the kind of persona a product requirements document's acceptance criteria are written against. Under the transformation hat, they are organizational actors — a claims processor, a regional operations lead — described with a RACI role rather than a feeling, because the audience reading the document is different in each case.
 
 </div>
 </details>

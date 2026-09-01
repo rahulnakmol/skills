@@ -5,7 +5,7 @@ title: "TOM Architect — Designing a Target Operating Model"
 description: "TOM Architect decomposes business operations into L1-L4 processes, assesses maturity, designs organization and RACI, and maps capabilities to a platform stack."
 group: pm
 invocation: user-invoked
-scenario: "Designing the target operating model for order-to-cash"
+scenario: "Designing the target operating model for QuenServe's field-inspection process"
 lens:
   novice:
     who: "You have been asked to 'build the TOM,' and you do not know whether that means an executive slide or a task-level breakdown of every process in the business."
@@ -67,85 +67,65 @@ TOM Architect is not the only skill that touches this stretch of a transformatio
 | You need end-user personas and journeys, not process decomposition | [`map`]({{ '/map/' | relative_url }}) |
 | You are not sure which pm skill fits at all | [`ask-pm`]({{ '/ask-pm/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same tom-architect skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want tom-architect can skip the rest of the catalog with `./scripts/link-skills.sh --skill tom-architect`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command, AskUserQuestion intake</span></div>
+<div class="tool-group-body">
 <p>TOM Architect is user-invoked: type <code>/tom-architect</code>, or name it directly in a session. It gathers the transformation driver, industry, and target platform stack through <code>AskUserQuestion</code> before decomposition starts.</p>
-<div class="prompt-card">We are transforming order-to-cash under the transformation hat. Design the target operating model: scope L1 through L4, assess current-state maturity per process before touching any target design, and give every L2 process a RACI.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">A facilities-services customer is transforming its field-inspection operating model under the transformation hat. Design the target operating model: scope L1 through L4, assess current-state maturity per process before touching any target design, and give every L2 process a RACI.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Claude Code confirms the depth and target platform, decomposes the process taxonomy, assesses maturity, then designs the organization layer before touching platform mapping.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">No command &mdash; catalog read</span></div>
+<div class="tool-group-body">
 <p>OpenCode's installed command layer wraps the developer group's tools; no command wraps tom-architect or any pm skill. The agent reads the shared <code>.agents/skills/</code> catalog directly, the same route Cursor and Codex use, and applies the seven-phase procedure on its own.</p>
-<div class="prompt-card">Read skills/pm/tom-architect/TOM-METHOD.md, then design the order-to-cash target operating model under the transformation hat. Scope L1 through L4, assess current-state maturity per process before any target design, and assign a RACI to every L2 process.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/tom-architect/TOM-METHOD.md, then design the field-inspection target operating model under the transformation hat. Scope L1 through L4, assess current-state maturity per process before any target design, and assign a RACI to every L2 process.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode works the seven phases in its reply, in order, since no command wraps the document assembly.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. It reads the catalog in <code>.agents/skills/</code> as context and applies the procedure by following the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode.</p>
-<div class="prompt-card">Following skills/pm/tom-architect/TOM-METHOD.md, design the order-to-cash target operating model: transformation hat, L1 through L4 depth. Assess maturity per process before touching target design, and hold platform selection until after that baseline and the organization layer both exist.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the TOM document directly in its reply, phase by phase, since there is no command output to parse.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply the seven-phase procedure as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode. Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>, so it sees tom-architect's name and description the way the other four tools do. GitHub Copilot applies the same catalog through <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Following skills/pm/tom-architect/TOM-METHOD.md, design the field-inspection target operating model: transformation hat, L1 through L4 depth. Assess maturity per process before touching target design, and hold platform selection until after that baseline and the organization layer both exist.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the TOM document directly in their reply, phase by phase, since none has a command's output to parse it from.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal catalog, plus the generated sidecar <code>agents/openai.yaml</code>. It gets no command layer either, so invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/pm/tom-architect/SKILL.md, then design the order-to-cash target operating model under the transformation hat, scoping L1 through L4. Assess current-state maturity per process before any target design, and assign a RACI role at every process step.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex writes the same document, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same catalog and, once a team has added one, <code>.github/copilot-instructions.md</code> — this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook for tom-architect specifically, so the ask itself is what tells the agent to hold platform mapping until after maturity assessment.</p>
-<div class="prompt-card">There is no tom-architect-specific rule in .github/copilot-instructions.md, so here is the ask directly: we are transforming order-to-cash under the transformation hat. Design the target operating model to L1-L4, assess maturity before any target design, and give every L2 process a RACI.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot works the phases in chat and writes the TOM document through whatever repository access it has.</p>
-</div>
-</div>
-
-A good ask names the target platform stack if one is already selected, and states the depth preference outright — L1-L2 for an overview, L1-L4 for a detailed design — rather than leaving it for the model to guess. Readers who do not have the skill pack installed can add it first:
-
-```bash
-npx skills@latest add tqnonline/skills
-./scripts/install-adapters.sh
-```
-
-Readers who want tom-architect alone:
-
-```bash
-./scripts/link-skills.sh --skill tom-architect
-```
-
-See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces it.
+A good ask names the target platform stack if one is already selected, and states the depth preference outright — L1-L2 for an overview, L1-L4 for a detailed design — rather than leaving it for the model to guess.
 
 ## A working example
 
-You type the prompt above about order-to-cash. TOM Architect's Discover phase gathers the driver — closing the reconciliation gap discovery already surfaced — the industry, and confirms no target platform stack has been picked yet. Scope fixes L1-L4 depth, since the sponsor wants a detailed design rather than an executive overview, and confirms order-to-cash, procure-to-pay, and record-to-report as the three domains in play.
+You type the prompt above about the field-inspection operating model. TOM Architect's Discover phase gathers the driver: a customer's own inspection completion rate keeps slipping at low-signal sites, the same shape of problem QuenServe's engineering analysis surfaces elsewhere on this site, raised here at the enterprise level instead of one product epic. It also gathers the industry — facilities and industrial services — and confirms no target platform stack has been picked yet. Scope fixes L1-L4 depth, since the sponsor wants a detailed design rather than an executive overview, and confirms process, organization, and technology as the three layers in play, leaving service delivery, data, and governance out of scope for this pass.
 
-Analyze decomposes order-to-cash down to L2 process groups, and places order reconciliation on the five-point maturity scale at 2-Developing — partial, because matching happens but only through manual CSV work, not because nothing happens at all. Design assigns RACI: the AR analyst is Responsible, the finance lead is Accountable, platform engineering is Consulted. Only after that baseline exists does Map turn to platform capability, closing the maturity gap against Microsoft's D365 Finance & Operations:
+Analyze decomposes the inspection value chain down to L2 process groups — site scheduling, inspection execution, exception handling, sync and reporting — and places inspection execution on the five-point maturity scale at 2-Developing, partial credit only. Digital capture already exists at sites with reliable signal, but a rural or warehouse site still falls back to a paper checklist faxed to a regional office. Design assigns RACI: the field inspector is Responsible, the regional operations lead is Accountable, platform engineering is Consulted. Only after that baseline exists does Map turn to platform capability, closing the maturity gap by adopting QuenServe itself as the platform:
 
-<pre><code><span class="tok-comment"># specs/tom/order-to-cash-tom-design.md (excerpt)</span>
-L2 process: Order reconciliation
-  Owner: AR team lead
+<pre><code><span class="tok-comment"># specs/tom/field-inspection-tom-design.md (excerpt)</span>
+L2 process: Inspection execution
+  Owner: Regional operations lead
   Maturity: 2-Developing (partial)
-  RACI: Responsible — AR analyst;
-        Accountable — Finance lead;
+  RACI: Responsible — Field inspector;
+        Accountable — Regional operations lead;
         Consulted — Platform engineering
-  AI overlay: Human-in-the-Loop (AI matches,
-    a human approves exceptions)
-  KPI cadence: process (daily exception count),
-    operational (monthly close cycle time)
-  Platform: D365 Finance &amp; Operations —
-    automated matching module</code></pre>
+  AI overlay: Human-in-the-Loop (the digital
+    checklist guides the inspector, a person
+    still judges pass or fail)
+  KPI cadence: process (daily open-inspection
+    count), operational (weekly site-coverage
+    rate)
+  Platform: QuenServe &mdash; extends digital
+    capture to every site, including those
+    without reliable signal</code></pre>
 
 The maturity gap recorded here — 2-Developing today, a Human-in-the-Loop target — is exactly what `carve` reads later to extract an epic, rather than inventing one from a platform's feature list.
 
@@ -154,16 +134,16 @@ The maturity gap recorded here — 2-Developing today, a Human-in-the-Loop targe
 <div class="compare-grid">
 <div class="compare-card">
 <div class="compare-card-head">Baseline before platform</div>
-<pre><code>Phase 3: <span class="tok-ok">Order-to-cash L2 maturity assessed —</span>
-<span class="tok-ok">2-Developing (partial)</span>
+<pre><code>Phase 3: <span class="tok-ok">Inspection execution L2 maturity</span>
+<span class="tok-ok">assessed — 2-Developing (partial)</span>
 Phase 5: Platform mapped against that gap —
-D365 F&amp;O closes the automation gap
-in reconciliation.</code></pre>
+QuenServe closes the offline-capture gap
+at low-signal sites.</code></pre>
 <div class="compare-card-note">Platform mapping follows process decomposition and maturity assessment; it never precedes them.</div>
 </div>
 <div class="compare-card compare-card--warn">
 <div class="compare-card-head">The wrong turn to watch for</div>
-<pre><code><span class="tok-warn">Phase 1: "let's go with D365" — platform</span>
+<pre><code><span class="tok-warn">Phase 1: "let's go with QuenServe" — platform</span>
 <span class="tok-warn">selected before any process is decomposed.</span>
 Maturity baseline: not yet assessed.</code></pre>
 <div class="compare-card-note">A target state defined without a current-state baseline produces an unrealistic target.</div>
@@ -224,7 +204,7 @@ Research is commissioned rather than the maturity assessment being guessed at, p
 - Platform selection can be pointed at a specific maturity gap it closes, rather than justified by the vendor's feature list alone.
 - KPIs exist at all three cadences — strategic, operational, process — not only the one leadership reads in a quarterly review.
 
-If a TOM keeps naming D365 or S/4HANA in its executive summary before any process appears in the document, the platform conversation has driven the design even though the phases are all still labeled in the right order.
+If a TOM keeps naming a specific vendor platform in its executive summary before any process appears in the document, the platform conversation has driven the design even though the phases are all still labeled in the right order.
 
 ## Where it fits
 

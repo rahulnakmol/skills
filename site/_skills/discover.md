@@ -5,7 +5,7 @@ title: "Discover — Root-Cause Analysis Before Solutioning"
 description: "Discover turns a raw business problem, meeting notes, or a vague opportunity into a stakeholder-grounded, root-cause analysis before any solution design."
 group: pm
 invocation: user-invoked
-scenario: "Finding the real cause of a slipping month-end close"
+scenario: "Finding the real cause of inspections lost when a field site loses connectivity"
 lens:
   novice:
     who: "You have been handed 'the reporting is slow, fix it,' and you already suspect that is a symptom someone noticed first, not the actual problem."
@@ -42,7 +42,7 @@ It verifies or bootstraps the initiative repository, classifies which hat the en
 
 <ul class="benefits">
   <li>A request that arrives as "build me X" is redirected back to "what problem does X solve" before scope is ever set, so the analysis grounds the solution instead of dressing it up after the fact.</li>
-  <li>Root causes are separated from symptoms with Five Whys or Fishbone, so the analysis names the vendor contract that predates the ERP migration, not just the slow reporting someone first noticed.</li>
+  <li>Root causes are separated from symptoms with Five Whys or Fishbone, so the analysis names the mobile client's live-call-only architecture, not just the app crash someone first noticed.</li>
   <li>A single stakeholder's account is never treated as the full picture — every analysis triangulates across at least three sources before it is written down.</li>
   <li>The problem owner confirms the classification, statement, and root causes in their own words before the document exists, so Framing — the pm pipeline's first human gate — has something real to sign.</li>
 </ul>
@@ -68,91 +68,73 @@ Discover is not the only skill that touches problem framing. This table separate
 | You need the practice's principles, not this initiative's problem | [`constitution`]({{ '/constitution/' | relative_url }}) |
 | You are not sure which pm skill fits at all | [`ask-pm`]({{ '/ask-pm/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same discover skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want discover can skip the rest of the catalog with `./scripts/link-skills.sh --skill discover`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command</span></div>
+<div class="tool-group-body">
 <p>Discover is user-invoked: type <code>/discover</code>, or name it directly in a session. It accepts meeting notes, transcripts, and raw CSV or spreadsheet data pasted or attached directly into the conversation, normalizing them rather than asking for a clean brief.</p>
-<div class="prompt-card">Here are the finance team's meeting notes and last quarter's close-cycle spreadsheet. Reconciliation errors keep spiking at month end and delaying close by three business days. Run discovery: classify the hat, clarify across your five dimensions, and find the root cause with Five Whys before proposing anything.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Here are the operations team's field reports and last quarter's site-visit log. Inspectors keep losing completed inspections when a site has no signal, and managers cannot tell which of today's inspections actually reached the server. Run discovery: classify the hat, clarify across your five dimensions, and find the root cause with Five Whys before proposing anything.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Claude Code works the themed clarification rounds, decomposes the root cause, then presents the classification and problem statement for confirmation before writing the analysis document.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">No command &mdash; catalog read</span></div>
+<div class="tool-group-body">
 <p>OpenCode's installed command layer wraps the developer group's tools; no command wraps discover or any pm skill. The agent reads the shared <code>.agents/skills/</code> catalog directly, the same route Cursor and Codex use, and applies discover's procedure when a request matches it.</p>
-<div class="prompt-card">Read skills/pm/discover/METHOD.md, then take these finance meeting notes and the close-cycle spreadsheet as raw input, not a written brief. Reconciliation errors spike at month end and delay close by three business days — classify the hat, clarify across five dimensions, and name the root cause.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/discover/METHOD.md, then take these operations field reports and the site-visit log as raw input, not a written brief. Inspections go missing whenever a site loses signal, and managers cannot see which ones actually reached the server &mdash; classify the hat, clarify across five dimensions, and name the root cause.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode works the clarification rounds in its reply, then states the confirmed classification and root cause before writing the file.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. It reads the catalog in <code>.agents/skills/</code> as context and applies discover's procedure by following the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode.</p>
-<div class="prompt-card">Following skills/pm/discover/METHOD.md, take the attached finance meeting notes and close-cycle spreadsheet as raw input. Reconciliation errors spike at month end, delaying close by three business days — triangulate across at least three sources and name the root cause with Five Whys, not the first plausible one.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the analysis file directly in its reply, since there is no command output to parse.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply discover's procedure as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode and keeps a team's rules in <code>.cursor/rules/</code>. Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>, so it sees discover's name and description the way the other four tools do. GitHub Copilot applies the same catalog through <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Following skills/pm/discover/METHOD.md, take the attached operations field reports and site-visit log as raw input. Inspections go missing whenever a site loses signal, and managers cannot see which ones reached the server &mdash; triangulate across at least three sources and name the root cause with Five Whys, not the first plausible one.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the analysis file directly in their reply, since none has a command's output to parse it from.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal catalog, plus the generated sidecar <code>agents/openai.yaml</code>. It gets no command layer either, so invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/pm/discover/SKILL.md and METHOD.md, then run discovery on the attached finance meeting notes and close-cycle spreadsheet. Reconciliation errors spike at month end and delay close by three business days — classify the hat, clarify across five dimensions, and find the root cause before proposing a fix.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex writes the same analysis file, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same catalog and, once a team has added one, <code>.github/copilot-instructions.md</code> — this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook for discover specifically, so the ask itself is what tells the agent to redirect solution-first framing and run the five-dimension clarification before writing anything down.</p>
-<div class="prompt-card">There is no discover-specific rule in .github/copilot-instructions.md yet, so here is the ask directly: these are the finance team's meeting notes and last quarter's close-cycle spreadsheet. Reconciliation errors spike at month end, delaying close by three business days — classify the hat, clarify across five dimensions, and name the root cause.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot works the clarification rounds in chat and reports the confirmed classification before writing the file.</p>
-</div>
-</div>
-
-A good ask hands over whatever raw material already exists — notes, a transcript, a spreadsheet — rather than a pre-written problem statement, since discover's own job is separating the real cause from what was first noticed. Readers who do not have the skill pack installed can add it first:
-
-```bash
-npx skills@latest add tqnonline/skills
-./scripts/install-adapters.sh
-```
-
-Readers who want discover alone:
-
-```bash
-./scripts/link-skills.sh --skill discover
-```
-
-See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces it.
+A good ask hands over whatever raw material already exists — notes, a transcript, a spreadsheet — rather than a pre-written problem statement, since discover's own job is separating the real cause from what was first noticed.
 
 ## A working example
 
-You type the prompt above about reconciliation errors. Discover confirms the initiative repository exists, then classifies the hat: this reads as product, since the fix will ship as a feature the checkout and finance teams both touch, not a full operating-model redesign. It accepts the notes and spreadsheet directly rather than asking you to summarize them first.
+You type the prompt above about inspections going missing. Discover confirms the initiative repository exists, then classifies the hat: this reads as product, since the fix will ship as a capability the mobile client and the sync service both touch, not a full operating-model redesign. It accepts the field reports and the site-visit log directly rather than asking you to summarize them first.
 
-Clarification runs in the grill's themed rounds rather than one long form. The business-context round establishes this sits inside order-to-cash. The stakeholder round names the finance lead as decision-maker, the AR team as end users, and platform engineering as a dependency — three sources, so the triangulation requirement is met before any cause gets written down. The problem-definition round surfaces the first plausible cause: "the CSV export is slow." Five Whys keeps pushing past it: the export is slow because matching is manual, matching is manual because the export format is legacy, and the format is legacy because it predates the current ERP. It predates the ERP because the vendor contract was never renegotiated after that migration.
+Clarification runs in the grill's themed rounds rather than one long form. The business-context round establishes this sits inside QuenServe's field-inspection workflow. The stakeholder round names the operations lead as decision-maker, field inspectors as end users, and platform engineering as a dependency — three sources, so the triangulation requirement is met before any cause gets written down. The problem-definition round surfaces the first plausible cause: "the app crashes when the signal drops." Five Whys keeps pushing past it: the app crashes because it submits the inspection live over the network, it submits live because there is no local queue, and there is no local queue because the mobile client treats every write as a synchronous server call. It treats every write that way because the first release was scoped and tested only against pilot customers on reliable warehouse Wi-Fi. That pilot-era assumption still governs the app today because offline support was deprioritized to hit the original launch date, and nobody has revisited it since the customer base grew to rural and low-signal industrial sites.
 
 Discover presents the classification and problem statement for your confirmation, then writes:
 
-<pre><code><span class="tok-comment"># specs/checkout-analysis.md</span>
-Problem statement: Reconciliation errors spike at month end,
-  delaying close by three business days.
-Stakeholder register: Finance lead (decision-maker), AR team
-  (end users), Platform engineering (dependency).
-Classification: Process Automation
+<pre><code><span class="tok-comment"># specs/quenserve-analysis.md</span>
+Problem statement: Inspectors lose completed inspections when a
+  site has no signal, and managers cannot see which of today's
+  inspections have actually reached the server.
+Stakeholder register: Operations lead (decision-maker), field
+  inspectors (end users), platform engineering (dependency).
+Classification: Product Development
 Hat: product
-Root causes (Five Whys): manual CSV reconciliation → no
-  automated matching → legacy export format → vendor contract
-  predates the current ERP → never renegotiated after migration.
-Constraints: no budget for a new reconciliation vendor this
-  fiscal year.
-Success criteria: close cycle back to one business day.
+Root causes (Five Whys): synchronous, live-call-only submission →
+  no local queue → mobile client architecture assumes a live
+  connection → scoped and tested only against reliable-signal
+  pilot sites → offline support deprioritized at launch and never
+  revisited as the customer base grew to rural and low-signal
+  sites.
+Constraints: no budget for replacing field devices this fiscal
+  year.
+Success criteria: an inspection completes and syncs without loss
+  regardless of on-site connectivity.
 Entry mode: sponsor-initiated, thin evidence in hand.
 Next step: map</code></pre>
 
-The vendor-contract root cause, not "the export is slow," is what `map` and later `carve` will actually build against.
+The live-call-only architecture root cause, not "the app crashes," is what `map` and later `carve` will actually build against.
 
 ## What good looks like
 
@@ -200,7 +182,7 @@ Because product and transformation personas, artifacts, and downstream skills di
 <summary>What counts as triangulation, exactly?</summary>
 <div class="qa-body">
 
-`METHOD.md` is explicit that a single stakeholder's account is never treated as the full picture — root causes are triangulated across at least three sources before the analysis is written down. A finance lead's account of why reconciliation is slow is one data point; the AR team's daily experience of the exception queue is a second; the export format's own documented age is a third.
+`METHOD.md` is explicit that a single stakeholder's account is never treated as the full picture — root causes are triangulated across at least three sources before the analysis is written down. An operations lead's account of why inspections go missing is one data point; a field inspector's daily experience of losing work at a low-signal site is a second; the mobile client's own architecture documentation is a third.
 
 </div>
 </details>
@@ -209,7 +191,7 @@ Because product and transformation personas, artifacts, and downstream skills di
 <summary>Does discover distinguish a root cause from a symptom automatically?</summary>
 <div class="qa-body">
 
-No — Five Whys or Fishbone is the discipline that forces the distinction, and it runs on every problem statement before that statement is accepted as final. `METHOD.md` frames the risk directly: without it, the first plausible cause gets treated as the answer, which is exactly the failure a slow reporting complaint disguises when the real cause is a legacy export format three steps upstream.
+No — Five Whys or Fishbone is the discipline that forces the distinction, and it runs on every problem statement before that statement is accepted as final. `METHOD.md` frames the risk directly: without it, the first plausible cause gets treated as the answer, which is exactly the failure an app-crash complaint disguises when the real cause is a live-call-only architecture three steps upstream.
 
 </div>
 </details>

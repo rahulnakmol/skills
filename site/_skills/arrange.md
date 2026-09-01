@@ -5,7 +5,7 @@ title: "Arrange — Choosing How PM Work Runs"
 description: "Arrange decides whether a discovery, case, TOM, or PRD effort runs as a grill loop, a parallel research fan, or a hybrid, before work begins."
 group: pm
 invocation: model-invoked
-scenario: "Deciding how the reconciliation discovery effort should converge"
+scenario: "Deciding how a question at epic E1's altitude should converge"
 lens:
   novice:
     who: "You are staring at a discovery or a case that clearly needs more than one pass, and you do not know whether to run it as one long conversation or split it into pieces."
@@ -71,71 +71,48 @@ Arrange is not the only skill that touches how pm work runs. This table separate
 | The initiative cannot be planned in a single session at all | [`chart`]({{ '/chart/' | relative_url }}) |
 | You are not sure which pm skill fits at all | [`ask-pm`]({{ '/ask-pm/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same arrange skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who want arrange alone, without the rest of the pm group, can skip the rest of the catalog with `./scripts/link-skills.sh --skill arrange`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces a skill once it is on disk.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Skill tool call, no slash command</span></div>
+<div class="tool-group-body">
 <p>Arrange is not typed. When <code>discover</code>, <code>case</code>, <code>tom-architect</code>, or <code>prd-draft</code> reaches a point that needs a shape decided, it calls the Skill tool with <code>arrange</code> — the mechanism the invocation axis in every skill's frontmatter declares for a model-invoked skill. The prompt below is addressed to the session running discovery; arrange fires inside it once the multi-round signal is there.</p>
-<div class="prompt-card">This discovery effort has thin evidence in two of the five dimensions, and it is going to take more than one grill round to converge. Decide how it should run before we start, and tell me which gate the result feeds.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Discovery on epic E1's connectivity problem has thin evidence in two of the five dimensions, and it is going to take more than one grill round to converge. Decide how it should run before we start, and tell me which gate the result feeds.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The session returns the routing line first — mode, the question that decided it, and the gate — then proceeds using that shape.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">No command &mdash; catalog read</span></div>
+<div class="tool-group-body">
 <p>OpenCode's installed command layer wraps the developer group's tools — <code>architect</code>, <code>impact</code>, <code>operate</code>, <code>quality</code>, <code>security</code>, <code>sdlc</code>, and <code>grit-verify</code> among them. No command wraps arrange or any pm skill, so the agent reads the shared <code>.agents/skills/</code> catalog directly, the same route Cursor and Codex use, and applies arrange's description on its own when a request matches it.</p>
-<div class="prompt-card">Read skills/pm/arrange/RUBRIC.md, then decide the shape for this discovery effort: thin evidence in two of the five dimensions, more than one grill round to converge. Name the routing question that decided it, and the gate the result feeds.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/arrange/RUBRIC.md, then decide the shape for discovery on epic E1's connectivity problem: thin evidence in two of the five dimensions, more than one grill round to converge. Name the routing question that decided it, and the gate the result feeds.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The agent states the routing line in its reply before continuing, since there is no command output to parse it from.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository for any skill. It reads the catalog in <code>.agents/skills/</code> as context and applies arrange's rubric by following the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode rather than a pinned model identifier.</p>
-<div class="prompt-card">Following skills/pm/arrange/RUBRIC.md, decide the execution shape before this discovery effort starts: thin evidence in two of five dimensions, likely more than one grill round. State the mode, the question that matched first, and which gate the outcome reaches.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor states mode, why, and gate directly in its reply, then proceeds with discovery under that shape.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply arrange's rubric as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode rather than a pinned model identifier. Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>, so it sees arrange's name and description the way the other four tools do. GitHub Copilot applies the same catalog through <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Following skills/pm/arrange/RUBRIC.md, decide the execution shape before discovery on epic E1's connectivity problem starts: thin evidence in two of five dimensions, likely more than one grill round. State the mode, the question that matched first, and which gate the outcome reaches.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three state mode, why, and gate directly in their reply, then proceed with discovery under that shape.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees arrange's name and description the way the other four tools do. It gets no command layer either, so invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/pm/arrange/SKILL.md and RUBRIC.md, then route this discovery effort: two of the five clarification dimensions have thin evidence, and convergence will take more than one grill round. Return the mode, the reasoning, and the gate it feeds before discovery proceeds.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex names the routing line the same way, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same catalog and, once a team has added one, <code>.github/copilot-instructions.md</code> — this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. There is no command layer and no pm-specific hook, so the ask itself is what tells the agent to apply a matching skill's description, arrange's included, before it starts a multi-round effort.</p>
-<div class="prompt-card">There is no arrange-specific rule in .github/copilot-instructions.md, so here is the ask directly: this discovery effort has thin evidence in two dimensions and needs more than one grill round. Decide how it should run, and name the gate the result feeds.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot reports the routing line in chat before it proceeds with the discovery work itself.</p>
-</div>
-</div>
-
-A good ask names the artifact under discussion, states plainly that more than one round or research commission is coming, and says whether the branches — if any — are genuinely independent of each other. Readers who do not have the skill pack installed can add it first:
-
-```bash
-npx skills@latest add tqnonline/skills
-./scripts/install-adapters.sh
-```
-
-Readers who want arrange alone, without the rest of the pm group:
-
-```bash
-./scripts/link-skills.sh --skill arrange
-```
-
-See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and enforces a skill once it is on disk.
+A good ask names the artifact under discussion, states plainly that more than one round or research commission is coming, and says whether the branches — if any — are genuinely independent of each other.
 
 ## A working example
 
-You are running `discover` on a reconciliation problem: month-end close keeps slipping by three business days, and the evidence in hand only covers two of the five clarification dimensions. You type the prompt from the tool block above. Discover recognizes that the clarification is going to take more than one grill round, and reaches for arrange before running the first one.
+You are running `discover` on QuenServe's field-connectivity problem: inspectors keep losing completed work when a site loses signal, and the evidence in hand only covers two of the five clarification dimensions. You type the prompt from the tool group above. Discover recognizes that the clarification is going to take more than one grill round, and reaches for arrange before running the first one.
 
-Arrange applies `RUBRIC.md` in order. Question one asks whether this converges only through a human's sign-off, one round at a time — and it does: nobody but the finance lead can confirm which stakeholder account is actually load-bearing, and that confirmation only comes by asking, reacting, and asking again. The first question already matches, so arrange stops there rather than weighing the remaining four.
+Arrange applies `RUBRIC.md` in order. Question one asks whether this converges only through a human's sign-off, one round at a time — and it does. Nobody but the operations lead can confirm which affected sites actually carry the load-bearing inspection volume, and that confirmation only comes by asking, reacting, and asking again. The first question already matches, so arrange stops there rather than weighing the remaining four.
 
 Arrange returns:
 
@@ -144,7 +121,7 @@ why: "Discovery's five-dimension clarification converges only
      through a human's sign-off, one round at a time."
 gate: framing</code></pre>
 
-Framing is the first of the four pm gates: the problem owner signs the analysis before anything is built on it. Discover proceeds into the grill's themed rounds under that shape. Later, once the analysis is written, `case` needs to weigh at least two real options against doing nothing, and arrange runs again. This time question two matches first: the market-sizing research and the vendor-capability research do not depend on each other's answers, so that stretch of the work fans out instead of looping.
+Framing is the first of the four pm gates: the problem owner signs the analysis before anything is built on it. Discover proceeds into the grill's themed rounds under that shape. Later, once epic E1 is carved and its case needs to weigh at least two real options against doing nothing, arrange runs again. This time question two matches first: the offline-storage-engine research and the conflict-resolution-strategy research do not depend on each other's answers, so that stretch of the work fans out instead of looping.
 
 ## What good looks like
 
