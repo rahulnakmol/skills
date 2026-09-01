@@ -6,13 +6,77 @@ title: "Product and Program Management"
 description: "The pm group runs the product-management pipeline from a raw problem to a delivered, measured benefit, gated by four human sign-off points."
 ---
 
-The pm group carries a product-management practice from a raw problem to a delivered, measured benefit, in the same four-gate shape the developer group uses one level up the business stack: Framing, Investment, Quality, and Commitment. Sixteen skills cover discovery and root-cause analysis, target operating model design for transformation initiatives, epic decomposition, PRD drafting and review, business casing, roadmapping, and the reporting that closes the loop back to what was actually delivered.
+You do not run this practice by opinion. Four gates decide whether a problem is real, an investment justified, a requirement sound, and work ready to build — and you hold every one of them. Agents draft the analysis, the case, and the requirements between one gate and the next. The gate is where a decision becomes real; the draft in front of it is only material.
 
-PMs and transformation leads who run agent-assisted discovery, business cases, target operating models, or PRDs install this group on its own. It depends only on `core`, never on the developer group's skills, so a pm practice can run its pipeline without pulling in software delivery tooling it does not need.
+## The easy part, and what it hides
 
-`discover` and `map` open the pipeline and produce the Business Understanding Document the Framing gate signs. `carve` or `tom-architect` then turn that document into epics or a target operating model, depending on which hat the initiative wears. `prd-draft` writes and structurally validates the resulting requirements before the Quality gate, and `constitution` keeps every downstream draft answering to the same principles and prioritization framework. Before any of these runs more than one round, `arrange` decides whether the work converges as a grill loop, a parallel research fan, or a hybrid, and `chart` holds the plan when an initiative is too large for a single pass. Every gate opens with the blind-spot review named in `AGENT-OWNERSHIP.md`, and the evidence-ledger discipline carried over from the developer group is documented in `GATES.md`.
+An agent can draft any document this practice needs. Ask for a business case, a target operating model, or a PRD, and one arrives within minutes, every section populated and cited. That was never the hard part.
 
-Readers who do not have the skill pack installed can add it first:
+The hard part starts once the same fluency that makes a document readable also makes it persuasive, whether the claim underneath holds or not. Call this failure **the fluency trap**: a document polished enough that a reviewer signs it because it no longer reads like something that needs scrutiny. `AGENT-OWNERSHIP.md` names two mechanisms behind it — ambition collapsed to a safe middle score, and correlated agreement, where three reviewers built on one model produce one opinion said three times, not three independent checks.
+
+<figure class="diagram">
+<svg role="img" aria-label="The fluency trap in four stages: Draft, Polish, Present, and Sign, the last one reaching no real decision." viewBox="0 0 780 122" width="780" height="122" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="20" width="150" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+  <text x="85" y="57" text-anchor="middle" font-size="15" font-weight="600" fill="currentColor">Draft</text>
+  <text x="85" y="102" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.7">agent writes it</text>
+  <polygon points="168,49 192,49 192,44 210,52 192,60 192,55 168,55" fill="currentColor"></polygon>
+  <rect x="210" y="20" width="150" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+  <text x="285" y="57" text-anchor="middle" font-size="15" font-weight="600" fill="currentColor">Polish</text>
+  <text x="285" y="102" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.7">tone turns certain</text>
+  <polygon points="368,49 392,49 392,44 410,52 392,60 392,55 368,55" fill="currentColor"></polygon>
+  <rect x="410" y="20" width="150" height="64" rx="8" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+  <text x="485" y="57" text-anchor="middle" font-size="15" font-weight="600" fill="currentColor">Present</text>
+  <text x="485" y="102" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.7">looks finished</text>
+  <polygon points="568,49 592,49 592,44 610,52 592,60 592,55 568,55" fill="currentColor"></polygon>
+  <rect x="610" y="20" width="150" height="64" rx="8" fill="none" stroke="var(--amber)" stroke-width="2"></rect>
+  <text x="685" y="52" text-anchor="middle" font-size="15" font-weight="600" fill="var(--amber-text)">Sign</text>
+  <text x="685" y="70" text-anchor="middle" font-size="10" fill="var(--amber-text)">reads finished</text>
+  <text x="685" y="102" text-anchor="middle" font-size="11" fill="var(--amber-text)">no decision made</text>
+</svg>
+<figcaption>The fluency trap: each stage adds polish, but nothing in it tests whether the claim survives contact with evidence.</figcaption>
+</figure>
+
+The four gates in `GATES.md` exist to interrupt this trail before Commitment, not to review it after the fact.
+
+## What the gates actually check
+
+Take the reconciliation initiative running through this group's own skill pages. Discovery names the actual root cause — a legacy export format tied to a vendor contract predating the current ERP — not the first symptom noticed. Four gates then decide whether that finding survives:
+
+- **Framing** closes only once the problem owner can state the problem, in their own words, and for whom.
+- **Investment** requires the case to name the one assumption that would kill it if wrong, costed against doing nothing.
+- **Quality** lets an agent score the PRD on the 11-Star scale, but approval stays human even at a 9.0.
+- **Commitment** raises the backlog through the same pickup protocol the developer group's work items already use.
+
+Every gate opens the same way: the blind-spot checklist in `AGENT-OWNERSHIP.md`, run by a person, never delegated back to an agent.
+
+## What adopting this actually feels like
+
+Running this practice does not feel like strategy work most weeks. A PM who adopts it reads RAID registers, DIVE verdicts recorded with their evidence, and benefit variance reports — not only the roadmap slide a steering committee sees. `realize` closes the loop: a benefit that misses its projection re-enters `discover` or `carve` as new work, carrying its own case for closing the gap. `GATES.md` states the discipline in one line: "A transformation practice that only measures forward and never measures back is not actually grounded in cost; it is grounded in forecasts."
+
+## The path through
+
+The sixteen skills below read as a syllabus, not a menu. Start near the top, and let the initiative in front of you decide how far down you actually need to go this week.
+
+- [`chart`]({{ '/chart/' | relative_url }}) — plans an oversized initiative into decision tickets.
+- [`constitution`]({{ '/constitution/' | relative_url }}) — writes the principles every draft answers to.
+- [`discover`]({{ '/discover/' | relative_url }}) — turns a raw problem into a root-cause analysis.
+- [`tom-architect`]({{ '/tom-architect/' | relative_url }}) — decomposes a transformation into a target operating model.
+- [`prd-draft`]({{ '/prd-draft/' | relative_url }}) — writes and validates one PRD per epic.
+- [`prd-review`]({{ '/prd-review/' | relative_url }}) — scores a PRD's ambition before Quality.
+- [`case`]({{ '/case/' | relative_url }}) — weighs real options and doing nothing, costed in full.
+- [`roadmap`]({{ '/roadmap/' | relative_url }}) — sequences initiatives across now, next, and later.
+- [`raid`]({{ '/raid/' | relative_url }}) — keeps the risk, assumption, issue, and dependency registers current.
+- [`realize`]({{ '/realize/' | relative_url }}) — tracks whether a delivered benefit matched its projection.
+- [`report`]({{ '/report/' | relative_url }}) — produces the leadership pack from those registers.
+- [`grill`]({{ '/grill/' | relative_url }}) — pressure-tests an artifact before its gate.
+- [`ask-pm`]({{ '/ask-pm/' | relative_url }}) — routes a plain goal to the right skill here.
+- [`arrange`]({{ '/arrange/' | relative_url }}) — decides whether a multi-round effort loops or fans out.
+- [`map`]({{ '/map/' | relative_url }}) — turns an analysis into personas, flows, and the Framing document.
+- [`carve`]({{ '/carve/' | relative_url }}) — extracts DIVE-tested epics from that document or a TOM's gaps.
+
+## Where to start
+
+None of this makes product work faster in the way a faster draft feels faster. It makes a decision defensible months later, when someone asks why it was made. Readers starting from zero can walk the same reconciliation thread on the [Run a product org journey]({{ '/journey/run-a-product-org/' | relative_url }}).
 
 ```bash
 npx skills@latest add tqnonline/skills
