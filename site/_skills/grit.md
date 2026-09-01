@@ -239,23 +239,59 @@ or checkout's G6. Softening either erases what the check ever proved:
 
 ## Common questions
 
-### What if the work already started before a ledger exists?
+<details class="qa">
+<summary>What if the work already started before a ledger exists?</summary>
+<div class="qa-body">
+
 SKILL.md states this as a stop condition, not a judgment call: implementation started before the ledger exists means stop and write the ledger first, even though it will now describe work already partly done. Writing it now is worse than writing it first, and better than never writing it at all. A ledger written after code exists tends to describe what the code already does, gaps included, rather than what the criterion actually demanded — the exact failure a ledger written first is built to catch.
 
-### Does choosing a deep ledger mean spawning more agents?
+</div>
+</details>
+
+<details class="qa">
+<summary>Does choosing a deep ledger mean spawning more agents?</summary>
+<div class="qa-body">
+
 No. Two sources make the same distinction: ADR 0006, one of this repository's recorded architecture decisions, and the conduct rubric's "Depth of verification, not shape of execution" section. A gate is a ledger row, and a node is an agent. Deepening a ledger from five layers to ten adds rows to check against; it does not add agents to run the work. Execution shape — loop, graph, or hybrid — stays entirely with conduct.
 
-### What if an acceptance criterion cannot become a runnable check?
+</div>
+</details>
+
+<details class="qa">
+<summary>What if an acceptance criterion cannot become a runnable check?</summary>
+<div class="qa-body">
+
 It becomes a manual gate instead: no CHECK, no EXPECT, only a recorded observation with real evidence. Grit's stop conditions block the alternative directly — turning an undecidable criterion into a runnable gate with a weakened check is refused, not accepted as a shortcut. A manual gate is a finding about the criterion, not a formality skipped.
 
-### Can a gate be dropped?
+</div>
+</details>
+
+<details class="qa">
+<summary>Can a gate be dropped?</summary>
+<div class="qa-body">
+
 Not by deletion. AUDIT.md allows a gate to be abandoned when a criterion turns out to be wrong or infeasible, but only with a stated reason and a human sign-off recorded in both the ledger and the audit. The discipline is not that every gate must be met — it is that no gate disappears without a trace.
 
-### Does this work outside Claude Code?
+</div>
+</details>
+
+<details class="qa">
+<summary>Does this work outside Claude Code?</summary>
+<div class="qa-body">
+
 Yes, with different enforcement in each tool. Claude Code's opt-in stop hook can block a session directly. OpenCode's `grit-verify` command and its verify agent's rule refuse a handoff-ready verdict while a gate is unmet. Cursor and Codex ship hook systems of their own, but this repository does not yet ship hooks for them, so there — as in GitHub Copilot — enforcement is an instruction file an agent could in principle skip. The backstop is the same `grit-gates.yml` continuous-integration check, which lints the ledger and fails independently of what the agent reports — once a maintainer has wired it to pull requests, since it ships dispatch-only.
 
-### Where does the audit end up?
+</div>
+</details>
+
+<details class="qa">
+<summary>Where does the audit end up?</summary>
+<div class="qa-body">
+
 AUDIT.md names three places already in this repository's pipeline. The pull request body, so a reviewer sees the count before reading the diff. The product-management report pack, so a sponsor sees whether a delivered benefit actually cleared its gates. And the issue or work-item thread, so the record persists next to the discussion that produced it.
+
+</div>
+</details>
 
 ## It's working if
 

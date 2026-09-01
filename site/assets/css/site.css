@@ -605,3 +605,34 @@ main#page-body { display: block; }
   .card-grid, .role-grid, .journey-cards { grid-template-columns: 1fr; }
   .hero-title { font-size: 40px; }
 }
+
+/* Common questions — collapsible accordion built on native details/summary. */
+.qa {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  margin: 0 0 10px;
+  overflow: hidden;
+}
+.qa > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 13px 16px;
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  transition: background-color 0.18s ease;
+}
+.qa > summary::-webkit-details-marker { display: none; }
+.qa > summary::before {
+  content: "+";
+  color: var(--emerald-text);
+  font-weight: 600;
+  transition: transform 0.18s ease;
+}
+.qa[open] > summary::before { content: "–"; }
+.qa > summary:hover { background: var(--surface2); }
+.qa .qa-body { padding: 2px 16px 8px; }
+.qa .qa-body > p:first-child { margin-top: 4px; }
