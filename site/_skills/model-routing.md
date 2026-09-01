@@ -5,6 +5,7 @@ title: "Model Routing — Resolving the Right Model Tier"
 description: "Model routing is the model-invoked lookup that resolves which model tier a task node uses from the registry shared by every group in the repository."
 group: developer
 invocation: model-invoked
+scenario: "Resolving the verifier tier for a checkout-timeout fix's independent review"
 lens:
   novice:
     who: 'You have never wanted to memorize a model name, and you should not have to.'
@@ -22,18 +23,112 @@ lens:
 
 ## What it does
 
-Model routing resolves which model tier a task node should run on, so no other skill in the repository has to embed a model choice of its own. It matches the node's role and task shape against a row in the canonical registry — `models.md` — and returns a tier, a rationale, and an adapter reference, never a raw model identifier. The registry it reads is shared infrastructure: every group in this repository, developer and pm alike, resolves model choice through this same lookup rather than each maintaining its own. An unrecognized role defaults to `worker-fast` with the assumption logged, and a regulated overlay blocks any downgrade past verifier separation.
+Model routing is a lookup, not a process with stages a person walks through — a request comes in naming a role and a task shape, and one row of the registry comes back out. No other skill in this repository embeds a model choice of its own; every one of them calls this lookup instead, so a single file governs what actually runs.
 
-## How to call it
+<div class="step-flow">
+  <div class="step"><span class="step-num">1</span><span class="step-label">Open the registry</span><span class="step-text">Read the canonical tier matrix in `models.md`, never a copy or a memory of it.</span></div>
+  <div class="step"><span class="step-num">2</span><span class="step-label">Match role and shape</span><span class="step-text">Find the row whose role and task shape fit the node being resolved — implementer, verifier, architect, and so on.</span></div>
+  <div class="step"><span class="step-num">3</span><span class="step-label">Map to the adapter</span><span class="step-text">Translate the matched tier into the host-specific reference the active tool — OpenCode, Copilot, or Cursor — actually reads.</span></div>
+  <div class="step"><span class="step-num">4</span><span class="step-label">Return tier, not secret</span><span class="step-text">Hand back the tier, the rationale, and the adapter key. A raw model identifier never crosses this boundary.</span></div>
+</div>
 
-Model routing is not typed as a command. The model reaches for it whenever an orchestrator or another skill needs to resolve which tier a node should run on — a worker, a verifier, an architect. A prompt like "which model should this verifier step use" is enough to trigger it.
+<ul class="benefits">
+  <li>No SKILL.md or adapter file carries a model identifier of its own — every one of them calls this lookup and reads the tier back.</li>
+  <li>A registry change in one place, `models.md`, reaches every skill in every group that resolves a node through it, without a per-team edit.</li>
+  <li>An unrecognized role never stalls a run: it defaults to `worker-fast` with the assumption logged, so the gap is visible rather than silently guessed past.</li>
+  <li>A regulated overlay blocks any downgrade past verifier separation, so a cost-saving substitution cannot quietly remove the independent check a governed change needs.</li>
+</ul>
 
-Readers who do not have the skill pack installed yet can add it first:
+Model routing is shared infrastructure, not a developer-group convenience that happens to live under `skills/developer/`. `pm/arrange`, the pm group's own execution-shape router, calls this same lookup per research or grill-loop step it builds — a mechanical pass and a judgment pass do not need the same tier, and neither group maintains a separate registry to make that call.
+
+- [`models.md`](https://github.com/tqnonline/skills/blob/main/skills/developer/model-routing/models.md) is the registry itself: the tier matrix, the published role-to-default mapping, the machine-readable block an adapter reads, and the review triggers that tell `update-models` when a row is stale.
+
+## When to reach for it
+
+Model routing is model-invoked, so nothing is typed to call it directly. The model reaches for it on its own whenever an orchestrating skill or an adapter is about to dispatch a node and needs to know which tier that node should run on. A prompt like "which model should this verifier step use" is enough to trigger it — that is the real, current line `r020` in this repository's routing evaluation set, `test/eval/routing.jsonl`.
+
+You reach for it, indirectly, in three moments. An orchestrator just built a node — implement, verify, architect, security — and needs its tier resolved before dispatch. An adapter stub says outright "resolve via model-routing" rather than naming an identifier. A regulated change needs assurance that the verifier tier was not silently downgraded to save a token budget.
+
+| The problem | The skill |
+|---|---|
+| You need to change what the registry says by default, not just read what it currently says | [`update-models`]({{ '/update-models/' | relative_url }}) |
+| You need the whole loop-or-graph routing decision for a piece of delivery work, not one node's tier | [`conduct`]({{ '/conduct/' | relative_url }}) |
+| You are resolving a tier for a pm-group research or grill step rather than a developer-group build node | `pm/arrange`, which calls this same registry per step |
+| You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
+
+<div class="tool-block">
+<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
+<div class="tool-block-body">
+<p>Model routing carries no slash command of its own — nothing to type. Its clearest trace sits in the three worker subagents `./scripts/install-adapters.sh --tool claude` installs into <code>~/.claude/agents</code>. Each of <code>work-fast.md</code>, <code>work-deep.md</code>, and <code>reviewer.md</code> states in its own frontmatter description that it resolves a model through this lookup, and each carries the line "Registry: <code>skills/developer/model-routing/models.md</code>" pointing at the same file. When one of those subagents is dispatched, the tier it runs on already traces back to this registry.</p>
+<div class="prompt-card">Gate 3 on the checkout-timeout fix needs an independent, read-only verifier now that the implementation is done. Resolve the tier for that role and tell me the rationale — I do not want a raw model identifier, I want to know why this tier fits.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>The reply names the tier, states the rationale in plain language, and points at the adapter reference the session actually dispatches — never the identifier itself.</p>
+</div>
+</div>
+
+<div class="tool-block">
+<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
+<div class="tool-block-body">
+<p>OpenCode ships no <code>model-routing</code> command either. Its agent files carry the resolution already made: <code>work-glm.md</code>, <code>work-k3.md</code>, and <code>quick.md</code> each point back at "the override table" in <code>models.md</code> for a user who wants to re-bind a role locally. The registry is applied when these agent files are authored and reviewed, not re-resolved on every dispatch inside a running session — the lookup's output is baked into the file the session reads.</p>
+<div class="prompt-card">Before dispatching the checkout-timeout verifier, confirm its model binding still matches models.md's verifier row and hasn't drifted from a hand edit.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>OpenCode answers by reading the agent file's own frontmatter and the registry row side by side, since there is no live call to reproduce.</p>
+</div>
+</div>
+
+<div class="tool-block">
+<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
+<div class="tool-block-body">
+<p>Cursor gets no command layer from this repository. It reads the skill catalog in <code>.agents/skills/</code> as context and follows the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode rather than a pinned identifier. Its own adapter file states this plainly: "Model IDs resolve via <code>skills/developer/model-routing/models.md</code> locally" — the registry is the reference Cursor's operator consults, not a live call the tool makes for itself.</p>
+<div class="prompt-card">Which tier does models.md assign to a read-only verifier role, and why is it kept in a different provider family from the implementer where possible?<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>Cursor answers by reading the tier matrix directly and quoting the matched row's rationale.</p>
+</div>
+</div>
+
+<div class="tool-block">
+<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
+<div class="tool-block-body">
+<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees model routing's name and description the way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files, and a tier request is answered by reading <code>models.md</code> directly rather than through any installed automation.</p>
+<div class="prompt-card">Read skills/developer/model-routing/SKILL.md and models.md, then tell me the tier, rationale, and adapter reference for an architect-role node — no raw identifier.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>Codex reads the tier matrix and reports the same three fields the output contract requires.</p>
+</div>
+</div>
+
+<div class="tool-block">
+<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
+<div class="tool-block-body">
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no hook or command for model routing on any tool, Copilot included. A tier request here is answered the same way as on Cursor and Codex: by reading <code>models.md</code> directly as working context, never by a pinned identifier written into the instructions file.</p>
+<div class="prompt-card">Before you dispatch the implementation for the checkout-timeout fix, confirm which tier models.md assigns to a multi-file implementer role and state the rationale in your plan.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>Copilot reports the tier and rationale in its plan before dispatching any work.</p>
+</div>
+</div>
+
+A good ask names the role — implementer, verifier, architect, security, quality-operate, research, or orchestrator — and the task shape behind it, so the match is not left to guesswork. Readers who do not have the skill pack installed yet can add model routing alone:
 
 ```bash
-npx skills@latest add tqnonline/skills
-./scripts/install-adapters.sh
+./scripts/link-skills.sh --skill model-routing
 ```
+
+See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+## A working example
+
+The checkout-timeout fix from `sdlc`'s own gated loop reaches Gate 3, the outcome check that runs after implementation. Gate 3 needs an independent verifier — a different agent, ideally a different model family, checking the change against the SPEC-TS ledger rather than the implementer grading its own work. The orchestrator resolves that node's tier by matching role and task shape against the registry's real tier matrix:
+
+<pre><code>| Tier     | Role shape             | Default provider family | Notes                                            |
+|----------|-------------------------|--------------------------|--------------------------------------------------|
+| verifier | Read-only cross-check   | Anthropic                | Different family from implementer when possible |</code></pre>
+
+Matching the `verifier` role and its read-only, cross-check shape against that row, and filling the output contract the skill's own procedure requires, produces this — the shape the contract requires, not a captured run, since model routing has no runnable script of its own:
+
+<pre><code>tier: verifier
+role: verify
+adapter_ref: adapters/opencode/agents/verify.md
+rationale: read-only cross-check on the checkout-timeout fix; different family from implementer where possible</code></pre>
+
+| The lookup returns | Not this |
+|---|---|
+| A tier, a rationale, and an adapter reference the session can dispatch against | A raw provider model identifier copied into another skill or an implementer prompt |
+
+The exact identifier bound to the `verifier` tier lives only in `models.md`; this page names none, by design, and neither does the answer this lookup hands back.
 
 ## What good looks like
 
@@ -54,27 +149,57 @@ rationale: <span class="tok-ok">multi-file API change</span></code></pre>
 </div>
 </div>
 
-## In practice
+## Common questions
 
-Step 1 of the skill's own procedure is "Open `models.md`." Its tier matrix is the real table that step 2 matches a role against — this row, quoted verbatim, is the one a read-only verification node resolves against:
+<details class="qa">
+<summary>What happens when a role is not in the registry?</summary>
+<div class="qa-body">
 
-<pre><code>| Tier     | Role shape             | Default provider family | Notes                                            |
-|----------|-------------------------|--------------------------|--------------------------------------------------|
-| verifier | Read-only cross-check   | Anthropic                | Different family from implementer when possible |</code></pre>
+The stop condition is explicit, not a silent fallback dressed up as a decision: an unrecognized role defaults to `worker-fast`, and the assumption gets logged rather than absorbed quietly into the run. A missing row is a finding about the registry, not a reason to guess at a stronger or weaker tier on the spot.
 
-Resolving the `verifier` role for a read-only cross-check node returns the shape the output contract requires, filled from that row:
+</div>
+</details>
 
-<pre><code>tier: verifier
-role: verify
-adapter_ref: adapters/opencode/agents/verify.md
-rationale: read-only cross-check; different family from implementer where possible</code></pre>
+<details class="qa">
+<summary>Can a regulated change ever downgrade the verifier?</summary>
+<div class="qa-body">
 
-This is the shape the output contract requires, not a captured terminal run. The exact model identifier bound to the `verifier` tier lives only in `models.md` — this page names none, by design.
+No. Under a regulated overlay, the lookup never downgrades past verifier separation — the read-only, cross-family check that Gate 3 depends on stays in place regardless of cost pressure. This is the same boundary `responsible-ai-governance` overlays onto the rest of the stack; model routing enforces its own slice of it directly in the lookup.
 
-## How it works
+</div>
+</details>
 
-1. Open [`models.md`](https://github.com/tqnonline/skills/blob/main/skills/developer/model-routing/models.md), the canonical registry.
-2. Match the node's role and task shape to a row in the tier matrix. See [`models.md`](https://github.com/tqnonline/skills/blob/main/skills/developer/model-routing/models.md).
-3. Map the resolved tier to a host-specific reference in the active adapter — OpenCode, Copilot, or Cursor.
-4. Return the tier, the rationale, and the adapter key — never a raw model identifier. See [`models.md`](https://github.com/tqnonline/skills/blob/main/skills/developer/model-routing/models.md).
-5. Default an unrecognized role to `worker-fast` with the assumption logged; under a regulated overlay, never downgrade past verifier separation.
+<details class="qa">
+<summary>Why does this page never show an actual model name?</summary>
+<div class="qa-body">
+
+Because the tier is the contract other skills are built against, not the identifier behind it. `models.md` is the one place a specific provider model is bound to a role, so that binding can change — on evidence, through `update-models` — without touching every skill that calls this lookup. Naming an identifier here would recreate the exact drift this lookup exists to prevent.
+
+</div>
+</details>
+
+<details class="qa">
+<summary>Does every group route through the same registry?</summary>
+<div class="qa-body">
+
+Yes. `models.md`'s own policy line scopes published defaults to Anthropic, OpenAI, and Google, and both the developer and pm groups resolve model choice through this one lookup rather than maintaining separate copies. `pm/arrange` names this directly in its own procedure: a mechanical pass and a judgment pass call model routing per step, the same way a developer-group orchestrator does per node.
+
+</div>
+</details>
+
+## It's working if
+
+- No SKILL.md or adapter file in the repository carries a hardcoded model identifier of its own — every one of them reads a tier back from this lookup instead.
+- A registry change made once in `models.md` shows up the next time any group resolves a node, without a matching edit anywhere else.
+- An unrecognized role logs its `worker-fast` fallback explicitly, rather than the run continuing as though nothing was assumed.
+- A regulated run's verifier node stays in a different tier and, where possible, a different provider family from its implementer, every time.
+
+If a skill or adapter file starts carrying a provider model identifier of its own again, the discipline has failed even though every existing call to this lookup still returns a clean tier.
+
+## Where it fits
+
+**Model routing is the lookup every routing decision in this repository ends at, never the decision itself.**
+
+Its nearest neighbor is `conduct`: conduct decides loop, graph, or hybrid for a piece of delivery work and then calls this lookup once per node it builds — conduct owns the shape, model routing owns what runs inside each piece of it. `update-models` is the other side of the same file: it researches provider catalogs and proposes the diff that becomes tomorrow's row in the tier matrix, while this lookup only ever reads the row that exists today.
+
+If none of this settles which skill fits, `ask-fde` routes you to the right one from a plain description of what you need.
