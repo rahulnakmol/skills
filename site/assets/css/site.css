@@ -40,6 +40,7 @@ a:hover { color: var(--link-hover); }
   --emerald-text: #1e7f4e;
   --emerald-soft: #e3f2ea;
   --amber: #e0a35b;
+  --amber-soft: rgba(224, 163, 91, 0.18);
   --amber-text: #b06a1f;
   --code-bg: #23272b;
   --code-fg: #c7d0d8;
@@ -69,6 +70,7 @@ a:hover { color: var(--link-hover); }
     --emerald-text: #3fb577;
     --emerald-soft: #1f3a2d;
     --amber: #e0a35b;
+    --amber-soft: rgba(224, 163, 91, 0.18);
     --amber-text: #e0a35b;
     --code-bg: #1e2124;
     --active-bg: #383d43;
@@ -93,6 +95,7 @@ a:hover { color: var(--link-hover); }
   --emerald-text: #3fb577;
   --emerald-soft: #1f3a2d;
   --amber: #e0a35b;
+  --amber-soft: rgba(224, 163, 91, 0.18);
   --amber-text: #e0a35b;
   --code-bg: #1e2124;
   --active-bg: #383d43;
@@ -537,6 +540,7 @@ main#page-body { display: block; }
 }
 .tool-block-body { padding: 14px 16px; background: var(--surface); font-size: 14px; line-height: 1.6; }
 .tool-block-body p { font-size: 14px; line-height: 1.6; }
+.tool-block-body > * + * { margin-top: 12px; }
 .tool-block-body :first-child { margin-top: 0; }
 
 /* ---------- prompt card (skill "When to reach for it") ---------- */
@@ -606,6 +610,7 @@ main#page-body { display: block; }
 .tool-group-mechanism { font-size: 13px; color: var(--muted); margin-left: 2px; }
 .tool-group-body { padding: 14px 16px; background: var(--surface); font-size: 14px; line-height: 1.6; }
 .tool-group-body p { font-size: 14px; line-height: 1.6; }
+.tool-group-body > * + * { margin-top: 12px; }
 .tool-group-body :first-child { margin-top: 0; }
 
 /* ---------- responsive ---------- */
@@ -714,3 +719,145 @@ main#page-body { display: block; }
 .chooser-result-oneliner { font-size: 13.5px; color: var(--ink); }
 .chooser-result-link { font-size: 13.5px; font-weight: 600; color: var(--cobalt-text); }
 .chooser-note { font-size: 12.5px; color: var(--muted); margin: 0; }
+
+/* ---------- standalone documentation pages (layout: page) ---------- */
+/* The skill, group, and journey layouts each wrap their body in a padded,
+   measured container, because the reset above zeroes every prose margin and
+   the rhythm comes from a flex `gap` instead. A page written as plain
+   markdown has no such wrapper of its own, so these rules are what give it a
+   measure, a rhythm, and typography for the elements a markdown converter
+   actually emits: paragraphs, lists, tables, rules, and quotes. */
+.doc-shell { display: grid; grid-template-columns: minmax(0, 1fr) 220px; align-items: start; }
+.doc-main {
+  padding: 48px 48px 80px;
+  max-width: 940px;
+  display: flex; flex-direction: column; gap: 30px;
+}
+.doc-header { display: flex; flex-direction: column; gap: 14px; }
+.doc-header h1 { font-size: 40px; }
+.doc-lede { font-size: 18px; line-height: 1.6; color: var(--muted); max-width: 40em; }
+
+.doc-body { display: flex; flex-direction: column; gap: 20px; }
+.doc-body > h2 { margin-top: 30px; }
+.doc-body > h2::after {
+  content: "";
+  display: block;
+  width: 44px; height: 3px;
+  margin-top: 10px;
+  border-radius: 2px;
+  background: var(--cobalt);
+}
+.doc-body > h3 { margin-top: 14px; }
+.doc-body > :is(h2, h3) + * { margin-top: -6px; }
+/* One reading measure for every text-bearing block, so the body has a single
+   right edge; figures, tables and code blocks are exempt and span the column. */
+.doc-body > * { max-width: 42em; }
+.doc-body > :is(.figure-row, .pipeline, table, pre, .chooser) { max-width: none; }
+.doc-body p { line-height: 1.68; }
+.doc-body > ul, .doc-body > ol { margin: 0; padding-left: 24px; display: flex; flex-direction: column; gap: 10px; }
+.doc-body li { line-height: 1.65; }
+.doc-body li::marker { color: var(--muted); }
+.doc-body hr { border: none; border-top: 1px solid var(--line); margin: 10px 0; }
+.doc-body blockquote {
+  margin: 0;
+  border-left: 3px solid var(--cobalt);
+  padding: 2px 0 2px 18px;
+  color: var(--muted);
+}
+.doc-body table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14.5px;
+  display: block;
+  overflow-x: auto;
+}
+.doc-body :is(th, td) { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.doc-body th {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted);
+  border-bottom-color: var(--ink);
+}
+.doc-body tbody tr:last-child :is(th, td) { border-bottom: none; }
+.doc-body :is(th, td) code { white-space: nowrap; }
+
+/* A muted one-line label under a heading: what a stage reads and writes. */
+.doc-meta { font-size: 13px; color: var(--muted); }
+/* A boxed aside for a limit, a caveat, or a distinction worth pausing on. */
+.doc-note {
+  background: var(--surface2);
+  border-radius: 10px;
+  padding: 20px 24px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+
+/* ---------- pipeline (a numbered rail of skill handoffs) ---------- */
+.pipeline { display: flex; flex-direction: column; }
+.stage {
+  position: relative;
+  border-left: 2px solid var(--line);
+  padding: 0 0 30px 32px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.stage:last-child { border-left-color: transparent; padding-bottom: 0; }
+.stage-num {
+  position: absolute;
+  left: -13px; top: -2px;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--cobalt);
+  color: #ffffff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px; font-weight: 600;
+}
+.stage h3 { font-size: 16.5px; }
+.stage h3 code { font-size: 15px; }
+.stage p { font-size: 15px; max-width: 40em; }
+.stage pre { font-size: 12px; line-height: 1.7; }
+.stage-meta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11.5px; line-height: 1.7;
+  color: var(--muted);
+}
+.stage-meta strong { color: var(--ink); font-weight: 500; }
+.stage-walk { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 7px; font-size: 13.5px; color: var(--muted); }
+.stage-walk li { max-width: 44em; line-height: 1.6; }
+.stage-walk strong { color: var(--ink); }
+
+/* ---------- figure row (side-by-side diagrams) ---------- */
+.figure-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.figure-row figure {
+  margin: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px 20px 16px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.figure-row figcaption { font-size: 13px; line-height: 1.55; color: var(--muted); }
+.figure-row figcaption strong { color: var(--ink); font-weight: 600; }
+.flow-svg { width: 100%; height: auto; color: var(--ink); display: block; }
+.flow-svg .flow-box { fill: var(--surface2); stroke: currentColor; stroke-width: 1.4; }
+.flow-svg .flow-warnbox { fill: var(--amber-soft); stroke: var(--amber); stroke-width: 1.4; }
+.flow-svg .flow-arrow { stroke: currentColor; stroke-width: 1.4; fill: none; }
+.flow-svg .flow-gate { fill: var(--cobalt); stroke: none; }
+.flow-svg text { fill: currentColor; font-family: inherit; font-size: 11px; }
+.flow-svg .flow-tag { fill: var(--muted); font-size: 9px; font-family: "JetBrains Mono", monospace; }
+
+/* Doc-page responsive rules live here, after the doc components above, so they
+   actually win the cascade — the shared responsive block sits further up. */
+@media (max-width: 980px) {
+  .doc-shell { grid-template-columns: minmax(0, 1fr); }
+  .doc-main { max-width: none; padding: 40px 32px 64px; }
+  .figure-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .doc-main { padding: 32px 20px 56px; gap: 24px; }
+  .doc-header h1 { font-size: 32px; }
+  .doc-lede { font-size: 16.5px; }
+  .stage { padding-left: 22px; }
+  .doc-note { padding: 16px 18px; }
+  .figure-row figure { padding: 16px 16px 14px; }
+}

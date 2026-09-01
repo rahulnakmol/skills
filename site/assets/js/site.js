@@ -70,7 +70,7 @@
     var tocList = document.getElementById('toc-list');
     var tocNav = document.getElementById('toc');
     if (!tocList) return;
-    var body = document.querySelector('.skill-body');
+    var body = document.querySelector('.skill-body, .doc-body');
     if (!body) { tocNav && tocNav.setAttribute('hidden', ''); return; }
     var headings = body.querySelectorAll('h2');
     tocList.innerHTML = '';
