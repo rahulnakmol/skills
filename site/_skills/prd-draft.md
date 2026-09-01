@@ -76,7 +76,7 @@ PRD Draft is not the only skill that touches requirements quality. This table se
 <div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
 <div class="tool-block-body">
 <p>OpenCode's installed command layer wraps the developer group's tools; no command wraps prd-draft or any pm skill. The agent reads the shared <code>.agents/skills/</code> catalog directly, the same route Cursor and Codex use, and applies the drafting-then-validation procedure on its own.</p>
-<div class="prompt-card">The reconciliation epic manifest is approved. Draft the PRD for "Automated CSV-to-ledger matching" — all twelve sections, Given-When-Then criteria with at least one error scenario per story — then run the nine-check validation and report the verdict.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/prd-draft/PRD-SECTIONS.md and VALIDATION.md, then draft the PRD for "Automated CSV-to-ledger matching" from the approved reconciliation manifest. Write all twelve sections with Given-When-Then criteria and an error scenario per story, then run the nine checks and report the verdict.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode writes the PRD and runs the nine checks in its reply, since no command wraps the validation step.</p>
 </div>
 </div>
@@ -85,7 +85,7 @@ PRD Draft is not the only skill that touches requirements quality. This table se
 <div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
 <div class="tool-block-body">
 <p>Cursor gets no command layer from this repository. It reads the catalog in <code>.agents/skills/</code> as context and applies prd-draft's procedure by following the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode.</p>
-<div class="prompt-card">The reconciliation epic manifest is approved. Draft the PRD for "Automated CSV-to-ledger matching" — all twelve sections, Given-When-Then criteria with at least one error scenario per story — then run the nine-check validation and report the verdict.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Following skills/pm/prd-draft/PRD-SECTIONS.md, draft the PRD for "Automated CSV-to-ledger matching" from the approved reconciliation epic manifest. Every story needs a named persona, Given-When-Then criteria, and an error scenario, then run all nine structural checks without stopping at the first failure.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Cursor writes the PRD and the validation report directly in its reply, since there is no command output to parse.</p>
 </div>
 </div>
@@ -94,7 +94,7 @@ PRD Draft is not the only skill that touches requirements quality. This table se
 <div class="tool-block-head"><span class="tool-badge">Codex</span></div>
 <div class="tool-block-body">
 <p>Codex reads the same universal catalog, plus the generated sidecar <code>agents/openai.yaml</code>. It gets no command layer either, so invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">The reconciliation epic manifest is approved. Draft the PRD for "Automated CSV-to-ledger matching" — all twelve sections, Given-When-Then criteria with at least one error scenario per story — then run the nine-check validation and report the verdict.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/prd-draft/SKILL.md, then draft the PRD for "Automated CSV-to-ledger matching" from the approved reconciliation manifest. Write all twelve sections and INVEST stories with Given-When-Then criteria, then run the nine-check validation and report PASS, PASS WITH WARNINGS, or FAIL.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Codex writes the same PRD and report, reading its context from the skill files rather than any installed command.</p>
 </div>
 </div>
@@ -102,8 +102,8 @@ PRD Draft is not the only skill that touches requirements quality. This table se
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no hook for prd-draft specifically, so the instruction file is what tells the agent to run all nine checks without short-circuiting on the first failure.</p>
-<div class="prompt-card">The reconciliation epic manifest is approved. Draft the PRD for "Automated CSV-to-ledger matching" — all twelve sections, Given-When-Then criteria with at least one error scenario per story — then run the nine-check validation and report the verdict.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>Copilot's agent mode reads the same catalog and, once a team has added one, <code>.github/copilot-instructions.md</code> — this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook for prd-draft specifically, so the ask itself is what tells the agent to run all nine checks without short-circuiting on the first failure.</p>
+<div class="prompt-card">There is no prd-draft-specific rule in .github/copilot-instructions.md, so here is the ask directly: the reconciliation epic manifest is approved. Draft the PRD for "Automated CSV-to-ledger matching," run all nine structural checks, and report the verdict without stopping at the first failure.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot reports the twelve-section PRD and the nine-check verdict in chat, then writes both files through whatever repository access it has.</p>
 </div>
 </div>

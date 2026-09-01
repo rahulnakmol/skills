@@ -105,7 +105,7 @@ Case is not the only skill that touches a spending decision. This table separate
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. There is no continuous-integration backstop specific to Case the way <code>grit-gates.yml</code> backstops <code>grit</code>; the sponsor's blind-spot review at the Investment gate is the only check.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. There is no continuous-integration backstop specific to Case the way <code>grit-gates.yml</code> backstops <code>grit</code>; the sponsor's blind-spot review at the Investment gate is the only check.</p>
 <div class="prompt-card">Build the investment case for the field-inspection copilot before it goes to the sponsor. Name at least two real options against the do-nothing baseline, cost each on all four lines, and state the one assumption that would break the recommendation.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot writes the case in chat, reading its procedure from the skill files as context.</p>
 </div>

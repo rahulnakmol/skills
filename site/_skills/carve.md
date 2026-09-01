@@ -84,7 +84,7 @@ Carve is not the only skill that touches decomposition. This table separates its
 <div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
 <div class="tool-block-body">
 <p>OpenCode's installed command layer wraps the developer group's tools; no command wraps carve or any pm skill. The agent reads the shared <code>.agents/skills/</code> catalog directly, the same route Cursor and Codex use, and applies carve's procedure when a request matches its description.</p>
-<div class="prompt-card">The reconciliation understanding document is confirmed. Break this initiative into epics before we write any PRD — validate every candidate against DIVE, and do not write the manifest until I approve the ordered list.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/carve/SKILL.md and DIVE.md, then extract epic candidates from the confirmed reconciliation understanding document. Validate every candidate against DIVE — split or reject failures — and hold the manifest until I approve the ordered list.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode works the DIVE pass in its reply and waits for approval, since no command wraps the write step.</p>
 </div>
 </div>
@@ -93,7 +93,7 @@ Carve is not the only skill that touches decomposition. This table separates its
 <div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
 <div class="tool-block-body">
 <p>Cursor gets no command layer from this repository. It reads the catalog in <code>.agents/skills/</code> as context and applies carve's procedure by following the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode.</p>
-<div class="prompt-card">The reconciliation understanding document is confirmed. Break this initiative into epics before we write any PRD — validate every candidate against DIVE, and do not write the manifest until I approve the ordered list.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Following skills/pm/carve/DIVE.md, extract candidate epics from the confirmed reconciliation understanding document before any PRD gets written. Validate each one against DIVE, split anything that fails Independent, and do not write the manifest until I approve the ordered list.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Cursor writes the candidate epics and DIVE verdicts directly in its reply, then waits for approval before the manifest file exists.</p>
 </div>
 </div>
@@ -102,7 +102,7 @@ Carve is not the only skill that touches decomposition. This table separates its
 <div class="tool-block-head"><span class="tool-badge">Codex</span></div>
 <div class="tool-block-body">
 <p>Codex reads the same universal catalog, plus the generated sidecar <code>agents/openai.yaml</code>. It gets no command layer either, so invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">The reconciliation understanding document is confirmed. Break this initiative into epics before we write any PRD — validate every candidate against DIVE, and do not write the manifest until I approve the ordered list.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/carve/SKILL.md, then break the confirmed reconciliation understanding document into epics before any PRD is drafted. Validate every candidate against DIVE, record each verdict with its evidence, and wait for my approval before writing the manifest.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Codex runs the same DIVE pass, reading its context from the skill files rather than any installed command.</p>
 </div>
 </div>
@@ -110,8 +110,8 @@ Carve is not the only skill that touches decomposition. This table separates its
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no hook for carve specifically, so the instruction file is what tells the agent to hold the write until the user approves.</p>
-<div class="prompt-card">The reconciliation understanding document is confirmed. Break this initiative into epics before we write any PRD — validate every candidate against DIVE, and do not write the manifest until I approve the ordered list.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>Copilot's agent mode reads the same catalog and, once a team has added one, <code>.github/copilot-instructions.md</code> — this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook for carve specifically, so the ask itself is what tells the agent to hold the write until the user approves.</p>
+<div class="prompt-card">There is no carve-specific rule in .github/copilot-instructions.md, so here is the ask directly: the reconciliation understanding document is confirmed. Break the initiative into epics, validate every candidate against DIVE, and hold the manifest write until I approve the ordered list.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot reports the DIVE verdicts in chat and waits for approval before writing the manifest file.</p>
 </div>
 </div>

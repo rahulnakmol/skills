@@ -1,6 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { mkdtempSync, readFileSync, rmSync, statSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { root, read } from './lib.mjs';
 
@@ -98,12 +101,58 @@ const CHECKS = {
 
   // press: the checksum quoted on the page is the one documented in the
   // skill's own output contract — a two-file string equality, no renderer run.
+  //
+  // A second, independent binding covers the page's other worked example:
+  // this repository's own v0.7.0 release notes. The page quotes the note text
+  // in full and claims a specific byte count and checksum for it, so this
+  // fixture (test/fixtures/press/release-notes-v0-7-0.md) must still match
+  // the quote verbatim, and a real re-render of that exact fixture — with the
+  // PATH forced empty and no browser env vars, so "no browser found" is the
+  // same outcome on every machine — must still reproduce that exact byte
+  // count and checksum, the way the page's command line describes.
   'site/_skills/press.md': (t, raw) => {
     const skill = read('skills/branding/press/SKILL.md');
     const htmlSha = skill.match(/path:\s*artifact\.html[\s\S]*?sha256:\s*"([0-9a-f]{64})"/);
     if (!htmlSha) { t.skip('press/SKILL.md: no artifact.html sha256 found in the output contract'); return; }
     assert.ok(raw.includes(htmlSha[1]),
       `site/_skills/press.md no longer quotes the HTML checksum documented in skills/branding/press/SKILL.md (${htmlSha[1]})`);
+
+    const fixtureRel = 'test/fixtures/press/release-notes-v0-7-0.md';
+    const marker = raw.match(/<pre><code>(# tqnonline\/skills v0\.7\.0[\s\S]*?)<\/code><\/pre>/);
+    if (!marker) { t.skip('press.md: v0.7.0 release-notes quote block not found'); return; }
+    const quoted = stripTagsExact(marker[1]).trim();
+    const fixtureText = read(fixtureRel).trim();
+    assert.equal(quoted, fixtureText,
+      `site/_skills/press.md quotes ${fixtureRel} in full, and the two have drifted apart`);
+
+    const runBlock = raw.match(/--in test\/fixtures\/press\/release-notes-v0-7-0\.md[\s\S]*?<\/code><\/pre>/);
+    if (!runBlock) { t.skip('press.md: v0.7.0 reproduced-run block not found'); return; }
+    const claim = runBlock[0].match(/(\d+) bytes {2}sha256 ([0-9a-f]{64})/);
+    if (!claim) { t.skip('press.md: v0.7.0 byte-count/checksum claim not found in the reproduced-run block'); return; }
+    const [, claimedBytes, claimedSha] = claim;
+
+    const dir = mkdtempSync(join(tmpdir(), 'press-site-example-'));
+    try {
+      const out = join(dir, 'v0.7.0.html');
+      const env = { ...process.env, PATH: '' };
+      delete env.PUPPETEER_EXECUTABLE_PATH;
+      delete env.CHROME_PATH;
+      const result = spawnSync(process.execPath, [
+        join(root, 'skills/branding/press/scripts/render.mjs'),
+        '--in', join(root, fixtureRel), '--out', out, '--title', 'tqnonline/skills v0.7.0',
+      ], { encoding: 'utf8', env });
+      assert.equal(result.status, 1,
+        `render.mjs on ${fixtureRel} must exit 1 (HTML written, no browser), got ${result.status}\n${result.stdout}${result.stderr}`);
+
+      const bytes = statSync(out).size;
+      const sha = createHash('sha256').update(readFileSync(out)).digest('hex');
+      assert.equal(String(bytes), claimedBytes,
+        `re-rendering ${fixtureRel} produced ${bytes} bytes; site/_skills/press.md quotes ${claimedBytes}`);
+      assert.equal(sha, claimedSha,
+        `re-rendering ${fixtureRel} produced sha256 ${sha}; site/_skills/press.md quotes ${claimedSha}`);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
   },
 
   // conduct / arrange: quoted eval cases must still be the real, current

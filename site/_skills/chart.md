@@ -77,7 +77,7 @@ Chart is not the only skill that touches planning at scale. This table separates
 <div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
 <div class="tool-block-body">
 <p>OpenCode's installed command layer wraps the developer group's tools; no command wraps chart or any pm skill. The agent reads the shared <code>.agents/skills/</code> catalog directly, the same route Cursor and Codex use, and applies chart's procedure when a request names an oversized initiative.</p>
-<div class="prompt-card">We are moving off our current payment provider and the plan is too big to hold in one pass — it touches the payment API, the ledger service, and the reconciliation job across several teams. Run chart mode: name the destination, classify the hat, and give me a first pass of decision tickets on the tracker.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/chart/CHART.md and TICKETS.md, then chart the payment-provider migration: it touches the payment API, the ledger service, and the reconciliation job across several teams, too big for one pass. Name the destination, classify the hat, and file a first pass of decision tickets.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode states the destination and ticket list directly in its reply, since no command wraps the tracker calls.</p>
 </div>
 </div>
@@ -86,7 +86,7 @@ Chart is not the only skill that touches planning at scale. This table separates
 <div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
 <div class="tool-block-body">
 <p>Cursor gets no command layer from this repository. It reads the catalog in <code>.agents/skills/</code> as context and applies chart's procedure by following the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode.</p>
-<div class="prompt-card">We are moving off our current payment provider and the plan is too big to hold in one pass — it touches the payment API, the ledger service, and the reconciliation job across several teams. Run chart mode: name the destination, classify the hat, and give me a first pass of decision tickets on the tracker.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Following skills/pm/chart/CHART.md, chart mode for the payment-provider migration: the payment API, the ledger service, and the reconciliation job span several teams, too big to plan in one pass. Name the destination in one or two sentences, classify the hat, and sort the open questions into tickets.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Cursor writes the destination and the ticket list directly in its reply, since there is no command output to parse.</p>
 </div>
 </div>
@@ -95,7 +95,7 @@ Chart is not the only skill that touches planning at scale. This table separates
 <div class="tool-block-head"><span class="tool-badge">Codex</span></div>
 <div class="tool-block-body">
 <p>Codex reads the same universal catalog, plus the generated sidecar <code>agents/openai.yaml</code>. It gets no command layer either, so invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">We are moving off our current payment provider and the plan is too big to hold in one pass — it touches the payment API, the ledger service, and the reconciliation job across several teams. Run chart mode: name the destination, classify the hat, and give me a first pass of decision tickets on the tracker.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/chart/SKILL.md, then run chart mode on the payment-provider migration, which spans the payment API, the ledger service, and the reconciliation job across several teams. Name the destination, classify the hat, and give me a first pass of decision tickets on the tracker.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Codex writes the chart the same way, reading its context from the skill files rather than any installed command.</p>
 </div>
 </div>
@@ -103,8 +103,8 @@ Chart is not the only skill that touches planning at scale. This table separates
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no hook or CI check for chart specifically, so an oversized initiative charted through Copilot relies on the instruction file alone to apply the procedure.</p>
-<div class="prompt-card">We are moving off our current payment provider and the plan is too big to hold in one pass — it touches the payment API, the ledger service, and the reconciliation job across several teams. Run chart mode: name the destination, classify the hat, and give me a first pass of decision tickets on the tracker.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>Copilot's agent mode reads the same catalog and, once a team has added one, <code>.github/copilot-instructions.md</code> — this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook or CI check for chart specifically, so an oversized initiative charted through Copilot relies on the ask itself, or an adopted instructions file, to apply the procedure.</p>
+<div class="prompt-card">There is no chart-specific rule in .github/copilot-instructions.md, so here is the ask directly: the payment-provider migration touches the payment API, the ledger service, and the reconciliation job across several teams, too big for one pass. Run chart mode and file the first pass of tickets.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot reports the destination and ticket list in chat, then creates the tracker issues through whatever tracker access it has.</p>
 </div>
 </div>

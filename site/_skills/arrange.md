@@ -84,7 +84,7 @@ Arrange is not the only skill that touches how pm work runs. This table separate
 <div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
 <div class="tool-block-body">
 <p>OpenCode's installed command layer wraps the developer group's tools — <code>architect</code>, <code>impact</code>, <code>operate</code>, <code>quality</code>, <code>security</code>, <code>sdlc</code>, and <code>grit-verify</code> among them. No command wraps arrange or any pm skill, so the agent reads the shared <code>.agents/skills/</code> catalog directly, the same route Cursor and Codex use, and applies arrange's description on its own when a request matches it.</p>
-<div class="prompt-card">This discovery effort has thin evidence in two of the five dimensions, and it is going to take more than one grill round to converge. Decide how it should run before we start, and tell me which gate the result feeds.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/arrange/RUBRIC.md, then decide the shape for this discovery effort: thin evidence in two of the five dimensions, more than one grill round to converge. Name the routing question that decided it, and the gate the result feeds.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The agent states the routing line in its reply before continuing, since there is no command output to parse it from.</p>
 </div>
 </div>
@@ -93,7 +93,7 @@ Arrange is not the only skill that touches how pm work runs. This table separate
 <div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
 <div class="tool-block-body">
 <p>Cursor gets no command layer from this repository for any skill. It reads the catalog in <code>.agents/skills/</code> as context and applies arrange's rubric by following the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode rather than a pinned model identifier.</p>
-<div class="prompt-card">This discovery effort has thin evidence in two of the five dimensions, and it is going to take more than one grill round to converge. Decide how it should run before we start, and tell me which gate the result feeds.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Following skills/pm/arrange/RUBRIC.md, decide the execution shape before this discovery effort starts: thin evidence in two of five dimensions, likely more than one grill round. State the mode, the question that matched first, and which gate the outcome reaches.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Cursor states mode, why, and gate directly in its reply, then proceeds with discovery under that shape.</p>
 </div>
 </div>
@@ -102,7 +102,7 @@ Arrange is not the only skill that touches how pm work runs. This table separate
 <div class="tool-block-head"><span class="tool-badge">Codex</span></div>
 <div class="tool-block-body">
 <p>Codex reads the same universal catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees arrange's name and description the way the other four tools do. It gets no command layer either, so invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">This discovery effort has thin evidence in two of the five dimensions, and it is going to take more than one grill round to converge. Decide how it should run before we start, and tell me which gate the result feeds.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/arrange/SKILL.md and RUBRIC.md, then route this discovery effort: two of the five clarification dimensions have thin evidence, and convergence will take more than one grill round. Return the mode, the reasoning, and the gate it feeds before discovery proceeds.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Codex names the routing line the same way, reading its context from the skill files rather than any installed command.</p>
 </div>
 </div>
@@ -110,8 +110,8 @@ Arrange is not the only skill that touches how pm work runs. This table separate
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same catalog, driven by <code>.github/copilot-instructions.md</code>. There is no command layer and no pm-specific hook — the instructions file is what tells the agent to apply a matching skill's description, arrange's included, before it starts a multi-round effort.</p>
-<div class="prompt-card">This discovery effort has thin evidence in two of the five dimensions, and it is going to take more than one grill round to converge. Decide how it should run before we start, and tell me which gate the result feeds.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>Copilot's agent mode reads the same catalog and, once a team has added one, <code>.github/copilot-instructions.md</code> — this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. There is no command layer and no pm-specific hook, so the ask itself is what tells the agent to apply a matching skill's description, arrange's included, before it starts a multi-round effort.</p>
+<div class="prompt-card">There is no arrange-specific rule in .github/copilot-instructions.md, so here is the ask directly: this discovery effort has thin evidence in two dimensions and needs more than one grill round. Decide how it should run, and name the gate the result feeds.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot reports the routing line in chat before it proceeds with the discovery work itself.</p>
 </div>
 </div>

@@ -112,7 +112,7 @@ Ask FDE is not the only way to find the right skill. This table separates its jo
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no command layer for Copilot either, so ask-fde's routing map is applied as context, the same way Cursor and Codex apply it.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command layer for Copilot either, so ask-fde's routing map is applied as context, the same way Cursor and Codex apply it.</p>
 <div class="prompt-card">Before I open an issue for the new partner webhook, read skills/developer/ask-fde/SKILL.md and classify my intent: is this a security review or a design question? Name the one skill it routes to.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot returns the routed skill name and rationale in chat; there is no command layer here either.</p>
 </div>

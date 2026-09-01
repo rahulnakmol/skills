@@ -104,7 +104,7 @@ This overlay is not the only skill that touches security or design. This table s
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no command layer for Copilot, so the overlay is applied the way Cursor and Codex apply it — as context an agent follows.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command layer for Copilot, so the overlay is applied the way Cursor and Codex apply it — as context an agent follows.</p>
 <div class="prompt-card">Before this credit-decision model ships, read skills/developer/responsible-ai-governance/SKILL.md and post a comment naming the frameworks in scope and the fixed control set the component still needs.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot posts the frameworks and the control set as an issue comment; no hook here enforces the checklist directly.</p>
 </div>

@@ -105,7 +105,7 @@ The confusable sibling in the same table, `r002` — "this discovery effort need
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no hook or command for conduct on any tool, so a routing decision here is answered the same way as on Cursor and Codex: by reading RUBRIC.md and GRAPH.md directly as working context.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook or command for conduct on any tool, so a routing decision here is answered the same way as on Cursor and Codex: by reading RUBRIC.md and GRAPH.md directly as working context.</p>
 <div class="prompt-card">This migration touches three services and ends in a production release. Apply the conduct rubric, state loop or graph, and name the human gate the release needs before it ships.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot states the routing decision and the human gate in its reply before proposing any implementation plan.</p>
 </div>

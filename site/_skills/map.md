@@ -78,7 +78,7 @@ Map is not the only skill that touches this stretch of the pipeline. This table 
 <div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
 <div class="tool-block-body">
 <p>OpenCode's installed command layer wraps the developer group's tools; no command wraps map or any pm skill. The agent reads the shared <code>.agents/skills/</code> catalog directly, the same route Cursor and Codex use, and applies map's procedure when a request matches its description.</p>
-<div class="prompt-card">Discovery on the reconciliation problem is confirmed and the analysis file is written. Map the personas and the current and target journeys, then assemble the Business Understanding Document for Framing.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/map/SKILL.md and VISUALS.md, then build personas and process flows from the reconciliation analysis file discover already wrote. Assemble the Business Understanding Document for Framing, and keep each figure to one claim.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode writes the personas and both flows directly in its reply, since no command wraps the assembly step.</p>
 </div>
 </div>
@@ -87,7 +87,7 @@ Map is not the only skill that touches this stretch of the pipeline. This table 
 <div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
 <div class="tool-block-body">
 <p>Cursor gets no command layer from this repository. It reads the catalog in <code>.agents/skills/</code> as context and applies map's procedure by following the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode.</p>
-<div class="prompt-card">Discovery on the reconciliation problem is confirmed and the analysis file is written. Map the personas and the current and target journeys, then assemble the Business Understanding Document for Framing.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Following skills/pm/HATS.md and VISUALS.md, map the reconciliation personas and the current and target journeys from the confirmed analysis file. Assemble the Business Understanding Document for Framing, and split any figure that tries to argue two things at once.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Cursor writes the personas, both flows, and the assembled document directly in its reply.</p>
 </div>
 </div>
@@ -96,7 +96,7 @@ Map is not the only skill that touches this stretch of the pipeline. This table 
 <div class="tool-block-head"><span class="tool-badge">Codex</span></div>
 <div class="tool-block-body">
 <p>Codex reads the same universal catalog, plus the generated sidecar <code>agents/openai.yaml</code>. It gets no command layer either, so invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Discovery on the reconciliation problem is confirmed and the analysis file is written. Map the personas and the current and target journeys, then assemble the Business Understanding Document for Framing.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/map/SKILL.md, then map the personas and the current and target journeys from the confirmed reconciliation analysis file. Assemble the Business Understanding Document for Framing, and route the handoff by whichever hat the analysis already classified.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Codex writes the same document, reading its context from the skill files rather than any installed command.</p>
 </div>
 </div>
@@ -104,8 +104,8 @@ Map is not the only skill that touches this stretch of the pipeline. This table 
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no hook for map specifically, so the instruction file is what tells the agent to apply the compression rule before any figure ships.</p>
-<div class="prompt-card">Discovery on the reconciliation problem is confirmed and the analysis file is written. Map the personas and the current and target journeys, then assemble the Business Understanding Document for Framing.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>Copilot's agent mode reads the same catalog and, once a team has added one, <code>.github/copilot-instructions.md</code> — this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook for map specifically, so the ask itself is what tells the agent to apply the compression rule before any figure ships.</p>
+<div class="prompt-card">There is no map-specific rule in .github/copilot-instructions.md, so here is the ask directly: discovery on the reconciliation problem is confirmed and the analysis file exists. Map the personas and journeys, and assemble the Business Understanding Document for Framing.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot reports the personas and both flows in chat, then writes the assembled document.</p>
 </div>
 </div>

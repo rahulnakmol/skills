@@ -97,7 +97,7 @@ Grill is not the only skill that touches whether an artifact is ready. This tabl
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. There is no continuous-integration backstop specific to Grill the way <code>grit-gates.yml</code> backstops <code>grit</code>; sign-off's precondition — the core question actually answered — is enforced by the procedure, not by any workflow.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. There is no continuous-integration backstop specific to Grill the way <code>grit-gates.yml</code> backstops <code>grit</code>; sign-off's precondition — the core question actually answered — is enforced by the procedure, not by any workflow.</p>
 <div class="prompt-card">Grill the field-inspection-copilot case before it goes to the sponsor. Three to five questions per round, restate the scope after each one, and run the pre-gate blind-spot checklist before any sign-off.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot runs the round in chat, reading its procedure from the skill files as context.</p>
 </div>

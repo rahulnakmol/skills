@@ -72,7 +72,7 @@ Discover is not the only skill that touches problem framing. This table separate
 <div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
 <div class="tool-block-body">
 <p>Discover is user-invoked: type <code>/discover</code>, or name it directly in a session. It accepts meeting notes, transcripts, and raw CSV or spreadsheet data pasted or attached directly into the conversation, normalizing them rather than asking for a clean brief.</p>
-<div class="prompt-card">Here are the finance team's meeting notes and last quarter's close-cycle spreadsheet. Reconciliation errors keep spiking at month end and delaying close by three business days. Run discovery: classify the hat, clarify across your five dimensions, and find the root cause before proposing anything.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Here are the finance team's meeting notes and last quarter's close-cycle spreadsheet. Reconciliation errors keep spiking at month end and delaying close by three business days. Run discovery: classify the hat, clarify across your five dimensions, and find the root cause with Five Whys before proposing anything.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Claude Code works the themed clarification rounds, decomposes the root cause, then presents the classification and problem statement for confirmation before writing the analysis document.</p>
 </div>
 </div>
@@ -81,7 +81,7 @@ Discover is not the only skill that touches problem framing. This table separate
 <div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
 <div class="tool-block-body">
 <p>OpenCode's installed command layer wraps the developer group's tools; no command wraps discover or any pm skill. The agent reads the shared <code>.agents/skills/</code> catalog directly, the same route Cursor and Codex use, and applies discover's procedure when a request matches it.</p>
-<div class="prompt-card">Here are the finance team's meeting notes and last quarter's close-cycle spreadsheet. Reconciliation errors keep spiking at month end and delaying close by three business days. Run discovery: classify the hat, clarify across your five dimensions, and find the root cause before proposing anything.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/discover/METHOD.md, then take these finance meeting notes and the close-cycle spreadsheet as raw input, not a written brief. Reconciliation errors spike at month end and delay close by three business days — classify the hat, clarify across five dimensions, and name the root cause.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode works the clarification rounds in its reply, then states the confirmed classification and root cause before writing the file.</p>
 </div>
 </div>
@@ -90,7 +90,7 @@ Discover is not the only skill that touches problem framing. This table separate
 <div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
 <div class="tool-block-body">
 <p>Cursor gets no command layer from this repository. It reads the catalog in <code>.agents/skills/</code> as context and applies discover's procedure by following the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode.</p>
-<div class="prompt-card">Here are the finance team's meeting notes and last quarter's close-cycle spreadsheet. Reconciliation errors keep spiking at month end and delaying close by three business days. Run discovery: classify the hat, clarify across your five dimensions, and find the root cause before proposing anything.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Following skills/pm/discover/METHOD.md, take the attached finance meeting notes and close-cycle spreadsheet as raw input. Reconciliation errors spike at month end, delaying close by three business days — triangulate across at least three sources and name the root cause with Five Whys, not the first plausible one.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Cursor writes the analysis file directly in its reply, since there is no command output to parse.</p>
 </div>
 </div>
@@ -99,7 +99,7 @@ Discover is not the only skill that touches problem framing. This table separate
 <div class="tool-block-head"><span class="tool-badge">Codex</span></div>
 <div class="tool-block-body">
 <p>Codex reads the same universal catalog, plus the generated sidecar <code>agents/openai.yaml</code>. It gets no command layer either, so invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Here are the finance team's meeting notes and last quarter's close-cycle spreadsheet. Reconciliation errors keep spiking at month end and delaying close by three business days. Run discovery: classify the hat, clarify across your five dimensions, and find the root cause before proposing anything.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/discover/SKILL.md and METHOD.md, then run discovery on the attached finance meeting notes and close-cycle spreadsheet. Reconciliation errors spike at month end and delay close by three business days — classify the hat, clarify across five dimensions, and find the root cause before proposing a fix.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Codex writes the same analysis file, reading its context from the skill files rather than any installed command.</p>
 </div>
 </div>
@@ -107,8 +107,8 @@ Discover is not the only skill that touches problem framing. This table separate
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no hook for discover specifically, so the instruction file is what tells the agent to redirect solution-first framing and run the five-dimension clarification before writing anything down.</p>
-<div class="prompt-card">Here are the finance team's meeting notes and last quarter's close-cycle spreadsheet. Reconciliation errors keep spiking at month end and delaying close by three business days. Run discovery: classify the hat, clarify across your five dimensions, and find the root cause before proposing anything.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>Copilot's agent mode reads the same catalog and, once a team has added one, <code>.github/copilot-instructions.md</code> — this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook for discover specifically, so the ask itself is what tells the agent to redirect solution-first framing and run the five-dimension clarification before writing anything down.</p>
+<div class="prompt-card">There is no discover-specific rule in .github/copilot-instructions.md yet, so here is the ask directly: these are the finance team's meeting notes and last quarter's close-cycle spreadsheet. Reconciliation errors spike at month end, delaying close by three business days — classify the hat, clarify across five dimensions, and name the root cause.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot works the clarification rounds in chat and reports the confirmed classification before writing the file.</p>
 </div>
 </div>

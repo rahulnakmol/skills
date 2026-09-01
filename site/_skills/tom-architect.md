@@ -80,7 +80,7 @@ TOM Architect is not the only skill that touches this stretch of a transformatio
 <div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
 <div class="tool-block-body">
 <p>OpenCode's installed command layer wraps the developer group's tools; no command wraps tom-architect or any pm skill. The agent reads the shared <code>.agents/skills/</code> catalog directly, the same route Cursor and Codex use, and applies the seven-phase procedure on its own.</p>
-<div class="prompt-card">We are transforming order-to-cash under the transformation hat. Design the target operating model: scope L1 through L4, assess current-state maturity per process before touching any target design, and give every L2 process a RACI.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/tom-architect/TOM-METHOD.md, then design the order-to-cash target operating model under the transformation hat. Scope L1 through L4, assess current-state maturity per process before any target design, and assign a RACI to every L2 process.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode works the seven phases in its reply, in order, since no command wraps the document assembly.</p>
 </div>
 </div>
@@ -89,7 +89,7 @@ TOM Architect is not the only skill that touches this stretch of a transformatio
 <div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
 <div class="tool-block-body">
 <p>Cursor gets no command layer from this repository. It reads the catalog in <code>.agents/skills/</code> as context and applies the procedure by following the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode.</p>
-<div class="prompt-card">We are transforming order-to-cash under the transformation hat. Design the target operating model: scope L1 through L4, assess current-state maturity per process before touching any target design, and give every L2 process a RACI.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Following skills/pm/tom-architect/TOM-METHOD.md, design the order-to-cash target operating model: transformation hat, L1 through L4 depth. Assess maturity per process before touching target design, and hold platform selection until after that baseline and the organization layer both exist.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Cursor writes the TOM document directly in its reply, phase by phase, since there is no command output to parse.</p>
 </div>
 </div>
@@ -98,7 +98,7 @@ TOM Architect is not the only skill that touches this stretch of a transformatio
 <div class="tool-block-head"><span class="tool-badge">Codex</span></div>
 <div class="tool-block-body">
 <p>Codex reads the same universal catalog, plus the generated sidecar <code>agents/openai.yaml</code>. It gets no command layer either, so invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">We are transforming order-to-cash under the transformation hat. Design the target operating model: scope L1 through L4, assess current-state maturity per process before touching any target design, and give every L2 process a RACI.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/tom-architect/SKILL.md, then design the order-to-cash target operating model under the transformation hat, scoping L1 through L4. Assess current-state maturity per process before any target design, and assign a RACI role at every process step.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Codex writes the same document, reading its context from the skill files rather than any installed command.</p>
 </div>
 </div>
@@ -106,8 +106,8 @@ TOM Architect is not the only skill that touches this stretch of a transformatio
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no hook for tom-architect specifically, so the instruction file is what tells the agent to hold platform mapping until after maturity assessment.</p>
-<div class="prompt-card">We are transforming order-to-cash under the transformation hat. Design the target operating model: scope L1 through L4, assess current-state maturity per process before touching any target design, and give every L2 process a RACI.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>Copilot's agent mode reads the same catalog and, once a team has added one, <code>.github/copilot-instructions.md</code> — this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook for tom-architect specifically, so the ask itself is what tells the agent to hold platform mapping until after maturity assessment.</p>
+<div class="prompt-card">There is no tom-architect-specific rule in .github/copilot-instructions.md, so here is the ask directly: we are transforming order-to-cash under the transformation hat. Design the target operating model to L1-L4, assess maturity before any target design, and give every L2 process a RACI.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot works the phases in chat and writes the TOM document through whatever repository access it has.</p>
 </div>
 </div>

@@ -105,7 +105,7 @@ Deliver is not the only skill that touches release. This table separates its job
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no command layer or workflow runner for Copilot, so deliver's checklist is applied as context, not run by a sequencer.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command layer or workflow runner for Copilot, so deliver's checklist is applied as context, not run by a sequencer.</p>
 <div class="prompt-card">Before raising a pull request for work item #482, check this repository against skills/developer/deliver/REPO-SETUP.md, and stack the change per STACKING.md if it spans more than one concern. State its coverage and traceability in the pull-request body before opening it.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot opens the pull request or requests directly; nothing here sequences Gate, Plan, Implement, and Verify for it the way the two workflow runners do.</p>
 </div>

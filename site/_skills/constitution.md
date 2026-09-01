@@ -66,7 +66,7 @@ Constitution is not the only skill that touches practice-wide alignment. This ta
 <div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
 <div class="tool-block-body">
 <p>Constitution is user-invoked: type <code>/constitution</code>, or name it directly in a session. It asks in small batches through <code>AskUserQuestion</code> during Create mode rather than requesting all seven sections at once.</p>
-<div class="prompt-card">We are about to run a reconciliation initiative through Investment, and no product constitution exists yet at specs/product-constitution.md. Run Create mode: work the seven sections in small batches, then assemble the Tier 1 summary once the detail files exist.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">We are about to run a reconciliation initiative through Investment, and no product constitution exists yet at specs/product-constitution.md. Run Create mode: work the seven sections in small batches through AskUserQuestion, then assemble the Tier 1 summary once every detail file exists.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Claude Code asks through each section in turn, writes the seven Tier 2 files, then assembles and returns the Tier 1 summary.</p>
 </div>
 </div>
@@ -75,7 +75,7 @@ Constitution is not the only skill that touches practice-wide alignment. This ta
 <div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
 <div class="tool-block-body">
 <p>OpenCode's installed command layer wraps the developer group's tools; no command wraps constitution or any pm skill. The agent reads the shared <code>.agents/skills/</code> catalog directly, the same route Cursor and Codex use, and applies the mode-detection procedure on its own.</p>
-<div class="prompt-card">We are about to run a reconciliation initiative through Investment, and no product constitution exists yet at specs/product-constitution.md. Run Create mode: work the seven sections in small batches, then assemble the Tier 1 summary once the detail files exist.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/constitution/SKILL.md and CONSTITUTION.md, then start Create mode for the reconciliation initiative — specs/product-constitution.md does not exist yet. Work the seven sections in small batches, and assemble the Tier 1 summary once the section files are written.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode works the sections in its reply and writes the files, since no command wraps the pull-request step.</p>
 </div>
 </div>
@@ -84,7 +84,7 @@ Constitution is not the only skill that touches practice-wide alignment. This ta
 <div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
 <div class="tool-block-body">
 <p>Cursor gets no command layer from this repository. It reads the catalog in <code>.agents/skills/</code> as context and applies constitution's procedure by following the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode.</p>
-<div class="prompt-card">We are about to run a reconciliation initiative through Investment, and no product constitution exists yet at specs/product-constitution.md. Run Create mode: work the seven sections in small batches, then assemble the Tier 1 summary once the detail files exist.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Following skills/pm/constitution/CONSTITUTION.md, start Create mode for the reconciliation initiative: specs/product-constitution.md does not exist yet. Work the seven sections in small batches, keep every principle a real trade-off rather than a platitude, and assemble the Tier 1 summary last.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Cursor writes the seven section files and the summary directly, then states plainly that the change should land as a pull request.</p>
 </div>
 </div>
@@ -93,7 +93,7 @@ Constitution is not the only skill that touches practice-wide alignment. This ta
 <div class="tool-block-head"><span class="tool-badge">Codex</span></div>
 <div class="tool-block-body">
 <p>Codex reads the same universal catalog, plus the generated sidecar <code>agents/openai.yaml</code>. It gets no command layer either, so invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">We are about to run a reconciliation initiative through Investment, and no product constitution exists yet at specs/product-constitution.md. Run Create mode: work the seven sections in small batches, then assemble the Tier 1 summary once the detail files exist.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/constitution/SKILL.md, then run Create mode for the reconciliation initiative heading toward Investment: specs/product-constitution.md does not exist yet. Work the seven sections in small batches, and assemble the Tier 1 summary only once every section file is written.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Codex writes the same seven files, reading its context from the skill files rather than any installed command.</p>
 </div>
 </div>
@@ -101,8 +101,8 @@ Constitution is not the only skill that touches practice-wide alignment. This ta
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no hook for constitution specifically, so the instruction file is what tells the agent to run the mode-detection procedure and land the result as a pull request.</p>
-<div class="prompt-card">We are about to run a reconciliation initiative through Investment, and no product constitution exists yet at specs/product-constitution.md. Run Create mode: work the seven sections in small batches, then assemble the Tier 1 summary once the detail files exist.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>Copilot's agent mode reads the same catalog and, once a team has added one, <code>.github/copilot-instructions.md</code> — this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook for constitution specifically, so the ask itself is what tells the agent to run the mode-detection procedure and land the result as a pull request.</p>
+<div class="prompt-card">There is no product constitution yet at specs/product-constitution.md, and the reconciliation initiative is close enough to Investment to need one. Run Create mode directly from this instruction: work the seven sections in small batches, assemble the Tier 1 summary, and open the result as a pull request.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot writes the section files in chat and opens the pull request through whatever repository access it has.</p>
 </div>
 </div>

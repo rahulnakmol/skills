@@ -96,7 +96,7 @@ You reach for it in two moments. `slice` has just produced a contract-complete b
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no command or hook for raise on any tool, so a Copilot request is answered the same way as on Cursor and Codex: by reading the tracker doctrine directly as working context.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command or hook for raise on any tool, so a Copilot request is answered the same way as on Cursor and Codex: by reading the tracker doctrine directly as working context.</p>
 <div class="prompt-card">Before publishing the checkout-timeout item, confirm tracker authentication is available and the item is contract-complete — stop and tell me if either is missing.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot checks both conditions and reports either the published issue or the exact gap blocking it.</p>
 </div>

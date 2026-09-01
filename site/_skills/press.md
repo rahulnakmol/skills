@@ -97,7 +97,7 @@ Press is not the only skill that touches a document on its way out. This table s
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no command layer for it either, so it runs the renderer the same way Cursor and Codex do, reading the procedure from the skill file.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command layer for it either, so it runs the renderer the same way Cursor and Codex do, reading the procedure from the skill file.</p>
 <div class="prompt-card">You have the signed-off v0.7.0 changelog entry ready to announce. Render it with skills/branding/press/scripts/render.mjs and the shipped palette, and report the checksum of what was written. If no PDF comes out, say so plainly — do not report the run as complete without one.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot reports the same path, byte size, and checksum in chat, since the renderer's own printed output is the only report there is.</p>
 </div>
@@ -124,7 +124,7 @@ You type:
 
 <pre><code>The v0.7.0 changelog entry is signed off — I saved it as release-notes/v0.7.0.md. Render it into a branded page for the announcement, using the shipped palette. I only need the HTML right now; tell me plainly if a PDF comes out or not, and give me the checksum either way.</code></pre>
 
-Press takes the sign-off at your word — that is exactly what SKILL.md says it must do, since it has no way to check a signature itself — and reads the text you saved without changing a word of it. That file holds this repository's own 0.7.0 changelog entry, written as release-note copy and shown here in full:
+Press takes the sign-off at your word — that is exactly what SKILL.md says it must do, since it has no way to check a signature itself — and reads the text you saved without changing a word of it. This repository ships that changelog entry as a fixture, [`test/fixtures/press/release-notes-v0-7-0.md`](https://github.com/tqnonline/skills/blob/main/test/fixtures/press/release-notes-v0-7-0.md), written as release-note copy and reproduced here in full:
 
 <pre><code># tqnonline/skills v0.7.0
 
@@ -158,7 +158,7 @@ Full history in `CHANGELOG.md`.</code></pre>
 
 No palette was named, so press reads its own shipped default, and the run below is genuine — produced moments ago, on the machine that built this page:
 
-<pre><code><span class="tok-comment">$ node skills/branding/press/scripts/render.mjs --in release-notes/v0.7.0.md --out v0.7.0.html --title "tqnonline/skills v0.7.0"</span>
+<pre><code><span class="tok-comment">$ node skills/branding/press/scripts/render.mjs --in test/fixtures/press/release-notes-v0-7-0.md --out v0.7.0.html --title "tqnonline/skills v0.7.0"</span>
 press: HTML v0.7.0.html
 <span class="tok-ok">press:   4778 bytes  sha256 e7b852648bf8c9535c7220122a6488d81e1b256fda6acc4307bd557afcfa4409</span>
 <span class="tok-warn">press: no headless browser found; the PDF step was skipped</span>

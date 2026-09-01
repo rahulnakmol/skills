@@ -104,7 +104,7 @@ You reach for it in three moments. A new initiative, a major feature, or a brown
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no command or hook for impact on any tool besides Claude Code's plugin invocation, so a Copilot request is answered the same way as on Cursor and Codex.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command or hook for impact on any tool besides Claude Code's plugin invocation, so a Copilot request is answered the same way as on Cursor and Codex.</p>
 <div class="prompt-card">Before you draft any implementation plan for the checkout-timeout fix, run impact's grill loop and confirm the business-value section is real, not templated.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot drafts and grills the PRD in chat, stopping at gate G2 until sign-off is explicit.</p>
 </div>

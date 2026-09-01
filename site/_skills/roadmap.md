@@ -98,7 +98,7 @@ Roadmap is not the only skill that touches sequencing. This table separates its 
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. There is no continuous-integration backstop specific to Roadmap the way <code>grit-gates.yml</code> backstops <code>grit</code>; a stale sequence is caught only by a reader checking it against `raid`'s register.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. There is no continuous-integration backstop specific to Roadmap the way <code>grit-gates.yml</code> backstops <code>grit</code>; a stale sequence is caught only by a reader checking it against `raid`'s register.</p>
 <div class="prompt-card">Sequence the field-inspection-copilot epics into now, next, and later. Every item needs an outcome, and pull the dependency state directly from the raid register rather than assuming.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot writes the roadmap in chat, reading its procedure from the skill files as context.</p>
 </div>

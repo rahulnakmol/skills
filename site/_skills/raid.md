@@ -96,7 +96,7 @@ RAID is not the only skill that touches an initiative's risk picture. This table
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. There is no continuous-integration backstop specific to RAID the way <code>grit-gates.yml</code> backstops <code>grit</code>; an unowned entry is caught only by a reader checking the register.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. There is no continuous-integration backstop specific to RAID the way <code>grit-gates.yml</code> backstops <code>grit</code>; an unowned entry is caught only by a reader checking the register.</p>
 <div class="prompt-card">Log this new risk on the field-inspection-copilot rollout in the correct RAID register, with an owner and mitigation, then regenerate the sponsor narrative from all four registers.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot writes the register update in chat, reading its procedure from the skill files as context.</p>
 </div>

@@ -97,7 +97,7 @@ Realize is not the only skill that touches whether something worked. This table 
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. There is no continuous-integration backstop specific to Realize the way <code>grit-gates.yml</code> backstops <code>grit</code>; an honestly reported unmet projection depends entirely on the register being read carefully.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. There is no continuous-integration backstop specific to Realize the way <code>grit-gates.yml</code> backstops <code>grit</code>; an honestly reported unmet projection depends entirely on the register being read carefully.</p>
 <div class="prompt-card">Record this PI's actuals for the field-inspection copilot against the case's original projections. Report either figure unmet plainly if it missed, and roll the result up to the north star.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot writes the register update in chat, reading its procedure from the skill files as context.</p>
 </div>

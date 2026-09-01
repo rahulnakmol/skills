@@ -95,7 +95,7 @@ You reach for it in three moments. The monthly cron flags the registry as overdu
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no command or hook for update models on any tool besides Claude Code's plugin invocation, so a Copilot request is answered the same way as on Cursor and Codex.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command or hook for update models on any tool besides Claude Code's plugin invocation, so a Copilot request is answered the same way as on Cursor and Codex.</p>
 <div class="prompt-card">Before proposing any change, confirm the registry's current review date against the 45-day threshold, then research and draft a scoped diff if it is due.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot states the freshness check's result before proposing any registry change.</p>
 </div>

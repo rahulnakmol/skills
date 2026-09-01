@@ -95,7 +95,7 @@ You reach for it, indirectly, in three moments. An orchestrator just built a nod
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no hook or command for model routing on any tool, Copilot included. A tier request here is answered the same way as on Cursor and Codex: by reading <code>models.md</code> directly as working context, never by a pinned identifier written into the instructions file.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook or command for model routing on any tool, Copilot included. A tier request here is answered the same way as on Cursor and Codex: by reading <code>models.md</code> directly as working context, never by a pinned identifier written into the instructions file.</p>
 <div class="prompt-card">Before you dispatch the implementation for the checkout-timeout fix, confirm which tier models.md assigns to a multi-file implementer role and state the rationale in your plan.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot reports the tier and rationale in its plan before dispatching any work.</p>
 </div>

@@ -105,7 +105,7 @@ You reach for it in two moments. A work item's label reads `ready`, and its cont
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no command or hook for sdlc on any tool besides Claude Code's plugin invocation, so a Copilot request is answered the same way as on Cursor and Codex.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command or hook for sdlc on any tool besides Claude Code's plugin invocation, so a Copilot request is answered the same way as on Cursor and Codex.</p>
 <div class="prompt-card">Before you implement anything for the checkout-timeout fix, confirm Gate 1 and Gate 2 pass and state the frozen scope. Do not report done before Gate 3's independent verifier has run.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot states each gate's result in chat before proposing or making any change.</p>
 </div>

@@ -105,7 +105,7 @@ Operate is not the only skill that touches production or backlog work. This tabl
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no command layer for Copilot, so operate's charter is applied the way Cursor and Codex apply it — as context an agent follows, not a command it runs.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command layer for Copilot, so operate's charter is applied the way Cursor and Codex apply it — as context an agent follows, not a command it runs.</p>
 <div class="prompt-card">Before we call the notifications service production-ready, read skills/developer/operate/SKILL.md, set its SLOs and alert thresholds, and post the brief as a comment stating which lanes &mdash; reliability, quality, maintenance &mdash; this pass actually covers.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot posts the brief as an issue comment; a person still owns any production runbook this charter recommends, since operate never mutates production itself.</p>
 </div>

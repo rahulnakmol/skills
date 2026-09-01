@@ -104,7 +104,7 @@ Architect is not the only skill that touches design. This table separates its jo
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no command layer for Copilot, so architect's charter is applied the way Cursor and Codex apply it — as context an agent follows, not a command it runs.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command layer for Copilot, so architect's charter is applied the way Cursor and Codex apply it — as context an agent follows, not a command it runs.</p>
 <div class="prompt-card">Before implementing the notifications-service split, read skills/developer/architect/SKILL.md, confirm the requirement boundary with me, decompose into bounded components, and post the maintainability and reliability tradeoffs as a comment on this issue before Gate 2.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot posts the tradeoffs as an issue comment; a person still owns Gate 2's sign-off, since no hook here can enforce it directly.</p>
 </div>

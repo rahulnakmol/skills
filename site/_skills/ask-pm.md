@@ -114,7 +114,7 @@ Ask PM is not the only router in this repository. This table separates its job f
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. There is no continuous-integration backstop specific to Ask PM the way <code>grit-gates.yml</code> backstops <code>grit</code>; a correct route depends on the procedure being followed, not on any workflow check.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. There is no continuous-integration backstop specific to Ask PM the way <code>grit-gates.yml</code> backstops <code>grit</code>; a correct route depends on the procedure being followed, not on any workflow check.</p>
 <div class="prompt-card">I'm new to the field-inspection-copilot initiative. We have a raw problem statement and nothing else. Which pm skill should I run first, and why?<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot returns the skill name and rationale in chat, reading the routing map from the skill file as context.</p>
 </div>

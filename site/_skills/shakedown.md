@@ -110,7 +110,7 @@ Shakedown is not the only skill that touches a pull request. This table separate
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no command layer or workflow runner for Copilot, so shakedown's procedure is applied as context, not run by a sequencer.</p>
+<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command layer or workflow runner for Copilot, so shakedown's procedure is applied as context, not run by a sequencer.</p>
 <div class="prompt-card">Before approving pull request #517, read skills/developer/shakedown/SKILL.md, build and test it in an isolated environment, execute the changed behavior, and post a blocking comment if the build is red or an acceptance-criterion test is missing.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot posts the review as a pull-request comment; a person still approves, since no hook here posts a blocking review the way the installed workflow can.</p>
 </div>
