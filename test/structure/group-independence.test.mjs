@@ -36,6 +36,54 @@ test('no two promoted skills share a directory basename', () => {
   assert.equal(byName.size, SKILLS.length);
 });
 
+// A lone --skill selects no group, so the script's group list ends up empty.
+// That is the one path where the deduped arrays are empty, and an empty array
+// is exactly what bash 3.2 refuses to expand unguarded under `set -u` — the
+// full-install case above never reaches it.
+test('link-skills.sh links a single skill and no group doctrine', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'link-skills-one-'));
+  try {
+    const skill = SKILLS[0].name;
+    const result = spawnSync('bash', [join(root, 'scripts/link-skills.sh'), '--skill', skill, '--target', dir],
+      { encoding: 'utf8' });
+    assert.equal(result.status, 0, `link-skills.sh --skill failed: ${result.stdout}${result.stderr}`);
+
+    const entries = readdirSync(dir);
+    assert.deepEqual(entries, [`rahulnakmol-${skill}`],
+      'a lone --skill must link exactly the one skill it names');
+    assert.ok(lstatSync(join(dir, entries[0])).isSymbolicLink());
+    assert.match(result.stdout, /Linked 1 skill\(s\) and 0 group doctrine set\(s\)/,
+      'an empty group selection must report zero, not one empty entry');
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+// The mirror of the case above: a charter group with no promoted skills yet,
+// selected without core, leaves the skill list empty instead of the group list.
+// Both empty-array paths have to survive bash 3.2's `set -u`.
+test('link-skills.sh links a charter group with no skills as doctrine only', () => {
+  const withSkills = new Set(SKILLS.map((s) => s.group));
+  const empty = GROUPS.find((g) => !withSkills.has(g));
+  if (!empty) return; // Every group has a promoted skill; nothing to check here.
+
+  const dir = mkdtempSync(join(tmpdir(), 'link-skills-empty-'));
+  try {
+    const result = spawnSync(
+      'bash',
+      [join(root, 'scripts/link-skills.sh'), '--group', empty, '--no-core', '--target', dir],
+      { encoding: 'utf8' },
+    );
+    assert.equal(result.status, 0, `link-skills.sh --group ${empty} failed: ${result.stdout}${result.stderr}`);
+    assert.deepEqual(readdirSync(dir), [`rahulnakmol-${empty}-doctrine`],
+      'a group with no promoted skills must still get its doctrine link, and nothing else');
+    assert.match(result.stdout, /Linked 0 skill\(s\) and 1 group doctrine set\(s\)/,
+      'an empty skill selection must report zero, not one empty entry');
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test('link-skills.sh installs one symlink per promoted skill, overwriting none', () => {
   const dir = mkdtempSync(join(tmpdir(), 'link-skills-'));
   try {

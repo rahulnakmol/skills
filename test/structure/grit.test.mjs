@@ -57,7 +57,7 @@ const DOCTRINE = [
     minWords: 700 },
   { file: `${DIR}/HOOKS.md`,
     require: ['## What a stop hook does', '## Claude Code', '## OpenCode', '## GitHub Copilot',
-      '## Codex and Cursor', '## Continuous integration backstop', '## The approval boundary'],
+      '## Codex', '## Cursor', '## Continuous integration backstop', '## The approval boundary'],
     includes: ['decision', 'block', 'grit-gates.yml', '~/.grit/approved'],
     minWords: 700 },
 ];
@@ -77,6 +77,7 @@ test('grit preserves unlazy attribution on every adapted script (MIT license req
   const scripts = [
     ...walk(`${DIR}/scripts`, (p) => p.endsWith('.mjs')),
     ...walk('adapters/claude/hooks', (p) => p.endsWith('.mjs')),
+    ...walk('adapters/codex/hooks', (p) => p.endsWith('.mjs')),
   ];
   assert.ok(scripts.length >= 10, `expected at least 10 adapted .mjs scripts, found ${scripts.length}`);
   for (const rel of scripts) {
@@ -137,4 +138,35 @@ test('the installer keeps the Claude stop hook opt-in', () => {
   assert.ok(allMatch, 'install-adapters.sh must have an all) case arm');
   assert.ok(!allMatch[1].includes('install_claude_hooks'),
     'install-adapters.sh: the all) arm must not install hooks — hooks stay opt-in');
+});
+
+// The Codex hook inherits the opt-in posture ADR 0006 set for the Claude one:
+// a hook changes session behavior, so it is never picked up from a default.
+test('the installer keeps the Codex stop hook opt-in', () => {
+  const body = read('scripts/install-adapters.sh');
+  assert.match(body, /codex-hooks\)\s*install_codex_hooks/, 'install-adapters.sh must have a codex-hooks case arm');
+  const allMatch = body.match(/\ball\)\s*(.*)$/m);
+  assert.ok(allMatch, 'install-adapters.sh must have an all) case arm');
+  assert.ok(!allMatch[1].includes('install_codex_hooks'),
+    'install-adapters.sh: the all) arm must not install the Codex hook either');
+  // The plain --tool codex arm stays documentation-only, as it was before the
+  // hook existed; installing the hook is a separate, deliberate target.
+  assert.ok(!/\bcodex\|cursor\|copilot\)\s*[^\n]*install_codex_hooks/.test(body),
+    'install-adapters.sh: --tool codex must not install the hook');
+});
+
+// The shipped Stop entry must stay synchronous. Codex restricts control
+// effects to synchronous handlers, so an async:true entry would run, report,
+// and never block — the hook would look installed and enforce nothing.
+test('the shipped Codex hooks.json binds Stop to a synchronous command handler', () => {
+  const fragment = JSON.parse(read('adapters/codex/hooks/hooks.json'));
+  const groups = fragment.hooks?.Stop;
+  assert.ok(Array.isArray(groups) && groups.length === 1, 'hooks.json must declare exactly one Stop matcher group');
+  const handlers = groups[0].hooks;
+  assert.ok(Array.isArray(handlers) && handlers.length === 1, 'the Stop group must declare exactly one handler');
+  assert.equal(handlers[0].type, 'command', 'the handler must be a command handler');
+  assert.ok(!('async' in handlers[0]),
+    'the handler must not set async — only synchronous Codex hooks can apply control effects');
+  assert.match(handlers[0].command, /--grit-hook/, 'the command must carry the --grit-hook marker');
+  assert.match(handlers[0].command, /grit-stop-hook\.mjs/, 'the command must invoke the installed launcher');
 });

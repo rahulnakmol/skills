@@ -18,7 +18,8 @@ const SCOPE = [
   'site/_groups/branding.md', 'site/_groups/core.md', 'site/_groups/developer.md', 'site/_groups/pm.md',
   'site/_groups/productivity.md', 'site/_groups/writing.md',
   'site/_journeys/deliver-with-evidence.md', 'site/_journeys/run-a-product-org.md',
-  'site/leaders.md', 'site/index.html', 'site/404.html',
+  'site/leaders.md', 'site/tools.md', 'site/how-it-fits.md', 'site/example.md',
+  'site/index.html', 'site/404.html',
 ];
 
 // case-insensitive, word-boundary. Multi-word phrases match as literal
@@ -46,7 +47,7 @@ const EMOJI_RE = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{2B00}
 // registry of actual model IDs lives in models.md, and reuses this same
 // three-provider shape for scope, not duplicated logic.
 const MODEL_ID_RES = [/\bclaude-[a-z0-9.-]+/gi, /\bgpt-[a-z0-9.-]+/gi, /\bgemini-[a-z0-9.-]+/gi];
-const MODEL_ID_ALLOWED = new Set(['claude-code', 'claude-code-action']);
+const MODEL_ID_ALLOWED = new Set(['claude-code', 'claude-code-action', 'claude-hooks']);
 
 function prose(rawBody) {
   const { body } = splitFrontmatter(rawBody);

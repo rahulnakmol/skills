@@ -5,6 +5,7 @@ title: "Safeguard: Security Assessment and Hardening"
 description: "Safeguard runs the security assessment and hardening gate: a threat model, severity-ranked findings, and a remediation backlog before release."
 group: developer
 invocation: model-invoked
+scenario: "Threat-modeling the offline-sync path before QuenServe story E1-F1-S1 ships"
 lens:
   novice:
     who: 'You have shipped a feature and only learned about its security gaps after an incident.'
@@ -22,55 +23,198 @@ lens:
 
 ## What it does
 
-Safeguard is the security assessment and hardening gate that replaces a generic security review. At the design phase, it maps security boundaries and hardening tradeoffs and surfaces them to the user rather than assuming them. It runs again wherever an SDLC gate or a work item's pod charter calls for safeguard evidence. The output is a threat model summary, findings ranked by severity, and either a remediation backlog or the fixes themselves, depending on policy.
+Safeguard is the model-invoked charter for security assessment and hardening. It replaces a generic security review with a threat model, a severity-ranked findings list, and a remediation backlog, run at the design phase and again wherever a gate calls for safeguard evidence. Its own adapter states the separation the whole charter runs on: "Assessment, remediation, and risk acceptance are distinct responsibilities."
 
-## How to call it
+<div class="step-flow">
+  <div class="step"><span class="step-num">1</span><span class="step-label">Map the boundary</span><span class="step-text">Design phase first, per DDDD.md: security boundaries and hardening tradeoffs are surfaced to you, never assumed.</span></div>
+  <div class="step"><span class="step-num">2</span><span class="step-label">Build the threat model</span><span class="step-text">Assets, actors, abuse cases, and trust boundaries, each with an owner — not a category list generated with no reachable scenario behind it.</span></div>
+  <div class="step"><span class="step-num">3</span><span class="step-label">Assess and confirm</span><span class="step-text">Combine scanner evidence with contextual confirmation, and prioritize by reachability and real exposure, never by a severity score alone.</span></div>
+  <div class="step"><span class="step-num">4</span><span class="step-label">Contract the remediation</span><span class="step-text">Each confirmed finding gets an owner, evidence, and a target deadline; a separate pass verifies the fix — the assessor never marks its own work closed.</span></div>
+  <div class="step"><span class="step-num">5</span><span class="step-label">State the release recommendation</span><span class="step-text">One of four fixed states — no blocking findings, block, exception required, or insufficient evidence — never a looser summary in its place.</span></div>
+</div>
 
-Claude reaches for safeguard when a request matches its description: a security assessment, a hardening pass, or evidence for a secure-DevOps gate. A prompt like "Run a security assessment on this change before we merge it" triggers it.
+<ul class="benefits">
+  <li>A vulnerability shows up as a ranked finding on a backlog, not as an incident report after it has already caused damage.</li>
+  <li>Nobody, including safeguard's own assessor, approves their own remediation — a separate verification pass closes every confirmed fix.</li>
+  <li>A critical or high finding blocks the release recommendation before merge, rather than getting patched quietly and left unreviewed.</li>
+  <li>The release recommendation is always one of four fixed states, so a blocking finding cannot hide inside a vague summary.</li>
+</ul>
 
-Readers who do not have the skill pack installed yet can add it first:
+Its closure rule is just as fixed: "After remediation, invoke independent `security-verify` with original evidence, contract, diff, tests, rebuilt artifact/provenance, and deployment evidence available. Originating assessor does not mark verified."
+
+- [`DDDD.md`](https://github.com/tqnonline/skills/blob/main/skills/developer/DDDD.md) covers Discover and Define — why a security boundary is surfaced to you, not assumed from the code around it.
+- [`security.md`](https://github.com/tqnonline/skills/blob/main/adapters/opencode/agents/security.md) covers the threat model, the confirmation pipeline, and the fixed remediation statuses the adapter tracks.
+- [`METHOD.md`](https://github.com/tqnonline/skills/blob/main/skills/developer/sdlc/METHOD.md) covers Gate 1 and Gate 2 evidence and where safeguard's independent Gate 3 disposition fits.
+- [`responsible-ai-governance`](https://github.com/tqnonline/skills/blob/main/skills/developer/responsible-ai-governance/SKILL.md) covers the frameworks layered on top when the boundary sits in a regulated industry or a consequential automated decision.
+
+Safeguard reads each one only when the moment calls for it: mapping the boundary reads DDDD.md, running the threat model reads the adapter, clearing a gate reads METHOD.md, a regulated boundary reads the overlay.
+
+## When to reach for it
+
+Nothing types `/safeguard` in Claude Code. Safeguard is model-invoked, reached three ways. An SDLC gate — one of the sign-off points in the sdlc skill's own design-build-secure-release loop — calling for safeguard evidence reaches it. A work item's pod charter, the roster of roles a work item's charter names as responsible for it, reaches it by naming the safeguard role. And a request whose wording matches the skill's own description reaches it directly.
+
+You reach for safeguard in three moments. A new trust boundary is about to open — a public endpoint, a partner integration, a new input surface — and nothing has threat-modeled it yet. A finding surfaced somewhere else needs a severity rank and an owner before it can move to a backlog. A release is close, and the gate needs a recorded security disposition before it can clear.
+
+Safeguard is not the only skill that touches security or release. This table separates its job from its nearest neighbors:
+
+| The problem | The skill |
+|---|---|
+| You need the cross-cutting technical design the threat model sits inside | [`architect`]({{ '/architect/' | relative_url }}) |
+| You need the release-readiness checklist, not a threat model | [`deliver`]({{ '/deliver/' | relative_url }}) |
+| You need the whole gated loop, not an isolated security pass | [`sdlc`]({{ '/sdlc/' | relative_url }}) |
+| Your work touches a regulated industry or a consequential automated decision | [`responsible-ai-governance`]({{ '/responsible-ai-governance/' | relative_url }}) |
+| You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
+
+Install once, and every tool below reaches the same safeguard skill:
 
 ```bash
 npx skills@latest add tqnonline/skills
-./scripts/install-adapters.sh
 ```
+
+Readers who only want safeguard can skip the rest of the catalog with `./scripts/link-skills.sh --skill safeguard`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Plain ask, no slash command</span></div>
+<div class="tool-group-body">
+<p>Safeguard has no slash command of its own. Claude reaches for it when the sdlc skill's secure-DevOps gate calls for safeguard evidence, or when a request's wording matches the skill's own description — a security assessment, a hardening pass, evidence for a secure-DevOps gate — directly in chat.</p>
+<div class="prompt-card">We are shipping the offline-sync path for story E1-F1-S1: the sync client pushes a device's queued inspections to the server's ingestion endpoint once connectivity returns. Run a security assessment before we merge it: threat-model the sync path, rank the findings by severity, and stop before fixing anything critical so I can see it first.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>Safeguard returns the threat model summary and the ranked findings, and stops before touching a critical finding until you have seen it.</p>
+</div>
+</div>
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Command file, security agent</span></div>
+<div class="tool-group-body">
+<p><code>./scripts/install-adapters.sh --tool opencode</code> installs the real <code>/security</code> command from <code>adapters/opencode/commands/security.md</code>, bound to the security agent. It applies the same charter: clarify the security scope, build a candidate threat and control model, run the adversarial challenge, and stay passive unless active testing is explicitly authorized.</p>
+<div class="prompt-card">/security Threat-model the offline-sync path for story E1-F1-S1 before we ship it &mdash; the sync client's connection to the server's ingestion endpoint. Stay passive, no active testing — this is a design-time review. Rank findings by severity and flag anything critical for me before any fix is orchestrated.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>The command returns the threat model and the ranked findings; a critical one waits for a separate verification pass before its status can advance.</p>
+</div>
+</div>
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply safeguard as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Codex additionally reads a generated companion file, <code>agents/openai.yaml</code>, so it sees safeguard's name and description the same way the other tools do. GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Before we merge the offline-sync path for story E1-F1-S1, threat-model it the way skills/developer/safeguard/SKILL.md and DDDD.md describe. Rank findings by severity and tell me plainly if anything is critical, rather than quietly patching it.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the threat model and the findings list directly in their reply, since none has a command's output to parse.</p>
+</div>
+</div>
+
+A good ask includes:
+
+- Where the boundary sits — which endpoint, which trust boundary, which data crosses it.
+- Whether the assessment may run active tests, or must stay passive and design-time only.
+- What should happen to a critical finding — stop and escalate, or a remediation backlog item.
+- Whether the work touches a regulated industry, so the governance overlay's audit and explainability requirements apply from the start.
+
+## A working example
+
+The boundary under assessment is the offline-sync path of story E1-F1-S1, one story inside epic E1 on [QuenServe]({{ '/example/' | relative_url }}) — the field-inspection product every scenario on this site returns to. You type:
+
+<pre><code>We are shipping the offline-sync path for story E1-F1-S1: the sync client pushes a device's queued inspections to the server's ingestion endpoint once connectivity returns. Run a security assessment before we merge it: threat-model the sync path, rank the findings by severity, and stop before fixing anything critical so I can see it first.</code></pre>
+
+Safeguard maps the boundary first: the sync client authenticates to the ingestion endpoint with the inspector's own device credential, and the endpoint has to accept a batch of records that queued for hours or days while the device stayed offline. It stays passive, since no active testing was authorized, and threat-models the boundary against that one entry point rather than the whole service.
+
+The assessment it returns, shown here as the document the agent produces, not as executed output:
+
+<pre><code>Threat model summary
+  - Boundary: sync-client &rarr; ingestion endpoint, owner: offline-sync team
+  - Assets in scope: queued inspection payloads, the device sync credential
+
+Findings (severity-ranked)
+  - SG1 [high]: the ingestion endpoint keys idempotency off a
+    client-supplied timestamp instead of the inspection id, evidence:
+    two inspections queued in the same clock tick collide and one
+    is silently dropped
+  - SG2 [medium]: a malformed field in a queued payload is dropped
+    rather than rejected, evidence: the endpoint's 200 response on
+    a payload missing a required field
+
+Remediation
+  - SG1: backlog item, status: CONFIRMED, target: before ship
+  - SG2: fix applied in a pull request, status: VERIFIED PREDEPLOY</code></pre>
+
+This is the shape the skill's own output contract requires — a threat model summary, findings ranked by severity, and a remediation backlog or fixes per policy — not a captured terminal run, since safeguard ships no runnable script of its own. SG1 stays a high, unresolved finding, so the assessment's own release recommendation reads `BLOCK`, exactly as its adapter's fixed vocabulary requires — never a quiet pass with an open high-severity finding still on the ledger.
 
 ## What good looks like
 
 <div class="compare-grid">
 <div class="compare-card">
 <div class="compare-card-head">A safeguard run that earns the gate</div>
-<pre><code><span class="tok-ok">Scope:</span> security boundaries confirmed with the user before design
+<pre><code><span class="tok-ok">Scope:</span> sync-path ingress confirmed with you before design
 <span class="tok-ok">Threat model:</span> documented, each boundary has an owner
-<span class="tok-ok">Findings:</span> 2 high, 1 medium &mdash; each ranked by severity
-<span class="tok-ok">Critical finding:</span> escalated per the verifier path</code></pre>
-<div class="compare-card-note">The scope was confirmed, not assumed, and the critical finding went to escalation, not a quiet patch.</div>
+<span class="tok-ok">Findings:</span> SG1 high, SG2 medium &mdash; each ranked by severity
+<span class="tok-ok">Release recommendation:</span> BLOCK while SG1 stays open</code></pre>
+<div class="compare-card-note">The scope was confirmed, not assumed, and an open high finding blocks release rather than being approved as it stands.</div>
 </div>
 <div class="compare-card compare-card--warn">
 <div class="compare-card-head">The wrong turn to watch for</div>
-<pre><code>Scope: <span class="tok-warn">assumed, never confirmed with the user</span>  <span class="tok-comment">&larr; stop condition, not a guess</span>
-Critical finding: <span class="tok-warn">patched quietly, no escalation</span>  <span class="tok-comment">&larr; violates the escalation rule</span></code></pre>
-<div class="compare-card-note">Missing scope is a stop, not an assumption to fill in. A critical finding always escalates through the adapter's `-max` or verifier path.</div>
+<pre><code>Scope: <span class="tok-warn">assumed, never confirmed with you</span>  <span class="tok-comment">&larr; stop condition, not a guess</span>
+SG1: <span class="tok-warn">jumps straight to DEPLOYED</span>  <span class="tok-comment">&larr; skips the predeploy verification step</span></code></pre>
+<div class="compare-card-note">Missing scope is a stop, not an assumption to fill in. The adapter's own status order forbids jumping from a source fix straight to a deployment or postdeployment claim.</div>
 </div>
 </div>
 
-## In practice
+## Common questions
 
-Safeguard ships no runnable script of its own; the deliverable is the assessment itself. The block below is not a captured run &mdash; it is the shape `SKILL.md`'s output contract requires: "Threat model summary, findings severity, remediation backlog or fixes per policy."
+<details class="qa">
+<summary>What if the security boundary is not scoped yet?</summary>
+<div class="qa-body">
 
-<pre><code>Threat model summary
-  - Boundary: <trust boundary>, owner: <role>
-  - Assets in scope: <list>
+SKILL.md's stop condition is direct: missing scope or a SPEC-TS ledger — the scope, requirements, and success-metrics record — means stop, before the threat model starts. A boundary guessed from the surrounding code is the exact shortcut this stop condition exists to prevent.
 
-Findings (severity-ranked)
-  - <id> [critical|high|medium|low]: <finding>, evidence: <reference>
+</div>
+</details>
 
-Remediation
-  - <finding id>: backlog item <link>  |  fix applied in <commit/PR></code></pre>
+<details class="qa">
+<summary>Can safeguard run active exploit tests?</summary>
+<div class="qa-body">
 
-## How it works
+Only with explicit authorization. Its adapter fails closed on active techniques: without authorization covering the target, owner, environment, technique, and stop conditions, it performs a passive static review only, and never infers authorization from repository access or broad task wording alone.
 
-1. **Design phase first.** Map security boundaries and hardening tradeoffs and surface them to the user rather than assuming them. See [`DDDD.md`](https://github.com/tqnonline/skills/blob/main/skills/developer/DDDD.md).
-2. **Load the adapter.** The security specialist charter that runs the threat model and control design. See [`security.md`](https://github.com/tqnonline/skills/blob/main/adapters/opencode/agents/security.md).
-3. **Follow the gates.** SPEC-TS and the human gates that govern the secure-DevOps phase. See [`METHOD.md`](https://github.com/tqnonline/skills/blob/main/skills/developer/sdlc/METHOD.md).
-4. **Regulated context.** Apply the governance overlay when the work touches a regulated industry or a consequential automated decision. See [`responsible-ai-governance`](https://github.com/tqnonline/skills/blob/main/skills/developer/responsible-ai-governance/SKILL.md).
+</div>
+</details>
+
+<details class="qa">
+<summary>Who confirms a fix actually closed the finding?</summary>
+<div class="qa-body">
+
+A separate, independent verification pass — never the assessor who found it. The adapter states this plainly: the originating assessor does not mark a finding verified, so closure always carries a second reviewer.
+
+</div>
+</details>
+
+<details class="qa">
+<summary>Can a finding just be marked a false positive to move past it?</summary>
+<div class="qa-body">
+
+Only with evidence. A false-positive status requires reproducible non-applicability evidence, the affected artifact's digest, and an independent reviewer's identity — a status choice, not an escape hatch from an inconvenient finding.
+
+</div>
+</details>
+
+<details class="qa">
+<summary>Does this work outside Claude Code?</summary>
+<div class="qa-body">
+
+Yes, with the same charter applied differently. OpenCode reaches it through an installed `/security` command bound to the security agent; Cursor, Codex, and GitHub Copilot read the same skill catalog as context and apply the procedure without a command layer of their own.
+
+</div>
+</details>
+
+## It's working if
+
+- Every security boundary that reaches release was confirmed with you, not assumed from the code sitting around it.
+- A finding always carries a severity rank and a named owner, never a vague sense that something looks risky.
+- A critical or high finding blocks the release recommendation until an independent pass verifies the fix, not just a source review.
+- The four release states — no blocking findings, block, exception required, insufficient evidence — appear on the record, not only in a chat reply.
+
+If a finding's status jumps straight to deployed with no verified-predeploy step in between, the discipline has failed while the finding still reads fixed.
+
+## Where it fits
+
+**Safeguard is the security lane inside the gated build loop, and the skill a pod charter names whenever a work item needs a threat model or a hardening pass.**
+
+Its nearest neighbor is `architect`: the two run alongside each other at the design phase, safeguard threat-modeling the same boundary architect just drew. `deliver`'s release-readiness checklist is where a lingering safeguard finding still has to be accounted for before a stack ships, and `responsible-ai-governance` layers its own audit and explainability controls on top wherever the boundary sits in a regulated industry.
+
+If none of this settles which skill fits, `ask-fde` routes you — its own routing map names security as the intent that points straight to safeguard.

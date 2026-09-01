@@ -19,7 +19,7 @@
     <button type="button" class="lens-tab tab" role="tab" :class="{ 'is-active': lensId === 'practitioner' }" :aria-selected="lensId === 'practitioner'" @click="pick('practitioner')">Practitioner</button>
     <button type="button" class="lens-tab tab" role="tab" :class="{ 'is-active': lensId === 'leader' }" :aria-selected="lensId === 'leader'" @click="pick('leader')">Leader</button>
     <button type="button" class="lens-tab tab" role="tab" :class="{ 'is-active': lensId === 'csuite' }" :aria-selected="lensId === 'csuite'" @click="pick('csuite')">C-suite</button>
-    <span class="lens-hint">the page reframes for who you are</span>
+    <span class="lens-hint">Pick your role. These two panels change to match.</span>
   </div>
 
   <div class="lens-panel" x-show="lensId === 'novice'">

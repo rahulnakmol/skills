@@ -25,6 +25,7 @@ description: "TQN Skills documents every skill in The Quentin's skill library â€
       <a class="btn-primary lift cta" href="#journeys">Start your journey <span class="go">&rarr;</span></a>
       <span class="code-chip lift" title="Install the skills with the community npx installer">npx skills add tqnonline/skills</span>
     </div>
+    <p class="hero-sub rise d4"><strong>Not sure which skill to start, or how one hands off to the next?</strong> <a href="{{ base_path }}how-it-fits/">See how it fits &rarr;</a></p>
   </div>
 </section>
 
@@ -34,11 +35,11 @@ description: "TQN Skills documents every skill in The Quentin's skill library â€
     <div class="role-grid">
       <div class="role-card lift is-active" :class="{ 'is-active': picked === 'engineer' }" @click="picked = 'engineer'">
         <div class="role-name">An engineer</div>
-        <div class="role-blurb">Ship software with agents you can actually trust.</div>
+        <div class="role-blurb">Ship software with agents you can actually trust â€” QuenServe's own delivery story shows how.</div>
       </div>
       <div class="role-card lift" :class="{ 'is-active': picked === 'product' }" @click="picked = 'product'">
         <div class="role-name">A product leader</div>
-        <div class="role-blurb">Go from a fuzzy problem to a result you can measure.</div>
+        <div class="role-blurb">Go from a fuzzy problem, like QuenServe's field-connectivity gap, to a result you can measure.</div>
       </div>
       <div class="role-card lift" :class="{ 'is-active': picked === 'novice' }" @click="picked = 'novice'">
         <div class="role-name">New to agents</div>
@@ -85,6 +86,9 @@ description: "TQN Skills documents every skill in The Quentin's skill library â€
       <a class="role-path-open" href="{{ base_path }}leaders/">What this changes for leaders &rarr;</a>
     </div>
   </div>
+
+  <div class="section-kicker">Or answer three quick questions</div>
+  {% include chooser.html %}
 </section>
 
 <section class="section">
