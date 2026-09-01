@@ -193,7 +193,7 @@ No — `SKILL.md`'s second stop condition blocks exactly this: a process flow wi
 <summary>Why does the persona style change between the two hats?</summary>
 <div class="qa-body">
 
-`HATS.md` draws the line directly: under the product hat, personas are end users, named with behaviors and feelings, the kind of persona a PRD's acceptance criteria are written against. Under the transformation hat, they are organizational actors — a claims processor, a regional finance lead — described with a RACI role rather than a feeling, because the audience reading the document is different in each case.
+`HATS.md` draws the line directly: under the product hat, personas are end users, named with behaviors and feelings, the kind of persona a product requirements document's acceptance criteria are written against. Under the transformation hat, they are organizational actors — a claims processor, a regional finance lead — described with a RACI role rather than a feeling, because the audience reading the document is different in each case.
 
 </div>
 </details>
@@ -229,6 +229,6 @@ If a document keeps passing review because each individual figure is simple whil
 
 Map is the Define-phase step directly after discover in the pm group's own Discover-Define-Design-Deliver cycle: it reads the analysis discover confirmed and fixes what will actually be produced — the personas, the flows, the document — as the baseline everyone downstream now builds against. Its upstream dependency is `discover`; its downstream handoff splits by hat, to `carve` under product and `tom-architect` under transformation.
 
-`VISUALS.md`'s compression rule is not unique to map — `roadmap` and `report` reference the same doctrine before they ship a figure — but map is where it first applies inside the pipeline, on the document the Framing gate reads before any epic or TOM exists.
+`VISUALS.md`'s compression rule is not unique to map: `roadmap` and `report` reference the same doctrine before they ship a figure. Map is where it first applies inside the pipeline, on the document the Framing gate reads before any epic or target operating model exists.
 
 If none of this settles which skill fits at all, `ask-pm` routes you — plain-language intent goes in, one skill name and a one-line reason come back out.

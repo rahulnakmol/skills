@@ -150,7 +150,7 @@ STATUS NARRATIVE (generated from the registers above):
   mitigation. One open dependency on the platform team is holding the
   auto-fill report generator in NEXT rather than NOW.</code></pre>
 
-This is the shape the output contract requires, not a captured run — RAID has no companion script; the document above is written by the skill directly into `specs/{prefix}-raid.md`. The narrative's last sentence is not written from memory: it reads directly off D-09, the same dependency `roadmap` reads from this register when it decides the auto-fill report generator belongs in NEXT rather than NOW.
+This is the shape the output contract requires, not a captured run — RAID has no companion script; the document above is written by the skill directly into `specs/{prefix}-raid.md`. PI-12 in that register is a program increment, the fixed planning cycle the platform team commits work into. The narrative's last sentence is not written from memory: it reads directly off D-09, the same dependency `roadmap` reads from this register when it decides the auto-fill report generator belongs in NEXT rather than NOW.
 
 ## What good looks like
 

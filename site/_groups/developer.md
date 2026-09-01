@@ -12,7 +12,7 @@ You have watched an agent write code that looked right and was not. You have als
 
 Getting an agent to write code is not the hard part. A short prompt and a few minutes produce a plausible diff more often than not, and that ease is exactly what makes the next mistake so tempting. Something subtle goes wrong — a race condition, a requirement half-understood — and the instinctive fix is to add more agents: a second opinion here, a verifier there, a wider fan-out hoping quantity catches what evidence would have caught directly. This repository's own routing doctrine has a name for that instinct: fan-out without partition, parallel branches that are not actually independent, silently duplicating effort and inflating cost for no real gain in coverage or confidence. Call the whole pattern the fan-out reflex — reaching for more agents when what the moment actually needed was a ledger, a gate, or a named human decision.
 
-`conduct`'s rubric is the discipline that resists the reflex. It climbs a fixed staircase, and every step up has to earn itself in independence, self-review risk, durable state, or consequence — never in how sophisticated the diagram looks.
+`conduct`'s rubric is the discipline that resists the reflex. It climbs a fixed staircase, and every step up has to be justified by independence, self-review risk, durable state, or consequence — never by how sophisticated the diagram looks.
 
 <figure style="margin:1.5rem 0 0.75rem;">
 <svg viewBox="0 0 480 220" role="img" aria-labelledby="stairsTitle stairsDesc" style="width:100%;max-width:460px;height:auto;display:block;">
@@ -36,7 +36,7 @@ Getting an agent to write code is not the hard part. A short prompt and a few mi
   <path d="M 412 32 Q 425 20 438 32 L 438 40 L 412 40 Z"/>
 </g>
 </svg>
-<figcaption style="font-size:0.85rem; color:var(--muted); margin-top:0.4rem;">The bias runs downhill: prefer no loop when one agent suffices, and climb only on the rubric's own evidence. The graph's top step always carries a named human decision, not an extra agent.</figcaption>
+<figcaption style="font-size:0.85rem; color:var(--muted); margin-top:0.4rem;">The default sits at the lowest step: prefer no loop when one agent suffices, and climb only on the rubric's own evidence. The graph's top step always carries a named human decision, not an extra agent.</figcaption>
 </figure>
 
 ## What that discipline looks like in one work item
@@ -57,20 +57,20 @@ Working in this group is not mostly writing code. It is reading gate ledgers, ch
 Fifteen skills carry the pipeline, five you call directly and ten the model reaches for on its own once a request matches what they do.
 
 - [`update-models`]({{ '/update-models/' | relative_url }}) — research provider catalogs and propose a reviewable diff to the shared model registry.
-- [`impact`]({{ '/impact/' | relative_url }}) — turn a raw idea into a signed PRD through a grill loop that tests it.
+- [`impact`]({{ '/impact/' | relative_url }}) — turn a raw idea into a signed product requirements document (PRD) through a grill loop that tests it.
 - [`sdlc`]({{ '/sdlc/' | relative_url }}) — walk a ready work item through the gated design-build-secure-release loop.
-- `shakedown` — build, test, and review a pull request in an isolated sandbox before merge.
+- [`shakedown`]({{ '/shakedown/' | relative_url }}) — build, test, and review a pull request in an isolated sandbox before merge.
 - [`ask-fde`]({{ '/ask-fde/' | relative_url }}) — route a plain request to whichever skill here actually fits.
 - [`conduct`]({{ '/conduct/' | relative_url }}) — decide whether delivery work runs as a loop, a graph, or a hybrid.
 - [`model-routing`]({{ '/model-routing/' | relative_url }}) — resolve which model tier a task node runs on, from the shared registry.
 - [`recon`]({{ '/recon/' | relative_url }}) — brief an inherited codebase, read-only, before any other work starts.
 - [`slice`]({{ '/slice/' | relative_url }}) — decompose a signed PRD into contract-complete backlog items.
 - [`raise`]({{ '/raise/' | relative_url }}) — publish that backlog to a tracker with pickup-protocol labels attached.
-- `architect` — turn a scoped requirement into bounded components and recorded design decisions.
-- `safeguard` — run the security assessment and hardening gate before release.
-- `deliver` — verify release readiness and stack a large change into reviewable pull requests.
-- `operate` — cover a system after it ships: reliability, quality, and maintenance.
-- `responsible-ai-governance` — overlay audit, explainability, and human-checkpoint requirements where the work is regulated.
+- [`architect`]({{ '/architect/' | relative_url }}) — turn a scoped requirement into bounded components and recorded design decisions.
+- [`safeguard`]({{ '/safeguard/' | relative_url }}) — run the security assessment and hardening gate before release.
+- [`deliver`]({{ '/deliver/' | relative_url }}) — verify release readiness and stack a large change into reviewable pull requests.
+- [`operate`]({{ '/operate/' | relative_url }}) — cover a system after it ships: reliability, quality, and maintenance.
+- [`responsible-ai-governance`]({{ '/responsible-ai-governance/' | relative_url }}) — overlay audit, explainability, and human-checkpoint requirements where the work is regulated.
 
 The card grid below carries the same fifteen with their full descriptions.
 

@@ -32,7 +32,7 @@ journey_next: grit
 SDLC runs the full gated software delivery loop for a scoped work item, from design through build, security, quality, and release. Every substantial run keeps one ledger — SPEC-TS, short for Scope, Product requirements, Engineering constraints, Components, Trade-offs, and Success metrics — and nothing consequential proceeds while that ledger is missing or stale.
 
 <div class="step-flow">
-  <div class="step"><span class="step-num">1</span><span class="step-label">Snapshot SPEC-TS</span><span class="step-text">Pull the ledger from the PRD or work item body before walking a single gate.</span></div>
+  <div class="step"><span class="step-num">1</span><span class="step-label">Snapshot SPEC-TS</span><span class="step-text">Pull the ledger from the product requirements document (PRD) or work item body before walking a single gate.</span></div>
   <div class="step"><span class="step-num">2</span><span class="step-label">Design twice</span><span class="step-text">Design Pass 1, the candidate plan, then Design Pass 2, the challenge that attacks its own assumptions before scope freezes.</span></div>
   <div class="step"><span class="step-num">3</span><span class="step-label">Verify thrice</span><span class="step-text">Gate 1 checks alignment before execution; Gate 2 checks the design and tasks before mutation; Gate 3 checks the outcome after it, independently.</span></div>
   <div class="step"><span class="step-num">4</span><span class="step-label">Implement once</span><span class="step-text">One approved phase, one writer, inside the scope Gate 2 froze — no opportunistic redesign along the way.</span></div>
@@ -62,8 +62,8 @@ You reach for it in two moments. A work item's label reads `ready`, and its cont
 |---|---|
 | The work item is not `ready` yet, or was never critiqued | [`slice`]({{ '/slice/' | relative_url }}) |
 | You need loop-versus-graph routing decided before sdlc starts | [`conduct`]({{ '/conduct/' | relative_url }}) |
-| You need the acceptance-gate ledger's own depth and audit discipline, not the loop that runs around it | `grit` |
-| You need an isolated, pre-merge review of a pull request that already claims done | `shakedown` |
+| You need the acceptance-gate ledger's own depth and audit discipline, not the loop that runs around it | [`grit`]({{ '/grit/' | relative_url }}) |
+| You need an isolated, pre-merge review of a pull request that already claims done | [`shakedown`]({{ '/shakedown/' | relative_url }}) |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
 <div class="tool-block">

@@ -23,7 +23,7 @@ lens:
 
 ## What it does
 
-Grill interrogates a PM artifact — an analysis, a manifest, a case, or a PRD — in themed rounds of three to five questions until it earns the right to advance through a gate, or the user explicitly stops. Each round restates the sharpened scope in three sentences or fewer and closes with the same three-way choice: continue, stop, or move to sign-off. Grill runs in one of three modes: a plain round protocol, grill-with-docs when a research corpus exists, or provoke for contrasting intuition-agent hypotheses. Provoke mode pushes toward star 7 or 8 ambition, the differentiated end of the eleven-star scale, which runs from broken (1) to a design exercise no team ships (11). Before any sign-off, grill runs the pre-gate blind-spot checklist. The round protocol is shared directly with the developer group's `core/GRILL.md`, not reinvented.
+Grill interrogates a PM artifact — an analysis, a manifest, a case, or a PRD (a product requirements document) — in themed rounds of three to five questions until it earns the right to advance through a gate, or the user explicitly stops. Each round restates the sharpened scope in three sentences or fewer and closes with the same three-way choice: continue, stop, or move to sign-off. Grill runs in one of three modes: a plain round protocol, grill-with-docs when a research corpus exists, or provoke for contrasting intuition-agent hypotheses. Provoke mode pushes toward star 7 or 8 ambition, the differentiated end of the eleven-star scale, which runs from broken (1) to a design exercise no team ships (11). Before any sign-off, grill runs the pre-gate blind-spot checklist. The round protocol is shared directly with the developer group's `core/GRILL.md`, not reinvented.
 
 <div class="step-flow">
   <div class="step"><span class="step-num">1</span><span class="step-label">Choose the mode</span><span class="step-text">Plain round protocol, grill-with-docs when a research corpus exists, or provoke for intuition-agent hypotheses.</span></div>
@@ -53,7 +53,7 @@ Grill is not the only skill that touches whether an artifact is ready. This tabl
 | The problem | The skill |
 |---|---|
 | You need the artifact scored on a fixed rubric after it has already survived interrogation | [`prd-review`]({{ '/prd-review/' | relative_url }}) |
-| You need the business case this loop is threaded through before it reaches the Investment gate | [`case`]({{ '/case/' | relative_url }}) |
+| You need the business case this loop is threaded through before it reaches Investment, the gate where a sponsor commits budget | [`case`]({{ '/case/' | relative_url }}) |
 | You need the epic breakdown this loop is threaded through before it enters the manifest | [`carve`]({{ '/carve/' | relative_url }}) |
 | You need the PRD this loop is threaded through before it goes to prd-review | [`prd-draft`]({{ '/prd-draft/' | relative_url }}) |
 | You are not sure which pm skill fits at all | [`ask-pm`]({{ '/ask-pm/' | relative_url }}) |

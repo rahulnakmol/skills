@@ -28,7 +28,7 @@ PRD Draft is the pm group's requirements author and its own first reviewer, writ
 The pass never short-circuits: all nine checks run and are recorded, ending in PASS, PASS WITH WARNINGS, or FAIL. Any failure in the first four critical checks — sections present, named personas, acceptance criteria, priority and complexity — blocks the PRD regardless of how the other five land. A failure is fixed by redrafting, since validation only ever reports, it never repairs what it checks. This skill absorbed the former prd-validate skill's checks, so one invocation both drafts and validates.
 
 <div class="step-flow">
-  <div class="step"><span class="step-num">1</span><span class="step-label">Read the upstream baseline</span><span class="step-text">The epic manifest and the understanding document or TOM it was carved from.</span></div>
+  <div class="step"><span class="step-num">1</span><span class="step-label">Read the upstream baseline</span><span class="step-text">The epic manifest and the understanding document or target operating model (TOM) it was carved from.</span></div>
   <div class="step"><span class="step-num">2</span><span class="step-label">Populate all twelve sections</span><span class="step-text">One self-contained PRD per epic, never a monolithic document covering several at once.</span></div>
   <div class="step"><span class="step-num">3</span><span class="step-label">Write INVEST stories</span><span class="step-text">Given-When-Then acceptance criteria, at least one error scenario per story.</span></div>
   <div class="step"><span class="step-num">4</span><span class="step-label">Run a grill pass</span><span class="step-text">With-docs mode when a research corpus exists, before the Quality gate.</span></div>

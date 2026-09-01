@@ -126,7 +126,7 @@ This page answers three questions: which skill runs first, what you hand to the 
 <li>A dependency recorded as a field, not assumed — Independent made checkable.</li>
 <li>The DIVE verdict a sponsor reads before signing the <strong>Investment</strong> gate, beside the case's costs.</li>
 </ol>
-<p>Carve fixes only the epic, the hierarchy's top. A <strong>feature</strong> is a slice of an epic built around one capability; a <strong>user story</strong> is one thing a kind of user can now do. Both, and the parent link tying a story to its epic, are cut later by <code>slice</code>, from the PRD each epic earns. That PRD is drafted by <a href="{{ '/prd-draft/' | relative_url }}">prd-draft</a> and scored by <a href="{{ '/prd-review/' | relative_url }}">prd-review</a> at the <strong>Quality</strong> gate, or, for a self-contained engineering change, written by <a href="{{ '/impact/' | relative_url }}">impact</a> and signed at its own G2.</p>
+<p>Carve fixes only the epic, the hierarchy's top. A <strong>feature</strong> is a slice of an epic built around one capability; a <strong>user story</strong> is one thing a kind of user can now do. Both, and the parent link tying a story to its epic, are cut later by <code>slice</code>, from the product requirements document (PRD) each epic earns. That PRD is drafted by <a href="{{ '/prd-draft/' | relative_url }}">prd-draft</a> and scored by <a href="{{ '/prd-review/' | relative_url }}">prd-review</a> at the <strong>Quality</strong> gate, or, for a self-contained engineering change, written by <a href="{{ '/impact/' | relative_url }}">impact</a> and signed at its own G2.</p>
 </div>
 
 <div class="hif-stage">

@@ -23,7 +23,7 @@ lens:
 
 ## What it does
 
-Realize tracks whether an initiative actually delivered what its case projected, entering every case-projected benefit into a register with a trace back to the case and the PRD's success metrics. Each benefit carries at least one leading indicator — a signal chosen because it moves before the lagging, final outcome does — so a divergence is visible during delivery rather than only at the retrospective. Actuals are recorded as they arrive and compared against `COSTING.md`'s projections on both cost and benefit. Every benefit rolls up to the practice's north star: efficiency and productivity as the overall transformation value the practice exists to deliver. Where a variance is significant, it re-enters `discover` or `carve` as new work, carrying its own case.
+Realize tracks whether an initiative actually delivered what its case projected, entering every case-projected benefit into a register with a trace back to the case and the product requirements document's success metrics. Each benefit carries at least one leading indicator — a signal chosen because it moves before the lagging, final outcome does — so a divergence is visible during delivery rather than only at the retrospective. Actuals are recorded as they arrive and compared against `COSTING.md`'s projections on both cost and benefit. Every benefit rolls up to the practice's north star: efficiency and productivity as the overall transformation value the practice exists to deliver. Where a variance is significant, it re-enters `discover` or `carve` as new work, carrying its own case.
 
 <div class="step-flow">
   <div class="step"><span class="step-num">1</span><span class="step-label">Deliver phase</span><span class="step-text">Enter every case-projected benefit into the register with its trace back to the case and PRD.</span></div>
@@ -123,7 +123,7 @@ You type:
 
 <pre><code>The field-inspection copilot has been live for one PI. Record this cycle's actuals against the case's projections for inspection turnaround and triage cost, and report either figure unmet plainly if it missed, rather than resizing the target.</code></pre>
 
-Realize opens the case's original projections — 6 days down to 2 days on turnaround, $260k down to $95k a year on triage cost — and records this cycle's actuals against them exactly as they were originally stated, per `BENEFITS.md`'s trace-back rule:
+A PI is a program increment: the fixed planning cycle these teams deliver in. Realize opens the case's original projections — 6 days down to 2 days on turnaround, $260k down to $95k a year on triage cost — and records this cycle's actuals against them exactly as they were originally stated, per `BENEFITS.md`'s trace-back rule:
 
 <pre><code># Benefits: field-inspection-copilot
 
@@ -222,7 +222,7 @@ BENEFITS.md states this is the entire point of the register's second half: "the 
 ## It's working if
 
 - Every benefit in the register carries a leading indicator that moved before the lagging outcome was known.
-- A miss reads UNMET on the page, next to the original projection, not a revised number dressed up as MET.
+- A miss reads UNMET on the page, next to the original projection, not a revised number recorded as MET.
 - A significant variance shows up as a new entry in `discover` or `carve`, carrying its own case, rather than sitting in the register unaddressed.
 - Every benefit's contribution to the north star is stated, not assumed, and an initiative that cannot state one gets raised in the grill instead of a pass.
 

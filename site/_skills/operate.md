@@ -29,7 +29,7 @@ Operate is the model-invoked charter for a system after it is built: reliability
   <div class="step"><span class="step-num">1</span><span class="step-label">Measure against the baseline</span><span class="step-text">Check operational readiness, quality, and maintainability against the original Design baseline, not against a green build alone.</span></div>
   <div class="step"><span class="step-num">2</span><span class="step-label">Scope the run</span><span class="step-text">Cover only the lanes the request actually touches, and name every lane it left out rather than staying silent about it.</span></div>
   <div class="step"><span class="step-num">3</span><span class="step-label">Reliability lane</span><span class="step-text">An SLO (a service-level objective, a measurable reliability target) with a named owner and an alert threshold for every service boundary, plus dashboards, runbooks, and declared incident roles.</span></div>
-  <div class="step"><span class="step-num">4</span><span class="step-label">Quality lane</span><span class="step-text">Audit the SPEC-TS ledger for testability, then record test gaps against the coverage floors and the technical debt the slice carries.</span></div>
+  <div class="step"><span class="step-num">4</span><span class="step-label">Quality lane</span><span class="step-text">Audit the SPEC-TS ledger — the scope, requirements, and success-metrics record — for testability, then record test gaps against the coverage floors and the technical debt the slice carries.</span></div>
   <div class="step"><span class="step-num">5</span><span class="step-label">Maintenance lane and return</span><span class="step-text">Patch review, dependency updates, and debt burn-down on a fixed cadence; every finding returns to the backlog through slice, never ending as a document nobody acts on.</span></div>
 </div>
 
@@ -206,7 +206,7 @@ Back into the backlog, through `slice`, as a continuous-improvement item — nev
 <summary>Why does maintenance run on a schedule instead of only after an incident?</summary>
 <div class="qa-body">
 
-Because incident-triggered maintenance is really incident response wearing a different name. `CADENCE.md` states the cadence holds precisely when nothing is broken, so dependency and debt work does not sit accumulating in the gap between one incident and the next.
+Because incident-triggered maintenance is really incident response under another name. `CADENCE.md` states the cadence holds precisely when nothing is broken, so dependency and debt work does not sit accumulating in the gap between one incident and the next.
 
 </div>
 </details>

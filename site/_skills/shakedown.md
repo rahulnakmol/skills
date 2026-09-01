@@ -84,7 +84,7 @@ Shakedown is not the only skill that touches a pull request. This table separate
 <div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
 <div class="tool-block-body">
 <p><code>./scripts/install-adapters.sh --tool opencode</code> installs the deterministic workflow runner; the <code>shakedown</code> template (<code>tools/opencode-workflows/templates/shakedown.json</code>) runs Recon, Sandbox, the correctness/security/tests lenses in parallel, and a Verdict task, wrapped by <code>./scripts/pipeline.sh shakedown &lt;PR#&gt; --engine opencode</code>.</p>
-<div class="prompt-card">scripts/pipeline.sh shakedown 483 --engine opencode &mdash; shake down pull request #483, the first layer of the checkout-payment-migration stack, against its own stack base, and post NOT_READY if the sandbox run is red or a blocking finding survives review.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">scripts/pipeline.sh shakedown 517 --engine opencode &mdash; shake down pull request #517, the first layer of the checkout-payment-migration stack, against its own stack base, and post NOT_READY if the sandbox run is red or a blocking finding survives review.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The runner returns READY or NOT_READY, with the sandbox result, the confirmed findings, and the existing checks it consumed rather than re-ran.</p>
 </div>
 </div>
@@ -93,7 +93,7 @@ Shakedown is not the only skill that touches a pull request. This table separate
 <div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
 <div class="tool-block-body">
 <p>Cursor gets no command layer or workflow runner from this repository. The skill lands in <code>.agents/skills/</code>, and the agent applies shakedown's procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">Before we merge pull request #483, run the isolated build-test-execute pass the way skills/developer/shakedown/SKILL.md and SANDBOX.md describe, in a disposable worktree with no production credentials, and tell me plainly if the build or tests fail.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Before we merge pull request #517, run the isolated build-test-execute pass the way skills/developer/shakedown/SKILL.md and SANDBOX.md describe, in a disposable worktree with no production credentials, and tell me plainly if the build or tests fail.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Cursor works through Sandbox and Review directly in the session, since there is no workflow output to parse.</p>
 </div>
 </div>
@@ -102,7 +102,7 @@ Shakedown is not the only skill that touches a pull request. This table separate
 <div class="tool-block-head"><span class="tool-badge">Codex</span></div>
 <div class="tool-block-body">
 <p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus a generated companion file, <code>agents/openai.yaml</code>, so it sees shakedown's name and description the same way the other tools do. It gets no command layer or workflow runner either.</p>
-<div class="prompt-card">Read skills/developer/shakedown/SKILL.md and SANDBOX.md, then shake down pull request #483 in an isolated worktree: build it, run its tests, execute the changed behavior, and check its coverage against COVERAGE.md's floors before you approve anything.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/developer/shakedown/SKILL.md and SANDBOX.md, then shake down pull request #517 in an isolated worktree: build it, run its tests, execute the changed behavior, and check its coverage against COVERAGE.md's floors before you approve anything.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Codex works through the same pass, reading its context from the skill files rather than any installed runner.</p>
 </div>
 </div>
@@ -111,7 +111,7 @@ Shakedown is not the only skill that touches a pull request. This table separate
 <div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
 <div class="tool-block-body">
 <p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog, driven by <code>.github/copilot-instructions.md</code>. This repository ships no command layer or workflow runner for Copilot, so shakedown's procedure is applied as context, not run by a sequencer.</p>
-<div class="prompt-card">Before approving pull request #483, read skills/developer/shakedown/SKILL.md, build and test it in an isolated environment, execute the changed behavior, and post a blocking comment if the build is red or an acceptance-criterion test is missing.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Before approving pull request #517, read skills/developer/shakedown/SKILL.md, build and test it in an isolated environment, execute the changed behavior, and post a blocking comment if the build is red or an acceptance-criterion test is missing.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Copilot posts the review as a pull-request comment; a person still approves, since no hook here posts a blocking review the way the installed workflow can.</p>
 </div>
 </div>
@@ -152,7 +152,7 @@ Approval still stays with a person even on a clean `READY` verdict — shakedown
 
 <div class="compare-grid">
 <div class="compare-card">
-<div class="compare-card-head">A review that earns its verdict</div>
+<div class="compare-card-head">A review backed by a real run</div>
 <pre><code><span class="tok-ok">build:</span> pass  <span class="tok-ok">tests:</span> pass  <span class="tok-ok">executed:</span> pass
 <span class="tok-ok">Existing checks consumed:</span> github-code-quality=success (not re-run)
 <span class="tok-ok">Verdict:</span> READY &mdash; no confirmed blocking finding survived review</code></pre>
@@ -199,7 +199,7 @@ Against its own stack base, not the whole feature. `STACKING.md` states the payo
 <summary>Does shakedown re-run GitHub Code Quality's static analysis?</summary>
 <div class="qa-body">
 
-No. `REPO-SETUP.md` is explicit that shakedown consumes Code Quality's conclusions from the pull request's own check runs instead of re-running static analysis the repository already receives — duplicating it wastes tokens and can produce a conflicting report.
+No. `REPO-SETUP.md`, deliver's repository-readiness checklist, is explicit that shakedown consumes Code Quality's conclusions from the pull request's own check runs instead of re-running static analysis the repository already receives — duplicating it wastes tokens and can produce a conflicting report.
 
 </div>
 </details>
@@ -229,7 +229,7 @@ Yes. OpenCode runs the same Recon-Sandbox-Review-Verify-Verdict sequence through
 - Every existing check run — GitHub Code Quality included — gets consumed once, never re-run and never contradicted by a duplicate report.
 - A grit gate audit's claimed-met gates get spot-checked against the diff, not simply trusted because the table says met.
 
-If a review keeps posting a clean verdict on a red sandbox run, the review has stopped verifying anything and started rubber-stamping instead.
+If a review keeps posting a clean verdict on a red sandbox run, the review has stopped verifying anything and started approving without checking.
 
 ## Where it fits
 

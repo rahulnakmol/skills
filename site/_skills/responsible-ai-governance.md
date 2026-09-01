@@ -40,7 +40,7 @@ Responsible AI & Regulated Governance is not a phase of the build loop. It is a 
   <li>When it is unclear whether something is governed, the default runs toward caution: assume it is, and ask, rather than assume it is exempt.</li>
 </ul>
 
-This overlay names six frameworks, each glossed here at first mention. NIST AI RMF is the National Institute of Standards and Technology's voluntary framework for managing AI risk. ISO/IEC 42001 is the international standard for an organization's AI management system. The EU AI Act is the European Union's risk-tiered AI regulation, classified by tier per component. SR 11-7 is the Federal Reserve's supervisory guidance on model risk management. BCBS 239 is the Basel Committee's principles for risk-data aggregation and reporting. NCUA and OSFI are the credit-union and Canadian financial regulators whose examination readiness the same section names. SKILL.md states the rule this whole overlay runs on in one line: "Do not implement around a control to make a feature work. If a requirement conflicts with a control, stop and surface the conflict with options."
+This overlay names several frameworks and regulators, each glossed here at first mention. Microsoft Responsible AI is Microsoft's own standard for building and operating AI systems. NIST AI RMF is the National Institute of Standards and Technology's voluntary framework for managing AI risk. ISO/IEC 42001 is the international standard for an organization's AI management system. The EU AI Act is the European Union's risk-tiered AI regulation, classified by tier per component. SR 11-7 is the Federal Reserve's supervisory guidance on model risk management. BCBS 239 is the Basel Committee's principles for risk-data aggregation and reporting. NCUA and OSFI are the credit-union and Canadian financial regulators whose examination readiness the same section names. SKILL.md states the rule this whole overlay runs on in one line: "Do not implement around a control to make a feature work. If a requirement conflicts with a control, stop and surface the conflict with options."
 
 - [`SKILL.md`](https://github.com/tqnonline/skills/blob/main/skills/developer/responsible-ai-governance/SKILL.md) is the entire doctrine — the frameworks, the fixed control set, and the behavior this overlay runs on.
 - [`WORK-ITEM-CONTRACT.md`](https://github.com/tqnonline/skills/blob/main/skills/developer/slice/WORK-ITEM-CONTRACT.md) covers the Governance section every work item states as populated, or explicitly marked not applicable.
@@ -62,7 +62,7 @@ This overlay is not the only skill that touches security or design. This table s
 | You need a threat model and severity-ranked vulnerabilities | [`safeguard`]({{ '/safeguard/' | relative_url }}) |
 | You need the technical design and its tradeoffs, with the frameworks layered on top | [`architect`]({{ '/architect/' | relative_url }}) |
 | Your work does not touch a regulated industry or a consequential automated decision | Nothing here applies — skip this overlay |
-| You need the governance items tracked as backlog stories, not just named | `slice`'s operability lane |
+| You need the governance items tracked as backlog stories, not just named | [`slice`]({{ '/slice/' | relative_url }})'s operability lane |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
 <div class="tool-block">

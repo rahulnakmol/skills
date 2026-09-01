@@ -23,6 +23,6 @@ This is the product leader's shortcut through the full map — see [How it fits]
 
 This path is for a product or program leader adopting The Quentin's AI-native transformation practice for the first time. It begins before an epic exists, with a raw problem or a vague opportunity, and it ends with a leadership pack drawn from the same registers the pipeline keeps current.
 
-These four are a route through the pm group, not the whole of it. A full run also passes through `map` for the Business Understanding Document the Framing gate signs, and through `prd-draft` and `prd-review` before the Quality gate; each page names its own handoffs where they fall.
+These four are a route through the pm group, not the whole of it. A full run also passes through `map` for the Business Understanding Document the Framing gate signs, and through `prd-draft` and `prd-review` before the Quality gate; each page names its own handoffs where they fall. DIVE is carve's four-part test: deliverable, independent, valuable, estimable.
 
 By the end, a product leader can turn a raw problem into a stakeholder-grounded analysis, carve it into epics tested against DIVE, build the business case a sponsor approves at the Investment gate, and report progress, problems, priorities, and perspective straight from the registers.

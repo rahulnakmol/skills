@@ -160,7 +160,7 @@ This is the shape the skill's own output contract requires — a threat model su
 <span class="tok-ok">Threat model:</span> documented, each boundary has an owner
 <span class="tok-ok">Findings:</span> SG1 high, SG2 medium &mdash; each ranked by severity
 <span class="tok-ok">Release recommendation:</span> BLOCK while SG1 stays open</code></pre>
-<div class="compare-card-note">The scope was confirmed, not assumed, and an open high finding blocks release rather than getting waved through.</div>
+<div class="compare-card-note">The scope was confirmed, not assumed, and an open high finding blocks release rather than being approved as it stands.</div>
 </div>
 <div class="compare-card compare-card--warn">
 <div class="compare-card-head">The wrong turn to watch for</div>
@@ -176,7 +176,7 @@ SG1: <span class="tok-warn">jumps straight to DEPLOYED</span>  <span class="tok-
 <summary>What if the security boundary is not scoped yet?</summary>
 <div class="qa-body">
 
-SKILL.md's stop condition is direct: missing scope or SPEC-TS means stop, before the threat model starts. A boundary guessed from the surrounding code is the exact shortcut this stop condition exists to prevent.
+SKILL.md's stop condition is direct: missing scope or a SPEC-TS ledger — the scope, requirements, and success-metrics record — means stop, before the threat model starts. A boundary guessed from the surrounding code is the exact shortcut this stop condition exists to prevent.
 
 </div>
 </details>
@@ -194,7 +194,7 @@ Only with explicit authorization. Its adapter fails closed on active techniques:
 <summary>Who confirms a fix actually closed the finding?</summary>
 <div class="qa-body">
 
-A separate, independent verification pass — never the assessor who found it. The adapter states this plainly: the originating assessor does not mark a finding verified, so closure always carries a second set of eyes.
+A separate, independent verification pass — never the assessor who found it. The adapter states this plainly: the originating assessor does not mark a finding verified, so closure always carries a second reviewer.
 
 </div>
 </details>

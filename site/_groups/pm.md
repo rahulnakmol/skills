@@ -10,7 +10,7 @@ You do not run this practice by opinion. Four gates decide whether a problem is 
 
 ## The easy part, and what it hides
 
-An agent can draft any document this practice needs. Ask for a business case, a target operating model, or a PRD, and one arrives within minutes, every section populated and cited. That was never the hard part.
+An agent can draft any document this practice needs. Ask for a business case, a target operating model, or a PRD (a product requirements document), and one arrives within minutes, every section populated and cited. That was never the hard part.
 
 The hard part starts once the same fluency that makes a document readable also makes it persuasive, whether the claim underneath holds or not. Call this failure **the fluency trap**: a document polished enough that a reviewer signs it because it no longer reads like something that needs scrutiny. `AGENT-OWNERSHIP.md` names two mechanisms behind it — ambition collapsed to a safe middle score, and correlated agreement, where three reviewers built on one model produce one opinion said three times, not three independent checks.
 
@@ -40,7 +40,7 @@ The four gates in `GATES.md` exist to interrupt this trail before Commitment, no
 
 ## What the gates actually check
 
-Take the reconciliation initiative running through this group's own skill pages. Discovery names the actual root cause — a legacy export format tied to a vendor contract predating the current ERP — not the first symptom noticed. Four gates then decide whether that finding survives:
+Take the reconciliation initiative running through this group's discovery, mapping, and epic pages. Discovery names the actual root cause — a legacy export format tied to a vendor contract predating the current ERP — not the first symptom noticed. Four gates then decide whether that finding survives:
 
 - **Framing** closes only once the problem owner can state the problem, in their own words, and for whom.
 - **Investment** requires the case to name the one assumption that would kill it if wrong, costed against doing nothing.
@@ -51,7 +51,7 @@ Every gate opens the same way: the blind-spot checklist in `AGENT-OWNERSHIP.md`,
 
 ## What adopting this actually feels like
 
-Running this practice does not feel like strategy work most weeks. A PM who adopts it reads RAID registers, DIVE verdicts recorded with their evidence, and benefit variance reports — not only the roadmap slide a steering committee sees. `realize` closes the loop: a benefit that misses its projection re-enters `discover` or `carve` as new work, carrying its own case for closing the gap. `GATES.md` states the discipline in one line: "A transformation practice that only measures forward and never measures back is not actually grounded in cost; it is grounded in forecasts."
+Running this practice does not feel like strategy work most weeks. A PM who adopts it reads risk, assumption, issue, and dependency (RAID) registers, DIVE verdicts recorded with their evidence, and benefit variance reports — not only the roadmap slide a steering committee sees. DIVE is carve's four-part test: deliverable, independent, valuable, estimable. `realize` closes the loop: a benefit that misses its projection re-enters `discover` or `carve` as new work, carrying its own case for closing the gap. `GATES.md` states the discipline in one line: "A transformation practice that only measures forward and never measures back is not actually grounded in cost; it is grounded in forecasts."
 
 ## The path through
 
@@ -76,7 +76,7 @@ The sixteen skills below read as a syllabus, not a menu. Start near the top, and
 
 ## Where to start
 
-None of this makes product work faster in the way a faster draft feels faster. It makes a decision defensible months later, when someone asks why it was made. Readers starting from zero can walk the same reconciliation thread on the [Run a product org journey]({{ '/journey/run-a-product-org/' | relative_url }}).
+None of this makes product work faster in the way a faster draft feels faster. It makes a decision defensible months later, when someone asks why it was made. Readers starting from zero can walk that thread, and the field-inspection copilot that follows it into investment and reporting, on the [Run a product org journey]({{ '/journey/run-a-product-org/' | relative_url }}).
 
 ```bash
 npx skills@latest add tqnonline/skills

@@ -176,7 +176,7 @@ Maturity baseline: not yet assessed.</code></pre>
 <summary>Why can platform mapping not just run first, to save a round of conversation?</summary>
 <div class="qa-body">
 
-Because a target defined before the current state is measured is a guess dressed as a plan. `SKILL.md`'s stop condition blocks target design that has not established a current-state maturity baseline first, and `TOM-METHOD.md` states plainly that mapping to a platform before processes are decomposed "is backwards."
+Because a target defined before the current state is measured is a guess presented as a plan. `SKILL.md`'s stop condition blocks target design that has not established a current-state maturity baseline first, and `TOM-METHOD.md` states plainly that mapping to a platform before processes are decomposed "is backwards."
 
 </div>
 </details>

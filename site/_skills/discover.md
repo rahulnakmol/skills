@@ -44,7 +44,7 @@ It verifies or bootstraps the initiative repository, classifies which hat the en
   <li>A request that arrives as "build me X" is redirected back to "what problem does X solve" before scope is ever set, so the analysis grounds the solution instead of dressing it up after the fact.</li>
   <li>Root causes are separated from symptoms with Five Whys or Fishbone, so the analysis names the vendor contract that predates the ERP migration, not just the slow reporting someone first noticed.</li>
   <li>A single stakeholder's account is never treated as the full picture — every analysis triangulates across at least three sources before it is written down.</li>
-  <li>The problem owner confirms the classification, statement, and root causes in their own words before the document exists, so Framing has something real to sign.</li>
+  <li>The problem owner confirms the classification, statement, and root causes in their own words before the document exists, so Framing — the pm pipeline's first human gate — has something real to sign.</li>
 </ul>
 
 `METHOD.md` states the redirect discover forces at intake in one line: "solution-first framing ('we need to build X') is redirected back to 'what problem does X solve?'"

@@ -60,7 +60,7 @@ The confusable sibling in the same table, `r002` — "this discovery effort need
 
 | The problem | The skill |
 |---|---|
-| The work is a research or product inquiry, not software delivery | `pm/arrange` |
+| The work is a research or product inquiry, not software delivery | [`arrange`]({{ '/arrange/' | relative_url }}), the pm group's router |
 | You need a model tier for one node conduct already built | [`model-routing`]({{ '/model-routing/' | relative_url }}) |
 | You need the whole gated build loop, not only the shape decision in front of it | [`sdlc`]({{ '/sdlc/' | relative_url }}) |
 | You need to decide how finely "done" is split into gates, not whether the work runs as a loop or a graph | [`grit`]({{ '/grit/' | relative_url }}) |
@@ -233,7 +233,7 @@ No, and RUBRIC.md names this as one of its failure signatures to watch for: a ha
 - Every routing decision names the question that decided it — question 2 for a loop, question 3 or later for a graph — rather than a shape chosen out of habit.
 - A high-consequence write always has a human node in front of it with a named owner, an exact decision, and a named escalation, never only an `sla_hours` field.
 - Every node's model traces back to a `model-routing` call, and no node carries a model identifier conduct assigned on its own.
-- A graph earns its own cost: independence, self-review risk, durable state, or consequence, named explicitly, not a diagram that looks more sophisticated than a loop.
+- A graph costs more than a loop, and it forms only when independence, self-review risk, durable state, or consequence is named explicitly — never because a diagram looks more sophisticated.
 
 If a graph keeps growing branches that duplicate the same shallow pass instead of partitioning genuinely independent work, the routing decision has failed even though every node still reports its own success.
 

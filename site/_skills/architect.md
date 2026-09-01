@@ -27,7 +27,7 @@ Architect is the model-invoked charter for cross-cutting technical design. Befor
 
 <div class="step-flow">
   <div class="step"><span class="step-num">1</span><span class="step-label">Confirm the boundary</span><span class="step-text">Discover and Define first: confirm the functional and non-functional requirements and their scope boundary before designing anything; a gap gets ideated with the user, never assumed.</span></div>
-  <div class="step"><span class="step-num">2</span><span class="step-label">Decompose</span><span class="step-text">Break the system into composable, bounded-domain components — services with clear boundaries, not a monolith wearing a diagram.</span></div>
+  <div class="step"><span class="step-num">2</span><span class="step-label">Decompose</span><span class="step-text">Break the system into composable, bounded-domain components — services with clear boundaries, not one large service with a diagram drawn around it.</span></div>
   <div class="step"><span class="step-num">3</span><span class="step-label">Surface the tradeoffs</span><span class="step-text">Post maintainability, reliability, and technical-debt tradeoffs to an issue or pull-request comment, or the interactive session — never decide them silently in the diagram.</span></div>
   <div class="step"><span class="step-num">4</span><span class="step-label">Clear Gate 2</span><span class="step-text">Gate 2 is the design gate a human signs before implementation starts. No story clears it without traceability, contracts, allowed scope, an NFR (non-functional requirement) evidence plan, and a named owner.</span></div>
   <div class="step"><span class="step-num">5</span><span class="step-label">Hand off the design pack</span><span class="step-text">Requirements with their boundary, component decomposition, tradeoffs, and interface contracts move to implementation as one ADR-ready package.</span></div>
@@ -151,7 +151,7 @@ Component decomposition
 
 Tradeoffs
   - reliability vs. delivery speed: queue every notification durably
-    before fan-out, accepting added latency, surfaced on PR #482's
+    before fan-out, accepting added latency, surfaced on issue #482's
     comment thread rather than decided in the diagram
 
 Interface contracts
@@ -165,10 +165,10 @@ This is the shape the skill's own output contract requires — an ADR-ready pack
 
 <div class="compare-grid">
 <div class="compare-card">
-<div class="compare-card-head">A design pack that earns its ADR</div>
+<div class="compare-card-head">A design pack ready for its ADR</div>
 <pre><code><span class="tok-ok">FR/NFR scope boundary:</span> confirmed with you before decomposition
 <span class="tok-ok">Components:</span> 3 bounded domains, no shared state
-<span class="tok-ok">Tradeoffs:</span> reliability vs. delivery speed, posted on PR #482
+<span class="tok-ok">Tradeoffs:</span> reliability vs. delivery speed, posted on issue #482
 <span class="tok-ok">Interface contracts:</span> one per component boundary</code></pre>
 <div class="compare-card-note">The boundary is confirmed and the tradeoff is visible to you, not just to the diagram.</div>
 </div>

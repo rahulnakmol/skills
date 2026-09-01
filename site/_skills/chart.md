@@ -39,7 +39,7 @@ The chart is deliberately an index, not a store. Each decision lives in exactly 
   <li>A sponsor's status question — what has been settled, what is being settled now — is answered by reading the tracker, not by asking anyone to write an update.</li>
   <li>Resolving a decision and updating the plan are the same act, so a chart cannot drift the way a document nobody updates does.</li>
   <li>Ready, blocked, claimed, and closed are readable straight off the tracker, so several PMs can run concurrent sessions without colliding on the same decision twice.</li>
-  <li>More than roughly 25 open tickets is a stop condition, not a target — chart says the destination is too wide instead of quietly ballooning the plan to fit it.</li>
+  <li>More than roughly 25 open tickets is a stop condition, not a target — chart says the destination is too wide instead of quietly growing the plan to fit it.</li>
 </ul>
 
 `CHART.md` states plainly why the chart never restates a ticket's reasoning in its own body: "the chart is read at the start of every session, so its length is a running cost paid on every turn of every session. A chart that restates its tickets grows without bound and drifts from them."
@@ -137,7 +137,9 @@ tickets: { ready: 3, blocked: 2, claimed: 1, closed: 0 }
 known_unknowns: 2
 mode: chart</code></pre>
 
-A week later, you return with the chart in hand and no ticket named. Advance mode reads the chart body — the destination, the standing notes, the decisions already made — then chooses the ready ticket "Which billing provider." It claims that ticket by assigning it to your session, and resolves it by routing into `case`, the skill that owns option decisions. The blind-spot checklist runs before anything is recorded: did the option set seriously weigh doing nothing, and did three agents converging on Stripe do so independently, or only because they share one underlying model.
+The gate named there, Investment, is where a sponsor commits budget to the migration.
+
+A week later, you return with the chart in hand and no ticket named. Advance mode reads the chart body — the destination, the standing notes, the decisions already made — then chooses the ready ticket "Which billing provider." It claims that ticket by assigning it to your session, and resolves it by routing into `case`, the skill that owns option decisions. The blind-spot checklist runs before anything is recorded: did the option set seriously weigh doing nothing, and did three agents converging on the same provider do so independently, or only because they share one underlying model.
 
 The resolution posts as a ticket comment, the ticket closes, and one line is added to the chart's decision list:
 
@@ -149,10 +151,11 @@ gate: investment
 tickets: { ready: 4, blocked: 1, claimed: 0, closed: 1 }
 known_unknowns: 1
 mode: advance
-decided: "Chose Stripe over Adyen: lower integration cost,
-  PCI scope already covered."</code></pre>
+decided: "Chose the vendor-hosted provider over the direct
+  integration: lower integration cost, and card-data
+  compliance scope already covered."</code></pre>
 
-Resolving that ticket opened one that was blocked on it — the migration sequencing question could not be answered until the provider was — and cleared one known unknown, since the residual PCI-scope question is now precise enough to state.
+Resolving that ticket opened one that was blocked on it — the migration sequencing question could not be answered until the provider was — and cleared one known unknown, since the residual card-data compliance question is now precise enough to state.
 
 ## What good looks like
 
@@ -199,7 +202,7 @@ usually depends on the first.</code></pre>
 <summary>How does a decision ticket differ from a piece of the build?</summary>
 <div class="qa-body">
 
-`TICKETS.md` draws the line directly: a decision ticket's resolution is a decision, not a piece of the build. The chart is finished when nothing is left to decide, and the doing starts after that, through `carve`, `prd-draft`, and the delivery seam at Commitment. When a session feels pulled toward building the thing rather than deciding about it, that is usually the signal the chart has reached its destination.
+`TICKETS.md` draws the line directly: a decision ticket's resolution is a decision, not a piece of the build. The chart is finished when nothing is left to decide, and the doing starts after that, through `carve`, `prd-draft`, and the delivery seam at Commitment, the gate where the backlog is raised and delivery takes over. When a session feels pulled toward building the thing rather than deciding about it, that is usually the signal the chart has reached its destination.
 
 </div>
 </details>

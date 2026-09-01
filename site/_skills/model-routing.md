@@ -53,7 +53,7 @@ You reach for it, indirectly, in three moments. An orchestrator just built a nod
 |---|---|
 | You need to change what the registry says by default, not just read what it currently says | [`update-models`]({{ '/update-models/' | relative_url }}) |
 | You need the whole loop-or-graph routing decision for a piece of delivery work, not one node's tier | [`conduct`]({{ '/conduct/' | relative_url }}) |
-| You are resolving a tier for a pm-group research or grill step rather than a developer-group build node | `pm/arrange`, which calls this same registry per step |
+| You are resolving a tier for a pm-group research or grill step rather than a developer-group build node | [`arrange`]({{ '/arrange/' | relative_url }}), which calls this same registry per step |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
 <div class="tool-block">
@@ -111,7 +111,7 @@ See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of 
 
 ## A working example
 
-The checkout-timeout fix from `sdlc`'s own gated loop reaches Gate 3, the outcome check that runs after implementation. Gate 3 needs an independent verifier — a different agent, ideally a different model family, checking the change against the SPEC-TS ledger rather than the implementer grading its own work. The orchestrator resolves that node's tier by matching role and task shape against the registry's real tier matrix:
+The checkout-timeout fix from `sdlc`'s own gated loop reaches Gate 3, the outcome check that runs after implementation. Gate 3 needs an independent verifier — a different agent, ideally a different model family, checking the change against the SPEC-TS ledger, the record of scope, requirements, and success metrics, rather than the implementer grading its own work. The orchestrator resolves that node's tier by matching role and task shape against the registry's real tier matrix:
 
 <pre><code>| Tier     | Role shape             | Default provider family | Notes                                            |
 |----------|-------------------------|--------------------------|--------------------------------------------------|
@@ -155,7 +155,7 @@ rationale: <span class="tok-ok">multi-file API change</span></code></pre>
 <summary>What happens when a role is not in the registry?</summary>
 <div class="qa-body">
 
-The stop condition is explicit, not a silent fallback dressed up as a decision: an unrecognized role defaults to `worker-fast`, and the assumption gets logged rather than absorbed quietly into the run. A missing row is a finding about the registry, not a reason to guess at a stronger or weaker tier on the spot.
+The stop condition is explicit, not a silent fallback reported as a decision: an unrecognized role defaults to `worker-fast`, and the assumption gets logged rather than absorbed quietly into the run. A missing row is a finding about the registry, not a reason to guess at a stronger or weaker tier on the spot.
 
 </div>
 </details>

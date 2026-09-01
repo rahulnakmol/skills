@@ -25,7 +25,7 @@ lens:
 
 Arrange is the pm group's router for execution shape. Before a discovery, a case, a target operating model, or a PRD effort — drafting the product requirements document — spends a session running the wrong pattern, arrange decides whether it should converge as a grill loop, a parallel research fan, or a hybrid. It has no procedure of its own beyond the decision. Its entire substance is one ordered rubric, and its output is one line: the mode chosen, the routing question that decided it, and the gate the resulting work will feed.
 
-Most pm work has no machine-checkable "done" the way code does — a grill loop, defined in `grill`, is a person's judgment applied round after round. Arrange's job is telling that pattern apart from a parallel research fan, where independent evidence can be gathered without waiting on itself, before an agent burns a session finding out the hard way.
+Most pm work has no machine-checkable "done" the way code does — a grill loop, defined in `grill`, is a person's judgment applied round after round. Arrange's job is telling that pattern apart from a parallel research fan, where independent evidence can be gathered without waiting on itself, before an agent spends a whole session discovering the difference.
 
 <div class="step-flow">
   <div class="step"><span class="step-num">1</span><span class="step-label">Converges through a human, one round at a time?</span><span class="step-text">Grill-loop. Discovery's five-dimension clarification and a case's sensitivity analysis both work this way.</span></div>
@@ -144,7 +144,7 @@ why: "Discovery's five-dimension clarification converges only
      through a human's sign-off, one round at a time."
 gate: framing</code></pre>
 
-Discover proceeds into the grill's themed rounds under that shape. Later, once the analysis is written, `case` needs to weigh at least two real options against doing nothing, and arrange runs again. This time question two matches first: the market-sizing research and the vendor-capability research do not depend on each other's answers, so that stretch of the work fans out instead of looping.
+Framing is the first of the four pm gates: the problem owner signs the analysis before anything is built on it. Discover proceeds into the grill's themed rounds under that shape. Later, once the analysis is written, `case` needs to weigh at least two real options against doing nothing, and arrange runs again. This time question two matches first: the market-sizing research and the vendor-capability research do not depend on each other's answers, so that stretch of the work fans out instead of looping.
 
 ## What good looks like
 
@@ -218,7 +218,7 @@ Both route execution shape, and both apply an ordered rubric where the first mat
 
 - Every mode arrange returns carries the routing question that decided it, in the same line, not as a separate note someone has to go find.
 - A parallel-fan never ships with branches that turn out to share the same question — that gets caught and collapsed to a grill-loop before work starts on it.
-- A high-consequence artifact — a case, a PRD nearing Quality, a constitution revision — reaches its gate regardless of which shape arrange chose for the work behind it.
+- A high-consequence artifact — a case, a PRD nearing the Quality gate, a constitution revision — reaches its gate regardless of which shape arrange chose for the work behind it.
 - Model tier gets resolved per step through `model-routing`, not assumed uniform across a whole effort.
 
 If routing decisions start recording "mode: parallel-fan" with three same-model reviewers agreeing as the stated "why," arrange's own prohibited pattern has crept back in even though a line still gets written and still looks like reasoning.

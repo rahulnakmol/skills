@@ -38,11 +38,11 @@ Case builds the business case a sponsor approves at the Investment gate, the che
   <div class="step"><span class="step-num">4</span><span class="step-label">Trace benefits forward</span><span class="step-text">To the register realize will later hold accountable for delivering them.</span></div>
   <div class="step"><span class="step-num">5</span><span class="step-label">Run the sensitivity analysis</span><span class="step-text">Name the one assumption that would kill the recommendation, and the check that would falsify it.</span></div>
   <div class="step"><span class="step-num">6</span><span class="step-label">Grill the case</span><span class="step-text">Before it reaches the sponsor.</span></div>
-  <div class="step"><span class="step-num">7</span><span class="step-label">Present at the Investment gate</span><span class="step-text">The sponsor approves the case alongside the epic manifest or TOM.</span></div>
+  <div class="step"><span class="step-num">7</span><span class="step-label">Present at the Investment gate</span><span class="step-text">The sponsor approves the case alongside the epic manifest or target operating model (TOM).</span></div>
 </div>
 
 <ul class="benefits">
-  <li>A sponsor is shown a real comparison — at least two options plus the cost of doing nothing — instead of one path dressed up as the obvious choice.</li>
+  <li>A sponsor is shown a real comparison — at least two options plus the cost of doing nothing — instead of one path presented as the obvious choice.</li>
   <li>The agent-fleet line makes the cost of the PM's own commissioned agents visible, so the transformation-value question has an honest answer.</li>
   <li>Every benefit the case claims traces forward to `realize`'s register, so a promise made here has somewhere to be checked later.</li>
   <li>The sensitivity analysis surfaces the recommendation's weakest assumption before the sponsor does, and names the check that would falsify it.</li>
@@ -153,7 +153,7 @@ Sensitivity: adoption rate below 30% in the first quarter kills Option A's
 
 Recommendation: Option A.</code></pre>
 
-This is the shape the output contract requires, not a captured run — Case has no companion script; the document above is written by the skill directly into `specs/{prefix}-case.md`. Before this reaches the sponsor, it still has to survive a grill round per `GRILL-PM.md` — the round that would press hardest on exactly the sensitivity line already named above. `GATES.md` states the Investment gate's blind-spot review "weighs hardest on the sensitivity section," reasoning that "sponsors approve numbers, and numbers hide the assumption that produced them."
+This is the shape the output contract requires, not a captured run — Case has no companion script; the document above is written by the skill directly into `specs/{prefix}-case.md`. Before this reaches the sponsor, it still has to survive a grill round per `GRILL-PM.md`, the pm group's grill protocol — the round that would press hardest on exactly the sensitivity line already named above. `GATES.md` states the Investment gate's blind-spot review "weighs hardest on the sensitivity section," reasoning that "sponsors approve numbers, and numbers hide the assumption that produced them."
 
 ## What good looks like
 
@@ -193,7 +193,7 @@ SKILL.md names this as a stop condition directly: "only one real option presente
 <summary>Why does every case need a costed do-nothing option?</summary>
 <div class="qa-body">
 
-`CASE-METHOD.md` states the reasoning directly: "a case that never seriously considers not acting treats action as a foregone conclusion, and a sponsor who is never shown the cost of inaction cannot actually weigh the decision they are being asked to make." Do-nothing has to be priced in the same units as the real options, not waved past as an assumption.
+`CASE-METHOD.md` states the reasoning directly: "a case that never seriously considers not acting treats action as a foregone conclusion, and a sponsor who is never shown the cost of inaction cannot actually weigh the decision they are being asked to make." Do-nothing has to be priced in the same units as the real options, not set aside as an assumption nobody prices.
 
 </div>
 </details>

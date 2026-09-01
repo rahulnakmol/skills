@@ -23,7 +23,7 @@ Giving the correction once is easy; anyone can type a sentence into a prompt. Wh
   <text x="450" y="150" text-anchor="middle" font-size="12" style="fill:var(--ink);"><tspan x="450" dy="0">new session</tspan><tspan x="450" dy="14">starts fresh</tspan></text>
   <text x="640" y="102" text-anchor="middle" font-size="12" style="fill:var(--muted);"><tspan x="640" dy="0">same mistake,</tspan><tspan x="640" dy="14">again</tspan></text>
 </svg>
-<figcaption style="margin-top:6px;font-size:13px;color:var(--muted);text-align:center;">The Repeat Tax: fixed in the room, and paid again the next time nobody wrote it down.</figcaption>
+<figcaption style="margin-top:6px;font-size:13px;color:var(--muted);text-align:center;">The Repeat Tax: fixed in one conversation, and paid again the next time nobody wrote it down.</figcaption>
 </figure>
 
 `brief` is the fix, and its own doctrine is a real, checkable example of the problem it solves.
@@ -32,7 +32,7 @@ Giving the correction once is easy; anyone can type a sentence into a prompt. Wh
 - **Seven surfaces, one map.** `SURFACES.md` names where each of seven tools reads its rules, from `CLAUDE.md` at a repository root to `.github/copilot-instructions.md`, and marks two surfaces that read no repository file at all.
 - **Fifty-five lines, twenty-four lines.** This repository's own `CLAUDE.md` and `AGENTS.md` — real counts, confirmed the same way `brief` itself would confirm them — well under the point where either file would need pointers of its own.
 
-Productivity grows one skill at a time, and each one has to earn its place against a real, recurring problem rather than filling a category in advance. `brief` ships with no script of its own; its output is a written file, verified only by running a real task and watching whether the rule fires. Rereading a rule proves nothing a real task cannot prove better. Writing a correction down once costs one file and one sentence; repeating it costs that same sentence again, every session, for as long as nobody writes it down.
+Productivity grows one skill at a time, and each one is added only for a real, recurring problem rather than to fill a category in advance. `brief` ships with no script of its own; its output is a written file, verified only by running a real task and watching whether the rule fires. Rereading a rule proves nothing a real task cannot prove better. Writing a correction down once costs one file and one sentence; repeating it costs that same sentence again, every session, for as long as nobody writes it down.
 
 The path through productivity is short, because productivity holds exactly one skill.
 

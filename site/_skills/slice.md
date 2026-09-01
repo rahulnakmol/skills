@@ -23,13 +23,13 @@ lens:
 
 ## What it does
 
-Slice decomposes a PRD that has already cleared gate G2 into a backlog of epics, features, stories, and operability items, each conforming to one shared work-item contract. Every issue `raise` later publishes has to be agent-executable by construction — a person or an agent picking it up cold, with no other context, must be able to act on it correctly — and that requirement is what shapes every step below.
+Slice decomposes a product requirements document (PRD) that has already cleared gate G2 — impact's sign-off — into a backlog of epics, features, stories, and operability items, each conforming to one shared work-item contract. Every issue `raise` later publishes has to be agent-executable by construction — a person or an agent picking it up cold, with no other context, must be able to act on it correctly — and that requirement is what shapes every step below.
 
 <div class="step-flow">
   <div class="step"><span class="step-num">1</span><span class="step-label">Validate sign-off</span><span class="step-text">Confirm the parent PRD actually cleared G2 before generating a single item.</span></div>
   <div class="step"><span class="step-num">2</span><span class="step-label">Check the governance tier</span><span class="step-text">A `limited` or `high` PRD routes through `responsible-ai-governance` before items exist.</span></div>
   <div class="step"><span class="step-num">3</span><span class="step-label">Apply the matching template</span><span class="step-text">Epic, feature, story, technical story, CI item, risk, or impediment — the right shape per item type.</span></div>
-  <div class="step"><span class="step-num">4</span><span class="step-label">Attach the operability lane</span><span class="step-text">Observability, SLOs and alerting, runbooks, and CI/CD test coverage — alongside the user-facing stories, not after them.</span></div>
+  <div class="step"><span class="step-num">4</span><span class="step-label">Attach the operability lane</span><span class="step-text">Observability, service-level objectives (SLOs) and alerting, runbooks, and CI/CD test coverage — alongside the user-facing stories, not after them.</span></div>
   <div class="step"><span class="step-num">5</span><span class="step-label">Embed the full contract</span><span class="step-text">Every section of `WORK-ITEM-CONTRACT.md` in each item body; a missing section blocks publication.</span></div>
 </div>
 
@@ -56,7 +56,7 @@ You reach for it in two moments. `impact`'s gate G2 just closed on a signed PRD,
 |---|---|
 | The PRD is not signed yet, or does not exist | [`impact`]({{ '/impact/' | relative_url }}) |
 | The backlog is contract-complete and needs to leave the document and become real issues | [`raise`]({{ '/raise/' | relative_url }}) |
-| You are breaking an initiative into epics before any PRD exists at all | `pm/carve` |
+| You are breaking an initiative into epics before any PRD exists at all | [`carve`]({{ '/carve/' | relative_url }}) |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
 <div class="tool-block">

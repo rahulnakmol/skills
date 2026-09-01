@@ -153,7 +153,7 @@ A cycle with no proposed change is still a completed run: the entry records that
 <summary>Does OpenCode's own /update-models command run this skill?</summary>
 <div class="qa-body">
 
-No, and this is worth stating plainly rather than papering over. OpenCode's installed <code>/update-models</code> command dispatches to the <code>model-curator</code> agent, whose instructions and edit permissions target OpenCode's own dotfiles model configuration under a separate configuration tree, never <code>skills/developer/model-routing/models.md</code>. Curating this repository's registry from OpenCode currently means applying the skill file directly, the same way Cursor or Codex would.
+No, and this is worth stating plainly rather than leaving unsaid. OpenCode's installed <code>/update-models</code> command dispatches to the <code>model-curator</code> agent, whose instructions and edit permissions target OpenCode's own dotfiles model configuration under a separate configuration tree, never <code>skills/developer/model-routing/models.md</code>. Curating this repository's registry from OpenCode currently means applying the skill file directly, the same way Cursor or Codex would.
 
 </div>
 </details>

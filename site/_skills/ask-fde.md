@@ -29,11 +29,11 @@ Ask FDE is not a process skill. It designs nothing, secures nothing, and ships n
   <div class="step"><span class="step-num">1</span><span class="step-label">Classify the intent</span><span class="step-text">One of: inception, backlog, build, secure, operate, branding, or product/program/transformation.</span></div>
   <div class="step"><span class="step-num">2</span><span class="step-label">Map to a skill</span><span class="step-text">Apply the routing table below, its entire doctrine, exactly as written.</span></div>
   <div class="step"><span class="step-num">3</span><span class="step-label">Hand off</span><span class="step-text">Call the Skill tool with the chosen name; ask-fde does not do the routed skill's work itself.</span></div>
-  <div class="step"><span class="step-num">4</span><span class="step-label">Ask before guessing</span><span class="step-text">A genuinely ambiguous intent gets one clarifying question before a route is chosen, never a guess dressed up as a decision.</span></div>
+  <div class="step"><span class="step-num">4</span><span class="step-label">Ask before guessing</span><span class="step-text">A genuinely ambiguous intent gets one clarifying question before a route is chosen, never a guess reported as a decision.</span></div>
 </div>
 
 <ul class="benefits">
-  <li>You describe a goal in plain language and get back one skill name and a one-sentence reason, not a guess dressed up as certainty.</li>
+  <li>You describe a goal in plain language and get back one skill name and a one-sentence reason, not a guess stated with false confidence.</li>
   <li>An ambiguous request gets one clarifying question before a route, never a guess that quietly sends you to the wrong skill.</li>
   <li>The routing map is the entire doctrine — there is no separate procedure hidden elsewhere that could drift from what actually gets applied.</li>
   <li>The output is always auditable: a chosen skill name plus the rationale behind it, so the handoff can be checked afterward.</li>
@@ -69,9 +69,9 @@ Ask FDE is not the only way to find the right skill. This table separates its jo
 |---|---|
 | You already know the exact skill name | Call it directly — routing through ask-fde adds a step you do not need |
 | You want every skill in a group browsed at once, not one intent classified | The [developer group page]({{ '/group/developer/' | relative_url }}) |
-| Your intent is pm-shaped: an epic, a PRD (product requirements document), a leadership pack | `ask-pm`, the router built for the pm group specifically |
+| Your intent is pm-shaped: an epic, a PRD (product requirements document), a leadership pack | [`ask-pm`]({{ '/ask-pm/' | relative_url }}), the router built for the pm group specifically |
 | You need the routing map itself, with no question asked back at you | Read the map quoted above — no session required |
-| You already know your intent is completion discipline, "is it actually done" | `grit` — the map already answers this one directly |
+| You already know your intent is completion discipline, "is it actually done" | [`grit`]({{ '/grit/' | relative_url }}) — the map already answers this one directly |
 
 <div class="tool-block">
 <div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
@@ -162,7 +162,7 @@ Classified: secure
 <div class="compare-card-head">The wrong turn to watch for</div>
 <pre><code>Intent: "help me ship this" <span class="tok-comment">&larr; ambiguous: build? release? both?</span>
 <span class="tok-warn">Routed to: deliver</span>  <span class="tok-comment">&larr; guessed instead of asking</span></code></pre>
-<div class="compare-card-note">Per the stop condition: an ambiguous intent gets one clarifying question, then a route — never a guess dressed up as a routing decision.</div>
+<div class="compare-card-note">Per the stop condition: an ambiguous intent gets one clarifying question, then a route — never a guess reported as a routing decision.</div>
 </div>
 </div>
 
@@ -225,7 +225,7 @@ Yes, with the same mechanism in four of the five tools: OpenCode, Cursor, Codex,
 ## It's working if
 
 - Every routed answer carries the skill name and a one-sentence rationale, never a bare name with no reason attached.
-- An ambiguous intent gets one clarifying question before a route, never a guess dressed up as a decision.
+- An ambiguous intent gets one clarifying question before a route, never a guess reported as a decision.
 - A pm-shaped intent lands on `ask-pm`, not on a developer-group skill that happens to sound close.
 - The routing map you get back matches SKILL.md's own Procedure section, word for word, not a paraphrase that has quietly drifted from it.
 

@@ -39,7 +39,7 @@ Installing the skills places them in `.agents/skills/`, the directory Cursor rea
 npx skills@latest add tqnonline/skills
 ```
 
-This repository ships no command layer for Cursor. It reads the skill catalog as context and applies a skill by following the shared repository rules in `AGENTS.md`, routing model choice through its own `auto` mode rather than a pinned model identifier. Cursor ships a hooks system of its own, but this repository does not yet include a Cursor hook. Until it does, `grit` enforcement is a rule in `.cursor/rules/`, backed by `grit-gates.yml`, a dispatch-only continuous-integration workflow that fails when a gate is unmet.
+This repository ships no command layer for Cursor. It reads the skill catalog as context and applies a skill by following the shared repository rules in `AGENTS.md`, routing model choice through its own `auto` mode rather than a pinned model identifier. Cursor ships a hooks system of its own, but this repository does not yet include a Cursor hook. Until it does, `grit` enforcement is a rule a team adds in `.cursor/rules/`, backed by `grit-gates.yml`, a dispatch-only continuous-integration workflow that fails when a gate is unmet.
 
 ## Codex
 
@@ -49,7 +49,7 @@ Installing the skills places them in `.agents/skills/`, the directory Codex read
 npx skills@latest add tqnonline/skills
 ```
 
-Like Cursor, Codex gets no command layer from this repository. Invocation is driven by `AGENTS.md` and the skill files themselves, which Codex reads as working context. Codex ships a hooks system of its own, but this repository does not yet include a Codex hook, so `grit` enforcement is a rule in `AGENTS.md`, backed by the same `grit-gates.yml` continuous-integration workflow.
+Like Cursor, Codex gets no command layer from this repository. Invocation is driven by `AGENTS.md` and the skill files themselves, which Codex reads as working context. Codex ships a hooks system of its own, but this repository does not yet include a Codex hook, so `grit` enforcement is an instruction a team adds to `AGENTS.md`, backed by the same `grit-gates.yml` continuous-integration workflow.
 
 ## GitHub Copilot
 
@@ -59,7 +59,7 @@ Installing the skills places them in `.agents/skills/`, the directory Copilot's 
 npx skills@latest add tqnonline/skills
 ```
 
-Copilot gets no command layer from this repository either. It reads the catalog as context, driven by an instructions file, `.github/copilot-instructions.md`. This repository ships no hook that could intercept a Copilot session at the point it would report a task complete, so enforcement here relies on two mechanisms instead of one. The instruction in `.github/copilot-instructions.md` tells the agent to read `GATES.md` and check every gate before reporting completion. The `grit-gates.yml` continuous-integration workflow is the backstop: it lints the ledger independently of what the agent reported and fails the check when a gate is unmet.
+Copilot gets no command layer from this repository either. It reads the catalog as context, driven by an instructions file, `.github/copilot-instructions.md`. This repository ships no hook that could intercept a Copilot session at the point it would report a task complete, so enforcement here relies on two mechanisms instead of one. The instruction `adapters/copilot/README.md` supplies for `.github/copilot-instructions.md` tells the agent to read `GATES.md` and check every gate before reporting completion. The `grit-gates.yml` continuous-integration workflow is the backstop: it lints the ledger independently of what the agent reported and fails the check when a gate is unmet.
 
 ## Install one group or one skill
 

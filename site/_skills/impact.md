@@ -29,7 +29,7 @@ journey_next: sdlc
 
 ## What it does
 
-Impact turns a raw idea — notes, a transcript, or a vague ask — into an approved PRD and a handoff ready for `slice`. It exists because a feature can otherwise reach implementation with no real business case behind it. The grill loop — a round of hard questions repeated until the idea holds up, or is honestly cut — is the mechanism that catches that before a line of code is written.
+Impact turns a raw idea — notes, a transcript, or a vague ask — into an approved PRD, the product requirements document, and a handoff ready for `slice`. It exists because a feature can otherwise reach implementation with no real business case behind it. The grill loop — a round of hard questions repeated until the idea holds up, or is honestly cut — is the mechanism that catches that before a line of code is written.
 
 <div class="step-flow">
   <div class="step"><span class="step-num">1</span><span class="step-label">Intake</span><span class="step-text">Draft a fast-cut PRD against `PRD-TEMPLATE.md`; pull in a recon brief first for brownfield work.</span></div>
@@ -62,7 +62,7 @@ You reach for it in three moments. A new initiative, a major feature, or a brown
 | You need estate context on an existing codebase before scope gets written down | [`recon`]({{ '/recon/' | relative_url }}) |
 | The PRD is signed and you need it decomposed into backlog items | [`slice`]({{ '/slice/' | relative_url }}) |
 | You need the gated build loop itself, not the requirements document in front of it | [`sdlc`]({{ '/sdlc/' | relative_url }}) |
-| The idea is a pm-pipeline epic PRD, not a piece of software delivery | `pm/prd-draft` |
+| The idea is a pm-pipeline epic PRD, not a piece of software delivery | [`prd-draft`]({{ '/prd-draft/' | relative_url }}) |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
 <div class="tool-block">
@@ -216,7 +216,7 @@ If a PRD reaches sign-off with its business-value section filled by a generic se
 
 ## Where it fits
 
-**Impact is where a raw idea either earns its way into the delivery pipeline or gets shrunk to the size its evidence actually supports.**
+**Impact is where a raw idea either qualifies for the delivery pipeline or gets shrunk to the size its evidence actually supports.**
 
 Its nearest neighbor on the journey is `recon`: for brownfield work, recon's brief is what impact drafts scope against, so the PRD reflects the estate as it actually is rather than an assumption about it. `slice` is the next step once G2 is signed, reading the same PRD to decompose it into backlog items. The pm group's own `prd-draft` may feed a pm-pipeline epic PRD into impact for engineering inception, or hand straight to slice when its acceptance criteria are already machine-checkable.
 

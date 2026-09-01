@@ -39,7 +39,7 @@ Recon produces a read-only brief on an existing codebase's architecture, and it 
 </div>
 
 <ul class="benefits">
-  <li>Orientation on an unfamiliar codebase stays a bounded, targeted read instead of an open-ended exploration that burns tokens without a stopping point.</li>
+  <li>Orientation on an unfamiliar codebase stays a bounded, targeted read instead of an open-ended exploration that spends tokens without a stopping point.</li>
   <li>Every brief carries a stated confidence next to its archetype, so a downstream skill knows how much to trust the label rather than treating a guess as settled fact.</li>
   <li>An unmatched estate reports honestly as an unknown archetype with suggested manual questions, never a confident label invented to fill the field.</li>
   <li>Nothing recon does can change the repository — every step through triage and the brief itself is read-only, by construction, not by discipline someone has to remember.</li>
@@ -56,12 +56,12 @@ Recon produces a read-only brief on an existing codebase's architecture, and it 
 
 Recon is not typed as a command. The model reaches for it on its own whenever a request needs orientation on an existing codebase before other work proceeds. The real, current line `r018` in this repository's routing evaluation set, `test/eval/routing.jsonl`, is exactly that trigger: "I inherited this codebase and have no idea how it is put together."
 
-You reach for it, indirectly, in three moments. You are handed a repository with no working knowledge of its shape and need a bounded first pass before reading a single implementation file yourself. `impact` is about to draft a brownfield PRD and needs estate context before scope gets written down. `architect` needs a design starting point that names the estate's modernization seams rather than inventing a design with no reference to the estate at all.
+You reach for it, indirectly, in three moments. You are handed a repository with no working knowledge of its shape and need a bounded first pass before reading a single implementation file yourself. `impact` is about to draft a brownfield product requirements document (PRD) and needs estate context before scope gets written down. `architect` needs a design starting point that names the estate's modernization seams rather than inventing a design with no reference to the estate at all.
 
 | The problem | The skill |
 |---|---|
 | You have oriented on the codebase and now need a signed PRD for the change itself | [`impact`]({{ '/impact/' | relative_url }}) |
-| You need a technical design built from the brief, not the brief itself | `architect` |
+| You need a technical design built from the brief, not the brief itself | [`architect`]({{ '/architect/' | relative_url }}) |
 | You are choosing execution shape for a change, not orienting on the codebase it touches | [`conduct`]({{ '/conduct/' | relative_url }}) |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
@@ -207,7 +207,7 @@ Never. TRIAGE.md's stop condition states this directly: never mutate source. Eve
 <summary>Why read only the paths a marker points to, instead of the whole tree?</summary>
 <div class="qa-body">
 
-Because the brief format is fixed and bounded on purpose — TRIAGE.md's steps run in order precisely so that a read only happens once a marker has already justified it. A codebase can run to hundreds of thousands of files; an exploratory read with no marker to bound it would burn tokens without producing an answer any more useful than the targeted one.
+Because the brief format is fixed and bounded on purpose — TRIAGE.md's steps run in order precisely so that a read only happens once a marker has already justified it. A codebase can run to hundreds of thousands of files; an exploratory read with no marker to bound it would spend tokens without producing an answer any more useful than the targeted one.
 
 </div>
 </details>

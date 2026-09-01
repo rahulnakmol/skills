@@ -31,7 +31,7 @@ journey_next: case
 
 Carve is the pm group's decomposer for turning a confirmed problem into a manifest a sponsor can actually approve. It extracts candidate epics from a Business Understanding Document under the product hat, or from a Target Operating Model's maturity gaps under the transformation hat, and validates every one against DIVE — Deliverable, Independent, Valuable, Estimable — before it enters the manifest.
 
-A candidate that fails DIVE is split or rejected rather than waved through, and more than eight epics in one manifest is itself the signal that the scope in front of you is a program, not a project. The manifest is pressure-tested through a grill round before it is ever presented, and nothing is written to disk until the user approves the ordered list.
+A candidate that fails DIVE is split or rejected rather than accepted as it stands, and more than eight epics in one manifest is itself the signal that the scope in front of you is a program, not a project. The manifest is pressure-tested through a grill round before it is ever presented, and nothing is written to disk until the user approves the ordered list.
 
 <div class="step-flow">
   <div class="step"><span class="step-num">1</span><span class="step-label">Detect the input</span><span class="step-text">Understanding document only, understanding document plus TOM, or direct input with no upstream artifacts.</span></div>
@@ -68,7 +68,7 @@ Carve is not the only skill that touches decomposition. This table separates its
 |---|---|
 | The work is software delivery decomposition, not pm epics from a Business Understanding Document | [`slice`]({{ '/slice/' | relative_url }}) |
 | No understanding document or TOM exists yet for carve to read | [`map`]({{ '/map/' | relative_url }}) |
-| Epics are approved and requirements need drafting | [`prd-draft`]({{ '/prd-draft/' | relative_url }}) |
+| Epics are approved and each one needs its product requirements document (PRD) drafted | [`prd-draft`]({{ '/prd-draft/' | relative_url }}) |
 | You are not sure which pm skill fits at all | [`ask-pm`]({{ '/ask-pm/' | relative_url }}) |
 
 <div class="tool-block">

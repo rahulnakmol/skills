@@ -124,7 +124,7 @@ See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of 
 
 ## A working example
 
-No constitution exists yet, and the reconciliation initiative is close enough to Investment that its case will need a prioritization framework to score against. You type the prompt above. Constitution detects Create mode from the missing file and asks through the seven sections in small batches rather than all at once.
+No constitution exists yet, and the reconciliation initiative is close enough to Investment — the gate where a sponsor commits budget — that its case will need a prioritization framework to score against. You type the prompt above. Constitution detects Create mode from the missing file and asks through the seven sections in small batches rather than all at once.
 
 Principles come first, and the first draft the model proposes reads "be user-focused" — a platitude everyone already agrees with, and `CONSTITUTION.md`'s own standard for a principle. The stop condition in `SKILL.md` catches this directly: a section containing a generic platitude is not accepted, and the model is pushed to state the actual trade-off instead. The revised principle: when shipping speed and audit completeness compete, the practice chooses audit completeness for anything reaching Investment or Quality, and optimizes speed before the gate rather than at it.
 
@@ -219,7 +219,7 @@ If a constitution accumulates six or seven principles because each new disagreem
 
 ## Where it fits
 
-Constitution sits underneath the pipeline rather than inside its sequence. `discover`, `prd-draft`, `prd-review`, `carve`, and `tom-architect` each read the applicable chain before drafting, the way a foundation gets checked rather than walked through step by step. `GATES.md` does not name a gate constitution feeds directly, because alignment is a standing condition every gate assumes, not an artifact one gate signs off on its own.
+Constitution sits underneath the pipeline rather than inside its sequence. `discover`, `prd-draft`, `prd-review`, `carve`, and `tom-architect` each read the applicable chain before drafting, the way a foundation gets checked rather than walked through step by step. `GATES.md`, the pm group's gate doctrine, does not name a gate constitution feeds directly, because alignment is a standing condition every gate assumes, not an artifact one gate signs off on its own.
 
 Its nearest neighbor for pressure-testing is `grill`, which Review mode calls directly to interrogate the constitution's own claims once a quarter has passed. Where discover produces one initiative's problem analysis, constitution produces the standing principles that analysis has to answer to.
 

@@ -124,7 +124,7 @@ You type:
 
 <pre><code>The v0.7.0 changelog entry is signed off — I saved it as release-notes/v0.7.0.md. Render it into a branded page for the announcement, using the shipped palette. I only need the HTML right now; tell me plainly if a PDF comes out or not, and give me the checksum either way.</code></pre>
 
-Press takes the sign-off at your word — that is exactly what SKILL.md says it must do, since it has no way to check a signature itself — and reads the text you saved without changing a word of it. `release-notes/v0.7.0.md` is this repository's own 0.7.0 changelog entry, copied in full:
+Press takes the sign-off at your word — that is exactly what SKILL.md says it must do, since it has no way to check a signature itself — and reads the text you saved without changing a word of it. That file holds this repository's own 0.7.0 changelog entry, written as release-note copy and shown here in full:
 
 <pre><code># tqnonline/skills v0.7.0
 

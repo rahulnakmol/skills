@@ -23,7 +23,7 @@ lens:
 
 ## What it does
 
-PRD Review keeps a team from approving a PRD that reads as finished but was never pushed to be ambitious. It maps every feature in the PRD to a level on the eleven-star scale before any number gets assigned. That scale runs from broken (1 to 3), through baseline parity (4 to 5), to a differentiated experience that produces a wow moment or changes how a user thinks about the problem (7 to 8). Stars 9 to 11 are reserved for a design exercise no team actually ships. Only after that mapping does it rate the PRD on seven weighted dimensions and roll them into one composite score that lands in one of five verdict bands, from Reject to Exemplary. The score informs the human decision at the Quality gate, the checkpoint where a PRD is approved to move into delivery, and it never replaces that decision, even at a high composite.
+PRD Review keeps a team from approving a PRD — a product requirements document — that reads as finished but was never pushed to be ambitious. It maps every feature in the PRD to a level on the eleven-star scale before any number gets assigned. That scale runs from broken (1 to 3), through baseline parity (4 to 5), to a differentiated experience that produces a wow moment or changes how a user thinks about the problem (7 to 8). Stars 9 to 11 are reserved for a design exercise no team actually ships. Only after that mapping does it rate the PRD on seven weighted dimensions and roll them into one composite score that lands in one of five verdict bands, from Reject to Exemplary. The score informs the human decision at the Quality gate, the checkpoint where a PRD is approved to move into delivery, and it never replaces that decision, even at a high composite.
 
 <div class="step-flow">
   <div class="step"><span class="step-num">1</span><span class="step-label">Receive and inventory</span><span class="step-text">Read the full PRD and list every feature and story before scoring anything.</span></div>
@@ -139,7 +139,7 @@ Metric Alignment .... 8/10 (10%)  -&gt; 0.80
 Story Quality ....... 8/10 (15%)  -&gt; 1.20
 <span class="tok-ok">Composite: 7.40 -&gt; Minor Revision</span></code></pre>
 
-7.40 sits inside the Minor Revision band, 6.0 to 7.4, one hundredth of a point under the 7.5 floor `ELEVEN-STAR.md` sets for Approved with Notes. The review writes the improvement suggestion that follows directly from where the number fell short:
+7.40 sits inside the Minor Revision band, 6.0 to 7.4, one tenth of a point under the 7.5 floor `ELEVEN-STAR.md` sets for Approved with Notes. The review writes the improvement suggestion that follows directly from where the number fell short:
 
 <pre><code># PRD Review: field-inspection-copilot
 
@@ -196,7 +196,7 @@ Story Quality .. 7/10</code></pre>
 <summary>What if scoring starts before the star-level mapping is finished?</summary>
 <div class="qa-body">
 
-SKILL.md lists this as a stop condition in its own right: "scoring before completing the star-level mapping." The mapping exists to anchor every dimension score in an actual reading of the PRD's ambition, not a general impression — scoring first turns the seven dimensions into a guess dressed up as a rubric.
+SKILL.md lists this as a stop condition in its own right: "scoring before completing the star-level mapping." The mapping exists to anchor every dimension score in an actual reading of the PRD's ambition, not a general impression — scoring first turns the seven dimensions into a guess written in a rubric's format.
 
 </div>
 </details>
@@ -223,7 +223,7 @@ SKILL.md's report step is explicit: "if the verdict is Major Revision or worse, 
 <summary>Exactly where does Minor Revision end and Approved with Notes begin?</summary>
 <div class="qa-body">
 
-`ELEVEN-STAR.md` draws the line precisely. "A score of exactly 7.5 is the floor of Approved with Notes, not the ceiling of Minor Revision — the boundary matters because it is the line between a PRD that ships with commentary and one that returns to prd-draft for another pass." The two scores are one hundredth of a point apart and mark two different decisions.
+`ELEVEN-STAR.md` draws the line precisely. "A score of exactly 7.5 is the floor of Approved with Notes, not the ceiling of Minor Revision — the boundary matters because it is the line between a PRD that ships with commentary and one that returns to prd-draft for another pass." A composite of 7.4 and one of 7.5 sit a tenth of a point apart and mark two different decisions.
 
 </div>
 </details>

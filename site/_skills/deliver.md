@@ -23,11 +23,11 @@ lens:
 
 ## What it does
 
-Deliver is the model-invoked charter for release readiness. It checks a target repository is actually set up for agent-driven delivery, then drives a ready work item to a shippable state. A change spanning more than one concern always ships as a dependency-ordered stack of pull requests, never one diff a reviewer has to swallow whole.
+Deliver is the model-invoked charter for release readiness. It checks a target repository is actually set up for agent-driven delivery, then drives a ready work item to a shippable state. A change spanning more than one concern always ships as a dependency-ordered stack of pull requests, never one diff a reviewer has to take in all at once.
 
 <div class="step-flow">
   <div class="step"><span class="step-num">1</span><span class="step-label">Gate</span><span class="step-text">Verify the item is at ready; refuse otherwise — that check belongs to a human, not to this workflow.</span></div>
-  <div class="step"><span class="step-num">2</span><span class="step-label">Plan</span><span class="step-text">A SPEC-TS snapshot, file ownership, and a layer plan for stacking, built from the work item's own contract.</span></div>
+  <div class="step"><span class="step-num">2</span><span class="step-label">Plan</span><span class="step-text">A SPEC-TS snapshot — the scope, requirements, and success-metrics record — plus file ownership and a layer plan for stacking, built from the work item's own contract.</span></div>
   <div class="step"><span class="step-num">3</span><span class="step-label">Implement</span><span class="step-text">A single writer implements and writes tests in an isolated worktree, one commit per layer of the plan.</span></div>
   <div class="step"><span class="step-num">4</span><span class="step-label">Verify</span><span class="step-text">A separate verifier runs the contract verification commands; a bounded fix loop runs until it passes or stalls.</span></div>
   <div class="step"><span class="step-num">5</span><span class="step-label">Raise</span><span class="step-text">One pull request, or a dependency-ordered reviewable stack via gh stack, each stating its coverage before it opens.</span></div>
@@ -225,7 +225,7 @@ Yes. `REPO-SETUP.md`'s checklist — GitHub Code Quality on its own Actions path
 
 ## It's working if
 
-- A multi-concern change always ships as a dependency-ordered stack, never as one diff a reviewer has to swallow whole.
+- A multi-concern change always ships as a dependency-ordered stack, never as one diff a reviewer has to take in all at once.
 - Every pull request states its coverage and traceability before it opens, not after a reviewer has to ask for it.
 - An unmet verification gate never reaches Raise — the bounded fix loop runs, or the workflow stops with `NO_PROGRESS` rather than forcing a pull request through.
 - The repository's own readiness — Code Quality, `gh stack` tooling, pickup labels, the shakedown workflow — is checked and recorded as gate evidence, not assumed.
