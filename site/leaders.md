@@ -1,11 +1,10 @@
 ---
-layout: default
+layout: page
 title: "For leaders"
 description: "What The Quentin's skill library changes for a delivery organization: human gates, agent-run work between them, and evidence-backed completion."
 permalink: /leaders/
+eyebrow: "Operating model"
 ---
-
-# For leaders
 
 The Quentin's skill library is built around one operating rule, applied the same way on the delivery side and the product side. This page states what that rule changes for people who are accountable for outcomes, not for the work itself.
 
