@@ -1,0 +1,17 @@
+{
+  "description": "grit: block Codex session completion while the gate ledger has unmet gates.",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.codex/hooks/grit-stop-hook.mjs\" --grit-hook",
+            "timeout": 60,
+            "statusMessage": "Checking grit gates"
+          }
+        ]
+      }
+    ]
+  }
+}
