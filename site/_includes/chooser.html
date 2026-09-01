@@ -1,0 +1,121 @@
+<!-- Skill chooser. Included from site/index.html (HTML, no markdown pass) and
+from site/how-it-fits.md (markdown, kramdown). Every line here sits at column
+zero on purpose: a markdown converter turns any line indented four or more
+spaces into an indented code block, which would render this whole widget as
+escaped text on the .md page. Keep new lines flush left. -->
+<div
+class="chooser"
+x-data="{
+ready: false,
+tree: [],
+leaves: [],
+questions: {},
+picks: [],
+baseurl: '',
+init() {
+try {
+var raw = document.getElementById('chooser-json').textContent;
+var data = JSON.parse(raw);
+this.tree = data.tree || [];
+this.leaves = data.leaves || [];
+this.questions = data.questions || {};
+} catch (e) {
+this.tree = []; this.leaves = []; this.questions = {};
+}
+try { this.baseurl = document.body.getAttribute('data-baseurl') || ''; } catch (e) {}
+this.ready = true;
+},
+pick(id) { this.picks.push(id); },
+back() { this.picks.pop(); },
+restart() { this.picks = []; },
+get remaining() {
+var picks = this.picks;
+return this.leaves.filter(function (leaf) {
+return picks.every(function (id, i) { return leaf.path[i] && leaf.path[i].id === id; });
+});
+},
+get leaf() {
+var r = this.remaining;
+return (r.length === 1 && this.picks.length === r[0].path.length) ? r[0] : null;
+},
+get nextOptions() {
+if (this.leaf) return [];
+var r = this.remaining;
+if (!r.length) return [];
+var step = this.picks.length;
+var seen = {}; var out = [];
+r.forEach(function (leaf) {
+var node = leaf.path[step];
+if (node && !seen[node.id]) { seen[node.id] = true; out.push(node); }
+});
+return out;
+},
+get nextQuestion() {
+var opts = this.nextOptions;
+return opts.length ? (this.questions[opts[0].level] || '') : '';
+}
+}"
+>
+<script type="application/json" id="chooser-json">{{ site.data.chooser | jsonify }}</script>
+<!-- No-JS fallback: the full tree, always in the markup, no x-cloak — the
+same "default panel reads without JS" rule lens.html follows. Alpine hides it
+(x-show="!ready") only once it has actually mounted. -->
+<nav class="chooser-static" x-show="!ready" aria-label="Skill chooser, full list">
+<p class="chooser-static-q">{{ site.data.chooser.questions.l1 }}</p>
+<ul class="chooser-tree">
+{% for n1 in site.data.chooser.tree %}
+<li>
+<span class="chooser-tree-label">{{ n1.label }}</span>
+<ul class="chooser-tree">
+{% for n2 in n1.children %}{% if n2.skill %}
+<li class="chooser-tree-leaf">
+<span class="chooser-tree-moment">{{ n2.label }}</span>
+<a href="{{ n2.href | relative_url }}"><code>{{ n2.skill }}</code></a>
+<span class="chooser-tree-oneliner">{{ n2.oneLiner }}</span>
+</li>
+{% else %}
+<li>
+<span class="chooser-tree-label">{{ n2.label }}</span>
+<ul class="chooser-tree">
+{% for n3 in n2.children %}
+<li class="chooser-tree-leaf">
+<span class="chooser-tree-moment">{{ n3.label }}</span>
+<a href="{{ n3.href | relative_url }}"><code>{{ n3.skill }}</code></a>
+<span class="chooser-tree-oneliner">{{ n3.oneLiner }}</span>
+</li>
+{% endfor %}
+</ul>
+</li>
+{% endif %}{% endfor %}
+</ul>
+</li>
+{% endfor %}
+</ul>
+</nav>
+<!-- Interactive stepper: hidden until Alpine mounts (x-cloak), then swaps
+places with the static tree above (x-show="ready"). -->
+<div class="chooser-interactive" x-cloak x-show="ready">
+<div class="chooser-crumbs" x-show="picks.length > 0">
+<button type="button" class="chooser-crumb" @click="back()">&larr; Back</button>
+<button type="button" class="chooser-crumb" @click="restart()">Start over</button>
+</div>
+<template x-if="!leaf && nextOptions.length">
+<div class="chooser-step rise">
+<div class="chooser-question" x-text="nextQuestion"></div>
+<div class="chooser-chips">
+<template x-for="opt in nextOptions" :key="opt.level + '-' + opt.id">
+<button type="button" class="chooser-chip chiplift" @click="pick(opt.id)" x-text="opt.label"></button>
+</template>
+</div>
+</div>
+</template>
+<template x-if="leaf">
+<div class="chooser-result rise">
+<span class="chooser-result-skill"><code x-text="leaf.skill"></code></span>
+<p class="chooser-result-oneliner" x-text="leaf.oneLiner"></p>
+<a class="chooser-result-link" :href="baseurl + leaf.href">Open <span x-text="leaf.skill"></span> &rarr;</a>
+</div>
+</template>
+</div>
+<p class="chooser-note">Not sure? Routing undecided questions is a skill here too — <a href="{{ '/ask-fde/' | relative_url }}">ask-fde</a>. For product and program work specifically, <a href="{{ '/ask-pm/' | relative_url }}">ask-pm</a> routes inside the pm group.</p>
+</div>

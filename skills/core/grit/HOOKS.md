@@ -1,6 +1,6 @@
 # Enforcing the ledger per tool
 
-A ledger only changes behavior if something reads it at the moment an agent tries to stop. This document covers what a stop hook does, how each supported tool enforces the ledger, and where enforcement falls back to continuous integration when no hook runtime exists.
+A ledger only changes behavior if something reads it at the moment an agent tries to stop. This document covers what a stop hook does, how each supported tool enforces the ledger, and where enforcement falls back to continuous integration when no shipped hook exists.
 
 ## What a stop hook does
 
@@ -20,7 +20,7 @@ OpenCode's shipped mechanism is a `grit-verify` command together with a rule add
 
 ## GitHub Copilot
 
-Copilot has no hook runtime to intercept a session's completion, so enforcement here is an instruction plus the continuous-integration backstop below. Add this to `.github/copilot-instructions.md`:
+This repository ships no hook that could intercept a Copilot session's completion, so enforcement here is an instruction plus the continuous-integration backstop below. Add this to `.github/copilot-instructions.md`:
 
 ```
 Before reporting a task complete, read GATES.md or .grit/*/GATES.md if
@@ -47,9 +47,9 @@ Cursor has no hook runtime to intercept a session's completion, so the Copilot i
 
 ## Continuous integration backstop
 
-`grit-gates.yml` is the check that covers every tool with no hook runtime, and it runs two steps: `gate-lint.mjs` against the ledger, to catch a malformed ledger before anything tries to execute it, and then `gate-check.mjs --status` against the same ledger. The choice of `--status` here is deliberate. `--status` never executes a CHECK command, approves an oracle, or writes to a ledger — it only reports what the ledger already records. That means CI needs no approval store and no API key to run this check: there is nothing in `--status` mode that could touch a credential or a network call, because it runs nothing at all. It exits 1 when any gate is unmet, which is exactly the condition that should block a merge.
+`grit-gates.yml` is the check that covers every tool without a shipped hook, and it runs two steps: `gate-lint.mjs` against the ledger, to catch a malformed ledger before anything tries to execute it, and then `gate-check.mjs --status` against the same ledger. The choice of `--status` here is deliberate. `--status` never executes a CHECK command, approves an oracle, or writes to a ledger — it only reports what the ledger already records. That means CI needs no approval store and no API key to run this check: there is nothing in `--status` mode that could touch a credential or a network call, because it runs nothing at all. It exits 1 when any gate is unmet, which is exactly the condition that should block a merge.
 
-Be honest about what this backstop actually catches. `--status` reads recorded state; it confirms a ledger is complete and every gate it lists shows as met. It does not re-run anything, so it cannot catch a ledger whose EVIDENCE was fabricated rather than produced by a real run, or a CHECK that was approved once against a different artifact than the one now in the PR. What makes the recorded evidence trustworthy is upstream of `--status`: the approval binding described below, and a human actually reading the audit before signing off. `--status` is the mechanical floor under every tool, including the ones with no hook runtime at all — it is not the whole of the trust the ledger claims to carry.
+Be honest about what this backstop actually catches. `--status` reads recorded state; it confirms a ledger is complete and every gate it lists shows as met. It does not re-run anything, so it cannot catch a ledger whose EVIDENCE was fabricated rather than produced by a real run, or a CHECK that was approved once against a different artifact than the one now in the PR. What makes the recorded evidence trustworthy is upstream of `--status`: the approval binding described below, and a human actually reading the audit before signing off. `--status` is the mechanical floor under every tool, including the ones without a shipped hook — it is not the whole of the trust the ledger claims to carry.
 
 ## The approval boundary
 

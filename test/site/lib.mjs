@@ -117,6 +117,21 @@ export function h2Headings(bodyAfterFrontmatter) {
   return [...stripped.matchAll(/^## (.+)$/gm)].map((m) => m[1].trim());
 }
 
+// The raw markdown (frontmatter already stripped, code blocks intact) between
+// one "## <heading>" line and the next H2 or the end of the body. Used to
+// scope a check — a step-flow div, a tool name — to the section that should
+// carry it, rather than the whole page.
+export function h2Section(bodyAfterFrontmatter, heading) {
+  const lines = bodyAfterFrontmatter.split('\n');
+  const start = lines.findIndex((l) => l.trim() === `## ${heading}`);
+  if (start === -1) return null;
+  let end = lines.length;
+  for (let i = start + 1; i < lines.length; i++) {
+    if (/^## /.test(lines[i])) { end = i; break; }
+  }
+  return lines.slice(start + 1, end).join('\n');
+}
+
 // --- install-block lines, read from the single source of truth -------------
 
 export function installBlockLines() {

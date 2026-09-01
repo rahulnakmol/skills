@@ -9,7 +9,7 @@ Install: `../../scripts/install-adapters.sh --tool copilot`
 
 ## Grit gates
 
-Copilot has no hook runtime to intercept a session at the point it would report a task complete, so enforcement here relies on two mechanisms instead of one: an instruction in `.github/copilot-instructions.md`, and the continuous-integration backstop at `skills/core/grit/grit-gates.yml`.
+This repository ships no hook that could intercept a Copilot session at the point it would report a task complete, so enforcement here relies on two mechanisms instead of one: an instruction in `.github/copilot-instructions.md`, and the continuous-integration backstop at `skills/core/grit/grit-gates.yml`.
 
 Add this to `.github/copilot-instructions.md`:
 
