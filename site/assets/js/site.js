@@ -9,6 +9,19 @@
 (function () {
   'use strict';
 
+  // Theme toggle. Plain JS on purpose: it must work even if a CDN script
+  // fails, and Alpine's expression evaluator rejects statement blocks.
+  window.tqnToggleTheme = function () {
+    var root = document.documentElement;
+    var current = root.getAttribute('data-theme');
+    if (!current) {
+      current = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    var next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('tqn-theme', next); } catch (e) { /* private mode */ }
+  };
+
   function isInternalNavLink(a) {
     if (!a.href) return false;
     if (a.origin !== window.location.origin) return false;
