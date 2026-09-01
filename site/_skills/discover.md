@@ -5,7 +5,7 @@ title: "Discover — Root-Cause Analysis Before Solutioning"
 description: "Discover turns a raw business problem, meeting notes, or a vague opportunity into a stakeholder-grounded, root-cause analysis before any solution design."
 group: pm
 invocation: user-invoked
-scenario: "Finding the real cause of inspections lost when a field site loses connectivity"
+scenario: "Finding the real cause of QuenServe inspections lost when a field site loses connectivity"
 lens:
   novice:
     who: "You have been handed 'the reporting is slow, fix it,' and you already suspect that is a symptom someone noticed first, not the actual problem."

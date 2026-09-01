@@ -5,7 +5,7 @@ title: "Map — Personas, Flows, and the Understanding Document"
 description: "Map turns a discovery analysis into personas, current and target process flows, and the Business Understanding Document the Framing gate signs."
 group: pm
 invocation: model-invoked
-scenario: "Mapping the field-connectivity problem for the Framing gate"
+scenario: "Mapping QuenServe's field-connectivity problem for the Framing gate"
 lens:
   novice:
     who: "You have read the discovery analysis and now have to turn stakeholder notes into personas and a process diagram, and you are not sure how detailed either needs to be."

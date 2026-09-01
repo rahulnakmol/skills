@@ -5,7 +5,7 @@ title: "Ask FDE: The Skill Router"
 description: "Ask FDE routes an unnamed intent to the correct skill in the monorepo, so a user who does not know a skill's name still reaches it."
 group: developer
 invocation: user-invoked
-scenario: "Deciding whether the offline-sync path needs a security review or something else entirely"
+scenario: "Deciding whether QuenServe story E1-F1-S1's offline-sync path needs a security review or something else entirely"
 lens:
   novice:
     who: 'You know what you want done but have no idea which of the skills in this repository does it.'
