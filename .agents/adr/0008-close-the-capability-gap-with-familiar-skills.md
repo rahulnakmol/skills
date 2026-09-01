@@ -18,7 +18,7 @@ Ship the missing capabilities as sixteen small, independently installable skills
 
 **The thesis test.** A capability earns promotion out of `drafts/` only if it does at least one of the following, recorded in its `SKILL.md`: it sharpens a human decision at a gate; it makes delegated work verifiable, leaving an audit artifact every run — a ledger entry, a trace, a cited file, a red-green record — that a reviewer can open instead of redoing the work; or it is scaffolding the first two require. A capability that only executes routine work fails the test and ships as doctrine inside an existing skill, or not at all.
 
-**Familiar names.** Names follow what practitioners already call the activity, not this repository's earlier single-verb coinages. The full mapping from the reference set:
+**Familiar names.** Names follow what practitioners already call the activity, not this repository's earlier single-verb coinages. The rule applies forward only: the thirty-four existing names are grandfathered, and no existing skill is renamed by this record — ADR 0007's `orchestrate` split showed what a rename costs, and a rename of the routers, if one is ever warranted, is its own record. For the same reason, the planned rename of the developer group directory to `ai-native-sdlc`, announced in the README, is dropped rather than deferred: `developer` is already the word practitioners know, and a directory name is an installation target whose rename cost compounds with each of the seven skills this record adds to the group. The full mapping from the reference set:
 
 | Reference skill | Ships here as | Group | Invocation |
 |---|---|---|---|
@@ -54,3 +54,4 @@ All existing invariants hold: exactly six groups, unique basenames repository-wi
 - Every new skill is auditable the same way, because the trace convention and gate reuse exist before the first one ships — discipline by machinery where it is cheap, by review where machinery would be heavy. The four embryonic harness layers are reused as they are, not rebuilt; a fuller harness remains open as a future record if the trace spine proves insufficient.
 - The repository accepts sixteen new test surfaces and wiki pages, and the maintenance that follows.
 - Declining two reference capabilities is recorded here so the question is not reopened each time the comparison is rerun.
+- Two stale statements retire with this record: the README sentence announcing the `ai-native-sdlc` rename is removed when this record is accepted, and the plugin manifest description — still reading "SDLC and impact pipeline skills" — is rewritten in the same commit that adds the first new manifest entry, since neither describes the repository this record builds.
