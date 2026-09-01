@@ -4,7 +4,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   root, read, listMarkdown, splitFrontmatter, scalar, lens, steps,
-  h2Headings, h2Section, installBlockLines, skillGroups,
+  h2Headings, h2Section, skillGroups,
 } from './lib.mjs';
 
 // The page-per-skill guarantee: every manifest entry names a real site page.
@@ -15,31 +15,12 @@ const MANIFEST_SKILLS = PLUGIN.skills.map((p) => {
   return { ref: p, group: parts[1], name: parts[2] };
 });
 
-// Two body contracts, selected by whether a page's frontmatter carries a
-// `scenario:` key. v1 is every page migrated before the site v2 rebuild;
-// v2 is the shape a migrated page takes on. A page declares which contract
-// it is written to simply by having (or not having) `scenario:` — there is
-// no separate version flag to fall out of sync with the body itself.
-const V1_H2S = ['What it does', 'How to call it', 'What good looks like', 'In practice', 'How it works'];
+// One body contract. Every skill page is written to the v2 guide shape; the
+// migration is complete, so a page without it — including a future skill's
+// brand-new page — fails here rather than shipping in an older format.
 const V2_H2S = ['What it does', 'When to reach for it', 'A working example', 'What good looks like',
   'Common questions', "It's working if", 'Where it fits'];
 const TOOL_NAMES = ['Claude Code', 'OpenCode', 'Cursor', 'Codex', 'GitHub Copilot'];
-const [INSTALL_LINE_1, INSTALL_LINE_2] = installBlockLines();
-
-// v1: today's checks, unchanged — the five H2s in order, a compare-grid, and
-// the install-block lines copied verbatim from .agents/install-block.md.
-function assertV1Body(pagePath, raw, body) {
-  const found = h2Headings(body);
-  assert.deepEqual(found, V1_H2S,
-    `${pagePath}: expected exactly the five H2s in order, got: ${JSON.stringify(found)}`);
-
-  assert.match(raw, /class="compare-grid"/, `${pagePath}: missing a compare-grid div`);
-
-  assert.ok(raw.includes(INSTALL_LINE_1),
-    `${pagePath}: missing install-block line 1 verbatim: ${JSON.stringify(INSTALL_LINE_1)}`);
-  assert.ok(raw.includes(INSTALL_LINE_2),
-    `${pagePath}: missing install-block line 2 verbatim: ${JSON.stringify(INSTALL_LINE_2)}`);
-}
 
 // v2: the seven H2s in order; "What it does" carries a step-flow and a
 // benefits list; "When to reach for it" names all five tools, links the
@@ -122,12 +103,10 @@ for (const { ref, group, name } of MANIFEST_SKILLS) {
     assert.ok(description.length >= 80 && description.length <= 200,
       `${pagePath}: description is ${description.length} chars, must be 80-200`);
 
-    // The v2 body contract is selected by this key's presence; when present
-    // it must actually carry a scenario, not just the bare key.
+    // Every page anchors on a named scenario; the body contract threads it.
     const scenario = scalar(frontmatter, 'scenario');
-    if (scenario !== null) {
-      assert.ok(scenario.length > 0, `${pagePath}: scenario, when present, must be non-empty`);
-    }
+    assert.ok(scenario !== null && scenario.length > 0,
+      `${pagePath}: scenario must be present and non-empty`);
 
     const l = lens(frontmatter);
     assert.ok(l, `${pagePath}: no lens: block found`);
@@ -168,18 +147,10 @@ for (const { ref, group, name } of MANIFEST_SKILLS) {
     }
   });
 
-  const raw0 = read(pagePath);
-  const scenario0 = scalar(splitFrontmatter(raw0).frontmatter, 'scenario');
-  const isV2 = scenario0 !== null;
-
-  test(`${pagePath}: body contract (${isV2 ? 'v2: H2 order, step-flow, benefits, tool coverage' : 'v1: H2 order, compare-grid, install block'})`, () => {
+  test(`${pagePath}: body contract (H2 order, step-flow, benefits, tool coverage)`, () => {
     const raw = read(pagePath);
     const { body } = splitFrontmatter(raw);
-    if (isV2) {
-      assertV2Body(pagePath, raw, body);
-    } else {
-      assertV1Body(pagePath, raw, body);
-    }
+    assertV2Body(pagePath, raw, body);
   });
 }
 
