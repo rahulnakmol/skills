@@ -124,16 +124,18 @@ const TREE_SPEC = [
   {
     id: 'deciding', label: 'Deciding what to build', level: 'l1',
     children: [
-      { id: 'epic', label: 'Epic', level: 'l2', children: [
+      // The two chips must contrast at a glance. "The epic itself" is
+      // finding and cutting it (discover, map, carve); "Inside the epic" is
+      // funding, specifying, and sequencing what it holds (case reads an
+      // epic manifest, prd-draft writes one PRD per epic, roadmap sequences
+      // epics) — that is why this branch does not borrow the developer
+      // branch's "Feature" label.
+      { id: 'epic', label: 'The epic itself', level: 'l2', children: [
         { id: 'before', label: 'Before', level: 'l3', skill: 'discover' },
         { id: 'during', label: 'During', level: 'l3', skill: 'map' },
         { id: 'after', label: 'After', level: 'l3', skill: 'carve' },
       ] },
-      // These three skills work at the epic-and-its-features altitude per
-      // their charters (case reads an epic manifest, prd-draft writes one PRD
-      // per epic, roadmap sequences epics), so the label says that plainly
-      // instead of borrowing the developer branch's "Feature".
-      { id: 'feature', label: 'An epic and its features', level: 'l2', children: [
+      { id: 'feature', label: 'Inside the epic', level: 'l2', children: [
         { id: 'before', label: 'Before', level: 'l3', skill: 'case' },
         { id: 'during', label: 'During', level: 'l3', skill: 'prd-draft' },
         { id: 'after', label: 'After', level: 'l3', skill: 'roadmap' },
