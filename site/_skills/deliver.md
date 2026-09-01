@@ -208,6 +208,24 @@ Yes. `REPO-SETUP.md`'s checklist — GitHub Code Quality on its own Actions path
 </div>
 </details>
 
+<details class="qa">
+<summary>What happens when a merge or rebase stops on conflict markers?</summary>
+<div class="qa-body">
+
+`MERGE.md` takes over. Each hunk is resolved by the intent behind both sides — traced through the commit, the pull request, and the issue that produced it — never by whichever side reads better and never by aborting, which discards the work rather than settling it. A resolution that compiles has cleared a low bar, so the evidence is the full suite run from the merged tree, since every test on both branches passed before the merge.
+
+</div>
+</details>
+
+<details class="qa">
+<summary>Are there checks before a commit is even recorded?</summary>
+<div class="qa-body">
+
+Yes, and `REPO-SETUP.md` sets the boundary deliberately. A pre-commit hook runs only what is fast, applying formatting rather than reporting it; a hook that runs the full suite gets disabled within a week, which leaves the repository with no commit-time check at all. Where agents work in the repository, destructive git commands are blocked at the point of execution rather than discouraged in instructions, and each block names the safe alternative so the guardrail is not simply switched off.
+
+</div>
+</details>
+
 ## It's working if
 
 - A multi-concern change always ships as a dependency-ordered stack, never as one diff a reviewer has to take in all at once.
