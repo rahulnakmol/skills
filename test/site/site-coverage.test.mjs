@@ -22,6 +22,42 @@ const V2_H2S = ['What it does', 'When to reach for it', 'A working example', 'Wh
   'Common questions', "It's working if", 'Where it fits'];
 const TOOL_NAMES = ['Claude Code', 'OpenCode', 'Cursor', 'Codex', 'GitHub Copilot'];
 
+// The tool-coverage section inside "When to reach for it" now has two valid
+// shapes. The original: five .tool-block divs, one per tool, each carrying
+// its own prompt-card — still what every live page ships (grit included).
+// The new group shape: three .tool-group blocks (Claude Code, OpenCode, and
+// a merged "Catalog readers" block for Cursor/Codex/Copilot), each carrying
+// one prompt-card, sitting under one shared-install line stated once. A page
+// passes via either shape; detection is the presence of .tool-group, so a
+// page never accidentally satisfies half of one contract and half of the
+// other. No live page has moved to the group shape yet (site/tools.md is
+// prose, not a skill page, and grit.md is still five-block) — this arm is
+// exercised by the synthetic fixture below until a real page adopts it.
+function assertToolSection(pagePath, whenToReach) {
+  const isGroupShape = /class="tool-group"/.test(whenToReach);
+  if (isGroupShape) {
+    const installLines = whenToReach.match(/npx skills@latest add tqnonline\/skills/g) || [];
+    assert.equal(installLines.length, 1,
+      `${pagePath}: the group shape must state the shared install line exactly once, found ${installLines.length}`);
+
+    const groupBlocks = whenToReach.match(/class="tool-group"/g) || [];
+    assert.equal(groupBlocks.length, 3,
+      `${pagePath}: the group shape must carry exactly 3 .tool-group blocks, found ${groupBlocks.length}`);
+
+    const promptCards = whenToReach.match(/class="prompt-card"/g) || [];
+    assert.ok(promptCards.length >= 3,
+      `${pagePath}: the group shape must carry at least 3 .prompt-card blocks, found ${promptCards.length}`);
+    const promptCopies = whenToReach.match(/class="prompt-card-copy"/g) || [];
+    assert.ok(promptCopies.length >= 3,
+      `${pagePath}: the group shape must carry at least 3 .prompt-card-copy buttons, found ${promptCopies.length}`);
+  } else {
+    assert.match(whenToReach, /class="prompt-card"/,
+      `${pagePath}: "When to reach for it" must contain a prompt-card`);
+    assert.match(whenToReach, /class="prompt-card-copy"/,
+      `${pagePath}: every prompt-card needs its copy button`);
+  }
+}
+
 // v2: the seven H2s in order; "What it does" carries a step-flow and a
 // benefits list; "When to reach for it" names all five tools, links the
 // Tools page, and carries at least one copyable prompt-card. No
@@ -46,10 +82,7 @@ function assertV2Body(pagePath, raw, body) {
   }
   assert.match(whenToReach, /<a\b[^>]*href="[^"]*tools\/[^"]*"/,
     `${pagePath}: "When to reach for it" must link the Tools page`);
-  assert.match(whenToReach, /class="prompt-card"/,
-    `${pagePath}: "When to reach for it" must contain a prompt-card`);
-  assert.match(whenToReach, /class="prompt-card-copy"/,
-    `${pagePath}: every prompt-card needs its copy button`);
+  assertToolSection(pagePath, whenToReach);
   assert.ok(/The problem/.test(whenToReach) && /The skill/.test(whenToReach),
     `${pagePath}: "When to reach for it" must carry the "The problem | The skill" disambiguation table`);
 
@@ -308,4 +341,133 @@ test('v2 fixture mutation: a missing prompt-card is a named failure', () => {
     '');
   assert.throws(() => assertV2Body('fixture', broken, broken),
     /must contain a prompt-card/);
+});
+
+// --- v2 contract self-test, group arm ---------------------------------------
+//
+// The same synthetic-fixture idiom as V2_FIXTURE_OK above, exercising the
+// new .tool-group shape: three grouped blocks (Claude Code, OpenCode, and a
+// merged Cursor/Codex/GitHub Copilot "Catalog readers" block) instead of
+// five, under one shared-install line stated once. Never written to
+// site/_skills, so it cannot trip the orphan-page or manifest checks above.
+const V2_FIXTURE_GROUP_OK = `## What it does
+
+<div class="step-flow">
+  <div class="step"><span class="step-num">1</span><span class="step-label">Read</span><span class="step-text">Read the input.</span></div>
+</div>
+
+<ul class="benefits">
+  <li>Saves time.</li>
+  <li>Reduces risk.</li>
+</ul>
+
+## When to reach for it
+
+Type \`/example\` in Claude Code, or the agent reaches for it when substantial work needs this.
+
+Install once, use in all five tools:
+
+\`\`\`bash
+npx skills@latest add tqnonline/skills
+./scripts/install-adapters.sh
+\`\`\`
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command, opt-in stop hook</span></div>
+<div class="tool-group-body">
+<p>Do the thing in Claude Code.</p>
+<div class="prompt-card">Do the thing, carefully, and tell me what you found.<button type="button" class="prompt-card-copy">Copy</button></div>
+</div>
+</div>
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Command file</span></div>
+<div class="tool-group-body">
+<p>Do the thing in OpenCode.</p>
+<div class="prompt-card">Do the thing in OpenCode too, carefully.<button type="button" class="prompt-card-copy">Copy</button></div>
+</div>
+</div>
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; same install, same plain ask</span></div>
+<div class="tool-group-body">
+<p>Do the thing in a catalog reader.</p>
+<div class="prompt-card">Do the thing here too, carefully.<button type="button" class="prompt-card-copy">Copy</button></div>
+</div>
+</div>
+
+| The problem | The skill |
+|---|---|
+| A neighboring problem | another-skill |
+
+See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for setup.
+
+## A working example
+
+A worked example goes here.
+
+## What good looks like
+
+<div class="compare-grid">
+<div class="compare-card compare-card--good">Done well.</div>
+<div class="compare-card compare-card--warn">The wrong turn.</div>
+</div>
+
+## Common questions
+
+### A question?
+An answer.
+
+## It's working if
+
+- Outcome one.
+- Outcome two.
+
+## Where it fits
+
+Where it fits goes here.
+`;
+
+test('v2 fixture (group arm): a well-formed grouped body passes assertV2Body', () => {
+  assert.doesNotThrow(() => assertV2Body('fixture-group', V2_FIXTURE_GROUP_OK, V2_FIXTURE_GROUP_OK));
+});
+
+test('v2 fixture (group arm) mutation: a second shared-install line is a named failure', () => {
+  const broken = V2_FIXTURE_GROUP_OK.replace(
+    '<p>Do the thing in Claude Code.</p>',
+    '<p>Do the thing in Claude Code, after running <code>npx skills@latest add tqnonline/skills</code> again.</p>');
+  assert.throws(() => assertV2Body('fixture-group', broken, broken),
+    /shared install line exactly once/);
+});
+
+test('v2 fixture (group arm) mutation: a missing .tool-group block is a named failure', () => {
+  // Drop the OpenCode block itself, but leave its name mentioned in prose so
+  // this mutation isolates the .tool-group count check from the separate
+  // "every tool name is mentioned" check above it.
+  const broken = V2_FIXTURE_GROUP_OK
+    .replace('Do the thing in Claude Code.', 'Do the thing in Claude Code (OpenCode works the same way).')
+    .replace(
+      /<div class="tool-group">\n<div class="tool-group-head"><span class="tool-badge">OpenCode<\/span>[\s\S]*?<\/div>\n<\/div>\n\n/,
+      '');
+  assert.throws(() => assertV2Body('fixture-group', broken, broken),
+    /exactly 3 \.tool-group blocks/);
+});
+
+test('v2 fixture (group arm) mutation: fewer than 3 prompt-cards is a named failure', () => {
+  const broken = V2_FIXTURE_GROUP_OK.replace(
+    '<div class="prompt-card">Do the thing in OpenCode too, carefully.<button type="button" class="prompt-card-copy">Copy</button></div>',
+    '<p>No prompt here.</p>');
+  assert.throws(() => assertV2Body('fixture-group', broken, broken),
+    /at least 3 \.prompt-card blocks/);
+});
+
+test('v2 fixture (group arm) mutation: a missing tool name across the badges is still a named failure', () => {
+  const broken = V2_FIXTURE_GROUP_OK.replace('<span class="tool-badge">Codex</span>', '');
+  assert.throws(() => assertV2Body('fixture-group', broken, broken),
+    /must name Codex/);
+});
+
+test('v2 fixture (five-block arm): unaffected by the group-shape checks (no .tool-group present)', () => {
+  assert.ok(!/class="tool-group"/.test(V2_FIXTURE_OK), 'sanity: the original fixture carries no .tool-group');
+  assert.doesNotThrow(() => assertV2Body('fixture', V2_FIXTURE_OK, V2_FIXTURE_OK));
 });

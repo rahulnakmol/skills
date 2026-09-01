@@ -588,6 +588,26 @@ main#page-body { display: block; }
   background: var(--emerald);
 }
 
+/* ---------- tool group (skill "How to call it", grouped-mechanism shape) --
+   Same visual pieces as .tool-block above — a head row, a body, one
+   .prompt-card — but the head row carries one or more .tool-badge chips
+   (several tools sharing one mechanism) plus a plain-text mechanism label,
+   instead of exactly one badge. No animation of its own: hover states, if
+   any, ride the existing .lift/.chiplift transitions, which the global
+   prefers-reduced-motion rule above already disables. */
+.tool-group { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.tool-group + .tool-group { margin-top: 14px; }
+.tool-group-head {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+  padding: 10px 16px;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--line);
+}
+.tool-group-mechanism { font-size: 13px; color: var(--muted); margin-left: 2px; }
+.tool-group-body { padding: 14px 16px; background: var(--surface); font-size: 14px; line-height: 1.6; }
+.tool-group-body p { font-size: 14px; line-height: 1.6; }
+.tool-group-body :first-child { margin-top: 0; }
+
 /* ---------- responsive ---------- */
 @media (max-width: 980px) {
   .skill-shell { grid-template-columns: 1fr; }
@@ -636,3 +656,61 @@ main#page-body { display: block; }
 .qa > summary:hover { background: var(--surface2); }
 .qa .qa-body { padding: 2px 16px 8px; }
 .qa .qa-body > p:first-child { margin-top: 4px; }
+
+/* ---------- skill chooser (site/_includes/chooser.html) --------------------
+   Two sibling blocks share one wrapper: .chooser-static (the full tree,
+   plain markup, no x-cloak — same "default panel reads without JS" rule
+   lens.html documents at the top of this file) and .chooser-interactive
+   (the Alpine stepper, x-cloak'd so it never flashes before Alpine mounts).
+   Reveals use the existing .rise entrance animation and .chiplift hover,
+   both already covered by the prefers-reduced-motion kill switch above —
+   nothing new outside it. */
+.chooser { display: flex; flex-direction: column; gap: 14px; margin: 22px 0; }
+.chooser-static { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 16px 20px; }
+.chooser-static-q {
+  font-family: "Bricolage Grotesque", sans-serif; font-weight: 600;
+  font-size: 13.5px; color: var(--muted); margin: 0 0 10px;
+}
+.chooser-tree, .chooser-tree ul { list-style: none; margin: 0; padding: 0 0 0 18px; display: flex; flex-direction: column; gap: 7px; }
+.chooser-tree { padding-left: 0; }
+.chooser-tree-label { font-family: "Bricolage Grotesque", sans-serif; font-weight: 600; font-size: 13.5px; }
+.chooser-tree-leaf { display: flex; flex-wrap: wrap; align-items: baseline; gap: 7px; font-size: 12.5px; color: var(--muted); }
+.chooser-tree-moment {
+  font-family: "JetBrains Mono", monospace; font-size: 10.5px; font-weight: 600;
+  color: var(--cobalt-text); background: var(--cobalt-soft);
+  border-radius: 4px; padding: 1px 6px;
+}
+.chooser-tree-leaf a { font-size: 12.5px; }
+.chooser-tree-oneliner { color: var(--muted); }
+
+.chooser-interactive {
+  display: flex; flex-direction: column; gap: 14px;
+  border: 1px solid var(--line); border-radius: 10px;
+  background: var(--surface); padding: 18px 20px;
+}
+.chooser-crumbs { display: flex; gap: 8px; }
+.chooser-crumb {
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  font-size: 12.5px; font-weight: 500; color: var(--muted);
+  background: none; border: 1px solid var(--line); border-radius: 6px;
+  padding: 5px 11px; cursor: pointer;
+}
+.chooser-crumb:hover { color: var(--ink); border-color: var(--cobalt); }
+.chooser-question { font-family: "Bricolage Grotesque", sans-serif; font-weight: 600; font-size: 16px; }
+.chooser-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chooser-chip {
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  font-size: 13.5px; font-weight: 500; color: var(--ink);
+  background: var(--surface2); border: 1px solid var(--line);
+  border-radius: 20px; padding: 8px 16px; cursor: pointer;
+}
+.chooser-chip:hover { color: var(--ink); border-color: var(--cobalt); background: var(--cobalt-soft); }
+.chooser-result {
+  display: flex; flex-direction: column; gap: 6px;
+  border: 1px solid var(--emerald); border-radius: 10px;
+  background: var(--emerald-soft); padding: 16px 18px;
+}
+.chooser-result-skill code { color: var(--emerald-text); font-weight: 600; font-size: 15px; }
+.chooser-result-oneliner { font-size: 13.5px; color: var(--ink); }
+.chooser-result-link { font-size: 13.5px; font-weight: 600; color: var(--cobalt-text); }
+.chooser-note { font-size: 12.5px; color: var(--muted); margin: 0; }

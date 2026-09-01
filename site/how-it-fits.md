@@ -97,6 +97,8 @@ This page answers three questions: which skill runs first, what you hand to the 
 
 ## From idea to shipped, measured work
 
+Every scenario on this site is a piece of one product: [QuenServe, the example enterprise field-inspection SaaS]({{ '/example/' | relative_url }}), with its epic, features, and user stories laid out on that page. The walkthrough below is the same journey in general terms.
+
 **You bring an idea** — a raw problem, meeting notes, a vague opportunity. There is no artifact yet, only a person who owns the problem.
 
 <div class="hif-stage">
@@ -187,6 +189,10 @@ Execution profile:                                       [3]
 ## Who starts where
 
 A product person with a raw problem starts at <code>discover</code>; <a href="{{ '/journey/run-a-product-org/' | relative_url }}">Run a product org</a> walks that route through <code>carve</code>, <code>case</code>, <code>report</code>. An engineer starts at <a href="{{ '/recon/' | relative_url }}">recon</a> on an unfamiliar codebase, then <a href="{{ '/impact/' | relative_url }}">impact</a> for a fast PRD, or straight at <code>slice</code> once a PRD is signed; <a href="{{ '/journey/deliver-with-evidence/' | relative_url }}">Deliver with evidence</a> walks that build side through <code>grit</code> to <code>shakedown</code>.
+
+Still not sure which of those is your starting point? Answer three quick questions instead:
+
+{% include chooser.html %}
 
 <div class="hif-limits">
 <p><strong>What this does not automate.</strong> The four gates stay human on purpose: a sponsor reads the sensitivity case, a PRD's 11-Star score only tells a person where to look, and an <strong>Alignment</strong> decision — one only a named stakeholder can make — is never answered on their behalf. Grit holds the same rule at the code level: a human approves each <code>CHECK</code> once before it runs, and a dropped gate needs a stated reason and a sign-off, never a silent deletion.</p>
