@@ -752,7 +752,7 @@ main#page-body { display: block; }
 /* One reading measure for every text-bearing block, so the body has a single
    right edge; figures, tables and code blocks are exempt and span the column. */
 .doc-body > * { max-width: 42em; }
-.doc-body > :is(.figure-row, .pipeline, table, pre, .chooser) { max-width: none; }
+.doc-body > :is(.figure-row, .pipeline, table, pre) { max-width: none; }
 .doc-body p { line-height: 1.68; }
 .doc-body > ul, .doc-body > ol { margin: 0; padding-left: 24px; display: flex; flex-direction: column; gap: 10px; }
 .doc-body li { line-height: 1.65; }
