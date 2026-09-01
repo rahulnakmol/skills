@@ -19,6 +19,8 @@ steps:
     blurb: "Produces the leadership pack — Progress, Problems, Priorities, Perspective — sourced from the registers."
 ---
 
+This is the product leader's shortcut through the full map — see [How it fits]({{ '/how-it-fits/' | relative_url }}) for the whole system.
+
 This path is for a product or program leader adopting The Quentin's AI-native transformation practice for the first time. It begins before an epic exists, with a raw problem or a vague opportunity, and it ends with a leadership pack drawn from the same registers the pipeline keeps current.
 
 These four are a route through the pm group, not the whole of it. A full run also passes through `map` for the Business Understanding Document the Framing gate signs, and through `prd-draft` and `prd-review` before the Quality gate; each page names its own handoffs where they fall.

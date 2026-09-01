@@ -18,7 +18,7 @@ const SCOPE = [
   'site/_groups/branding.md', 'site/_groups/core.md', 'site/_groups/developer.md', 'site/_groups/pm.md',
   'site/_groups/productivity.md', 'site/_groups/writing.md',
   'site/_journeys/deliver-with-evidence.md', 'site/_journeys/run-a-product-org.md',
-  'site/leaders.md', 'site/tools.md', 'site/index.html', 'site/404.html',
+  'site/leaders.md', 'site/tools.md', 'site/how-it-fits.md', 'site/index.html', 'site/404.html',
 ];
 
 // case-insensitive, word-boundary. Multi-word phrases match as literal

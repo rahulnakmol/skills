@@ -22,6 +22,8 @@ steps:
     blurb: "Build, test, and review the change in a sandbox before it merges."
 ---
 
+This is the engineer's shortcut through the full map — see [How it fits]({{ '/how-it-fits/' | relative_url }}) for the whole system.
+
 This path is for an engineer who has not yet run a change through The Quentin's agent-led delivery pipeline. It starts before a line of code is written, with reading an unfamiliar codebase and pressure-testing a raw idea, and it ends at the merge, with a pull request that has already been built, tested, and reviewed in an isolated sandbox.
 
 These five are a route through the developer group, not the whole of it. The pipeline also carries `slice` and `raise` between a signed requirements document and a tracked backlog, and `conduct` ahead of all of them to decide the execution shape; each page names its own handoffs where they fall.
