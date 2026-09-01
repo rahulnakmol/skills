@@ -44,7 +44,7 @@ Grit is a discipline you run, backed by one checker script, `gate-check.mjs`, th
 <ul class="benefits">
   <li>You stop re-opening work that was already reported finished, because the ledger states exactly what was proven.</li>
   <li>A completion claim carries evidence — a met, unmet, and abandoned count with a real evidence line per gate — instead of resting on a person's word.</li>
-  <li>Work with an unmet gate cannot be reported done: the checker's own exit code, and the stop hook where it is installed, enforce that directly.</li>
+  <li>Work with an unmet gate cannot be reported done: the checker's own exit code enforces that directly, and so does either tool's stop hook once installed — Claude Code and Codex each ship one, opt-in, both calling the same checker.</li>
   <li>A dropped requirement stays visible with a reason and a sign-off, so it becomes a decision on record rather than one nobody remembers making.</li>
 </ul>
 

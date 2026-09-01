@@ -12,7 +12,7 @@ State the limit plainly: a stop hook constrains one tool's session. It stops tha
 
 ## Claude Code
 
-The hook files live at `adapters/claude/hooks/`. Install them with `./scripts/install-adapters.sh --tool claude-hooks`, which merges a Stop entry into the project's `.claude/settings.json`, the project's `.claude/settings.local.json`, or the user-level settings file, whichever the installer is pointed at. This install path is opt-in and is deliberately excluded from the default install — running the plain installer with no `--tool` flag does not enable the hook, matching the same opt-in posture ADR 0006 already sets for this adaptation: the hook changes session behavior, so a maintainer turns it on deliberately rather than inheriting it silently from a default.
+The hook files live at `adapters/claude/hooks/`. Install them with `./scripts/install-adapters.sh --tool claude-hooks`, which copies the launcher under the Claude configuration root and merges a Stop entry into the user-level settings file, so the recorded path and the copy stay in the same place. Run directly, `install-hooks.mjs` can target the project's `.claude/settings.json`, the project's `.claude/settings.local.json`, or the user-level settings file instead; the project targets name the launcher relatively, and the user target names it absolutely, because a user-level entry applies to every project. This install path is opt-in and is deliberately excluded from the default install — running the plain installer with no `--tool` flag does not enable the hook, matching the same opt-in posture ADR 0006 already sets for this adaptation: the hook changes session behavior, so a maintainer turns it on deliberately rather than inheriting it silently from a default.
 
 ## OpenCode
 
@@ -31,9 +31,19 @@ is not complete.
 
 This is an instruction an agent can choose to skip, which a hook cannot be — the honest framing is that it raises the odds of enforcement without guaranteeing it, and the CI backstop is what closes that specific gap.
 
-## Codex and Cursor
+## Codex
 
-The same instruction belongs in `AGENTS.md` for Codex and in `.cursor/rules/` for Cursor, worded the same way as the Copilot snippet above. Both tools ship hook systems of their own — Codex runs `hooks.json` commands at lifecycle events and passes context as JSON on stdin — but this repository does not yet ship an adapted hook for either. Until it does, the instruction rule plus the continuous-integration backstop is the shipped mechanism, for the same reason it is for Copilot.
+Codex has a hook runtime, so enforcement here is a hook rather than an instruction. It reads lifecycle hooks from a `hooks.json` file, and one of its events, `Stop`, fires when a session is about to finish. The hook files live at `adapters/codex/hooks/`. Install them with `./scripts/install-adapters.sh --tool codex-hooks`, which copies the launcher to `~/.codex/hooks/` and installs the `Stop` entry when no `hooks.json` is already there. Like the Claude Code hook, this target is opt-in and excluded from the default install, for the reason ADR 0006 gives: a hook changes session behavior, so a maintainer turns it on deliberately.
+
+Codex's Stop contract turns out to be wire-compatible with the Claude Code one, which is why both adapters delegate to a single vendored implementation instead of carrying two. A hook that exits 0 and writes `{"decision":"block","reason":"..."}` to stdout blocks completion, and the reason is handed back to the model as a continuation prompt. The contract was read from two files in the `openai/codex` repository: the generated schema `codex-rs/hooks/schema/generated/stop.command.output.schema.json`, which declares `decision` with a single permitted value of `block` alongside `reason`, `continue`, `stopReason`, `suppressOutput`, and `systemMessage`; and the handler `codex-rs/hooks/src/events/stop.rs`, which applies the block. The matching input schema shows the payload carrying `cwd` and `session_id` under those exact names, which is what the shared implementation already reads.
+
+Two differences are worth stating because they shaped the adapter. Codex parses a hook's stdout only when it exits 0 — any other status is recorded as a failed hook, and an exit of 2 with text on stderr is read as a block whose reason is that stderr. A delegate that crashed would therefore be dropped silently or, worse, block the session with a stack trace as the instruction, so the launcher captures the delegate's output and normalizes any unclean exit into a message that allows the stop. Separately, `codex-rs/hooks/src/engine/mod.rs` restricts control effects to synchronous handlers, so the shipped entry leaves `async` unset; an asynchronous handler would run and report but never block.
+
+Be precise about what was and was not tested. The contract above was verified by reading the schemas and the handler source, and the hook is exercised in this repository by `test/scripts/grit-codex-stop-hook.test.mjs`, which feeds the launcher a synthetic Codex `Stop` payload against the ledger fixtures and asserts the block and allow decisions. It has not been run against a live Codex binary as part of this work. What is claimed is that the adapter emits what the published contract specifies; that it blocks a real session is an inference from that contract, not an observation, and the same honesty applies here as to the OpenCode section above.
+
+## Cursor
+
+Cursor has no hook runtime to intercept a session's completion, so the Copilot instruction above belongs in `.cursor/rules/`, worded the same way, and enforcement falls back to the continuous-integration backstop for the same reason Copilot's does.
 
 ## Continuous integration backstop
 
