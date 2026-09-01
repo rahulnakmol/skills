@@ -14,7 +14,7 @@ lens:
     who: "You run multiple pm efforts at once and keep guessing whether a case or a PRD needs a grill loop, a parallel research fan, or both."
     value: "The routing question that decided the shape is recorded with the decision, so you can defend the call later instead of re-litigating it."
   leader:
-    who: "Your PMs are burning agent sessions on research that duplicates itself, or on grill loops that never converge."
+    who: "Your PMs are spending agent sessions on research that duplicates itself, or on grill loops that never converge."
     value: "One rubric applied consistently across the team catches both failure modes early: partition beats lottery, and every high-consequence artifact still routes through its gate."
   csuite:
     who: "You approve initiatives whose analysis was assembled by an agent fleet you did not watch work."
@@ -110,7 +110,7 @@ A good ask names the artifact under discussion, states plainly that more than on
 
 ## A working example
 
-You are running `discover` on QuenServe's field-connectivity problem: inspectors keep losing completed work when a site loses signal, and the evidence in hand only covers two of the five clarification dimensions. You type the prompt from the tool group above. Discover recognizes that the clarification is going to take more than one grill round, and reaches for arrange before running the first one.
+[QuenServe]({{ '/example/' | relative_url }}) is the field-inspection product every scenario on this site returns to, and epic E1 is its offline-inspection-sync epic. You are running `discover` on QuenServe's field-connectivity problem: inspectors keep losing completed work when a site loses signal, and the evidence in hand only covers two of the five clarification dimensions. You type the prompt from the tool group above. Discover recognizes that the clarification is going to take more than one grill round, and reaches for arrange before running the first one.
 
 Arrange applies `RUBRIC.md` in order. Question one asks whether this converges only through a human's sign-off, one round at a time — and it does. Nobody but the operations lead can confirm which affected sites actually carry the load-bearing inspection volume, and that confirmation only comes by asking, reacting, and asking again. The first question already matches, so arrange stops there rather than weighing the remaining four.
 
@@ -121,7 +121,7 @@ why: "Discovery's five-dimension clarification converges only
      through a human's sign-off, one round at a time."
 gate: framing</code></pre>
 
-Framing is the first of the four pm gates: the problem owner signs the analysis before anything is built on it. Discover proceeds into the grill's themed rounds under that shape. Later, once epic E1 is carved and its case needs to weigh at least two real options against doing nothing, arrange runs again. This time question two matches first: the offline-storage-engine research and the conflict-resolution-strategy research do not depend on each other's answers, so that stretch of the work fans out instead of looping.
+Framing is the first of the four pm gates: the problem owner signs the analysis before anything is built on it. Discover proceeds into the grill's themed rounds under that shape. Later, once epic E1 is carved and its case needs to weigh at least two real options against doing nothing, arrange runs again. This time question two matches first: costing an in-house build and reading a vendor software development kit's licensing terms answer two different questions, and neither waits on the other, so that stretch of the work fans out instead of looping.
 
 ## What good looks like
 

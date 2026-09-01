@@ -103,7 +103,7 @@ A good ask names the tracker the initiative already uses — GitHub, Linear, or 
 
 ## A working example
 
-You type the prompt above about epic E1's remaining decisions. Chart mode runs first, and it decides nothing beyond naming the shape of the work:
+Epic E1, offline inspection sync, belongs to [QuenServe]({{ '/example/' | relative_url }}), the field-inspection product every scenario on this site returns to. You type the prompt above about epic E1's remaining decisions. Chart mode runs first, and it decides nothing beyond naming the shape of the work:
 
 <pre><code>chart: specs/chart/e1-offline-sync-chart.md
 destination: "Decide every open implementation question inside

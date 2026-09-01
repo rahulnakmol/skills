@@ -14,7 +14,7 @@ lens:
     who: "You keep writing epics that turn out, three sprints in, to secretly depend on each other."
     value: "The Independent test catches a hidden dependency chain before it is written into the manifest — an epic that fails it is usually two epics that have not yet been separated, and carve makes you split them now, not at sprint three."
   leader:
-    who: "Your teams keep committing to epic manifests that turn out to be programs wearing a project's clothing."
+    who: "Your teams keep committing to epic manifests that turn out to be a whole program, sized and funded as one project."
     value: "More than eight epics in one manifest is an explicit stop condition — carve escalates to you instead of quietly decomposing further into something nobody actually sized."
   csuite:
     who: "You approve investment against an epic manifest and need every line in it to be something that could actually ship on its own."
@@ -110,9 +110,9 @@ A good ask confirms which upstream document exists — understanding document, T
 
 ## A working example
 
-The QuenServe understanding document from `map` is confirmed, product hat, with the mobile client's live-call-only architecture marked as the mechanism the whole document turns on. You type the prompt above. Carve reads the document and extracts one broad candidate: "fix field connectivity end to end" — a name that quietly bundles offline capture, conflict handling, and sync-status visibility into a single idea.
+This example carves the top of the hierarchy on [QuenServe]({{ '/example/' | relative_url }}), the field-inspection product every scenario on this site returns to. The QuenServe understanding document from `map` is confirmed, product hat, with the mobile client's live-call-only architecture marked as the mechanism the whole document turns on. You type the prompt above. Carve reads the document and extracts one broad candidate: "fix field connectivity end to end" — a name that quietly bundles offline capture, conflict handling, and sync-status visibility into a single idea.
 
-Run against DIVE, that broad candidate fails Estimable immediately — nobody can size "fix connectivity end to end" as one ship-able release, because it is three separate capabilities wearing one name. Per `DIVE.md`, carve does not respond by splitting it into three separate epics on the manifest. It narrows the candidate to the one epic the analysis actually supports as a first release, and records the rest as scope a later pass will need to size on its own:
+Run against DIVE, that broad candidate fails Estimable immediately — nobody can size "fix connectivity end to end" as one ship-able release, because it is three separate capabilities collected under one name. Per `DIVE.md`, carve does not respond by splitting it into three separate epics on the manifest. It narrows the candidate to the one epic the analysis actually supports as a first release, and records the rest as scope a later pass will need to size on its own:
 
 <pre><code><span class="tok-comment"># specs/prd/e1-epic-manifest.md (excerpt)</span>
 1. E1 &middot; Offline inspection sync

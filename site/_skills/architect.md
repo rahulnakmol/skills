@@ -109,7 +109,7 @@ A good ask includes:
 
 ## A working example
 
-You type:
+This example designs one piece of [QuenServe]({{ '/example/' | relative_url }}), the field-inspection product every scenario on this site returns to: story E1-F1-S1, inside feature E1-F1, offline capture, inside epic E1, offline inspection sync. You type:
 
 <pre><code>We are designing the offline-sync seam for story E1-F1-S1: an inspector completes an inspection with no connectivity and it syncs without loss once back online. Confirm the functional and non-functional requirements and their scope boundary with me first, then decompose the system into bounded components and surface every reliability and durability tradeoff as a comment I can read, not inside a diagram.</code></pre>
 

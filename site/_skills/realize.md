@@ -88,7 +88,7 @@ Readers who only want Realize can skip the rest of the catalog with `./scripts/l
 <div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
 <div class="tool-group-body">
 <p>All three read the same <code>.agents/skills/</code> catalog and apply Realize as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode; Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>; GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>. None gets a continuous-integration backstop specific to Realize the way <code>grit-gates.yml</code> backstops <code>grit</code>; an honestly reported unmet projection depends entirely on the register being read carefully.</p>
-<div class="prompt-card">Record this PI's actuals against QuenServe epic E1's case projections per skills/pm/realize/BENEFITS.md. Report any miss as unmet, and roll the result up to the north star.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Following skills/pm/realize/BENEFITS.md, check QuenServe epic E1's benefits register against the case that funded it. Inspection turnaround was projected at 2 days and came in at 3.4. Record that as unmet, name the leading indicator that should have shown the gap earlier, and roll the cycle up to the north star.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>All three write the register update directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
@@ -101,7 +101,7 @@ A good ask includes:
 
 ## A working example
 
-You type:
+The projections being checked are the ones `case` wrote for epic E1, offline inspection sync, on [QuenServe]({{ '/example/' | relative_url }}) — the field-inspection product every scenario on this site returns to. You type:
 
 <pre><code>QuenServe epic E1 has been live for one PI. Record this cycle's actuals against the case's projections for inspection turnaround and triage cost, and report either figure unmet plainly if it missed, rather than resizing the target.</code></pre>
 

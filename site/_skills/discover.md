@@ -141,20 +141,21 @@ The live-call-only architecture root cause, not "the app crashes," is what `map`
 <div class="compare-grid">
 <div class="compare-card">
 <div class="compare-card-head">Solution-first framing, redirected</div>
-<pre><code>Intake note: "We need to build a self-serve
-reporting dashboard."
-<span class="tok-ok">Discover: "What problem does the dashboard</span>
-<span class="tok-ok">solve?" — redirected before scope is set.</span></code></pre>
+<pre><code>Intake note: "We need an offline mode in
+the inspector app."
+<span class="tok-ok">Discover: "What problem does an offline</span>
+<span class="tok-ok">mode solve?" — redirected before scope</span>
+<span class="tok-ok">is set.</span></code></pre>
 <div class="compare-card-note">"We need to build X" is redirected back to "what problem does X solve?" before anything else happens.</div>
 </div>
 <div class="compare-card compare-card--warn">
 <div class="compare-card-head">The wrong turn to watch for</div>
-<pre><code>Intake note: "We need to build a self-serve
-reporting dashboard."
-<span class="tok-warn">Analysis proceeds straight to dashboard</span>
+<pre><code>Intake note: "We need an offline mode in
+the inspector app."
+<span class="tok-warn">Analysis proceeds straight to offline-mode</span>
 <span class="tok-warn">requirements — the request accepted as</span>
 <span class="tok-warn">the problem statement.</span></code></pre>
-<div class="compare-card-note">A problem statement that is actually a solution in disguise is one of discover's own stop conditions.</div>
+<div class="compare-card-note">A problem statement that is actually a proposed solution restated is one of discover's own stop conditions.</div>
 </div>
 </div>
 

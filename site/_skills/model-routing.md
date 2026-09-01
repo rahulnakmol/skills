@@ -95,7 +95,7 @@ A good ask names the role — implementer, verifier, architect, security, qualit
 
 ## A working example
 
-QuenServe's story E1-F1-S1, walked through `sdlc`'s own gated loop, reaches Gate 3, the outcome check that runs after implementation. Gate 3 needs an independent verifier — a different agent, ideally a different model family, checking the offline-sync change against the SPEC-TS ledger, the record of scope, requirements, and success metrics, rather than the implementer grading its own work. The orchestrator resolves that node's tier by matching role and task shape against the registry's real tier matrix:
+Story E1-F1-S1 is the delivery story inside epic E1 on [QuenServe]({{ '/example/' | relative_url }}), the field-inspection product every scenario on this site returns to. Walked through `sdlc`'s own gated loop, it reaches Gate 3, the outcome check that runs after implementation. Gate 3 needs an independent verifier — a different agent, ideally a different model family, checking the offline-sync change against the SPEC-TS ledger, the record of scope, requirements, and success metrics, rather than the implementer grading its own work. The orchestrator resolves that node's tier by matching role and task shape against the registry's real tier matrix:
 
 <pre><code>| Tier     | Role shape             | Default provider family | Notes                                            |
 |----------|-------------------------|--------------------------|--------------------------------------------------|

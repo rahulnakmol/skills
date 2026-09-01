@@ -8,8 +8,8 @@ invocation: model-invoked
 scenario: "Shipping QuenServe story E1-F1-S1 as a reviewable stack of pull requests"
 lens:
   novice:
-    who: 'You have watched a huge, unreviewable pull request get rubber-stamped because no one had time to read all of it.'
-    value: 'Deliver splits a multi-concern change into a dependency-ordered stack of small pull requests, each reviewable on its own, so nothing gets waved through unread.'
+    who: 'You have watched a huge, unreviewable pull request get approved unread because no one had time to work through all of it.'
+    value: 'Deliver splits a multi-concern change into a dependency-ordered stack of small pull requests, each reviewable on its own, so nothing gets approved without being read.'
   practitioner:
     who: 'You are the one raising the pull request once implementation is verified.'
     value: 'You get a repository checklist run before you start &mdash; Code Quality, `gh stack` tooling, pickup-protocol labels, the shakedown workflow &mdash; and a release checklist with gate evidence and artifact hashes when you are done.'
@@ -35,7 +35,7 @@ Deliver is the model-invoked charter for release readiness. It checks a target r
 
 <ul class="benefits">
   <li>The repository's own readiness — Code Quality, <code>gh stack</code> tooling, pickup-protocol labels, the shakedown workflow — is checked before gated work begins, not discovered missing mid-build.</li>
-  <li>A change spanning more than one concern always ships as a stack, never as one giant diff a reviewer has to hold in their head.</li>
+  <li>A change spanning more than one concern always ships as a stack, never as one giant diff a reviewer has to take in all at once.</li>
   <li>A red or missing verification never reaches Raise: the bounded fix loop runs first, and two identically failing rounds stop the run instead of forcing a PR through.</li>
   <li>Every pull request states its coverage and traceability before it opens, so a reviewer is never asked to trust an unstated claim.</li>
 </ul>
@@ -54,7 +54,7 @@ Deliver reads each one only when the moment calls for it: checking readiness rea
 
 Nothing types `/deliver` in Claude Code. Deliver is model-invoked, reached three ways. An SDLC gate — one of the sign-off points in the sdlc skill's own design-build-secure-release loop — calling for deliver evidence reaches it. A work item's pod charter, the roster of roles a work item's charter names as responsible for it, reaches it by naming the deliver role. And a request whose wording matches the skill's own description reaches it directly.
 
-You reach for deliver in three moments. A work item just moved to ready, and it needs to become a shippable pull request. A change is too large or spans too many concerns for one reviewer to hold in their head at once. A repository has never run this pipeline before, and nobody has confirmed it is actually set up for it.
+You reach for deliver in three moments. A work item just moved to ready, and it needs to become a shippable pull request. A change is too large or spans too many concerns for one reviewer to evaluate in one sitting. A repository has never run this pipeline before, and nobody has confirmed it is actually set up for it.
 
 Deliver is not the only skill that touches release. This table separates its job from its nearest neighbors:
 
@@ -110,7 +110,7 @@ A good ask includes:
 
 ## A working example
 
-You type:
+The work item here is E1-F1-S1, the delivery story inside epic E1, offline inspection sync, on [QuenServe]({{ '/example/' | relative_url }}) — the field-inspection product every scenario on this site returns to. You type:
 
 <pre><code>Deliver work item E1-F1-S1, the offline-sync completion story, now that it is marked ready. Plan the layer stack per STACKING.md, implement it as a single writer, verify it against its contract, and raise it as a reviewable gh-stack rather than one giant diff.</code></pre>
 

@@ -55,12 +55,11 @@ Running this practice does not feel like strategy work most weeks. A PM who adop
 
 ## The path through
 
-The sixteen skills below read as a syllabus, not a menu. Start near the top, and let the initiative in front of you decide how far down you actually need to go this week.
+The sixteen skills below read as a syllabus, not a menu. The first ten run in the order an initiative actually moves, from a raw problem to a leadership pack. The six after them sit alongside that line rather than inside it, and you reach for each one when its moment arrives.
 
-- [`chart`]({{ '/chart/' | relative_url }}) — plans an oversized initiative into decision tickets.
-- [`constitution`]({{ '/constitution/' | relative_url }}) — writes the principles every draft answers to.
 - [`discover`]({{ '/discover/' | relative_url }}) — turns a raw problem into a root-cause analysis.
-- [`tom-architect`]({{ '/tom-architect/' | relative_url }}) — decomposes a transformation into a target operating model.
+- [`map`]({{ '/map/' | relative_url }}) — turns that analysis into personas, flows, and the Framing document.
+- [`carve`]({{ '/carve/' | relative_url }}) — extracts DIVE-tested epics from that document or a TOM's gaps.
 - [`prd-draft`]({{ '/prd-draft/' | relative_url }}) — writes and validates one PRD per epic.
 - [`prd-review`]({{ '/prd-review/' | relative_url }}) — scores a PRD's ambition before Quality.
 - [`case`]({{ '/case/' | relative_url }}) — weighs real options and doing nothing, costed in full.
@@ -68,11 +67,12 @@ The sixteen skills below read as a syllabus, not a menu. Start near the top, and
 - [`raid`]({{ '/raid/' | relative_url }}) — keeps the risk, assumption, issue, and dependency registers current.
 - [`realize`]({{ '/realize/' | relative_url }}) — tracks whether a delivered benefit matched its projection.
 - [`report`]({{ '/report/' | relative_url }}) — produces the leadership pack from those registers.
-- [`grill`]({{ '/grill/' | relative_url }}) — pressure-tests an artifact before its gate.
-- [`ask-pm`]({{ '/ask-pm/' | relative_url }}) — routes a plain goal to the right skill here.
+- [`tom-architect`]({{ '/tom-architect/' | relative_url }}) — decomposes a transformation into a target operating model, where the hat calls for one.
+- [`grill`]({{ '/grill/' | relative_url }}) — pressure-tests an artifact before its gate, threaded through four of the steps above.
+- [`constitution`]({{ '/constitution/' | relative_url }}) — writes the principles every draft answers to, underneath the whole line.
+- [`chart`]({{ '/chart/' | relative_url }}) — plans an oversized initiative into decision tickets, ahead of the line rather than on it.
 - [`arrange`]({{ '/arrange/' | relative_url }}) — decides whether a multi-round effort loops or fans out.
-- [`map`]({{ '/map/' | relative_url }}) — turns an analysis into personas, flows, and the Framing document.
-- [`carve`]({{ '/carve/' | relative_url }}) — extracts DIVE-tested epics from that document or a TOM's gaps.
+- [`ask-pm`]({{ '/ask-pm/' | relative_url }}) — routes a plain goal to the right skill here, when none of the above is obviously it.
 
 ## Where to start
 

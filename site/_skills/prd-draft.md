@@ -102,7 +102,7 @@ A good ask names the specific epic from the manifest, since one PRD covers exact
 
 ## A working example
 
-The QuenServe epic manifest is approved, and E1, offline inspection sync, is the first epic. You type the prompt above. PRD Draft reads the manifest and the understanding document it was carved from, then populates all twelve sections — problem statement, personas, epic definition, user stories, and the rest — writing INVEST-compliant stories against the Field Inspector persona.
+The epic manifest for [QuenServe]({{ '/example/' | relative_url }}) — the field-inspection product every scenario on this site returns to — is approved, and E1, offline inspection sync, is the first epic. You type the prompt above. PRD Draft reads the manifest and the understanding document it was carved from, then populates all twelve sections — problem statement, personas, epic definition, user stories, and the rest — writing INVEST-compliant stories against the Field Inspector persona.
 
 One story's first draft carries only a happy-path criterion: given a live connection, when the inspector submits a completed inspection, then it reaches the server. Before validation even runs, `PRD-SECTIONS.md`'s own requirement catches this — a story needs at minimum one happy path, one boundary condition, and one error scenario. So a second criterion is added for the case connectivity drops mid-submission: the inspection is queued locally instead of lost, and retries automatically once connectivity returns. A grill pass runs next, since a research corpus already exists in `specs/research/` from discovery's field reports.
 
@@ -131,23 +131,24 @@ Because checks one through four all pass, the PRD advances with check seven's ga
 <div class="compare-grid">
 <div class="compare-card">
 <div class="compare-card-head">A story with an error scenario</div>
-<pre><code>GIVEN a signed-in buyer with one prior order
-WHEN they select "reorder"
-THEN the cart is populated with the prior
-  order's items
-<span class="tok-ok">GIVEN an item from the prior order is now</span>
-<span class="tok-ok">out of stock</span>
-<span class="tok-ok">WHEN they select "reorder"</span>
-<span class="tok-ok">THEN that item is flagged and excluded,</span>
-<span class="tok-ok">the rest are added</span></code></pre>
+<pre><code>GIVEN an inspector on a site with a live
+  connection
+WHEN they submit a completed inspection
+THEN it reaches the server and is marked
+  synced
+<span class="tok-ok">GIVEN the connection drops mid-submission</span>
+<span class="tok-ok">WHEN the inspector submits that inspection</span>
+<span class="tok-ok">THEN it is queued on the device instead of</span>
+<span class="tok-ok">lost, and retries once connectivity returns</span></code></pre>
 <div class="compare-card-note">At minimum one happy path, one boundary condition, and one error scenario per story.</div>
 </div>
 <div class="compare-card compare-card--warn">
 <div class="compare-card-head">The wrong turn to watch for</div>
-<pre><code>GIVEN a signed-in buyer with one prior order
-WHEN they select "reorder"
-<span class="tok-warn">THEN the cart is populated with the prior</span>
-<span class="tok-warn">order's items</span></code></pre>
+<pre><code>GIVEN an inspector on a site with a live
+  connection
+WHEN they submit a completed inspection
+<span class="tok-warn">THEN it reaches the server and is marked</span>
+<span class="tok-warn">synced</span></code></pre>
 <div class="compare-card-note">A story with only happy-path acceptance criteria is untestable — it says nothing about what should happen when something goes wrong.</div>
 </div>
 </div>

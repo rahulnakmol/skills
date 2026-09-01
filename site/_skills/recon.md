@@ -14,7 +14,7 @@ lens:
     who: 'You are about to run impact or architect against an existing estate and need real context first.'
     value: 'Recon triages on real signals — manifests, then markers — loads at most three matching pattern cards, and reads only the paths those markers point to, instead of scanning the whole tree.'
   leader:
-    who: 'You are wary of "understanding the codebase" turning into an open-ended, token-burning exploration.'
+    who: 'You are wary of "understanding the codebase" turning into an open-ended exploration that spends tokens with no stopping point.'
     value: 'The brief format is fixed and bounded — archetype, estate map, modernization seams, risks — so orientation stays a scoped, comparable output rather than a free-form essay every time.'
   csuite:
     who: 'You are weighing a modernization program or an acquisition-integration decision.'
@@ -104,7 +104,7 @@ A good ask names what is actually unfamiliar — the whole repository, or one se
 
 ## A working example
 
-Before epic E1 scopes offline inspection sync, you ask for orientation on QuenServe's existing sync client and ingestion endpoint. QuenServe's own repository is not something this site can hand recon, so the exact mechanism is demonstrated here instead, against a real triage fixture this repository ships for exactly this purpose. It is the same read a manifest scan and marker match would produce on any inherited estate. Recon's manifest scan finds `docker-compose.yml`, a Kafka broker in the compose file, `openapi.yaml`, and an `events/` directory — the exact signal set in `test/fixtures/recon/microservices-event-driven/MARKERS.json`, reproduced here in full, byte for byte:
+This example follows [QuenServe]({{ '/example/' | relative_url }}), the field-inspection product every scenario on this site returns to. Before epic E1 scopes offline inspection sync, you ask for orientation on QuenServe's existing sync client and ingestion endpoint. QuenServe is an example product, so there is no repository this site can actually hand recon. The mechanism is demonstrated below against a real triage fixture this repository ships for exactly this purpose. It is the same read a manifest scan and marker match would produce on any inherited estate, QuenServe's included. Scanning that fixture's manifests finds `docker-compose.yml`, a Kafka broker in the compose file, `openapi.yaml`, and an `events/` directory — the exact signal set in `test/fixtures/recon/microservices-event-driven/MARKERS.json`, reproduced here in full, byte for byte:
 
 <pre><code>{
   "expected_archetypes": ["microservices-event-driven"],

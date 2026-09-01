@@ -11,7 +11,7 @@ The Quentin's skill library is built around one operating rule, applied the same
 
 ## The operating model
 
-Human judgment holds the gates; trusted agents do the work in between ([README](https://github.com/tqnonline/skills/blob/main/README.md)). On the delivery side, a change moves through four human gates — design, build, secure, and release — with a single agent writer per checkout and a separate verifier wherever an agent's output feeds a consequential decision. On the product side, the same pattern repeats as four gates of its own: Framing, Investment, Quality, and Commitment ([`skills/pm/GATES.md`](https://github.com/tqnonline/skills/blob/main/skills/pm/GATES.md)). Nothing moves to the next gate until a person reads what the agent fleet produced and approves it.
+Human judgment holds the gates; trusted agents do the work in between ([README](https://github.com/tqnonline/skills/blob/main/README.md)). On the delivery side, a change moves through four human gates, one at each phase of the loop: design, build, secure, and release. Between them sits a single agent writer per checkout, and a separate verifier wherever an agent's output feeds a consequential decision. Those four are the points a person signs. The numbered Gate 1 through Gate 3 checks inside [`sdlc`]({{ '/sdlc/' | relative_url }})'s own loop are a different thing: evidence checks on alignment, design, and outcome. On the product side, the same pattern repeats as four gates of its own: Framing, Investment, Quality, and Commitment ([`skills/pm/GATES.md`](https://github.com/tqnonline/skills/blob/main/skills/pm/GATES.md)). Nothing moves to the next gate until a person reads what the agent fleet produced and approves it.
 
 ## What changes for delivery
 

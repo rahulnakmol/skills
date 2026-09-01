@@ -87,7 +87,7 @@ Readers who only want RAID can skip the rest of the catalog with `./scripts/link
 <div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
 <div class="tool-group-body">
 <p>All three read the same <code>.agents/skills/</code> catalog and apply RAID as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode; Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>; GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>. None gets a continuous-integration backstop specific to RAID the way <code>grit-gates.yml</code> backstops <code>grit</code>; an unowned entry is caught only by a reader checking the register.</p>
-<div class="prompt-card">Log this new risk in QuenServe epic E1's RAID register per skills/pm/raid/RAID-METHOD.md, with a named owner and mitigation, then regenerate the sponsor narrative from all four registers.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Following skills/pm/raid/RAID-METHOD.md, read QuenServe epic E1's four registers and tell me which entries are missing an owner, a mitigation, or a validation point. The platform team's photo-storage dependency is still open — say plainly what that does to the sponsor narrative before you regenerate it.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>All three write the register update directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
@@ -100,7 +100,7 @@ A good ask includes:
 
 ## A working example
 
-You type:
+The initiative these registers cover is epic E1, offline inspection sync, on [QuenServe]({{ '/example/' | relative_url }}) — the field-inspection product every scenario on this site returns to. You type:
 
 <pre><code>A field connectivity risk just came up on QuenServe epic E1, offline inspection sync — rural sites may lose sync mid-inspection. Log it in the risk register with a likelihood, an impact, an owner, and a mitigation, then regenerate the sponsor status narrative from all four registers.</code></pre>
 

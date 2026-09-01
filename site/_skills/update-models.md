@@ -95,7 +95,7 @@ A good ask names what triggered it — the monthly cron, a specific deprecation,
 
 ## A working example
 
-Every QuenServe engineer who resolves a tier through `model-routing` — including the Gate 3 verifier on story E1-F1-S1 — depends on this registry staying current, so before any research runs, the skill's own procedure checks whether the registry is actually due for review. `scripts/check-registry-freshness.mjs` is the exact command the continuous-integration workflow runs first — run here, live, against this repository's real registry:
+[QuenServe]({{ '/example/' | relative_url }}) is the field-inspection product every scenario on this site returns to. Every engineer on it who resolves a tier through `model-routing` depends on this registry staying current, the Gate 3 verifier on delivery story E1-F1-S1 included. So before any research runs, the skill's own procedure checks whether the registry is actually due for review. `scripts/check-registry-freshness.mjs` is the exact command the continuous-integration workflow runs first — run here, live, against this repository's real registry:
 
 <pre><code><span class="tok-comment">$ node scripts/check-registry-freshness.mjs</span>
 <span class="tok-ok">models.md last reviewed 2026-08-22 &mdash; 10 day(s) ago (threshold 45)</span></code></pre>

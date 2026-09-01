@@ -109,7 +109,7 @@ A good ask includes:
 
 ## A working example
 
-You type:
+The spend under discussion funds epic E1, offline inspection sync, on [QuenServe]({{ '/example/' | relative_url }}) — the field-inspection product every scenario on this site returns to. You type:
 
 <pre><code>We need the investment case that funds QuenServe epic E1, offline inspection sync, before it goes to the sponsor. Weigh at least two real options against the do-nothing baseline, cost each on all four lines including the agent fleet's own spend, and name the one assumption that would kill the recommendation.</code></pre>
 

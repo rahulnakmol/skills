@@ -110,7 +110,7 @@ A good ask includes:
 
 ## A working example
 
-You type:
+The service going live is the offline-sync service behind story E1-F1-S1, one story inside epic E1 on [QuenServe]({{ '/example/' | relative_url }}) — the field-inspection product every scenario on this site returns to. You type:
 
 <pre><code>Story E1-F1-S1, the offline-sync completion story, ships next week. Set SLOs and alert thresholds for the sync service before we call it production-ready, and tell me plainly which of the reliability, quality, and maintenance lanes this pass actually covers.</code></pre>
 

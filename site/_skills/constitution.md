@@ -101,7 +101,7 @@ A good ask states which hierarchy level is meant — the overall practice, or on
 
 ## A working example
 
-No constitution exists yet, and QuenServe's E1 initiative is close enough to Investment — the gate where a sponsor commits budget — that its case will need a prioritization framework to score against. You type the prompt above. Constitution detects Create mode from the missing file and asks through the seven sections in small batches rather than all at once.
+E1 is the offline-inspection-sync epic on [QuenServe]({{ '/example/' | relative_url }}), the field-inspection product every scenario on this site returns to. No constitution exists yet, and QuenServe's E1 initiative is close enough to Investment — the gate where a sponsor commits budget — that its case will need a prioritization framework to score against. You type the prompt above. Constitution detects Create mode from the missing file and asks through the seven sections in small batches rather than all at once.
 
 Principles come first, and the first draft the model proposes reads "be reliable" — a platitude everyone already agrees with, and `CONSTITUTION.md`'s own standard for a principle. The stop condition in `SKILL.md` catches this directly: a section containing a generic platitude is not accepted, and the model is pushed to state the actual trade-off instead. The revised principle: when real-time visibility and field reliability compete, the practice chooses field reliability for anything an inspector does on-site — a manager's dashboard can run seconds behind, an inspector's completed work must never be lost.
 

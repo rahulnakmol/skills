@@ -8,7 +8,7 @@ invocation: user-invoked
 scenario: "Pressure-testing the case that funds QuenServe epic E1"
 lens:
   novice:
-    who: 'You have watched an artifact wave through a gate because nobody asked it a hard question. Grill is the loop that asks three to five questions, in themed rounds, until the artifact can answer them.'
+    who: 'You have watched an artifact clear a gate because nobody asked it a hard question. Grill is the loop that asks three to five questions, in themed rounds, until the artifact can answer them.'
     value: 'You get a structured way to pressure-test your own work before a reviewer does it for you, and a Trade-offs record if you choose to stop early, so an early stop is a documented choice, not a silent gap.'
   practitioner:
     who: 'You are about to bring a case, manifest, or PRD to a gate and want to know its weak spot before the sponsor finds it.'
@@ -101,7 +101,7 @@ A good ask includes:
 
 ## A working example
 
-You type:
+The artifact under interrogation is the investment case for epic E1, offline inspection sync, on [QuenServe]({{ '/example/' | relative_url }}) — the field-inspection product every scenario on this site returns to. You type:
 
 <pre><code>Grill the investment case for QuenServe epic E1, offline inspection sync, before it goes to the sponsor. Run themed rounds, three to five questions each, restate the scope after every round, and run the pre-gate blind-spot checklist before any sign-off.</code></pre>
 

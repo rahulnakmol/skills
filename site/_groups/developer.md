@@ -54,7 +54,7 @@ Working in this group is not mostly writing code. It is reading gate ledgers, ch
 
 ## The path through
 
-Fifteen skills carry the pipeline, five you call directly and ten the model reaches for on its own once a request matches what they do.
+Fifteen skills carry the pipeline. The first five below are the ones you call directly, by name or by slash command. The ten after them are the ones the model reaches for on its own, once a request matches what they do.
 
 - [`update-models`]({{ '/update-models/' | relative_url }}) — research provider catalogs and propose a reviewable diff to the shared model registry.
 - [`impact`]({{ '/impact/' | relative_url }}) — turn a raw idea into a signed product requirements document (PRD) through a grill loop that tests it.

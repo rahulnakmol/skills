@@ -115,13 +115,13 @@ A good ask includes:
 
 ## A working example
 
-You type:
+The pull request under review carries one layer of story E1-F1-S1, the delivery story inside epic E1 on [QuenServe]({{ '/example/' | relative_url }}) — the field-inspection product every scenario on this site returns to. You type:
 
 <pre><code>Run a shakedown on the pull request for story E1-F1-S1, the offline-sync completion story, before anyone approves it. Build it, run its tests, and actually execute the offline-completion and sync paths in an isolated sandbox, then post a blocking review if the build is red or a gate in its ledger is unmet.</code></pre>
 
 Recon reads the pull request first: it is the sync-client layer of E1-F1-S1's offline-sync stack, based on the offline-store layer below it. Its existing checks already show `github-code-quality=success`, a conclusion Sandbox will consume, not repeat. Sandbox then checks out the head commit into an isolated worktree with no production credentials, builds the project, runs its test suite, and actually executes a queued inspection end to end, dropping and restoring the connection mid-sync.
 
-The three review lenses run in parallel next. Correctness and security each find nothing reachable beyond what safeguard already tracks as SG1. The tests lens cross-references the existing checks, and because the pull request body carries a grit gate audit against `.grit/e1-f1-s1-offline-sync/GATES.md`, it spot-checks one claimed-met gate's `CHECK` against the diff rather than trusting the table. Verdict then composes the review, shown here as the shape the workflow's own tasks produce, not as a captured run:
+The three review lenses run in parallel next. Correctness and security find nothing blocking in this layer: safeguard's one open high finding, SG1, sits in the ingestion endpoint, which is the layer above this one in the stack and reviewed on its own pull request. The tests lens cross-references the existing checks, and because the pull request body carries a grit gate audit against `.grit/e1-f1-s1-offline-sync/GATES.md`, it spot-checks one claimed-met gate's `CHECK` against the diff rather than trusting the table. Verdict then composes the review, shown here as the shape the workflow's own tasks produce, not as a captured run:
 
 <pre><code>build: pass  tests: pass  executed: pass
 Existing checks consumed: github-code-quality=success (not re-run)

@@ -105,7 +105,7 @@ A good ask names the work item or PRD the loop runs against, and states plainly 
 
 ## A working example
 
-QuenServe's story E1-F1-S1, raised by `raise` and confirmed `ready`, is bounded to the offline-sync module and one writer — `conduct`'s rubric already resolved this as a loop, not a graph. `METHOD.md` defines a literal "Required Substantial-Work Output" template, quoted here verbatim, the exact shape every substantial SDLC run must report:
+Story E1-F1-S1 — an inspector completes an inspection with no connectivity, and it syncs without loss once back online — is the delivery story inside epic E1 on [QuenServe]({{ '/example/' | relative_url }}), the field-inspection product every scenario on this site returns to. Raised by `raise` and confirmed `ready`, it is bounded to the offline-sync module and one writer — `conduct`'s rubric already resolved this as a loop, not a graph. `METHOD.md` defines a literal "Required Substantial-Work Output" template, quoted here verbatim, the exact shape every substantial SDLC run must report:
 
 <pre><code>Goal: &lt;measurable outcome&gt;
 SPEC-TS: &lt;scope / requirements / constraints / components / trade-offs / success&gt;

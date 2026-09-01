@@ -117,7 +117,7 @@ A good ask includes:
 
 ## A working example
 
-You type:
+The intent to classify here concerns [QuenServe]({{ '/example/' | relative_url }})'s delivery story, E1-F1-S1: an inspector completes an inspection with no connectivity, and it syncs without loss once back online. You type:
 
 <pre><code>We are shipping the sync client for QuenServe story E1-F1-S1, and I need to know if that is a security review, a design question, or something else entirely in this repository. Classify my intent and tell me the one skill that handles it, with one sentence of rationale, before you touch anything.</code></pre>
 

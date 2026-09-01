@@ -11,7 +11,7 @@ lens:
     who: 'You have noticed some AI work runs as one back-and-forth conversation and other work spawns several agents working at once, and you have never known why. Conduct is the rule behind that split.'
     value: 'The split is not about how hard a task feels. It comes down to one question: can "done" actually be checked by a machine. Everything else follows from that.'
   practitioner:
-    who: 'You are about to kick off work that spans more than one file, more than one verifier, or more than one context window.'
+    who: 'You are about to start work that spans more than one file, more than one verifier, or more than one context window.'
     value: 'Conduct walks RUBRIC.md''s ordered questions, builds the node list, resolves a model per node through model-routing, and puts a named human in front of every high-consequence write — before a single agent starts.'
   leader:
     who: 'You have watched a task fan out into more parallel agents than the work actually needed.'
@@ -105,7 +105,7 @@ A good ask names the scope that is actually changing — how many services, how 
 
 ## A working example
 
-Story E1-F1-S1 is the same one `grit`'s own worked example writes a gate ledger for — before that ledger exists, conduct decides how the work executes. An inspector needs to complete an inspection with no connectivity and have it sync without loss once back online. Applying `RUBRIC.md`'s ordered questions, first hit wins:
+Story E1-F1-S1 sits inside epic E1, offline inspection sync, on [QuenServe]({{ '/example/' | relative_url }}) — the field-inspection product every scenario on this site returns to. It is the same story `grit`'s own worked example writes a gate ledger for; before that ledger exists, conduct decides how the work executes. An inspector needs to complete an inspection with no connectivity and have it sync without loss once back online. Applying `RUBRIC.md`'s ordered questions, first hit wins:
 
 Question 1 asks whether "done" is machine-checkable at all. It is: an inspection saved locally, every field reaching the server unchanged, and a retried sync that never duplicates a record are all things a command can check — the same three checks grit's own gate ledger, `G1` through `G3`, is built to run. Question 2 asks whether the work fits one artifact, one verifier, one context window. It does: the change touches the offline store, the sync client, and the server's ingestion endpoint, but every file it may write sits inside one owned module, `packages/inspections/offline/**`, the same `OWNS` line grit's own ledger records. Routing lands on **loop**, and the rubric stops evaluating further questions, since the first hit wins — question 3's independent-workstreams test is never reached.
 

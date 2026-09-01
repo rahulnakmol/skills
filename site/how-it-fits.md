@@ -122,8 +122,7 @@ Every scenario on this site is a piece of one product: [QuenServe, the example e
         Independent  &mdash; no upstream epic required
         Valuable     &mdash; inspectors keep working with no
                         signal; managers see sync health
-        Estimable    &mdash; sized across three features,
-                        E1-F1 through E1-F3                [4]</code></pre>
+        Estimable    &mdash; L, roughly one quarter          [4]</code></pre>
 </div>
 <ol class="hif-walk">
 <li>One epic, one shippable outcome, with its scope edge stated — Deliverable. E1 ships as offline inspection sync on its own.</li>

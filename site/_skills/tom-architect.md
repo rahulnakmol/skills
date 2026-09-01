@@ -108,7 +108,7 @@ A good ask names the target platform stack if one is already selected, and state
 
 You type the prompt above about the field-inspection operating model. TOM Architect's Discover phase gathers the driver: a customer's own inspection completion rate keeps slipping at low-signal sites, the same shape of problem QuenServe's engineering analysis surfaces elsewhere on this site, raised here at the enterprise level instead of one product epic. It also gathers the industry — facilities and industrial services — and confirms no target platform stack has been picked yet. Scope fixes L1-L4 depth, since the sponsor wants a detailed design rather than an executive overview, and confirms process, organization, and technology as the three layers in play, leaving service delivery, data, and governance out of scope for this pass.
 
-Analyze decomposes the inspection value chain down to L2 process groups — site scheduling, inspection execution, exception handling, sync and reporting — and places inspection execution on the five-point maturity scale at 2-Developing, partial credit only. Digital capture already exists at sites with reliable signal, but a rural or warehouse site still falls back to a paper checklist faxed to a regional office. Design assigns RACI: the field inspector is Responsible, the regional operations lead is Accountable, platform engineering is Consulted. Only after that baseline exists does Map turn to platform capability, closing the maturity gap by adopting QuenServe itself as the platform:
+Analyze decomposes the inspection value chain down to L2 process groups — site scheduling, inspection execution, exception handling, sync and reporting — and places inspection execution on the five-point maturity scale at 2-Developing, partial credit only. Digital capture already exists at sites with reliable signal, but a rural or warehouse site still falls back to a paper checklist faxed to a regional office. Design assigns RACI: the field inspector is Responsible, the regional operations lead is Accountable, platform engineering is Consulted. Only after that baseline exists does Map turn to platform capability, naming QuenServe as the platform that closes the gap. That is conditional, not current: QuenServe today still loses a completed inspection at a site with no signal, and only epic E1's offline inspection sync changes that:
 
 <pre><code><span class="tok-comment"># specs/tom/field-inspection-tom-design.md (excerpt)</span>
 L2 process: Inspection execution
@@ -123,9 +123,10 @@ L2 process: Inspection execution
   KPI cadence: process (daily open-inspection
     count), operational (weekly site-coverage
     rate)
-  Platform: QuenServe &mdash; extends digital
-    capture to every site, including those
-    without reliable signal</code></pre>
+  Platform: QuenServe &mdash; target state, once
+    epic E1's offline inspection sync ships,
+    extends digital capture to sites with no
+    reliable signal</code></pre>
 
 The maturity gap recorded here — 2-Developing today, a Human-in-the-Loop target — is exactly what `carve` reads later to extract an epic, rather than inventing one from a platform's feature list.
 
@@ -138,7 +139,7 @@ The maturity gap recorded here — 2-Developing today, a Human-in-the-Loop targe
 <span class="tok-ok">assessed — 2-Developing (partial)</span>
 Phase 5: Platform mapped against that gap —
 QuenServe closes the offline-capture gap
-at low-signal sites.</code></pre>
+at low-signal sites once epic E1 ships.</code></pre>
 <div class="compare-card-note">Platform mapping follows process decomposition and maturity assessment; it never precedes them.</div>
 </div>
 <div class="compare-card compare-card--warn">

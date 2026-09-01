@@ -109,7 +109,7 @@ A good ask includes:
 
 ## A working example
 
-You type:
+The boundary under assessment is the offline-sync path of story E1-F1-S1, one story inside epic E1 on [QuenServe]({{ '/example/' | relative_url }}) — the field-inspection product every scenario on this site returns to. You type:
 
 <pre><code>We are shipping the offline-sync path for story E1-F1-S1: the sync client pushes a device's queued inspections to the server's ingestion endpoint once connectivity returns. Run a security assessment before we merge it: threat-model the sync path, rank the findings by severity, and stop before fixing anything critical so I can see it first.</code></pre>
 

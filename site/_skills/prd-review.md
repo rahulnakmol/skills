@@ -11,7 +11,7 @@ lens:
     who: 'You have watched a PRD get approved because it looked complete, then ship a feature that matched every competitor and excited nobody. PRD Review is the check that separates complete from ambitious.'
     value: 'You get a scored map of where the PRD sits on a 1-to-11 star scale, dimension by dimension, so you know exactly which part reads as merely finished and which part reads as differentiated.'
   practitioner:
-    who: 'You draft PRDs and want an honest read before they reach the Quality gate, not a rubber stamp and not a surprise rejection.'
+    who: 'You draft PRDs and want an honest read before they reach the Quality gate, not an automatic approval and not a surprise rejection.'
     value: 'Seven weighted scores plus a star-spectrum map tell you precisely where to spend your next revision pass, with a verdict band that tells you whether that pass is optional or required.'
   leader:
     who: 'You manage several PMs whose PRDs move through the same gate at different levels of rigor.'
@@ -101,7 +101,7 @@ A good ask includes:
 
 ## A working example
 
-You type:
+The document under review is the PRD `prd-draft` wrote for epic E1, offline inspection sync, on [QuenServe]({{ '/example/' | relative_url }}) — the field-inspection product every scenario on this site returns to. You type:
 
 <pre><code>Score QuenServe epic E1's PRD before it reaches the Quality gate. It already passed prd-draft's structural check. Map every feature to a star level before you score anything, then give me the seven-dimension composite and the verdict band it lands in.</code></pre>
 
@@ -137,8 +137,8 @@ Composite: 7.40 -&gt; Minor Revision
 
 P1: Push the inspector sync status view (E1-F3-S1) toward star 7 by
     predicting a sync ETA for each queued inspection, instead of only
-    showing a synced-or-not flag. Expected impact: Ambition 5 -&gt; 7,
-    composite +0.30.
+    showing a synced-or-not flag. Expected impact: Ambition 5 -&gt; 7
+    on the dimension score, composite +0.30.
 
 Verdict: Minor Revision. Returned to `prd-draft`.</code></pre>
 
@@ -157,7 +157,7 @@ Differentiation ..... 6/10 (15%)
 Metric Alignment .... 8/10 (10%)
 Story Quality ....... 8/10 (15%)
 <span class="tok-ok">Composite: 7.70 -&gt; Approved with Notes</span></code></pre>
-<div class="compare-card-note">Raising Ambition by two stars, from the documented sync-status change, moves the composite from 7.40 to 7.70 — 15% of a 2-star gain is 0.30, and 7.40 + 0.30 crosses from Minor Revision into Approved with Notes at a verified number.</div>
+<div class="compare-card-note">Raising Ambition by two points, from the documented sync-status change, moves the composite from 7.40 to 7.70 — Ambition carries a 15% weight, so a two-point gain adds 0.30, and 7.40 + 0.30 crosses from Minor Revision into Approved with Notes at a verified number.</div>
 </div>
 <div class="compare-card compare-card--warn">
 <div class="compare-card-head">The wrong turn to watch for</div>

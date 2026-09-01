@@ -118,7 +118,7 @@ A good ask includes:
 
 ## A working example
 
-You type:
+The person asking is new to epic E1, offline inspection sync, on [QuenServe]({{ '/example/' | relative_url }}) — the field-inspection product every scenario on this site returns to. You type:
 
 <pre><code>I'm new to QuenServe epic E1 and don't know where to start. We already have a raw problem statement from the operations team but nothing else. Which pm skill do I run first?</code></pre>
 

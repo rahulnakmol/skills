@@ -96,7 +96,7 @@ A good ask confirms which tracker the project actually uses, since the three doc
 
 ## A working example
 
-Story E1-F1-S1 from `slice` is contract-complete, and `.impact.json` names GitHub as `tracker.primary`, in sub-issues-and-labels mode. Raise has no fixture file of its own to quote; this is the shape its output contract requires — "a list of issue URLs plus label state raised" — filled for this exact item:
+Story E1-F1-S1 is the delivery story inside epic E1 on [QuenServe]({{ '/example/' | relative_url }}), the field-inspection product every scenario on this site returns to. Handed over by `slice` it is contract-complete, and `.impact.json` names GitHub as `tracker.primary`, in sub-issues-and-labels mode. Raise has no fixture file of its own to quote; this is the shape its output contract requires — "a list of issue URLs plus label state raised" — filled for this exact item:
 
 <pre><code>Published:
 - https://github.com/tqnonline/skills/issues/842
@@ -177,6 +177,6 @@ If an idempotency key stops appearing in a published issue's body, the disciplin
 
 **Raise is the last step before a signed idea is a ticket someone can actually pick up.**
 
-Its nearest neighbor is `slice`: slice's contract-complete bundle is the only input raise accepts, and an incomplete one bounces straight back rather than reaching the tracker in a weaker form. `sdlc` picks up from here, walking the raised item through the gated build loop once a pod is ready to start on it. `conduct` decides execution shape for that item earlier in the chain, before slice even writes it.
+Its nearest neighbor is `slice`: slice's contract-complete bundle is the only input raise accepts, and an incomplete one is returned rather than reaching the tracker in a weaker form. `sdlc` picks up from here, walking the raised item through the gated build loop once a pod is ready to start on it. `conduct` decides execution shape for the raised item before that loop begins, so the story reaches sdlc already routed as a loop or a graph.
 
 If none of this settles which skill fits, `ask-fde` routes you to the right one from a plain description of what you need.

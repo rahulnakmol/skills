@@ -5,7 +5,7 @@ title: "Roadmap — Sequence Initiatives by Outcome and Dependency"
 description: "Roadmap is the user-invoked skill that sequences initiatives into now, next, and later horizons by outcome linkage and dependency, not by who asked last."
 group: pm
 invocation: user-invoked
-scenario: "Sequencing QuenServe epic E1 among the portfolio's other epics"
+scenario: "Sequencing QuenServe epic E1's work across now, next, and later"
 lens:
   novice:
     who: 'You have built a roadmap that was really a wish list against a calendar, and watched a stakeholder reorder it by asking loudly. Roadmap is the discipline that sequences by outcome and dependency instead.'
@@ -89,7 +89,7 @@ Readers who only want Roadmap can skip the rest of the catalog with `./scripts/l
 <div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
 <div class="tool-group-body">
 <p>All three read the same <code>.agents/skills/</code> catalog and apply Roadmap as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode; Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>; GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>. None gets a continuous-integration backstop specific to Roadmap the way <code>grit-gates.yml</code> backstops <code>grit</code>; a stale sequence is caught only by a reader checking it against `raid`'s register.</p>
-<div class="prompt-card">Sequence QuenServe epic E1 into now, next, and later per skills/pm/roadmap/ROADMAP.md. Link every item to its outcome and read the dependency board from raid, not a second copy.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">We are running PI planning for QuenServe epic E1 this cycle. Following skills/pm/roadmap/ROADMAP.md, place its work in now, next, and later, state the PI objective and the squad capacity behind it, and take every blocked item's reason from raid's dependency register rather than a second copy.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>All three write the roadmap directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
@@ -102,7 +102,7 @@ A good ask includes:
 
 ## A working example
 
-You type:
+The work being sequenced belongs to epic E1, offline inspection sync, on [QuenServe]({{ '/example/' | relative_url }}) — the field-inspection product every scenario on this site returns to. You type:
 
 <pre><code>Sequence QuenServe epic E1 into now, next, and later. Every item needs an outcome linkage, and read the dependency board straight from raid instead of guessing at what is blocked.</code></pre>
 

@@ -108,7 +108,7 @@ A good ask includes:
 
 ## A working example
 
-You type:
+The cadence due covers epic E1, offline inspection sync, on [QuenServe]({{ '/example/' | relative_url }}) — the field-inspection product every scenario on this site returns to. You type:
 
 <pre><code>QuenServe epic E1 is due for its quarterly leadership pack. Pull value from realize, Problems from raid, Priorities from roadmap, and the cost baseline from case. Lead with value, then the 4Ps, and do not mark it sent until I have checked the rendered numbers against the registers myself.</code></pre>
 

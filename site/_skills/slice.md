@@ -98,7 +98,7 @@ A good ask points at the signed PRD directly, and names whether this is the firs
 
 ## A working example
 
-QuenServe's epic-E1 PRD carried forward from `impact` is signed, its governance tier recorded as `none`. Slice validates that sign-off first, then decomposes it into story E1-F1-S1. There is no fixture file to quote here — slice has none of its own — so this is the shape `WORK-ITEM-CONTRACT.md` requires, filled for this exact case:
+Epic E1 is offline inspection sync on [QuenServe]({{ '/example/' | relative_url }}), the field-inspection product every scenario on this site returns to, and this is where its PRD becomes work items. The epic-E1 PRD carried forward from `impact` is signed, its governance tier recorded as `none`. Slice validates that sign-off first, then decomposes it into story E1-F1-S1. There is no fixture file to quote here — slice has none of its own — so this is the shape `WORK-ITEM-CONTRACT.md` requires, filled for this exact case:
 
 <pre><code>## Goal
 Complete an inspection with no connectivity and sync it without
