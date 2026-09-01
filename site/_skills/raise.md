@@ -5,7 +5,7 @@ title: "Raise — Publishing Backlog Items to a Tracker"
 description: "Raise is the model-invoked skill that publishes a contract-complete backlog to GitHub, Linear, or Azure DevOps with pickup-protocol labels attached."
 group: developer
 invocation: model-invoked
-scenario: "Publishing the sliced checkout-timeout work item to GitHub without duplicating it on the next run"
+scenario: "Publishing QuenServe's sliced story E1-F1-S1 to GitHub without duplicating it on the next run"
 lens:
   novice:
     who: 'You have a finished backlog sitting in a document, and no idea how it becomes real issues in GitHub or Linear.'
@@ -57,85 +57,69 @@ You reach for it in two moments. `slice` has just produced a contract-complete b
 | You need the gated build loop to actually start on the raised item | [`sdlc`]({{ '/sdlc/' | relative_url }}) |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same raise skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want raise can skip the rest of the catalog with `./scripts/link-skills.sh --skill raise`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">No command &mdash; model-invoked</span></div>
+<div class="tool-group-body">
 <p>Raise is model-invoked: nothing is typed to call it. Claude reaches for it on its own when a request matches its description — a contract-complete backlog ready to become tracked issues.</p>
-<div class="prompt-card">The checkout-timeout story is contract-complete. Publish it to GitHub with the raised label and a stable idempotency key — if we run this again next week, I want it to update the same issue, not open a second one.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Story E1-F1-S1 is contract-complete. Publish it to GitHub with the raised label and a stable idempotency key — if we run this again next week, I want it to update the same issue, not open a second one.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Raise returns the issue URL and confirms the `raised` label and idempotency key are both set.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">No command &mdash; applied as instructions</span></div>
+<div class="tool-group-body">
 <p>OpenCode ships no dedicated command for raise. Its catalog install places the skill in <code>.agents/skills/</code>, and an orchestrating agent applies the tracker doctrine directly once a bundle is contract-complete, rather than through a command file the way <code>/impact</code> or <code>/sdlc</code> work.</p>
-<div class="prompt-card">Publish the checkout-timeout item to GitHub per skills/developer/raise/trackers/github.md — sub-issues and labels mode, raised label applied, idempotency key stored in the body footer.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Publish story E1-F1-S1 to GitHub per skills/developer/raise/trackers/github.md — sub-issues and labels mode, raised label applied, idempotency key stored in the body footer.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The agent runs the `gh` CLI directly and reports the created issue's URL and label state.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. The skills land in <code>.agents/skills/</code>, and the agent applies raise's procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">Read .impact.json for the configured tracker, then publish the checkout-timeout item per the matching trackers/ doc, with the raised label and a stable idempotency key.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor runs the tracker's CLI or API directly and reports the result in its reply.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply raise's procedure as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>, so it sees raise's name and description the same way the other tools do, and a team adds its rules directly to <code>AGENTS.md</code>. Copilot's agent mode applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Read .impact.json for the configured tracker, then publish story E1-F1-S1 per the matching trackers/ doc, with the raised label and a stable idempotency key.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three run the tracker's CLI or API directly and report the result in their reply.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees raise's name and description the same way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/developer/raise/SKILL.md and trackers/github.md, then publish the checkout-timeout item with the raised label and idempotency key.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex publishes the same way, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command or hook for raise on any tool, so a Copilot request is answered the same way as on Cursor and Codex: by reading the tracker doctrine directly as working context.</p>
-<div class="prompt-card">Before publishing the checkout-timeout item, confirm tracker authentication is available and the item is contract-complete — stop and tell me if either is missing.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot checks both conditions and reports either the published issue or the exact gap blocking it.</p>
-</div>
-</div>
-
-A good ask confirms which tracker the project actually uses, since the three doctrines behave differently — GitHub and Linear publish live and idempotently, Azure DevOps exports a CSV for manual import. Readers who do not have the skill pack installed yet can add raise alone:
-
-```bash
-./scripts/link-skills.sh --skill raise
-```
-
-See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+A good ask confirms which tracker the project actually uses, since the three doctrines behave differently — GitHub and Linear publish live and idempotently, Azure DevOps exports a CSV for manual import.
 
 ## A working example
 
-The checkout-timeout item from `slice` is contract-complete, and `.impact.json` names GitHub as `tracker.primary`, in sub-issues-and-labels mode. Raise has no fixture file of its own to quote; this is the shape its output contract requires — "a list of issue URLs plus label state raised" — filled for this exact item:
+Story E1-F1-S1 from `slice` is contract-complete, and `.impact.json` names GitHub as `tracker.primary`, in sub-issues-and-labels mode. Raise has no fixture file of its own to quote; this is the shape its output contract requires — "a list of issue URLs plus label state raised" — filled for this exact item:
 
 <pre><code>Published:
 - https://github.com/tqnonline/skills/issues/842
   label: raised
-  idempotency-key: wi-checkout-timeout-2026-08
+  idempotency-key: wi-e1-f1-s1-offline-sync-2026-08
   tracker: github (sub-issues + labels mode, per .impact.json)</code></pre>
 
-This is the shape the output contract requires, not a captured real API call — raise has no runnable script of its own in this repository; `trackers/github.md` names `gh` as the required CLI and states the update-by-stable-key behavior this example follows. A week later, the item's acceptance criteria change and the same pipeline runs again. `trackers/github.md`'s idempotent behavior means raise finds issue `842` by its stored key and updates it in place — the checkout-timeout fix never ends up tracked across two open issues because the run happened twice.
+This is the shape the output contract requires, not a captured real API call — raise has no runnable script of its own in this repository; `trackers/github.md` names `gh` as the required CLI and states the update-by-stable-key behavior this example follows. A week later, the story's acceptance criteria change and the same pipeline runs again. `trackers/github.md`'s idempotent behavior means raise finds issue `842` by its stored key and updates it in place — E1-F1-S1 never ends up tracked across two open issues because the run happened twice.
 
 ## What good looks like
 
 <div class="compare-grid">
 <div class="compare-card">
 <div class="compare-card-head">A published item with its handoff intact</div>
-<pre><code>Title: Reduce checkout timeout errors to under 0.1%
+<pre><code>Title: Complete an inspection offline and sync it without loss
 Labels: <span class="tok-ok">raised</span>, ready
 ---
-&lt;!-- raise-idempotency-key: wi-checkout-timeout-2026-08 --&gt;</code></pre>
+&lt;!-- raise-idempotency-key: wi-e1-f1-s1-offline-sync-2026-08 --&gt;</code></pre>
 <div class="compare-card-note">The raised label applied on create, and a stable idempotency key stored in the body footer — a re-run finds this exact key and updates, it does not duplicate.</div>
 </div>
 <div class="compare-card compare-card--warn">
 <div class="compare-card-head">The wrong turn to watch for</div>
-<pre><code>Title: Reduce checkout timeout errors to under 0.1%
+<pre><code>Title: Complete an inspection offline and sync it without loss
 Labels: raised
 <span class="tok-warn">(no idempotency key in the body)</span></code></pre>
 <div class="compare-card-note">Store a stable idempotency key in the issue body footer — quoted directly from the skill's own procedure. Without it, the next raise run cannot recognize this issue and creates a duplicate.</div>

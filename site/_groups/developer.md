@@ -41,12 +41,12 @@ Getting an agent to write code is not the hard part. A short prompt and a few mi
 
 ## What that discipline looks like in one work item
 
-A checkout-timeout fix, sliced into a single work item, shows the shape without any of it being decoration.
+QuenServe's story E1-F1-S1 — an inspector completes an inspection with no connectivity and it syncs without loss once back online — sliced into a single work item, shows the shape without any of it being decoration.
 
-- **One gate ledger, not a debate.** `WORK-ITEM-CONTRACT.md` requires a `CHECK` and an `EXPECT` per acceptance criterion — `go test ./services/checkout/... -run TestTimeoutP99` against `EXPECT: PASS`, not a sentence about how the fix should feel under load.
+- **One gate ledger, not a debate.** `WORK-ITEM-CONTRACT.md` requires a `CHECK` and an `EXPECT` per acceptance criterion — `node scripts/verify-offline-completion.mjs` against `EXPECT: offline completion verified`, not a sentence about how the sync should feel in the field.
 - **Two design passes, not one.** `sdlc/METHOD.md` requires a candidate plan and a separate challenge pass that attacks its own assumptions before scope freezes — rephrasing the same idea twice does not count as the second pass.
 - **85 to 90 percent, measured on the diff.** `core/COVERAGE.md`'s coverage floor for business-capability code, checked by the same verifier that later blocks a pull request in `shakedown` if the number is not real.
-- **One writer, one verifier, until the rubric says otherwise.** `conduct/RUBRIC.md` keeps this bounded fix a loop, because it fits one artifact and one check — no graph, no fan-out, nothing to justify.
+- **One writer, one verifier, until the rubric says otherwise.** `conduct/RUBRIC.md` keeps this bounded story a loop, because every path it touches sits inside one owned module — no graph, no fan-out, nothing to justify.
 
 ## The unglamorous truth
 

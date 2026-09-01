@@ -5,7 +5,7 @@ title: "SDLC — The Gated Software Delivery Loop"
 description: "SDLC is the user-invoked gated loop that walks a work item through design, build, security, and release gates, recorded on a SPEC-TS evidence ledger."
 group: developer
 invocation: user-invoked
-scenario: "Walking the checkout-timeout work item through the gated loop, from ledger to a verified outcome"
+scenario: "Walking QuenServe's story E1-F1-S1 through the gated loop, from ledger to a verified outcome"
 lens:
   novice:
     who: 'You have heard "we are doing the full SDLC" and want to know what that actually means, day to day.'
@@ -66,62 +66,46 @@ You reach for it in two moments. A work item's label reads `ready`, and its cont
 | You need an isolated, pre-merge review of a pull request that already claims done | [`shakedown`]({{ '/shakedown/' | relative_url }}) |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same sdlc skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want sdlc can skip the rest of the catalog with `./scripts/link-skills.sh --skill sdlc`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command, three plugin workflow stages</span></div>
+<div class="tool-group-body">
 <p>SDLC is user-invoked: type <code>/sdlc</code>, or name it directly in a session — nothing routes to it automatically. The repository also ships three dynamic workflows as plugin slash commands — <code>/rahulnakmol-skills:assess-work-item</code>, <code>/rahulnakmol-skills:deliver-work-item</code>, and <code>/rahulnakmol-skills:shakedown-pr</code> — which carry a headless version of the same gated stages for a work item already raised to a tracker.</p>
-<div class="prompt-card">Run the checkout-timeout work item through the full gated loop. Snapshot SPEC-TS, run both design passes, and stop at every human gate — do not report this done until Gate 3's independent verifier has actually run.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Run story E1-F1-S1 through the full gated loop. Snapshot SPEC-TS, run both design passes, and stop at every human gate — do not report this done until Gate 3's independent verifier has actually run.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>SDLC returns the ledger snapshot, the two design passes, and stops at each gate for your explicit approval before moving on.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Command file, sdlc agent</span></div>
+<div class="tool-group-body">
 <p><code>./scripts/install-adapters.sh --tool opencode</code> installs the <code>/sdlc</code> command from <code>adapters/opencode/commands/sdlc.md</code>, bound to the <code>sdlc</code> agent. It interactively clarifies and acknowledges the given arguments, builds the SPEC-TS ledger, and conducts Design Pass 1 and Design Pass 2. It then verifies Gate 1 and Gate 2 before choosing no-loop, one worker, a specialist chain, a workflow, or a human gate — preferring no loop when one agent suffices.</p>
-<div class="prompt-card">/sdlc Reduce checkout timeout errors to under 0.1% on the payments platform. This is a bounded, single-service fix — confirm no-loop is the right call before you start.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">/sdlc Complete an inspection with no connectivity and sync it without loss once back online — story E1-F1-S1. This is bounded to the offline-sync module — confirm no-loop is the right call before you start.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The agent states its chosen shape, runs the two design passes, and requires cross-family Gate 3 verification after the one bounded implementation phase.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. The skills land in <code>.agents/skills/</code>, and the agent applies sdlc's procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">Apply skills/developer/sdlc/METHOD.md to the checkout-timeout work item: snapshot SPEC-TS, run both design passes, and stop at Gate 1 and Gate 2 for my approval before touching any file.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor states the ledger, both design passes, and the gate results directly in its reply, since there is no command output to parse.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply sdlc's procedure as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>, so it sees sdlc's name and description the same way the other tools do, and a team adds its rules directly to <code>AGENTS.md</code>. Copilot's agent mode applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Apply skills/developer/sdlc/METHOD.md to story E1-F1-S1: snapshot SPEC-TS, run both design passes, and stop at Gate 1 and Gate 2 for my approval before touching any file.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three state the ledger, both design passes, and the gate results directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees sdlc's name and description the same way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/developer/sdlc/METHOD.md and LOOP-CONTRACT.md, then walk the checkout-timeout work item through the gated loop and report each gate's state and evidence.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex walks the same gates, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command or hook for sdlc on any tool besides Claude Code's plugin invocation, so a Copilot request is answered the same way as on Cursor and Codex.</p>
-<div class="prompt-card">Before you implement anything for the checkout-timeout fix, confirm Gate 1 and Gate 2 pass and state the frozen scope. Do not report done before Gate 3's independent verifier has run.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot states each gate's result in chat before proposing or making any change.</p>
-</div>
-</div>
-
-A good ask names the work item or PRD the loop runs against, and states plainly whether the change is bounded enough for one writer or genuinely needs `conduct`'s routing first. Readers who do not have the skill pack installed yet can add sdlc alone:
-
-```bash
-./scripts/link-skills.sh --skill sdlc
-```
-
-See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+A good ask names the work item or PRD the loop runs against, and states plainly whether the change is bounded enough for one writer or genuinely needs `conduct`'s routing first.
 
 ## A working example
 
-The checkout-timeout work item, raised by `raise` and confirmed `ready`, is bounded to one service and one writer — `conduct`'s rubric already resolved this as a loop, not a graph. `METHOD.md` defines a literal "Required Substantial-Work Output" template, quoted here verbatim, the exact shape every substantial SDLC run must report:
+QuenServe's story E1-F1-S1, raised by `raise` and confirmed `ready`, is bounded to the offline-sync module and one writer — `conduct`'s rubric already resolved this as a loop, not a graph. `METHOD.md` defines a literal "Required Substantial-Work Output" template, quoted here verbatim, the exact shape every substantial SDLC run must report:
 
 <pre><code>Goal: &lt;measurable outcome&gt;
 SPEC-TS: &lt;scope / requirements / constraints / components / trade-offs / success&gt;
@@ -135,16 +119,21 @@ Gate 3: &lt;state/evidence&gt;
 Outcome: GOAL_MET | PARTIAL_VALUE | BLOCKED | NO_PROGRESS | HARM_GUARDRAIL_BREACH | INSUFFICIENT_EVIDENCE
 Next/Human decisions: &lt;exact&gt;</code></pre>
 
-Filled for the checkout-timeout item, this is the shape that template requires — not a captured real run, since sdlc has no fixture of its own to quote. Design Pass 1 is the candidate plan, built from the SPEC-TS ledger and current evidence: retry a timed-out checkout once before failing it. Design Pass 2 is the challenge pass — it re-reads the timeout handling as it exists today, compares the retry-once plan against a circuit-breaker alternative, and freezes the smaller of the two once the alternative shows no real advantage for this traffic pattern. Gate 1, the alignment check, confirms the goal, the ledger, and the frozen scope are coherent before any file is touched. Gate 2, the design-and-task check, confirms the design is complete and the allowed paths are frozen. Gate 3, the outcome check, is where an independent verifier — a different agent from the implementer — checks the changed source against the ledger and real test evidence, after the one implementation phase runs:
+Filled for story E1-F1-S1, this is the shape that template requires — not a captured real run, since sdlc has no fixture of its own to quote. Design Pass 1 is the candidate plan, built from the SPEC-TS ledger and current evidence: queue a completed inspection locally and sync it once connectivity returns. Design Pass 2 is the challenge pass — it re-reads the sync client as it exists today, compares the queue-and-sync plan against a fixed-interval background-retry alternative, and freezes the smaller of the two once the alternative shows no real advantage for this connectivity pattern. Gate 1, the alignment check, confirms the goal, the ledger, and the frozen scope are coherent before any file is touched. Gate 2, the design-and-task check, confirms the design is complete and the allowed paths are frozen. Gate 3, the outcome check, is where an independent verifier — a different agent from the implementer — checks the changed source against the ledger and real test evidence, after the one implementation phase runs:
 
-<pre><code>Goal: Reduce checkout timeout errors to under 0.1%
-SPEC-TS: scope=services/checkout; NFR=p99 latency &lt;800ms
-Design 1: retry a timed-out checkout once before failing
-Design 2: compared against a circuit-breaker; retry-once frozen as the smaller, sufficient change
+<pre><code>Goal: Complete an inspection with no connectivity and sync it
+  without loss once back online
+SPEC-TS: scope=packages/inspections/offline; NFR=sync completes
+  within 60s of reconnection
+Design 1: queue a completed inspection locally, sync once
+  connectivity returns
+Design 2: compared against a fixed-interval background retry;
+  connectivity-triggered sync frozen as the smaller, sufficient
+  change
 Gate 1: PASS &mdash; ledger coherent, worker resolved via model-routing
-Gate 2: PASS &mdash; design frozen, allowed paths = timeout.go, timeout_test.go
+Gate 2: PASS &mdash; design frozen, allowed paths = sync-client.ts, sync-client.test.ts
 Implementation: single writer, scope as frozen
-Gate 3: PASS &mdash; evidence: [test-report-88]; owner: verifier
+Gate 3: PASS &mdash; evidence: [verify-offline-completion.mjs]; owner: verifier
 Outcome: GOAL_MET
 Next/Human decisions: none &mdash; ready for raise's tracker close-out</code></pre>
 

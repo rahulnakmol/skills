@@ -5,7 +5,7 @@ title: "Conduct — Choosing How Delivery Work Executes"
 description: "Conduct is the model-invoked router that decides whether a piece of delivery work runs as a loop, a graph, or a hybrid, and assigns a model to every node."
 group: developer
 invocation: model-invoked
-scenario: "Routing a payment-provider migration across three services before any agent starts"
+scenario: "Routing QuenServe's story E1-F1-S1 — complete an inspection with no connectivity and it syncs without loss — before any agent starts"
 lens:
   novice:
     who: 'You have noticed some AI work runs as one back-and-forth conversation and other work spawns several agents working at once, and you have never known why. Conduct is the rule behind that split.'
@@ -66,88 +66,62 @@ The confusable sibling in the same table, `r002` — "this discovery effort need
 | You need to decide how finely "done" is split into gates, not whether the work runs as a loop or a graph | [`grit`]({{ '/grit/' | relative_url }}) |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same conduct skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want conduct can skip the rest of the catalog with `./scripts/link-skills.sh --skill conduct`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">No command &mdash; three plugin workflow stages</span></div>
+<div class="tool-group-body">
 <p>Conduct is model-invoked: nothing is typed to call it. It gets no plugin slash command of its own. But the three dynamic workflows this repository ships as a Claude Code plugin — <code>/rahulnakmol-skills:assess-work-item</code>, <code>/rahulnakmol-skills:deliver-work-item</code>, and <code>/rahulnakmol-skills:shakedown-pr</code> — are the three graph stages <code>GRAPH.md</code>'s harness mapping names: assess, deliver, and shakedown. A human gate separates each stage, placed between runs by the runtime rather than mid-run.</p>
-<div class="prompt-card">This build spans several workstreams, decide whether to run it as a loop or a graph. We are migrating checkout onto a new payment provider, and it touches the payment API, the ledger service, and the reconciliation job.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Conduct returns the mode, the node list with each node's output named, and the human gate any high-consequence write in that graph needs before it runs.</p>
+<div class="prompt-card">Decide whether this story runs as a loop or a graph before any agent starts: complete an inspection with no connectivity and have it sync without loss once back online, story E1-F1-S1. It touches the offline store, the sync client, and the server's ingestion endpoint.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>Conduct returns the mode, and the reasoning behind it — here, a loop, since every path the story touches sits inside one owned module.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Embedded in the /sdlc command's own routing question</span></div>
+<div class="tool-group-body">
 <p>OpenCode ships no <code>conduct</code> command either. Its routing question is embedded directly in the <code>/sdlc</code> command's own description instead: "choosing no-loop, one worker, specialist chain, workflow, or human gate" before implementation. It closes with the line "Prefer no loop when one agent suffices" — the same bias RUBRIC.md's own ordered questions encode, applied without naming conduct by name.</p>
-<div class="prompt-card">/sdlc Migrate checkout onto the new payment provider. Decide execution shape before touching any code — this crosses the payment API, the ledger service, and the reconciliation job.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">/sdlc Complete an inspection with no connectivity and have it sync without loss once back online — story E1-F1-S1. Decide execution shape before touching any code.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The <code>sdlc</code> agent states its chosen shape and the reasoning behind it before Design Pass 1 begins.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. The skills land in <code>.agents/skills/</code>, and the agent applies conduct's rubric by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>, and routing model choice through its own <code>auto</code> mode rather than a pinned identifier.</p>
-<div class="prompt-card">Before implementing the payment-provider migration, apply skills/developer/conduct/RUBRIC.md and tell me whether this runs as a loop or a graph, and why.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor states the routing answer directly in its reply, since there is no command output to parse.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply conduct's rubric as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode rather than a pinned identifier, and a team adds its rules to <code>.cursor/rules/</code>. Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>, so it sees conduct's name and description the same way the other tools do, and a team adds its rules directly to <code>AGENTS.md</code>. Copilot's agent mode applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Read skills/developer/conduct/RUBRIC.md and GRAPH.md, then route story E1-F1-S1 — complete an inspection with no connectivity and sync it without loss once back online — and state whether it runs as a loop or a graph, and why.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three state the routing answer directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees conduct's name and description the same way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/developer/conduct/RUBRIC.md and GRAPH.md, then route the payment-provider migration and list the nodes, including any human gate a production release needs.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex answers with the routing decision and node list, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook or command for conduct on any tool, so a routing decision here is answered the same way as on Cursor and Codex: by reading RUBRIC.md and GRAPH.md directly as working context.</p>
-<div class="prompt-card">This migration touches three services and ends in a production release. Apply the conduct rubric, state loop or graph, and name the human gate the release needs before it ships.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot states the routing decision and the human gate in its reply before proposing any implementation plan.</p>
-</div>
-</div>
-
-A good ask names the scope that is actually changing — how many services, how many verifiers, whether a write is reversible — since the rubric routes on that evidence, not on a difficulty estimate. Readers who do not have the skill pack installed yet can add conduct alone:
-
-```bash
-./scripts/link-skills.sh --skill conduct
-```
-
-See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+A good ask names the scope that is actually changing — how many services, how many verifiers, whether a write is reversible — since the rubric routes on that evidence, not on a difficulty estimate.
 
 ## A working example
 
-The payment-provider migration is the same one `grit`'s own worked example writes a gate ledger for — before that ledger exists, conduct decides how the work executes. Applying `RUBRIC.md`'s ordered questions, first hit wins:
+Story E1-F1-S1 is the same one `grit`'s own worked example writes a gate ledger for — before that ledger exists, conduct decides how the work executes. An inspector needs to complete an inspection with no connectivity and have it sync without loss once back online. Applying `RUBRIC.md`'s ordered questions, first hit wins:
 
-Question 1 asks whether "done" is machine-checkable at all. It is: a completed checkout, a refund posted exactly once, and a reconciliation total that matches the provider's settlement report are all things a command can check. Question 2 asks whether the work fits one artifact, one verifier, one context window. It does not — the payment API, the ledger service, and the reconciliation job are three separate contracts, each needing its own check. Question 3 asks whether there are independent workstreams that need their own rubric to judge them by. There are: routing lands on **graph**, and the rubric stops evaluating further questions, since the first hit wins.
+Question 1 asks whether "done" is machine-checkable at all. It is: an inspection saved locally, every field reaching the server unchanged, and a retried sync that never duplicates a record are all things a command can check — the same three checks grit's own gate ledger, `G1` through `G3`, is built to run. Question 2 asks whether the work fits one artifact, one verifier, one context window. It does: the change touches the offline store, the sync client, and the server's ingestion endpoint, but every file it may write sits inside one owned module, `packages/inspections/offline/**`, the same `OWNS` line grit's own ledger records. Routing lands on **loop**, and the rubric stops evaluating further questions, since the first hit wins — question 3's independent-workstreams test is never reached.
 
-Building the node list per `GRAPH.md`, each agent node's model resolved through `model-routing`, and a human node placed in front of the production release regardless of which question triggered graph mode — every high-consequence write earns one:
+Building the node list per `LOOP.md`, a single writer and a single verifier, each resolved through `model-routing`, iterating against the SPEC-TS ledger until it passes or a hard cap is hit:
 
-<pre><code>mode: graph
+<pre><code>mode: loop
 nodes:
-  - id: fix-payment-api
+  - id: implement-offline-sync
     type: agent
     skill: sdlc
-  - id: fix-ledger-posting
+  - id: verify-offline-sync
     type: agent
-    skill: sdlc
-  - id: fix-reconciliation-job
-    type: agent
-    skill: sdlc
-  - id: approve-release
-    type: human
-    owner: release-manager
-    decision: <span class="tok-ok">"Ship the payment-provider migration to production?"</span>
-    inputs: [fix-payment-api.diff, fix-ledger-posting.diff, fix-reconciliation-job.diff]
-    sla_hours: 48
-    escalation: <span class="tok-ok">engineering-director</span>
+    skill: grit
 evidence: ["RUBRIC.md#routing-questions", "models.md#machine-registry"]</code></pre>
 
-This is the shape the rubric and `GRAPH.md`'s node schema require, not a captured run, since conduct has no fixture script of its own to execute. Each of the three agent nodes still needs its model resolved through `model-routing` before dispatch — conduct builds the node list, it never assigns a tier itself. Once this graph exists, `grit`'s own ledger for the same migration decomposes verification inside each of those three nodes; conduct's answer and grit's ledger are two different questions about the same piece of work, answered by two different skills.
+This is the shape the rubric and the output contract require, not a captured run, since conduct has no fixture script of its own to execute. No human node appears here, not because the write is unimportant, but because question 2 already resolved the routing decision — question 6, the one that would add a human gate for a high-consequence write, is never reached once an earlier question has matched. Once this loop exists, `grit`'s own ledger for the same story decomposes verification inside it, section by section rather than node by node; conduct's answer and grit's ledger are two different questions about the same piece of work, answered by two different skills.
 
 ## What good looks like
 
@@ -239,7 +213,7 @@ If a graph keeps growing branches that duplicate the same shallow pass instead o
 
 ## Where it fits
 
-**Conduct is the first decision on the payment-provider migration, before grit's ledger exists and before sdlc walks a single gate.**
+**Conduct is the first decision on QuenServe's E1-F1-S1 story, before grit's ledger exists and before sdlc walks a single gate.**
 
 Its nearest neighbor is `sdlc`: sdlc owns the gated build loop itself — design, build, secure, release — and calls conduct first to learn whether that loop runs as one writer or as a graph of them. `grit` is the sibling that answers a different question about the same work: not how it executes, but how finely "done" gets checked once it does. `model-routing` is the lookup every node conduct builds ends at, resolving a tier without conduct ever inlining a model identifier of its own.
 

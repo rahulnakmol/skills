@@ -5,7 +5,7 @@ title: "Model Routing — Resolving the Right Model Tier"
 description: "Model routing is the model-invoked lookup that resolves which model tier a task node uses from the registry shared by every group in the repository."
 group: developer
 invocation: model-invoked
-scenario: "Resolving the verifier tier for a checkout-timeout fix's independent review"
+scenario: "Resolving the verifier tier for QuenServe story E1-F1-S1's independent review at Gate 3"
 lens:
   novice:
     who: 'You have never wanted to memorize a model name, and you should not have to.'
@@ -56,62 +56,46 @@ You reach for it, indirectly, in three moments. An orchestrator just built a nod
 | You are resolving a tier for a pm-group research or grill step rather than a developer-group build node | [`arrange`]({{ '/arrange/' | relative_url }}), which calls this same registry per step |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
-<p>Model routing carries no slash command of its own — nothing to type. Its clearest trace sits in the three worker subagents `./scripts/install-adapters.sh --tool claude` installs into <code>~/.claude/agents</code>. Each of <code>work-fast.md</code>, <code>work-deep.md</code>, and <code>reviewer.md</code> states in its own frontmatter description that it resolves a model through this lookup, and each carries the line "Registry: <code>skills/developer/model-routing/models.md</code>" pointing at the same file. When one of those subagents is dispatched, the tier it runs on already traces back to this registry.</p>
-<div class="prompt-card">Gate 3 on the checkout-timeout fix needs an independent, read-only verifier now that the implementation is done. Resolve the tier for that role and tell me the rationale — I do not want a raw model identifier, I want to know why this tier fits.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+Install once, and every tool below reaches the same model-routing skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want model routing can skip the rest of the catalog with `./scripts/link-skills.sh --skill model-routing`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">No command &mdash; baked into the worker subagents</span></div>
+<div class="tool-group-body">
+<p>Model routing carries no slash command of its own — nothing to type. Its clearest trace sits in the three worker subagents `./scripts/install-adapters.sh --tool claude` installs into <code>~/.claude/agents</code>. Each of <code>work-fast.md</code>, <code>work-deep.md</code>, and <code>reviewer.md</code> states in its own frontmatter description that it resolves a model through this lookup, and each carries the line "Registry: <code>skills/developer/model-routing/models.md</code>" pointing at the same file.</p>
+<div class="prompt-card">Gate 3 on QuenServe's story E1-F1-S1 needs an independent, read-only verifier now that the offline-sync implementation is done. Resolve the tier for that role and tell me the rationale — I do not want a raw model identifier, I want to know why this tier fits.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The reply names the tier, states the rationale in plain language, and points at the adapter reference the session actually dispatches — never the identifier itself.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
-<p>OpenCode ships no <code>model-routing</code> command either. Its agent files carry the resolution already made: <code>work-glm.md</code>, <code>work-k3.md</code>, and <code>quick.md</code> each point back at "the override table" in <code>models.md</code> for a user who wants to re-bind a role locally. The registry is applied when these agent files are authored and reviewed, not re-resolved on every dispatch inside a running session — the lookup's output is baked into the file the session reads.</p>
-<div class="prompt-card">Before dispatching the checkout-timeout verifier, confirm its model binding still matches models.md's verifier row and hasn't drifted from a hand edit.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">No command &mdash; baked into the agent files</span></div>
+<div class="tool-group-body">
+<p>OpenCode ships no <code>model-routing</code> command either. Its agent files carry the resolution already made: <code>work-glm.md</code>, <code>work-k3.md</code>, and <code>quick.md</code> each point back at "the override table" in <code>models.md</code> for a user who wants to re-bind a role locally. The registry is applied when these agent files are authored and reviewed, not re-resolved on every dispatch inside a running session.</p>
+<div class="prompt-card">Before dispatching the E1-F1-S1 verifier, confirm its model binding still matches models.md's verifier row and hasn't drifted from a hand edit.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode answers by reading the agent file's own frontmatter and the registry row side by side, since there is no live call to reproduce.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. It reads the skill catalog in <code>.agents/skills/</code> as context and follows the shared rules in <code>AGENTS.md</code>, routing model choice through its own <code>auto</code> mode rather than a pinned identifier. Its own adapter file states this plainly: "Model IDs resolve via <code>skills/developer/model-routing/models.md</code> locally" — the registry is the reference Cursor's operator consults, not a live call the tool makes for itself.</p>
-<div class="prompt-card">Which tier does models.md assign to a read-only verifier role, and why is it kept in a different provider family from the implementer where possible?<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor answers by reading the tier matrix directly and quoting the matched row's rationale.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and resolve a tier by reading <code>models.md</code> directly as working context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor's own adapter file states this plainly: "Model IDs resolve via <code>skills/developer/model-routing/models.md</code> locally," and it routes its own model choice through its <code>auto</code> mode rather than a pinned identifier. Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>, so it sees model routing's name and description the way the other tools do. Copilot's agent mode applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Read skills/developer/model-routing/SKILL.md and models.md, then tell me the tier, rationale, and adapter reference for E1-F1-S1's Gate 3 verifier — no raw identifier.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three read the tier matrix directly and report the same three fields the output contract requires, in their reply rather than a command's output.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees model routing's name and description the way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files, and a tier request is answered by reading <code>models.md</code> directly rather than through any installed automation.</p>
-<div class="prompt-card">Read skills/developer/model-routing/SKILL.md and models.md, then tell me the tier, rationale, and adapter reference for an architect-role node — no raw identifier.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex reads the tier matrix and reports the same three fields the output contract requires.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook or command for model routing on any tool, Copilot included. A tier request here is answered the same way as on Cursor and Codex: by reading <code>models.md</code> directly as working context, never by a pinned identifier written into the instructions file.</p>
-<div class="prompt-card">Before you dispatch the implementation for the checkout-timeout fix, confirm which tier models.md assigns to a multi-file implementer role and state the rationale in your plan.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot reports the tier and rationale in its plan before dispatching any work.</p>
-</div>
-</div>
-
-A good ask names the role — implementer, verifier, architect, security, quality-operate, research, or orchestrator — and the task shape behind it, so the match is not left to guesswork. Readers who do not have the skill pack installed yet can add model routing alone:
-
-```bash
-./scripts/link-skills.sh --skill model-routing
-```
-
-See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+A good ask names the role — implementer, verifier, architect, security, quality-operate, research, or orchestrator — and the task shape behind it, so the match is not left to guesswork.
 
 ## A working example
 
-The checkout-timeout fix from `sdlc`'s own gated loop reaches Gate 3, the outcome check that runs after implementation. Gate 3 needs an independent verifier — a different agent, ideally a different model family, checking the change against the SPEC-TS ledger, the record of scope, requirements, and success metrics, rather than the implementer grading its own work. The orchestrator resolves that node's tier by matching role and task shape against the registry's real tier matrix:
+QuenServe's story E1-F1-S1, walked through `sdlc`'s own gated loop, reaches Gate 3, the outcome check that runs after implementation. Gate 3 needs an independent verifier — a different agent, ideally a different model family, checking the offline-sync change against the SPEC-TS ledger, the record of scope, requirements, and success metrics, rather than the implementer grading its own work. The orchestrator resolves that node's tier by matching role and task shape against the registry's real tier matrix:
 
 <pre><code>| Tier     | Role shape             | Default provider family | Notes                                            |
 |----------|-------------------------|--------------------------|--------------------------------------------------|
@@ -122,7 +106,7 @@ Matching the `verifier` role and its read-only, cross-check shape against that r
 <pre><code>tier: verifier
 role: verify
 adapter_ref: adapters/opencode/agents/verify.md
-rationale: read-only cross-check on the checkout-timeout fix; different family from implementer where possible</code></pre>
+rationale: read-only cross-check on QuenServe's E1-F1-S1 offline-sync change; different family from implementer where possible</code></pre>
 
 | The lookup returns | Not this |
 |---|---|

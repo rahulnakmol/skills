@@ -5,7 +5,7 @@ title: "Update Models — Curating the Model Registry"
 description: "Update models is the user-invoked skill that researches current provider catalogs and proposes an evidence-backed pull request to the shared model registry."
 group: developer
 invocation: user-invoked
-scenario: "Confirming the registry is current before a monthly review issue would fire"
+scenario: "Confirming the registry the QuenServe team's delivery depends on is current before a monthly review issue would fire"
 lens:
   novice:
     who: 'You assumed the "best model" list just updates itself somewhere.'
@@ -56,62 +56,46 @@ You reach for it in three moments. The monthly cron flags the registry as overdu
 | You need the whole loop-or-graph routing decision for delivery work, unrelated to model choice | [`conduct`]({{ '/conduct/' | relative_url }}) |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same update-models skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want update models can skip the rest of the catalog with `./scripts/link-skills.sh --skill update-models`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command, headless CI dispatch</span></div>
+<div class="tool-group-body">
 <p>Update models is user-invoked: type <code>/update-models</code>, or name it directly in a session. The same procedure also runs headless in continuous integration: <code>.github/workflows/update-models.yml</code> dispatches a live research run through <code>anthropics/claude-code-action@v1</code> when a maintainer triggers <code>workflow_dispatch</code> with <code>dry_run: false</code>, which requires an <code>ANTHROPIC_API_KEY</code> repository secret.</p>
-<div class="prompt-card">The model registry may be stale. Read RESEARCH.md and models.md, research current Anthropic, OpenAI, and Google catalogs only, and draft a diff scoped to models.md and the adapters it touches. Log every source and every rejected candidate in RESEARCH.md before opening anything.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">The QuenServe team's model registry may be stale before E1-F1-S1 delivery leans on it. Read RESEARCH.md and models.md, research current Anthropic, OpenAI, and Google catalogs only, and draft a diff scoped to models.md and the adapters it touches. Log every source and every rejected candidate in RESEARCH.md before opening anything.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The reply is a scoped diff plus a filled RESEARCH.md entry, stopped short of opening a pull request until you ask for that step.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">A same-named command that targets a different file</span></div>
+<div class="tool-group-body">
 <p>OpenCode ships an <code>/update-models</code> command, but it is bound to the <code>model-curator</code> agent, whose own instructions and edit permissions are scoped to OpenCode's own dotfiles model configuration — not this repository's <code>models.md</code>. For curating this repository's registry from OpenCode, there is no matching command; the request is applied the same way Cursor or Codex would apply it, by reading <code>update-models/SKILL.md</code> and <code>RESEARCH.md</code> as context.</p>
 <div class="prompt-card">Apply skills/developer/update-models/SKILL.md directly: research current provider catalogs, draft a diff to skills/developer/model-routing/models.md, and log the evidence in RESEARCH.md before proposing anything.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode answers by reading the skill files and drafting the same scoped diff, since no installed command carries this specific procedure.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. The skills land in <code>.agents/skills/</code>, and the agent applies update models' procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">Read skills/developer/update-models/SKILL.md and RESEARCH.md, then research the current Anthropic, OpenAI, and Google catalogs and propose a scoped diff to models.md with every source logged.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor drafts the diff and the RESEARCH.md entry directly in its reply, since there is no command output to parse.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply update models' procedure as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>, so it sees update models' name and description the same way the other tools do, and a team adds its rules directly to <code>AGENTS.md</code>. Copilot's agent mode applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>. This repository ships no command or hook for update models on any of the three.</p>
+<div class="prompt-card">Read skills/developer/update-models/SKILL.md and RESEARCH.md, then check whether the registry is due for review and, if it is, research the current Anthropic, OpenAI, and Google catalogs and propose a scoped diff to models.md with every source logged.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three answer the same way: stating the freshness check's result, then drafting the diff and the RESEARCH.md entry directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees update models' name and description the same way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/developer/update-models/SKILL.md, then check whether the registry is due for review and, if it is, research current catalogs and draft the scoped diff.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex answers the same way, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command or hook for update models on any tool besides Claude Code's plugin invocation, so a Copilot request is answered the same way as on Cursor and Codex.</p>
-<div class="prompt-card">Before proposing any change, confirm the registry's current review date against the 45-day threshold, then research and draft a scoped diff if it is due.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot states the freshness check's result before proposing any registry change.</p>
-</div>
-</div>
-
-A good ask names what triggered it — the monthly cron, a specific deprecation, or a plain freshness check — since `RESEARCH.md`'s entry template records the trigger alongside the sources. Readers who do not have the skill pack installed yet can add update models alone:
-
-```bash
-./scripts/link-skills.sh --skill update-models
-```
-
-See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+A good ask names what triggered it — the monthly cron, a specific deprecation, or a plain freshness check — since `RESEARCH.md`'s entry template records the trigger alongside the sources.
 
 ## A working example
 
-Before any research runs, the skill's own procedure checks whether the registry is actually due for review. `scripts/check-registry-freshness.mjs` is the exact command the continuous-integration workflow runs first — run here, live, against this repository's real registry:
+Every QuenServe engineer who resolves a tier through `model-routing` — including the Gate 3 verifier on story E1-F1-S1 — depends on this registry staying current, so before any research runs, the skill's own procedure checks whether the registry is actually due for review. `scripts/check-registry-freshness.mjs` is the exact command the continuous-integration workflow runs first — run here, live, against this repository's real registry:
 
 <pre><code><span class="tok-comment">$ node scripts/check-registry-freshness.mjs</span>
 <span class="tok-ok">models.md last reviewed 2026-08-22 &mdash; 10 day(s) ago (threshold 45)</span></code></pre>

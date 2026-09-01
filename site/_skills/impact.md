@@ -5,7 +5,7 @@ title: "Impact — From Raw Idea to Signed PRD"
 description: "Impact is the user-invoked pipeline that turns a raw idea into an approved, signed PRD through a grill loop, value probing, and a handoff to slice."
 group: developer
 invocation: user-invoked
-scenario: "Reducing checkout timeout errors on the payments platform recon just briefed"
+scenario: "Turning QuenServe's signed epic E1 — offline inspection sync — into an engineering PRD, on the estate recon just briefed"
 lens:
   novice:
     who: 'You are holding a raw idea, a set of notes, or a vague ask, with no clear sense of how it becomes real, funded work.'
@@ -65,62 +65,46 @@ You reach for it in three moments. A new initiative, a major feature, or a brown
 | The idea is a pm-pipeline epic PRD, not a piece of software delivery | [`prd-draft`]({{ '/prd-draft/' | relative_url }}) |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same impact skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want impact can skip the rest of the catalog with `./scripts/link-skills.sh --skill impact`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command</span></div>
+<div class="tool-group-body">
 <p>Impact is user-invoked: type <code>/impact</code>, or name it directly in a session — nothing routes to it automatically.</p>
-<div class="prompt-card">We inherited a payments platform running as event-driven microservices — recon just briefed it. Checkout is timing out for customers and we think it is fixable. Pressure-test this into a PRD: draft it, grill it, and do not sign off until the business value is real.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Recon just briefed QuenServe's sync client and ingestion endpoint. Inspectors lose completed inspections when a site has no connectivity, and epic E1 proposes offline inspection sync. Pressure-test this into a PRD: draft it, grill it, and do not sign off until the business value is real.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Impact returns a fast-cut PRD draft, grilled against `GRILL.md` and `VALUE.md`, and stops at gate G2 until you actually sign it.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Command file, impact agent</span></div>
+<div class="tool-group-body">
 <p><code>./scripts/install-adapters.sh --tool opencode</code> installs the <code>/impact</code> command from <code>adapters/opencode/commands/impact.md</code>, bound to the <code>impact</code> agent. It leads the scope, product requirements, and business trade-offs sections of the SPEC-TS ledger — the alignment record `sdlc` carries forward through the rest of delivery — researches evidence, runs the candidate-and-challenge design passes, and returns Gate 1 evidence.</p>
-<div class="prompt-card">/impact Checkout is timing out for customers on the payments platform we just recon'd. Pressure-test this into a PRD and stop before slice until the business value is measured and sign-off is recorded.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">/impact Inspectors lose completed inspections when a site has no connectivity — recon just briefed QuenServe's sync estate. Pressure-test epic E1, offline inspection sync, into a PRD and stop before slice until the business value is measured and sign-off is recorded.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The agent returns the smallest useful recommendation, the value case, and the human gates the PRD still needs before slice can read it.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. The skills land in <code>.agents/skills/</code>, and the agent applies impact's procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">Apply skills/developer/impact/SKILL.md and PRD-TEMPLATE.md to reduce checkout timeout errors on the payments platform. Grill it, populate the business-value section for real, and stop at G2 until I sign it.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor drafts the PRD directly in its reply, since there is no command output to parse, and states the open questions the grill still needs answered.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply impact's procedure as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>, so it sees impact's name and description the same way the other tools do, and a team adds its rules directly to <code>AGENTS.md</code>. Copilot's agent mode applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Read skills/developer/impact/SKILL.md, PRD-TEMPLATE.md, and GATES.md, then draft and grill a PRD for epic E1, QuenServe's offline inspection sync. Do not report G2 signed unless I actually said so.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three draft the PRD directly in their reply, since none has a command's output to parse, and state the open questions the grill still needs answered.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees impact's name and description the same way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/developer/impact/SKILL.md, PRD-TEMPLATE.md, and GATES.md, then draft and grill a PRD for the checkout-timeout fix. Do not report G2 signed unless I actually said so.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex drafts the same PRD, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command or hook for impact on any tool besides Claude Code's plugin invocation, so a Copilot request is answered the same way as on Cursor and Codex.</p>
-<div class="prompt-card">Before you draft any implementation plan for the checkout-timeout fix, run impact's grill loop and confirm the business-value section is real, not templated.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot drafts and grills the PRD in chat, stopping at gate G2 until sign-off is explicit.</p>
-</div>
-</div>
-
-A good ask names whether the work is greenfield or brownfield, and includes the raw idea itself — notes, a transcript, or a plain description — since intake drafts directly from what it is given. Readers who do not have the skill pack installed yet can add impact alone:
-
-```bash
-./scripts/link-skills.sh --skill impact
-```
-
-See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+A good ask names whether the work is greenfield or brownfield, and includes the raw idea itself — notes, a transcript, or a plain description — since intake drafts directly from what it is given.
 
 ## A working example
 
-Recon has already briefed the payments platform as an event-driven microservices estate. Customers are hitting checkout timeouts, and you want that fixed — but "fixed" is not yet a PRD. Because this is brownfield work, intake attaches recon's brief before drafting scope, then grills the draft against `PRD-TEMPLATE.md`'s Scope section, separating the functional requirement — "retry a timed-out checkout once before failing" — from the non-functional one — "p99 checkout latency under 800ms." `impact/GATES.md` is short enough to quote in full, byte for byte — this is the real gate table every intake walks:
+Recon has already briefed QuenServe's existing sync client and ingestion endpoint. Inspectors on sites with no signal lose a completed inspection whenever the sync never reaches the server, and you want that fixed — but "fixed" is not yet a PRD. Because this is brownfield work, intake attaches recon's brief before drafting scope for epic E1. It then grills the draft against `PRD-TEMPLATE.md`'s Scope section, separating the functional requirement — "an inspection completed offline saves locally and queues for sync" — from the non-functional one — "sync completes within 60 seconds of the connection returning." `impact/GATES.md` is short enough to quote in full, byte for byte — this is the real gate table every intake walks:
 
 <pre><code>| Gate | Requirement |
 |------|-------------|
@@ -129,12 +113,13 @@ Recon has already briefed the payments platform as an event-driven microservices
 | G2 signed | User sign-off in PRD; governance tier recorded |
 | G3 handoff | `slice` allowed |</code></pre>
 
-Filling that table for the checkout-timeout case shows the shape a finished intake takes, per the skill's own output contract of a capped markdown PRD plus a `.impact.json` update. This is not a captured real run, since impact has no fixture file of its own to quote. G0 captures the raw report of timed-out checkouts. G1 runs a grill round against the drafted scope, recording that the retry behavior and the latency threshold were each pressure-tested on their own, not assumed. G2 records the risk and governance tier — `none`, since this fix touches no regulated data or consequential automated decision — and a named, dated sign-off. Only then does G3 open, and `slice` is allowed to read the PRD:
+Filling that table for epic E1 shows the shape a finished intake takes, per the skill's own output contract of a capped markdown PRD plus a `.impact.json` update. This is not a captured real run, since impact has no fixture file of its own to quote. G0 captures the raw report of inspections lost to failed syncs. G1 runs a grill round against the drafted scope, recording that the offline-capture behavior and the sync-latency threshold were each pressure-tested on their own, not assumed. G2 records the risk and governance tier — `none`, since this epic touches no regulated data or consequential automated decision — and a named, dated sign-off. Only then does G3 open, and `slice` is allowed to read the PRD:
 
 <pre><code>## Business value delivered
-Checkout timeouts cost an estimated $40K/month in abandoned
-carts; this cuts the error rate from 2.1% to under 0.1%,
-measured via the existing checkout funnel dashboard.
+Lost syncs currently force an estimated 40 site re-visits a
+month, at $600 each in inspector time and travel; this
+eliminates re-visits caused by a lost sync, measured via the
+inspection re-visit log.
 ## Risk and governance tier
 none
 ## Approval sign-off
@@ -148,9 +133,10 @@ The business-value section names who benefits and how the benefit is measured, p
 <div class="compare-card">
 <div class="compare-card-head">A PRD ready for sign-off</div>
 <pre><code>## Business value delivered
-Checkout timeouts cost an estimated $40K/month in abandoned
-carts; this cuts the error rate from 2.1% to under 0.1%,
-measured via the existing checkout funnel dashboard.
+Lost syncs currently force an estimated 40 site re-visits a
+month, at $600 each in inspector time and travel; this
+eliminates re-visits caused by a lost sync, measured via the
+inspection re-visit log.
 ## Risk and governance tier
 <span class="tok-ok">none</span>
 ## Approval sign-off

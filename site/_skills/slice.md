@@ -5,7 +5,7 @@ title: "Slice — Turning a PRD Into Backlog Items"
 description: "Slice is the model-invoked skill that decomposes a signed PRD into epics, features, stories, and mandatory operability items ready for raise."
 group: developer
 invocation: model-invoked
-scenario: "Decomposing the signed checkout-timeout PRD into a work item raise can publish"
+scenario: "Decomposing QuenServe's signed epic-E1 PRD into story E1-F1-S1, the work item raise can publish"
 lens:
   novice:
     who: 'You are staring at an approved PRD with no idea how it becomes tickets a team can actually pick up.'
@@ -59,81 +59,66 @@ You reach for it in two moments. `impact`'s gate G2 just closed on a signed PRD,
 | You are breaking an initiative into epics before any PRD exists at all | [`carve`]({{ '/carve/' | relative_url }}) |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same slice skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want slice can skip the rest of the catalog with `./scripts/link-skills.sh --skill slice`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">No command &mdash; model-invoked</span></div>
+<div class="tool-group-body">
 <p>Slice is model-invoked: nothing is typed to call it. Claude reaches for it on its own when a request matches its description — a signed PRD that needs decomposing into backlog-ready items.</p>
-<div class="prompt-card">The checkout-timeout PRD is signed. Slice it: the story and its file ownership, the mandatory operability items, and the governance section if the tier calls for one.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">QuenServe's epic-E1 PRD is signed. Slice it: story E1-F1-S1 and its file ownership, the mandatory operability items, and the governance section if the tier calls for one.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Slice returns each item with every contract section filled, refusing to publish anything left incomplete.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">No command &mdash; applied as instructions</span></div>
+<div class="tool-group-body">
 <p>OpenCode ships no dedicated command for slice. Its catalog install places the skill in <code>.agents/skills/</code>, and an orchestrating agent applies the decomposition procedure by reading the skill files as instructions once a PRD is signed, rather than through a command file the way <code>/impact</code> or <code>/sdlc</code> work.</p>
-<div class="prompt-card">Decompose the signed checkout-timeout PRD per skills/developer/slice/WORK-ITEM-CONTRACT.md and TEMPLATES.md: the user-facing story plus its operability lane, contract-complete.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Decompose QuenServe's signed epic-E1 PRD per skills/developer/slice/WORK-ITEM-CONTRACT.md and TEMPLATES.md: story E1-F1-S1 plus its operability lane, contract-complete.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The agent applies the contract directly and returns the item bodies in its reply.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. The skills land in <code>.agents/skills/</code>, and the agent applies slice's procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">Apply skills/developer/slice/WORK-ITEM-CONTRACT.md to the signed checkout-timeout PRD. Fill every section, including the operability lane and an explicit "not applicable" governance line if the tier is none.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor drafts the work item directly in its reply, since there is no command output to parse.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply slice's procedure as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>, so it sees slice's name and description the same way the other tools do, and a team adds its rules directly to <code>AGENTS.md</code>. Copilot's agent mode applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Apply skills/developer/slice/WORK-ITEM-CONTRACT.md to QuenServe's signed epic-E1 PRD. Fill every section for story E1-F1-S1, including the operability lane and an explicit "not applicable" governance line if the tier is none.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three draft the work item directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees slice's name and description the same way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/developer/slice/SKILL.md and WORK-ITEM-CONTRACT.md, then decompose the signed checkout-timeout PRD into a contract-complete story.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex drafts the same item, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no command or hook for slice on any tool, so a Copilot request is answered the same way as on Cursor and Codex: by reading the skill files directly as working context.</p>
-<div class="prompt-card">Before you propose any implementation, confirm the checkout-timeout item carries every WORK-ITEM-CONTRACT.md section, including an explicit governance line.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot checks the contract sections and reports any gap before proposing implementation.</p>
-</div>
-</div>
-
-A good ask points at the signed PRD directly, and names whether this is the first slicing pass for the epic — since the operability lane is mandatory the first time, not something to add later if there is room. Readers who do not have the skill pack installed yet can add slice alone:
-
-```bash
-./scripts/link-skills.sh --skill slice
-```
-
-See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+A good ask points at the signed PRD directly, and names whether this is the first slicing pass for the epic — since the operability lane is mandatory the first time, not something to add later if there is room.
 
 ## A working example
 
-The checkout-timeout PRD carried forward from `impact` is signed, its governance tier recorded as `none`. Slice validates that sign-off first, then decomposes it into a story. There is no fixture file to quote here — slice has none of its own — so this is the shape `WORK-ITEM-CONTRACT.md` requires, filled for this exact case:
+QuenServe's epic-E1 PRD carried forward from `impact` is signed, its governance tier recorded as `none`. Slice validates that sign-off first, then decomposes it into story E1-F1-S1. There is no fixture file to quote here — slice has none of its own — so this is the shape `WORK-ITEM-CONTRACT.md` requires, filled for this exact case:
 
 <pre><code>## Goal
-Reduce checkout timeout errors to under 0.1%.
+Complete an inspection with no connectivity and sync it without
+loss once back online.
 ## Parent links
-Epic: checkout-reliability-q3 &middot; PRD: PRD-checkout-timeouts.md
+Epic: E1-offline-inspection-sync &middot; PRD: PRD-E1-offline-sync.md
 ## Scope and file ownership
-services/checkout/timeout.go
-services/checkout/timeout_test.go
+packages/inspections/offline/sync-client.ts
+packages/inspections/offline/sync-client.test.ts
 ## Acceptance criteria
-CHECK: go test ./services/checkout/... -run TestTimeoutP99
-EXPECT: PASS
+CHECK: node scripts/verify-offline-completion.mjs
+EXPECT: offline completion verified
 ## Coverage and use-case traceability
-1 row: timeout-retry FR &rarr; TestTimeoutP99 &rarr; pass, at 85-90% business-capability coverage
+1 row: offline-capture FR &rarr; verify-offline-completion.mjs &rarr; pass, at 85-90% business-capability coverage
 ## Execution profile
 mode: loop &middot; tier: worker-deep (resolved via model-routing)
 ## Governance
 Not applicable &mdash; tier: none</code></pre>
 
-Every section named here is one `WORK-ITEM-CONTRACT.md` makes mandatory, including the explicit "not applicable" governance line the contract requires rather than a silent omission — the same discipline the coverage matrix uses for a non-functional criterion that genuinely does not apply. Because this is the epic's first slicing pass, the operability lane also generates its own items alongside this story. An observability item covers the checkout service's structured logs and correlation ids, and an SLO item names the alert threshold and its pager owner — sliced now, not assumed to arrive later once the feature ships.
+Every section named here is one `WORK-ITEM-CONTRACT.md` makes mandatory, including the explicit "not applicable" governance line the contract requires rather than a silent omission — the same discipline the coverage matrix uses for a non-functional criterion that genuinely does not apply. Because this is the epic's first slicing pass, the operability lane also generates its own items alongside this story. An observability item covers the offline-sync module's structured logs and correlation ids, and an SLO item names the sync-completion alert threshold and its pager owner — sliced now, not assumed to arrive later once the feature ships.
 
 ## What good looks like
 
@@ -141,12 +126,13 @@ Every section named here is one `WORK-ITEM-CONTRACT.md` makes mandatory, includi
 <div class="compare-card">
 <div class="compare-card-head">An item that carries its own contract</div>
 <pre><code>## Goal
-Reduce checkout timeout errors to under 0.1%.
+Complete an inspection with no connectivity and sync it without
+loss once back online.
 ## Scope and file ownership
-services/checkout/timeout.go, timeout_test.go
+packages/inspections/offline/sync-client.ts, sync-client.test.ts
 ## Acceptance criteria
-CHECK: go test ./services/checkout/... -run TestTimeoutP99
-EXPECT: <span class="tok-ok">PASS</span>
+CHECK: node scripts/verify-offline-completion.mjs
+EXPECT: <span class="tok-ok">offline completion verified</span>
 ## Governance
 <span class="tok-ok">Not applicable &mdash; tier: none</span></code></pre>
 <div class="compare-card-note">A measurable goal, exact file ownership, a machine-checkable criterion, and an explicit governance line — never a silently omitted section.</div>
@@ -154,7 +140,7 @@ EXPECT: <span class="tok-ok">PASS</span>
 <div class="compare-card compare-card--warn">
 <div class="compare-card-head">The wrong turn to watch for</div>
 <pre><code>## Acceptance criteria
-<span class="tok-warn">Timeouts should feel better under load.</span></code></pre>
+<span class="tok-warn">Offline sync should feel more reliable in the field.</span></code></pre>
 <div class="compare-card-note">"Looks right" and "should work" are not acceptance criteria — WORK-ITEM-CONTRACT.md, quoted directly. If a criterion cannot be checked by a command, it is not ready to ship as a work item.</div>
 </div>
 </div>

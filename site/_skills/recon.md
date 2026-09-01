@@ -5,7 +5,7 @@ title: "Recon — A Read-Only Brief on an Existing Codebase"
 description: "Recon is the model-invoked skill that produces a read-only brief on an existing codebase through signal-first, archetype triage before other work begins."
 group: developer
 invocation: model-invoked
-scenario: "Inheriting a payments platform built as event-driven microservices, with no documentation"
+scenario: "Briefing an agent on QuenServe's existing sync client and ingestion endpoint before epic E1 scopes offline inspection sync"
 lens:
   novice:
     who: 'You have been dropped into a codebase you did not write and do not recognize.'
@@ -65,62 +65,46 @@ You reach for it, indirectly, in three moments. You are handed a repository with
 | You are choosing execution shape for a change, not orienting on the codebase it touches | [`conduct`]({{ '/conduct/' | relative_url }}) |
 | You are not sure which skill fits at all | [`ask-fde`]({{ '/ask-fde/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same recon skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want recon can skip the rest of the catalog with `./scripts/link-skills.sh --skill recon`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">No command &mdash; model-invoked</span></div>
+<div class="tool-group-body">
 <p>Recon is model-invoked: nothing is typed to call it. Claude reaches for it on its own when a request matches its description — codebase orientation, or estate context ahead of brownfield work — and it carries no plugin slash command or hook of its own.</p>
-<div class="prompt-card">I inherited this payments platform and have no idea how it is put together. Orient me before I touch anything — I need to know the archetype, the estate map, and where the modernization seams are.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Before epic E1 scopes offline inspection sync, orient me on QuenServe's existing sync client and ingestion endpoint. I need the archetype, the estate map, and where the modernization seams are.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Recon returns the fixed brief — archetype with confidence, estate map, modernization seams, and risks — without editing a single file along the way.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">No command &mdash; applied as instructions</span></div>
+<div class="tool-group-body">
 <p>OpenCode ships no dedicated command for recon. Its catalog install places the skill in <code>.agents/skills/</code> the same as every tool, and an orchestrating agent applies its triage procedure by reading the skill files as instructions when brownfield context is needed, rather than through a command file the way <code>/grit-verify</code> or <code>/press</code> work.</p>
-<div class="prompt-card">Before we scope any change, run recon's signal-first triage on this repository and report the archetype, its confidence, and the modernization seams — read-only.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Before we scope epic E1, run recon's signal-first triage on QuenServe's sync estate and report the archetype, its confidence, and the modernization seams — read-only.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>The agent applies `TRIAGE.md`'s steps directly and returns the fixed brief in its reply.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>Cursor gets no command layer from this repository. The skills land in <code>.agents/skills/</code>, and the agent applies recon's triage by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">Apply skills/developer/recon/TRIAGE.md to this repository: manifest scan, marker match, at most three pattern cards, targeted reads only. Report the brief in BRIEF-FORMAT.md's headings.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor states the brief directly in its reply, since there is no command output to parse.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply recon's triage as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>, so it sees recon's name and description the same way the other tools do, and a team adds its rules directly to <code>AGENTS.md</code>. Copilot's agent mode applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>.</p>
+<div class="prompt-card">Apply skills/developer/recon/TRIAGE.md to QuenServe's sync estate before epic E1 scopes offline inspection sync: manifest scan, marker match, at most three pattern cards, targeted reads only. Report the brief in BRIEF-FORMAT.md's headings.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three state the brief directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees recon's name and description the same way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/developer/recon/SKILL.md and TRIAGE.md, then triage this repository and report the brief — do not edit anything while you look.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex answers with the fixed brief, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. This repository ships no hook or command for recon on any tool, so a Copilot request is answered the same way as on Cursor and Codex: by reading the skill files directly as working context.</p>
-<div class="prompt-card">Before proposing any change to this repository, orient yourself with recon's read-only triage and report the archetype and its confidence in your plan.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot states the archetype and confidence in its plan before proposing any change.</p>
-</div>
-</div>
-
-A good ask names what is actually unfamiliar — the whole repository, or one service inside a larger estate — since the triage scope follows from that. Readers who do not have the skill pack installed yet can add recon alone:
-
-```bash
-./scripts/link-skills.sh --skill recon
-```
-
-See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and calls it.
+A good ask names what is actually unfamiliar — the whole repository, or one service inside a larger estate — since the triage scope follows from that.
 
 ## A working example
 
-You have just inherited a payments platform with no documentation and no one left on the team who built it. Before scoping any change, you ask for orientation. Recon's manifest scan finds `docker-compose.yml`, a Kafka broker in the compose file, `openapi.yaml`, and an `events/` directory — the exact signal set this repository ships as a real triage fixture, `test/fixtures/recon/microservices-event-driven/MARKERS.json`, reproduced here in full, byte for byte:
+Before epic E1 scopes offline inspection sync, you ask for orientation on QuenServe's existing sync client and ingestion endpoint. QuenServe's own repository is not something this site can hand recon, so the exact mechanism is demonstrated here instead, against a real triage fixture this repository ships for exactly this purpose. It is the same read a manifest scan and marker match would produce on any inherited estate. Recon's manifest scan finds `docker-compose.yml`, a Kafka broker in the compose file, `openapi.yaml`, and an `events/` directory — the exact signal set in `test/fixtures/recon/microservices-event-driven/MARKERS.json`, reproduced here in full, byte for byte:
 
 <pre><code>{
   "expected_archetypes": ["microservices-event-driven"],
@@ -148,7 +132,7 @@ Filling `BRIEF-FORMAT.md`'s fixed headings from that match is the shape the outp
 Deployment unit? Data ownership? Test harness depth?
 
 ## Suggested next skills
-- architect</code></pre>
+- impact</code></pre>
 
 The brief names its confidence as `high` because all four signals matched cleanly, not because the estate looked broadly familiar. Had only one weak signal matched, the same brief would report a lower confidence, or an unknown archetype with manual questions instead of a label — TRIAGE.md never lets a partial match round up to a confident answer.
 
@@ -163,7 +147,7 @@ The brief names its confidence as `high` because all four signals matched cleanl
 Deployment unit, data ownership, and test harness depth per
 the matched pattern card's own questions.
 ## Suggested next skills
-- architect</code></pre>
+- impact</code></pre>
 <div class="compare-card-note">Follows BRIEF-FORMAT.md's exact headings, with a stated confidence level next to the archetype rather than a bare label.</div>
 </div>
 <div class="compare-card compare-card--warn">
