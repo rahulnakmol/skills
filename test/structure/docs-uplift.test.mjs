@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
 import { root, read, walk } from '../helpers.mjs';
 
@@ -41,12 +42,23 @@ test('the personas page walks the ladder from starting out to CDAIO/CIO and Home
   assert.ok(read('wiki/Home.md').includes('(Personas)'), 'wiki/Home.md must link Personas');
 });
 
-test('every skill wiki page is a full spec: what it is, how to use it, best practices', () => {
+// The full spec (what it is, how to use it, best practices) now lives on the
+// docs site, one page per skill (test/site/site-coverage.test.mjs enforces
+// that richness). Every wiki skill page is instead a lean, generated stub
+// that points there — checked here for shape, and against the generator
+// itself for content.
+test('every skill wiki page is a lean stub linking the site, and matches the generator', () => {
   const pages = walk('wiki', (p) => /wiki\/Skill-[^/]+\.md$/.test(p));
   assert.ok(pages.length >= 18, `expected >=18 skill pages, found ${pages.length}`);
   for (const page of pages) {
     const body = read(page);
-    for (const heading of ['## How to use', '## Best practices'])
-      assert.ok(body.includes(heading), `${page} missing "${heading}"`);
+    assert.ok(/^# /.test(body), `${page} must open with an H1`);
+    assert.ok(/Full documentation: https:\/\/tqnonline\.github\.io\/skills\//.test(body),
+      `${page} must link the skill's full documentation on the site`);
+    assert.ok(/\*\*Invocation:\*\* (user|model)-invoked/.test(body), `${page} must state its invocation axis`);
+    assert.ok(body.split('\n').length <= 15, `${page} must stay under 15 lines — the full spec now lives on the site`);
   }
+  const result = spawnSync(process.execPath, [join(root, 'scripts/gen-wiki-stubs.mjs'), '--check'],
+    { encoding: 'utf8', cwd: root });
+  assert.equal(result.status, 0, `stub content must match the generator:\n${result.stdout}${result.stderr}`);
 });

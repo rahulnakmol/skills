@@ -8,3 +8,6 @@ coverage/
 .agents/skills/
 .claude/skills/
 agents/openai.yaml
+site/_data/
+site/_site/
+site/.jekyll-cache/

@@ -3,7 +3,7 @@ name: responsible-ai-governance
 description: Responsible-AI and regulated-industry governance overlay. Use when work touches a regulated industry (financial services, healthcare, public sector) or an AI system that makes or influences consequential decisions, or when the user asks about audit, explainability, model risk, residency, NCUA, OSFI, SR 11-7, BCBS 239, NIST AI RMF, ISO 42001, or the EU AI Act.
 ---
 
-# Responsible AI & Regulated Governance
+# Responsible AI & Regulated Governance (model-invoked)
 
 Apply this on top of the stack rules whenever the work touches a regulated industry or an AI system making consequential decisions.
 

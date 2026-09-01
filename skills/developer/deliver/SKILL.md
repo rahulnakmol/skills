@@ -3,7 +3,7 @@ name: deliver
 description: CI/CD, supply chain, and release readiness.
 ---
 
-# Deliver (mixed-invoked specialist)
+# Deliver (model-invoked)
 
 Charter skill for the deliver lane; execution detail in adapters.
 

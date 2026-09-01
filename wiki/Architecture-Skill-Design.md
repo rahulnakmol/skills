@@ -1,5 +1,7 @@
 # Architecture: Skill design
 
+Full documentation for every skill: https://tqnonline.github.io/skills/.
+
 This page describes the conventions every skill in this repository follows. They are checked automatically by `node scripts/validate.mjs` and `node scripts/run-tests.mjs` in continuous integration, so they function as requirements rather than as guidance a contributor might choose to follow.
 
 The design follows a Unix-like philosophy of small, composable parts, combined with progressive disclosure: each `SKILL.md` file is a short entry point, no longer than 120 lines, that points to a `references/` directory and to deeper doctrine files only when the situation calls for them, rather than including everything a skill might ever need. Detailed judgment material — grill-loop protocols, routing rubrics, and work-item contracts — lives in those reference files at full length. The `SKILL.md` file itself stays a map to that material.

@@ -1,0 +1,83 @@
+# The Quentin Skills
+
+> The Quentin's skill library: 34 skills across six groups, documenting what each one does, who it is for, and how to call it, on top of one doctrine — human judgment holds the gates, trusted agents do the work in between.
+
+## Home
+
+- [The Quentin Skills](https://tqnonline.github.io/skills/): Catalog home — journeys, groups, and the full skill index.
+
+## Journeys
+
+- [Deliver with evidence](https://tqnonline.github.io/skills/journey/deliver-with-evidence/): Five skills in delivery order, from reading a codebase to a reviewed merge.
+- [Run a product org](https://tqnonline.github.io/skills/journey/run-a-product-org/): Four skills in pm order, from a raw problem to a leadership pack.
+
+## For leaders
+
+- [For leaders](https://tqnonline.github.io/skills/leaders/): What the skill library changes for delivery and product, framed by the four human gates.
+
+## Groups
+
+- [Core — shared doctrine](https://tqnonline.github.io/skills/group/core/): Doctrine and tooling more than one group needs; every group may reference it.
+- [Developer — the AI-native SDLC](https://tqnonline.github.io/skills/group/developer/): Inception through maintenance, four human gates, verified agent work between them.
+- [PM — the AI-native transformation practice](https://tqnonline.github.io/skills/group/pm/): Discovery through benefits realization, mirroring the developer group's four gates.
+- [Branding](https://tqnonline.github.io/skills/group/branding/): Identity applied to everything an agent produces — tone of voice, palette, storytelling.
+- [Writing](https://tqnonline.github.io/skills/group/writing/): Skills that make writing better, in the repository's own explainer voice. Charter — planned.
+- [Productivity](https://tqnonline.github.io/skills/group/productivity/): Personal and team automations worth never doing by hand again.
+
+## Skills
+
+### Core
+
+- [grit](https://tqnonline.github.io/skills/grit/): Completion discipline for agent work — acceptance-gate ledger, verification depth, met/unmet/abandoned audit.
+
+### Developer
+
+- [conduct](https://tqnonline.github.io/skills/conduct/): Chooses loop, graph, or hybrid execution, assigns a model per node, maps to harness adapters.
+- [model-routing](https://tqnonline.github.io/skills/model-routing/): Resolves the tier and role assignment for a task node from the canonical model registry.
+- [update-models](https://tqnonline.github.io/skills/update-models/): Researches provider catalogs and proposes an evidence-backed update to the model registry.
+- [impact](https://tqnonline.github.io/skills/impact/): Idea-to-PRD pipeline — grill loop, value probing, governance-tier recording, backlog handoff.
+- [recon](https://tqnonline.github.io/skills/recon/): Brownfield codebase brief via signal-first archetype triage; read-only.
+- [slice](https://tqnonline.github.io/skills/slice/): Decomposes a signed PRD into epics, features, stories, and operability items.
+- [raise](https://tqnonline.github.io/skills/raise/): Publishes a sliced backlog to GitHub, Linear, or Azure DevOps with pickup-protocol labels.
+- [sdlc](https://tqnonline.github.io/skills/sdlc/): Full gated SDLC loop — SPEC-TS ledger, human gates, verifier challenge.
+- [architect](https://tqnonline.github.io/skills/architect/): Cross-cutting technical design and ADRs at the design gate.
+- [safeguard](https://tqnonline.github.io/skills/safeguard/): Security assessment and hardening at the secure-DevOps gate.
+- [deliver](https://tqnonline.github.io/skills/deliver/): CI/CD, supply chain, release readiness, stacked PRs, and repo setup.
+- [operate](https://tqnonline.github.io/skills/operate/): Post-release lane — SLOs and incident readiness, test gaps, patch cadence and debt burn-down.
+- [shakedown](https://tqnonline.github.io/skills/shakedown/): Sandbox build, test, execute, and agent-reviewed pass on a pull request before merge.
+- [ask-fde](https://tqnonline.github.io/skills/ask-fde/): Routes intent to the correct developer, pm, or branding skill.
+- [responsible-ai-governance](https://tqnonline.github.io/skills/responsible-ai-governance/): Regulated-industry and responsible-AI governance overlay on the stack rules.
+
+### PM
+
+- [arrange](https://tqnonline.github.io/skills/arrange/): Chooses grill-loop, parallel-fan, or hybrid execution shape for multi-round pm work.
+- [chart](https://tqnonline.github.io/skills/chart/): Charts work too big for one session as decision tickets, resolved one at a time.
+- [constitution](https://tqnonline.github.io/skills/constitution/): Authors and reviews the Product Constitution — principles, positioning, quarterly review.
+- [discover](https://tqnonline.github.io/skills/discover/): Business problem discovery and root-cause analysis for product and program managers.
+- [map](https://tqnonline.github.io/skills/map/): Personas, process flows, and the Business Understanding Document.
+- [tom-architect](https://tqnonline.github.io/skills/tom-architect/): Target Operating Model — L1-L4 processes, maturity, RACI, platform mapping.
+- [carve](https://tqnonline.github.io/skills/carve/): DIVE-tested epic decomposition into a manifest before PRDs are drafted.
+- [prd-draft](https://tqnonline.github.io/skills/prd-draft/): One INVEST-compliant PRD per approved epic, with a nine-check structural validation pass.
+- [prd-review](https://tqnonline.github.io/skills/prd-review/): Scores a PRD with the 11-Star Experience Framework across seven weighted dimensions.
+- [case](https://tqnonline.github.io/skills/case/): Business case with agent-fleet costing for the Investment gate.
+- [roadmap](https://tqnonline.github.io/skills/roadmap/): Now/next/later sequencing and Program Increment planning.
+- [raid](https://tqnonline.github.io/skills/raid/): Maintains the Risks, Assumptions, Issues, Dependencies registers.
+- [realize](https://tqnonline.github.io/skills/realize/): Tracks benefits realization against case and PRD projections and the north star.
+- [report](https://tqnonline.github.io/skills/report/): 4Ps leadership pack — Progress, Problems, Priorities, Perspective — at five cadences.
+- [grill](https://tqnonline.github.io/skills/grill/): Plain, grill-with-docs, or provoke interrogation of a pm artifact before a gate.
+- [ask-pm](https://tqnonline.github.io/skills/ask-pm/): Routes intent to the correct pm skill.
+
+### Branding
+
+- [press](https://tqnonline.github.io/skills/press/): Renders an approved markdown document to a branded, self-contained HTML page and a PDF.
+
+### Productivity
+
+- [brief](https://tqnonline.github.io/skills/brief/): Authors the rules, definitions, and boundaries a team's AI agents read, per tool surface.
+
+## Doctrine sources
+
+- [Repository](https://github.com/tqnonline/skills): Source for every skill, doctrine document, and test in this catalog.
+- [Skills tree](https://github.com/tqnonline/skills/tree/main/skills): Every skill's SKILL.md and shared doctrine, grouped by area.
+
+Note: the site currently serves from tqnonline.github.io/skills; URLs will be updated if a custom domain is adopted later.

@@ -1,0 +1,32 @@
+---
+layout: default
+---
+{% assign group_id = page.group | default: page.title %}
+{% assign g = site.data.skills.groups | where: "id", group_id | first %}
+
+<div class="group-header">
+  <div class="section-kicker">group</div>
+  <h1 class="rise d1">{{ page.title }}</h1>
+  {% if page.description %}<p class="group-purpose rise d2">{{ page.description }}</p>{% endif %}
+  {% if g %}
+  <div class="group-count">{{ g.count }} skill{% unless g.count == 1 %}s{% endunless %}</div>
+  {% endif %}
+</div>
+
+<div class="group-content">
+  {{ content }}
+</div>
+
+{% if g and g.skills.size > 0 %}
+<div class="section">
+  <div class="card-grid">
+    {% for s in g.skills %}
+    <a class="skill-card lift" href="{{ '/' | append: s.name | append: '/' | relative_url }}">
+      <div class="skill-card-name">{{ s.name }}</div>
+      <div class="skill-card-desc">{{ s.description }}</div>
+      <span class="pill pill--{{ s.invocation }}">{{ s.invocation }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

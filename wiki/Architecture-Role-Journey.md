@@ -1,5 +1,7 @@
 # Architecture: Role journey
 
+Full documentation for every skill: https://tqnonline.github.io/skills/.
+
 This page lays out every software-delivery role this repository covers, arranged as a single journey from an idea to a maintained system. The four human gates are marked where they actually occur in that journey.
 
 ```mermaid

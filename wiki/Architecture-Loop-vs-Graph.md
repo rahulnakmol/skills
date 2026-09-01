@@ -1,5 +1,7 @@
 # Architecture: Loop vs graph
 
+Full documentation for every skill: https://tqnonline.github.io/skills/.
+
 This is the routing rule behind the [Conduct](Skill-Conduct) skill. The rule is to route on whether a result can be verified, never on how difficult a task appears. A hard task that has one clean verifier still belongs in a loop. An easy task that splits into independent branches still belongs in a graph.
 
 A loop covers one artifact, one verifier, and one context window. A single writer repeats the work until the verifier passes or a hard limit is reached.

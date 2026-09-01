@@ -3,7 +3,7 @@ name: safeguard
 description: Security assessment and hardening charter. Use at secure DevOps gate (replaces generic security-review).
 ---
 
-# Safeguard (mixed-invoked specialist)
+# Safeguard (model-invoked)
 
 Charter skill for the safeguard lane; execution detail in adapters.
 

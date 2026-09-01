@@ -1,5 +1,7 @@
 # Architecture: PM journey
 
+Full documentation for every skill: https://tqnonline.github.io/skills/.
+
 This page lays out the pm group's journey the same way [Architecture: Role journey](Architecture-Role-Journey) does for the developer group: a single path from a raw business problem to a realized benefit, with the four human gates marked where they actually occur.
 
 ```mermaid

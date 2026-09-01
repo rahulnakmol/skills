@@ -1,5 +1,7 @@
 # Architecture: PM arrange
 
+Full documentation for every skill: https://tqnonline.github.io/skills/.
+
 This is the routing rule behind the pm group's [Arrange](Skill-Arrange) skill — the same question the developer side's [Architecture: Loop vs graph](Architecture-Loop-vs-Graph) asks, adapted to work that converges through a human's judgment rather than a machine-checkable verifier.
 
 A **grill-loop** covers work that converges only through a person reacting to a round of questions, one round at a time — a discovery interview, a case's sensitivity analysis, a PRD's story quality. This is `grill`'s round protocol, and it is the pm-side equivalent of the developer group's loop: one artifact, one convergence point, no branching.
