@@ -99,7 +99,7 @@ for (const term of ['Grill-loop', 'Parallel-fan', 'Hybrid']) {
 // by altitude — "checking finished work" skips straight to level 3, since
 // grit, grill, and shakedown each work at whatever altitude the work under
 // review sits at, not one altitude of their own.
-const QUESTIONS = { l1: 'What are you doing?', l2: 'At what altitude?', l3: 'When?' };
+const QUESTIONS = { l1: 'What are you doing?', l2: 'How big is the piece?', l3: 'When?' };
 
 const TREE_SPEC = [
   {
@@ -152,10 +152,41 @@ const TREE_SPEC = [
   },
 ];
 
-// A skill's one-liner is its catalog description's first sentence, with the
-// invocation-axis prefix ("User-invoked " / "Model-invoked ") stripped — the
-// chooser card names the skill directly, so restating its invocation axis in
-// the same breath is redundant.
+// Editorial overrides: the catalog description is accurate but reads flat
+// ("Business case builder.") once it lands on a chooser card next to sixteen
+// others. Each line here is hand-written for this leaf specifically — second
+// person, concrete, literal, 14 words or fewer — in the site's own voice.
+// Keyed by skill name, one entry per current leaf (17). oneLinerFor() below
+// prefers this map; a skill this map does not cover (a new leaf added before
+// its line is written) falls back to the catalog description's first
+// sentence, same as every leaf did before this map existed — the generator
+// never breaks on a temporarily-uncovered leaf, it just reads flatter until
+// someone writes its line.
+const BLURBS = {
+  recon: 'Learn what the codebase already does before you plan changes.',
+  impact: 'Turn a raw idea into a PRD ready for the backlog.',
+  architect: 'Decide the technical shape before anyone starts writing code.',
+  slice: 'Cut the signed PRD into stories a team can pick up.',
+  raise: 'Push the sliced backlog to your tracker, labeled and ready.',
+  conduct: 'Choose whether this work runs as one thread or many.',
+  sdlc: 'Run the build through every gate, from design to release.',
+  deliver: 'Confirm the release pipeline and supply chain are genuinely safe.',
+  discover: 'Find the root cause before you design any solution.',
+  map: "Draw who's affected and how the process works today.",
+  carve: 'Cut the analysis into epics worth funding one at a time.',
+  case: 'Make the money case a sponsor can say yes to.',
+  'prd-draft': 'Write the PRD an engineer could build from, then check it holds.',
+  roadmap: 'Sequence what ships now, next, and later, and why.',
+  grit: 'Write what done will mean before any code exists.',
+  grill: 'Ask the hard questions before a reviewer has to.',
+  shakedown: 'Build and test the pull request in isolation before you merge it.',
+};
+
+// A skill's one-liner is its editorial blurb above when one exists, else its
+// catalog description's first sentence with the invocation-axis prefix
+// ("User-invoked " / "Model-invoked ") stripped — the chooser card names the
+// skill directly, so restating its invocation axis in the same breath is
+// redundant.
 function oneLinerFor(skill, rel) {
   const entry = catalog.get(skill);
   if (!entry) {
@@ -165,6 +196,7 @@ function oneLinerFor(skill, rel) {
   if (!routedSkills.has(skill)) {
     errors.push(`chooser tree leaf "${skill}"${rel ? ` at ${rel}` : ''} is not named in ask-fde/SKILL.md or ask-pm/SKILL.md's routing map`);
   }
+  if (BLURBS[skill]) return BLURBS[skill];
   const stripped = entry.description.replace(/^(User|Model)-invoked\s+/i, '');
   const sentence = stripped.match(/^(.*?[.!?])(\s|$)/)?.[1] ?? stripped;
   return sentence.charAt(0).toUpperCase() + sentence.slice(1);

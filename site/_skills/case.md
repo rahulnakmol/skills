@@ -96,7 +96,7 @@ Readers who only want Case can skip the rest of the catalog with `./scripts/link
 <div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
 <div class="tool-group-body">
 <p>All three read the same <code>.agents/skills/</code> catalog and apply Case as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode; Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>; GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>. None gets a continuous-integration backstop specific to Case the way <code>grit-gates.yml</code> backstops <code>grit</code> — the sponsor's blind-spot review at the Investment gate is the only check.</p>
-<div class="prompt-card">Build the investment case for QuenServe epic E1: at least two real options plus the do-nothing baseline, all four cost lines from skills/pm/case/COSTING.md, and the sensitivity analysis naming what would break the recommendation.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">QuenServe epic E1's investment case is due to the sponsor. Build it the way skills/pm/case/CASE-METHOD.md and COSTING.md describe — two real options against the do-nothing baseline, every cost line including the agent fleet's own spend, and the single assumption that would break the recommendation.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>All three write the case directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
@@ -136,6 +136,8 @@ Sensitivity: adoption rate below 30% in the first quarter kills Option A's
 Recommendation: Option A.</code></pre>
 
 This is the shape the output contract requires, not a captured run — Case has no companion script; the document above is written by the skill directly into `specs/{prefix}-case.md`. Before this reaches the sponsor, it still has to survive a grill round per `GRILL-PM.md`, the pm group's grill protocol — the round that would press hardest on exactly the sensitivity line already named above. `GATES.md` states the Investment gate's blind-spot review "weighs hardest on the sensitivity section," reasoning that "sponsors approve numbers, and numbers hide the assumption that produced them."
+
+That $260k/yr figure is this case's own epic-level do-nothing baseline for the sponsor, not the same measurement as [`impact`]({{ '/impact/' | relative_url }})'s narrower, story-level saving on avoided re-visits — 40 a month at $600 each — and the two aren't meant to net together.
 
 ## What good looks like
 

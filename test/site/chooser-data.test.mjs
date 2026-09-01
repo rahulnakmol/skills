@@ -68,6 +68,20 @@ test('every leaf carries a non-empty oneLiner sourced from the skill catalog', (
   }
 });
 
+// The generator's BLURBS map is a hand-written editorial override per leaf,
+// preferred over the catalog description — this pins that every current leaf
+// is actually covered (a leaf added without its line would silently read
+// flatter, not fail loudly, so drift here has to be caught by content, not
+// by the generator refusing to run) and that every override stays inside the
+// ≤14-word, second-person brief this widget's cards are built for.
+test('every leaf one-liner reads as a short, concrete, hand-written line (14 words or fewer)', () => {
+  for (const leaf of CHOOSER.leaves) {
+    const words = leaf.oneLiner.trim().split(/\s+/);
+    assert.ok(words.length <= 14,
+      `leaf "${leaf.skill}" oneLiner is ${words.length} words, expected 14 or fewer: "${leaf.oneLiner}"`);
+  }
+});
+
 test('chooser.html carries the Alpine no-flash idiom lens.html uses (x-cloak + x-show)', () => {
   assert.match(CHOOSER_HTML, /x-cloak/, "chooser.html must carry x-cloak on the interactive widget, matching lens.html's pattern");
   assert.match(CHOOSER_HTML, /x-show="!ready"/, 'chooser.html must show the static tree by default (x-show="!ready")');
