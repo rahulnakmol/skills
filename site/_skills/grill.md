@@ -5,7 +5,7 @@ title: "Grill — Pressure-Test a PM Artifact Before a Gate"
 description: "Grill is the user-invoked skill that interrogates an analysis, manifest, case, or PRD in themed rounds until it earns the right to advance through a gate."
 group: pm
 invocation: user-invoked
-scenario: "Pressure-testing the field-inspection-copilot case before Investment"
+scenario: "Pressure-testing the case that funds QuenServe epic E1"
 lens:
   novice:
     who: 'You have watched an artifact wave through a gate because nobody asked it a hard question. Grill is the loop that asks three to five questions, in themed rounds, until the artifact can answer them.'
@@ -58,48 +58,38 @@ Grill is not the only skill that touches whether an artifact is ready. This tabl
 | You need the PRD this loop is threaded through before it goes to prd-review | [`prd-draft`]({{ '/prd-draft/' | relative_url }}) |
 | You are not sure which pm skill fits at all | [`ask-pm`]({{ '/ask-pm/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same grill skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want Grill can skip the rest of the catalog with `./scripts/link-skills.sh --skill grill`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and reaches it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command, no stop hook</span></div>
+<div class="tool-group-body">
 <p>Grill is user-invoked: type <code>/grill</code>, or name it directly in a session — nothing routes to it automatically. It ships no stop hook of its own; the exit rule is enforced by the procedure itself — an explicit user stop or an explicit sign-off, nothing else — not by anything outside the session.</p>
-<div class="prompt-card">Grill the field-inspection-copilot investment case before it goes to the sponsor. Run themed rounds, three to five questions each, restate the scope after every round, and run the pre-gate blind-spot checklist before any sign-off.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Grill the investment case for QuenServe epic E1 before it goes to the sponsor. Run themed rounds, three to five questions each, restate the scope after every round, and run the pre-gate blind-spot checklist before any sign-off.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Grill runs the round protocol against the case, restates the sharpened scope after each round, and offers continue, stop, or sign-off at every close.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Catalog reader, no command file</span></div>
+<div class="tool-group-body">
 <p>OpenCode reads the same <code>.agents/skills/</code> catalog every tool without a command layer reads. This repository ships no <code>grill</code>-specific command file: <code>adapters/opencode/commands/</code> covers <code>grit-verify</code>, <code>press</code>, and a handful of developer-side skills, not <code>grill</code>. It applies the skill's procedure the way Cursor and Codex do, reading the catalog as context and following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">Read skills/pm/grill/SKILL.md and GRILL-PM.md, then run a plain grill round against the field-inspection-copilot case, three to five questions, restating scope after each round.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/grill/SKILL.md and GRILL-PM.md, then run a plain grill round against the QuenServe epic E1 case, three to five questions, restating scope after each round.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode runs the round directly in its reply, reading its procedure from the skill files rather than from any installed command.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>The skills land in <code>.agents/skills/</code>, and Cursor applies the procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>. This repository ships no Cursor rule specific to Grill; the two exit criteria — an explicit stop or an explicit sign-off — are enforced by the procedure, not by any automated check.</p>
-<div class="prompt-card">Grill the field-inspection-copilot case per skills/pm/grill/GRILL-PM.md's round protocol. Restate the sharpened scope after each round and give me the continue, stop, or sign-off choice every time.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor runs the round directly in its reply, the same shape as Claude Code's, since there is no command output to parse.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees Grill's name and description the same way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/pm/grill/SKILL.md, then run a plain grill round against the field-inspection-copilot case — three to five questions, scope restated after each round.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex runs the round the same way, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. There is no continuous-integration backstop specific to Grill the way <code>grit-gates.yml</code> backstops <code>grit</code>; sign-off's precondition — the core question actually answered — is enforced by the procedure, not by any workflow.</p>
-<div class="prompt-card">Grill the field-inspection-copilot case before it goes to the sponsor. Three to five questions per round, restate the scope after each one, and run the pre-gate blind-spot checklist before any sign-off.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot runs the round in chat, reading its procedure from the skill files as context.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply Grill as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode; Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>; GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>. None gets a continuous-integration backstop specific to Grill the way <code>grit-gates.yml</code> backstops <code>grit</code>; sign-off's precondition — the core question actually answered — is enforced by the procedure, not by any workflow.</p>
+<div class="prompt-card">Grill the QuenServe epic E1 case per skills/pm/grill/GRILL-PM.md's round protocol. Restate the sharpened scope after each round and give me the continue, stop, or sign-off choice every time.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three run the round directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
 
@@ -109,19 +99,11 @@ A good ask includes:
 - Which mode fits — plain, grill-with-docs when a research corpus exists in `specs/research/`, or provoke for contrasting hypotheses.
 - Whether the whole team's persona matters here — a Product Manager, a Business Architect, a Transformation Leader, or a Chief Business Transformation Officer are each pressed on different themes.
 
-Readers who have not installed the whole skill pack can add Grill alone:
-
-```bash
-./scripts/link-skills.sh --skill grill
-```
-
-This links only Grill into the default buckets, without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and reaches it.
-
 ## A working example
 
 You type:
 
-<pre><code>Grill the field-inspection-copilot investment case before it goes to the sponsor. Run themed rounds, three to five questions each, restate the scope after every round, and run the pre-gate blind-spot checklist before any sign-off.</code></pre>
+<pre><code>Grill the investment case for QuenServe epic E1, offline inspection sync, before it goes to the sponsor. Run themed rounds, three to five questions each, restate the scope after every round, and run the pre-gate blind-spot checklist before any sign-off.</code></pre>
 
 Grill opens with a round on business value, four questions drawn from that one theme, per `GRILL-PM.md`'s rule that a round draws from one dominant theme rather than scattering across several at once:
 

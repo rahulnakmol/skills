@@ -5,7 +5,7 @@ title: "Realize — Track Benefits Against the Case's Projections"
 description: "Realize is the user-invoked skill that tracks whether an initiative delivered what its case projected, rolling every benefit up to the practice's north star."
 group: pm
 invocation: user-invoked
-scenario: "Tracking benefits after the field-inspection-copilot launch"
+scenario: "Closing the loop on QuenServe epic E1's promised value"
 lens:
   novice:
     who: 'You have shipped an initiative and moved on without ever checking whether it delivered what the case said it would. Realize is the register that tracks the answer instead of assuming it.'
@@ -58,48 +58,38 @@ Realize is not the only skill that touches whether something worked. This table 
 | You need the dependency or risk that might be causing the variance, not the variance itself | [`raid`]({{ '/raid/' | relative_url }}) |
 | You are not sure which pm skill fits at all | [`ask-pm`]({{ '/ask-pm/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same realize skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want Realize can skip the rest of the catalog with `./scripts/link-skills.sh --skill realize`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and reaches it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command, no stop hook</span></div>
+<div class="tool-group-body">
 <p>Realize is user-invoked: type <code>/realize</code>, or name it directly in a session — nothing routes to it automatically. It ships no stop hook of its own; the discipline that an unmet projection is reported unmet rests on the register being read honestly, not on any automated check.</p>
-<div class="prompt-card">The field-inspection copilot has been live for one PI. Record this cycle's actuals against the case's projections for inspection turnaround and triage cost, and report either figure unmet plainly if it missed, rather than resizing the target.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">QuenServe epic E1 has been live for one PI. Record this cycle's actuals against the case's projections for inspection turnaround and triage cost, and report either figure unmet plainly if it missed, rather than resizing the target.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Realize records the actuals against the case's original projections, states each benefit's status honestly, and rolls the result up to the north star.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Catalog reader, no command file</span></div>
+<div class="tool-group-body">
 <p>OpenCode reads the same <code>.agents/skills/</code> catalog every tool without a command layer reads. This repository ships no <code>realize</code>-specific command file: <code>adapters/opencode/commands/</code> covers <code>grit-verify</code>, <code>press</code>, and a handful of developer-side skills, not <code>realize</code>. It applies the skill's procedure the way Cursor and Codex do, reading the catalog as context and following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">Read skills/pm/realize/SKILL.md and BENEFITS.md, then record this PI's actuals against the field-inspection-copilot case's projections, reporting any miss as unmet rather than resizing the target.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/realize/SKILL.md and BENEFITS.md, then record this PI's actuals against QuenServe epic E1's case projections, reporting any miss as unmet rather than resizing the target.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode writes the register update directly in its reply, reading its procedure from the skill files rather than from any installed command.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>The skills land in <code>.agents/skills/</code>, and Cursor applies the procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>. This repository ships no Cursor rule specific to Realize; an honestly reported miss depends on the register being read carefully, not on any automated check.</p>
-<div class="prompt-card">Record this PI's actuals against the field-inspection-copilot case's projections per skills/pm/realize/BENEFITS.md. Report any miss as unmet, and roll the result up to the north star.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the register update directly in its reply, the same shape as Claude Code's, since there is no command output to parse.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees Realize's name and description the same way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/pm/realize/SKILL.md, then record this cycle's actuals against the field-inspection-copilot case's projections, reporting any miss unmet rather than resized.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex writes the register update the same way, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. There is no continuous-integration backstop specific to Realize the way <code>grit-gates.yml</code> backstops <code>grit</code>; an honestly reported unmet projection depends entirely on the register being read carefully.</p>
-<div class="prompt-card">Record this PI's actuals for the field-inspection copilot against the case's original projections. Report either figure unmet plainly if it missed, and roll the result up to the north star.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot writes the register update in chat, reading its procedure from the skill files as context.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply Realize as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode; Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>; GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>. None gets a continuous-integration backstop specific to Realize the way <code>grit-gates.yml</code> backstops <code>grit</code>; an honestly reported unmet projection depends entirely on the register being read carefully.</p>
+<div class="prompt-card">Record this PI's actuals against QuenServe epic E1's case projections per skills/pm/realize/BENEFITS.md. Report any miss as unmet, and roll the result up to the north star.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the register update directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
 
@@ -109,23 +99,15 @@ A good ask includes:
 - The leading indicator already chosen for each benefit, or a request for realize to propose one.
 - Whether a variance this cycle is significant enough to loop back into `discover` or `carve` as new work.
 
-Readers who have not installed the whole skill pack can add Realize alone:
-
-```bash
-./scripts/link-skills.sh --skill realize
-```
-
-This links only Realize into the default buckets, without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and reaches it.
-
 ## A working example
 
 You type:
 
-<pre><code>The field-inspection copilot has been live for one PI. Record this cycle's actuals against the case's projections for inspection turnaround and triage cost, and report either figure unmet plainly if it missed, rather than resizing the target.</code></pre>
+<pre><code>QuenServe epic E1 has been live for one PI. Record this cycle's actuals against the case's projections for inspection turnaround and triage cost, and report either figure unmet plainly if it missed, rather than resizing the target.</code></pre>
 
 A PI is a program increment: the fixed planning cycle these teams deliver in. Realize opens the case's original projections — 6 days down to 2 days on turnaround, $260k down to $95k a year on triage cost — and records this cycle's actuals against them exactly as they were originally stated, per `BENEFITS.md`'s trace-back rule:
 
-<pre><code># Benefits: field-inspection-copilot
+<pre><code># Benefits: e1-offline-inspection-sync
 
 REGISTER
   Benefit: Inspection turnaround 6 days -&gt; 2 days
@@ -145,7 +127,7 @@ NORTH STAR ROLLUP
 
 OPEN VARIANCE
   <span class="tok-ok">Turnaround gap of 1.4 days re-opened in `carve` as
-  "inspection-copilot-latency-fix", carrying its own case.</span></code></pre>
+  "e1-offline-sync-latency-fix", carrying its own case.</span></code></pre>
 
 This is the shape the output contract requires, not a captured run — Realize has no companion script; the document above is written by the skill directly into `specs/{prefix}-benefits.md`. The turnaround projection missed by 1.4 days, and the register says so in exactly those words — UNMET, not a revised target that would have read MET. SKILL.md's procedure states this as a rule, not a preference: an unmet projection is reported unmet rather than resized to fit. The gap becomes a new entry in `carve` carrying its own case — the same discipline that opened this initiative in the first place, now applied to the gap it left behind.
 

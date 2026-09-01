@@ -5,7 +5,7 @@ title: "Case — Build the Business Case for Investment Approval"
 description: "Case is the user-invoked skill that builds the business case a sponsor approves, weighing real options against doing nothing, costed on four lines."
 group: pm
 invocation: user-invoked
-scenario: "Building the investment case for a field-inspection copilot"
+scenario: "Building the investment case that funds QuenServe epic E1"
 lens:
   novice:
     who: 'You have been asked to justify spend and have written a single recommendation dressed up as a comparison. Case is the discipline of naming at least two real options and pricing the choice to do nothing at all.'
@@ -66,48 +66,38 @@ Case is not the only skill that touches a spending decision. This table separate
 | You need to track whether an approved case's benefits actually arrived | [`realize`]({{ '/realize/' | relative_url }}) |
 | You are not sure which pm skill fits at all | [`ask-pm`]({{ '/ask-pm/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same case skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want Case can skip the rest of the catalog with `./scripts/link-skills.sh --skill case`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and reaches it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command, no stop hook</span></div>
+<div class="tool-group-body">
 <p>Case is user-invoked: type <code>/case</code>, or name it directly in a session — nothing routes to it automatically. It ships no stop hook of its own; the Investment gate's blind-spot review, run by the sponsor before they decide, is what stands between a thin case and an approval.</p>
-<div class="prompt-card">We need the investment case for the field-inspection copilot before it goes to the sponsor. Weigh at least two real options against the do-nothing baseline, cost each on all four lines including the agent fleet's own spend, and name the one assumption that would kill the recommendation.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">We need the investment case that funds QuenServe epic E1, offline inspection sync, before it goes to the sponsor. Weigh at least two real options against the do-nothing baseline, cost each on all four lines including the agent fleet's own spend, and name the one assumption that would kill the recommendation.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Case returns the options, the costed do-nothing baseline, the benefits traced to `realize`, and the sensitivity line — then routes the draft into a grill round before it is ready for the sponsor.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Catalog reader, no command file</span></div>
+<div class="tool-group-body">
 <p>OpenCode reads the same <code>.agents/skills/</code> catalog every tool without a command layer reads. This repository ships no <code>case</code>-specific command file: <code>adapters/opencode/commands/</code> covers <code>grit-verify</code>, <code>press</code>, and a handful of developer-side skills, not <code>case</code>. It applies the skill's procedure the way Cursor and Codex do, reading the catalog as context and following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">Read skills/pm/case/SKILL.md, CASE-METHOD.md, and COSTING.md, then build the investment case for the field-inspection copilot: at least two real options, the do-nothing baseline, all four cost lines, and the sensitivity that would break the recommendation.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/case/SKILL.md, CASE-METHOD.md, and COSTING.md, then build the investment case for QuenServe epic E1: at least two real options, the do-nothing baseline, all four cost lines, and the sensitivity that would break the recommendation.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode writes the case directly in its reply, reading its procedure from the skill files rather than from any installed command.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>The skills land in <code>.agents/skills/</code>, and Cursor applies the procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>. This repository ships no Cursor rule specific to Case; the Investment gate's blind-spot review is the enforcement point, run by the sponsor rather than by any automated check.</p>
-<div class="prompt-card">Build the investment case for the field-inspection copilot: at least two real options plus the do-nothing baseline, all four cost lines from skills/pm/case/COSTING.md, and the sensitivity analysis naming what would break the recommendation.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the case directly in its reply, the same shape as Claude Code's, since there is no command output to parse.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees Case's name and description the same way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/pm/case/SKILL.md, then build the investment case for the field-inspection copilot: two real options plus do-nothing, all four cost lines, and the one assumption that would kill the recommendation.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex writes the case the same way, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. There is no continuous-integration backstop specific to Case the way <code>grit-gates.yml</code> backstops <code>grit</code>; the sponsor's blind-spot review at the Investment gate is the only check.</p>
-<div class="prompt-card">Build the investment case for the field-inspection copilot before it goes to the sponsor. Name at least two real options against the do-nothing baseline, cost each on all four lines, and state the one assumption that would break the recommendation.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot writes the case in chat, reading its procedure from the skill files as context.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply Case as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode; Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>; GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>. None gets a continuous-integration backstop specific to Case the way <code>grit-gates.yml</code> backstops <code>grit</code> — the sponsor's blind-spot review at the Investment gate is the only check.</p>
+<div class="prompt-card">Build the investment case for QuenServe epic E1: at least two real options plus the do-nothing baseline, all four cost lines from skills/pm/case/COSTING.md, and the sensitivity analysis naming what would break the recommendation.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the case directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
 
@@ -117,28 +107,20 @@ A good ask includes:
 - Any cost or benefit figure the team is already confident in, so commissioned research fills only the real gaps.
 - Whether a grill round has already run on this case, since sign-off has one hard precondition: the recommendation must actually be answered.
 
-Readers who have not installed the whole skill pack can add Case alone:
-
-```bash
-./scripts/link-skills.sh --skill case
-```
-
-This links only Case into the default buckets, without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and reaches it.
-
 ## A working example
 
 You type:
 
-<pre><code>We need the investment case for the field-inspection copilot before it goes to the sponsor. Weigh at least two real options against the do-nothing baseline, cost each on all four lines including the agent fleet's own spend, and name the one assumption that would kill the recommendation.</code></pre>
+<pre><code>We need the investment case that funds QuenServe epic E1, offline inspection sync, before it goes to the sponsor. Weigh at least two real options against the do-nothing baseline, cost each on all four lines including the agent fleet's own spend, and name the one assumption that would kill the recommendation.</code></pre>
 
 Case starts from the design phase in `CASE-METHOD.md`: name at least two real options plus do-nothing, described well enough that a sponsor could pick either one and know roughly what they were signing up for. It then costs each option per `COSTING.md`'s four lines — build, run, opportunity, and the agent fleet's own token and run spend — and traces every claimed benefit forward to `realize`'s register:
 
-<pre><code># Case: field-inspection-copilot
+<pre><code># Case: e1-offline-inspection-sync
 
 Options:
-  A. Build in-house copilot   build $340k &middot; run $90k/yr &middot; opp cost: delays the
-                               billing-portal rebuild by one quarter
-  B. Buy + integrate vendor   build $180k &middot; run $140k/yr &middot; opp cost: vendor
+  A. Build in-house offline sync   build $340k &middot; run $90k/yr &middot; opp cost: delays
+                               the billing-portal rebuild by one quarter
+  B. Buy + integrate vendor SDK   build $180k &middot; run $140k/yr &middot; opp cost: vendor
                                lock-in on the inspection data model
   Do-nothing                  $260k/yr in manual triage cost, growing 8%/yr
 
@@ -160,8 +142,8 @@ This is the shape the output contract requires, not a captured run — Case has 
 <div class="compare-grid">
 <div class="compare-card">
 <div class="compare-card-head">A case that prices the alternative</div>
-<pre><code>Option A: Build in-house .... $340k build / $90k run/yr
-Option B: Buy + integrate ... $180k build / $140k run/yr
+<pre><code>Option A: Build in-house offline sync .. $340k build / $90k run/yr
+Option B: Buy + integrate vendor SDK ... $180k build / $140k run/yr
 <span class="tok-ok">Do-nothing ................ $260k/yr in manual triage cost</span>
 Agent-fleet cost (Option A): $22k across research, grill, review
 Sensitivity: adoption rate below 30% kills Option A's payback

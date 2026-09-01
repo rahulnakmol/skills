@@ -5,7 +5,7 @@ title: "RAID — Track Risks, Assumptions, Issues, and Dependencies"
 description: "RAID is the user-invoked skill that maintains the four registers behind an initiative's derailment risks and generates the sponsor status narrative directly from them."
 group: pm
 invocation: user-invoked
-scenario: "Tracking risk and dependency on the field-inspection-copilot rollout"
+scenario: "Tracking the field-connectivity risk on QuenServe epic E1"
 lens:
   novice:
     who: 'A risk gets raised once in a meeting, never written down, and then it happens. RAID is the habit of logging it the moment it surfaces, with an owner attached.'
@@ -57,48 +57,38 @@ RAID is not the only skill that touches an initiative's risk picture. This table
 | You need the sensitivity assumption a business case rests on, not an ongoing risk register | [`case`]({{ '/case/' | relative_url }}) |
 | You are not sure which pm skill fits at all | [`ask-pm`]({{ '/ask-pm/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same raid skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want RAID can skip the rest of the catalog with `./scripts/link-skills.sh --skill raid`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and reaches it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command, no stop hook</span></div>
+<div class="tool-group-body">
 <p>RAID is user-invoked: type <code>/raid</code>, or name it directly in a session — nothing routes to it automatically. It ships no stop hook of its own; an unowned risk stays visible only because the register itself shows the gap, not because anything blocks the session.</p>
-<div class="prompt-card">A field connectivity risk just came up on the field-inspection-copilot rollout — rural sites may lose sync mid-inspection. Log it in the risk register with a likelihood, an impact, an owner, and a mitigation, then regenerate the sponsor status narrative from all four registers.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">A field connectivity risk just came up on QuenServe epic E1, offline inspection sync — rural sites may lose sync mid-inspection. Log it in the risk register with a likelihood, an impact, an owner, and a mitigation, then regenerate the sponsor status narrative from all four registers.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>RAID logs the entry into the correct register with an owner attached, then regenerates the narrative directly from the four registers rather than editing it by hand.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Catalog reader, no command file</span></div>
+<div class="tool-group-body">
 <p>OpenCode reads the same <code>.agents/skills/</code> catalog every tool without a command layer reads. This repository ships no <code>raid</code>-specific command file: <code>adapters/opencode/commands/</code> covers <code>grit-verify</code>, <code>press</code>, and a handful of developer-side skills, not <code>raid</code>. It applies the skill's procedure the way Cursor and Codex do, reading the catalog as context and following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">Read skills/pm/raid/SKILL.md and RAID-METHOD.md, then log this new risk on the field-inspection-copilot rollout and regenerate the sponsor status narrative directly from the four registers.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/raid/SKILL.md and RAID-METHOD.md, then log this new risk on QuenServe epic E1 and regenerate the sponsor status narrative directly from the four registers.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode writes the register update directly in its reply, reading its procedure from the skill files rather than from any installed command.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>The skills land in <code>.agents/skills/</code>, and Cursor applies the procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>. This repository ships no Cursor rule specific to RAID; an unowned entry is caught by a reader scanning the register, not by any automated check.</p>
-<div class="prompt-card">Log this new risk in the field-inspection-copilot RAID register per skills/pm/raid/RAID-METHOD.md, with a named owner and mitigation, then regenerate the sponsor narrative from all four registers.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the register update directly in its reply, the same shape as Claude Code's, since there is no command output to parse.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees RAID's name and description the same way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/pm/raid/SKILL.md, then log this new field-inspection-copilot risk with an owner and mitigation, and regenerate the sponsor status narrative from the four registers.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex writes the register update the same way, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. There is no continuous-integration backstop specific to RAID the way <code>grit-gates.yml</code> backstops <code>grit</code>; an unowned entry is caught only by a reader checking the register.</p>
-<div class="prompt-card">Log this new risk on the field-inspection-copilot rollout in the correct RAID register, with an owner and mitigation, then regenerate the sponsor narrative from all four registers.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot writes the register update in chat, reading its procedure from the skill files as context.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply RAID as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode; Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>; GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>. None gets a continuous-integration backstop specific to RAID the way <code>grit-gates.yml</code> backstops <code>grit</code>; an unowned entry is caught only by a reader checking the register.</p>
+<div class="prompt-card">Log this new risk in QuenServe epic E1's RAID register per skills/pm/raid/RAID-METHOD.md, with a named owner and mitigation, then regenerate the sponsor narrative from all four registers.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the register update directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
 
@@ -108,26 +98,19 @@ A good ask includes:
 - The owner responsible for it, since an entry logged without one is a stop condition, not a formality to add later.
 - Whether the sponsor narrative needs regenerating now or only at the next cadence.
 
-Readers who have not installed the whole skill pack can add RAID alone:
-
-```bash
-./scripts/link-skills.sh --skill raid
-```
-
-This links only RAID into the default buckets, without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and reaches it.
-
 ## A working example
 
 You type:
 
-<pre><code>A field connectivity risk just came up on the field-inspection-copilot rollout — rural sites may lose sync mid-inspection. Log it in the risk register with a likelihood, an impact, an owner, and a mitigation, then regenerate the sponsor status narrative from all four registers.</code></pre>
+<pre><code>A field connectivity risk just came up on QuenServe epic E1, offline inspection sync — rural sites may lose sync mid-inspection. Log it in the risk register with a likelihood, an impact, an owner, and a mitigation, then regenerate the sponsor status narrative from all four registers.</code></pre>
 
 RAID logs the new entry into the Risks register per `RAID-METHOD.md` — likelihood, impact, a named owner, and a mitigation, not a hope that it resolves itself — then regenerates the sponsor narrative from all four registers as they now stand, one open dependency included:
 
-<pre><code># RAID: field-inspection-copilot
+<pre><code># RAID: e1-offline-inspection-sync
 
 RISKS
   R-04: Field connectivity in rural sites may block real-time sync
+  during E1-F1-S1 (complete an inspection with no connectivity)
     Owner: R. Chen  Likelihood: medium  Impact: high
     Mitigation: offline-first capture with delayed sync on reconnect
 
@@ -141,16 +124,16 @@ ISSUES
     Owner: J. Alvarez  Status: root cause found, fix in review
 
 DEPENDENCIES
-  D-09: Platform team's photo-storage API must ship before the
-  auto-fill report generator
+  D-09: Platform team's photo-storage API must ship before
+  E1-F1-S2 (capture photos and measurements while offline)
     Owner: platform team lead  Status: open, targeted for PI-12
 
 STATUS NARRATIVE (generated from the registers above):
   On track. One medium-likelihood connectivity risk is under active
-  mitigation. One open dependency on the platform team is holding the
-  auto-fill report generator in NEXT rather than NOW.</code></pre>
+  mitigation. One open dependency on the platform team is holding
+  E1-F1-S2 in NEXT rather than NOW.</code></pre>
 
-This is the shape the output contract requires, not a captured run — RAID has no companion script; the document above is written by the skill directly into `specs/{prefix}-raid.md`. PI-12 in that register is a program increment, the fixed planning cycle the platform team commits work into. The narrative's last sentence is not written from memory: it reads directly off D-09, the same dependency `roadmap` reads from this register when it decides the auto-fill report generator belongs in NEXT rather than NOW.
+This is the shape the output contract requires, not a captured run — RAID has no companion script; the document above is written by the skill directly into `specs/{prefix}-raid.md`. PI-12 in that register is a program increment, the fixed planning cycle the platform team commits work into. The narrative's last sentence is not written from memory: it reads directly off D-09, the same dependency `roadmap` reads from this register when it decides E1-F1-S2 belongs in NEXT rather than NOW.
 
 ## What good looks like
 

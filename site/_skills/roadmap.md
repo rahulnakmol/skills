@@ -5,7 +5,7 @@ title: "Roadmap — Sequence Initiatives by Outcome and Dependency"
 description: "Roadmap is the user-invoked skill that sequences initiatives into now, next, and later horizons by outcome linkage and dependency, not by who asked last."
 group: pm
 invocation: user-invoked
-scenario: "Sequencing the field-inspection-copilot epics across three horizons"
+scenario: "Sequencing QuenServe epic E1 among the portfolio's other epics"
 lens:
   novice:
     who: 'You have built a roadmap that was really a wish list against a calendar, and watched a stakeholder reorder it by asking loudly. Roadmap is the discipline that sequences by outcome and dependency instead.'
@@ -59,48 +59,38 @@ Roadmap is not the only skill that touches sequencing. This table separates its 
 | You need the epics this roadmap sequences, not the sequencing itself | [`carve`]({{ '/carve/' | relative_url }}) |
 | You are not sure which pm skill fits at all | [`ask-pm`]({{ '/ask-pm/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same roadmap skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want Roadmap can skip the rest of the catalog with `./scripts/link-skills.sh --skill roadmap`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and reaches it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command, no stop hook</span></div>
+<div class="tool-group-body">
 <p>Roadmap is user-invoked: type <code>/roadmap</code>, or name it directly in a session — nothing routes to it automatically. It ships no stop hook of its own; a sequencing order that ignores a known dependency is caught by reading the roadmap against `raid`'s register, not by an automated check.</p>
-<div class="prompt-card">Sequence the field-inspection-copilot epics into now, next, and later. Every item needs an outcome linkage, and read the dependency board straight from raid instead of guessing at what is blocked.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Sequence QuenServe epic E1 into now, next, and later. Every item needs an outcome linkage, and read the dependency board straight from raid instead of guessing at what is blocked.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Roadmap returns the three horizons, each item's outcome linkage and dependency state, and the compressing figure that shows the sequencing rationale.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Catalog reader, no command file</span></div>
+<div class="tool-group-body">
 <p>OpenCode reads the same <code>.agents/skills/</code> catalog every tool without a command layer reads. This repository ships no <code>roadmap</code>-specific command file: <code>adapters/opencode/commands/</code> covers <code>grit-verify</code>, <code>press</code>, and a handful of developer-side skills, not <code>roadmap</code>. It applies the skill's procedure the way Cursor and Codex do, reading the catalog as context and following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">Read skills/pm/roadmap/SKILL.md and ROADMAP.md, then sequence the field-inspection-copilot epics into now, next, and later, reading the dependency board directly from skills/pm/raid rather than re-deriving it.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/roadmap/SKILL.md and ROADMAP.md, then sequence QuenServe epic E1's stories into now, next, and later, reading the dependency board directly from skills/pm/raid rather than re-deriving it.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode writes the roadmap directly in its reply, reading its procedure from the skill files rather than from any installed command.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>The skills land in <code>.agents/skills/</code>, and Cursor applies the procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>. This repository ships no Cursor rule specific to Roadmap; a stale sequence is caught by reading the roadmap against `raid`'s register directly, not by any automated check.</p>
-<div class="prompt-card">Sequence the field-inspection-copilot epics into now, next, and later per skills/pm/roadmap/ROADMAP.md. Link every item to its outcome and read the dependency board from raid, not a second copy.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the roadmap directly in its reply, the same shape as Claude Code's, since there is no command output to parse.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees Roadmap's name and description the same way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/pm/roadmap/SKILL.md, then sequence the field-inspection-copilot epics into now, next, and later, with outcome linkage on every item and the dependency board read from raid.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex writes the roadmap the same way, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. There is no continuous-integration backstop specific to Roadmap the way <code>grit-gates.yml</code> backstops <code>grit</code>; a stale sequence is caught only by a reader checking it against `raid`'s register.</p>
-<div class="prompt-card">Sequence the field-inspection-copilot epics into now, next, and later. Every item needs an outcome, and pull the dependency state directly from the raid register rather than assuming.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot writes the roadmap in chat, reading its procedure from the skill files as context.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply Roadmap as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode; Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>; GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>. None gets a continuous-integration backstop specific to Roadmap the way <code>grit-gates.yml</code> backstops <code>grit</code>; a stale sequence is caught only by a reader checking it against `raid`'s register.</p>
+<div class="prompt-card">Sequence QuenServe epic E1 into now, next, and later per skills/pm/roadmap/ROADMAP.md. Link every item to its outcome and read the dependency board from raid, not a second copy.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the roadmap directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
 
@@ -110,50 +100,44 @@ A good ask includes:
 - Whether `raid`'s dependency register is current, since sequencing reads it directly rather than re-deriving it.
 - Whether the practice is running Program Increment planning for this cycle, so objectives and capacity get set alongside the horizons.
 
-Readers who have not installed the whole skill pack can add Roadmap alone:
-
-```bash
-./scripts/link-skills.sh --skill roadmap
-```
-
-This links only Roadmap into the default buckets, without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and reaches it.
-
 ## A working example
 
 You type:
 
-<pre><code>Sequence the field-inspection-copilot epics into now, next, and later. Every item needs an outcome linkage, and read the dependency board straight from raid instead of guessing at what is blocked.</code></pre>
+<pre><code>Sequence QuenServe epic E1 into now, next, and later. Every item needs an outcome linkage, and read the dependency board straight from raid instead of guessing at what is blocked.</code></pre>
 
-Roadmap opens `raid`'s dependency register first, per its own procedure — sequencing is not allowed to guess at what is blocked. The register carries one open dependency, D-09: the platform team's photo-storage API has to ship before the auto-fill report generator can. That single open row moves an otherwise-ready item out of the now horizon:
+Roadmap opens `raid`'s dependency register first, per its own procedure — sequencing is not allowed to guess at what is blocked. The register carries one open dependency, D-09: the platform team's photo-storage API has to ship before E1-F1-S2 can. That single open row moves an otherwise-ready item out of the now horizon:
 
-<pre><code># Roadmap: field-inspection-copilot
+<pre><code># Roadmap: e1-offline-inspection-sync
 
 NOW (this cycle)
-  - Mobile capture flow -&gt; inspection turnaround 6d -&gt; 2d (no open dependency)
+  - E1-F1-S1, complete an inspection offline and sync without loss
+    -&gt; inspection turnaround 6d -&gt; 2d (no open dependency)
 
 NEXT (scoped, waiting on capacity)
-  - Auto-fill report generator -&gt; inspection turnaround 6d -&gt; 2d
+  - E1-F1-S2, capture photos and measurements while offline
+    -&gt; inspection turnaround 6d -&gt; 2d
     <span class="tok-warn">blocked by: platform team's photo-storage API (raid register D-09, open)</span>
 
 LATER (directional)
-  - Voice-note transcription -&gt; inspection turnaround 6d -&gt; 2d (not yet broken down)
+  - E1-F2, conflict resolution -&gt; inspection turnaround 6d -&gt; 2d (not yet broken down)
 
 PI objective: cut inspection turnaround from 6 days to 2 days by end of PI-12.
 Capacity: 1 squad, 4 iterations.
 [compressing figure: now/next/later swimlane against the dependency board]</code></pre>
 
-This is the shape the output contract requires, not a captured run — Roadmap has no companion script; the document above is written by the skill directly into `specs/{prefix}-roadmap.md`. The auto-fill report generator sits in NEXT rather than NOW for exactly one reason, stated on the roadmap itself: `raid`'s D-09 is still open. If the platform team ships the API, the same register update is what moves the item forward — roadmap does not need to be re-run to notice, only re-read.
+This is the shape the output contract requires, not a captured run — Roadmap has no companion script; the document above is written by the skill directly into `specs/{prefix}-roadmap.md`. E1-F1-S2 sits in NEXT rather than NOW for exactly one reason, stated on the roadmap itself: `raid`'s D-09 is still open. If the platform team ships the API, the same register update is what moves the item forward — roadmap does not need to be re-run to notice, only re-read.
 
 ## What good looks like
 
 <div class="compare-grid">
 <div class="compare-card">
 <div class="compare-card-head">A sequence that shows its reasoning</div>
-<pre><code>NOW    - Mobile capture flow    outcome: turnaround 6d -&gt; 2d
-NEXT   - Auto-fill report gen.  outcome: turnaround 6d -&gt; 2d
+<pre><code>NOW    - E1-F1-S1 (offline completion)  outcome: turnaround 6d -&gt; 2d
+NEXT   - E1-F1-S2 (offline photo capture)  outcome: turnaround 6d -&gt; 2d
          <span class="tok-warn">blocked by: photo-storage API (raid D-09)</span>
-LATER  - Voice-note transcription  outcome: turnaround 6d -&gt; 2d
-<span class="tok-ok">Auto-fill sits in NEXT, not NOW, because D-09 is
+LATER  - E1-F2 (conflict resolution)  outcome: turnaround 6d -&gt; 2d
+<span class="tok-ok">E1-F1-S2 sits in NEXT, not NOW, because D-09 is
 still open in the dependency board.</span></code></pre>
 <div class="compare-card-note">The order follows the dependency board, not urgency of ask — and the reason for each placement is visible on the roadmap itself.</div>
 </div>

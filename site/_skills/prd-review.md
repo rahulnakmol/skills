@@ -5,7 +5,7 @@ title: "PRD Review — Score a PRD Against the 11-Star Framework"
 description: "PRD Review is the user-invoked skill that scores a PRD's ambition and completeness across seven weighted dimensions using the 11-Star Experience Framework."
 group: pm
 invocation: user-invoked
-scenario: "Scoring the field-inspection-copilot PRD before the Quality gate"
+scenario: "Scoring QuenServe epic E1's PRD before the Quality gate"
 lens:
   novice:
     who: 'You have watched a PRD get approved because it looked complete, then ship a feature that matched every competitor and excited nobody. PRD Review is the check that separates complete from ambitious.'
@@ -58,48 +58,38 @@ PRD Review is not the only skill that touches a PRD. This table separates its jo
 | You need the epic breakdown the PRD's stories are cut from | [`carve`]({{ '/carve/' | relative_url }}) |
 | You are not sure which pm skill fits at all | [`ask-pm`]({{ '/ask-pm/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same PRD Review skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want PRD Review can skip the rest of the catalog with `./scripts/link-skills.sh --skill prd-review`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and reaches it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command, no stop hook</span></div>
+<div class="tool-group-body">
 <p>PRD Review is user-invoked: type <code>/prd-review</code>, or name it directly in a session — nothing routes to it automatically. Unlike <code>grit</code>, it ships no stop hook; the score reaches a person at the Quality gate, and approval stays their decision regardless of the composite.</p>
-<div class="prompt-card">Score the field-inspection-copilot PRD before it reaches the Quality gate. It already passed prd-draft's structural check. Map every feature to a star level before you score anything, then give me the seven-dimension composite and the verdict band it lands in.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Score QuenServe epic E1's PRD before it reaches the Quality gate. It already passed prd-draft's structural check. Map every feature to a star level before you score anything, then give me the seven-dimension composite and the verdict band it lands in.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>PRD Review returns the star spectrum, the seven dimension scores, the composite and its verdict band, and prioritized improvement suggestions naming the expected star-level impact.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Catalog reader, no command file</span></div>
+<div class="tool-group-body">
 <p>OpenCode reads the same <code>.agents/skills/</code> catalog every tool without a command layer reads. This repository ships no <code>prd-review</code>-specific command file: <code>adapters/opencode/commands/</code> covers <code>grit-verify</code>, <code>press</code>, and a handful of developer-side skills, not <code>prd-review</code>. It applies the skill's procedure the way Cursor and Codex do, reading the catalog as context and following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">Read skills/pm/prd-review/SKILL.md and ELEVEN-STAR.md, then score the field-inspection-copilot PRD the same way: star-level mapping first, then the seven weighted dimensions, then the composite and its verdict band.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/prd-review/SKILL.md and ELEVEN-STAR.md, then score QuenServe epic E1's PRD the same way: star-level mapping first, then the seven weighted dimensions, then the composite and its verdict band.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode writes the review directly in its reply, reading its procedure from the skill files rather than from any installed command.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>The skills land in <code>.agents/skills/</code>, and Cursor applies the procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>. This repository ships no Cursor rule specific to PRD Review — enforcement of the Quality-gate decision stays with the human who reads the review, not with any automated check.</p>
-<div class="prompt-card">Score the field-inspection-copilot PRD against the 11-Star Experience Framework in skills/pm/prd-review/ELEVEN-STAR.md. Map every feature to a star level first, then score the seven weighted dimensions and report the composite and its verdict band.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor writes the review directly in its reply, the same shape as Claude Code's, since there is no command output to parse.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees PRD Review's name and description the same way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/pm/prd-review/SKILL.md, then score the field-inspection-copilot PRD: star-level mapping first, then the seven weighted dimensions, then the composite score and the verdict band it lands in.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex writes the review the same way, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. There is no continuous-integration backstop specific to PRD Review the way <code>grit-gates.yml</code> backstops <code>grit</code>; the Quality gate's human reader is the only enforcement point for what the score means.</p>
-<div class="prompt-card">Score the field-inspection-copilot PRD before I take it to the Quality gate. Map every feature to a star level first, then rate the seven weighted dimensions, and give me the composite score with its verdict band.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot writes the review in chat, reading its procedure from the skill files as context.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply PRD Review as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode; Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>; GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>. None gets a continuous-integration backstop specific to PRD Review the way <code>grit-gates.yml</code> backstops <code>grit</code> — the Quality gate's human reader is the only enforcement point for what the score means.</p>
+<div class="prompt-card">Score QuenServe epic E1's PRD against the 11-Star Experience Framework in skills/pm/prd-review/ELEVEN-STAR.md. Map every feature to a star level first, then score the seven weighted dimensions and report the composite and its verdict band.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three write the review directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
 
@@ -109,24 +99,16 @@ A good ask includes:
 - Whether this is a first pass or a re-score after a revision, so the composite can be read against the previous one.
 - Any constraint on scope — a feature set the review should treat as fixed rather than open to a star-7 push.
 
-Readers who have not installed the whole skill pack can add PRD Review alone:
-
-```bash
-./scripts/link-skills.sh --skill prd-review
-```
-
-This links only PRD Review into the default buckets, without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and reaches it.
-
 ## A working example
 
 You type:
 
-<pre><code>Score the field-inspection-copilot PRD before it reaches the Quality gate. It already passed prd-draft's structural check. Map every feature to a star level before you score anything, then give me the seven-dimension composite and the verdict band it lands in.</code></pre>
+<pre><code>Score QuenServe epic E1's PRD before it reaches the Quality gate. It already passed prd-draft's structural check. Map every feature to a star level before you score anything, then give me the seven-dimension composite and the verdict band it lands in.</code></pre>
 
 PRD Review starts with the star-level mapping, per `ELEVEN-STAR.md`. Every feature in this PRD lands at star 5 or star 6 — baseline parity or a proactive touch, nothing that produces a wow moment yet:
 
-<pre><code>Star spectrum: photo auto-fill (5) &middot; damage-flagging suggestion (5)
-&middot; voice-note transcription (6) &middot; one-tap inspector handoff (5)</code></pre>
+<pre><code>Star spectrum: offline capture, E1-F1 (5) &middot; conflict resolution, E1-F2 (5)
+&middot; inspector sync status, E1-F3-S1 (6) &middot; manager sync health, E1-F3-S2 (5)</code></pre>
 
 Only after that mapping does it score the seven weighted dimensions and calculate the composite, each dimension multiplied by its weight from `ELEVEN-STAR.md`:
 
@@ -141,22 +123,22 @@ Story Quality ....... 8/10 (15%)  -&gt; 1.20
 
 7.40 sits inside the Minor Revision band, 6.0 to 7.4, one tenth of a point under the 7.5 floor `ELEVEN-STAR.md` sets for Approved with Notes. The review writes the improvement suggestion that follows directly from where the number fell short:
 
-<pre><code># PRD Review: field-inspection-copilot
+<pre><code># PRD Review: e1-offline-inspection-sync
 
 Executive summary: functional and clearly written, but every feature
 maps to star 5 or 6. No anchor feature reaches star 7.
 
-Star spectrum: photo auto-fill (5) &middot; damage-flagging suggestion (5)
-&middot; voice-note transcription (6) &middot; one-tap inspector handoff (5)
+Star spectrum: offline capture, E1-F1 (5) &middot; conflict resolution, E1-F2 (5)
+&middot; inspector sync status, E1-F3-S1 (6) &middot; manager sync health, E1-F3-S2 (5)
 
 Dimensions: Completeness 9 &middot; Clarity 8 &middot; Feasibility 8 &middot; Ambition 5
 &middot; Differentiation 6 &middot; Metric Alignment 8 &middot; Story Quality 8
 Composite: 7.40 -&gt; Minor Revision
 
-P1: Push voice-note transcription toward star 7 by auto-drafting the
-    inspection narrative from the transcript, instead of only
-    transcribing it. Expected impact: Ambition 5 -&gt; 7, composite
-    +0.30.
+P1: Push the inspector sync status view (E1-F3-S1) toward star 7 by
+    predicting a sync ETA for each queued inspection, instead of only
+    showing a synced-or-not flag. Expected impact: Ambition 5 -&gt; 7,
+    composite +0.30.
 
 Verdict: Minor Revision. Returned to `prd-draft`.</code></pre>
 
@@ -175,7 +157,7 @@ Differentiation ..... 6/10 (15%)
 Metric Alignment .... 8/10 (10%)
 Story Quality ....... 8/10 (15%)
 <span class="tok-ok">Composite: 7.70 -&gt; Approved with Notes</span></code></pre>
-<div class="compare-card-note">Raising Ambition by two stars, from the documented voice-note change, moves the composite from 7.40 to 7.70 — 15% of a 2-star gain is 0.30, and 7.40 + 0.30 crosses from Minor Revision into Approved with Notes at a verified number.</div>
+<div class="compare-card-note">Raising Ambition by two stars, from the documented sync-status change, moves the composite from 7.40 to 7.70 — 15% of a 2-star gain is 0.30, and 7.40 + 0.30 crosses from Minor Revision into Approved with Notes at a verified number.</div>
 </div>
 <div class="compare-card compare-card--warn">
 <div class="compare-card-head">The wrong turn to watch for</div>

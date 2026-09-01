@@ -5,7 +5,7 @@ title: "Ask PM — Route Intent to the Right PM Skill"
 description: "Ask PM is the user-invoked router that maps a plain description of a goal to the correct pm-group skill, asking one clarifying question only when genuinely ambiguous."
 group: pm
 invocation: user-invoked
-scenario: "Routing a new PM through the field-inspection-copilot initiative"
+scenario: "Routing a new PM through QuenServe epic E1"
 lens:
   novice:
     who: 'You are new to the pm group and do not yet know whether your problem calls for `discover`, `carve`, or `case`. Ask PM is the skill you name when you do not know which skill to name.'
@@ -75,48 +75,38 @@ Ask PM is not the only router in this repository. This table separates its job f
 | Your problem is already engineering-shaped — slicing, raising, or an inception gap | the developer group's `impact`, `slice`, or `raise` |
 | You need to decide grill-loop, parallel-fan, or hybrid for an already-identified pm task, not which skill to call | [`arrange`]({{ '/arrange/' | relative_url }}) |
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Claude Code</span></div>
-<div class="tool-block-body">
+Install once, and every tool below reaches the same ask-pm skill:
+
+```bash
+npx skills@latest add tqnonline/skills
+```
+
+Readers who only want Ask PM can skip the rest of the catalog with `./scripts/link-skills.sh --skill ask-pm`, which links just this skill into the default buckets without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and reaches it.
+
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Claude Code</span><span class="tool-group-mechanism">Slash command, no stop hook</span></div>
+<div class="tool-group-body">
 <p>Ask PM is user-invoked: type <code>/ask-pm</code>, or name it directly in a session — nothing routes to it automatically. It ships no stop hook of its own; the one thing SKILL.md's stop condition requires — asking a clarifying question on genuinely ambiguous intent, then routing — is enforced by the procedure itself.</p>
-<div class="prompt-card">I'm new to the field-inspection-copilot initiative and don't know where to start. We already have a raw problem statement from the operations team but nothing else. Which pm skill do I run first?<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">I'm new to QuenServe epic E1 and don't know where to start. We already have a raw problem statement from the operations team but nothing else. Which pm skill do I run first?<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>Ask PM classifies the intent as problem discovery, returns <code>discover</code> as the match, and states the one-sentence rationale straight from the routing map.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">OpenCode</span></div>
-<div class="tool-block-body">
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">OpenCode</span><span class="tool-group-mechanism">Catalog reader, no command file</span></div>
+<div class="tool-group-body">
 <p>OpenCode reads the same <code>.agents/skills/</code> catalog every tool without a command layer reads. This repository ships no <code>ask-pm</code>-specific command file: <code>adapters/opencode/commands/</code> covers <code>grit-verify</code>, <code>press</code>, and a handful of developer-side skills, not <code>ask-pm</code>. It applies the skill's procedure the way Cursor and Codex do, reading the catalog as context and following the shared rules in <code>AGENTS.md</code>.</p>
-<div class="prompt-card">Read skills/pm/ask-pm/SKILL.md, then tell me which pm skill fits: we have a raw problem statement for the field-inspection-copilot initiative and nothing else yet.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<div class="prompt-card">Read skills/pm/ask-pm/SKILL.md, then tell me which pm skill fits: we have a raw problem statement for QuenServe epic E1 and nothing else yet.<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
 <p>OpenCode returns the skill name and rationale directly in its reply, reading the routing map from the skill file rather than from any installed command.</p>
 </div>
 </div>
 
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Cursor</span></div>
-<div class="tool-block-body">
-<p>The skills land in <code>.agents/skills/</code>, and Cursor applies the procedure by reading the catalog as context, following the shared rules in <code>AGENTS.md</code>, and routing model choice through its own <code>auto</code> mode rather than a pinned tier. This repository ships no Cursor rule specific to Ask PM.</p>
-<div class="prompt-card">We have a raw problem statement for the field-inspection-copilot initiative and nothing else. Which pm skill in skills/pm/ask-pm/SKILL.md's routing map fits, and why?<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Cursor returns the skill name and rationale directly in its reply, the same shape as Claude Code's, since there is no command output to parse.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">Codex</span></div>
-<div class="tool-block-body">
-<p>Codex reads the same universal <code>.agents/skills/</code> catalog, plus the generated sidecar <code>agents/openai.yaml</code>, so it sees Ask PM's name and description the same way the other tools do. It gets no command layer either: invocation runs through <code>AGENTS.md</code> and the skill files themselves.</p>
-<div class="prompt-card">Read skills/pm/ask-pm/SKILL.md, then route this: a raw problem statement exists for the field-inspection-copilot initiative and nothing else yet. Which pm skill fits?<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Codex returns the skill name and rationale the same way, reading its context from the skill files rather than any installed command.</p>
-</div>
-</div>
-
-<div class="tool-block">
-<div class="tool-block-head"><span class="tool-badge">GitHub Copilot</span></div>
-<div class="tool-block-body">
-<p>Copilot's agent mode reads the same <code>.agents/skills/</code> catalog. It applies <code>.github/copilot-instructions.md</code> once a team has added one to their repository; this repository ships recommended rule text for that file in <code>adapters/copilot/README.md</code>, so the ask below still works as a plain instruction meanwhile. There is no continuous-integration backstop specific to Ask PM the way <code>grit-gates.yml</code> backstops <code>grit</code>; a correct route depends on the procedure being followed, not on any workflow check.</p>
-<div class="prompt-card">I'm new to the field-inspection-copilot initiative. We have a raw problem statement and nothing else. Which pm skill should I run first, and why?<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
-<p>Copilot returns the skill name and rationale in chat, reading the routing map from the skill file as context.</p>
+<div class="tool-group">
+<div class="tool-group-head"><span class="tool-badge">Cursor</span><span class="tool-badge">Codex</span><span class="tool-badge">GitHub Copilot</span><span class="tool-group-mechanism">Catalog readers &mdash; shared catalog, plain ask</span></div>
+<div class="tool-group-body">
+<p>All three read the same <code>.agents/skills/</code> catalog and apply Ask PM as plain context, following the shared rules in <code>AGENTS.md</code>, rather than through a command this repository ships. Cursor routes model choice through its own <code>auto</code> mode; Codex additionally reads the generated sidecar <code>agents/openai.yaml</code>; GitHub Copilot applies <code>.github/copilot-instructions.md</code> once a team has added one, using the recommended text in <code>adapters/copilot/README.md</code>. None gets a continuous-integration backstop specific to Ask PM the way <code>grit-gates.yml</code> backstops <code>grit</code>; a correct route depends on the procedure being followed, not on any workflow check.</p>
+<div class="prompt-card">We have a raw problem statement for QuenServe epic E1 and nothing else. Which pm skill in skills/pm/ask-pm/SKILL.md's routing map fits, and why?<button type="button" class="prompt-card-copy" aria-label="Copy this prompt">Copy</button></div>
+<p>All three return the skill name and rationale directly in their reply, since none has a command's output to parse.</p>
 </div>
 </div>
 
@@ -126,19 +116,11 @@ A good ask includes:
 - Whatever artifact already exists for the initiative, since the routing map often turns on what stage that artifact is at.
 - Whether the hat — product or transformation — is already known, since Ask PM asks about it only when it is genuinely unclear.
 
-Readers who have not installed the whole skill pack can add Ask PM alone:
-
-```bash
-./scripts/link-skills.sh --skill ask-pm
-```
-
-This links only Ask PM into the default buckets, without pulling in the rest of its group or core. See the <a href="{{ '/tools/' | relative_url }}">Tools page</a> for how each of the five tools installs and reaches it.
-
 ## A working example
 
 You type:
 
-<pre><code>I'm new to the field-inspection-copilot initiative and don't know where to start. We already have a raw problem statement from the operations team but nothing else. Which pm skill do I run first?</code></pre>
+<pre><code>I'm new to QuenServe epic E1 and don't know where to start. We already have a raw problem statement from the operations team but nothing else. Which pm skill do I run first?</code></pre>
 
 Ask PM classifies this against the routing map quoted above rather than guessing from general knowledge of the group, and returns a single match:
 
