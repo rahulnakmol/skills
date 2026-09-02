@@ -1,11 +1,11 @@
 {
-  "date": "2026-09-01",
+  "date": "2026-09-02",
   "runs_per_case": 2,
   "threshold": 1,
-  "cases": 40,
-  "passed": 40,
+  "cases": 45,
+  "passed": 45,
   "failed": 0,
-  "skills_in_catalog": 39,
+  "skills_in_catalog": 44,
   "results": [
     {
       "id": "r001",
@@ -446,6 +446,61 @@
       "rate": 1,
       "passed": true,
       "note": "confusable with brief: glossary settles domain language, brief places agent rules per tool"
+    },
+    {
+      "id": "r046",
+      "expect": "triage",
+      "picks": [
+        "triage",
+        "triage"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with raise: triage sorts what arrives, raise publishes what we planned"
+    },
+    {
+      "id": "r047",
+      "expect": "wizard",
+      "picks": [
+        "wizard",
+        "wizard"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with deliver: wizard scripts the human-only steps, deliver ships the change"
+    },
+    {
+      "id": "r048",
+      "expect": "research",
+      "picks": [
+        "research",
+        "research"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with recon: research reads external primary sources, recon reads this codebase"
+    },
+    {
+      "id": "r049",
+      "expect": "retro",
+      "picks": [
+        "retro",
+        "retro"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with grit: retro improves the instructions, grit audits whether work is done"
+    },
+    {
+      "id": "r050",
+      "expect": "handoff",
+      "picks": [
+        "handoff",
+        "handoff"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with report: handoff transfers work in progress, report briefs leadership on status"
     }
   ]
 }

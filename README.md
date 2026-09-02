@@ -12,16 +12,16 @@ Every skill here, whatever its group, carries one philosophy: **Set the frontier
 
 ## Skill groups
 
-Six groups, each a bounded area of work rather than a technology layer. Each group installs on its own: any group may reference `core`, and no group references another, so adopting one never drags in the rest. We have just started: two groups are fully built, one holds the doctrine they share, two have their first skill, and one carries a charter for what comes next.
+Six groups, each a bounded area of work rather than a technology layer. Each group installs on its own: any group may reference `core`, and no group references another, so adopting one never drags in the rest. We have just started: two groups are fully built, one holds the doctrine they share, one has its first skill, one is filling out, and one carries a charter for what comes next.
 
 | Group | What it is | Status |
 |-------|------------|--------|
-| **Core — shared doctrine** | The doctrine and tooling more than one group needs, belonging to no audience in particular: verification before completion, coverage, the grill round protocol, value probing, and `grit`, the acceptance-gate ledger — 1 skill. Every group may reference it; it references none of them. | Shipping |
-| **Developer — the AI-native SDLC** | The software delivery lifecycle rebuilt for humans plus trusted agents: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance, plus the daily craft of test-first work, diagnosis, prototyping, deepening, and shared language — 20 skills. | Shipping |
+| **Core — shared doctrine** | The doctrine and tooling more than one group needs, belonging to no audience in particular: verification before completion, coverage, the grill round protocol, value probing, the run trace, and three skills — `grit`, `research`, and `retro`, the loop that reads the traces back. Every group may reference it; it references none of them. | Shipping |
+| **Developer — the AI-native SDLC** | The software delivery lifecycle rebuilt for humans plus trusted agents: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance, plus the daily craft of test-first work, diagnosis, prototyping, deepening, shared language, issue triage, and human-step wizards — 22 skills. | Shipping |
 | **PM — the AI-native transformation practice** | The business side of the same AI-native transformation coin: discovery, TOM design, epic and PRD authoring, business cases grounded in cost including the agent fleet's own, roadmapping, RAID, benefits realization against a north star, and 4Ps leadership reporting, plus charting work too big for one session — 16 skills. | Shipping |
 | **Branding** | Company or personal identity applied to everything an agent produces: tone of voice, color and palette, storytelling. Today: `press`, which renders an approved markdown document into a branded, self-contained page and a PDF — the first of the storytelling skills. | First skill shipping |
 | **Writing** | Skills that make writing better — editorial review, documentation quality, style discipline — in the same explainer voice this repository holds itself to. | Charter — planned |
-| **Productivity** | Delightful automations: the personal and team workflows worth never doing by hand again. Today: `brief`, which writes the rules, definitions, and boundaries a team's agents read and places each part in the file the tool actually loads. | First skill shipping |
+| **Productivity** | Delightful automations: the personal and team workflows worth never doing by hand again. Today: `brief`, which writes the rules, definitions, and boundaries a team's agents read and places each part in the file the tool actually loads, and `handoff`, which projects a run's trace into a document the next session picks up cold — 2 skills. | Shipping |
 
 ## The operating model
 
@@ -99,6 +99,8 @@ Doctrine every other group may reference, and which references no group in retur
 
 | Skill | Invocation | Purpose |
 |-------|------------|---------|
+| [research](skills/core/research/SKILL.md) | model | Investigate a question against primary sources and capture cited findings as a file in the repository |
+| [retro](skills/core/retro/SKILL.md) | user | Mine accumulated run traces for repeating failure patterns and propose skill changes a human approves |
 | [grit](skills/core/grit/SKILL.md) | user | Completion discipline for substantial agent work — an acceptance-gate ledger written before implementation, a 5-10 layer verification depth tree, and a met, unmet, and abandoned audit backed by runnable gates |
 
 ### Developer — the AI-native SDLC
@@ -125,6 +127,8 @@ Doctrine every other group may reference, and which references no group in retur
 | [prototype](skills/developer/prototype/SKILL.md) | model | Throwaway build that answers one design question, then is deleted or deliberately graduated |
 | [refactor](skills/developer/refactor/SKILL.md) | user | Survey a codebase for deepening opportunities, then work the one a human picks |
 | [glossary](skills/developer/glossary/SKILL.md) | model | Build and sharpen the project's shared language, with an explicit avoid list per term |
+| [triage](skills/developer/triage/SKILL.md) | user | Move issues and external pull requests through a state machine of triage roles, ending in an agent-ready brief |
+| [wizard](skills/developer/wizard/SKILL.md) | model | Generate a resumable shell wizard for the steps only a human can perform |
 
 ### PM — the AI-native transformation practice
 

@@ -31,6 +31,11 @@ Route user intent to the right skill in this monorepo.
    - models → `update-models` / `model-routing`
    - governance → `responsible-ai-governance`
    - PDF → `press`
+   - incoming issues or external pull requests to sort → `triage`
+   - a setup step only a human can perform, in a dashboard the agent cannot reach → `wizard`
+   - a question to settle against primary sources, written down for reuse → `research`
+   - repeated failures across runs, and what should change in the skills → `retro`
+   - a session ending with work unfinished, to be picked up cold → `handoff`
    - completion discipline, or "is it actually done" → `grit`
 3. `Call the Skill tool` with chosen name
 

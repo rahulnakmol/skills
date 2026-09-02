@@ -9,6 +9,8 @@
   "workflows": "./adapters/claude/workflows",
   "skills": [
     "skills/core/grit",
+    "skills/core/research",
+    "skills/core/retro",
     "skills/developer/conduct",
     "skills/developer/model-routing",
     "skills/developer/update-models",
@@ -29,6 +31,8 @@
     "skills/developer/prototype",
     "skills/developer/refactor",
     "skills/developer/glossary",
+    "skills/developer/triage",
+    "skills/developer/wizard",
     "skills/pm/arrange",
     "skills/pm/chart",
     "skills/pm/constitution",
@@ -46,6 +50,7 @@
     "skills/pm/grill",
     "skills/pm/ask-pm",
     "skills/branding/press",
-    "skills/productivity/brief"
+    "skills/productivity/brief",
+    "skills/productivity/handoff"
   ]
 }

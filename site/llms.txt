@@ -29,6 +29,8 @@
 ### Core
 
 - [grit](https://tqnonline.github.io/skills/grit/): Completion discipline for agent work — acceptance-gate ledger, verification depth, met/unmet/abandoned audit.
+- [research](https://tqnonline.github.io/skills/research/): Investigate against primary sources and capture cited findings as a file in the repository.
+- [retro](https://tqnonline.github.io/skills/retro/): Mine run traces for repeating failure patterns and propose skill changes a human approves.
 
 ### Developer
 
@@ -52,6 +54,8 @@
 - [prototype](https://tqnonline.github.io/skills/prototype/): Throwaway build answering one design question, then deleted or deliberately graduated.
 - [refactor](https://tqnonline.github.io/skills/refactor/): Survey a codebase for deepening opportunities, then work the one a human picks.
 - [glossary](https://tqnonline.github.io/skills/glossary/): Build the project's shared language, each term with an explicit avoid list.
+- [triage](https://tqnonline.github.io/skills/triage/): Move issues through triage roles, one state at a time, ending in an agent-ready brief.
+- [wizard](https://tqnonline.github.io/skills/wizard/): Generate a resumable shell wizard for the steps only a human can perform.
 
 ### PM
 
@@ -79,6 +83,7 @@
 ### Productivity
 
 - [brief](https://tqnonline.github.io/skills/brief/): Authors the rules, definitions, and boundaries a team's AI agents read, per tool surface.
+- [handoff](https://tqnonline.github.io/skills/handoff/): Project a run's trace into a document another session or person picks up cold.
 
 ## Doctrine sources
 
