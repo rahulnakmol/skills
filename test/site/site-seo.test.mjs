@@ -85,10 +85,10 @@ test('index.html has a non-empty description in frontmatter, and gets its title 
 
 // --- llms.txt ------------------------------------------------------------------
 
-test('llms.txt lists exactly the 39 manifest skills', () => {
+test('llms.txt lists exactly the manifest skills, whatever the catalog holds', () => {
   const plugin = JSON.parse(read('.claude-plugin/plugin.json'));
   const manifestNames = plugin.skills.map((p) => p.split('/').pop());
-  assert.equal(manifestNames.length, 39, `expected 39 manifest skills, found ${manifestNames.length}`);
+  assert.ok(manifestNames.length > 30, `the manifest looks unread: ${manifestNames.length} skills`);
 
   const llms = read('site/llms.txt');
   const linkRe = /\[([a-z0-9-]+)\]\(https:\/\/tqnonline\.github\.io\/skills\/([a-z0-9-]+)\/\)/g;
@@ -104,5 +104,6 @@ test('llms.txt lists exactly the 39 manifest skills', () => {
   const extra = listed.filter((n) => !manifestNames.includes(n));
   assert.deepEqual(missing, [], `site/llms.txt is missing manifest skill(s): ${missing.join(', ')}`);
   assert.deepEqual(extra, [], `site/llms.txt lists skill(s) not in the manifest: ${extra.join(', ')}`);
-  assert.equal(listedSet.size, 39, `site/llms.txt must list exactly 39 skills, found ${listedSet.size}`);
+  assert.equal(listedSet.size, manifestNames.length,
+    `site/llms.txt lists ${listedSet.size} skills, the manifest holds ${manifestNames.length}`);
 });

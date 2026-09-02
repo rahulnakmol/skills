@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { root, read, headings, wordCount } from '../helpers.mjs';
+import { root, read, headings, wordCount, promotedCount } from '../helpers.mjs';
 
 test('pm/arrange exists, is model-invoked, promoted, and routed to from ask-pm', () => {
   const plugin = JSON.parse(read('.claude-plugin/plugin.json'));
@@ -108,9 +108,10 @@ test('the two routing skills have separate wiki stubs, one per group, and neithe
     "Skill-Conduct.md must point at the developer skill's own site page");
   assert.ok(arrange.includes('https://tqnonline.github.io/skills/arrange/'),
     "Skill-Arrange.md must point at the pm skill's own site page");
-  assert.ok(/Promoted skills: 16\./.test(read('wiki/Group-PM.md')),
-    'Group-PM.md must count all 16 pm skills, including Arrange');
-  assert.ok(/Promoted skills: 20\./.test(read('wiki/Group-Developer.md')),
-    'Group-Developer.md must count all 20 developer skills, including Conduct');
+  for (const [group, page, member] of [['pm', 'Group-PM.md', 'Arrange'], ['developer', 'Group-Developer.md', 'Conduct']]) {
+    const expected = promotedCount(group);
+    assert.match(read(`wiki/${page}`), new RegExp(`Promoted skills: ${expected}\\.`),
+      `${page} must count all ${expected} ${group} skills, including ${member}`);
+  }
   assert.ok(read('skills/pm/README.md').includes('Sixteen'), 'pm/README.md charter must say sixteen skills');
 });
