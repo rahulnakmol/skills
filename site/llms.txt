@@ -80,10 +80,19 @@
 
 - [press](https://tqnonline.github.io/skills/press/): Renders an approved markdown document to a branded, self-contained HTML page and a PDF.
 
+### Writing
+
+- [freewrite](https://tqnonline.github.io/skills/freewrite/): Mine raw fragments with generation held apart from judgment, keeping contradictions.
+- [outline](https://tqnonline.github.io/skills/outline/): Order fragments into beats, grounding every term before a beat leans on it.
+- [draft](https://tqnonline.github.io/skills/draft/): Render an outline into prose one beat at a time, with an auditable coverage map.
+
 ### Productivity
 
 - [brief](https://tqnonline.github.io/skills/brief/): Authors the rules, definitions, and boundaries a team's AI agents read, per tool surface.
 - [handoff](https://tqnonline.github.io/skills/handoff/): Project a run's trace into a document another session or person picks up cold.
+- [questionnaire](https://tqnonline.github.io/skills/questionnaire/): Turn a decision you cannot answer alone into questions for the one person who can.
+- [wait-what](https://tqnonline.github.io/skills/wait-what/): Diagnose why an explanation failed, then take a different route to the same point.
+- [teach](https://tqnonline.github.io/skills/teach/): Teach a concept across sessions, checking understanding by application rather than recall.
 
 ## Doctrine sources
 

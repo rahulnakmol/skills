@@ -36,6 +36,10 @@ Route user intent to the right skill in this monorepo.
    - a question to settle against primary sources, written down for reuse → `research`
    - repeated failures across runs, and what should change in the skills → `retro`
    - a session ending with work unfinished, to be picked up cold → `handoff`
+   - a decision you cannot answer alone, needing the one person who can → `questionnaire`
+   - a message that did not land, needing a different route to the same point → `wait-what`
+   - learning a concept over more than one session → `teach`
+   - writing: raw material first → `freewrite`, then structure → `outline`, then prose → `draft`
    - completion discipline, or "is it actually done" → `grit`
 3. `Call the Skill tool` with chosen name
 

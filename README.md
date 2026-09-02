@@ -12,7 +12,7 @@ Every skill here, whatever its group, carries one philosophy: **Set the frontier
 
 ## Skill groups
 
-Six groups, each a bounded area of work rather than a technology layer. Each group installs on its own: any group may reference `core`, and no group references another, so adopting one never drags in the rest. We have just started: two groups are fully built, one holds the doctrine they share, one has its first skill, one is filling out, and one carries a charter for what comes next.
+Six groups, each a bounded area of work rather than a technology layer. Each group installs on its own: any group may reference `core`, and no group references another, so adopting one never drags in the rest. Five of the six are shipping and one, branding, is still on its first skill; every group now has at least one promoted skill, and the writing group has opened.
 
 | Group | What it is | Status |
 |-------|------------|--------|
@@ -20,8 +20,8 @@ Six groups, each a bounded area of work rather than a technology layer. Each gro
 | **Developer — the AI-native SDLC** | The software delivery lifecycle rebuilt for humans plus trusted agents: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance, plus the daily craft of test-first work, diagnosis, prototyping, deepening, shared language, issue triage, and human-step wizards — 22 skills. | Shipping |
 | **PM — the AI-native transformation practice** | The business side of the same AI-native transformation coin: discovery, TOM design, epic and PRD authoring, business cases grounded in cost including the agent fleet's own, roadmapping, RAID, benefits realization against a north star, and 4Ps leadership reporting, plus charting work too big for one session — 16 skills. | Shipping |
 | **Branding** | Company or personal identity applied to everything an agent produces: tone of voice, color and palette, storytelling. Today: `press`, which renders an approved markdown document into a branded, self-contained page and a PDF — the first of the storytelling skills. | First skill shipping |
-| **Writing** | Skills that make writing better — editorial review, documentation quality, style discipline — in the same explainer voice this repository holds itself to. | Charter — planned |
-| **Productivity** | Delightful automations: the personal and team workflows worth never doing by hand again. Today: `brief`, which writes the rules, definitions, and boundaries a team's agents read and places each part in the file the tool actually loads, and `handoff`, which projects a run's trace into a document the next session picks up cold — 2 skills. | Shipping |
+| **Writing** | The writing sequence, explore then structure then render: `freewrite` mines raw material with judgment held off, `outline` orders it into beats and grounds every term before a beat leans on it, and `draft` renders prose one beat at a time against an auditable coverage map — 3 skills. | Shipping |
+| **Productivity** | Delightful automations: the personal and team workflows worth never doing by hand again. The conversation-level workflows worth never doing by hand again: `brief` places a team's agent rules in the file each tool actually loads, `handoff` projects a run's trace into a document the next session picks up cold, `questionnaire` turns a decision you cannot answer alone into questions for the person who can, `wait-what` re-pitches a message that did not land, and `teach` carries a concept across sessions — 5 skills. | Shipping |
 
 ## The operating model
 
@@ -162,8 +162,20 @@ Doctrine every other group may reference, and which references no group in retur
 | Skill | Invocation | Purpose |
 |-------|------------|---------|
 | [brief](skills/productivity/brief/SKILL.md) | user | Author the rules, definitions, and boundaries a team's agents read, placed per tool surface |
+| [handoff](skills/productivity/handoff/SKILL.md) | user | Project a run's trace into a document another session or person picks up cold |
+| [questionnaire](skills/productivity/questionnaire/SKILL.md) | user | Turn a decision you cannot answer alone into a questionnaire for the one person who can |
+| [wait-what](skills/productivity/wait-what/SKILL.md) | user | Diagnose why an explanation failed, then take a different route to the same point |
+| [teach](skills/productivity/teach/SKILL.md) | user | Teach a concept across sessions, checking understanding by application rather than recall |
 
-Writing is charter-only in this release — see [skills/writing/README.md](skills/writing/README.md).
+### Writing
+
+The sequence runs explore, then structure, then render. Each stage hands its output to the next, and each is invoked on its own.
+
+| Skill | Invocation | Purpose |
+|-------|------------|---------|
+| [freewrite](skills/writing/freewrite/SKILL.md) | user | Mine raw fragments with generation held apart from judgment, keeping contradictions rather than resolving them |
+| [outline](skills/writing/outline/SKILL.md) | user | Order fragments into beats, grounding every term before a beat leans on it |
+| [draft](skills/writing/draft/SKILL.md) | user | Render an outline into prose one beat at a time, against an auditable coverage map |
 
 ## Validation
 

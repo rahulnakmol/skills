@@ -53,8 +53,11 @@ function verbList(raw) {
   return m[1].split(',').map((v) => v.trim()).filter(Boolean);
 }
 
-test('drafts exist and sit under one of the six groups', () => {
-  assert.ok(DRAFTS.length > 0, 'expected ported capabilities under drafts/');
+test('any draft sits under one of the six groups', () => {
+  // An empty drafts tree is a legitimate state: it means every ported
+  // capability has been promoted. The earlier form required at least one draft
+  // to exist, which would have failed the moment the last one shipped —
+  // punishing the completion of the work it was written to guard.
   for (const skill of DRAFTS) {
     assert.ok(
       GROUPS.includes(skill.group),
@@ -240,4 +243,27 @@ test('the trace spine exists and is the single state root drafts bind to', () =>
   for (const verb of VERBS) {
     assert.ok(trace.includes(`\`${verb}\``), `TRACE.md must define the "${verb}" verb`);
   }
+});
+
+test('every doctrine document a skill points at exists', () => {
+  // The reachability check above runs one way: a shipped sibling must be
+  // pointed at. This is the other direction. A skill that promises doctrine it
+  // never ships sends the reader to a file that is not there, and nothing
+  // noticed until someone followed the pointer by hand.
+  const CORE_DOCTRINE = new Set(readdirSync(join(root, 'skills/core')).filter((f) => f.endsWith('.md')));
+  // Files a skill writes at run time, or repository files it authors, are named
+  // as outputs rather than as doctrine it ships.
+  const AUTHORED = new Set(['AGENTS.md', 'CLAUDE.md', 'PROGRESS.md', 'EXERCISES.md', 'SOLUTIONS.md', 'GATES.md', 'TRACE.md', 'README.md']);
+  const dangling = [];
+  for (const skill of PROMOTED) {
+    const body = read(skill.path);
+    const group = join(root, 'skills', skill.group);
+    for (const ref of new Set((body.match(/`[A-Z][A-Za-z0-9-]*\.md`/g) ?? []).map((m) => m.slice(1, -1)))) {
+      if (AUTHORED.has(ref) || CORE_DOCTRINE.has(ref)) continue;
+      if (existsSync(join(root, skill.dir, ref))) continue;
+      if (existsSync(join(group, ref))) continue;
+      dangling.push(`${skill.path} points at ${ref}, which exists nowhere`);
+    }
+  }
+  assert.deepEqual(dangling, [], dangling.join('\n'));
 });

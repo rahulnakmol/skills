@@ -51,6 +51,12 @@
     "skills/pm/ask-pm",
     "skills/branding/press",
     "skills/productivity/brief",
-    "skills/productivity/handoff"
+    "skills/productivity/handoff",
+    "skills/productivity/questionnaire",
+    "skills/productivity/wait-what",
+    "skills/productivity/teach",
+    "skills/writing/freewrite",
+    "skills/writing/outline",
+    "skills/writing/draft"
   ]
 }
