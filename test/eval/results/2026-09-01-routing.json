@@ -2,10 +2,10 @@
   "date": "2026-09-02",
   "runs_per_case": 2,
   "threshold": 1,
-  "cases": 45,
-  "passed": 45,
+  "cases": 51,
+  "passed": 51,
   "failed": 0,
-  "skills_in_catalog": 44,
+  "skills_in_catalog": 50,
   "results": [
     {
       "id": "r001",
@@ -501,6 +501,72 @@
       "rate": 1,
       "passed": true,
       "note": "confusable with report: handoff transfers work in progress, report briefs leadership on status"
+    },
+    {
+      "id": "r051",
+      "expect": "questionnaire",
+      "picks": [
+        "questionnaire",
+        "questionnaire"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with grill: questionnaire sends questions outward, grill interrogates the person present"
+    },
+    {
+      "id": "r052",
+      "expect": "wait-what",
+      "picks": [
+        "wait-what",
+        "wait-what"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with teach: wait-what re-pitches one message, teach builds understanding over sessions"
+    },
+    {
+      "id": "r053",
+      "expect": "teach",
+      "picks": [
+        "teach",
+        "teach"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with research: teach builds the learner's understanding, research writes findings to a file"
+    },
+    {
+      "id": "r054",
+      "expect": "freewrite",
+      "picks": [
+        "freewrite",
+        "freewrite"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with outline: freewrite gathers, outline orders"
+    },
+    {
+      "id": "r055",
+      "expect": "outline",
+      "picks": [
+        "outline",
+        "outline"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with draft: outline sets the beats, draft writes the prose"
+    },
+    {
+      "id": "r056",
+      "expect": "draft",
+      "picks": [
+        "draft",
+        "draft"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with press: draft writes the words, press renders an approved document"
     }
   ]
 }
