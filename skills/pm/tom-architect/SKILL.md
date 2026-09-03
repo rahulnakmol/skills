@@ -33,6 +33,8 @@ contract:
 6. Visualize: Mermaid capability map, process taxonomy, maturity quadrant, technology overlay
 7. Deliver: TOM document, optionally a workbook and deck where the xlsx/pptx skills are installed
 
+Append the trace entry under the `scoping` kind: the layers and depth deliberately not scoped, and whose account produced each maturity score. The design describes the target that was scoped, so the exclusions and the evidence behind each rating leave no residue in it.
+
 ## Stop conditions
 
 - No current-state maturity baseline established before target design

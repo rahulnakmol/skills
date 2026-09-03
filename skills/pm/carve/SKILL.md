@@ -33,6 +33,8 @@ contract:
 6. Present the ordered list for user approval; do not write until approved
 7. Write the epic manifest and suggest `prd-draft` as the next step
 
+Append the trace entry under the `dive` kind: the epic candidates rejected or split and the DIVE verdict that decided each, and the basis the manifest was ordered on. The manifest lists the epics that passed, so a rejected candidate appears nowhere and a later session re-proposes it.
+
 ## Stop conditions
 
 - More than eight epics — this is a program, not a project; escalate to the user

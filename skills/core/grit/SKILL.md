@@ -33,6 +33,8 @@ contract:
 5. Close with the final audit in `AUDIT.md` — every gate met, unmet, or abandoned, with evidence.
 6. Enforce per tool as described in `HOOKS.md`.
 
+Append the trace entry under the `ledger` kind as the passes run: what each of the four passes found and discarded, and any gate whose CHECK was repaired because it measured the wrong thing. The ledger records the verdict; a gate that went red, was found to be checking the wrong file, and then passed is indistinguishable in it from one that passed first time.
+
 ## Stop conditions
 
 - Implementation started before the ledger exists → stop and write the ledger first

@@ -36,6 +36,8 @@ contract:
 6. Verify by running the work, not by rereading the file. Give each surface a real task the new rule governs and check whether the rule fired. A rule you cannot observe firing is a wish, and the fix is nearly always sharper trigger wording rather than a longer explanation.
 7. Name an owner and a review date. Record removals as deliberately as additions: rules accumulate, and a file half full of dead rules teaches agents that rules are optional.
 
+Append the trace entry under the `rule` kind: the rules dropped for having no incident behind them, the contradictions resolved with the team, and any trigger narrowed after a rule fired when it should not have. The brief is written to omit its own reasoning, because always-loaded text is paid for on every turn, so the discards have nowhere else to live.
+
 ## Stop conditions
 
 - Two rules contradict each other → resolve the contradiction with the team before either is written; an agent given both will follow the nearer one

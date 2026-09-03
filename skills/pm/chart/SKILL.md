@@ -49,6 +49,8 @@ The user arrives with a chart, and optionally names a ticket.
 
 Resolve one decision ticket per session. Evidence tickets are the exception: they are independent by construction and run in parallel.
 
+Append the trace entry under the `edge` kind: the findings of the pre-gate blind-spot review, and the basis the ready set was sorted on. The chart is an index rather than a store, and the resolution comment carries four fields that have no room for either — with no tracker configured, they have no home at all.
+
 ## Stop conditions
 
 - The breadth pass surfaces no open decisions → the work fits one pass; say so and run the linear pipeline instead of charting it

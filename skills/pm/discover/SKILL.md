@@ -32,6 +32,8 @@ contract:
 5. Classify the initiative type and confirm with the user
 6. Write the analysis document and suggest `map` as the next step
 
+Append the trace entry under the `root-cause` kind: the intermediate causes ruled out on the way to the root, the sources that disagreed and how the disagreement was settled, and the initiative type the decision tree excluded. The analysis records the causes that survived.
+
 ## Stop conditions
 
 - More than four rounds of clarification without synthesizing — analyze what is in hand

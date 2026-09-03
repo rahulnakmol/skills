@@ -39,6 +39,8 @@ contract:
 5. A `[sdlc:*]` control token in the request → `DIRECTIVES.md` for what each token does; expand it in the adapter rather than restating gate prose here
 6. Close with Gate 3 outcome evidence and ledger update, carrying the gate ledger's final audit per `grit/AUDIT.md`
 
+Append the trace entry under the `loop` kind at each round: the round number, the plan abandoned when an observation contradicted it, and the termination state that fired. The gate checklist records which criteria were met, never which of the loop's exits ended it or what was tried before.
+
 ## Stop conditions
 
 - Missing SPEC-TS or unsigned human gate → stop with structured gap list

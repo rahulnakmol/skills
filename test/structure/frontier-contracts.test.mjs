@@ -306,3 +306,23 @@ test('a guest that reports a trace says so where a reader will see it', () => {
   }
   assert.deepEqual(silent, [], silent.join('\n'));
 });
+
+test('a declared trace kind has a step that writes or reports one', () => {
+  // The replacement for the dry-run fixture check ADR 0008 promised and never
+  // built. A fixture per skill would mean executing fifty skills, most of which
+  // need a model and a real repository, which is why the promise went unkept
+  // through a release. This is the part that can be checked statically: a
+  // contract key with no corresponding step is a declaration nothing honors,
+  // and eight skills carried exactly that when the check was first written.
+  const silent = [];
+  for (const skill of UNDER_CONTRACT) {
+    const body = read(skill.path);
+    const contract = parseContract(body);
+    if (contract.trace === 'none') continue;
+    const procedure = body.slice(body.indexOf('## Procedure'), body.indexOf('## Stop conditions'));
+    if (!/trace/i.test(procedure)) {
+      silent.push(`${skill.path}: declares trace "${contract.trace}" but no step writes or reports one`);
+    }
+  }
+  assert.deepEqual(silent, [], silent.join('\n'));
+});

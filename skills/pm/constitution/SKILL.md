@@ -33,6 +33,8 @@ contract:
 5. Review: run a grill session over the constitution's own claims — what held, what the quarter refuted, what the research bets returned
 6. Land every revision as a pull request, never a silent edit, per `INITIATIVE-REPO.md`
 
+Append the trace entry under the `amendment` kind: the principles cut to stay within the limit, and what the quarter refuted in review. The constitution states what the practice believes, not what it considered and rejected, and a refuted principle simply disappears from the text.
+
 ## Stop conditions
 
 - A section still contains a generic platitude — no principle should be one everyone already agrees with
