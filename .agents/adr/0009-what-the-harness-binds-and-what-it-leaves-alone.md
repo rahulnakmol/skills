@@ -2,7 +2,7 @@
 
 ## Status
 
-Proposed
+Accepted
 
 ## Context
 
@@ -40,15 +40,22 @@ Stated as a test an author can apply: **not "does this skill write a document", 
 - The two incoherent contracts are repaired rather than grandfathered, and the harness gains a check that a declared trace kind requires the verbs to write it, or an explicit statement that the owning session records it.
 - `retro` becomes worth running across the catalog. Today it would mine sixteen skills; after this it mines thirteen deliberate traces instead of fifty perfunctory ones, which is the difference between a signal and a corpus of empty entries.
 
+## Settled since this record was written
+
+Three of the questions below were answered after the assessment, and one of them was answered against the recommendation this record originally carried.
+
+**The verb set gains two.** `write-host` writes outside version control, and `execute` runs commands the skill did not author. The first four verbs could not express the two largest capabilities in the catalog, and a permission surface that cannot name its biggest exposure is decorative. Both are narrow by design: `write-host` marks a write that no review sees and no revert undoes, which `grit`'s checker enforces by refusing to run when its approval store resolves inside the repository; `execute` marks a command arriving as data, which excludes a skill invoking fixed project tooling and excludes `press` spawning a browser with arguments its own script wrote. Two skills hold them: `grit` both, `brief` the first. A verb that fires twice but marks the highest-risk skill in the catalog is doing its job, as `publish` does for four.
+
+**An initiative's trace lives in `specs/`, not in `.grit/`.** This record first proposed defining `<scope>` as the initiative slug and keeping the pm trace at `.grit/<slug>/TRACE.md`. Reading the tree settled it the other way: no pm skill references `.grit/` at all, the pm group's system of record is the initiative repository's `specs/` tree, and pm gates are human sign-offs rather than runnable checks, so there is no ledger for a trace to sit beside. A hidden directory next to `specs/` would have been the second state root the spine forbids, and the less-read of the two, because the sponsor opens `specs/`. The rule is now one sentence with two shapes: a trace lives with the artifacts of its scope — `.grit/<scope>/TRACE.md` for software delivery, `specs/{prefix}-trace.md` for an initiative.
+
+**`{prefix}` is defined.** Nine pm output contracts used it and no document said what it was. It is the initiative's slug, kebab-case and stable, the same string the monorepo mode uses for its folder.
+
 ## Open questions this record does not settle
 
 These surfaced during the assessment, each carries evidence, and each is a decision rather than a cleanup.
 
-- **The verb set has no token for a write outside the working tree.** It bites hardest on the skill with the sharpest security boundary: `grit` writes approvals to `~/.grit/approved` deliberately outside the repository, so that the store a mistaken or malicious edit would have to touch is not something a pull request can reach. `brief` has the same shape when it writes Claude Desktop or Cowork instructions. `[read, write-repo]` conveys none of it.
-- **The verb set describes what a skill writes, not what it executes.** `grit` runs approved shell commands with the ambient filesystem and network access of whoever runs it. That is the largest capability in the catalog, and the contract is silent on it.
 - **`report` sends outward and names no human approval.** It is the only skill in the pm group whose text contains none of "human", "approve", "sign-off", "signs", or "review", and the only one that routes a pack to leadership. The harness rule that a publishing skill must name its approval is right, and it will reject `report` until the skill says who signs the pack before it is sent. The gap is in the skill, not in the rule.
 - **Charter skills delegate their permission surface to adapters.** `architect` and `safeguard` are four steps, two of which are "load adapter" and "follow SPEC-TS". A contract on the charter would declare verbs for work the adapter performs, which no reader of the `SKILL.md` could check, and `CLAUDE.md` already says tool-native bodies live under `adapters/`. Either the procedures name their channel and their fix policy, or the contract belongs on the adapter.
 - **One unresolved word costs a verb.** `architect` and `safeguard` surface trade-offs "via an issue/PR comment". An issue comment is `write-tracker`; a pull request comment is `publish`. Until the procedure picks a channel, neither contract can be narrow and honest at once.
 - **A disposable worktree is undefined.** `shakedown` builds a pull request head in a sibling worktree that exists so the verification pass never disturbs the branch under review. Whether that counts as `write-repo` is not settled by the verb's definition, and the question recurs for every sandboxing skill.
-- **`<scope>` has no meaning for pm work.** A trace lives beside its scope's gate ledger, but no pm skill except `carve` references `grit`, and the pm group's own `GATES.md` is prose about human sign-off rather than a ledger. Five of the thirteen pm-side traces cannot be written until an initiative's scope is named; the initiative slug is the obvious candidate.
 - **ADR 0008 promised a check that was never built.** It said the suite would gain a test that every skill declaring a trace writes one in its dry-run fixture. `test/fixtures/` holds `grit`, `press`, and `recon` only, so a declared-but-never-appended trace kind is undetectable today. That promise is either kept or withdrawn.

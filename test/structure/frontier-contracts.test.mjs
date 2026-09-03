@@ -12,7 +12,7 @@ import { root, read, walk, frontmatter } from '../helpers.mjs';
 
 const GROUPS = ['core', 'developer', 'pm', 'branding', 'writing', 'productivity'];
 const THESIS_LIMBS = ['gate', 'evidence', 'scaffold'];
-const VERBS = ['read', 'write-repo', 'write-tracker', 'publish'];
+const VERBS = ['read', 'write-repo', 'write-tracker', 'publish', 'write-host', 'execute'];
 const SCOPES = ['owns', 'guest'];
 
 const DRAFTS = walk('drafts', (p) => p.endsWith('SKILL.md')).map((p) => {
@@ -325,4 +325,36 @@ test('a declared trace kind has a step that writes or reports one', () => {
     }
   }
   assert.deepEqual(silent, [], silent.join('\n'));
+});
+
+test('the two outsized verbs are declared with their boundary stated', () => {
+  // write-host and execute name the capabilities the first four cannot express:
+  // a write no review sees and no revert undoes, and a command the skill did not
+  // author. Both are the kind of exposure a reader must not have to infer, so a
+  // skill holding either says where the boundary sits, in its own words.
+  const silent = [];
+  for (const skill of UNDER_CONTRACT) {
+    const body = read(skill.path);
+    const verbs = verbList(parseContract(body).verbs) ?? [];
+    if (verbs.includes('write-host') && !/outside version control|outside the repository|not part of what|reviewed by nobody/i.test(body)) {
+      silent.push(`${skill.path}: declares write-host but never says the write sits outside version control`);
+    }
+    if (verbs.includes('execute') && !/approv/i.test(body)) {
+      silent.push(`${skill.path}: declares execute but never names the approval a command passes before it runs`);
+    }
+  }
+  assert.deepEqual(silent, [], silent.join('\n'));
+});
+
+test('execute stays narrow: only a skill running commands it did not author holds it', () => {
+  // Widened to mean "runs anything" the verb would mark almost every skill and
+  // discriminate nothing, so its scope is checked rather than trusted: a holder
+  // must run a command that reaches it as data.
+  for (const skill of UNDER_CONTRACT) {
+    const body = read(skill.path);
+    const verbs = verbList(parseContract(body).verbs) ?? [];
+    if (!verbs.includes('execute')) continue;
+    assert.match(body, /did not author|the ledger supplies|supplied by|arrives as data/i,
+      `${skill.path}: declares execute but never says the command comes from data rather than from its own author`);
+  }
 });

@@ -13,7 +13,7 @@ Write the brief a team's agents read: what the words mean, what the rules are, a
 contract:
   invocation: user
   thesis: scaffold
-  verbs: [read, write-repo]
+  verbs: [read, write-repo, write-host]
   scope: owns
   trace: rule
 ```
@@ -32,7 +32,7 @@ contract:
 2. Collect the raw material. Gather the corrections people repeat, the conventions only one person knows, and the mistakes that have cost rework. A rule with no incident behind it is a preference; label it as one or leave it out.
 3. Break the material into three layers. **Definitions** are the team's terms, stated once so an agent and a new hire read them the same way. **Rules** are the behaviors expected on every task. **References** are the deep material — a runbook, a style guide, a checklist — that only some tasks need.
 4. Write each rule per `RULES.md`: a trigger that says when it applies, a statement of what to do rather than what to avoid, and an observable result that shows whether it was followed.
-5. Place each layer per `SURFACES.md`. One file is canonical; every other surface points at it rather than holding a second copy. Detail behind a pointer costs nothing until it is needed; detail in an always-loaded file costs on every turn of every session.
+5. Place each layer per `SURFACES.md`. Some surfaces are user-level files outside version control — a personal rules file, a desktop tool's own settings — and a rule placed there is reviewed by nobody and reverted by nothing, so the canonical copy stays in the repository and the outside surface points at it. One file is canonical; every other surface points at it rather than holding a second copy. Detail behind a pointer costs nothing until it is needed; detail in an always-loaded file costs on every turn of every session.
 6. Verify by running the work, not by rereading the file. Give each surface a real task the new rule governs and check whether the rule fired. A rule you cannot observe firing is a wish, and the fix is nearly always sharper trigger wording rather than a longer explanation.
 7. Name an owner and a review date. Record removals as deliberately as additions: rules accumulate, and a file half full of dead rules teaches agents that rules are optional.
 

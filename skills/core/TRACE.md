@@ -12,7 +12,11 @@ A trace closes that gap. The ledger says the gate is met; the trace says how the
 
 ## The trace is not a second state root
 
-A trace lives beside the ledger it accompanies: `.grit/<scope>/TRACE.md`, in the same scope directory as that scope's `GATES.md` and dispatch state. A solo task that keeps its ledger at the repository root as `GATES.md` keeps its trace at `TRACE.md` alongside it.
+A trace lives with the artifacts of the scope it belongs to. One rule, two shapes, because the two groups keep their records in different places.
+
+Software delivery keeps its trace at `.grit/<scope>/TRACE.md`, in the same scope directory as that scope's `GATES.md` and dispatch state. A solo task that keeps its ledger at the repository root as `GATES.md` keeps its trace at `TRACE.md` alongside it.
+
+An initiative keeps its trace at `specs/{prefix}-trace.md`, beside the analysis, the case, and the registers that carry the same prefix. The pm group's system of record is the initiative repository's `specs/` tree, and it has no gate ledger to sit beside: its gates are human sign-offs rather than runnable checks. Putting an initiative's trace in a hidden directory next to `specs/` would create exactly the second state root this section forbids, and it would be the less-read of the two, because the sponsor opens `specs/`.
 
 This placement is deliberate and it is a constraint, not a convenience. A repository that accumulates a second, unrelated state directory has not gained an audit trail; it has gained two partial records that disagree. A skill that needs durable state uses the scope directory, or it does not have durable state.
 
@@ -49,7 +53,13 @@ contract:
 
 `invocation` restates the axis in a form the harness can check against the skill's title line. `thesis` names which limb of the repository's promotion test the skill satisfies: `gate` sharpens a human decision at a gate, `evidence` makes delegated work verifiable by leaving an audit artifact, and `scaffold` is what the first two require.
 
-`verbs` is the skill's permission surface, drawn from a closed set: `read` reads the repository and its history, `write-repo` writes files in the working tree, `write-tracker` writes to an issue tracker, and `publish` sends anything outward — a comment, a page, a message. A skill declares the narrowest set that lets it work.
+`verbs` is the skill's permission surface, drawn from a closed set. `read` reads the repository and its history. `write-repo` writes files in the working tree. `write-tracker` writes to an issue tracker. `publish` sends anything outward — a comment, a page, a message. `write-host` writes outside version control, into a user's home directory or a tool's own settings. `execute` runs commands the skill did not author. A skill declares the narrowest set that lets it work.
+
+The last two exist because the first four cannot express the two largest capabilities in the catalog, and a permission surface that cannot name its biggest exposure is decorative.
+
+`write-host` is not a stronger `write-repo`; it is a different kind of write. A file in the working tree is reviewed in a pull request and undone by a revert. A file in a home directory is neither. `grit` keeps its approval store at `~/.grit/approved` and its checker refuses to run when that path resolves inside the repository, because a pull request that edits files in the repository must not be able to grant itself execution rights.
+
+`execute` means the command arrives as data rather than being written by the skill's author. `grit` runs the CHECK line a ledger supplies; the skill did not write that command and cannot know it in advance. A skill that invokes fixed project tooling — a test runner, a build, a generator — is not executing in this sense, and `press` spawning a browser with arguments its own script wrote is not either. Kept that narrow, the verb marks the one place where approval is doing real work; widened to mean "runs anything", it would mark almost every skill and discriminate nothing. Approval is consent to run one reviewed command, not a sandbox: a check that runs holds the ambient access of whoever ran it.
 
 `scope` says whether the run belongs to this skill. A skill that `owns` a scope is invoked to carry a piece of work end to end, can be interrupted, and writes its own trace into its scope directory. A `guest` runs inside a scope another skill owns — a router, a lookup, a sub-step — and reports its entry for the owning session to record rather than writing one itself. The distinction is not cosmetic: a guest holding only `read` cannot write anything, so without it a contract can declare a trace the skill has no way to produce.
 
