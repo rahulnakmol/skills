@@ -7,6 +7,17 @@ description: User-invoked charting of work too large for one agent session. Turn
 
 Turn work no single session can hold into a chart of decision tickets, then resolve them one at a time until nothing is left to decide.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: gate
+  verbs: [read, write-repo, write-tracker]
+  scope: owns
+  trace: edge
+```
+
 ## When to invoke
 
 - An initiative is too large or too uncertain for `discover` → `map` → `carve` to run in one pass
@@ -37,6 +48,8 @@ The user arrives with a chart, and optionally names a ticket.
 6. Re-cut the edge: open the tickets the answer made specifiable, clear those known unknowns, and move anything the answer put past the destination to out of scope. A question that cannot be settled at all becomes a Risk, Assumption, or Dependency in `raid` — never a ticket left open indefinitely.
 
 Resolve one decision ticket per session. Evidence tickets are the exception: they are independent by construction and run in parallel.
+
+Append the trace entry under the `edge` kind: the findings of the pre-gate blind-spot review, and the basis the ready set was sorted on. The chart is an index rather than a store, and the resolution comment carries four fields that have no room for either — with no tracker configured, they have no home at all.
 
 ## Stop conditions
 

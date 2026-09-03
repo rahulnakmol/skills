@@ -19,11 +19,19 @@ test('README leads with the thesis and serves every altitude', () => {
     'Audience ladder must descend: leaders before developers');
 });
 
-test('every promoted skill appears in the README skills index', () => {
+test('every promoted skill has its own row in the README skills index', () => {
+  // A bare substring match passed for a skill that was only named in the prose
+  // above the tables, which is how one shipped skill went several releases with
+  // no index row. The index is the reader's map of the catalog, so the check
+  // asks for the linked row a reader would actually follow.
+  const missing = [];
   for (const ref of plugin.skills) {
     const name = ref.split('/').pop();
-    assert.ok(readme.includes(name), `README.md skills index missing promoted skill "${name}"`);
+    const row = new RegExp(`^\\|\\s*\\[${name}\\]\\(${ref}/SKILL\\.md\\)\\s*\\|`, 'm');
+    if (!row.test(readme)) missing.push(name);
   }
+  assert.deepEqual(missing, [],
+    `these promoted skills have no linked row in the README skills index: ${missing.join(', ')}`);
 });
 
 test('every skill directory under skills/ is promoted in plugin.json', () => {

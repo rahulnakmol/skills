@@ -7,6 +7,17 @@ description: User-invoked roadmapping and PI planning. Use to sequence initiativ
 
 Sequence work by outcome and dependency, not by whoever asked last — and ship the compressing figure that shows the sequencing decision.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: gate
+  verbs: [read, write-repo]
+  scope: owns
+  trace: none
+```
+
 ## When to invoke
 
 - Multiple initiatives or epics need sequencing against capacity and dependency

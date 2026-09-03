@@ -7,6 +7,17 @@ description: Model-invoked persona mapping, process-flow diagramming, and Busine
 
 Turn a discovery analysis into personas, process flows, and the Business Understanding Document.
 
+## Contract
+
+```yaml
+contract:
+  invocation: model
+  thesis: gate
+  verbs: [read, write-repo]
+  scope: owns
+  trace: none
+```
+
 ## When to invoke
 
 - `discover` has produced `specs/{prefix}-analysis.md`

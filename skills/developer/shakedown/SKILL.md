@@ -7,6 +7,17 @@ description: User-invoked PR sandbox build, test, and review. Use before merge o
 
 Run an isolated verification pass on a PR or branch.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: evidence
+  verbs: [read, publish]
+  scope: guest
+  trace: none
+```
+
 ## When to invoke
 
 - User requests PR validation or pre-merge confidence

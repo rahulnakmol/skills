@@ -7,6 +7,17 @@ description: Model-invoked routing for product and program inquiry, where the wo
 
 Select the execution shape a piece of pm work should run in — no dynamic-workflow automation, the decision itself.
 
+## Contract
+
+```yaml
+contract:
+  invocation: model
+  thesis: scaffold
+  verbs: [read]
+  scope: guest
+  trace: none
+```
+
 ## When to invoke
 
 - A discovery, case, TOM, or PRD effort spans more than one grill round or research commission

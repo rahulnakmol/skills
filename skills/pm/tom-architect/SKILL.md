@@ -7,6 +7,17 @@ description: User-invoked Target Operating Model architect for enterprise transf
 
 Translate a business transformation into a structured Target Operating Model.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: gate
+  verbs: [read, write-repo]
+  scope: owns
+  trace: scoping
+```
+
 ## When to invoke
 
 - The transformation hat is active and a TOM is mandatory for this initiative (`HATS.md`)
@@ -21,6 +32,8 @@ Translate a business transformation into a structured Target Operating Model.
 5. Map: platform capability mapping and the AI augmentation overlay for the selected stack
 6. Visualize: Mermaid capability map, process taxonomy, maturity quadrant, technology overlay
 7. Deliver: TOM document, optionally a workbook and deck where the xlsx/pptx skills are installed
+
+Append the trace entry under the `scoping` kind: the layers and depth deliberately not scoped, and whose account produced each maturity score. The design describes the target that was scoped, so the exclusions and the evidence behind each rating leave no residue in it.
 
 ## Stop conditions
 

@@ -1,11 +1,11 @@
 {
-  "date": "2026-08-31",
+  "date": "2026-09-02",
   "runs_per_case": 2,
   "threshold": 1,
-  "cases": 35,
-  "passed": 35,
+  "cases": 51,
+  "passed": 51,
   "failed": 0,
-  "skills_in_catalog": 34,
+  "skills_in_catalog": 50,
   "results": [
     {
       "id": "r001",
@@ -391,6 +391,182 @@
       "rate": 1,
       "passed": true,
       "note": null
+    },
+    {
+      "id": "r041",
+      "expect": "tdd",
+      "picks": [
+        "tdd",
+        "tdd"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with sdlc: tdd is the red-green loop inside the build, not the gated loop around it"
+    },
+    {
+      "id": "r042",
+      "expect": "debug",
+      "picks": [
+        "debug",
+        "debug"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with shakedown: debug diagnoses a defect, shakedown validates a pull request"
+    },
+    {
+      "id": "r043",
+      "expect": "prototype",
+      "picks": [
+        "prototype",
+        "prototype"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with impact: prototype answers a design question in code, impact shapes a PRD"
+    },
+    {
+      "id": "r044",
+      "expect": "refactor",
+      "picks": [
+        "refactor",
+        "refactor"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with architect: refactor surveys existing code for deepening, architect designs new structure"
+    },
+    {
+      "id": "r045",
+      "expect": "glossary",
+      "picks": [
+        "glossary",
+        "glossary"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with brief: glossary settles domain language, brief places agent rules per tool"
+    },
+    {
+      "id": "r046",
+      "expect": "triage",
+      "picks": [
+        "triage",
+        "triage"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with raise: triage sorts what arrives, raise publishes what we planned"
+    },
+    {
+      "id": "r047",
+      "expect": "wizard",
+      "picks": [
+        "wizard",
+        "wizard"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with deliver: wizard scripts the human-only steps, deliver ships the change"
+    },
+    {
+      "id": "r048",
+      "expect": "research",
+      "picks": [
+        "research",
+        "research"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with recon: research reads external primary sources, recon reads this codebase"
+    },
+    {
+      "id": "r049",
+      "expect": "retro",
+      "picks": [
+        "retro",
+        "retro"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with grit: retro improves the instructions, grit audits whether work is done"
+    },
+    {
+      "id": "r050",
+      "expect": "handoff",
+      "picks": [
+        "handoff",
+        "handoff"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with report: handoff transfers work in progress, report briefs leadership on status"
+    },
+    {
+      "id": "r051",
+      "expect": "questionnaire",
+      "picks": [
+        "questionnaire",
+        "questionnaire"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with grill: questionnaire sends questions outward, grill interrogates the person present"
+    },
+    {
+      "id": "r052",
+      "expect": "wait-what",
+      "picks": [
+        "wait-what",
+        "wait-what"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with teach: wait-what re-pitches one message, teach builds understanding over sessions"
+    },
+    {
+      "id": "r053",
+      "expect": "teach",
+      "picks": [
+        "teach",
+        "teach"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with research: teach builds the learner's understanding, research writes findings to a file"
+    },
+    {
+      "id": "r054",
+      "expect": "freewrite",
+      "picks": [
+        "freewrite",
+        "freewrite"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with outline: freewrite gathers, outline orders"
+    },
+    {
+      "id": "r055",
+      "expect": "outline",
+      "picks": [
+        "outline",
+        "outline"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with draft: outline sets the beats, draft writes the prose"
+    },
+    {
+      "id": "r056",
+      "expect": "draft",
+      "picks": [
+        "draft",
+        "draft"
+      ],
+      "rate": 1,
+      "passed": true,
+      "note": "confusable with press: draft writes the words, press renders an approved document"
     }
   ]
 }

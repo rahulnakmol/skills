@@ -1,8 +1,8 @@
 # Writing
 
-Writing is a charter with no promoted skills yet: planned work covers editorial review, documentation-quality checks, and this repository's own explainer voice.
+Writing ships one sequence in three stages — gather raw material, order it into beats, then render prose — each stage isolating a different way writing goes wrong before style is even judged.
 
-Promoted skills: 0 — charter only, no skills promoted yet.
+Promoted skills: 3.
 
 Full documentation: https://tqnonline.github.io/skills/group/writing/
 

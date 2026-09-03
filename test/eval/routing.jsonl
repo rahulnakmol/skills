@@ -33,3 +33,19 @@
 {"id":"r033","utterance":"this initiative is too big to plan in one sitting, chart the decisions","expect":"chart"}
 {"id":"r034","utterance":"write the practice principles our product decisions answer to","expect":"constitution"}
 {"id":"r035","utterance":"this model is going into a regulated lending decision, what governance applies","expect":"responsible-ai-governance"}
+{"id":"r041","utterance":"write the failing test first for this story, then make it pass","expect":"tdd","note":"confusable with sdlc: tdd is the red-green loop inside the build, not the gated loop around it"}
+{"id":"r042","utterance":"this endpoint throws intermittently and nobody knows why, work out the cause","expect":"debug","note":"confusable with shakedown: debug diagnoses a defect, shakedown validates a pull request"}
+{"id":"r043","utterance":"i want to build something throwaway to see whether this state model feels right","expect":"prototype","note":"confusable with impact: prototype answers a design question in code, impact shapes a PRD"}
+{"id":"r044","utterance":"these modules have grown into each other, find where the seams should go","expect":"refactor","note":"confusable with architect: refactor surveys existing code for deepening, architect designs new structure"}
+{"id":"r045","utterance":"the team uses four different words for the same thing, settle the terminology","expect":"glossary","note":"confusable with brief: glossary settles domain language, brief places agent rules per tool"}
+{"id":"r046","utterance":"a pile of new issues came in overnight, sort them and tell me which are real","expect":"triage","note":"confusable with raise: triage sorts what arrives, raise publishes what we planned"}
+{"id":"r047","utterance":"walk me through provisioning this service by hand, i have to click through their dashboard myself","expect":"wizard","note":"confusable with deliver: wizard scripts the human-only steps, deliver ships the change"}
+{"id":"r048","utterance":"find out what the spec actually guarantees here and write it down with sources","expect":"research","note":"confusable with recon: research reads external primary sources, recon reads this codebase"}
+{"id":"r049","utterance":"we keep making the same correction every run, what should change in the skills themselves","expect":"retro","note":"confusable with grit: retro improves the instructions, grit audits whether work is done"}
+{"id":"r050","utterance":"i am out of context, write up where this stands so someone else can pick it up cold","expect":"handoff","note":"confusable with report: handoff transfers work in progress, report briefs leadership on status"}
+{"id":"r051","utterance":"i cannot decide this alone, turn it into questions for the ops lead to answer","expect":"questionnaire","note":"confusable with grill: questionnaire sends questions outward, grill interrogates the person present"}
+{"id":"r052","utterance":"that explanation did not land for me, say it another way","expect":"wait-what","note":"confusable with teach: wait-what re-pitches one message, teach builds understanding over sessions"}
+{"id":"r053","utterance":"help me actually understand how offline sync works, over a few sessions","expect":"teach","note":"confusable with research: teach builds the learner's understanding, research writes findings to a file"}
+{"id":"r054","utterance":"i have a vague idea for an article and no structure yet, help me get the raw material out","expect":"freewrite","note":"confusable with outline: freewrite gathers, outline orders"}
+{"id":"r055","utterance":"i have a pile of notes, work out the running order and what each beat does","expect":"outline","note":"confusable with draft: outline sets the beats, draft writes the prose"}
+{"id":"r056","utterance":"the beats are settled, now write the actual prose paragraph by paragraph","expect":"draft","note":"confusable with press: draft writes the words, press renders an approved document"}

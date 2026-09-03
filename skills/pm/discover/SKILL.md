@@ -7,6 +7,17 @@ description: User-invoked business problem discovery and root-cause analysis for
 
 Turn a raw business problem into a structured analysis: stakeholders, root causes, classification, success criteria.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: gate
+  verbs: [read, write-repo]
+  scope: owns
+  trace: root-cause
+```
+
 ## When to invoke
 
 - A new business problem, opportunity, or transformation candidate needs structured investigation
@@ -20,6 +31,8 @@ Turn a raw business problem into a structured analysis: stakeholders, root cause
 4. Clarify across the five dimensions and find root cause (`METHOD.md`), questioning in themed rounds by the grill's round protocol (`grill`)
 5. Classify the initiative type and confirm with the user
 6. Write the analysis document and suggest `map` as the next step
+
+Append the trace entry under the `root-cause` kind: the intermediate causes ruled out on the way to the root, the sources that disagreed and how the disagreement was settled, and the initiative type the decision tree excluded. The analysis records the causes that survived.
 
 ## Stop conditions
 

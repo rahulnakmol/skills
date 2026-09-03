@@ -7,6 +7,17 @@ description: User-invoked Product Constitution author and reviewer — principle
 
 Codify what the practice, or one initiative, stands for — the DNA every agent-assisted decision checks against.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: gate
+  verbs: [read, write-repo, publish]
+  scope: owns
+  trace: amendment
+```
+
 ## When to invoke
 
 - No constitution exists yet at `specs/product-constitution.md` (Create mode)
@@ -21,6 +32,8 @@ Codify what the practice, or one initiative, stands for — the DNA every agent-
 4. Co-author: read the current section, ask what changed, revise in two or three rounds, update the summary and the section's `Last reviewed:` date
 5. Review: run a grill session over the constitution's own claims — what held, what the quarter refuted, what the research bets returned
 6. Land every revision as a pull request, never a silent edit, per `INITIATIVE-REPO.md`
+
+Append the trace entry under the `amendment` kind: the principles cut to stay within the limit, and what the quarter refuted in review. The constitution states what the practice believes, not what it considered and rejected, and a refuted principle simply disappears from the text.
 
 ## Stop conditions
 

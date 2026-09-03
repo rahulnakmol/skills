@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { root, read, headings, wordCount } from '../helpers.mjs';
+import { root, read, headings, wordCount, promotedCount } from '../helpers.mjs';
 
 const NEW_SKILLS = [
   { dir: 'skills/pm/chart', name: 'chart', axis: 'user-invoked', refs: ['CHART.md', 'TICKETS.md'] },
@@ -89,7 +89,8 @@ test('the productivity group ships its first skill in charter, README, and wiki'
   assert.ok(existsSync(join(root, 'wiki/Skill-Brief.md')), 'missing wiki/Skill-Brief.md');
   assert.ok(read('wiki/Skill-Brief.md').includes('skills/productivity/brief/SKILL.md'),
     "Skill-Brief.md must link brief's SKILL.md source");
-  assert.ok(/Promoted skills: 1\./.test(read('wiki/Group-Productivity.md')),
-    'Group-Productivity.md must count brief as its one promoted skill');
+  const productivity = promotedCount('productivity');
+  assert.match(read('wiki/Group-Productivity.md'), new RegExp(`Promoted skills: ${productivity}\\.`),
+    `Group-Productivity.md must count all ${productivity} productivity skills, including brief`);
   assert.ok(read('wiki/Home.md').includes('(Group-Productivity)'), 'wiki Home must link Group-Productivity');
 });

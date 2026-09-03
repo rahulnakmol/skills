@@ -7,6 +7,17 @@ description: User-invoked model registry curation. Research provider catalogs, p
 
 Curate the canonical registry every group in this repository routes through — developer and pm alike, not developer-only just because this skill's directory sits under `skills/developer/`. Never silently change production defaults.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: evidence
+  verbs: [read, write-repo, publish]
+  scope: owns
+  trace: none
+```
+
 ## When to invoke
 
 - User runs `/update-models` or monthly automation dispatches
