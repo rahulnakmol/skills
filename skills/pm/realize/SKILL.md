@@ -7,6 +7,17 @@ description: User-invoked benefits realization tracker. Use to maintain the bene
 
 Track whether the initiative actually delivered what the case said it would.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: evidence
+  verbs: [read, write-repo]
+  scope: owns
+  trace: none
+```
+
 ## When to invoke
 
 - An initiative is live and its benefits need tracking against projection

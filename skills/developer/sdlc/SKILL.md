@@ -7,6 +7,17 @@ description: User-invoked full gated SDLC loop with SPEC-TS ledger, human gates,
 
 Run the gated software delivery loop for a scoped change or work item.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: gate
+  verbs: [read, write-repo, write-tracker]
+  scope: owns
+  trace: loop
+```
+
 ## When to invoke
 
 - User asks for full SDLC, gated delivery, or SPEC-TS tracking
@@ -25,7 +36,8 @@ Run the gated software delivery loop for a scoped change or work item.
 2. Walk gates in `LOOP-CONTRACT.md`; record evidence per gate as a grit gate ledger (`grit/LEDGER.md`), one `CHECK:` and one `EXPECT:` per acceptance criterion
 3. At human gates, stop until explicit approval
 4. On security, quality, or reliability findings, call `safeguard` / `operate` adapters via charter skills
-5. Close with Gate 3 outcome evidence and ledger update, carrying the gate ledger's final audit per `grit/AUDIT.md`
+5. A `[sdlc:*]` control token in the request → `DIRECTIVES.md` for what each token does; expand it in the adapter rather than restating gate prose here
+6. Close with Gate 3 outcome evidence and ledger update, carrying the gate ledger's final audit per `grit/AUDIT.md`
 
 ## Stop conditions
 

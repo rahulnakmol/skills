@@ -16,6 +16,7 @@ contract:
   invocation: user
   thesis: gate
   verbs: [read, write-repo]
+  scope: owns
   trace: deepening
 ```
 

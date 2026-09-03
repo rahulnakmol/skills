@@ -36,19 +36,34 @@ An entry that records a discarded approach is worth more than one that records o
 
 ## The contract block
 
-Every skill built on this spine carries one `## Contract` section, a fenced YAML block of four keys, placed directly under the skill's title:
+Every skill built on this spine carries one `## Contract` section, a fenced YAML block of five keys, placed directly under the skill's title:
 
 ```yaml
 contract:
   invocation: model      # model | user — the axis, never both
   thesis: evidence       # gate | evidence | scaffold
   verbs: [read, write-repo]
-  trace: red-green
+  scope: owns            # owns | guest
+  trace: red-green       # a kind, or none
 ```
 
-`invocation` restates the axis in a form the harness can check against the skill's title line. `thesis` names which limb of the repository's promotion test the skill satisfies: `gate` sharpens a human decision at a gate, `evidence` makes delegated work verifiable by leaving an audit artifact, and `scaffold` is what the first two require. `verbs` is the skill's permission surface, drawn from a closed set: `read` reads the repository and its history, `write-repo` writes files in the working tree, `write-tracker` writes to an issue tracker, and `publish` sends anything outward — a comment, a page, a message. A skill declares the narrowest set that lets it work. `trace` is the kind of entry the skill appends, and it is the heading a reader scans for.
+`invocation` restates the axis in a form the harness can check against the skill's title line. `thesis` names which limb of the repository's promotion test the skill satisfies: `gate` sharpens a human decision at a gate, `evidence` makes delegated work verifiable by leaving an audit artifact, and `scaffold` is what the first two require.
 
-The block is short on purpose. It is loaded on every invocation, so each key has to earn its tokens, and four do.
+`verbs` is the skill's permission surface, drawn from a closed set: `read` reads the repository and its history, `write-repo` writes files in the working tree, `write-tracker` writes to an issue tracker, and `publish` sends anything outward — a comment, a page, a message. A skill declares the narrowest set that lets it work.
+
+`scope` says whether the run belongs to this skill. A skill that `owns` a scope is invoked to carry a piece of work end to end, can be interrupted, and writes its own trace into its scope directory. A `guest` runs inside a scope another skill owns — a router, a lookup, a sub-step — and reports its entry for the owning session to record rather than writing one itself. The distinction is not cosmetic: a guest holding only `read` cannot write anything, so without it a contract can declare a trace the skill has no way to produce.
+
+`trace` is the kind of entry the run contributes, or `none`.
+
+## When a trace is warranted, and when it is not
+
+`none` is a claim, not an exemption. It says the run's decisions are recoverable from the artifact the skill's own `## Output contract` names, and it is dishonest wherever that artifact does not in fact carry them.
+
+The test is not whether a skill writes a document. It is whether the discard fits inside that document without deforming it.
+
+Where the artifact's form structurally excludes what was rejected, a trace is warranted. An epic manifest lists the epics that passed. A product constitution lists the principles that survived. A grill round cannot contain the hypothesis it rejected. No amount of care in the document closes that gap, because the shape of the document is what excludes them.
+
+Where the discard is a handful of lines a reader would want beside the conclusion anyway, it belongs in the artifact and not in a second file. One record beats two that can disagree, which is the same argument this document makes against a second state root. A business case with no rejected options is not a business case: its discards are its content, and a trace beside it would restate them less visibly.
 
 ## The replay protocol
 

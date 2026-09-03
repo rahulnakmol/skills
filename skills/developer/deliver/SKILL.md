@@ -7,6 +7,17 @@ description: Model-invoked charter for the delivery lane — continuous integrat
 
 Charter skill for the deliver lane; execution detail in adapters.
 
+## Contract
+
+```yaml
+contract:
+  invocation: model
+  thesis: evidence
+  verbs: [read, write-repo, write-tracker, publish]
+  scope: owns
+  trace: resolution
+```
+
 ## When to invoke
 
 - SDLC gate requires deliver evidence

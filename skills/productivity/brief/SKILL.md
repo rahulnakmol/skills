@@ -7,6 +7,17 @@ description: User-invoked authoring of the rules, definitions, and boundaries a 
 
 Write the brief a team's agents read: what the words mean, what the rules are, and where the detail lives.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: scaffold
+  verbs: [read, write-repo]
+  scope: owns
+  trace: rule
+```
+
 ## When to invoke
 
 - A team is adopting agents and has no written rules, or has rules scattered across chats and personal settings

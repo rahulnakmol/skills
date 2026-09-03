@@ -14,6 +14,7 @@ contract:
   invocation: user
   thesis: evidence
   verbs: [read, write-repo]
+  scope: owns
   trace: draft
 ```
 

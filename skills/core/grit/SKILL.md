@@ -7,6 +7,17 @@ description: User-invoked completion discipline for substantial AI-agent work, b
 
 Write the acceptance-gate ledger before implementation starts, then hold the finished work to it.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: evidence
+  verbs: [read, write-repo]
+  scope: owns
+  trace: ledger
+```
+
 ## When to invoke
 
 - The user asks for completion discipline, or wants to be sure work is actually done, not just reported done

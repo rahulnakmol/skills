@@ -14,7 +14,8 @@ contract:
   invocation: user
   thesis: gate
   verbs: [read, write-tracker]
-  trace: triage
+  scope: owns
+  trace: none
 ```
 
 ## When to invoke

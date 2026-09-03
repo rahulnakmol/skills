@@ -14,6 +14,7 @@ contract:
   invocation: model
   thesis: evidence
   verbs: [read, write-repo]
+  scope: owns
   trace: probe
 ```
 

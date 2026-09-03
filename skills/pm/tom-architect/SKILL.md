@@ -7,6 +7,17 @@ description: User-invoked Target Operating Model architect for enterprise transf
 
 Translate a business transformation into a structured Target Operating Model.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: gate
+  verbs: [read, write-repo]
+  scope: owns
+  trace: scoping
+```
+
 ## When to invoke
 
 - The transformation hat is active and a TOM is mandatory for this initiative (`HATS.md`)

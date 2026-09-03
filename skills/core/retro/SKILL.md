@@ -14,6 +14,7 @@ contract:
   invocation: user
   thesis: gate
   verbs: [read, write-repo, publish]
+  scope: owns
   trace: retro
 ```
 

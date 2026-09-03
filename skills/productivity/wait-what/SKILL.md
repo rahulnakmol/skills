@@ -14,6 +14,7 @@ contract:
   invocation: user
   thesis: scaffold
   verbs: [read]
+  scope: guest
   trace: repitch
 ```
 

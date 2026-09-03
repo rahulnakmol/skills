@@ -7,6 +7,17 @@ description: Model-invoked epic decomposition from a Business Understanding Docu
 
 Carve epics from the Business Understanding Document, or from TOM maturity gaps, and pass every one through DIVE.
 
+## Contract
+
+```yaml
+contract:
+  invocation: model
+  thesis: gate
+  verbs: [read, write-repo]
+  scope: owns
+  trace: dive
+```
+
 ## When to invoke
 
 - `map` has produced an understanding document (product hat) or `tom-architect` has produced a TOM (transformation hat)

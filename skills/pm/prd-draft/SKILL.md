@@ -7,6 +7,17 @@ description: User-invoked PRD drafting and structural validation from an approve
 
 Draft one self-contained PRD per approved epic, then validate its structure — no monolithic documents, no story without a named persona.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: gate
+  verbs: [read, write-repo]
+  scope: owns
+  trace: none
+```
+
 ## When to invoke
 
 - `carve` has produced an approved epic manifest

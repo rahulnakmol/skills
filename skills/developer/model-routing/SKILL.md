@@ -7,6 +7,17 @@ description: Model-invoked lookup of tier and role assignments from the canonica
 
 Resolve which model tier applies to a task node without embedding IDs in other skills — shared infrastructure for every group in this repository, not developer-exclusive.
 
+## Contract
+
+```yaml
+contract:
+  invocation: model
+  thesis: scaffold
+  verbs: [read]
+  scope: guest
+  trace: none
+```
+
 ## When to invoke
 
 - Orchestrator assigns a node (implement, verify, architect, security)

@@ -7,6 +7,17 @@ description: User-invoked business problem discovery and root-cause analysis for
 
 Turn a raw business problem into a structured analysis: stakeholders, root causes, classification, success criteria.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: gate
+  verbs: [read, write-repo]
+  scope: owns
+  trace: root-cause
+```
+
 ## When to invoke
 
 - A new business problem, opportunity, or transformation candidate needs structured investigation

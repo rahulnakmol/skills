@@ -7,6 +7,17 @@ description: User-invoked skill router. Maps intent to the correct developer or 
 
 Route user intent to the right skill in this monorepo.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: scaffold
+  verbs: [read]
+  scope: guest
+  trace: none
+```
+
 ## When to invoke
 
 - User asks "which skill" or describes a goal without naming a skill

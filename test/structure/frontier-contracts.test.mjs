@@ -13,6 +13,7 @@ import { root, read, walk, frontmatter } from '../helpers.mjs';
 const GROUPS = ['core', 'developer', 'pm', 'branding', 'writing', 'productivity'];
 const THESIS_LIMBS = ['gate', 'evidence', 'scaffold'];
 const VERBS = ['read', 'write-repo', 'write-tracker', 'publish'];
+const SCOPES = ['owns', 'guest'];
 
 const DRAFTS = walk('drafts', (p) => p.endsWith('SKILL.md')).map((p) => {
   const parts = p.split('/');
@@ -71,13 +72,13 @@ test('every skill under contract carries a well-formed contract block', () => {
     const contract = parseContract(read(skill.path));
     assert.ok(contract, `${skill.path}: missing a \`\`\`yaml contract:\`\`\` block (see skills/core/TRACE.md)`);
     assert.ok(!contract.malformed, `${skill.path}: unparseable contract line: ${contract.malformed}`);
-    for (const key of ['invocation', 'thesis', 'verbs', 'trace']) {
+    for (const key of ['invocation', 'thesis', 'verbs', 'scope', 'trace']) {
       assert.ok(contract[key], `${skill.path}: contract is missing "${key}"`);
     }
     assert.deepEqual(
       Object.keys(contract).sort(),
-      ['invocation', 'thesis', 'trace', 'verbs'],
-      `${skill.path}: contract carries keys beyond the four TRACE.md defines`,
+      ['invocation', 'scope', 'thesis', 'trace', 'verbs'],
+      `${skill.path}: contract carries keys beyond the five TRACE.md defines`,
     );
   }
 });
@@ -122,7 +123,11 @@ test('every skill under contract declares a trace kind and an invocation axis ma
     assert.match(
       contract.trace,
       /^[a-z][a-z0-9-]*$/,
-      `${skill.path}: trace kind "${contract.trace}" must be a lowercase slug`,
+      `${skill.path}: trace must be a lowercase kind, or "none"`,
+    );
+    assert.ok(
+      SCOPES.includes(contract.scope),
+      `${skill.path}: scope must be "owns" or "guest" (see skills/core/TRACE.md)`,
     );
     assert.ok(
       ['model', 'user'].includes(contract.invocation),
@@ -266,4 +271,38 @@ test('every doctrine document a skill points at exists', () => {
     }
   }
   assert.deepEqual(dangling, [], dangling.join('\n'));
+});
+
+test('a declared trace kind comes with the means to record it', () => {
+  // wait-what declared `trace: repitch` while holding only [read], and triage
+  // declared a kind while holding no repository write. A trace lives at
+  // .grit/<scope>/TRACE.md, so a scope owner needs write-repo to produce one.
+  // Both skills resolved it correctly in prose — the owning session records the
+  // entry — but the contract had no way to say so, and nothing noticed.
+  const wrong = [];
+  for (const skill of UNDER_CONTRACT) {
+    const contract = parseContract(read(skill.path));
+    if (contract.trace === 'none') continue;
+    const verbs = verbList(contract.verbs) ?? [];
+    if (contract.scope === 'owns' && !verbs.includes('write-repo')) {
+      wrong.push(`${skill.path}: owns its scope and declares trace "${contract.trace}", but cannot write one without write-repo`);
+    }
+  }
+  assert.deepEqual(wrong, [], wrong.join('\n'));
+});
+
+test('a guest that reports a trace says so where a reader will see it', () => {
+  // A guest contributes an entry the owning session records. That is a claim
+  // about who writes, so the skill states it rather than leaving a reader to
+  // infer it from the contract block alone.
+  const silent = [];
+  for (const skill of UNDER_CONTRACT) {
+    const body = read(skill.path);
+    const contract = parseContract(body);
+    if (contract.scope !== 'guest' || contract.trace === 'none') continue;
+    if (!/session that owns|owning session|the caller records|for the session to append|reports the trace/i.test(body)) {
+      silent.push(`${skill.path}: is a guest declaring trace "${contract.trace}" but never says the owning session records it`);
+    }
+  }
+  assert.deepEqual(silent, [], silent.join('\n'));
 });

@@ -7,6 +7,17 @@ description: User-invoked Product Constitution author and reviewer — principle
 
 Codify what the practice, or one initiative, stands for — the DNA every agent-assisted decision checks against.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: gate
+  verbs: [read, write-repo, publish]
+  scope: owns
+  trace: amendment
+```
+
 ## When to invoke
 
 - No constitution exists yet at `specs/product-constitution.md` (Create mode)

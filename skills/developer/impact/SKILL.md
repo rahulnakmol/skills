@@ -7,6 +7,17 @@ description: User-invoked idea-to-PRD pipeline with grill loop, value probing, a
 
 Turn ideas into an approved PRD and pipeline handoff.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: gate
+  verbs: [read, write-repo]
+  scope: owns
+  trace: none
+```
+
 ## When to invoke
 
 - New initiative, major feature, or brownfield change needing alignment

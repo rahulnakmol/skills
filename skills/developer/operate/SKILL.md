@@ -9,6 +9,17 @@ Charter skill for the post-release lane — reliability, quality, and maintenanc
 
 The three concerns sit in one charter because they run one loop: each measures the delivered system against the same Design baseline, and each returns its findings to the same backlog through `slice`. The trade-off is a wider charter than a single role holds, so every run states which lanes it covered and which it did not.
 
+## Contract
+
+```yaml
+contract:
+  invocation: model
+  thesis: evidence
+  verbs: [read, write-repo]
+  scope: guest
+  trace: none
+```
+
 ## When to invoke
 
 - An SDLC gate requires reliability, quality, or maintenance evidence

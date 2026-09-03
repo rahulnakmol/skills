@@ -7,6 +7,17 @@ description: User-invoked charting of work too large for one agent session. Turn
 
 Turn work no single session can hold into a chart of decision tickets, then resolve them one at a time until nothing is left to decide.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: gate
+  verbs: [read, write-repo, write-tracker]
+  scope: owns
+  trace: edge
+```
+
 ## When to invoke
 
 - An initiative is too large or too uncertain for `discover` → `map` → `carve` to run in one pass

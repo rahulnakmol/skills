@@ -7,6 +7,17 @@ description: Cross-cutting technical design, ADRs, decomposition. Use at design 
 
 Charter skill for the architect lane; execution detail in adapters.
 
+## Contract
+
+```yaml
+contract:
+  invocation: model
+  thesis: gate
+  verbs: [read, write-repo, write-tracker]
+  scope: guest
+  trace: none
+```
+
 ## When to invoke
 
 - SDLC gate requires architect evidence

@@ -14,6 +14,7 @@ contract:
   invocation: model
   thesis: scaffold
   verbs: [read, write-repo]
+  scope: owns
   trace: wizard
 ```
 
