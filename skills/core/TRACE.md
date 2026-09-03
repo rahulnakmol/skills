@@ -65,6 +65,16 @@ The last two exist because the first four cannot express the two largest capabil
 
 `trace` is the kind of entry the run contributes, or `none`.
 
+## Charter skills and their adapters
+
+Some skills are charters: their procedure names an adapter and defers the execution detail to it, because tool-native bodies live under `adapters/` rather than being restated in every skill. That raises a fair objection — a contract on the charter appears to declare verbs for work the adapter performs, which a reader of the `SKILL.md` alone cannot check.
+
+The objection dissolves once the adapter is read. Every agent adapter carries a `permission` block naming what it may read, edit, and run, and that block is enforced by the tool rather than merely described. It is a far narrower statement than the contract's verbs: a security adapter may deny every edit except two report directories, deny every command except a named list of scanners, and deny access outside the working directory entirely.
+
+So the two are not rivals, and the contract does not move. The skill's verbs are the union of what the skill may do across every tool that runs it; the adapter's permission block is one tool's tightening of that union. A reader who wants the precise surface opens the adapter the procedure names.
+
+The relationship is checked in one direction only, because only one direction is dangerous. **No adapter may grant a capability its skill's contract does not declare.** An adapter permitting writes outside the working directory under a skill that never declared `write-host` is an undeclared capability, and the contract has become a description of something other than what runs. The reverse — an adapter narrower than the contract — is a deliberate per-tool tightening and is correct, so flagging it would punish the safest adapters in the catalog.
+
 ## When a trace is warranted, and when it is not
 
 `none` is a claim, not an exemption. It says the run's decisions are recoverable from the artifact the skill's own `## Output contract` names, and it is dishonest wherever that artifact does not in fact carry them.

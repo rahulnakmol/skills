@@ -358,3 +358,44 @@ test('execute stays narrow: only a skill running commands it did not author hold
       `${skill.path}: declares execute but never says the command comes from data rather than from its own author`);
   }
 });
+
+// A charter names an adapter and defers execution detail to it. The adapter
+// carries a `permission` block the tool enforces, which is narrower than the
+// contract's verbs. The two are compared in one direction only, because only
+// one direction is dangerous: an adapter granting a capability the contract
+// never declared means the contract describes something other than what runs.
+// An adapter narrower than its contract is a deliberate per-tool tightening.
+function adapterGrants(body) {
+  const block = body.match(/^permission:\n([\s\S]*?)^---$/m)?.[1] ?? '';
+  const section = (key) => {
+    const m = block.match(new RegExp(`^  ${key}:\\n((?:    .*\\n)*)`, 'm'));
+    return m ? m[1] : '';
+  };
+  return {
+    edit: /:\s*allow\s*$/m.test(section('edit')),
+    bash: /^\s*"\*":\s*allow\s*$/m.test(section('bash')),
+    external: /^  external_directory:\s*allow\s*$/m.test(block),
+  };
+}
+
+test('no adapter grants a capability its charter does not declare', () => {
+  const undeclared = [];
+  for (const skill of PROMOTED_UNDER_CONTRACT) {
+    const body = read(skill.path);
+    const named = body.match(/Load adapter:\s*`([^`]+)`/)?.[1];
+    if (!named || !named.endsWith('.md')) continue;   // workflow templates carry no permission block
+    if (!existsSync(join(root, named))) continue;
+    const grants = adapterGrants(read(named));
+    const verbs = verbList(parseContract(body).verbs) ?? [];
+    if (grants.edit && !verbs.includes('write-repo')) {
+      undeclared.push(`${skill.path}: ${named} permits edits, but the contract omits write-repo`);
+    }
+    if (grants.external && !verbs.includes('write-host')) {
+      undeclared.push(`${skill.path}: ${named} permits writes outside the working directory, but the contract omits write-host`);
+    }
+    if (grants.bash && !verbs.includes('execute')) {
+      undeclared.push(`${skill.path}: ${named} permits unbounded commands, but the contract omits execute`);
+    }
+  }
+  assert.deepEqual(undeclared, [], undeclared.join('\n'));
+});

@@ -27,7 +27,7 @@ contract:
 
 1. Discover and Define per `DDDD.md` before designing: confirm the PRD's functional and non-functional requirements and their scope boundary; ideate any gap with the user rather than assuming one
 2. Load adapter: `adapters/opencode/agents/architect.md`
-3. Decompose into composable, bounded-domain components; surface maintainability, reliability, and tech-debt tradeoffs to the user via an issue/PR comment or the interactive session, not silently in the diagram
+3. Decompose into composable, bounded-domain components; surface maintainability, reliability, and tech-debt tradeoffs to the user as a comment on the work item, or in the interactive session, not silently in the diagram — the work item rather than a pull request, so the record sits with the decision it belongs to and the skill needs no outward-sending permission
 4. Follow SPEC-TS and human gates in `sdlc/METHOD.md`
 5. Regulated context → `responsible-ai-governance`
 

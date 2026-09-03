@@ -25,7 +25,7 @@ contract:
 
 ## Procedure
 
-1. Design phase per `DDDD.md`: security boundaries and hardening tradeoffs, surfaced to the user rather than assumed
+1. Design phase per `DDDD.md`: security boundaries and hardening tradeoffs, surfaced to the user rather than assumed — as a comment on the work item, which is why this skill declares `write-tracker` and not the outward-sending permission a pull request comment would require
 2. Load adapter: `adapters/opencode/agents/security.md`
 3. Follow SPEC-TS and human gates in `sdlc/METHOD.md`
 4. Regulated context → `responsible-ai-governance`
