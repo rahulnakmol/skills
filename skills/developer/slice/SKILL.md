@@ -7,6 +7,17 @@ description: Model-invoked PRD decomposition into epics, features, stories, and 
 
 Decompose an approved PRD into backlog-ready items.
 
+## Contract
+
+```yaml
+contract:
+  invocation: model
+  thesis: scaffold
+  verbs: [read, write-repo]
+  scope: guest
+  trace: cut
+```
+
 ## When to invoke
 
 - PRD gate G2 signed (`impact/GATES.md`)
@@ -20,6 +31,8 @@ Decompose an approved PRD into backlog-ready items.
 4. Attach operability items per `OPERABILITY.md`
 5. Embed `WORK-ITEM-CONTRACT.md` sections in each item body
 6. Hand off to `raise`
+
+Report the trace entry under the `cut` kind for the session that owns the scope to append: where each capability boundary fell, the decomposition rejected in its favor, and the dependency order chosen. The manifest carries the surviving cut; the owning session records the one that lost.
 
 ## Stop conditions
 

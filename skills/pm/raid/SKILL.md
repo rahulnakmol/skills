@@ -7,6 +7,17 @@ description: User-invoked RAID register maintainer — Risks, Assumptions, Issue
 
 Maintain the four registers that keep an initiative's derailment risks visible, owned, and mitigated.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: evidence
+  verbs: [read, write-repo]
+  scope: owns
+  trace: none
+```
+
 ## When to invoke
 
 - A new risk, assumption, issue, or dependency surfaces during delivery

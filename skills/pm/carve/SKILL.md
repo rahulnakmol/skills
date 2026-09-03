@@ -7,6 +7,17 @@ description: Model-invoked epic decomposition from a Business Understanding Docu
 
 Carve epics from the Business Understanding Document, or from TOM maturity gaps, and pass every one through DIVE.
 
+## Contract
+
+```yaml
+contract:
+  invocation: model
+  thesis: gate
+  verbs: [read, write-repo]
+  scope: owns
+  trace: dive
+```
+
 ## When to invoke
 
 - `map` has produced an understanding document (product hat) or `tom-architect` has produced a TOM (transformation hat)
@@ -21,6 +32,8 @@ Carve epics from the Business Understanding Document, or from TOM maturity gaps,
 5. Grill the manifest before presenting it (`grill`) — a manifest that has not been pressure-tested is a draft, not a commitment
 6. Present the ordered list for user approval; do not write until approved
 7. Write the epic manifest and suggest `prd-draft` as the next step
+
+Append the trace entry under the `dive` kind: the epic candidates rejected or split and the DIVE verdict that decided each, and the basis the manifest was ordered on. The manifest lists the epics that passed, so a rejected candidate appears nowhere and a later session re-proposes it.
 
 ## Stop conditions
 

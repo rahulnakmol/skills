@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { existsSync, lstatSync, mkdtempSync, readdirSync, readlinkSync, rmSync, statSync } from 'node:fs';
+import { copyFileSync, existsSync, lstatSync, mkdirSync, mkdtempSync, readdirSync, readlinkSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { root, read, walk } from '../helpers.mjs';
@@ -63,24 +63,35 @@ test('link-skills.sh links a single skill and no group doctrine', () => {
 // selected without core, leaves the skill list empty instead of the group list.
 // Both empty-array paths have to survive bash 3.2's `set -u`.
 test('link-skills.sh links a charter group with no skills as doctrine only', () => {
-  const withSkills = new Set(SKILLS.map((s) => s.group));
-  const empty = GROUPS.find((g) => !withSkills.has(g));
-  if (!empty) return; // Every group has a promoted skill; nothing to check here.
-
-  const dir = mkdtempSync(join(tmpdir(), 'link-skills-empty-'));
+  // Built against a synthetic root rather than whichever live group happens to
+  // be empty. The previous form found an empty group in the tree and returned
+  // early when there was none, so the first promotion into the last charter
+  // group would have retired this check in silence — the coverage would end on
+  // the day the repository stopped having a spare empty group, not on the day
+  // anyone decided the path no longer needed testing. link-skills.sh resolves
+  // its root from its own location, so a copy in a temporary tree exercises the
+  // real script without touching skills/.
+  const fixture = mkdtempSync(join(tmpdir(), 'link-skills-charter-'));
+  const dir = mkdtempSync(join(tmpdir(), 'link-skills-out-'));
   try {
+    mkdirSync(join(fixture, 'scripts'), { recursive: true });
+    mkdirSync(join(fixture, 'skills/charter'), { recursive: true });
+    copyFileSync(join(root, 'scripts/link-skills.sh'), join(fixture, 'scripts/link-skills.sh'));
+    writeFileSync(join(fixture, 'skills/charter/README.md'), '# Charter\n\nNo skills promoted yet.\n');
+
     const result = spawnSync(
       'bash',
-      [join(root, 'scripts/link-skills.sh'), '--group', empty, '--no-core', '--target', dir],
+      [join(fixture, 'scripts/link-skills.sh'), '--group', 'charter', '--no-core', '--target', dir],
       { encoding: 'utf8' },
     );
-    assert.equal(result.status, 0, `link-skills.sh --group ${empty} failed: ${result.stdout}${result.stderr}`);
-    assert.deepEqual(readdirSync(dir), [`rahulnakmol-${empty}-doctrine`],
+    assert.equal(result.status, 0, `link-skills.sh --group charter failed: ${result.stdout}${result.stderr}`);
+    assert.deepEqual(readdirSync(dir), ['rahulnakmol-charter-doctrine'],
       'a group with no promoted skills must still get its doctrine link, and nothing else');
     assert.match(result.stdout, /Linked 0 skill\(s\) and 1 group doctrine set\(s\)/,
       'an empty skill selection must report zero, not one empty entry');
   } finally {
     rmSync(dir, { recursive: true, force: true });
+    rmSync(fixture, { recursive: true, force: true });
   }
 });
 

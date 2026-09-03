@@ -7,6 +7,17 @@ description: User-invoked interrogation loop for PM artifacts — plain, grill-w
 
 Interrogate a PM artifact until it earns the right to advance, or the user stops.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: gate
+  verbs: [read, write-repo]
+  scope: guest
+  trace: round
+```
+
 ## When to invoke
 
 - An analysis, manifest, case, or PRD is about to reach a gate
@@ -19,6 +30,8 @@ Interrogate a PM artifact until it earns the right to advance, or the user stops
 3. Restate the sharpened scope after each round; offer continue, stop, or sign-off
 4. Before sign-off, run the pre-gate blind-spot checklist (`AGENT-OWNERSHIP.md`)
 5. Record every trade-off accepted by an early stop before the session closes
+
+Report one trace entry per round under the `round` kind for the session that owns the scope to append: the theme pressed, the claim the corpus did not support, and the hypothesis the human rejected. The Trade-offs record carries what stopping cost; a rejected hypothesis cannot appear in the artifact it was rejected from.
 
 ## Stop conditions
 

@@ -49,3 +49,11 @@ export function sectionText(body, heading) {
   }
   return lines.slice(start + 1, end).join('\n');
 }
+
+// The number of promoted skills in a group, read from the tree. A test that
+// asserts a catalog count derives it here rather than hard-coding a number:
+// a hand-typed count must be edited on every promotion, and a test edited to
+// match the new reality has stopped asserting anything about it.
+export function promotedCount(group) {
+  return walk(`skills/${group}`, (p) => p.endsWith('SKILL.md')).length;
+}

@@ -7,6 +7,17 @@ description: User-invoked business case builder. Use to weigh at least two real 
 
 Build the business case the sponsor approves — options, costs, benefits, and the assumption that could break the recommendation.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: gate
+  verbs: [read, write-repo]
+  scope: owns
+  trace: none
+```
+
 ## When to invoke
 
 - An epic manifest or TOM is ready and needs sponsor investment approval

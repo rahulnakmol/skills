@@ -7,6 +7,17 @@ description: User-invoked completion discipline for substantial AI-agent work, b
 
 Write the acceptance-gate ledger before implementation starts, then hold the finished work to it.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: evidence
+  verbs: [read, write-repo, write-host, execute]
+  scope: owns
+  trace: ledger
+```
+
 ## When to invoke
 
 - The user asks for completion discipline, or wants to be sure work is actually done, not just reported done
@@ -21,6 +32,9 @@ Write the acceptance-gate ledger before implementation starts, then hold the fin
 4. Verify with the checker, `scripts/gate-check.mjs`, in order: `--status` to read the ledger without executing anything, then a dry run to see the resolved commands, then `--approve` once a human has read each command, then `--reverify` on returned work. Lint the ledger with `scripts/gate-lint.mjs` before the first run; `grit-gates.yml` is the continuous-integration backstop.
 5. Close with the final audit in `AUDIT.md` — every gate met, unmet, or abandoned, with evidence.
 6. Enforce per tool as described in `HOOKS.md`.
+7. Two capabilities in this skill sit outside the working tree, and both are deliberate. Approvals live at `~/.grit/approved`, outside version control, and the checker refuses to run when that path resolves inside the repository, so a change that edits repository files cannot also grant itself the right to execute. A CHECK is a command the ledger supplies rather than one this skill wrote, and a human reads and approves each one before it runs — approval is consent to run one reviewed command, not a sandbox, because the check holds the ambient access of whoever ran it.
+
+Append the trace entry under the `ledger` kind as the passes run: what each of the four passes found and discarded, and any gate whose CHECK was repaired because it measured the wrong thing. The ledger records the verdict; a gate that went red, was found to be checking the wrong file, and then passed is indistinguishable in it from one that passed first time.
 
 ## Stop conditions
 

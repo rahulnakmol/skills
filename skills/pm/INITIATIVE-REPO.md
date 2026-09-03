@@ -10,6 +10,8 @@ Every initiative repository carries a `specs/` tree at its root, mirroring the d
 
 ## Monorepo mode
 
+Every artifact under `specs/` carries the initiative's prefix, written `{prefix}` in each skill's output contract: the analysis is `specs/{prefix}-analysis.md`, the case `specs/{prefix}-case.md`, the registers and the report packs the same way. The prefix is the initiative's slug — kebab-case, stable once created, and the same string the monorepo mode below uses for its folder — so every file belonging to one initiative sorts together and a reader can tell at a glance which initiative a file serves.
+
 Some organizations run many initiatives out of one repository rather than one repository per initiative. In monorepo mode, each initiative gets its own folder under `initiatives/<initiative-slug>/`, and each folder carries its own complete `specs/` tree exactly as the default mode would. The slug follows an agreed naming convention: kebab-case, stable once created, optionally year-prefixed for portfolios that run the same initiative theme across cycles (`2026-billing-modernization`). One tracker serves the whole monorepo, with per-initiative labels distinguishing which work belongs to which folder — the pickup protocol and the work-item contract apply unchanged.
 
 ## Git LFS

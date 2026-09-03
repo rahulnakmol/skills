@@ -7,6 +7,17 @@ description: User-invoked benefits realization tracker. Use to maintain the bene
 
 Track whether the initiative actually delivered what the case said it would.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: evidence
+  verbs: [read, write-repo]
+  scope: owns
+  trace: none
+```
+
 ## When to invoke
 
 - An initiative is live and its benefits need tracking against projection
@@ -16,7 +27,7 @@ Track whether the initiative actually delivered what the case said it would.
 
 1. Deliver phase per `DDDD.md`: enter every case-projected benefit into the register with its trace back to the case and PRD (`BENEFITS.md`)
 2. Attach at least one leading indicator per benefit
-3. Record actuals as they arrive; compare against `COSTING.md`'s projections on both cost and benefit. Each actual is evidence against the case's projected benefit, and an unmet projection is reported unmet rather than resized to fit.
+3. Record actuals as they arrive; compare against the projections in `case/COSTING.md` on both cost and benefit. Each actual is evidence against the case's projected benefit, and an unmet projection is reported unmet rather than resized to fit.
 4. Roll every benefit up to the north star — efficiency and productivity as transformation value
 5. Where a variance is significant, open it as new work in `discover` or `carve`, with its own case
 

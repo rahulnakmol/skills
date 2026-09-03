@@ -1,23 +1,18 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { read, splitFrontmatter, stripCodeBlocks, stripTags } from './lib.mjs';
+import { read, listMarkdown, splitFrontmatter, stripCodeBlocks, stripTags } from './lib.mjs';
 
 // The plain-language rule, enforced as a test. Scope matches the writing-docs
 // voice rule: every reader-facing page this site ships, minus the doctrine
 // documents under skills/ (those have their own review path).
+// The collection pages are discovered from the tree rather than listed by
+// hand. A page added by a promotion has to be language-checked on the day it
+// ships, not on the day someone remembers to extend an array; the hand-kept
+// list silently exempted every new page from the rule it exists to enforce.
 const SCOPE = [
-  'site/_skills/architect.md', 'site/_skills/arrange.md', 'site/_skills/ask-fde.md', 'site/_skills/ask-pm.md',
-  'site/_skills/brief.md', 'site/_skills/carve.md', 'site/_skills/case.md', 'site/_skills/chart.md',
-  'site/_skills/conduct.md', 'site/_skills/constitution.md', 'site/_skills/deliver.md', 'site/_skills/discover.md',
-  'site/_skills/grill.md', 'site/_skills/grit.md', 'site/_skills/impact.md', 'site/_skills/map.md',
-  'site/_skills/model-routing.md', 'site/_skills/operate.md', 'site/_skills/prd-draft.md', 'site/_skills/prd-review.md',
-  'site/_skills/press.md', 'site/_skills/raid.md', 'site/_skills/raise.md', 'site/_skills/realize.md',
-  'site/_skills/recon.md', 'site/_skills/report.md', 'site/_skills/responsible-ai-governance.md',
-  'site/_skills/roadmap.md', 'site/_skills/safeguard.md', 'site/_skills/sdlc.md', 'site/_skills/shakedown.md',
-  'site/_skills/slice.md', 'site/_skills/tom-architect.md', 'site/_skills/update-models.md',
-  'site/_groups/branding.md', 'site/_groups/core.md', 'site/_groups/developer.md', 'site/_groups/pm.md',
-  'site/_groups/productivity.md', 'site/_groups/writing.md',
-  'site/_journeys/deliver-with-evidence.md', 'site/_journeys/run-a-product-org.md',
+  ...listMarkdown('site/_skills').map((f) => `site/_skills/${f}`),
+  ...listMarkdown('site/_groups').map((f) => `site/_groups/${f}`),
+  ...listMarkdown('site/_journeys').map((f) => `site/_journeys/${f}`),
   'site/leaders.md', 'site/tools.md', 'site/how-it-fits.md', 'site/example.md',
   'site/index.html', 'site/404.html',
 ];

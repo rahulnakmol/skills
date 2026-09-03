@@ -7,6 +7,17 @@ description: Model-invoked publish of sliced backlog to GitHub, Linear, or Azure
 
 Publish work items to the configured tracker.
 
+## Contract
+
+```yaml
+contract:
+  invocation: model
+  thesis: scaffold
+  verbs: [read, write-tracker]
+  scope: guest
+  trace: none
+```
+
 ## When to invoke
 
 - `slice` produced contract-complete items

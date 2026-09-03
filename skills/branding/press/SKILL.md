@@ -9,6 +9,17 @@ Render an approved markdown document into a branded artifact without changing a 
 
 The sign-off is not press's job. Whoever owns the document decides it is ready — the author, the reviewer, or the process that produced it — and the caller confirms that before asking for a render. Press refuses nothing on its own authority except an input it cannot read, or a palette it was explicitly given and cannot parse. A renderer that guessed at approval would either block legitimate work or give false assurance, and it has evidence for neither.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: scaffold
+  verbs: [read, write-repo]
+  scope: guest
+  trace: none
+```
+
 ## When to invoke
 
 - A document is signed off and someone outside the working repository needs to read it

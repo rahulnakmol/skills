@@ -7,6 +7,17 @@ description: User-invoked PRD quality reviewer using the 11-Star Experience Fram
 
 Score a PRD's ambition and completeness — the score informs, a human approves.
 
+## Contract
+
+```yaml
+contract:
+  invocation: user
+  thesis: gate
+  verbs: [read, write-repo]
+  scope: guest
+  trace: none
+```
+
 ## When to invoke
 
 - A PRD has passed the structural validation `prd-draft` runs (`prd-draft/VALIDATION.md`)

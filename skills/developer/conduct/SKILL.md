@@ -7,6 +7,17 @@ description: Model-invoked routing for work that builds or changes software. Dec
 
 Select execution shape and route work across skills and adapters.
 
+## Contract
+
+```yaml
+contract:
+  invocation: model
+  thesis: scaffold
+  verbs: [read]
+  scope: guest
+  trace: none
+```
+
 ## When to invoke
 
 - Task spans multiple gates or contexts

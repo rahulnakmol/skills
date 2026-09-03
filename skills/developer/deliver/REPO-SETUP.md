@@ -22,6 +22,15 @@ The SDLC skills do not assume a target repository is ready for agent-driven deli
 
 - `pr-shakedown.yml` (from `skills/developer/shakedown/`) is installed under `.github/workflows/`, dispatch-only until the repository adds an `ANTHROPIC_API_KEY` secret and deliberately enables per-pull-request triggers.
 
+## Commit-time guardrails
+
+- A pre-commit hook runs formatting, type checking, and the fast subset of the tests before a commit is recorded. It applies formatting rather than reporting it: a hook that fails on formatting it could have fixed spends the developer's time on work the tool was already able to do itself.
+- The hook runs only what is fast — seconds, not minutes. This is the real trade-off, and it is worth stating plainly: a hook that runs the full suite gets disabled by frustrated developers within a week, which leaves the repository with no commit-time check at all. The slow checks stay in continuous integration, where waiting is expected and no one is blocked at the keyboard.
+- The hooks are installed from the repository rather than from one developer's machine (`core.hooksPath`, or the hook manager's install step run at setup). A hook that lives only in a single clone's `.git/hooks` protects only that clone.
+- Where agents operate in the repository, destructive git operations are blocked before they execute: force pushes, hard resets, `git clean -fd`, branch deletion, and history rewrites on shared branches.
+- That guardrail belongs at the point of execution, not in instructions. An agent that can rewrite history can destroy work that was never pushed anywhere, and that work is unrecoverable — no remote holds a copy, and no review catches it afterward. An instruction the agent may or may not follow is guidance, not a control.
+- A block states why the command was refused and what to do instead. A guardrail that only refuses gets bypassed, because the fastest way past it is to turn it off; a message that names the safe alternative — a revert commit in place of a hard reset, a new branch in place of a force push, `git stash` in place of `clean -fd` — leaves the operator with a path forward and the guardrail intact.
+
 ## How the skills apply this
 
 - `sdlc` treats this checklist as a prerequisite: it reports what is missing before walking the gates, rather than discovering mid-loop that a label or an extension does not exist.
