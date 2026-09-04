@@ -15,10 +15,11 @@ const TABLE = 'test/eval/routing.jsonl';
 const RUNNER = 'test/eval/run-routing.mjs';
 const WORKFLOW = '.github/workflows/eval.yml';
 
-// Routers are deliberately absent from the table: a case expecting `ask-fde` or
-// `ask-pm` would be scoring a fallback, which is the opposite of what routing
-// accuracy means here.
-const ROUTERS = new Set(['ask-fde', 'ask-pm']);
+// Routing intermediaries are deliberately absent from the table. A case
+// expecting `ask-fde` or `ask-pm` would score a fallback. `branding-system` is
+// reached through a selected theme skill, so routing a user to it would bypass
+// the profile choice its contract requires.
+const ROUTING_INTERMEDIARIES = new Set(['ask-fde', 'ask-pm', 'branding-system']);
 
 function promotedSkills() {
   const out = [];
@@ -50,9 +51,9 @@ test('the routing table is well formed and every case names a real skill', () =>
   }
 });
 
-test('every promoted skill that is not a router has at least one routing case', () => {
+test('every directly selectable skill has at least one routing case', () => {
   const covered = new Set(cases().map((c) => c.expect));
-  const missing = promotedSkills().filter((s) => !ROUTERS.has(s) && !covered.has(s));
+  const missing = promotedSkills().filter((s) => !ROUTING_INTERMEDIARIES.has(s) && !covered.has(s));
   assert.deepEqual(missing, [],
     `these skills have no routing case, so nothing would notice if they stopped being selectable: ${missing.join(', ')}`);
 });
@@ -103,7 +104,7 @@ test('a single-case run does not overwrite the full scorecard', () => {
   assert.equal(help.status, 0);
 });
 
-test('committed scorecards are internally complete historical records', () => {
+test('committed scorecards are internally complete historical catalog runs', () => {
   const dir = join(root, 'test/eval/results');
   const cards = readdirSync(dir).filter((f) => f.endsWith('.json'));
   assert.ok(cards.length, 'at least one scorecard must be committed as a baseline');
@@ -115,6 +116,7 @@ test('committed scorecards are internally complete historical records', () => {
     assert.equal(data.passed + data.failed, data.cases,
       `${card} pass and fail counts do not account for every recorded case.`);
     const seen = new Set();
+    const covered = new Set();
     for (const result of data.results) {
       assert.ok(!seen.has(result.id), `${card} records case ${result.id} more than once`);
       seen.add(result.id);
@@ -122,6 +124,9 @@ test('committed scorecards are internally complete historical records', () => {
       assert.ok(current, `${card} records ${result.id}, which no longer exists in the routing table`);
       assert.equal(result.expect, current.expect,
         `${card} measured ${result.id} against ${result.expect}, but the current table expects ${current.expect}`);
+      covered.add(result.expect);
     }
+    assert.ok(covered.size >= data.skills_in_catalog - ROUTING_INTERMEDIARIES.size,
+      `${card} is a partial scorecard: it covers ${covered.size} skills from a ${data.skills_in_catalog}-skill catalog`);
   }
 });

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -95,6 +96,15 @@ if (existsSync(fixtures)) {
     const markers = join(fixtures, ent, 'MARKERS.json');
     if (!existsSync(markers)) errors.push(`fixture ${ent}: missing MARKERS.json`);
   }
+}
+
+const brandProfiles = spawnSync(
+  process.execPath,
+  [join(root, 'skills/branding/branding-system/scripts/validate-profiles.mjs')],
+  { cwd: root, encoding: 'utf8' },
+);
+if (brandProfiles.status !== 0) {
+  errors.push(`branding profile validation failed:\n${brandProfiles.stdout}${brandProfiles.stderr}`.trim());
 }
 
 if (errors.length) {

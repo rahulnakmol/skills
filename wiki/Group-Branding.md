@@ -1,8 +1,8 @@
 # Branding
 
-Branding applies an identity to what an agent produces; press renders approved markdown into a branded page with a clickable table of contents, and a PDF.
+Branding applies one verbal, visual, accessible, physical, and motion system across product UI, documents, print, environments, and video.
 
-Promoted skills: 1.
+Promoted skills: 8.
 
 Full documentation: https://tqnonline.github.io/skills/group/branding/
 

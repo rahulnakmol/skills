@@ -41,6 +41,12 @@ contract:
    - production, reliability, quality, or maintenance → `operate`
    - models → `update-models` / `model-routing`
    - governance → `responsible-ai-governance`
+   - natural, forest-led branding → `everforest-branding`
+   - pastel branding → `catppuccin-branding`
+   - Anthropic-inspired branding, or an OpenAI option → `ai-branding`
+   - warm retro-modern branding → `gruvbox-branding`
+   - cool, spacious branding → `nord-branding`
+   - blue-and-gold light or dark branding → `solarized-branding`
    - PDF → `press`
    - incoming issues or external pull requests to sort → `triage`
    - a setup step only a human can perform, in a dashboard the agent cannot reach → `wizard`

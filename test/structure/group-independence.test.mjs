@@ -43,13 +43,14 @@ test('no two promoted skills share a directory basename', () => {
 test('link-skills.sh links a single skill and no group doctrine', () => {
   const dir = mkdtempSync(join(tmpdir(), 'link-skills-one-'));
   try {
-    const skill = SKILLS[0].name;
-    const result = spawnSync('bash', [join(root, 'scripts/link-skills.sh'), '--skill', skill, '--target', dir],
+    const skill = SKILLS.find(({ rel }) => !/^requires:/m.test(read(`${rel}/SKILL.md`)));
+    assert.ok(skill, 'the fixture needs one promoted skill without a declared dependency');
+    const result = spawnSync('bash', [join(root, 'scripts/link-skills.sh'), '--skill', skill.name, '--target', dir],
       { encoding: 'utf8' });
     assert.equal(result.status, 0, `link-skills.sh --skill failed: ${result.stdout}${result.stderr}`);
 
     const entries = readdirSync(dir);
-    assert.deepEqual(entries, [`rahulnakmol-${skill}`],
+    assert.deepEqual(entries, [`rahulnakmol-${skill.name}`],
       'a lone --skill must link exactly the one skill it names');
     assert.ok(lstatSync(join(dir, entries[0])).isSymbolicLink());
     assert.match(result.stdout, /Linked 1 skill\(s\) and 0 group doctrine set\(s\)/,

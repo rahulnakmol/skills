@@ -72,6 +72,7 @@ Rendered: headings, paragraphs, bold, italic, inline code, fenced code blocks, o
 
 ## Sibling skills
 
-Press is the only skill in the branding group today, and it depends on no other
-group. It renders the markdown file it is handed, whatever produced that file,
-so it installs and runs on its own.
+Press remains a standalone renderer and depends on no other group. The six
+theme skills call `branding-system`, whose starter kit writes a compatible
+`press-palette.md` for this renderer. Press still renders only the approved
+markdown it is handed and never decides the identity or edits the source.
