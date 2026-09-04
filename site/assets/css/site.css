@@ -385,7 +385,7 @@ main#page-body { display: block; }
   color: var(--ink);
 }
 
-.skill-content { padding: 36px 44px 48px; display: flex; flex-direction: column; gap: 26px; max-width: 860px; }
+.skill-content { padding: 36px 44px 48px; display: flex; flex-direction: column; gap: 26px; max-width: 860px; min-width: 0; }
 .breadcrumb { display: flex; align-items: center; gap: 10px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
 .breadcrumb .is-current { color: var(--ink); }
 .skill-description { font-size: 17px; line-height: 1.55; color: var(--muted); max-width: 640px; }
@@ -625,6 +625,8 @@ main#page-body { display: block; }
   .wrap, .hero, .section, .group-header, .group-content, .journey-header, .journey-content, .journey-rail, .journey-cards {
     padding-left: 20px; padding-right: 20px;
   }
+  .skill-content { padding: 32px 20px 56px; }
+  .lens-panel { grid-template-columns: 1fr; }
   .site-nav { padding: 0 16px; }
   .site-nav-links { display: none; }
   .card-grid, .role-grid, .journey-cards { grid-template-columns: 1fr; }

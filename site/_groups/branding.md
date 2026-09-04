@@ -3,7 +3,7 @@ layout: group
 name: branding
 group: branding
 title: "Branding: One Identity Across Every Document"
-description: "Branding applies an identity to what an agent produces; its first skill, press, renders an approved document into a self-contained, branded page and PDF."
+description: "Branding applies an identity to what an agent produces; press renders approved markdown into a branded page with a clickable table of contents, and a PDF."
 ---
 
 You finish a document that took real work to get right, and then you have to decide how someone outside your team will read it. Pasted into a slide, screenshotted from an editor, or opened as raw text a code host renders in monospace — none of those was really a choice, only whatever was fastest that day. Take QuenServe's epic E1: its release note clears sign-off, and someone still has to turn it into the branded page stakeholders actually read. Branding answers that question once, as a set of tokens in a file, instead of by hand on every document you send. You edit the file, not the habit.
@@ -30,8 +30,8 @@ Getting the analysis right is the hard part, and by the time a document reaches 
 `press` is the fix, and the numbers behind it are checkable right now, not asserted.
 
 - **Ten color tokens, one file.** `PALETTE.md`'s machine-readable block names every color the renderer touches — page, surface, text, heading, muted, accent, border, and three surfaces reserved for code and quotes.
-- **One script, two artifacts.** `node skills/branding/press/scripts/render.mjs --in doc.md --out artifact.html` writes a self-contained HTML page, and a PDF whenever a headless browser is present on the machine that runs it.
-- **Deterministic, checked moments ago.** The shipped fixture renders to 4,953 bytes, checksum `52d153256fb9320635ae07141a53f0991736e7ff1bf3197e052ef046c846d091`, and the same input and palette will always reproduce that exact number.
+- **One script, two artifacts.** `node skills/branding/press/scripts/render.mjs --in doc.md --out artifact.html` writes a self-contained HTML page with a clickable table of contents, and a PDF whenever a headless browser is present.
+- **Deterministic, checked moments ago.** The shipped fixture renders to 6,253 bytes, checksum `23facfa199e83a32b57fa0191e902b25fa43909153b8aa690bc1532e774129fa`, and the same input and palette will always reproduce that exact number.
 
 Branding is one skill deep today, and its charter is wider than what has shipped. The group's stated direction reaches into tone of voice and presentation narratives that no skill here yet covers; only document rendering is built. `press` reads every color from a file, never from a value typed into the renderer itself — the concrete choice that makes a house style possible without touching code. A palette you can edit outlives a renderer you would otherwise have to rewrite.
 

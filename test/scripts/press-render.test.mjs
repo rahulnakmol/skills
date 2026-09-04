@@ -88,10 +88,18 @@ test('every supported markdown construct reaches the HTML', () => {
     assert.equal(result.status, 0, `expected exit 0, got ${result.status}\n${result.stdout}${result.stderr}`);
 
     // Headings, one per level the contract names.
-    assert.match(html, /<h1>Quarterly Platform Review<\/h1>/);
-    assert.match(html, /<h2>Findings<\/h2>/);
-    assert.match(html, /<h3>Throughput<\/h3>/);
-    assert.match(html, /<h4>Method<\/h4>/);
+    assert.match(html, /<h1 id="section-quarterly-platform-review">Quarterly Platform Review<\/h1>/);
+    assert.match(html, /<h2 id="section-findings">Findings<\/h2>/);
+    assert.match(html, /<h3 id="section-throughput">Throughput<\/h3>/);
+    assert.match(html, /<h4 id="section-method">Method<\/h4>/);
+
+    // The table of contents follows the document hierarchy and points at the
+    // generated heading ids. The title heading is not repeated as a section.
+    assert.match(html, /<nav class="press-toc" aria-labelledby="press-toc-title">/);
+    assert.match(html, /<h2 class="press-toc-title" id="press-toc-title">Contents<\/h2>/);
+    assert.match(html, /<a href="#section-findings">Findings<\/a>[\s\S]*<ol>[\s\S]*<a href="#section-throughput">Throughput<\/a>[\s\S]*<ol>[\s\S]*<a href="#section-method">Method<\/a>/);
+    assert.doesNotMatch(html, /press-toc[\s\S]*href="#section-quarterly-platform-review"/,
+      'the document title must not be repeated in the table of contents');
 
     // Paragraph with inline emphasis, code, and a link.
     assert.match(html, /<strong>bold text<\/strong>/);
@@ -123,6 +131,32 @@ test('every supported markdown construct reaches the HTML', () => {
     assert.doesNotMatch(html, /<link\b/, 'the HTML must not link an external stylesheet');
     assert.doesNotMatch(html, /<script\b/, 'the HTML must not carry script');
     assert.match(html, /<style>/, 'the stylesheet must be inlined');
+    assert.match(html, /@media screen and \(max-width: 640px\)[\s\S]*pre \{ white-space: pre-wrap; overflow-wrap: anywhere; \}/,
+      'narrow screens must wrap long code inside the document rather than clipping it');
+  });
+});
+
+test('duplicate and formatted headings receive safe, stable, unique anchors', () => {
+  withTempDir((dir) => {
+    const input = join(dir, 'headings.md');
+    writeFileSync(input, [
+      '# Review',
+      '',
+      '## **API** [limits](https://example.com)',
+      '',
+      '## API limits',
+      '',
+      '## <script>alert(1)</script>',
+      '',
+    ].join('\n'), 'utf8');
+    const { result, html } = renderToTemp(dir, input, ['--html-only']);
+    assert.equal(result.status, 0, result.stderr);
+    assert.match(html, /id="section-api-limits"/);
+    assert.match(html, /id="section-api-limits-2"/);
+    assert.match(html, /id="section-script-alert-1-script"/);
+    assert.equal((html.match(/href="#section-api-limits"/g) ?? []).length, 1);
+    assert.equal((html.match(/href="#section-api-limits-2"/g) ?? []).length, 1);
+    assert.ok(!/<script\b/i.test(html), 'heading text must remain escaped when anchors are added');
   });
 });
 

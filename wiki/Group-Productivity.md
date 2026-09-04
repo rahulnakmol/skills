@@ -1,8 +1,8 @@
 # Productivity
 
-Productivity automates workflows worth not repeating by hand; its first skill, brief, writes the rules an agent actually reads, placed per tool surface.
+Productivity holds six conversation-level workflows that preserve context, reach human judgment, repair understanding, and make established structure visible.
 
-Promoted skills: 5.
+Promoted skills: 6.
 
 Full documentation: https://tqnonline.github.io/skills/group/productivity/
 

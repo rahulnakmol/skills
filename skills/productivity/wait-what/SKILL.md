@@ -61,6 +61,7 @@ open: <what remains unclear, or none>
 
 ## Sibling skills
 
+- `spotlight` — use when the explanation may be sound but its structure needs a visual view; wait-what diagnoses failed wording
 - `teach` — use when the gap is a missing prerequisite rather than a failed explanation, because a re-pitch cannot substitute for a lesson
 - `brief` — where one term fails message after message, define it once where the team's agents read it rather than re-pitching it each time
 - `core/TRACE.md` — defines the `repitch` kind this run reports and the session appends

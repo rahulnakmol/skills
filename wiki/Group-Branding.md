@@ -1,6 +1,6 @@
 # Branding
 
-Branding applies an identity to what an agent produces; its first skill, press, renders an approved document into a self-contained, branded page and PDF.
+Branding applies an identity to what an agent produces; press renders approved markdown into a branded page with a clickable table of contents, and a PDF.
 
 Promoted skills: 1.
 

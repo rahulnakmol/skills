@@ -1,6 +1,6 @@
 ---
 name: press
-description: Render an approved markdown document into a branded, self-contained HTML page and a PDF — a product requirements document, a board or leadership pack, a decision record, a research summary, a runbook. User-invoked. Triggers include "turn this into a branded PDF", "render the doc for stakeholders", "make this shareable", "apply our palette to this document", "produce the PDF for sign-off", and "re-render the doc, it changed".
+description: Render an approved markdown document into a branded, self-contained HTML page with a clickable table of contents, and a PDF — a product requirements document, board pack, decision record, research summary, or runbook. User-invoked. Triggers include "turn this into a branded PDF", "render the doc for stakeholders", "make this shareable", "apply our palette to this document", and "re-render the doc, it changed".
 ---
 
 # Press (user-invoked)
@@ -37,8 +37,9 @@ contract:
    ```
 
    Add `--palette <file>` for a branded copy of the tokens, `--html-only` when HTML is the deliverable, `--title <text>` to override the document's first heading, and `--help` for every option and exit code. The script has no dependencies beyond Node 20.
-4. Read what the run reports. It prints the path, byte size, and checksum of each artifact it wrote, and states plainly when an artifact it was asked for does not exist.
-5. Hand back the artifact paths and their checksums. Never edit the source document to make it render better; a rendering problem is fixed in the renderer or the palette.
+4. Open the HTML and check its generated table of contents. Each section heading must have a stable, unique anchor, and each contents link must move to the matching section. A document with no section headings omits the empty contents block.
+5. Read what the run reports. It prints the path, byte size, and checksum of each artifact it wrote, and states plainly when an artifact it was asked for does not exist.
+6. Hand back the artifact paths and their checksums. Never edit the source document to make it render better; a rendering problem is fixed in the renderer or the palette.
 
 ## Stop conditions
 
@@ -53,8 +54,8 @@ contract:
 ```yaml
 artifacts:
   - path: artifact.html
-    bytes: 4953
-    sha256: "52d153256fb9320635ae07141a53f0991736e7ff1bf3197e052ef046c846d091"
+    bytes: 6253
+    sha256: "23facfa199e83a32b57fa0191e902b25fa43909153b8aa690bc1532e774129fa"
   - path: artifact.pdf
     bytes: 20418
     sha256: "9f2c1d40e8b7a35f6c0e91d2b4a87f3e15c6d820a4e93b71fd5062c8ae14b7d3"
@@ -65,7 +66,7 @@ exit: 0
 
 An exit of `1` means the HTML was written and a requested PDF was not; the run says why, and no file named `.pdf` exists. An exit of `2` is a usage error or an input that could not be read.
 
-The HTML carries no external stylesheet, no script, and no fetched font, so it opens anywhere. Rendering is deterministic: the same input, palette, and title produce the same bytes, so two runs reporting different checksums mean the source changed.
+The HTML carries no external stylesheet, no script, and no fetched font, so it opens anywhere. Its table of contents is plain anchor markup derived from level-two through level-six headings. Duplicate headings receive numbered anchors. Rendering is deterministic: the same input, palette, and title produce the same bytes, so two runs reporting different checksums mean the source changed.
 
 Rendered: headings, paragraphs, bold, italic, inline code, fenced code blocks, ordered and unordered lists including nested lists, tables with column alignment, blockquotes, links, and horizontal rules. Document text is escaped, so markup written inside the document is shown to the reader rather than executed, and a link target that is not http, https, mailto, or tel keeps its words and loses its anchor. Not rendered: images, raw HTML passed through, and footnotes.
 

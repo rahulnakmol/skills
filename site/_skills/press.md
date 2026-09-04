@@ -2,7 +2,7 @@
 layout: skill
 name: press
 title: "Press: Branded Documents From Approved Text"
-description: "Press renders an approved markdown document into a self-contained, branded HTML page and PDF, reading every color, font, and measurement from a palette file."
+description: "Press renders approved markdown into a self-contained, branded HTML page with a clickable table of contents, and a PDF."
 group: branding
 invocation: user-invoked
 scenario: "Rendering QuenServe epic E1's signed release note into the branded page stakeholders read"
@@ -23,18 +23,20 @@ lens:
 
 ## What it does
 
-Press turns an approved markdown document into a branded, self-contained artifact — an HTML page always, and a PDF when a headless browser is available on the machine that runs it. It is the branding group's one shipped skill: identity, a company's or a person's, applied to what an agent produces, starting with the document a reader outside the team actually opens. "The sign-off is not press's job." Whoever owns the document — the author, the reviewer, or the process that produced it — decides it is ready; press renders whatever it is handed and never edits a word of the source to make it look better.
+Press turns an approved markdown document into a branded, self-contained artifact — an HTML page with a clickable table of contents, and a PDF when a headless browser is available on the machine that runs it. It is the branding group's one shipped skill: identity, a company's or a person's, applied to what an agent produces, starting with the document a reader outside the team actually opens. "The sign-off is not press's job." Whoever owns the document — the author, the reviewer, or the process that produced it — decides it is ready; press renders whatever it is handed and never edits a word of the source to make it look better.
 
 <div class="step-flow">
   <div class="step"><span class="step-num">1</span><span class="step-label">Confirm the input</span><span class="step-text">Press renders what it is handed; it never renders from memory or from a summary of a document.</span></div>
   <div class="step"><span class="step-num">2</span><span class="step-label">Choose the palette</span><span class="step-text">The shipped default, or a copy edited for a house style and passed with --palette.</span></div>
   <div class="step"><span class="step-num">3</span><span class="step-label">Run the renderer</span><span class="step-text">render.mjs is plain Node with no dependencies, so the command runs the same way anywhere.</span></div>
-  <div class="step"><span class="step-num">4</span><span class="step-label">Read what it reports</span><span class="step-text">The path, byte size, and checksum of each artifact written, or a plain statement of what is missing.</span></div>
-  <div class="step"><span class="step-num">5</span><span class="step-label">Hand back the artifacts</span><span class="step-text">A rendering problem is fixed in the renderer or the palette, never by editing the source document.</span></div>
+  <div class="step"><span class="step-num">4</span><span class="step-label">Check the contents</span><span class="step-text">Each generated link must move to the matching section, including repeated heading labels.</span></div>
+  <div class="step"><span class="step-num">5</span><span class="step-label">Read what it reports</span><span class="step-text">The path, byte size, and checksum of each artifact written, or a plain statement of what is missing.</span></div>
+  <div class="step"><span class="step-num">6</span><span class="step-label">Hand back the artifacts</span><span class="step-text">A rendering problem is fixed in the renderer or the palette, never by editing the source document.</span></div>
 </div>
 
 <ul class="benefits">
   <li>Rendering is deterministic: the same input, palette, and title always produce the same checksum, so a document's origin can be checked rather than assumed.</li>
+  <li>The HTML derives a nested table of contents from section headings, giving each heading a stable, unique anchor without adding JavaScript.</li>
   <li>Every color, font, and page measurement comes from one palette file, so branding a whole document set is a data change, not a rewrite of the renderer.</li>
   <li>Document text is escaped before it reaches the page, and a link whose target is not http, https, mailto, or tel keeps its words and loses its anchor.</li>
   <li>A missing artifact is reported as missing, in plain text on the run's own output — never renamed or described as a finished run.</li>
@@ -146,7 +148,7 @@ No palette was named, so press reads its own shipped default, and the run below 
 
 <pre><code><span class="tok-comment">$ node skills/branding/press/scripts/render.mjs --in test/fixtures/press/release-notes-v0-7-0.md --out v0.7.0.html --title "tqnonline/skills v0.7.0"</span>
 press: HTML v0.7.0.html
-<span class="tok-ok">press:   4778 bytes  sha256 e7b852648bf8c9535c7220122a6488d81e1b256fda6acc4307bd557afcfa4409</span>
+<span class="tok-ok">press:   5768 bytes  sha256 e2c03741d9fefe0a25e1ddc778d397361db184218f7a84ffbaaed9ce978892ec</span>
 <span class="tok-warn">press: no headless browser found; the PDF step was skipped</span>
 press:   searched PUPPETEER_EXECUTABLE_PATH, CHROME_PATH, then PATH for chromium, chromium-browser, google-chrome, google-chrome-stable
 press:   the HTML above is complete and can be printed from any browser
@@ -158,7 +160,7 @@ The renderer's own output contract in `SKILL.md` documents this identical shape 
 
 <pre><code><span class="tok-comment">$ node skills/branding/press/scripts/render.mjs --in test/fixtures/press/document.md --out press-demo.html</span>
 press: HTML press-demo.html
-<span class="tok-ok">press:   4953 bytes  sha256 52d153256fb9320635ae07141a53f0991736e7ff1bf3197e052ef046c846d091</span>
+<span class="tok-ok">press:   6253 bytes  sha256 23facfa199e83a32b57fa0191e902b25fa43909153b8aa690bc1532e774129fa</span>
 press: no headless browser found; the PDF step was skipped
 press:   searched PUPPETEER_EXECUTABLE_PATH, CHROME_PATH, then PATH for chromium, chromium-browser, google-chrome, google-chrome-stable
 press:   the HTML above is complete and can be printed from any browser
@@ -174,7 +176,7 @@ The same discipline governs QuenServe's E1 announcement: an artifact that exists
 <div class="compare-card">
 <div class="compare-card-head">A good run ends like this</div>
 <pre><code><span class="tok-ok">press: HTML</span> v0.7.0.html
-<span class="tok-ok">press:   4778 bytes  sha256 e7b852648bf8c9535c7220122a6488d81e1b256fda6acc4307bd557afcfa4409</span>
+<span class="tok-ok">press:   5768 bytes  sha256 e2c03741d9fefe0a25e1ddc778d397361db184218f7a84ffbaaed9ce978892ec</span>
 <span class="tok-warn">press: PDF NOT PRODUCED</span>  <span class="tok-comment">no headless browser found — reported, not hidden</span></code></pre>
 <div class="compare-card-note">Every artifact that was asked for either exists, checksummed against exactly this input and palette, or is reported missing in plain words. Only then is the render handed back.</div>
 </div>
@@ -231,6 +233,15 @@ The renderer substitutes its own built-in fallback for that one token and names 
 <div class="qa-body">
 
 No. SKILL.md's output contract names three things that are not rendered: images, raw HTML passed through, and footnotes. Document text is escaped instead, so markup written inside a document is shown to the reader as text rather than executed as a live tag.
+
+</div>
+</details>
+
+<details class="qa">
+<summary>How does the table of contents handle repeated headings?</summary>
+<div class="qa-body">
+
+Press derives anchors from level-two through level-six headings. The first heading named `Findings` receives `section-findings`; a later heading with the same label receives `section-findings-2`. The contents links use those exact anchors, so repeated labels remain separate destinations. A document with no section headings gets no empty contents block.
 
 </div>
 </details>
