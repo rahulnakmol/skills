@@ -2,4 +2,4 @@
 
 Delightful automations: the personal and team workflows worth never doing by hand again. Skills grow one at a time, each earning its place by being used.
 
-One skill has shipped. `brief` writes the rules, definitions, and boundaries a team's AI agents read, and places each part in the file the tool actually loads — Claude Code, Claude Desktop, Cowork, OpenCode, Codex, Cursor, and Copilot each read a different one, and a rule in the wrong file changes nothing.
+Six skills have shipped. `brief` writes the rules a team's agents read. `handoff` carries a run's trace into the next session. `questionnaire` takes a blocked decision to the person who can answer it. `wait-what` diagnoses an explanation that did not land. `teach` builds understanding across sessions. `spotlight` turns established context into the smallest source-grounded visual that helps a human understand or decide.

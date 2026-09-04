@@ -342,7 +342,29 @@ function alignmentsOf(delimiterRow) {
   });
 }
 
-function renderBlocks(lines) {
+function headingLabel(source) {
+  return String(source)
+    .replace(/\\([^\n])/g, "$1")
+    .replace(/(`+)([\s\S]*?)\1/g, "$2")
+    .replace(/\[([^\]]*)\]\(((?:[^()\s]|\([^()\s]*\))*)\)/g, "$1")
+    .replace(/[\*_~]/g, "")
+    .trim();
+}
+
+function headingId(label, counts) {
+  const base =
+    label
+      .normalize("NFKD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "") || "section";
+  const occurrence = (counts.get(base) ?? 0) + 1;
+  counts.set(base, occurrence);
+  return "section-" + base + (occurrence > 1 ? "-" + occurrence : "");
+}
+
+function renderBlocks(lines, state) {
   const out = [];
   let index = 0;
 
@@ -380,7 +402,10 @@ function renderBlocks(lines) {
     const heading = line.match(ATX_HEADING);
     if (heading) {
       const level = heading[1].length;
-      out.push("<h" + level + ">" + renderInline(heading[2]) + "</h" + level + ">");
+      const label = headingLabel(heading[2]);
+      const id = headingId(label, state.headingCounts);
+      state.headings.push({ level, id, label });
+      out.push('<h' + level + ' id="' + id + '">' + renderInline(heading[2]) + "</h" + level + ">");
       index += 1;
       continue;
     }
@@ -393,7 +418,7 @@ function renderBlocks(lines) {
         else body.push(current); // lazy continuation of the quoted paragraph
         index += 1;
       }
-      out.push("<blockquote>" + renderBlocks(body) + "</blockquote>");
+      out.push("<blockquote>" + renderBlocks(body, state) + "</blockquote>");
       continue;
     }
 
@@ -411,7 +436,7 @@ function renderBlocks(lines) {
     }
 
     if (LIST_ITEM.test(line)) {
-      const [html, next] = renderList(lines, index);
+      const [html, next] = renderList(lines, index, state);
       out.push(html);
       index = next;
       continue;
@@ -458,7 +483,7 @@ function renderTable(header, alignments, rows) {
 // Collect one list at the indentation of its first item. Lines indented past
 // that item belong to it, which is what makes nesting work: the nested list is
 // simply part of its parent item's content and is parsed by the same recursion.
-function renderList(lines, start) {
+function renderList(lines, start, state) {
   const baseIndent = indentWidth(lines[start]);
   const first = lines[start].match(LIST_ITEM);
   const ordered = /\d/.test(first[2]);
@@ -503,7 +528,7 @@ function renderList(lines, start) {
   }
 
   const rendered = items.map((item) => {
-    let html = renderBlocks(item.lines);
+    let html = renderBlocks(item.lines, state);
     // An item whose first block is a lone paragraph is tight, so the wrapper
     // comes off and <li>text</li> reads as one line. This holds whether the
     // paragraph is the whole item or is followed by a nested list; only an item
@@ -527,7 +552,47 @@ function renderMarkdown(source) {
   const normalized = String(source)
     .replace(/\r\n?/g, "\n")
     .replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, "");
-  return renderBlocks(normalized.split("\n"));
+  const state = { headings: [], headingCounts: new Map() };
+  return { body: renderBlocks(normalized.split("\n"), state), headings: state.headings };
+}
+
+function tocTree(headings) {
+  const root = { level: 0, children: [] };
+  const stack = [root];
+  for (const heading of headings.filter(({ level }) => level > 1)) {
+    while (stack.length > 1 && stack.at(-1).level >= heading.level) stack.pop();
+    const node = { ...heading, children: [] };
+    stack.at(-1).children.push(node);
+    stack.push(node);
+  }
+  return root.children;
+}
+
+function renderTocItems(items) {
+  if (!items.length) return "";
+  return (
+    "<ol>\n" +
+    items
+      .map(
+        (item) =>
+          '<li><a href="#' + item.id + '">' + escapeHtml(item.label) + "</a>" +
+          renderTocItems(item.children) +
+          "</li>",
+      )
+      .join("\n") +
+    "\n</ol>"
+  );
+}
+
+function renderToc(headings) {
+  const items = tocTree(headings);
+  if (!items.length) return "";
+  return (
+    '<nav class="press-toc" aria-labelledby="press-toc-title">\n' +
+    '<h2 class="press-toc-title" id="press-toc-title">Contents</h2>\n' +
+    renderTocItems(items) +
+    "\n</nav>\n"
+  );
 }
 
 function firstHeading(source) {
@@ -589,6 +654,23 @@ body {
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
+.press-toc {
+  margin: 0 0 2em;
+  padding: 1em 1.2em;
+  background: var(--press-quote-surface);
+  border-left: 3px solid var(--press-accent);
+}
+.press-toc-title {
+  margin: 0 0 0.55em;
+  padding: 0;
+  border: 0;
+  font-size: 1em;
+}
+.press-toc ol { margin: 0; padding-left: 1.35em; }
+.press-toc ol ol { margin-top: 0.25em; }
+.press-toc li { margin: 0.2em 0; }
+.press-toc a { color: var(--press-heading); text-decoration-color: var(--press-accent); }
+[id^="section-"] { scroll-margin-top: 1em; }
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--press-heading-font);
   color: var(--press-heading);
@@ -636,13 +718,19 @@ blockquote p:last-child { margin-bottom: 0; }
 table { border-collapse: collapse; width: 100%; font-size: 0.94em; }
 th, td { border: 1px solid var(--press-border); padding: 0.45em 0.7em; text-align: left; vertical-align: top; }
 th { background: var(--press-quote-surface); color: var(--press-heading); font-family: var(--press-heading-font); }
+@media screen and (max-width: 640px) {
+  body { padding: 1rem; }
+  .press-document { padding: 1rem; }
+  pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+}
 @media print {
   body { padding: 0; background: var(--press-surface); }
   .press-document { max-width: none; border-top-width: 3px; }
+  .press-toc a { color: var(--press-heading); text-decoration: none; }
 }`;
 }
 
-function document(title, palette, bodyHtml) {
+function document(title, palette, rendered) {
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -656,7 +744,7 @@ ${stylesheet(palette)}
 <body>
 <main class="press-document">
 <p class="press-masthead">${escapeHtml(title)}</p>
-${bodyHtml}
+${renderToc(rendered.headings)}${rendered.body}
 </main>
 </body>
 </html>

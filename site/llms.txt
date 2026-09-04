@@ -1,6 +1,6 @@
 # The Quentin Skills
 
-> The Quentin's skill library: 34 skills across six groups, documenting what each one does, who it is for, and how to call it, on top of one doctrine — human judgment holds the gates, trusted agents do the work in between.
+> The Quentin's skill library: 51 skills across six groups, documenting what each one does, who it is for, and how to call it, on top of one doctrine — human judgment holds the gates, trusted agents do the work in between.
 
 ## Home
 
@@ -78,7 +78,7 @@
 
 ### Branding
 
-- [press](https://tqnonline.github.io/skills/press/): Renders an approved markdown document to a branded, self-contained HTML page and a PDF.
+- [press](https://tqnonline.github.io/skills/press/): Renders approved markdown to a branded, self-contained HTML page with a clickable table of contents, and a PDF.
 
 ### Writing
 
@@ -93,6 +93,7 @@
 - [questionnaire](https://tqnonline.github.io/skills/questionnaire/): Turn a decision you cannot answer alone into questions for the one person who can.
 - [wait-what](https://tqnonline.github.io/skills/wait-what/): Diagnose why an explanation failed, then take a different route to the same point.
 - [teach](https://tqnonline.github.io/skills/teach/): Teach a concept across sessions, checking understanding by application rather than recall.
+- [spotlight](https://tqnonline.github.io/skills/spotlight/): Turn established context into the smallest source-grounded visual that helps a human understand or decide.
 
 ## Doctrine sources
 

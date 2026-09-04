@@ -3,7 +3,7 @@ layout: group
 name: productivity
 group: productivity
 title: "Productivity: Workflows Worth Not Repeating"
-description: "Productivity automates workflows worth not repeating by hand; its first skill, brief, writes the rules an agent actually reads, placed per tool surface."
+description: "Productivity holds six conversation-level workflows that preserve context, reach human judgment, repair understanding, and make established structure visible."
 ---
 
 You tell your agent something once, and for that session it works. Next week you tell it again, because the file the agent actually reads never received the correction — only your chat history did. QuenServe's own engineering team knows this pattern well: the same correction about the offline-sync module, retyped into a fresh prompt every time a new session forgets it. Productivity turns a repeated correction into a rule a tool loads on its own, every session, without you retyping it. You write the sentence once, and the tool carries it from then on.
@@ -32,15 +32,20 @@ Giving the correction once is easy; anyone can type a sentence into a prompt. Wh
 - **Seven surfaces, one map.** `SURFACES.md` names where each of seven tools reads its rules, from `CLAUDE.md` at a repository root to `.github/copilot-instructions.md`, and marks two surfaces that read no repository file at all.
 - **Fifty-five lines, twenty-four lines.** This repository's own `CLAUDE.md` and `AGENTS.md` — real counts, confirmed the same way `brief` itself would confirm them — well under the point where either file would need pointers of its own.
 
-Productivity grows one skill at a time, and each one is added only for a real, recurring problem rather than to fill a category in advance. `brief` ships with no script of its own; its output is a written file, verified only by running a real task and watching whether the rule fires. Rereading a rule proves nothing a real task cannot prove better. Writing a correction down once costs one file and one sentence; repeating it costs that same sentence again, every session, for as long as nobody writes it down.
+Productivity grows one skill at a time, and each one is added only for a real, recurring problem rather than to fill a category in advance. `brief` was the first. Five more now cover the moments around it: preserving a run, reaching a decision owner, repairing an explanation, teaching a prerequisite, and making established structure visible. Each keeps one UNIX-style boundary rather than becoming a general assistant.
 
-The path through productivity is short, because productivity holds exactly one skill.
+The group now holds six independently useful skills.
 
 1. [`brief`]({{ '/brief/' | relative_url }}) — turn the correction you keep repeating into a rule the tool loads on its own, placed in the file that tool actually reads.
+2. [`handoff`]({{ '/handoff/' | relative_url }}) — project a run's trace into the document another session or person picks up cold.
+3. [`questionnaire`]({{ '/questionnaire/' | relative_url }}) — take a blocked decision to the person who can answer it.
+4. [`wait-what`]({{ '/wait-what/' | relative_url }}) — diagnose why an explanation failed before taking another route.
+5. [`teach`]({{ '/teach/' | relative_url }}) — build understanding across sessions and check it through application.
+6. [`spotlight`]({{ '/spotlight/' | relative_url }}) — turn established context into the smallest source-grounded visual that helps a human understand or decide.
 
 ```bash
 npx skills@latest add tqnonline/skills
 ./scripts/install-adapters.sh
 ```
 
-A rule nobody has tested against a real task is a preference, whatever the file that holds it is named. Neither published journey on this site runs through brief yet; both stop before the moment a team rewrites the rule file its own agents load.
+These skills sit beside the two published journeys rather than inside them. They support the conversations around delivery and product work without taking ownership of either pipeline.

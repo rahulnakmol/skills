@@ -19,9 +19,9 @@ Six groups, each a bounded area of work rather than a technology layer. Each gro
 | **Core — shared doctrine** | The doctrine and tooling more than one group needs, belonging to no audience in particular: verification before completion, coverage, the grill round protocol, value probing, the run trace, and three skills — `grit`, `research`, and `retro`, the loop that reads the traces back. Every group may reference it; it references none of them. | Shipping |
 | **Developer — the AI-native SDLC** | The software delivery lifecycle rebuilt for humans plus trusted agents: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance, plus the daily craft of test-first work, diagnosis, prototyping, deepening, shared language, issue triage, and human-step wizards — 22 skills. | Shipping |
 | **PM — the AI-native transformation practice** | The business side of the same AI-native transformation coin: discovery, TOM design, epic and PRD authoring, business cases grounded in cost including the agent fleet's own, roadmapping, RAID, benefits realization against a north star, and 4Ps leadership reporting, plus charting work too big for one session — 16 skills. | Shipping |
-| **Branding** | Company or personal identity applied to everything an agent produces: tone of voice, color and palette, storytelling. Today: `press`, which renders an approved markdown document into a branded, self-contained page and a PDF — the first of the storytelling skills. | First skill shipping |
+| **Branding** | Company or personal identity applied to everything an agent produces: tone of voice, color and palette, storytelling. Today: `press`, which renders approved markdown into a branded, self-contained page with a clickable table of contents, and a PDF. | First skill shipping |
 | **Writing** | The writing sequence, explore then structure then render: `freewrite` mines raw material with judgment held off, `outline` orders it into beats and grounds every term before a beat leans on it, and `draft` renders prose one beat at a time against an auditable coverage map — 3 skills. | Shipping |
-| **Productivity** | Delightful automations: the personal and team workflows worth never doing by hand again. The conversation-level workflows worth never doing by hand again: `brief` places a team's agent rules in the file each tool actually loads, `handoff` projects a run's trace into a document the next session picks up cold, `questionnaire` turns a decision you cannot answer alone into questions for the person who can, `wait-what` re-pitches a message that did not land, and `teach` carries a concept across sessions — 5 skills. | Shipping |
+| **Productivity** | Delightful automations: the personal and team workflows worth never doing by hand again. `brief` places agent rules, `handoff` carries a run forward, `questionnaire` reaches the person who can decide, `wait-what` repairs a failed explanation, `teach` carries a concept across sessions, and `spotlight` turns established context into the smallest source-grounded visual — 6 skills. | Shipping |
 
 ## The operating model
 
@@ -155,7 +155,7 @@ Doctrine every other group may reference, and which references no group in retur
 
 | Skill | Invocation | Purpose |
 |-------|------------|---------|
-| [press](skills/branding/press/SKILL.md) | user | Render an approved markdown document to a branded HTML page and PDF |
+| [press](skills/branding/press/SKILL.md) | user | Render approved markdown to branded HTML with a clickable table of contents, and a PDF |
 
 ### Productivity
 
@@ -166,6 +166,7 @@ Doctrine every other group may reference, and which references no group in retur
 | [questionnaire](skills/productivity/questionnaire/SKILL.md) | user | Turn a decision you cannot answer alone into a questionnaire for the one person who can |
 | [wait-what](skills/productivity/wait-what/SKILL.md) | user | Diagnose why an explanation failed, then take a different route to the same point |
 | [teach](skills/productivity/teach/SKILL.md) | user | Teach a concept across sessions, checking understanding by application rather than recall |
+| [spotlight](skills/productivity/spotlight/SKILL.md) | user | Turn established context into the smallest source-grounded visual that helps a human understand or decide |
 
 ### Writing
 

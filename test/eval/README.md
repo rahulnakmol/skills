@@ -30,8 +30,11 @@ node test/eval/run-routing.mjs --case r001     # one case
 ```
 
 The run writes a dated scorecard to `results/`, so a regression is a diff
-between two files rather than something a person has to remember. A missing
-model is a skip and never a pass: no attempt was made, so no result is
+between two files rather than something a person has to remember. A scorecard
+is an immutable historical record. It can predate cases later added to the
+table, but its stated case count must match its results and those results must
+still agree with the case IDs and expected skills in the current table. A
+missing model is a skip and never a pass: no attempt was made, so no result is
 recorded.
 
 ## What it found

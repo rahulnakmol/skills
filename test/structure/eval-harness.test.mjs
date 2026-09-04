@@ -103,14 +103,25 @@ test('a single-case run does not overwrite the full scorecard', () => {
   assert.equal(help.status, 0);
 });
 
-test('the committed baseline scorecard covers the whole table', () => {
+test('committed scorecards are internally complete historical records', () => {
   const dir = join(root, 'test/eval/results');
   const cards = readdirSync(dir).filter((f) => f.endsWith('.json'));
   assert.ok(cards.length, 'at least one scorecard must be committed as a baseline');
-  const total = cases().length;
+  const currentCases = new Map(cases().map((c) => [c.id, c]));
   for (const card of cards) {
     const data = JSON.parse(read(join('test/eval/results', card)));
-    assert.equal(data.cases, total,
-      `${card} records ${data.cases} of ${total} cases. A partial scorecard in the baseline directory reads as a complete result and hides what was never measured.`);
+    assert.equal(data.cases, data.results.length,
+      `${card} claims ${data.cases} cases but contains ${data.results.length} results. A partial scorecard reads as a complete run and hides what was never measured.`);
+    assert.equal(data.passed + data.failed, data.cases,
+      `${card} pass and fail counts do not account for every recorded case.`);
+    const seen = new Set();
+    for (const result of data.results) {
+      assert.ok(!seen.has(result.id), `${card} records case ${result.id} more than once`);
+      seen.add(result.id);
+      const current = currentCases.get(result.id);
+      assert.ok(current, `${card} records ${result.id}, which no longer exists in the routing table`);
+      assert.equal(result.expect, current.expect,
+        `${card} measured ${result.id} against ${result.expect}, but the current table expects ${current.expect}`);
+    }
   }
 });

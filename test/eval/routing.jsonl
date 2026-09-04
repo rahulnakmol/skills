@@ -49,3 +49,4 @@
 {"id":"r054","utterance":"i have a vague idea for an article and no structure yet, help me get the raw material out","expect":"freewrite","note":"confusable with outline: freewrite gathers, outline orders"}
 {"id":"r055","utterance":"i have a pile of notes, work out the running order and what each beat does","expect":"outline","note":"confusable with draft: outline sets the beats, draft writes the prose"}
 {"id":"r056","utterance":"the beats are settled, now write the actual prose paragraph by paragraph","expect":"draft","note":"confusable with press: draft writes the words, press renders an approved document"}
+{"id":"r057","utterance":"spotlight this code path as the smallest source-grounded visual and distinguish what exists from what is proposed","expect":"spotlight","note":"confusable with wait-what: spotlight makes established structure visible, wait-what diagnoses a failed explanation"}
