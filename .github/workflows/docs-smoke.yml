@@ -21,7 +21,7 @@ permissions:
 
 jobs:
   smoke:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-2vcpu-ubuntu-2404
     # A workflow_dispatch run always proceeds; a workflow_run-triggered run
     # proceeds only when the Docs run it followed actually succeeded — a
     # failed or cancelled deploy has nothing new to verify.
