@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+step_start=$SECONDS
+echo "Installing system packages required by the documentation site..."
+packages=(build-essential bundler ruby ruby-dev)
+missing_packages=()
+for package in "${packages[@]}"; do
+  if ! dpkg-query -W -f='${db:Status-Abbrev}' "$package" 2>/dev/null | grep -q '^ii '; then
+    missing_packages+=("$package")
+  fi
+done
+if ((${#missing_packages[@]})); then
+  sudo apt-get update
+  sudo apt-get install -y "${missing_packages[@]}"
+fi
+echo "System packages ready in $((SECONDS - step_start))s."
+
+step_start=$SECONDS
+echo "Checking the Node.js toolchain..."
+node_major="$(node -p "Number(process.versions.node.split('.')[0])")"
+if ((node_major < 20)); then
+  echo "Node.js 20 or newer is required; found $(node --version)." >&2
+  exit 1
+fi
+echo "Node.js $(node --version) and npm $(npm --version) ready in $((SECONDS - step_start))s."
+
+step_start=$SECONDS
+echo "Installing npm dependencies from package-lock.json..."
+npm ci --no-audit --no-fund
+echo "npm dependencies ready in $((SECONDS - step_start))s."
+
+step_start=$SECONDS
+echo "Installing documentation dependencies from site/Gemfile..."
+bundle config set --global path "$HOME/.local/share/bundle"
+BUNDLE_FROZEN=true BUNDLE_JOBS=4 BUNDLE_RETRY=3 bundle install --gemfile site/Gemfile
+echo "Documentation dependencies ready in $((SECONDS - step_start))s."
