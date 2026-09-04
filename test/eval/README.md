@@ -68,9 +68,10 @@ being graded, since this repository's own rubric holds that agreement among one
 model family is not verification. It is not built here yet, and this file should
 not be read as claiming otherwise.
 
-The table also carries no case for `ask-fde` or `ask-pm`. They are routers, and
-a case expecting a router would be scoring the fallback rather than the
-selection.
+The table carries no case for `ask-fde` or `ask-pm`. They are routers, and a
+case expecting a router would score the fallback rather than the selection. It
+also omits `branding-system`, which is a shared dependency reached only after a
+theme skill selects the profile.
 
 ## Cost
 

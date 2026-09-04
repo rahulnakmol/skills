@@ -23,7 +23,7 @@ lens:
 
 ## What it does
 
-Press turns an approved markdown document into a branded, self-contained artifact — an HTML page with a clickable table of contents, and a PDF when a headless browser is available on the machine that runs it. It is the branding group's one shipped skill: identity, a company's or a person's, applied to what an agent produces, starting with the document a reader outside the team actually opens. "The sign-off is not press's job." Whoever owns the document — the author, the reviewer, or the process that produced it — decides it is ready; press renders whatever it is handed and never edits a word of the source to make it look better.
+Press turns an approved markdown document into a branded, self-contained artifact — an HTML page always, and a PDF when a headless browser is available on the machine that runs it. The theme skills can generate its palette file, while press keeps one narrower job: rendering the document a reader opens. "The sign-off is not press's job." Whoever owns the document decides it is ready; press renders whatever it is handed and never edits a word of the source to make it look better.
 
 <div class="step-flow">
   <div class="step"><span class="step-num">1</span><span class="step-label">Confirm the input</span><span class="step-text">Press renders what it is handed; it never renders from memory or from a summary of a document.</span></div>
@@ -44,7 +44,7 @@ Press turns an approved markdown document into a branded, self-contained artifac
 
 - [`PALETTE.md`](https://github.com/tqnonline/skills/blob/main/skills/branding/press/PALETTE.md) covers every token the renderer reads — ten colors, five typography values, two page measurements — and how a substituted fallback gets reported when a value fails its check.
 
-Press is the only skill in the branding group today, and it depends on no other group. It renders whatever markdown file it is handed, whatever produced that file, so it installs and runs on its own.
+Press remains a standalone renderer and depends on no other group. A theme skill can generate its palette file, but press renders whatever markdown file it is handed and still runs on its own.
 
 ## When to reach for it
 

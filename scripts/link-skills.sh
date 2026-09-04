@@ -32,13 +32,29 @@ group_of_skill() {
   done
   return 1
 }
+requirements_of_skill() {
+  local g; g="$(group_of_skill "$1")" || return 1
+  awk '
+    NR == 1 && $0 == "---" { in_frontmatter = 1; next }
+    in_frontmatter && $0 == "---" { exit }
+    in_frontmatter && /^requires:[[:space:]]*/ {
+      sub(/^requires:[[:space:]]*/, "")
+      if (length($0) > 0) print
+    }
+  ' "$ROOT/skills/$g/$1/SKILL.md"
+}
+contains() { # value items...
+  local needle="$1" item; shift
+  for item in "$@"; do [[ "$item" == "$needle" ]] && return 0; done
+  return 1
+}
 
 usage() {
   cat <<'USAGE'
 Usage: link-skills.sh [options] [target-dir]
 
   --group <name>   Link one group and core. Repeatable.
-  --skill <name>   Link one skill. Repeatable.
+  --skill <name>   Link one skill and its declared requirements. Repeatable.
   --target <dir>   Link into this directory instead of the default buckets.
   --no-core        Do not add core alongside a selected group.
   --dry-run        Print what would be linked and change nothing.
@@ -69,7 +85,8 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Resolve the selection into a set of groups whose doctrine is linked and a set
-# of skills. An explicit --skill does not drag its whole group along.
+# of skills. An explicit --skill does not drag its whole group along, but it
+# does carry any skill named by a frontmatter `requires` field.
 SELECTED_GROUPS=(); SELECTED_SKILLS=()
 if [[ ${#WANT_GROUPS[@]} -eq 0 && ${#SKILLS[@]} -eq 0 ]]; then
   for g in $(all_groups); do
@@ -96,6 +113,21 @@ else
     while read -r s; do [[ -n "$s" ]] && SELECTED_SKILLS+=("$s"); done < <(skills_in_group "$SHARED")
   fi
 fi
+
+# Resolve declared skill requirements as a small dependency graph. The index
+# advances through newly appended requirements, while contains() prevents a
+# cycle from growing the array forever. Requirements bring their own complete
+# skill directory but not their whole group or group doctrine.
+dependency_index=0
+while [[ $dependency_index -lt ${#SELECTED_SKILLS[@]} ]]; do
+  selected="${SELECTED_SKILLS[$dependency_index]}"
+  while IFS= read -r required; do
+    [[ -z "$required" ]] && continue
+    group_of_skill "$required" >/dev/null || die "$selected requires missing skill: $required"
+    contains "$required" "${SELECTED_SKILLS[@]}" || SELECTED_SKILLS+=("$required")
+  done < <(requirements_of_skill "$selected")
+  dependency_index=$((dependency_index + 1))
+done
 
 dedupe() { printf '%s\n' "$@" | awk 'NF && !seen[$0]++'; }
 

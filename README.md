@@ -12,14 +12,14 @@ Every skill here, whatever its group, carries one philosophy: **Set the frontier
 
 ## Skill groups
 
-Six groups, each a bounded area of work rather than a technology layer. Each group installs on its own: any group may reference `core`, and no group references another, so adopting one never drags in the rest. Five of the six are shipping and one, branding, is still on its first skill; every group now has at least one promoted skill, and the writing group has opened.
+Six groups, each a bounded area of work rather than a technology layer. Each group installs on its own: any group may reference `core`, and no group references another, so adopting one never drags in the rest. All six groups are shipping, and every group has at least one promoted skill.
 
 | Group | What it is | Status |
 |-------|------------|--------|
 | **Core — shared doctrine** | The doctrine and tooling more than one group needs, belonging to no audience in particular: verification before completion, coverage, the grill round protocol, value probing, the run trace, and three skills — `grit`, `research`, and `retro`, the loop that reads the traces back. Every group may reference it; it references none of them. | Shipping |
 | **Developer — the AI-native SDLC** | The software delivery lifecycle rebuilt for humans plus trusted agents: inception, backlog, design, implementation, secure DevOps, reliability, and maintenance, plus the daily craft of test-first work, diagnosis, prototyping, deepening, shared language, issue triage, and human-step wizards — 22 skills. | Shipping |
 | **PM — the AI-native transformation practice** | The business side of the same AI-native transformation coin: discovery, TOM design, epic and PRD authoring, business cases grounded in cost including the agent fleet's own, roadmapping, RAID, benefits realization against a north star, and 4Ps leadership reporting, plus charting work too big for one session — 16 skills. | Shipping |
-| **Branding** | Company or personal identity applied to everything an agent produces: tone of voice, color and palette, storytelling. Today: `press`, which renders approved markdown into a branded, self-contained page with a clickable table of contents, and a PDF. | First skill shipping |
+| **Branding** | One shared verbal, visual, accessibility, physical, and motion system applied across product UI, documents, print, environmental work, and video. Six theme skills use open-source fonts and accessible light and dark roles; `press` renders approved documents. | Shipping — 8 skills |
 | **Writing** | The writing sequence, explore then structure then render: `freewrite` mines raw material with judgment held off, `outline` orders it into beats and grounds every term before a beat leans on it, and `draft` renders prose one beat at a time against an auditable coverage map — 3 skills. | Shipping |
 | **Productivity** | Delightful automations: the personal and team workflows worth never doing by hand again. `brief` places agent rules, `handoff` carries a run forward, `questionnaire` reaches the person who can decide, `wait-what` repairs a failed explanation, `teach` carries a concept across sessions, and `spotlight` turns established context into the smallest source-grounded visual — 6 skills. | Shipping |
 
@@ -155,7 +155,14 @@ Doctrine every other group may reference, and which references no group in retur
 
 | Skill | Invocation | Purpose |
 |-------|------------|---------|
-| [press](skills/branding/press/SKILL.md) | user | Render approved markdown to branded HTML with a clickable table of contents, and a PDF |
+| [everforest-branding](skills/branding/everforest-branding/SKILL.md) | user | Apply a warm botanical identity across digital, print, environmental, and motion surfaces |
+| [catppuccin-branding](skills/branding/catppuccin-branding/SKILL.md) | user | Apply a precise pastel identity with accessible light and dark roles |
+| [ai-branding](skills/branding/ai-branding/SKILL.md) | user | Apply an Anthropic-inspired identity by default or a separate OpenAI-inspired profile |
+| [gruvbox-branding](skills/branding/gruvbox-branding/SKILL.md) | user | Apply an earthy retro-modern identity with strong technical character |
+| [nord-branding](skills/branding/nord-branding/SKILL.md) | user | Apply a cool, spacious identity with neutral evidence and clear structure |
+| [solarized-branding](skills/branding/solarized-branding/SKILL.md) | user | Apply a restrained blue-and-gold identity across light and dark environments |
+| [press](skills/branding/press/SKILL.md) | user | Render an approved markdown document to a branded HTML page and PDF |
+| [branding-system](skills/branding/branding-system/SKILL.md) | model | Apply the shared verbal, surface, accessibility, provenance, motion, and verification contract |
 
 ### Productivity
 

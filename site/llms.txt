@@ -1,6 +1,6 @@
 # The Quentin Skills
 
-> The Quentin's skill library: 51 skills across six groups, documenting what each one does, who it is for, and how to call it, on top of one doctrine — human judgment holds the gates, trusted agents do the work in between.
+> The Quentin's skill library: 58 skills across six groups, documenting what each one does, who it is for, and how to call it, on top of one doctrine — human judgment holds the gates, trusted agents do the work in between.
 
 ## Home
 
@@ -20,7 +20,7 @@
 - [Core — shared doctrine](https://tqnonline.github.io/skills/group/core/): Doctrine and tooling more than one group needs; every group may reference it.
 - [Developer — the AI-native SDLC](https://tqnonline.github.io/skills/group/developer/): Inception through maintenance, four human gates, verified agent work between them.
 - [PM — the AI-native transformation practice](https://tqnonline.github.io/skills/group/pm/): Discovery through benefits realization, mirroring the developer group's four gates.
-- [Branding](https://tqnonline.github.io/skills/group/branding/): Identity applied to everything an agent produces — tone of voice, palette, storytelling.
+- [Branding](https://tqnonline.github.io/skills/group/branding/): One verbal, visual, accessible, physical, and motion system across product UI, documents, print, environments, and video.
 - [Writing](https://tqnonline.github.io/skills/group/writing/): Skills that make writing better, in the repository's own explainer voice. Charter — planned.
 - [Productivity](https://tqnonline.github.io/skills/group/productivity/): Personal and team automations worth never doing by hand again.
 
@@ -78,7 +78,14 @@
 
 ### Branding
 
-- [press](https://tqnonline.github.io/skills/press/): Renders approved markdown to a branded, self-contained HTML page with a clickable table of contents, and a PDF.
+- [everforest-branding](https://tqnonline.github.io/skills/everforest-branding/): Calm, natural, editorial branding across digital, print, environmental, and motion surfaces with an accessible Everforest profile.
+- [catppuccin-branding](https://tqnonline.github.io/skills/catppuccin-branding/): Expressive pastel branding across digital, print, environmental, and motion surfaces with accessible Catppuccin light and dark roles.
+- [ai-branding](https://tqnonline.github.io/skills/ai-branding/): An Anthropic-inspired editorial system by default, or a separate OpenAI-inspired monochrome profile with open-source fonts.
+- [gruvbox-branding](https://tqnonline.github.io/skills/gruvbox-branding/): Warm retro-modern branding across digital, print, environmental, and motion surfaces with accessible Gruvbox light and dark roles.
+- [nord-branding](https://tqnonline.github.io/skills/nord-branding/): Cool, spacious branding across digital, print, environmental, and motion surfaces with accessible Nord light and dark roles.
+- [solarized-branding](https://tqnonline.github.io/skills/solarized-branding/): Disciplined blue-and-gold branding across digital, print, environmental, and motion surfaces with accessible Solarized light and dark roles.
+- [press](https://tqnonline.github.io/skills/press/): Renders an approved markdown document to a branded, self-contained HTML page and a PDF.
+- [branding-system](https://tqnonline.github.io/skills/branding-system/): Common engine for applying a validated theme profile as one coherent verbal, visual, accessibility, physical, and motion system.
 
 ### Writing
 
