@@ -54,16 +54,23 @@ the offline suite (see Deployment, below).
 
 ## Building the site in this environment
 
-This sandbox cannot run the real Jekyll build: the organization's outbound
-proxy blocks `rubygems.org`, so `bundle install` cannot fetch the gems in
-`Gemfile`, and `jekyll build` is unavailable here. The offline `test/site/`
-suite is what this environment can check — frontmatter, links, and content
-— and it substitutes for a real build in day-to-day edits. The actual
-Jekyll build, and the Pagefind search index built on top of it, happen only
-in CI, on every push and pull request that touches `site/`, `skills/`,
-`.claude-plugin/`, or `scripts/gen-docs-data.mjs` (see `.github/workflows/docs.yml`).
-A pull request runs that build but never deploys from it; only a push to
-`main` deploys.
+The repository's `.agents/setup` script installs Ruby, Bundler, and the gems
+locked in `Gemfile.lock` when a fresh Amp orb starts. To build the site after
+setup, generate its data from the repository root, then run Jekyll from this
+directory:
+
+```bash
+node scripts/gen-docs-data.mjs
+node scripts/gen-chooser-data.mjs
+cd site
+bundle exec jekyll build
+```
+
+The Pagefind search index is still built in CI. The docs workflow runs on
+every push and pull request that touches `site/`, `skills/`,
+`.claude-plugin/`, or `scripts/gen-docs-data.mjs` (see
+`.github/workflows/docs.yml`). A pull request runs the build but never
+deploys from it. Only a push to `main` deploys.
 
 ## Deployment
 

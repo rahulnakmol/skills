@@ -11,3 +11,4 @@ agents/openai.yaml
 site/_data/
 site/_site/
 site/.jekyll-cache/
+.amp/portals/*
