@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { root, read, walk } from '../helpers.mjs';
 import {
-  COLOR_ROLES, parseProfile, THEME_SKILLS, validateProfile,
+  COLOR_ROLES, DEFAULT_MOTION, MOTION_EFFECTS, motionOf, parseProfile, THEME_SKILLS, validateProfile, voiceOf,
 } from '../../skills/branding/branding-system/scripts/profile-lib.mjs';
 
 const BRANDING_ROOT = join(root, 'skills/branding');
@@ -65,6 +65,47 @@ test('contrast validation fails under a planted inaccessible text role', () => {
     validateProfile(planted, 'nord-branding').some((error) => /ink\/canvas is 1\.00:1/.test(error)),
     'the validator must name the failed pair and measured ratio',
   );
+});
+
+test('every public profile states schema 2 motion rules that the library fills in', () => {
+  for (const skill of THEME_SKILLS) {
+    const profile = parseProfile(join(BRANDING_ROOT, skill, 'PROFILE.md'));
+    assert.equal(profile.schemaVersion, 2, `${skill} must be on schemaVersion 2`);
+    const motion = motionOf(profile);
+    assert.equal(motion.grade, 'expressive');
+    assert.equal(motion.register, 'cinematic');
+    assert.deepEqual(Object.keys(motion.duration), ['micro', 'reveal', 'scene']);
+    assert.deepEqual(Object.keys(motion.easing), ['standard', 'enter', 'exit']);
+    assert.ok(motion.parallax > 0 && motion.parallax <= 1);
+    assert.deepEqual(voiceOf(profile), { avoid: [] });
+  }
+  assert.deepEqual(motionOf({ schemaVersion: 1 }), { ...DEFAULT_MOTION, duration: { ...DEFAULT_MOTION.duration }, easing: { ...DEFAULT_MOTION.easing }, forbid: [] });
+  const partial = motionOf({ schemaVersion: 2, motion: { grade: 'calm', duration: { reveal: 300 }, forbid: ['parallax'] } });
+  assert.equal(partial.grade, 'calm');
+  assert.equal(partial.duration.reveal, 300);
+  assert.equal(partial.duration.micro, DEFAULT_MOTION.duration.micro);
+  assert.deepEqual(partial.forbid, ['parallax']);
+});
+
+test('motion and voice validation rejects malformed rules and schema 1 extras', () => {
+  const original = parseProfile(join(BRANDING_ROOT, 'gruvbox-branding/PROFILE.md'));
+  const planted = structuredClone(original);
+  planted.motion.grade = 'wild';
+  planted.motion.duration.reveal = 9000;
+  planted.motion.easing.enter = 'bouncy';
+  planted.motion.forbid = ['sparkle'];
+  planted.voice = { avoid: 'seamless' };
+  const errors = validateProfile(planted, 'gruvbox-branding');
+  for (const pattern of [/motion\.grade/, /motion\.duration\.reveal/, /motion\.easing\.enter/, /"sparkle"/, /voice\.avoid/]) {
+    assert.ok(errors.some((error) => pattern.test(error)), `expected an error matching ${pattern}: ${errors.join('; ')}`);
+  }
+  assert.ok(MOTION_EFFECTS.includes('parallax') && MOTION_EFFECTS.includes('spotlight'));
+
+  const legacy = structuredClone(original);
+  legacy.schemaVersion = 1;
+  assert.ok(validateProfile(legacy, 'gruvbox-branding').some((error) => /schemaVersion 1/.test(error) && /motion/.test(error)));
+  delete legacy.motion;
+  assert.deepEqual(validateProfile(legacy, 'gruvbox-branding'), []);
 });
 
 test('the starter kit is deterministic, checksummed, and accepted by press', () => {

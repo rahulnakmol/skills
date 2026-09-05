@@ -12,3 +12,6 @@ site/_data/
 site/_site/
 site/.jekyll-cache/
 .amp/portals/*
+# exhibit's render pass writes captures and a contact sheet beside the page
+*.captures/
+*.sheet.png

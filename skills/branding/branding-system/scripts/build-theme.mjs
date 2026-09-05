@@ -3,7 +3,9 @@ import { createHash } from 'node:crypto';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { COLOR_ROLES, contrast, parseProfile, THEME_SKILLS, validateProfile } from './profile-lib.mjs';
+import {
+  brandTokensCss, COLOR_ROLES, contrast, motionOf, parseProfile, THEME_SKILLS, validateProfile,
+} from './profile-lib.mjs';
 
 const brandingRoot = join(dirname(fileURLToPath(import.meta.url)), '../..');
 
@@ -39,11 +41,12 @@ if (!variant) usage(`variant must be one of ${Object.keys(profile.variants).join
 const modeName = options.mode ?? 'light';
 const colors = variant.modes[modeName].colors;
 const typography = variant.typography;
+const motion = motionOf(profile);
 const outDir = resolve(options.out);
 mkdirSync(outDir, { recursive: true });
 
 const tokenDocument = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   theme: profile.skill,
   title: profile.title,
   variant: variantName,
@@ -51,12 +54,11 @@ const tokenDocument = {
   provenance: variant.provenance,
   typography,
   colors,
+  motion,
 };
 
 const tokensJson = JSON.stringify(tokenDocument, null, 2) + '\n';
-const tokensCss = `/* Generated from ${profile.skill}/PROFILE.md. */\n:root {\n${
-  COLOR_ROLES.map((role) => `  --brand-${role}: ${colors[role]};`).join('\n')
-}\n  --brand-font-display: ${typography.display.stack};\n  --brand-font-body: ${typography.body.stack};\n  --brand-font-mono: ${typography.mono.stack};\n}\n`;
+const tokensCss = brandTokensCss({ colors, typography, motion, header: `/* Generated from ${profile.skill}/PROFILE.md. */` });
 
 const pressTokens = {
   name: `${profile.title} — ${variantName} ${modeName}`,

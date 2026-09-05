@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en" data-exhibit="2" data-mode="{{mode}}" data-register="{{register}}" data-grade="{{grade}}" data-motion-forbid="{{forbid}}" data-theme="{{theme}}" data-variant="{{variant}}" data-fonts="{{fonts}}" data-voice-avoid="{{voice_avoid}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>{{title}}</title>
+{{fonts_head}}<style id="exhibit-tokens">
+{{tokens}}
+</style>
+<style id="exhibit-chrome">
+/* The chrome: page frame, masthead, act rail, figure frame, controls, frames,
+   motion states, export, print. Every color, font, and duration is a token
+   from the block above, so this stylesheet never names a value of its own. */
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 100%; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--brand-canvas);
+  color: var(--brand-ink);
+  font-family: var(--brand-font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+h1, h2, h3 { font-family: var(--brand-font-display); color: var(--brand-ink); margin: 0 0 var(--x-space-3); line-height: 1.1; letter-spacing: -0.015em; }
+h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -0.03em; }
+h2 { font-size: clamp(1.75rem, 3.2vw, 2.5rem); font-weight: 700; }
+h3 { font-size: 1.125rem; font-weight: 600; line-height: 1.25; }
+p { margin: 0 0 var(--x-space-4); }
+a { color: var(--brand-ink); text-decoration: underline; text-decoration-color: var(--brand-accent); text-decoration-thickness: 2px; text-underline-offset: 0.15em; }
+code, pre { font-family: var(--brand-font-mono); font-size: 0.9em; }
+:focus-visible { outline: 3px solid var(--brand-focus); outline-offset: 3px; }
+button, input, select, textarea { font: inherit; color: inherit; }
+[x-cloak] { display: none !important; }
+
+.exhibit-page { display: grid; grid-template-columns: minmax(0, 1fr); max-width: 76rem; margin: 0 auto; padding: 0 var(--x-space-4); }
+
+/* Masthead. The cinematic register makes it a full-height scene with layered
+   shapes that move at different rates on scroll; the others keep a quiet header. */
+.exhibit-masthead { position: relative; padding: var(--x-space-12) 0 var(--x-space-6); border-bottom: 1px solid var(--brand-border); overflow: clip; }
+.exhibit-masthead .x-kicker { margin: 0 0 var(--x-space-3); }
+.exhibit-masthead h1 { margin-bottom: var(--x-space-4); max-width: 18ch; }
+.exhibit-masthead .exhibit-question { font-size: clamp(1.125rem, 1.6vw, 1.375rem); max-width: 38em; margin: 0 0 var(--x-space-3); }
+.exhibit-masthead .exhibit-thesis { font-family: var(--brand-font-display); font-size: 1rem; color: var(--brand-ink-muted); max-width: 44em; margin: 0; }
+.exhibit-masthead-scene { position: absolute; inset: 0; pointer-events: none; z-index: -1; }
+.exhibit-masthead-layer { position: absolute; border-radius: 50%; background: var(--brand-surface); opacity: 0.8; filter: blur(14px); will-change: transform; }
+.exhibit-masthead-layer:nth-child(1) { width: 42vmin; height: 42vmin; right: -6vmin; top: 8%; background: var(--brand-surface-strong); }
+.exhibit-masthead-layer:nth-child(2) { width: 26vmin; height: 26vmin; right: 22vmin; top: 46%; filter: blur(22px); }
+.exhibit-masthead-layer:nth-child(3) { width: 10vmin; height: 10vmin; right: 14vmin; top: 22%; background: var(--brand-accent); opacity: 0.85; }
+.exhibit-masthead-copy { position: relative; }
+html[data-register="cinematic"] .exhibit-masthead { min-height: 100vh; min-height: 100svh; display: grid; align-content: center; padding: var(--x-space-12) 0; border-bottom: 0; }
+html[data-register="cinematic"] .exhibit-masthead h1 { font-size: clamp(3rem, 8vw, 6.5rem); }
+html[data-register="document"] .exhibit-masthead-scene { display: none; }
+.exhibit-scroll-cue { display: none; font-family: var(--brand-font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand-ink-muted); margin-top: var(--x-space-8); }
+html[data-register="cinematic"] .exhibit-scroll-cue { display: block; }
+
+.exhibit-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--x-space-6); }
+.exhibit-nav { display: none; }
+.exhibit-progress { position: fixed; top: 0; left: 0; right: 0; z-index: 20; height: 3px; background: transparent; }
+.exhibit-progress::after {
+  content: ""; display: block; height: 100%; width: calc(var(--exhibit-progress, 0) * 100%);
+  background: var(--brand-accent); transition: width var(--brand-motion-micro) var(--brand-ease-standard);
+}
+@media (min-width: 64rem) {
+  .exhibit-body { grid-template-columns: 12rem minmax(0, 1fr); }
+  .exhibit-nav { display: block; position: sticky; top: var(--x-space-6); align-self: start; }
+  .exhibit-nav ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--brand-border); }
+  .exhibit-nav li { margin: 0; }
+  .exhibit-nav a {
+    display: flex; align-items: center; padding: var(--x-space-2) var(--x-space-3); min-height: 44px;
+    text-decoration: none; color: var(--brand-ink-muted); font-family: var(--brand-font-display); font-size: 0.875rem;
+    border-left: 2px solid transparent; margin-left: -1px;
+    transition: color var(--brand-motion-micro) var(--brand-ease-standard), border-color var(--brand-motion-micro) var(--brand-ease-standard);
+  }
+  .exhibit-nav a:hover, .exhibit-nav a:focus-visible { color: var(--brand-ink); border-left-color: var(--brand-border); }
+  .exhibit-nav a[aria-current="true"] { color: var(--brand-ink); border-left-color: var(--brand-accent); font-weight: 600; }
+}
+
+.act { padding: var(--x-space-12) 0; border-bottom: 1px solid var(--brand-border); scroll-margin-top: var(--x-space-4); position: relative; }
+.act:last-of-type { border-bottom: 0; }
+.act-head { max-width: 44em; margin-bottom: var(--x-space-6); }
+.x-kicker {
+  font-family: var(--brand-font-mono); font-weight: 500; font-size: 0.75rem;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-ink-muted); margin: 0 0 var(--x-space-2);
+}
+.act-head h2 { margin-bottom: 0; }
+.act-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--x-space-6); align-items: start; }
+.act-prose { max-width: 40em; }
+@media (min-width: 64rem) {
+  .act-body.x-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
+  /* A wide figure needs the whole content width, so a split that holds one
+     stacks instead; half a column would clip the figure behind a scrollbar. */
+  .act-body.x-split:has(> .x-figure.x-wide) { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Figures. A wide figure keeps its labels readable on a narrow screen and
+   scrolls sideways instead of shrinking; --figure-min is the width at which
+   its smallest label is still 12px. */
+.x-figure {
+  margin: 0; padding: var(--x-space-5); background: var(--brand-surface); border: 1px solid var(--brand-border);
+  border-radius: var(--x-radius-card); position: relative;
+}
+.x-figure svg { display: block; width: 100%; height: auto; font-family: var(--brand-font-display); }
+.x-figure.x-wide { overflow-x: auto; }
+.x-figure.x-wide svg { min-width: var(--figure-min, 44rem); }
+.x-figure figcaption { margin-top: var(--x-space-3); font-size: 0.875rem; color: var(--brand-ink-muted); }
+.x-figure.x-bleed { border-radius: 0; border-left: 0; border-right: 0; margin-left: calc(-1 * var(--x-space-4)); margin-right: calc(-1 * var(--x-space-4)); }
+.x-takeaway {
+  margin: var(--x-space-4) 0 0; padding: var(--x-space-3) 0 var(--x-space-3) var(--x-space-4); border-left: 3px solid var(--brand-accent);
+  font-family: var(--brand-font-display); font-weight: 600; font-size: 1.125rem;
+}
+.x-figure-copy {
+  display: inline-flex; align-items: center; margin-top: var(--x-space-3); min-height: 44px; min-width: 44px;
+  padding: 0 var(--x-space-3); background: var(--brand-canvas); border: 1px solid var(--brand-border);
+  border-radius: var(--x-radius-control); font-family: var(--brand-font-display); font-size: 0.8125rem; cursor: pointer;
+  transition: border-color var(--brand-motion-micro) var(--brand-ease-standard);
+}
+.x-figure-copy:hover { border-color: var(--brand-ink); }
+
+/* Controls. Every control has a label, a 44px target, and a printed value. */
+.x-controls { display: grid; gap: var(--x-space-4); margin: 0 0 var(--x-space-4); }
+.x-control { display: grid; gap: var(--x-space-1); }
+fieldset.x-control { border: 0; padding: 0; margin: 0; min-width: 0; }
+.x-control label, .x-control legend { font-family: var(--brand-font-display); font-size: 0.9375rem; font-weight: 600; }
+.x-control input[type="range"] { width: 100%; min-height: 44px; accent-color: var(--brand-accent); margin: 0; }
+.x-control input[type="number"], .x-control select, .x-control input[type="text"] {
+  min-height: 44px; padding: 0 var(--x-space-3); background: var(--brand-surface); border: 1px solid var(--brand-border);
+  border-radius: var(--x-radius-control);
+}
+.x-control .x-value, .x-value { font-family: var(--brand-font-mono); font-size: 0.875rem; }
+.x-choice { display: flex; flex-wrap: wrap; gap: var(--x-space-2); border: 0; padding: 0; margin: 0; }
+.x-choice label {
+  display: inline-flex; align-items: center; gap: var(--x-space-2); min-height: 44px; padding: 0 var(--x-space-3);
+  border: 1px solid var(--brand-border); border-radius: 999px; cursor: pointer; font-weight: 400; font-size: 0.9375rem;
+  transition: border-color var(--brand-motion-micro) var(--brand-ease-standard), background-color var(--brand-motion-micro) var(--brand-ease-standard);
+}
+.x-choice label:has(input:checked) { border-color: var(--brand-ink); background: var(--brand-surface); }
+.x-choice input { accent-color: var(--brand-accent); margin: 0; }
+.x-visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+.x-button {
+  min-height: 44px; padding: 0 var(--x-space-5); background: var(--brand-action); color: var(--brand-action-ink);
+  border: 2px solid var(--brand-action); border-radius: 999px; font-family: var(--brand-font-display); font-weight: 600;
+  cursor: pointer; transition: transform var(--brand-motion-micro) var(--brand-ease-standard), opacity var(--brand-motion-micro) var(--brand-ease-standard);
+}
+.x-button:hover { opacity: 0.92; }
+.x-button:active { transform: scale(0.98); }
+.x-button.x-quiet { background: transparent; color: var(--brand-ink); border-color: var(--brand-border); }
+.x-button[disabled] { opacity: 0.45; cursor: default; transform: none; }
+.x-callout { padding: var(--x-space-4) var(--x-space-5); background: var(--brand-surface); border-left: 3px solid var(--brand-accent); border-radius: var(--x-radius-control); }
+.x-callout p:last-child { margin-bottom: 0; }
+.x-print-settings { display: none; }
+
+details.x-more { border: 1px solid var(--brand-border); border-radius: var(--x-radius-control); padding: 0 var(--x-space-4); margin: 0 0 var(--x-space-4); }
+details.x-more summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-family: var(--brand-font-display); font-weight: 600; }
+details.x-more[open] summary { border-bottom: 1px solid var(--brand-border); margin-bottom: var(--x-space-3); }
+
+/* SVG roles. Four series in the engine's fixed order; ink and muted for lines
+   and labels; action-ink on an action fill. */
+.x-series-1 { fill: var(--x-series-1); stroke: var(--x-series-1); }
+.x-series-2 { fill: var(--x-series-2); stroke: var(--x-series-2); }
+.x-series-3 { fill: var(--x-series-3); stroke: var(--x-series-3); }
+.x-series-4 { fill: var(--x-series-4); stroke: var(--x-series-4); }
+.x-ink { fill: var(--brand-ink); stroke: var(--brand-ink); }
+.x-muted { fill: var(--brand-ink-muted); stroke: var(--brand-ink-muted); }
+.x-border { fill: var(--brand-border); stroke: var(--brand-border); }
+.x-surface { fill: var(--brand-surface); }
+.x-surface-strong { fill: var(--brand-surface-strong); }
+.x-canvas { fill: var(--brand-canvas); }
+.x-action { fill: var(--brand-action); }
+.x-line { stroke: var(--brand-ink); stroke-width: 1.5; fill: none; }
+.x-arrow { stroke: var(--brand-ink); stroke-width: 1.5; fill: none; marker-end: url(#x-arrowhead); }
+.x-label { fill: var(--brand-ink); font-size: 13px; }
+.x-label-muted { fill: var(--brand-ink-muted); font-size: 12px; }
+.x-on-fill { fill: var(--brand-action-ink); font-size: 13px; }
+.x-figure [data-hidden] { display: none; }
+.x-figure[data-focus="1"] [class*="x-series-"]:not(.x-series-1),
+.x-figure[data-focus="2"] [class*="x-series-"]:not(.x-series-2),
+.x-figure[data-focus="3"] [class*="x-series-"]:not(.x-series-3),
+.x-figure[data-focus="4"] [class*="x-series-"]:not(.x-series-4) { opacity: 0.2; transition: opacity var(--brand-motion-micro) var(--brand-ease-standard); }
+
+/* Mechanism: a stepped walk. Every step's title stays in the list; only the
+   current step's body is open, so the list reads as an outline. */
+.x-steps { display: grid; gap: var(--x-space-4); }
+.x-step-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--x-space-2); counter-reset: x-step; }
+.x-step { counter-increment: x-step; padding: var(--x-space-3) var(--x-space-4); border: 1px solid var(--brand-border); border-radius: var(--x-radius-control); transition: border-color var(--brand-motion-micro) var(--brand-ease-standard), background-color var(--brand-motion-micro) var(--brand-ease-standard); }
+.x-step[data-active] { border-color: var(--brand-ink); background: var(--brand-surface); }
+.x-step-title { display: flex; gap: var(--x-space-3); align-items: baseline; margin: 0; font-family: var(--brand-font-display); font-weight: 600; font-size: 1rem; }
+.x-step-title::before { content: counter(x-step); font-family: var(--brand-font-mono); font-size: 0.8125rem; color: var(--brand-ink-muted); min-width: 1.25em; }
+.x-step[data-active] .x-step-title::before { color: var(--brand-accent); }
+.x-step-body { margin-top: var(--x-space-2); }
+.x-step:not([data-active]) .x-step-body { display: none; }
+.x-step-nav { display: flex; gap: var(--x-space-3); align-items: center; flex-wrap: wrap; }
+.x-step-nav .x-value { margin-left: auto; }
+
+/* Compare: criteria down, options across, weights as controls, totals below. */
+.x-compare { width: 100%; border-collapse: collapse; font-size: 0.9375rem; }
+.x-compare th, .x-compare td { padding: var(--x-space-2) var(--x-space-3); text-align: left; border-bottom: 1px solid var(--brand-border); vertical-align: middle; }
+.x-compare thead th { font-family: var(--brand-font-display); font-weight: 600; font-size: 0.875rem; }
+.x-compare tbody th { font-weight: 400; }
+.x-compare td[data-score], .x-compare td[data-total] { font-family: var(--brand-font-mono); text-align: right; }
+.x-compare tfoot th, .x-compare tfoot td { border-bottom: 0; border-top: 2px solid var(--brand-ink); font-weight: 600; }
+.x-compare [data-leader] { background: var(--brand-surface); }
+.x-compare thead th[data-leader] { border-bottom: 3px solid var(--brand-accent); }
+.x-compare input[type="range"] { width: 100%; min-width: 6rem; min-height: 44px; accent-color: var(--brand-accent); margin: 0; }
+.x-compare-wrap { overflow-x: auto; }
+
+/* Evidence legend. */
+.x-legend { display: flex; flex-wrap: wrap; gap: var(--x-space-2); border: 0; padding: 0; margin: 0 0 var(--x-space-3); }
+.x-legend label { display: inline-flex; align-items: center; gap: var(--x-space-2); min-height: 44px; padding: 0 var(--x-space-3); border: 1px solid var(--brand-border); border-radius: 999px; cursor: pointer; font-family: var(--brand-font-display); font-size: 0.875rem; }
+.x-legend input { accent-color: var(--brand-accent); margin: 0; }
+.x-swatch { display: inline-block; width: 0.75em; height: 0.75em; border-radius: 2px; }
+.x-swatch.x-series-1 { background: var(--x-series-1); }
+.x-swatch.x-series-2 { background: var(--x-series-2); }
+.x-swatch.x-series-3 { background: var(--x-series-3); }
+.x-swatch.x-series-4 { background: var(--x-series-4); }
+
+/* Decision: options the reader marks. The mark shows on the option's rule. */
+.x-decision { display: grid; gap: var(--x-space-4); }
+.x-option { padding: var(--x-space-5); border: 1px solid var(--brand-border); border-left: 3px solid var(--brand-border); border-radius: var(--x-radius-control); transition: border-color var(--brand-motion-micro) var(--brand-ease-standard); }
+.x-option[data-view="agree"] { border-left-color: var(--brand-success); }
+.x-option[data-view="object"] { border-left-color: var(--brand-warning); }
+.x-option[data-view="other"] { border-left-color: var(--brand-focus); }
+.x-option h3 { margin-bottom: var(--x-space-2); }
+.x-option textarea { width: 100%; min-height: 4.5rem; padding: var(--x-space-2) var(--x-space-3); background: var(--brand-surface); border: 1px solid var(--brand-border); border-radius: var(--x-radius-control); font-family: var(--brand-font-body); font-size: 0.9375rem; }
+
+/* Timeline and glossary. */
+.x-timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--x-space-3); }
+.x-timeline li { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: var(--x-space-3); padding-bottom: var(--x-space-3); border-bottom: 1px solid var(--brand-border); }
+.x-timeline time, .x-timeline .x-when { font-family: var(--brand-font-mono); font-size: 0.8125rem; color: var(--brand-ink); }
+.x-glossary { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--x-space-3) var(--x-space-5); }
+.x-glossary dt { font-family: var(--brand-font-display); font-weight: 600; }
+.x-glossary dd { margin: 0 0 var(--x-space-2); }
+@media (min-width: 48rem) { .x-glossary { grid-template-columns: 12rem minmax(0, 1fr); } .x-glossary dd { margin: 0; } }
+
+/* Frames: a figure rendered inside a realistic surface, drawn from brand
+   tokens. The frame is the container; .x-frame-screen is the content area.
+   .x-safe marks the platform's safe area; .x-lower-third is the video caption band. */
+.x-frame { position: relative; margin: 0 auto; background: var(--brand-ink); border: 1px solid var(--brand-border); overflow: hidden; container-type: inline-size; }
+.x-frame-screen { position: absolute; background: var(--brand-canvas); overflow: hidden; color: var(--brand-ink); font-size: 0.875rem; line-height: 1.45; }
+.x-frame-screen > * { margin: 0; }
+.x-frame-chrome { display: flex; align-items: center; gap: var(--x-space-2); padding: var(--x-space-2) var(--x-space-3); background: var(--brand-surface-strong); border-bottom: 1px solid var(--brand-border); font-family: var(--brand-font-mono); font-size: 0.75rem; color: var(--brand-ink-muted); min-height: 32px; }
+.x-frame-chrome span { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--brand-border); }
+.x-frame[data-frame="phone"] { width: min(100%, 300px); aspect-ratio: 9 / 19.5; border-radius: var(--x-radius-device); border-width: 1px; }
+.x-frame[data-frame="phone"] .x-frame-screen { inset: 12px; border-radius: calc(var(--x-radius-device) - 12px); }
+.x-frame[data-frame="phone"]::before { content: ""; position: absolute; top: 18px; left: 50%; transform: translateX(-50%); width: 32%; height: 22px; border-radius: 12px; background: var(--brand-ink); z-index: 2; }
+.x-frame[data-frame="tablet"] { width: min(100%, 560px); aspect-ratio: 4 / 3; border-radius: 28px; }
+.x-frame[data-frame="tablet"] .x-frame-screen { inset: 18px; border-radius: 12px; }
+.x-frame[data-frame="laptop"] { width: min(100%, 760px); aspect-ratio: 16 / 10.5; border-radius: 18px 18px 6px 6px; border-bottom: 18px solid var(--brand-surface-strong); }
+.x-frame[data-frame="laptop"] .x-frame-screen { inset: 14px 14px 0; border-radius: 8px 8px 0 0; }
+.x-frame[data-frame="browser"] { width: 100%; aspect-ratio: 16 / 10; border-radius: var(--x-radius-card); background: var(--brand-surface-strong); }
+.x-frame[data-frame="browser"] .x-frame-screen { inset: 0; display: grid; grid-template-rows: auto minmax(0, 1fr); }
+.x-frame[data-frame="browser"] .x-frame-url { flex: 1; min-height: 20px; border-radius: 6px; background: var(--brand-canvas); border: 1px solid var(--brand-border); padding: 0 var(--x-space-2); line-height: 20px; }
+.x-frame[data-frame="social-square"] { width: min(100%, 480px); aspect-ratio: 1; border-radius: 4px; }
+.x-frame[data-frame="social-story"] { width: min(100%, 300px); aspect-ratio: 9 / 16; border-radius: 12px; }
+.x-frame[data-frame="social-square"] .x-frame-screen, .x-frame[data-frame="social-story"] .x-frame-screen { inset: 0; }
+.x-frame[data-frame="social-story"] .x-safe { inset: 14% 5% 20%; }
+.x-frame[data-frame="email"] { width: min(100%, 640px); aspect-ratio: 4 / 5; border-radius: var(--x-radius-card); background: var(--brand-surface-strong); }
+.x-frame[data-frame="email"] .x-frame-screen { inset: 0; display: grid; grid-template-rows: auto minmax(0, 1fr); }
+.x-frame[data-frame="email"][data-images="off"] img, .x-frame[data-frame="email"][data-images="off"] svg { visibility: hidden; }
+.x-frame[data-frame="print-a4"] { width: min(100%, 420px); aspect-ratio: 210 / 297; background: var(--brand-surface-strong); border: 0; padding: 6%; }
+.x-frame[data-frame="print-letter"] { width: min(100%, 420px); aspect-ratio: 8.5 / 11; background: var(--brand-surface-strong); border: 0; padding: 6%; }
+.x-frame[data-frame^="print-"] .x-frame-screen { position: relative; inset: auto; width: 100%; height: 100%; border: 1px solid var(--brand-border); padding: 8%; outline: 1px dashed var(--brand-border); outline-offset: -8%; }
+.x-frame[data-frame^="print-"]::before, .x-frame[data-frame^="print-"]::after { content: ""; position: absolute; width: 4%; height: 4%; border: 1px solid var(--brand-ink-muted); }
+.x-frame[data-frame^="print-"]::before { top: 1%; left: 1%; border-right: 0; border-bottom: 0; }
+.x-frame[data-frame^="print-"]::after { right: 1%; bottom: 1%; border-left: 0; border-top: 0; }
+.x-frame[data-frame="video-16x9"] { width: 100%; aspect-ratio: 16 / 9; border-radius: 4px; }
+.x-frame[data-frame="video-9x16"] { width: min(100%, 300px); aspect-ratio: 9 / 16; border-radius: 4px; }
+.x-frame[data-frame^="video-"] .x-frame-screen { inset: 0; background: var(--brand-surface-strong); }
+.x-frame[data-frame^="video-"] .x-safe { inset: 5%; }
+.x-frame[data-frame="sign"] { width: 100%; aspect-ratio: 3 / 1; border-radius: 0; background: var(--brand-action); }
+.x-frame[data-frame="sign"] .x-frame-screen { inset: 6%; background: transparent; color: var(--brand-action-ink); display: grid; align-content: center; font-family: var(--brand-font-display); font-size: clamp(1.5rem, 6cqw, 4rem); font-weight: 700; letter-spacing: -0.02em; }
+.x-safe { position: absolute; inset: 8%; border: 1px dashed var(--brand-border); pointer-events: none; }
+.x-safe::after { content: "safe area"; position: absolute; right: 4px; bottom: 2px; font-family: var(--brand-font-mono); font-size: 0.75rem; color: var(--brand-ink-muted); }
+.x-lower-third { position: absolute; left: 6%; right: 30%; bottom: 10%; padding: var(--x-space-3) var(--x-space-4); background: var(--brand-canvas); border-left: 6px solid var(--brand-accent); }
+.x-lower-third h3 { margin: 0; font-size: 1rem; }
+.x-lower-third p { margin: 0; font-size: 0.8125rem; color: var(--brand-ink-muted); }
+.x-frame-states { display: flex; gap: var(--x-space-2); flex-wrap: wrap; margin-bottom: var(--x-space-3); }
+
+/* Motion states the runtime drives. Elements marked for reveal start hidden
+   only when scripts run, so a page without JavaScript still reads. */
+html[data-motion="on"] [x-reveal]:not([data-revealed]) { opacity: 0; }
+html[data-motion="on"] [x-reveal\.stagger]:not([data-revealed]) > * { opacity: 0; }
+.x-highlight-mark { background-image: linear-gradient(transparent 55%, var(--brand-accent) 55%, var(--brand-accent) 92%, transparent 92%); background-repeat: no-repeat; background-size: var(--x-highlight, 0%) 100%; }
+.exhibit-spotlight-mask { position: fixed; inset: 0; z-index: 10; pointer-events: none; background: color-mix(in srgb, var(--brand-ink) 62%, transparent); clip-path: var(--x-spotlight-clip, none); opacity: 0; transition: opacity var(--brand-motion-reveal) var(--brand-ease-standard); }
+.exhibit-spotlight-mask[data-on] { opacity: 1; }
+html[data-register="cinematic"] .act[x-scene] { min-height: 100vh; min-height: 100svh; display: grid; align-content: center; }
+.x-scene-stage { position: relative; }
+html[data-motion="on"] .act[x-scene] [data-scene]:not([data-revealed]) { opacity: 0; }
+
+/* Modes. scroll is the layout above. deck gives each act a screen and the
+   runtime moves between them on the arrow keys; explorer keeps the figure in
+   view while the prose and controls scroll past it. */
+html[data-mode="deck"] .exhibit-body { grid-template-columns: minmax(0, 1fr); }
+html[data-mode="deck"] .exhibit-nav { display: block; position: static; }
+html[data-mode="deck"] .exhibit-nav ol { display: flex; flex-wrap: wrap; gap: var(--x-space-2); border-left: 0; }
+html[data-mode="deck"] .exhibit-nav a { border-left: 0; border-bottom: 2px solid transparent; margin: 0; }
+html[data-mode="deck"] .exhibit-nav a[aria-current="true"] { border-bottom-color: var(--brand-accent); }
+html[data-mode="deck"] .act { min-height: 100vh; min-height: 100svh; display: grid; align-content: center; scroll-snap-align: start; scroll-margin-top: 0; }
+html[data-mode="deck"] { scroll-snap-type: y proximity; }
+html[data-mode="explorer"] .x-figure { position: sticky; top: var(--x-space-4); }
+@media (min-width: 64rem) {
+  html[data-mode="explorer"] .act-body { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
+}
+
+.exhibit-export { padding: var(--x-space-8) 0 var(--x-space-12); border-top: 1px solid var(--brand-border); }
+.exhibit-export textarea {
+  width: 100%; min-height: 12rem; margin-top: var(--x-space-3); padding: var(--x-space-3);
+  background: var(--brand-surface); border: 1px solid var(--brand-border); border-radius: var(--x-radius-control);
+  font-family: var(--brand-font-mono); font-size: 0.8125rem;
+}
+.exhibit-colophon { font-size: 0.8125rem; color: var(--brand-ink-muted); padding-bottom: var(--x-space-6); }
+
+/* Print: the page tokens press uses, so a press document and an exhibit
+   rendition of one theme print alike. Controls give way to a settings line;
+   deck pages and cinematic scenes take one sheet each. */
+@page { margin: 18mm; }
+@media print {
+  html { scroll-behavior: auto; }
+  body { font-size: 11pt; line-height: 1.55; background: var(--brand-canvas); }
+  .exhibit-page { max-width: 180mm; padding: 0; }
+  .exhibit-nav, .exhibit-progress, .x-figure-copy, .exhibit-export, .x-step-nav, .exhibit-scroll-cue, .exhibit-spotlight-mask, .x-frame-states { display: none !important; }
+  .exhibit-masthead { min-height: 0 !important; padding: 0 0 var(--x-space-6); border-bottom: 1px solid var(--brand-border); }
+  .exhibit-masthead-scene { display: none; }
+  .act { break-inside: avoid; padding: var(--x-space-8) 0; min-height: 0 !important; }
+  .x-step:not([data-active]) .x-step-body { display: block; }
+  .x-controls input, .x-controls select, .x-controls textarea, .x-choice, .x-compare input { display: none !important; }
+  .x-print-settings { display: block; font-family: var(--brand-font-mono); font-size: 9pt; color: var(--brand-ink-muted); }
+  html[data-mode="deck"] .act, html[data-register="cinematic"] .act { break-after: page; }
+  html[data-mode="explorer"] .x-figure { position: static; }
+  [x-reveal], [x-reveal\.stagger], [x-reveal\.stagger] > *, [data-scene] { opacity: 1 !important; transform: none !important; }
+  .x-figure { break-inside: avoid; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  html[data-motion="on"] [x-reveal]:not([data-revealed]), html[data-motion="on"] [x-reveal\.stagger]:not([data-revealed]) > *, html[data-motion="on"] .act[x-scene] [data-scene]:not([data-revealed]) { opacity: 1; }
+}
+@media (forced-colors: active) {
+  .x-figure, .x-step, .x-option, .x-choice label, .x-legend label, .x-frame { border: 1px solid CanvasText; }
+  .x-button { forced-color-adjust: auto; }
+}
+</style>
+<script id="exhibit-boot">
+/* The boot shim: window.Exhibit exists before any act script runs, so an act can
+   register data, ready handlers, and exporters from anywhere in the body. The
+   runtime, inlined before Alpine at the end of the body, drains these queues. */
+(function () {
+  var queues = { data: [], ready: [], export: [] };
+  window.Exhibit = {
+    version: 2,
+    _queues: queues,
+    data: function (name, factory) { queues.data.push([name, factory]); },
+    ready: function (fn) { queues.ready.push(fn); },
+    export: function (actId, fn) { queues.export.push([actId, fn]); },
+    motion: function () { return document.documentElement.getAttribute("data-motion") === "on"; }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="exhibit-progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+<div class="exhibit-spotlight-mask" aria-hidden="true"></div>
+<div class="exhibit-page">
+<header class="exhibit-masthead">
+  <div class="exhibit-masthead-scene" aria-hidden="true">
+    <div class="exhibit-masthead-layer" x-parallax="1"></div>
+    <div class="exhibit-masthead-layer" x-parallax="0.5"></div>
+    <div class="exhibit-masthead-layer" x-parallax="1.6"></div>
+  </div>
+  <div class="exhibit-masthead-copy" x-reveal.stagger>
+    <p class="x-kicker">{{kicker}}</p>
+    <h1>{{title}}</h1>
+    <p class="exhibit-question">{{question}}</p>
+    <p class="exhibit-thesis">{{thesis}}</p>
+    <p class="exhibit-scroll-cue">Scroll</p>
+  </div>
+</header>
+<div class="exhibit-body">
+<nav class="exhibit-nav" aria-label="Acts">
+  <ol>
+{{nav}}
+  </ol>
+</nav>
+<main id="exhibit-main">
+{{acts}}
+<section class="exhibit-export" aria-labelledby="exhibit-export-title">
+  <h2 id="exhibit-export-title">Take this with you</h2>
+  <p>The button copies what you chose on this page as markdown you can paste into a document or a conversation.</p>
+  <button type="button" id="exhibit-export" class="x-button">Export as markdown</button>
+  <label for="exhibit-export-output" class="x-kicker" style="margin-top: var(--x-space-4)">Export</label>
+  <textarea id="exhibit-export-output" readonly hidden aria-label="Exported markdown"></textarea>
+</section>
+</main>
+</div>
+<footer class="exhibit-colophon">
+  <p>{{colophon}}</p>
+</footer>
+</div>
+{{vendor}}
+<script id="exhibit-runtime">
+{{runtime}}
+</script>
+{{alpine}}
+</body>
+</html>

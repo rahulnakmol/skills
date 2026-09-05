@@ -1,6 +1,6 @@
 # The Quentin Skills
 
-> The Quentin's skill library: 58 skills across six groups, documenting what each one does, who it is for, and how to call it, on top of one doctrine — human judgment holds the gates, trusted agents do the work in between.
+> The Quentin's skill library: 59 skills across six groups, documenting what each one does, who it is for, and how to call it, on top of one doctrine — human judgment holds the gates, trusted agents do the work in between.
 
 ## Home
 
@@ -86,6 +86,7 @@
 - [solarized-branding](https://tqnonline.github.io/skills/solarized-branding/): Disciplined blue-and-gold branding across digital, print, environmental, and motion surfaces with accessible Solarized light and dark roles.
 - [press](https://tqnonline.github.io/skills/press/): Renders an approved markdown document to a branded, self-contained HTML page and a PDF.
 - [branding-system](https://tqnonline.github.io/skills/branding-system/): Common engine for applying a validated theme profile as one coherent verbal, visual, accessibility, physical, and motion system.
+- [exhibit](https://tqnonline.github.io/skills/exhibit/): Builds one self-contained, interactive HTML page that walks a reader through a topic as a journey, in a selected theme's colors, type, and motion.
 
 ### Writing
 
