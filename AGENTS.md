@@ -22,3 +22,7 @@ See [CLAUDE.md](./CLAUDE.md) for the complete set of repository invariants: skil
 ## Agent attribution
 
 No agent attribution footers or watermarks in anything written to this repository or to GitHub — commit messages, pull request titles and bodies, issue and review comments, changesets. No "Generated with" line, no agent "Co-Authored-By" trailer, no session link. The record carries what changed and why, not which tool typed it.
+
+## Working in Amp
+
+Amp reads this file at the start of every thread. In an orb, `.agents/setup` and `.agents/resume` link every skill in this repository, plus the Amp-only skills under `adapters/amp/skills/`, into `.agents/skills/`, so all of them are available as project skills; `.agents/resume` also sets `amp.git.commit.coauthor.enabled` and `amp.git.commit.ampThread.enabled` to `false` in the orb's Amp settings, which is how the attribution rule above holds for commits Amp makes. Load the `tqn` skill before using a catalog skill; it maps the catalog's doctrine citations and execution shapes onto Amp's tools. Load Amp's `building-skills` skill before creating or editing a `SKILL.md`. After changing a doctrine file at a group root, run `node scripts/gen-amp-doctrine.mjs`; `--check` is part of the test suite. `adapters/amp/README.md` covers installing the skills at project, personal, and workspace scope.

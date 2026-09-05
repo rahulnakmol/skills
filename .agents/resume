@@ -1,4 +1,22 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# This repository has no persistent services or authentication to repair.
+# Amp runs this on every wake and waits at most 10 seconds. Both steps below
+# finish in about two seconds and change nothing when the state is already right.
+
+# Re-link the skills into .agents/skills. Links survive a pause, but a checkout
+# that moved to another commit may have gained or lost skills.
+scripts/link-amp-skills.sh
+
+# This repository forbids agent attribution in commits (see AGENTS.md). Amp adds
+# a Co-authored-by trailer and a thread link by default; the settings below turn
+# both off inside this orb only. Environment variables cannot do this from here
+# because a script's exports never reach the running Amp process.
+settings="$HOME/.config/amp/settings.json"
+mkdir -p "$(dirname "$settings")"
+[[ -s "$settings" ]] || echo '{}' > "$settings"
+updated="$(jq '. + {"amp.git.commit.coauthor.enabled": false, "amp.git.commit.ampThread.enabled": false}' "$settings")"
+if [[ "$updated" != "$(cat "$settings")" ]]; then
+  printf '%s\n' "$updated" > "$settings"
+  echo "Disabled Amp commit trailers in $settings"
+fi

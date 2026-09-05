@@ -35,3 +35,11 @@ echo "Installing documentation dependencies from site/Gemfile..."
 bundle config set --global path "$HOME/.local/share/bundle"
 BUNDLE_FROZEN=true BUNDLE_JOBS=4 BUNDLE_RETRY=3 bundle install --gemfile site/Gemfile
 echo "Documentation dependencies ready in $((SECONDS - step_start))s."
+
+step_start=$SECONDS
+echo "Linking the repository's skills into .agents/skills for Amp..."
+# Amp discovers project skills in .agents/skills and follows symlinks, so the
+# checkout stays the single home of every skill. The directory is gitignored.
+# .agents/resume repeats this step on every wake.
+scripts/link-amp-skills.sh
+echo "Skills linked in $((SECONDS - step_start))s."

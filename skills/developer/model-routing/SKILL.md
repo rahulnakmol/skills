@@ -1,6 +1,6 @@
 ---
 name: model-routing
-description: Model-invoked lookup of tier and role assignments from the canonical registry. Serves every group in this repository, developer and pm alike. Use when selecting a worker, verifier, or orchestrator model for a task node.
+description: Model-invoked lookup of tier and role assignments from the canonical registry. Serves every group in this repository, developer and pm alike. Use when selecting a worker, verifier, or orchestrator model for a task node. Where the tool exposes effort modes rather than model identifiers, bind the tier to a mode and pin no identifier.
 ---
 
 # Model routing (model-invoked)

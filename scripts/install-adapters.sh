@@ -53,6 +53,14 @@ install_codex_hooks() {
     run cp "$ROOT/adapters/codex/hooks/hooks.json" "$DEST/hooks.json"
   fi
 }
+install_amp_plugin() {
+  # System plugins apply to every project on this machine. Amp refuses a plugin
+  # path that contains a symbolic link, so this copies rather than links.
+  DEST="${AMP_PLUGINS_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/amp/plugins}"
+  run mkdir -p "$DEST"
+  run cp "$ROOT/adapters/amp/plugin/tqn-grit.js" "$DEST/tqn-grit.js"
+  echo "Run 'plugins: reload' in Amp, or restart it, to load tqn-grit."
+}
 case "$TOOL" in
   all) install_opencode; install_claude ;;
   opencode) install_opencode ;;
@@ -60,6 +68,11 @@ case "$TOOL" in
   claude-hooks) install_claude_hooks ;;
   codex-hooks) install_codex_hooks ;;
   codex|cursor|copilot) echo "See adapters/$TOOL/README.md for host-specific steps" ;;
-  *) echo "Unknown tool: $TOOL (valid: all, opencode, claude, claude-hooks, codex, codex-hooks, cursor, copilot)"; exit 1 ;;
+  # Amp installs by copying from a source path with its own CLI; install-amp.sh
+  # builds those calls. It is not part of `all` because it needs the amp CLI.
+  amp) if $DRY_RUN; then "$ROOT/scripts/install-amp.sh" --print; else "$ROOT/scripts/install-amp.sh"; fi ;;
+  # Opt-in like claude-hooks and codex-hooks: the plugin changes turn behavior.
+  amp-plugin) install_amp_plugin ;;
+  *) echo "Unknown tool: $TOOL (valid: all, opencode, claude, claude-hooks, codex, codex-hooks, cursor, copilot, amp, amp-plugin)"; exit 1 ;;
 esac
 echo "Done (tool=$TOOL dry_run=$DRY_RUN)"
