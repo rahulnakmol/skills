@@ -6,7 +6,7 @@ Exhibit renders a page in a brand it did not define. The brand comes from a prof
 
 `--theme <skill>` names one of the six theme skills in this group: `ai-branding`, `catppuccin-branding`, `everforest-branding`, `gruvbox-branding`, `nord-branding`, or `solarized-branding`. The scaffold reads `skills/branding/<skill>/PROFILE.md`. This is the common case and needs no preparation.
 
-`--brand <path>` names a brand kept outside this repository. The path may be a directory holding `PROFILE.md`, the `PROFILE.md` file itself, or a `.skill` archive, which the scaffold unpacks with the system `unzip` into a temporary directory and searches for `PROFILE.md`. The user's brand repository stays the single source of truth; exhibit copies nothing out of it. When no profile is found, the scaffold exits `2` and names this document, because deriving a profile is a reading task for the agent and a review task for a person, not a parsing task for a script.
+`--brand <path>` names a brand kept outside this repository. The path may be a directory holding `PROFILE.md`, the `PROFILE.md` file itself, or a `.skill` archive, which the scaffold unpacks with the system `unzip` into a temporary directory and searches for `PROFILE.md`. The user's brand repository stays the single source of truth; exhibit copies nothing out of it. A `DESIGN.md` can supply design intent and portable tokens, but Exhibit does not parse it directly because the alpha format has no standard dark-mode, motion, voice, or provenance schema. When no profile is found, the scaffold exits `2` and names this document, because deriving a profile is a reading task for the agent and a review task for a person, not a parsing task for a script.
 
 The two flags are exclusive. The finished page records the choice in `data-theme`, so `verify.mjs` can run later without either flag.
 
@@ -37,7 +37,7 @@ Every profile in this group is currently graded `expressive` with a `cinematic` 
 
 ## Deriving a profile for an external brand
 
-A brand kept as prose, a `SKILL.md` with reference files for color, type, and voice, has no `PROFILE.md`. The agent derives one once, and a person reviews it before it is written beside the brand.
+A brand kept as prose, a `SKILL.md` with reference files, or a canonical `DESIGN.md` may have no `PROFILE.md`. The agent derives one once, and a person reviews it before it is written beside the brand. For `DESIGN.md`, treat frontmatter tokens as authoritative when its prose disagrees, preserve custom sections, and record every profile field the alpha format could not supply.
 
 1. Read the brand the way it asks to be read: its `SKILL.md` first, then the files it names for color, type, patterns, voice, and motion.
 2. Decide how many variants the brand has. A brand that separates a document identity from a product identity has two; give each a `variants` entry and name the one the brand treats as primary in `defaultVariant`.

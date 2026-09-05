@@ -2,7 +2,7 @@
 
 Branding applies one identity to every surface an agent can help produce. Six user-invoked theme skills cover verbal identity, semantic color, open-source typography, product and native UI, documents, PDF, decks, print, email, social media, iconography, data visualization, environmental work, motion, generated video, and color grading.
 
-`branding-system` is the model-invoked common engine. It defines the surface, accessibility, provenance, motion, and output contracts once. Each theme supplies the same four profile documents and calls that engine. A single-theme install brings its required engine without bringing unrelated themes.
+`branding-system` is the model-invoked common engine. It defines the surface, accessibility, provenance, motion, `DESIGN.md` interoperability, and output contracts once. Each theme supplies the same four profile documents and calls that engine. A single-theme install brings its required engine without bringing unrelated themes.
 
 `everforest-branding`, `catppuccin-branding`, `gruvbox-branding`, `nord-branding`, and `solarized-branding` adapt open palette projects. `ai-branding` defaults to an Anthropic-inspired profile and offers a separate `provider: openai` option. Company marks require their own permission and never mix across provider variants.
 

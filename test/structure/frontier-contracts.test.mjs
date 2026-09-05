@@ -258,8 +258,9 @@ test('every doctrine document a skill points at exists', () => {
   const CORE_DOCTRINE = new Set(readdirSync(join(root, 'skills/core')).filter((f) => f.endsWith('.md')));
   // Files a skill writes at run time, or repository files it authors, are named
   // as outputs rather than as doctrine it ships. PROFILE.md is the brand
-  // profile exhibit derives and writes beside a brand that lacks one.
-  const AUTHORED = new Set(['AGENTS.md', 'CLAUDE.md', 'PROGRESS.md', 'EXERCISES.md', 'SOLUTIONS.md', 'GATES.md', 'TRACE.md', 'README.md', 'STORYBOARD.md', 'PROFILE.md']);
+  // profile exhibit derives, and DESIGN.md is the portable file the branding
+  // engine writes. Both live beside the target project rather than the skill.
+  const AUTHORED = new Set(['AGENTS.md', 'CLAUDE.md', 'DESIGN.md', 'PROGRESS.md', 'EXERCISES.md', 'SOLUTIONS.md', 'GATES.md', 'TRACE.md', 'README.md', 'STORYBOARD.md', 'PROFILE.md']);
   const dangling = [];
   for (const skill of PROMOTED) {
     const body = read(skill.path);
