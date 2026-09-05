@@ -6,6 +6,8 @@ Branding applies one identity to every surface an agent can help produce. Six us
 
 `everforest-branding`, `catppuccin-branding`, `gruvbox-branding`, `nord-branding`, and `solarized-branding` adapt open palette projects. `ai-branding` defaults to an Anthropic-inspired profile and offers a separate `provider: openai` option. Company marks require their own permission and never mix across provider variants.
 
+`exhibit` builds one self-contained, interactive HTML page that walks a reader through a topic as a journey of acts, each with a figure and a control that changes a model, in the colors, type, and motion of a selected theme. A reader of a `press` page reads a document someone approved; a reader of an `exhibit` page moves controls and watches a claim hold or fail at their own settings. A topic with no model to change is a document, and `press` renders it.
+
 `press` remains the deterministic document renderer. The common engine generates a compatible palette file for any profile, but final PDF accessibility and print proof still require artifact-level review.
 
 The group installs on its own and references no other group.

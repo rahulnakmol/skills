@@ -48,6 +48,7 @@ contract:
    - cool, spacious branding → `nord-branding`
    - blue-and-gold light or dark branding → `solarized-branding`
    - PDF → `press`
+   - an interactive, branded page with controls the reader moves → `exhibit`
    - incoming issues or external pull requests to sort → `triage`
    - a setup step only a human can perform, in a dashboard the agent cannot reach → `wizard`
    - a question to settle against primary sources, written down for reuse → `research`

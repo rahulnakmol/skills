@@ -8,12 +8,26 @@ Use warm mineral neutrals, forest greens, restrained blue-green focus, and modes
 
 ## Machine profile
 
+The `motion` block states the brand's motion rules for any renderer that animates: the grade (how much movement is permitted), the default register (how a page presents by default), durations and easing by role, the parallax depth, and any effect the brand forbids. Every profile in this repository is graded `expressive` with a `cinematic` register, so a rendered page moves with layered reveals, scroll-linked scenes, and parallax depth; a reader who asks for reduced motion receives the same sequence without movement. Change the grade or the forbid list here to restrain one brand without touching the renderer.
+
 ```json profile
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "skill": "everforest-branding",
   "title": "Everforest Branding",
   "defaultVariant": "everforest",
+  "motion": {
+    "grade": "expressive",
+    "register": "cinematic",
+    "duration": { "micro": 160, "reveal": 640, "scene": 1200 },
+    "easing": {
+      "standard": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "enter": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "exit": "cubic-bezier(0.7, 0, 0.84, 0)"
+    },
+    "parallax": 0.12,
+    "forbid": []
+  },
   "variants": {
     "everforest": {
       "provenance": {

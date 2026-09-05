@@ -44,7 +44,7 @@ Press turns an approved markdown document into a branded, self-contained artifac
 
 - [`PALETTE.md`](https://github.com/tqnonline/skills/blob/main/skills/branding/press/PALETTE.md) covers every token the renderer reads — ten colors, five typography values, two page measurements — and how a substituted fallback gets reported when a value fails its check.
 
-Press remains a standalone renderer and depends on no other group. A theme skill can generate its palette file, but press renders whatever markdown file it is handed and still runs on its own.
+Press remains a standalone renderer and depends on no other group. A theme skill can generate its palette file, but press renders whatever markdown file it is handed and still runs on its own. Where press renders a document a reader reads, [`exhibit`]({{ '/exhibit/' | relative_url }}) builds an interactive page a reader changes; a topic with no model behind it belongs here.
 
 ## When to reach for it
 

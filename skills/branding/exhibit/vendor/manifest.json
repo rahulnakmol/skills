@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "note": "Pinned by checksum. scaffold.mjs inlines these files in this order; verify.mjs fails structural.vendor-pinned when an inlined copy differs.",
+  "libraries": [
+    {
+      "id": "gsap",
+      "file": "gsap-3.15.0.min.js",
+      "name": "GSAP",
+      "version": "3.15.0",
+      "license": "GSAP Standard No Charge License",
+      "source": "https://unpkg.com/gsap@3.15.0/dist/gsap.min.js",
+      "role": "always",
+      "global": "gsap",
+      "bytes": 72927,
+      "sha256": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+    },
+    {
+      "id": "scrolltrigger",
+      "file": "ScrollTrigger-3.15.0.min.js",
+      "name": "GSAP ScrollTrigger",
+      "version": "3.15.0",
+      "license": "GSAP Standard No Charge License",
+      "source": "https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js",
+      "role": "always",
+      "global": "ScrollTrigger",
+      "bytes": 44575,
+      "sha256": "b0b14d67b55b0c43c756ac0b106cfcb09d0879945f6ead64451065b0672916a2"
+    },
+    {
+      "id": "drawsvg",
+      "file": "DrawSVGPlugin-3.15.0.min.js",
+      "name": "GSAP DrawSVGPlugin",
+      "version": "3.15.0",
+      "license": "GSAP Standard No Charge License",
+      "source": "https://unpkg.com/gsap@3.15.0/dist/DrawSVGPlugin.min.js",
+      "role": "draw",
+      "global": "DrawSVGPlugin",
+      "bytes": 4351,
+      "sha256": "beb19529f54c1212f1f5117d027be01afda2f363a4926d32aa979bc11140edc1"
+    },
+    {
+      "id": "morphsvg",
+      "file": "MorphSVGPlugin-3.15.0.min.js",
+      "name": "GSAP MorphSVGPlugin",
+      "version": "3.15.0",
+      "license": "GSAP Standard No Charge License",
+      "source": "https://unpkg.com/gsap@3.15.0/dist/MorphSVGPlugin.min.js",
+      "role": "morph",
+      "global": "MorphSVGPlugin",
+      "bytes": 21195,
+      "sha256": "19c891a412240d8521b13330813d9b551ea5b0f707907c365ffecaf1dfa0f5cf"
+    },
+    {
+      "id": "flip",
+      "file": "Flip-3.15.0.min.js",
+      "name": "GSAP Flip",
+      "version": "3.15.0",
+      "license": "GSAP Standard No Charge License",
+      "source": "https://unpkg.com/gsap@3.15.0/dist/Flip.min.js",
+      "role": "morph",
+      "global": "Flip",
+      "bytes": 25534,
+      "sha256": "cbe3ca726350f8d230da38a14ce2384e7772e05a45cee6144dd7fe6dde868c2f"
+    },
+    {
+      "id": "splittext",
+      "file": "SplitText-3.15.0.min.js",
+      "name": "GSAP SplitText",
+      "version": "3.15.0",
+      "license": "GSAP Standard No Charge License",
+      "source": "https://unpkg.com/gsap@3.15.0/dist/SplitText.min.js",
+      "role": "highlight",
+      "global": "SplitText",
+      "bytes": 7732,
+      "sha256": "419f7027a5f086a12cb7988736d8fdd3a6ed2200229661de25b6628ca7ced344"
+    },
+    {
+      "id": "htmx",
+      "file": "htmx-2.0.10.min.js",
+      "name": "htmx",
+      "version": "2.0.10",
+      "license": "0BSD",
+      "source": "https://unpkg.com/htmx.org@2.0.10/dist/htmx.min.js",
+      "role": "always",
+      "global": "htmx",
+      "bytes": 51238,
+      "sha256": "71ea67185bfa8c98c39d31717c6fce5d852370fcdfd129db4543774d3145c0de"
+    },
+    {
+      "id": "alpine",
+      "file": "alpine-3.17.1.min.js",
+      "name": "Alpine.js",
+      "version": "3.17.1",
+      "license": "MIT",
+      "source": "https://unpkg.com/alpinejs@3.17.1/dist/cdn.min.js",
+      "role": "always",
+      "global": "Alpine",
+      "bytes": 55744,
+      "sha256": "b30997fc126d808b1a9b20ab3f504ded88df957818c02d6249bba3ec114eb0ec"
+    }
+  ]
+}

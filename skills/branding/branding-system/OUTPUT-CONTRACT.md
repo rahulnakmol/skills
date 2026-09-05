@@ -60,4 +60,4 @@ Only a person with authority over the identity and channel moves work to `APPROV
 
 ## Deterministic starter kit
 
-`build-theme.mjs` writes `tokens.json`, `tokens.css`, `press-palette.md`, `specimen.html`, and `manifest.json`. The manifest records SHA-256 checksums for the first four files. The same profile, variant, and mode produce the same bytes. The specimen demonstrates tokens and states; it is review input, not a completed customer artifact.
+`build-theme.mjs` writes `tokens.json`, `tokens.css`, `press-palette.md`, `specimen.html`, and `manifest.json`. The manifest records SHA-256 checksums for the first four files. The same profile, variant, and mode produce the same bytes. `tokens.json` carries the profile's `motion` block, and `tokens.css` states it as `--brand-motion-*` durations, `--brand-ease-*` curves, and `--brand-parallax`, all set to zero under `prefers-reduced-motion`, so a renderer that animates reads the same rules the profile states. The specimen demonstrates tokens and states; it is review input, not a completed customer artifact.
