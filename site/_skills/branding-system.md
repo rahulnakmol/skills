@@ -23,7 +23,7 @@ lens:
 
 ## What it does
 
-Branding System is the model-invoked engine behind six user-invoked themes. It defines one independent verbal identity, surface rules, an A+ internal accessibility bar, provenance boundaries, environmental sampling, generated-video prompts, motion, color grading, and an output receipt. A deterministic builder creates CSS and JSON tokens, a press palette, an HTML specimen, and a checksummed manifest.
+Branding System is the model-invoked engine behind six user-invoked themes. It defines one independent verbal identity, surface rules, an A+ internal accessibility bar, provenance boundaries, environmental sampling, generated-video prompts, motion, color grading, and an output receipt. It also reads an established project `DESIGN.md` before applying a theme. A deterministic builder creates a portable `DESIGN.md`, CSS and JSON tokens, a press palette, an HTML specimen, and a checksummed manifest.
 
 <div class="step-flow">
 <div class="step"><span class="step-num">1</span><span class="step-label">Validate</span><span class="step-text">Read the selected machine profile and reject an invalid role, source, or font record.</span></div>
@@ -90,7 +90,9 @@ The UI review covers interaction states, keyboard use, semantics, reflow, forced
 
 <details class="qa"><summary>Is A+ an accessibility certification?</summary><div class="qa-body"><p>No. It is an internal quality bar over a WCAG 2.2 AA baseline. The system reports exact checks and never treats a palette as whole-artifact certification.</p></div></details>
 
-<details class="qa"><summary>Does the starter kit finish the design?</summary><div class="qa-body"><p>No. It provides deterministic tokens, a specimen, a press mapping, and checksums. Native layout, production, accessibility, and rendered review still remain.</p></div></details>
+<details class="qa"><summary>Does the starter kit finish the design?</summary><div class="qa-body"><p>No. It provides a portable `DESIGN.md`, deterministic tokens, a specimen, a press mapping, and checksums. Native layout, production, accessibility, and rendered review still remain.</p></div></details>
+
+<details class="qa"><summary>Does `design.dark.md` select dark mode?</summary><div class="qa-body"><p>Not by a shared standard. Google's alpha format defines uppercase `DESIGN.md` and no companion-file protocol. Vercel's lowercase public routes are a separate publishing convention. This engine exports the selected mode and records it inside the document.</p></div></details>
 
 <details class="qa"><summary>Can it generate one lookup table for a theme?</summary><div class="qa-body"><p>No. A reusable three-dimensional lookup table follows an approved grade for named input, working, and output spaces. It is never derived directly from palette hex values.</p></div></details>
 

@@ -85,6 +85,87 @@ const pressTokens = {
 };
 const pressPalette = `# Press palette: ${profile.title}\n\nGenerated for the ${variantName} ${modeName} profile. Verify the rendered document and final PDF; this mapping does not establish PDF accessibility or print approval.\n\n## Machine tokens\n\n\`\`\`json\n${JSON.stringify(pressTokens, null, 2)}\n\`\`\`\n`;
 
+const colorUses = {
+  canvas: 'Page background',
+  surface: 'Grouped content and controls',
+  'surface-strong': 'Stronger grouped emphasis',
+  ink: 'Primary text and essential marks',
+  'ink-muted': 'Secondary text',
+  border: 'Boundaries and dividers',
+  accent: 'Identity and primary data emphasis',
+  action: 'Primary action background',
+  'action-ink': 'Text and marks on primary actions',
+  focus: 'Keyboard focus and selected controls',
+  success: 'Successful state with a text or shape cue',
+  warning: 'Warning state with a text or shape cue',
+  error: 'Error state with a text or shape cue',
+};
+const designName = `${profile.title} — ${variantName} ${modeName}`;
+const designDescription = `Portable ${modeName}-mode export from ${profile.skill}/PROFILE.md. The profile remains the source for both modes, provenance, motion, and voice.`;
+const designColors = COLOR_ROLES.map((role) => [
+  `  ${role}: ${JSON.stringify(colors[role])}`,
+  ...(role === 'accent' ? ['  primary: "{colors.accent}"'] : []),
+].join('\n')).join('\n');
+const designTypography = ['display', 'body', 'mono'].map((role) => [
+  `  ${role}:`,
+  `    fontFamily: ${JSON.stringify(typography[role].family)}`,
+].join('\n')).join('\n');
+const designColorRows = COLOR_ROLES.map((role) => `| \`${role}\` | \`${colors[role]}\` | ${colorUses[role]} |`).join('\n');
+const designTypeRows = ['display', 'body', 'mono'].map((role) => (
+  `| \`${role}\` | ${typography[role].family} | \`${typography[role].stack.replaceAll('|', '\\|')}\` |`
+)).join('\n');
+const designDocument = `---
+version: alpha
+name: ${JSON.stringify(designName)}
+description: ${JSON.stringify(designDescription)}
+omitted:
+  - section: spacing
+    reason: "The profile does not prescribe a portable spacing scale. Preserve the host project's established scale."
+  - section: components
+    reason: "The profile maps semantic roles but does not prescribe a portable component library."
+  - section: rounded
+    reason: "The profile does not prescribe portable corner-radius tokens."
+colors:
+${designColors}
+typography:
+${designTypography}
+---
+
+# ${designName}
+
+## Overview
+
+This document is the portable, mode-specific view of ${profile.title}. It applies the \`${variantName}\` variant in ${modeName} mode. Use the host project's framework, components, layout conventions, and spacing before adding new ones. The source profile remains authoritative for regeneration and for information this alpha document cannot represent.
+
+## Colors
+
+Use semantic roles instead of scattering raw values through components. Color never carries status, selection, or error by itself. The alpha format's conventional \`primary\` token aliases this profile's \`accent\` role; use the more specific semantic role in implementation.
+
+| Role | Value | Use |
+|---|---|---|
+${designColorRows}
+
+## Typography
+
+Use each family by role. Keep the stated fallback stack when the primary face is unavailable. The host project owns sizes, weights, line heights, and responsive type behavior unless its implementation says otherwise.
+
+| Role | Family | Stack |
+|---|---|---|
+${designTypeRows}
+
+## Components
+
+Map existing components to these semantic colors instead of introducing a parallel component library. Define and inspect default, hover, active, focus, selected, disabled, loading, empty, success, warning, and error states. Action backgrounds use \`action\` with \`action-ink\`; focus indicators use \`focus\`.
+
+## Do's and Don'ts
+
+- Do preserve supplied facts, accessibility, rights, privacy, and established project patterns before visual preference.
+- Do use \`focus\` for a persistent focus indicator and pair status colors with text, shape, pattern, or position.
+- Do inspect the rendered artifact at narrow and wide sizes and in every mode it supports.
+- Don't infer spacing, radii, logos, assets, or component geometry that this export does not define.
+- Don't treat a clean format lint as proof that the rendered artifact is accessible or on brand.
+`;
+
 const escape = (value) => String(value).replace(/[&<>"']/g, (char) => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
 })[char]);
@@ -122,6 +203,7 @@ button,a.button{min-height:44px;display:inline-flex;align-items:center;justify-c
 </section></main></body></html>\n`;
 
 const outputs = new Map([
+  ['DESIGN.md', designDocument],
   ['tokens.json', tokensJson],
   ['tokens.css', tokensCss],
   ['press-palette.md', pressPalette],

@@ -25,7 +25,7 @@ All six use open-source primary fonts and Noto script-specific fallbacks. Their 
 
 [`press`]({{ '/press/' | relative_url }}) remains the document renderer, and [`exhibit`]({{ '/exhibit/' | relative_url }}) is the interactive counterpart. Where press renders a document a reader reads, exhibit builds one branded page a reader changes: a sequence of acts, each with a figure, a control that changes a model, and a takeaway that states the claim at the reader's own settings. It holds the finished page to the theme with named checks and a rendered capture at desktop and phone widths. The trade-off is authoring effort: an exhibit page asks for a storyboard and one authored act per claim, where press asks for a finished document and one command.
 
-[`press`]({{ '/press/' | relative_url }}) remains the document renderer. A theme starter kit writes a press-compatible palette alongside CSS and JSON tokens, an HTML specimen, and a checksummed manifest. The palette does not replace PDF tagging, print proof, or approval.
+[`press`]({{ '/press/' | relative_url }}) remains the document renderer. A theme starter kit writes a portable `DESIGN.md` and a press-compatible palette alongside CSS and JSON tokens, an HTML specimen, and a checksummed manifest. The portable document follows Google's alpha format for its selected mode. It does not replace the richer profile, PDF tagging, print proof, or approval.
 
 ```bash
 npx skills@latest add tqnonline/skills

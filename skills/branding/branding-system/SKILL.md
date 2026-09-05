@@ -29,21 +29,22 @@ Do not invoke this engine directly to choose an aesthetic. A user-invoked theme 
 ## Procedure
 
 1. Read the machine profile supplied by the calling theme. Reject a missing or invalid profile. Run `node skills/branding/branding-system/scripts/validate-profiles.mjs` after any profile change.
-2. Define the audience, message, artifact, channel, locale, mode, delivery space, and approval owner. Read `VERBAL-IDENTITY.md` for any words or narrative.
-3. Apply the semantic roles and typography. Read `SURFACE-CONTRACT.md` for web, native UI, documents, PDF, decks, print, email, social, icons, data visualization, or environmental work.
-4. Read `ACCESSIBILITY.md` for every artifact. Accessibility is a whole-artifact test, not a property inferred from the palette.
-5. For animation, generated footage, editing, titles, captions, or grading, read `MOTION-VIDEO.md` before storyboards or prompts are written.
-6. Read `PROVENANCE.md` before using a source palette, typeface, provider identity, logo, paint, ink, or material specification.
-7. Build a deterministic starter kit when files are needed:
+2. Read `DESIGN-DOCUMENTS.md` when the project contains or requests `DESIGN.md`, `design.md`, or a remote design-guidance URL. Preserve an established host design system unless the requester explicitly replaces it.
+3. Define the audience, message, artifact, channel, locale, mode, delivery space, and approval owner. Read `VERBAL-IDENTITY.md` for any words or narrative.
+4. Apply the semantic roles and typography. Read `SURFACE-CONTRACT.md` for web, native UI, documents, PDF, decks, print, email, social, icons, data visualization, or environmental work.
+5. Read `ACCESSIBILITY.md` for every artifact. Accessibility is a whole-artifact test, not a property inferred from the palette.
+6. For animation, generated footage, editing, titles, captions, or grading, read `MOTION-VIDEO.md` before storyboards or prompts are written.
+7. Read `PROVENANCE.md` before using a source palette, typeface, provider identity, logo, paint, ink, or material specification.
+8. Build a deterministic starter kit when files are needed:
 
    ```bash
    node skills/branding/branding-system/scripts/build-theme.mjs \
      --theme <theme-skill> --variant <variant> --mode <light|dark> --out <directory>
    ```
 
-8. Produce the artifact with the native tool for its surface. The starter kit supplies tokens and a specimen; it does not replace layout, preflight, color management, or assistive-technology checks.
-9. Inspect the rendered result and verify it against `OUTPUT-CONTRACT.md`. Include non-default states, forced colors or reduced motion where relevant, and both intended display spaces for video.
-10. Ask the named owner to approve before publishing, ordering print, manufacturing, painting, or releasing media.
+9. Produce the artifact with the native tool for its surface. The starter kit supplies tokens, a portable `DESIGN.md`, and a specimen; it does not replace layout, preflight, color management, or assistive-technology checks.
+10. Inspect the rendered result and verify it against `OUTPUT-CONTRACT.md`. Include non-default states, forced colors or reduced motion where relevant, and both intended display spaces for video.
+11. Ask the named owner to approve before publishing, ordering print, manufacturing, painting, or releasing media.
 
 ## Stop conditions
 

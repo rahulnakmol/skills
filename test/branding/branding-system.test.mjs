@@ -118,7 +118,7 @@ test('the starter kit is deterministic, checksummed, and accepted by press', () 
       ], { cwd: root, encoding: 'utf8' });
       assert.equal(result.status, 0, `${result.stdout}${result.stderr}`);
     }
-    const expectedFiles = ['manifest.json', 'press-palette.md', 'specimen.html', 'tokens.css', 'tokens.json'];
+    const expectedFiles = ['DESIGN.md', 'manifest.json', 'press-palette.md', 'specimen.html', 'tokens.css', 'tokens.json'];
     assert.deepEqual(readdirSync(first).sort(), expectedFiles);
     assert.deepEqual(readdirSync(second).sort(), expectedFiles);
     for (const file of expectedFiles) {
@@ -131,6 +131,13 @@ test('the starter kit is deterministic, checksummed, and accepted by press', () 
       assert.equal(content.length, file.bytes);
       assert.equal(createHash('sha256').update(content).digest('hex'), file.sha256);
     }
+
+    const design = readFileSync(join(first, 'DESIGN.md'), 'utf8');
+    assert.match(design, /^---\nversion: alpha\n/);
+    assert.match(design, /name: "Everforest Branding — everforest dark"/);
+    assert.match(design, /canvas: "#2d353b"/);
+    assert.match(design, /primary: "\{colors\.accent\}"/);
+    assert.match(design, /## Overview[\s\S]*## Colors[\s\S]*## Typography[\s\S]*## Components[\s\S]*## Do's and Don'ts/);
 
     const rendered = spawnSync(process.execPath, [
       join(BRANDING_ROOT, 'press/scripts/render.mjs'),
@@ -176,6 +183,16 @@ test('the common engine covers static, physical, motion, and verification surfac
     'data visualization', 'Environmental', 'wall-paint', 'Rec.709', 'Display P3', 'captions',
     'transcript', 'audio description', 'flash', 'reduced motion', 'Lab', 'light reflectance',
   ]) assert.match(docs, new RegExp(term, 'i'), `common engine is missing ${term}`);
+});
+
+test('the common engine defines DESIGN.md discovery, precedence, and alpha-format limits', () => {
+  const entry = read('skills/branding/branding-system/SKILL.md');
+  const guidance = read('skills/branding/branding-system/DESIGN-DOCUMENTS.md');
+  assert.match(entry, /DESIGN-DOCUMENTS\.md/);
+  for (const term of ['DESIGN.md', 'design.dark.md', 'alpha', 'precedence', 'untrusted', '@google/design.md lint']) {
+    assert.match(guidance, new RegExp(term, 'i'), `DESIGN.md guidance is missing ${term}`);
+  }
+  assert.match(guidance, /does not silently override a host design system/);
 });
 
 test('published branding implementation omits the prohibited source identity', () => {
