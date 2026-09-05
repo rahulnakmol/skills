@@ -34,7 +34,7 @@ Last reviewed: 2026-08-22
 | Quality / operate | `gpt-5.6-terra` | high |
 | Research / review | `gpt-5.6-terra` | standard |
 
-> Adapter files map host-specific IDs (Copilot display names, Cursor `auto`, etc.) to these tiers.
+> Adapter files map host-specific IDs (Copilot display names, Cursor `auto`, etc.) to these tiers. Amp binds a tier to one of its modes (`low`, `medium`, `high`, `ultra`) and chooses the model behind the mode itself; no model ID is pinned there.
 
 ## `long-context-worker` note
 

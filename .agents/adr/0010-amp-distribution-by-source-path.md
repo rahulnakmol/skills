@@ -1,0 +1,33 @@
+# ADR 0010: Amp installs from the source path, and the adapter holds only what that path cannot carry
+
+## Status
+
+Accepted
+
+## Context
+
+Amp is the sixth tool the catalog runs in. It reads the same `SKILL.md` format as the other five, so every skill works in it unchanged. What differs is how a skill gets there. The five existing tools read a directory the universal `npx skills add` drop fills, and `scripts/link-skills.sh` fills the same directories with symlinks. Amp has its own installer, `amp skill add`, and two hosted Git repositories, one per person and one per workspace, that sync to every orb the owner opens. That hosted route is the only way a skill reaches an orb that was not opened on this repository, and it is the route a team or a second project uses.
+
+Three properties of `amp skill add` were verified against the installed CLI and shape the design. It copies only a directory that holds a `SKILL.md`, scanning one level below the source, so a group's doctrine files, which sit at the group root with no `SKILL.md`, are left behind. It silently skips a symlinked skill directory, so the symlink farm that serves the other tools cannot serve as an Amp source. It reads a skill's `requires:` line but does not act on it, so a theme skill installed alone arrives without `branding-system`. A fourth property matters for scripting: it exits 0 whether or not a skill installed, and reports the outcome only in its output.
+
+The user's constraints were fixed before design: any Amp user, inside or outside the organization, must be able to install one skill, one group, or everything, at project, personal, or workspace scope; the repository must not hold a second copy of any skill; and where Amp already does a job well, the catalog should steer to Amp rather than compete.
+
+## Decision
+
+**Amp installs from the source path.** The unit Amp receives is `skills/<group>` or `skills/<group>/<skill>` in this repository, over GitHub or from a local checkout. No generated Amp tree, no `.skill` archive, and no second copy of a skill lives in the repository. `scripts/install-amp.sh` turns a selection into the `amp skill add` calls it needs, resolving the same rules `link-skills.sh` applies for every other tool: a group brings `core`; a skill brings what its `requires:` names. It reads each call's output for the failure marker and exits non-zero when one appears.
+
+**The adapter holds only what the source path cannot carry.** Two things live under `adapters/amp/skills/`, both Amp-only, per ADR 0003. Generated doctrine wrappers, `core-doctrine`, `developer-doctrine`, and `pm-doctrine`, give each group's root documents a `SKILL.md` so Amp can install them; their document copies are byte-identical to the source, `scripts/gen-amp-doctrine.mjs --check` fails on drift, and a group whose root holds only a README gets no wrapper. A hand-written router, `tqn`, maps the catalog onto Amp: where a citation such as `core/VERIFICATION.md` resolves after an install, which Amp capability to prefer where one overlaps a catalog skill, how the catalog's `agent` and `human` nodes run as Task subagents, orb threads, and schedules, and how `model-routing` tiers bind to Amp modes. The router adds no procedure and no skill names a tool, which keeps ADR 0003's boundary intact.
+
+**Three scopes, one selection grammar.** `--target .agents/skills` installs for the current project; `--global` installs for one person on one machine; `scripts/publish-amp-skills.sh --scope personal|workspace` stages the same selection into the Amp-hosted repository that syncs to every orb. The publish script clones the hosted repository or initializes one when Amp has not created it yet, copies the selection in as top-level skill directories as Amp requires, records the source commit in `PUBLISHED-FROM.md`, commits, and stops. It prints the push command and does not run it, because the push is what changes other people's sessions, and pushing is a human decision in this repository.
+
+**Steering lives in the router, not in the skills.** Eight catalog skills overlap an Amp capability: `research`, `recon`, `handoff`, `model-routing`, `update-models`, `shakedown`, `brief`, and `spotlight`, with `exhibit` and `press` gaining only the note that Amp's orbs carry a browser. The division of labor is stated once, in `tqn`, in tool-native words. The skills themselves stay tool-neutral.
+
+**Working in this repository from an orb uses links.** `.agents/setup` and `.agents/resume` link every skill and the Amp-only skills into the gitignored `.agents/skills/` through `scripts/link-amp-skills.sh`. Amp's discovery follows symlinks even though its installer does not, so the orb sees all sixty-three without a copy. `.agents/resume` also turns off Amp's commit trailers in the orb's settings file, because the repository forbids agent attribution and a script cannot set environment variables for the running Amp process.
+
+## Consequences
+
+- One skill has one home. An Amp user reads the same `skills/pm/roadmap/SKILL.md` a Claude Code user reads, and a fix lands once. The hosted personal and workspace repositories are copies by necessity; `PUBLISHED-FROM.md` names the commit they came from, and the rule is to edit here and publish again.
+- Doctrine travels. A pm skill installed in Amp can resolve `GATES.md`, and every skill can resolve `core/VERIFICATION.md`, through wrappers the test suite holds identical to the source. Bare names such as `GATES.md` are not machine-checked against the wrappers, because the same name can be a doctrine file in one skill and a file the skill writes in another; the router states the resolution rule in prose instead.
+- Installing from GitHub follows the default branch, which is `dev`. `amp skill add` has no branch flag, so a stable pin is a local checkout at the wanted commit, or the hosted repository, whose commit message names the source commit.
+- The adapter adds a test file, a CI step, and three scripts, and changes no `SKILL.md` in `skills/`. Adding a doctrine file to a group root requires regenerating the wrappers; CI fails until that is done.
+- A turn in Amp can end with unmet `grit` gates unless the opt-in plugin `adapters/amp/plugin/tqn-grit.js` is installed. The plugin listens for Amp's `agent.end` event, runs the vendored stop hook, and continues the turn while gates are unmet; it is a copy-installed file because Amp refuses symbolic links for plugins, and it is plain JavaScript so the Node 20 test harness can import it. It stays out of every default install for the reason ADR 0006 gives for the other hooks. Without it, the router asks for `gate-check.mjs --status` before work is reported done, and `grit-gates.yml` remains the backstop.

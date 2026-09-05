@@ -1,6 +1,6 @@
 # tqnonline/skills
 
-This is the skills repository of The Quentin (tqnonline): a curated, growing bundle of the AI-native skills we use across our work — authored once, running the same way in Claude Code, OpenCode, Codex, Cursor, and GitHub Copilot. We are curating and building AI-native skills that deliver business value through trusted agents with human judgment — driving growth in personal, professional, and sustainable accomplishments. Software delivery is where we started, because it is where we could prove the method; it is one group among six, not the repository's identity.
+This is the skills repository of The Quentin (tqnonline): a curated, growing bundle of the AI-native skills we use across our work — authored once, running the same way in Claude Code, OpenCode, Codex, Cursor, GitHub Copilot, and Amp. We are curating and building AI-native skills that deliver business value through trusted agents with human judgment — driving growth in personal, professional, and sustainable accomplishments. Software delivery is where we started, because it is where we could prove the method; it is one group among six, not the repository's identity.
 
 **Full documentation:** every skill has its own page at [tqnonline.github.io/skills](https://tqnonline.github.io/skills/). Start with [the grit page](https://tqnonline.github.io/skills/grit/) to see the pattern the rest of the catalog follows.
 
@@ -66,7 +66,7 @@ npx skills@latest add tqnonline/skills
 ./scripts/install-adapters.sh
 ```
 
-From there: run `/impact` to turn a raw idea into a PRD that has been through the grill loop, run `/sdlc` to carry out a gated build against it, and run `/shakedown <PR#>` to have any pull request built, tested, and reviewed by an agent in an isolated sandbox before merge. `scripts/pipeline.sh` drives the full assess-deliver-shakedown pipeline on either engine. Per-tool setup for Claude Code, OpenCode, Codex, Cursor, and GitHub Copilot is at [wiki/Tool-Guidance.md](wiki/Tool-Guidance.md) and [wiki/Installation.md](wiki/Installation.md).
+From there: run `/impact` to turn a raw idea into a PRD that has been through the grill loop, run `/sdlc` to carry out a gated build against it, and run `/shakedown <PR#>` to have any pull request built, tested, and reviewed by an agent in an isolated sandbox before merge. `scripts/pipeline.sh` drives the full assess-deliver-shakedown pipeline on either engine. Per-tool setup for Claude Code, OpenCode, Codex, Cursor, GitHub Copilot, and Amp is at [wiki/Tool-Guidance.md](wiki/Tool-Guidance.md) and [wiki/Installation.md](wiki/Installation.md).
 
 ### Starting out
 

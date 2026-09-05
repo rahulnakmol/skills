@@ -11,7 +11,7 @@ npx skills@latest add tqnonline/skills
 
 ## Per tool
 
-Each supported tool has its own additional setup step beyond the universal `.agents/skills/` drop. See `adapters/<tool>/README.md` for OpenCode, Claude, Codex, Cursor, and GitHub Copilot.
+Each supported tool has its own additional setup step beyond the universal `.agents/skills/` drop. See `adapters/<tool>/README.md` for OpenCode, Claude, Codex, Cursor, GitHub Copilot, and Amp. Amp installs through its own `amp skill add` command rather than the universal drop; `scripts/install-amp.sh` builds those commands for one skill, one group, or everything, at project, personal, or workspace scope.
 
 ## Completion hooks, on request
 

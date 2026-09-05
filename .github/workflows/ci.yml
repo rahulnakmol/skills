@@ -14,4 +14,5 @@ jobs:
       - run: node scripts/validate.mjs
       - run: node scripts/run-tests.mjs
       - run: node scripts/gen-openai-yaml.mjs
+      - run: node scripts/gen-amp-doctrine.mjs --check
       - run: node tools/opencode-workflows/test-runner.mjs

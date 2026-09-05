@@ -19,6 +19,7 @@ The skills catalog is the one form that travels everywhere. `npx skills@latest a
 | Codex | `AGENTS.md`, root and nested; a global `AGENTS.md` in the user's Codex configuration directory; `.agents/skills/` | Shares `AGENTS.md` with OpenCode — write it once for both |
 | Cursor | `.cursor/rules/` rule files, which can be marked always-apply or scoped to a file pattern; `.agents/skills/` | Rules that apply only to certain paths, which this surface expresses natively |
 | GitHub Copilot | `.github/copilot-instructions.md`; scoped instruction files under `.github/instructions/`; `.agents/skills/` | A pointer to the canonical brief; scoped files for path-specific conventions |
+| Amp | `AGENTS.md` at the repository root and in subdirectories, read at the start of every thread; a personal `AGENTS.md` in the user's Amp configuration directory; `.agents/skills/`, plus personal and workspace skill repositories that load in every session | Shares `AGENTS.md` with OpenCode and Codex; skills for rules that must follow a person or a workspace into every sandbox |
 
 Several of these tools have added support for the `AGENTS.md` convention beyond the rows above, and support continues to spread. Where a surface reads both its own file and `AGENTS.md`, prefer `AGENTS.md` and let the tool-specific file point at it — one file that several tools read is worth more than several files that agree today.
 
